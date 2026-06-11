@@ -21,6 +21,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
+import { useAppStore } from "@/store/useAppStore";
 
 type ImportState = "idle" | "error" | "preview";
 
@@ -41,6 +42,8 @@ export function ImportDeck() {
   const [deckLevel, setDeckLevel] = useState("N4");
   const [customLevel, setCustomLevel] = useState("");
   const [showAiHint, setShowAiHint] = useState(false);
+
+  const addCustomDeck = useAppStore((state) => state.addCustomDeck);
 
   const resetState = () => {
     setStatus("idle");
@@ -118,13 +121,7 @@ export function ImportDeck() {
       cards: deckData,
     };
 
-    const existingDecks = JSON.parse(
-      localStorage.getItem("custom_decks") || "[]",
-    );
-    existingDecks.push(newDeck);
-    localStorage.setItem("custom_decks", JSON.stringify(existingDecks));
-
-    window.dispatchEvent(new Event("deck_saved"));
+    addCustomDeck(newDeck);
     setIsOpen(false);
     setTimeout(resetState, 300);
   };

@@ -111,51 +111,49 @@ export function ControlPanel({
             </div>
 
             {/* Cặp nút Cảm xúc ở giữa */}
-            <div className="flex justify-center gap-6">
+            <div className="flex justify-center gap-4 sm:gap-6">
               <button
                 onClick={onReview}
-                className="relative group w-20 h-20 bg-white border-4 border-[#FF7096] rounded-full shadow-[0_8px_0_0_#FF7096] hover:-translate-y-1 hover:shadow-[0_12px_0_0_#FF7096] active:translate-y-2 active:shadow-[0_0_0_0_#FF7096] transition-all duration-200 flex items-center justify-center"
+                className="relative group w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white border-4 border-[#FF7096] rounded-full shadow-[0_6px_0_0_#FF7096] sm:shadow-[0_8px_0_0_#FF7096] hover:-translate-y-1 hover:shadow-[0_10px_0_0_#FF7096] sm:hover:shadow-[0_12px_0_0_#FF7096] active:translate-y-2 active:shadow-[0_0_0_0_#FF7096] transition-all duration-200 flex items-center justify-center"
               >
                 <span className="text-[2.5rem] group-active:scale-90 transition-transform flex items-center justify-center">
                   {customSadImg ? (
                     <img
                       src={customSadImg}
                       alt="Quên"
-                      className="w-10 h-10 object-contain"
+                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                     />
                   ) : (
                     <Frown
-                      size={44}
+                      className="w-8 h-8 sm:w-11 sm:h-11 text-[#FF7096]"
                       strokeWidth={2.5}
-                      className="text-[#FF7096]"
                     />
                   )}
                 </span>
-                <span className="absolute -top-3 bg-[#FF7096] text-white text-[10px] font-bold px-3 py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
+                <span className="absolute -top-3 sm:-top-3 bg-[#FF7096] text-white text-[9px] sm:text-[10px] font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
                   Quên rùi!
                 </span>
               </button>
 
               <button
                 onClick={onKnow}
-                className="relative group w-20 h-20 bg-white border-4 border-[#06D6A0] rounded-full shadow-[0_8px_0_0_#06D6A0] hover:-translate-y-1 hover:shadow-[0_12px_0_0_#06D6A0] active:translate-y-2 active:shadow-[0_0_0_0_#06D6A0] transition-all duration-200 flex items-center justify-center"
+                className="relative group w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white border-4 border-[#06D6A0] rounded-full shadow-[0_6px_0_0_#06D6A0] sm:shadow-[0_8px_0_0_#06D6A0] hover:-translate-y-1 hover:shadow-[0_10px_0_0_#06D6A0] sm:hover:shadow-[0_12px_0_0_#06D6A0] active:translate-y-2 active:shadow-[0_0_0_0_#06D6A0] transition-all duration-200 flex items-center justify-center"
               >
                 <span className="text-[2.5rem] group-active:scale-90 transition-transform flex items-center justify-center">
                   {customHappyImg ? (
                     <img
                       src={customHappyImg}
                       alt="Nhớ"
-                      className="w-10 h-10 object-contain"
+                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                     />
                   ) : (
                     <Smile
-                      size={44}
+                      className="w-8 h-8 sm:w-11 sm:h-11 text-[#06D6A0]"
                       strokeWidth={2.5}
-                      className="text-[#06D6A0]"
                     />
                   )}
                 </span>
-                <span className="absolute -top-3 bg-[#06D6A0] text-white text-[10px] font-bold px-3 py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
+                <span className="absolute -top-3 sm:-top-3 bg-[#06D6A0] text-white text-[9px] sm:text-[10px] font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
                   Nhớ luôn!
                 </span>
               </button>

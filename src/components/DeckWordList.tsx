@@ -12,6 +12,7 @@ import {
 import { Search, Star, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useAppStore } from "@/store/useAppStore";
 
 interface DeckWordListProps {
   deckId: string;
@@ -20,22 +21,26 @@ interface DeckWordListProps {
   trigger: React.ReactNode;
 }
 
+const EMPTY_LEARNED_IDS: string[] = [];
+
 export function DeckWordList({
   deckId,
   deckTitle,
   cards,
   trigger,
 }: DeckWordListProps) {
-  const [learnedIds, setLearnedIds] = useState<string[]>([]);
-
   // 1. STATE MỚI: Quản lý Tìm kiếm & Tàng hình
   const [searchQuery, setSearchQuery] = useState("");
   const [hideReading, setHideReading] = useState(false);
 
+  const learnedIds = useAppStore(
+    (state) => state.progress[deckId] || EMPTY_LEARNED_IDS,
+  );
+  const loadProgress = useAppStore((state) => state.loadProgress);
+
   useEffect(() => {
-    const saved = localStorage.getItem(`flashcard_progress_${deckId}`);
-    if (saved) setLearnedIds(JSON.parse(saved));
-  }, [deckId]);
+    loadProgress(deckId);
+  }, [deckId, loadProgress]);
 
   // 2. LOGIC TÌM KIẾM: Tự động lọc thẻ bài dựa trên chữ Kanji, Romaji hoặc Nghĩa
   const filteredCards = useMemo(() => {

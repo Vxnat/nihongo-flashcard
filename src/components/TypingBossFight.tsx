@@ -11,6 +11,7 @@ interface TypingBossFightProps {
   onCorrect: () => void;
   onCancel: () => void; // Nút để thoát chế độ Boss Fight quay về quẹt thẻ
   onWrong?: () => void;
+  onHint?: () => void;
 }
 
 export function TypingBossFight({
@@ -18,6 +19,7 @@ export function TypingBossFight({
   onCorrect,
   onCancel,
   onWrong,
+  onHint,
 }: TypingBossFightProps) {
   const {
     inputValue,
@@ -43,11 +45,11 @@ export function TypingBossFight({
   };
 
   return (
-    <div className="w-full max-w-md h-[450px] bg-[#FDFBF7] rounded-[2.5rem] border-4 border-[#5390D9] shadow-[0_12px_0_0_#5390D9] relative flex flex-col items-center justify-between p-6 overflow-hidden">
+    <div className="w-full max-w-md h-[400px] sm:h-[450px] bg-[#FDFBF7] rounded-[2rem] sm:rounded-[2.5rem] border-4 border-[#5390D9] shadow-[0_8px_0_0_#5390D9] sm:shadow-[0_12px_0_0_#5390D9] relative flex flex-col items-center justify-between p-4 sm:p-6 overflow-hidden">
       {/* Nút Hủy (Thoát ải) */}
       <button
         onClick={onCancel}
-        className="absolute top-4 left-4 font-rounded font-bold text-xs text-zinc-400 hover:text-zinc-600 px-3 py-1 bg-white rounded-full border-2 border-zinc-200 active:translate-y-0.5 active:shadow-none shadow-[0_2px_0_0_#e4e4e7] transition-all"
+        className="absolute top-3 left-3 sm:top-4 sm:left-4 font-rounded font-bold text-xs text-zinc-400 hover:text-zinc-600 px-3 py-1 bg-white rounded-full border-2 border-zinc-200 active:translate-y-0.5 active:shadow-none shadow-[0_2px_0_0_#e4e4e7] transition-all z-10"
       >
         🏃{" "}
         <span
@@ -62,7 +64,7 @@ export function TypingBossFight({
       </button>
 
       {/* HEADER: Chế độ Vượt Ải */}
-      <div className="flex flex-col items-center mt-10">
+      <div className="flex flex-col items-center mt-8 sm:mt-10">
         <div className="bg-[#E0F7FA] text-[#00ACC1] px-3 py-1 rounded-xl border-2 border-[#80DEEA] font-rounded font-black text-xs uppercase tracking-widest flex items-center gap-1.5 mb-4 shadow-sm">
           <Brain size={14} />{" "}
           <span style={{ fontFamily: "var(--font-cherry)" }}>Nhớ đi nào !</span>
@@ -105,12 +107,12 @@ export function TypingBossFight({
               className="flex flex-col items-center"
             >
               <h3
-                className="text-6xl text-[#FF9F1C] drop-shadow-sm mb-3"
+                className="text-5xl sm:text-6xl text-[#FF9F1C] drop-shadow-sm mb-2 sm:mb-3"
                 style={{ fontFamily: "var(--font-cherry)" }}
               >
                 {card.word}
               </h3>
-              <p className="font-rounded font-black text-2xl text-teal-800">
+              <p className="font-rounded font-black text-xl sm:text-2xl text-teal-800 px-2">
                 {card.meaning}
               </p>
             </motion.div>
@@ -130,15 +132,18 @@ export function TypingBossFight({
       </div>
 
       {/* KHU VỰC NHẬP LIỆU (Bubble Input) */}
-      <div className="w-full mt-4 flex gap-2">
+      <div className="w-full mt-2 sm:mt-4 flex gap-1.5 sm:gap-2">
         {/* Nút Gợi ý (Phao bơi) */}
         <button
-          onClick={handleProvideHint}
+          onClick={() => {
+            handleProvideHint();
+            onHint?.();
+          }}
           disabled={status === "correct"}
-          className="w-14 h-14 shrink-0 bg-white border-4 border-[#FFD166] rounded-2xl shadow-[0_4px_0_0_#FFD166] flex items-center justify-center text-[#FF9F1C] hover:bg-[#FFF9E6] active:translate-y-1 active:shadow-none transition-all disabled:opacity-50 disabled:active:translate-y-0"
+          className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 bg-white border-4 border-[#FFD166] rounded-xl sm:rounded-2xl shadow-[0_4px_0_0_#FFD166] flex items-center justify-center text-[#FF9F1C] hover:bg-[#FFF9E6] active:translate-y-1 active:shadow-none transition-all disabled:opacity-50 disabled:active:translate-y-0"
           title="Xin gợi ý"
         >
-          <LifeBuoy strokeWidth={2.5} />
+          <LifeBuoy className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
         </button>
 
         {/* Form nhập liệu có hiệu ứng Rung lắc (Wiggle) */}
@@ -164,7 +169,7 @@ export function TypingBossFight({
             }}
             disabled={status === "correct"}
             placeholder="Gõ Romaji hoặc Kana..."
-            className={`w-full h-14 pl-5 pr-14 rounded-2xl border-4 text-center font-rounded font-black text-xl transition-colors focus:outline-none placeholder:font-bold placeholder:text-base placeholder:text-zinc-300 ${statusStyles[status]}`}
+            className={`w-full h-12 sm:h-14 pl-4 sm:pl-5 pr-12 sm:pr-14 rounded-xl sm:rounded-2xl border-4 text-center font-rounded font-black text-lg sm:text-xl transition-colors focus:outline-none placeholder:font-bold placeholder:text-sm sm:placeholder:text-base placeholder:text-zinc-300 ${statusStyles[status]}`}
             style={
               status === "correct" ? { fontFamily: "var(--font-cherry)" } : {}
             } // Chữ đổi sang style cute khi gõ đúng
@@ -173,9 +178,12 @@ export function TypingBossFight({
           <button
             type="submit"
             disabled={!inputValue.trim() || status === "correct"}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#5390D9] text-white rounded-xl flex items-center justify-center shadow-[0_3px_0_0_#305f94] active:translate-y-0.5 active:shadow-none transition-all disabled:bg-zinc-300 disabled:shadow-[0_3px_0_0_#a1a1aa]"
+            className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-[#5390D9] text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-[0_3px_0_0_#305f94] active:translate-y-0.5 active:shadow-none transition-all disabled:bg-zinc-300 disabled:shadow-[0_3px_0_0_#a1a1aa]"
           >
-            <Send size={18} strokeWidth={3} className="ml-0.5" />
+            <Send
+              className="w-4 h-4 sm:w-[18px] sm:h-[18px] ml-0.5"
+              strokeWidth={3}
+            />
           </button>
         </motion.form>
       </div>

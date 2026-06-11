@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { LoadDefaultDecksBtn } from "@/components/LoadDefaultDecksBtn";
 import { UserStatsPill } from "@/components/UserStatsPill";
+import { useAppStore } from "@/store/useAppStore";
 
 const defaultDecks = [] as any[];
 
@@ -49,36 +50,23 @@ const emptyBoxVariants: any = {
 
 export default function Home() {
   const router = useRouter();
-  const [allDecks, setAllDecks] = useState(defaultDecks);
   const [deckToDelete, setDeckToDelete] = useState<string | null>(null);
-  
+
+  const customDecks = useAppStore((state) => state.customDecks);
+  const loadCustomDecks = useAppStore((state) => state.loadCustomDecks);
+  const deleteCustomDeck = useAppStore((state) => state.deleteCustomDeck);
+
   // States cho tính năng Tải App (PWA)
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [isInstallable, setIsInstallable] = useState(false);
   const [isIOSInstallable, setIsIOSInstallable] = useState(false);
   const [showIOSModal, setShowIOSModal] = useState(false);
 
-  const loadDecks = () => {
-    const customDecks = JSON.parse(
-      localStorage.getItem("custom_decks") || "[]",
-    );
-
-    const customList = customDecks.map((d: any) => ({
-      id: d.id,
-      title: d.title,
-      description: d.description,
-      count: d.count,
-      level: d.level,
-      isCustom: true,
-      cards: d.cards,
-    }));
-    setAllDecks([...defaultDecks, ...customList]);
-  };
+  const customList = customDecks.map((d) => ({ ...d, isCustom: true }));
+  const allDecks = [...defaultDecks, ...customList];
 
   useEffect(() => {
-    loadDecks();
-    window.addEventListener("deck_saved", loadDecks);
-    return () => window.removeEventListener("deck_saved", loadDecks);
+    loadCustomDecks();
   }, []);
 
   // Bắt sự kiện cài đặt PWA
@@ -93,20 +81,21 @@ export default function Home() {
     // Kiểm tra xem có phải iPhone/iPad chưa cài app không
     const ua = window.navigator.userAgent.toLowerCase();
     const isIOS = /iphone|ipad|ipod/.test(ua);
-    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone;
+    const isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      (window.navigator as any).standalone;
     if (isIOS && !isStandalone) {
       setIsIOSInstallable(true);
     }
-    return () => window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    return () =>
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
   }, []);
 
   const handleDeleteCustomDeck = (idToDelete: string) => {
-    const customDecks = JSON.parse(
-      localStorage.getItem("custom_decks") || "[]",
-    );
-    const updatedDecks = customDecks.filter((d: any) => d.id !== idToDelete);
-    localStorage.setItem("custom_decks", JSON.stringify(updatedDecks));
-    loadDecks();
+    deleteCustomDeck(idToDelete);
     setDeckToDelete(null); // Đóng popup sau khi xóa
   };
 
@@ -128,7 +117,6 @@ export default function Home() {
 
   return (
     <div className="w-full flex flex-col items-center pb-20">
-
       {/* VIÊN THUỐC TRẠNG THÁI LUÔN LƠ LỬNG */}
       <UserStatsPill />
 
@@ -144,7 +132,8 @@ export default function Home() {
             fill="#FFD166"
           />
         </h1>
-        <p className="font-rounded text-zinc-500 font-bold tracking-wide text-sm md:text-base bg-white px-4 py-1.5 rounded-full border-2 border-zinc-200 inline-block shadow-sm"
+        <p
+          className="font-rounded text-zinc-500 font-bold tracking-wide text-sm md:text-base bg-white px-4 py-1.5 rounded-full border-2 border-zinc-200 inline-block shadow-sm"
           style={{ fontFamily: "var(--font-cherry)" }}
         >
           Chọn bộ bài để bắt đầu học nhé! ﾉ*:･ﾟ✧
@@ -184,12 +173,12 @@ export default function Home() {
                 Hũ kẹo trống trơn!
               </h3>
               <p className="font-rounded text-zinc-500 font-bold text-sm md:text-base max-w-[250px] mx-auto mb-6">
-                Chưa có thẻ bài nào ở đây cả. Bạn tự nhập hoặc lấy bài mẫu của
-                app nhé! ✨
+                Chưa có thẻ bài nào ở đây cả. Bạn tự nhập hoặc lấy bộ bài mẫu
+                nhé! ✨
               </p>
 
               {/* NÚT TRIỆU HỒI BÀI MẪU (COMPONENT) */}
-              <LoadDefaultDecksBtn onLoaded={loadDecks} />
+              <LoadDefaultDecksBtn onLoaded={loadCustomDecks} />
             </div>
           </motion.div>
         ) : (
@@ -219,7 +208,10 @@ export default function Home() {
                   {/* NỘI DUNG CHỮ */}
                   <div className="relative z-10 pointer-events-none flex flex-col flex-1">
                     <div className="flex justify-between items-start mb-3">
-                      <Badge className="font-rounded bg-[#FFD166] text-amber-900 font-bold px-3 py-1 rounded-xl border-2 border-[#FFE2D1] shadow-[0_3px_0_0_#FFE2D1]">
+                      <Badge
+                        className="font-rounded bg-[#FFD166] text-amber-900 font-bold px-3 py-1 rounded-xl border-2 border-[#FFE2D1] shadow-[0_3px_0_0_#FFE2D1]"
+                        style={{ fontFamily: "var(--font-cherry)" }}
+                      >
                         {deck.level}
                       </Badge>
                     </div>
@@ -231,7 +223,8 @@ export default function Home() {
                       {deck.title}
                     </h3>
 
-                    <p className="font-rounded text-zinc-500 font-bold mt-1 text-sm line-clamp-2"
+                    <p
+                      className="font-rounded text-zinc-500 font-bold mt-1 text-sm line-clamp-2"
                       style={{ fontFamily: "var(--font-cherry)" }}
                     >
                       {deck.description}
@@ -240,7 +233,10 @@ export default function Home() {
 
                   {/* KHU VỰC NÚT BẤM */}
                   <div className="relative z-20 mt-4 pt-4 border-t-2 border-dashed border-zinc-100 flex items-center justify-between">
-                    <p className="font-rounded text-xs text-indigo-400 font-bold tracking-wide pointer-events-none">
+                    <p
+                      className="font-rounded text-xs text-indigo-400 font-bold tracking-wide pointer-events-none"
+                      style={{ fontFamily: "var(--font-cherry)" }}
+                    >
                       ⭐ {deck.count} thẻ ma thuật
                     </p>
 
@@ -289,13 +285,17 @@ export default function Home() {
           >
             <motion.div
               initial={{ scale: 0.8, y: 20 }}
-              animate={{ scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } }}
+              animate={{
+                scale: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 300, damping: 25 },
+              }}
               exit={{ scale: 0.8, y: -20, opacity: 0 }}
               onClick={(e) => e.stopPropagation()} // Chặn đóng khi bấm vào box
               className="bg-[#FDFBF7] border-4 border-[#FF7096] rounded-[2.5rem] p-6 max-w-[320px] w-full text-center shadow-[0_12px_0_0_#FF7096]"
             >
-              <h3 
-                className="text-2xl text-[#FF7096] mb-2" 
+              <h3
+                className="text-2xl text-[#FF7096] mb-2"
                 style={{ fontFamily: "var(--font-cherry)" }}
               >
                 Xóa thật hả?
@@ -326,37 +326,62 @@ export default function Home() {
       <AnimatePresence>
         {showIOSModal && (
           <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
             onClick={() => setShowIOSModal(false)}
           >
             <motion.div
               initial={{ scale: 0.8, y: 20 }}
-              animate={{ scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } }}
+              animate={{
+                scale: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 300, damping: 25 },
+              }}
               exit={{ scale: 0.8, y: -20, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
               className="bg-[#FDFBF7] border-4 border-[#5390D9] rounded-[2.5rem] p-6 max-w-[320px] w-full shadow-[0_12px_0_0_#5390D9] relative"
             >
               <div className="text-center mb-6">
                 <span className="text-5xl mb-2 block animate-bounce">🍎</span>
-                <h3 className="text-2xl text-[#5390D9]" style={{ fontFamily: "var(--font-cherry)" }}>
+                <h3
+                  className="text-2xl text-[#5390D9]"
+                  style={{ fontFamily: "var(--font-cherry)" }}
+                >
                   Cài app trên iPhone
                 </h3>
               </div>
-              
+
               <div className="space-y-4 font-rounded font-bold text-zinc-600 text-sm bg-white p-4 rounded-[1.5rem] border-2 border-[#5390D9]/20">
                 <p className="flex items-center gap-3">
-                  <span className="bg-[#5390D9] text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0">1</span>
-                  Bấm vào nút <Share size={18} className="text-[#5390D9] shrink-0" /> (Chia sẻ) ở dưới cùng màn hình Safari.
+                  <span className="bg-[#5390D9] text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+                    1
+                  </span>
+                  Bấm vào nút{" "}
+                  <Share size={18} className="text-[#5390D9] shrink-0" /> (Chia
+                  sẻ) ở dưới cùng màn hình Safari.
                 </p>
                 <div className="w-full h-px bg-zinc-100" />
                 <p className="flex items-center gap-3">
-                  <span className="bg-[#5390D9] text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0">2</span>
-                  Kéo xuống & chọn <br/><strong className="text-zinc-800">"Thêm vào MH chính"</strong> <PlusSquare size={18} className="text-[#5390D9] inline shrink-0" />
+                  <span className="bg-[#5390D9] text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0">
+                    2
+                  </span>
+                  Kéo xuống & chọn <br />
+                  <strong className="text-zinc-800">
+                    "Thêm vào MH chính"
+                  </strong>{" "}
+                  <PlusSquare
+                    size={18}
+                    className="text-[#5390D9] inline shrink-0"
+                  />
                 </p>
               </div>
-              
-              <button onClick={() => setShowIOSModal(false)} className="w-full mt-6 h-12 bg-zinc-100 hover:bg-zinc-200 text-zinc-500 font-bold rounded-2xl border-b-4 border-zinc-300 active:border-b-0 active:translate-y-1 transition-all">
+
+              <button
+                onClick={() => setShowIOSModal(false)}
+                className="w-full mt-6 h-12 bg-zinc-100 hover:bg-zinc-200 text-zinc-500 font-bold rounded-2xl border-b-4 border-zinc-300 active:border-b-0 active:translate-y-1 transition-all"
+              >
                 Đã hiểu!
               </button>
             </motion.div>
@@ -369,7 +394,11 @@ export default function Home() {
         {(isInstallable || isIOSInstallable) && (
           <motion.button
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 25 } }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: { type: "spring", stiffness: 300, damping: 25 },
+            }}
             exit={{ y: 50, opacity: 0 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -377,7 +406,12 @@ export default function Home() {
             className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] px-4 py-2.5 bg-white text-[#06D6A0] rounded-full border-2 border-[#A0E8D5] shadow-[0_4px_0_0_#A0E8D5] hover:bg-[#F0FAF5] active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 cursor-pointer"
           >
             <Download size={18} strokeWidth={2.5} />
-            <span className="font-bold text-sm tracking-wide" style={{ fontFamily: "var(--font-cherry)", paddingTop: "2px" }}>Tải App</span>
+            <span
+              className="font-bold text-sm tracking-wide"
+              style={{ fontFamily: "var(--font-cherry)", paddingTop: "2px" }}
+            >
+              Tải App
+            </span>
           </motion.button>
         )}
       </AnimatePresence>

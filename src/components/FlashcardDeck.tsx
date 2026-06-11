@@ -344,6 +344,7 @@ export function FlashcardDeck({
               setTempTyping(false);
             }}
             onWrong={() => playMascotAnim("fail")} // Gọi trạng thái linh vật buồn
+            onHint={() => playMascotAnim("hint")} // Gọi trạng thái linh vật gợi ý
             onCancel={() => {
               // Bấm nút Thoát ải: Tắt temp. Nếu đang ở global gõ phím thì ép về lại global quẹt thẻ.
               setTempTyping(false);
@@ -389,13 +390,13 @@ export function FlashcardDeck({
           />
 
           {/* 4. NÚT VÀO ẢI (Hiển thị ngay dưới ControlPanel) */}
-          <div className="w-full max-w-md mx-auto mt-10 px-4">
+          <div className="w-full max-w-md mx-auto mt-6 sm:mt-10 px-4">
             <button
               onClick={() => {
                 setTempTyping(true); // Bật công tắc tạm thời
                 setIsFlipped(false); // Đảm bảo thẻ úp lại trước khi vào ải
               }}
-              className="w-full h-12 bg-indigo-50 hover:bg-indigo-100 text-indigo-500 rounded-2xl font-bold border-2 border-indigo-200 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm"
+              className="w-full h-12 sm:h-14 bg-indigo-50 hover:bg-indigo-100 text-indigo-500 rounded-2xl font-bold border-2 border-indigo-200 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm"
             >
               <span
                 style={{

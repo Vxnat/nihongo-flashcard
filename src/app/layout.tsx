@@ -1,32 +1,38 @@
 import type { Metadata } from "next";
-import { Inter, Quicksand, Cherry_Bomb_One, Hachi_Maru_Pop , Cute_Font } from "next/font/google";
+import {
+  Inter,
+  Quicksand,
+  Cherry_Bomb_One,
+  Hachi_Maru_Pop,
+  Cute_Font,
+} from "next/font/google";
 import "./globals.css";
 import { SplashScreen } from "@/components/SplashScreen";
 
 // 1. Font Cherry Bomb One: Siêu mập, dễ thương (Dành cho Tiêu đề)
-const cherryBomb = Cherry_Bomb_One({ 
-  weight: "400", 
+const cherryBomb = Cherry_Bomb_One({
+  weight: "400",
   subsets: ["latin"], // Hỗ trợ tiếng Anh & Romaji chuẩn
-  variable: "--font-cherry" 
+  variable: "--font-cherry",
 });
 
 // 2. Font Quicksand: Bo tròn, mềm mại (Dành cho văn bản phụ)
-const quicksand = Quicksand({ 
-  subsets: ["latin", "vietnamese"], 
+const quicksand = Quicksand({
+  subsets: ["latin", "vietnamese"],
   weight: ["500", "600", "700"],
-  variable: "--font-rounded" 
+  variable: "--font-rounded",
 });
 
-const hachiMaruPop = Hachi_Maru_Pop({ 
-  weight: "400", 
-  subsets: ["latin"], 
-  variable: "--font-hachi-maru-pop" 
+const hachiMaruPop = Hachi_Maru_Pop({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-hachi-maru-pop",
 });
 
-const cuteFont = Cute_Font({ 
-  weight: "400", 
-  subsets: ["latin"], 
-  variable: "--font-cute" 
+const cuteFont = Cute_Font({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-cute",
 });
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -47,13 +53,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
-      <body className={`${inter.variable} ${cherryBomb.variable} ${quicksand.variable} ${hachiMaruPop.variable} ${cuteFont.variable} font-sans min-h-screen text-zinc-900 antialiased`}>
-        
+    <html lang="vi" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${cherryBomb.variable} ${quicksand.variable} ${hachiMaruPop.variable} ${cuteFont.variable} font-sans min-h-screen text-zinc-900 antialiased`}
+        suppressHydrationWarning
+      >
         {/* ==========================================
             CUTE APP BACKGROUND: SỔ TAY CARO (GRID NOTE)
            ========================================== */}
-        <div 
+        <div
           className="fixed inset-0 w-full h-full -z-50"
           style={{
             // Màu nền vàng bơ sữa
@@ -63,7 +71,7 @@ export default function RootLayout({
               linear-gradient(#F3E2C6 2px, transparent 2px),
               linear-gradient(90deg, #F3E2C6 2px, transparent 2px)
             `,
-            backgroundSize: "36px 36px" // Kích thước ô vuông
+            backgroundSize: "36px 36px", // Kích thước ô vuông
           }}
         />
 

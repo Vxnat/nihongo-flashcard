@@ -18,7 +18,7 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
 
   const closeDialog = () => {
     setDialogInfo((prev) => ({ ...prev, isOpen: false }));
-    
+
     // Nếu là thông báo success (vừa thêm bài xong), đóng popup mới cho cha reload
     if (dialogInfo.type === "success") {
       window.dispatchEvent(new Event("deck_saved"));
@@ -40,14 +40,14 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
       ];
 
       const existingCustomDecks = JSON.parse(
-        localStorage.getItem("custom_decks") || "[]"
+        localStorage.getItem("custom_decks") || "[]",
       );
 
       const newDecks = [];
 
       for (const sample of sampleDecksToLoad) {
         const isAlreadyImported = existingCustomDecks.some(
-          (d: any) => d.id === sample.id
+          (d: any) => d.id === sample.id,
         );
 
         if (!isAlreadyImported) {
@@ -97,9 +97,27 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
 
   // Cấu hình giao diện theo trạng thái Dialog
   const dialogStyles = {
-    success: { border: "#06D6A0", bgBtn: "#06D6A0", btnBorder: "#048c68", icon: "🎉", title: "Tuyệt vờiiii!" },
-    warning: { border: "#FFD166", bgBtn: "#FF9F1C", btnBorder: "#d48111", icon: "🪄", title: "Phép thuật vô hiệu!" },
-    error: { border: "#FF7096", bgBtn: "#FF7096", btnBorder: "#C7486B", icon: "😭", title: "Có lỗi xảy ra!" }
+    success: {
+      border: "#06D6A0",
+      bgBtn: "#06D6A0",
+      btnBorder: "#048c68",
+      icon: "🎉",
+      title: "Tuyệt vờiiii!",
+    },
+    warning: {
+      border: "#FFD166",
+      bgBtn: "#FF9F1C",
+      btnBorder: "#d48111",
+      icon: "🪄",
+      title: "Phép thuật vô hiệu!",
+    },
+    error: {
+      border: "#FF7096",
+      bgBtn: "#FF7096",
+      btnBorder: "#C7486B",
+      icon: "😭",
+      title: "Có lỗi xảy ra!",
+    },
   };
 
   const currentStyle = dialogStyles[dialogInfo.type];
@@ -110,9 +128,16 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
       <button
         onClick={handleLoad}
         disabled={isLoading}
-        className="h-12 px-6 rounded-full bg-[#5390D9] hover:bg-[#3a70b0] text-white font-rounded font-black text-base border-b-4 border-[#305f94] active:border-b-0 active:translate-y-1 disabled:opacity-50 disabled:active:border-b-4 disabled:active:translate-y-0 transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+        className="h-12 px-6 rounded-full bg-[#B28DFF] hover:bg-[#9E6EE6] text-white font-rounded font-black text-base border-b-4 border-[#8A56D6] active:border-b-0 active:translate-y-1 disabled:opacity-50 disabled:active:border-b-4 disabled:active:translate-y-0 transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
       >
-        <span>🪄</span> {isLoading ? "Đang làm phép..." : "Triệu hồi bộ bài mẫu!"}
+        <span>🪄</span>{" "}
+        <span
+          style={{
+            fontFamily: "var(--font-cherry)",
+          }}
+        >
+          {isLoading ? "Đang làm phép..." : "Triệu hồi bộ bài mẫu!"}
+        </span>
       </button>
 
       {/* POPUP THÔNG BÁO CUTE */}
@@ -127,27 +152,42 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
           >
             <motion.div
               initial={{ scale: 0.8, y: 20 }}
-              animate={{ scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } }}
+              animate={{
+                scale: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 300, damping: 25 },
+              }}
               exit={{ scale: 0.8, y: -20, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
               className={`bg-[#FDFBF7] border-4 rounded-[2.5rem] p-6 max-w-[320px] w-full text-center shadow-2xl`}
-              style={{ borderColor: currentStyle.border, boxShadow: `0 12px 0 0 ${currentStyle.border}` }}
+              style={{
+                borderColor: currentStyle.border,
+                boxShadow: `0 12px 0 0 ${currentStyle.border}`,
+              }}
             >
-              <span className="text-6xl mb-4 block animate-bounce">{currentStyle.icon}</span>
-              <h3 
-                className="text-2xl mb-2" 
-                style={{ fontFamily: "var(--font-cherry)", color: currentStyle.bgBtn }}
+              <span className="text-6xl mb-4 block animate-bounce">
+                {currentStyle.icon}
+              </span>
+              <h3
+                className="text-2xl mb-2"
+                style={{
+                  fontFamily: "var(--font-cherry)",
+                  color: currentStyle.bgBtn,
+                }}
               >
                 {currentStyle.title}
               </h3>
               <p className="font-rounded text-zinc-600 font-bold text-sm mb-6 leading-relaxed">
                 {dialogInfo.message}
               </p>
-              
+
               <button
                 onClick={closeDialog}
                 className="w-full h-12 text-white font-bold rounded-2xl transition-all border-b-4 active:border-b-0 active:translate-y-1"
-                style={{ backgroundColor: currentStyle.bgBtn, borderColor: currentStyle.btnBorder }}
+                style={{
+                  backgroundColor: currentStyle.bgBtn,
+                  borderColor: currentStyle.btnBorder,
+                }}
               >
                 Đã hiểu ᕙ(`▽´)ᕗ
               </button>

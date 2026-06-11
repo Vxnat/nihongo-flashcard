@@ -5,12 +5,15 @@ import { FlashcardData } from "@/types/flashcard";
 import { playAudio } from "@/utils/tts";
 import { playSFX } from "@/utils/sfx";
 import { useUserStats } from "@/hooks/useUserStats";
+import { useAppStore } from "@/store/useAppStore";
 
 interface UseFlashcardDeckProps {
   deckId: string;
   initialCards: FlashcardData[];
   isCustom?: boolean;
 }
+
+const EMPTY_KNOWN_IDS: string[] = [];
 
 export function useFlashcardDeck({
   deckId,
@@ -21,7 +24,6 @@ export function useFlashcardDeck({
   const [cards, setCards] = useState<FlashcardData[]>(initialCards);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [knownIds, setKnownIds] = useState<string[]>([]);
   const [exitDir, setExitDir] = useState<"left" | "right" | "none">("none");
   const [showFurigana, setShowFurigana] = useState(true);
   const { recordAction, addLearningTime } = useUserStats();
@@ -36,14 +38,22 @@ export function useFlashcardDeck({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isFullscreenSupported, setIsFullscreenSupported] = useState(false);
 
+  const customDecks = useAppStore((state) => state.customDecks);
+  const knownIds = useAppStore(
+    (state) => state.progress[deckId] || EMPTY_KNOWN_IDS,
+  );
+  const loadProgress = useAppStore((state) => state.loadProgress);
+  const saveProgress = useAppStore((state) => state.saveProgress);
+  const globalResetProgress = useAppStore((state) => state.resetProgress);
+
   // --- MASCOT (LINH VẬT) STATES ---
   const [showMascot, setShowMascot] = useState(true);
   const [mascotState, setMascotState] = useState<
-    "idle" | "success" | "fail" | "sleep"
+    "idle" | "success" | "fail" | "sleep" | "hint"
   >("idle");
   const mascotTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const playMascotAnim = useCallback((state: "success" | "fail") => {
+  const playMascotAnim = useCallback((state: "success" | "fail" | "hint") => {
     setMascotState(state);
     if (mascotTimeoutRef.current) clearTimeout(mascotTimeoutRef.current);
     mascotTimeoutRef.current = setTimeout(() => setMascotState("idle"), 2000);
@@ -53,13 +63,15 @@ export function useFlashcardDeck({
 
   useEffect(() => {
     setIsMounted(true);
-    const savedProgress = localStorage.getItem(`flashcard_progress_${deckId}`);
-    if (savedProgress) setKnownIds(JSON.parse(savedProgress));
+    loadProgress(deckId);
 
     if (isCustom) {
-      const allCustomDecks = JSON.parse(
+      // Đọc từ localStorage nếu Zustand store chưa hydrate kịp (tránh lỗi nếu user reload trang học trực tiếp)
+      const localDecks = JSON.parse(
         localStorage.getItem("custom_decks") || "[]",
       );
+      const allCustomDecks = customDecks.length > 0 ? customDecks : localDecks;
+
       const currentCustomDeck = allCustomDecks.find(
         (d: any) => d.id === deckId,
       );
@@ -67,7 +79,7 @@ export function useFlashcardDeck({
         setCards(currentCustomDeck.cards);
       }
     }
-  }, [deckId, isCustom]);
+  }, [deckId, isCustom, customDecks, loadProgress]);
 
   const activeCards = cards.filter((card) => !knownIds.includes(card.id));
   const totalOriginalCards = cards.length;
@@ -102,12 +114,7 @@ export function useFlashcardDeck({
     if (dir === "right") {
       if (currentFlipped) {
         const currentId = activeCards[currentIndex].id;
-        const newKnownIds = [...knownIds, currentId];
-        setKnownIds(newKnownIds);
-        localStorage.setItem(
-          `flashcard_progress_${deckId}`,
-          JSON.stringify(newKnownIds),
-        );
+        saveProgress(deckId, [...knownIds, currentId]);
         if (currentIndex >= activeCards.length - 1) setCurrentIndex(0);
         setIsFlipped(false);
         playSFX("success");
@@ -305,8 +312,7 @@ export function useFlashcardDeck({
   };
 
   const resetProgress = () => {
-    setKnownIds([]);
-    localStorage.removeItem(`flashcard_progress_${deckId}`);
+    globalResetProgress(deckId);
     setCurrentIndex(0);
     setIsFlipped(false);
   };
