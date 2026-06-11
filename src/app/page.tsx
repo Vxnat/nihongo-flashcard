@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
-import { Trash2, Sparkles } from "lucide-react";
+import { Trash2, Sparkles, Download, Share, PlusSquare, X } from "lucide-react";
 import { ImportDeck } from "@/components/ImportDeck";
 import { Button } from "@/components/ui/button";
 import { DeckWordList } from "@/components/DeckWordList";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { LoadDefaultDecksBtn } from "@/components/LoadDefaultDecksBtn";
+import { UserStatsPill } from "@/components/UserStatsPill";
 
 const defaultDecks = [] as any[];
 
@@ -46,8 +48,15 @@ const emptyBoxVariants: any = {
 };
 
 export default function Home() {
-  const [allDecks, setAllDecks] = useState(defaultDecks);
   const router = useRouter();
+  const [allDecks, setAllDecks] = useState(defaultDecks);
+  const [deckToDelete, setDeckToDelete] = useState<string | null>(null);
+  
+  // States cho tính năng Tải App (PWA)
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [isInstallable, setIsInstallable] = useState(false);
+  const [isIOSInstallable, setIsIOSInstallable] = useState(false);
+  const [showIOSModal, setShowIOSModal] = useState(false);
 
   const loadDecks = () => {
     const customDecks = JSON.parse(
@@ -72,96 +81,57 @@ export default function Home() {
     return () => window.removeEventListener("deck_saved", loadDecks);
   }, []);
 
-  const handleDeleteCustomDeck = (e: React.MouseEvent, idToDelete: string) => {
-    e.preventDefault();
+  // Bắt sự kiện cài đặt PWA
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: any) => {
+      e.preventDefault(); // Ngăn trình duyệt hiện thanh cài đặt mặc định xấu xí
+      setDeferredPrompt(e); // Lưu sự kiện lại để dùng cho nút của mình
+      setIsInstallable(true);
+    };
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    // Kiểm tra xem có phải iPhone/iPad chưa cài app không
+    const ua = window.navigator.userAgent.toLowerCase();
+    const isIOS = /iphone|ipad|ipod/.test(ua);
+    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone;
+    if (isIOS && !isStandalone) {
+      setIsIOSInstallable(true);
+    }
+    return () => window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+  }, []);
+
+  const handleDeleteCustomDeck = (idToDelete: string) => {
     const customDecks = JSON.parse(
       localStorage.getItem("custom_decks") || "[]",
     );
     const updatedDecks = customDecks.filter((d: any) => d.id !== idToDelete);
     localStorage.setItem("custom_decks", JSON.stringify(updatedDecks));
     loadDecks();
+    setDeckToDelete(null); // Đóng popup sau khi xóa
   };
 
-  const handleLoadDefaultDecks = async () => {
-    try {
-      // 1. Định nghĩa danh sách các bộ bài mẫu muốn nạp
-      // Mỗi item sẽ tương ứng với một file JSON chứa danh sách cards trong thư mục public/data
-      const sampleDecksToLoad = [
-        {
-          id: "custom_default_n5_core",
-          title: "N5 Vocabulary Core",
-          description: "Bộ từ vựng N5 thiết yếu để bạn bắt đầu hành trình ✨",
-          level: "N5",
-          dataPath: "/data/default_decks.json",
-        },
-        // {
-        //   id: "default_cute_sample",
-        //   title: "Cute Flashcards",
-        //   description: "Những từ vựng siêu dễ thương và ví dụ thực tế 🍬",
-        //   level: "N5",
-        //   dataPath: "/data/mau_flashcard_cute.json",
-        // },
-      ];
-
-      // 2. Lấy dữ liệu hiện có
-      const existingCustomDecks = JSON.parse(
-        localStorage.getItem("custom_decks") || "[]",
-      );
-
-      const newDecks = [];
-
-      // 3. Duyệt qua từng bộ bài mẫu và tải dữ liệu cards
-      for (const sample of sampleDecksToLoad) {
-        // Kiểm tra xem ID này đã tồn tại trong máy người dùng chưa
-        const isAlreadyImported = existingCustomDecks.some(
-          (d: any) => d.id === sample.id,
-        );
-
-        if (!isAlreadyImported) {
-          const res = await fetch(sample.dataPath);
-          if (!res.ok) continue;
-          const cards = await res.json();
-
-          // Tạo đối tượng Deck hoàn chỉnh
-          newDecks.push({
-            id: sample.id,
-            title: sample.title,
-            description: sample.description,
-            level: sample.level,
-            count: cards.length,
-            cards: cards,
-            isCustom: true, // Để người dùng có thể xóa nếu thích
-          });
-        }
-      }
-
-      // 4. Kiểm tra kết quả
-      if (newDecks.length === 0) {
-        alert("Bạn đã 'triệu hồi' hết các bộ bài mẫu rồi mà! (ﾉ◕ヮ◕)ﾉ*");
-        return;
-      }
-
-      // 5. Lưu vào localStorage và cập nhật UI
-      const updatedDecks = [...existingCustomDecks, ...newDecks];
-      localStorage.setItem("custom_decks", JSON.stringify(updatedDecks));
-
-      // Phát sự kiện để các component khác (nếu có) cùng cập nhật
-      window.dispatchEvent(new Event("deck_saved"));
-
-      // Reload dữ liệu tại chỗ
-      loadDecks();
-
-      alert(
-        `Phù phép thành công! Đã thêm ${newDecks.length} bộ bài mới vào kho của bạn. ✨`,
-      );
-    } catch (error) {
-      console.error("Lỗi triệu hồi bài mẫu:", error);
-      alert("Ôi hỏng rồi, phép thuật bị lỗi! Thử lại sau nhé 😭");
+  const handleInstallClick = async () => {
+    // Nếu là iOS thì hiện hướng dẫn
+    if (isIOSInstallable) {
+      setShowIOSModal(true);
+      return;
     }
+    // Nếu là Android/Desktop thì gọi hàm cài đặt
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === "accepted") {
+      setIsInstallable(false); // Cài xong thì giấu nút đi
+    }
+    setDeferredPrompt(null);
   };
 
   return (
     <div className="w-full flex flex-col items-center pb-20">
+
+      {/* VIÊN THUỐC TRẠNG THÁI LUÔN LƠ LỬNG */}
+      <UserStatsPill />
+
       {/* TIÊU ĐỀ APP */}
       <div className="text-center mb-10 space-y-4 pt-6 relative">
         <h1
@@ -174,8 +144,10 @@ export default function Home() {
             fill="#FFD166"
           />
         </h1>
-        <p className="font-rounded text-zinc-500 font-bold tracking-wide text-sm md:text-base bg-white px-4 py-1.5 rounded-full border-2 border-zinc-200 inline-block shadow-sm">
-          Chọn bộ bài để bắt đầu học nhé! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+        <p className="font-rounded text-zinc-500 font-bold tracking-wide text-sm md:text-base bg-white px-4 py-1.5 rounded-full border-2 border-zinc-200 inline-block shadow-sm"
+          style={{ fontFamily: "var(--font-cherry)" }}
+        >
+          Chọn bộ bài để bắt đầu học nhé! ﾉ*:･ﾟ✧
         </p>
       </div>
 
@@ -216,13 +188,8 @@ export default function Home() {
                 app nhé! ✨
               </p>
 
-              {/* NÚT TRIỆU HỒI BÀI MẪU BÉO NGẬY (BLUE CANDY PILL) */}
-              <button
-                onClick={handleLoadDefaultDecks}
-                className="h-12 px-6 rounded-full bg-[#5390D9] hover:bg-[#3a70b0] text-white font-rounded font-black text-base border-b-4 border-[#305f94] active:border-b-0 active:translate-y-1 transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
-              >
-                <span>🪄</span> Triệu hồi bộ bài mẫu!
-              </button>
+              {/* NÚT TRIỆU HỒI BÀI MẪU (COMPONENT) */}
+              <LoadDefaultDecksBtn onLoaded={loadDecks} />
             </div>
           </motion.div>
         ) : (
@@ -294,7 +261,10 @@ export default function Home() {
                       variant="ghost"
                       size="icon"
                       className="absolute top-4 right-4 bg-red-50 hover:bg-red-100 text-red-400 rounded-full w-8 h-8 z-20 cursor-pointer"
-                      onClick={(e) => handleDeleteCustomDeck(e, deck.id)}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Vẫn phải chặn click lan xuống thẻ nhảy trang
+                        setDeckToDelete(deck.id); // Gọi popup lên thay vì xóa ngay
+                      }}
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -303,6 +273,110 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+        )}
+      </AnimatePresence>
+      {/* POPUP XÁC NHẬN XÓA (CUTE EDITION) */}
+      <AnimatePresence>
+        {deckToDelete && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            onClick={() => setDeckToDelete(null)} // Bấm ra ngoài để đóng
+          >
+            <motion.div
+              initial={{ scale: 0.8, y: 20 }}
+              animate={{ scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } }}
+              exit={{ scale: 0.8, y: -20, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()} // Chặn đóng khi bấm vào box
+              className="bg-[#FDFBF7] border-4 border-[#FF7096] rounded-[2.5rem] p-6 max-w-[320px] w-full text-center shadow-[0_12px_0_0_#FF7096]"
+            >
+              <h3 
+                className="text-2xl text-[#FF7096] mb-2" 
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >
+                Xóa thật hả?
+              </h3>
+              <p className="font-rounded text-zinc-500 font-bold text-sm mb-6">
+                Bộ bài này sẽ bay màu vĩnh viễn và không thể khôi phục đâu nhé!
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setDeckToDelete(null)}
+                  className="flex-1 h-12 bg-zinc-100 hover:bg-zinc-200 text-zinc-500 font-bold rounded-2xl transition-colors border-b-4 border-zinc-300 active:border-b-0 active:translate-y-1"
+                >
+                  Quay xe
+                </button>
+                <button
+                  onClick={() => handleDeleteCustomDeck(deckToDelete)}
+                  className="flex-1 h-12 bg-[#FF7096] hover:bg-[#FF5C8A] text-white font-bold rounded-2xl transition-colors border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1"
+                >
+                  Xóa luôn!
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* POPUP HƯỚNG DẪN CÀI ĐẶT CHO IPHONE (iOS) */}
+      <AnimatePresence>
+        {showIOSModal && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowIOSModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, y: 20 }}
+              animate={{ scale: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } }}
+              exit={{ scale: 0.8, y: -20, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#FDFBF7] border-4 border-[#5390D9] rounded-[2.5rem] p-6 max-w-[320px] w-full shadow-[0_12px_0_0_#5390D9] relative"
+            >
+              <div className="text-center mb-6">
+                <span className="text-5xl mb-2 block animate-bounce">🍎</span>
+                <h3 className="text-2xl text-[#5390D9]" style={{ fontFamily: "var(--font-cherry)" }}>
+                  Cài app trên iPhone
+                </h3>
+              </div>
+              
+              <div className="space-y-4 font-rounded font-bold text-zinc-600 text-sm bg-white p-4 rounded-[1.5rem] border-2 border-[#5390D9]/20">
+                <p className="flex items-center gap-3">
+                  <span className="bg-[#5390D9] text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0">1</span>
+                  Bấm vào nút <Share size={18} className="text-[#5390D9] shrink-0" /> (Chia sẻ) ở dưới cùng màn hình Safari.
+                </p>
+                <div className="w-full h-px bg-zinc-100" />
+                <p className="flex items-center gap-3">
+                  <span className="bg-[#5390D9] text-white w-6 h-6 rounded-full flex items-center justify-center shrink-0">2</span>
+                  Kéo xuống & chọn <br/><strong className="text-zinc-800">"Thêm vào MH chính"</strong> <PlusSquare size={18} className="text-[#5390D9] inline shrink-0" />
+                </p>
+              </div>
+              
+              <button onClick={() => setShowIOSModal(false)} className="w-full mt-6 h-12 bg-zinc-100 hover:bg-zinc-200 text-zinc-500 font-bold rounded-2xl border-b-4 border-zinc-300 active:border-b-0 active:translate-y-1 transition-all">
+                Đã hiểu!
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* NÚT TẢI APP NỔI GÓC DƯỚI PHẢI (FLOATING BUTTON) */}
+      <AnimatePresence>
+        {(isInstallable || isIOSInstallable) && (
+          <motion.button
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 25 } }}
+            exit={{ y: 50, opacity: 0 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleInstallClick}
+            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] px-4 py-2.5 bg-white text-[#06D6A0] rounded-full border-2 border-[#A0E8D5] shadow-[0_4px_0_0_#A0E8D5] hover:bg-[#F0FAF5] active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <Download size={18} strokeWidth={2.5} />
+            <span className="font-bold text-sm tracking-wide" style={{ fontFamily: "var(--font-cherry)", paddingTop: "2px" }}>Tải App</span>
+          </motion.button>
         )}
       </AnimatePresence>
     </div>

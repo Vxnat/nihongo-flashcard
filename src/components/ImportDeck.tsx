@@ -140,14 +140,16 @@ export function ImportDeck() {
           {/* Vệt sáng lướt qua khi di chuột (Shine effect) */}
           <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 transition-transform duration-700 ease-in-out pointer-events-none" />
           
-          <span className="text-base font-bold drop-shadow-sm tracking-wide font-rounded mt-0.5">
+          <span className="text-base font-bold drop-shadow-sm tracking-wide font-rounded mt-0.5"
+            style={{ fontFamily: "var(--font-cherry)" }}
+          >
             Nhập bài mới!
           </span>
           <Sparkles className="w-4 h-4 ml-2 drop-shadow-sm text-[#FFD166]" fill="currentColor" />
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[420px] w-[95vw] max-h-[85vh] flex flex-col rounded-[2rem] p-0 overflow-hidden border-4 border-[#FFE2D1] shadow-2xl bg-[#FFFDF5]">
+      <DialogContent aria-describedby={undefined} className="sm:max-w-[420px] w-[95vw] max-h-[85vh] flex flex-col rounded-[2rem] p-0 overflow-hidden border-4 border-[#FFE2D1] shadow-2xl bg-[#FFFDF5]">
         
         {/* Header Pastel đáng yêu */}
         <div className="bg-[#FFD166] p-5 pb-6 border-b-4 border-[#FFE2D1] shrink-0 text-center relative">

@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, RotateCw, Shuffle, Volume2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, RotateCw, Shuffle, Volume2, Frown, Smile } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface ControlPanelProps {
@@ -13,6 +13,8 @@ interface ControlPanelProps {
   currentIndex: number;
   totalCards: number;
   isFlipped: boolean;
+  showFurigana: boolean;
+  onToggleFurigana: () => void; // Dòng mới: Cho phép toggle Furigana
 }
 
 export function ControlPanel({
@@ -26,6 +28,8 @@ export function ControlPanel({
   currentIndex,
   totalCards,
   isFlipped,
+  showFurigana,
+  onToggleFurigana, // Dòng mới: Cho phép toggle Furigana
 }: ControlPanelProps) {
   
   // Cấu hình ảnh tùy chỉnh (giữ nguyên như bạn đã setup)
@@ -50,7 +54,7 @@ export function ControlPanel({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto mt-8 h-24 flex items-center justify-center relative px-2">
+    <div className="w-full max-w-md mx-auto mt-10 h-24 flex items-center justify-center relative px-2">
       <AnimatePresence mode="popLayout">
         
         {isFlipped ? (
@@ -63,60 +67,73 @@ export function ControlPanel({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="flex items-center justify-center gap-8 w-full"
+            className="grid grid-cols-[80px_1fr_80px] items-center w-full"
           >
-            
-            {/* Cụm nút tiện ích (Mini Gummies) đặt ở bên trái */}
-            <div className="absolute left-2 flex flex-col gap-3">
-              <button 
+            {/* Cụm nút tiện ích bên trái */}
+            <div className="flex flex-col gap-2">
+              <motion.button 
+                layoutId="shuffle-btn"
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 onClick={onShuffle} 
                 className="w-10 h-10 bg-white border-2 border-zinc-200 rounded-full shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:text-zinc-600"
               >
                 <Shuffle size={16} strokeWidth={3} />
-              </button>
-              <button 
-                onClick={onPlayAudio} 
-                className="w-10 h-10 bg-[#E0F7FA] border-2 border-[#80DEEA] rounded-full shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:bg-[#B2EBF2]"
+              </motion.button>
+              
+              <motion.div 
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex flex-col gap-2"
               >
-                <Volume2 size={18} strokeWidth={2.5} />
+                <button 
+                  onClick={onPlayAudio} 
+                  className="w-10 h-10 bg-[#E0F7FA] border-2 border-[#80DEEA] rounded-full shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:bg-[#B2EBF2]"
+                >
+                  <Volume2 size={18} strokeWidth={2.5} />
+                </button>
+                <button 
+                  onClick={onToggleFurigana} 
+                  className={`w-10 h-10 rounded-full border-2 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center font-bold font-rounded text-[17px] ${
+                    showFurigana 
+                    ? "bg-[#E0F7FA] border-[#80DEEA] shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1]" 
+                    : "bg-white border-zinc-200 shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 opacity-60"
+                  }`}
+                >
+                  あ
+                </button>
+              </motion.div>
+            </div>
+
+            {/* Cặp nút Cảm xúc ở giữa */}
+            <div className="flex justify-center gap-6">
+              <button 
+                onClick={onReview}
+                className="relative group w-20 h-20 bg-white border-4 border-[#FF7096] rounded-full shadow-[0_8px_0_0_#FF7096] hover:-translate-y-1 hover:shadow-[0_12px_0_0_#FF7096] active:translate-y-2 active:shadow-[0_0_0_0_#FF7096] transition-all duration-200 flex items-center justify-center"
+              >
+                <span className="text-[2.5rem] group-active:scale-90 transition-transform flex items-center justify-center">
+                  {customSadImg ? <img src={customSadImg} alt="Quên" className="w-10 h-10 object-contain" /> : <Frown size={44} strokeWidth={2.5} className="text-[#FF7096]" />}
+                </span>
+                <span className="absolute -top-3 bg-[#FF7096] text-white text-[10px] font-bold px-3 py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
+                  Quên rùi!
+                </span>
+              </button>
+
+              <button 
+                onClick={onKnow}
+                className="relative group w-20 h-20 bg-white border-4 border-[#06D6A0] rounded-full shadow-[0_8px_0_0_#06D6A0] hover:-translate-y-1 hover:shadow-[0_12px_0_0_#06D6A0] active:translate-y-2 active:shadow-[0_0_0_0_#06D6A0] transition-all duration-200 flex items-center justify-center"
+              >
+                <span className="text-[2.5rem] group-active:scale-90 transition-transform flex items-center justify-center">
+                  {customHappyImg ? <img src={customHappyImg} alt="Nhớ" className="w-10 h-10 object-contain" /> : <Smile size={44} strokeWidth={2.5} className="text-[#06D6A0]" />}
+                </span>
+                <span className="absolute -top-3 bg-[#06D6A0] text-white text-[10px] font-bold px-3 py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
+                  Nhớ luôn!
+                </span>
               </button>
             </div>
 
-            {/* Cặp nút Cảm xúc khổng lồ (Nằm giữa) */}
-            <button 
-              onClick={onReview}
-              className="relative group w-20 h-20 bg-white border-4 border-[#FF7096] rounded-full shadow-[0_8px_0_0_#FF7096] hover:-translate-y-1 hover:shadow-[0_12px_0_0_#FF7096] active:translate-y-2 active:shadow-[0_0_0_0_#FF7096] transition-all duration-200 flex items-center justify-center ml-10"
-            >
-              <span className="text-[2.5rem] group-active:scale-90 transition-transform flex items-center justify-center">
-                {customSadImg ? (
-                  <img src={customSadImg} alt="Quên" className="w-10 h-10 object-contain" />
-                ) : (
-                  "😭"
-                )}
-              </span>
-              <span className="absolute -top-3 bg-[#FF7096] text-white text-[10px] font-bold px-3 py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
-                Quên rùi!
-              </span>
-            </button>
-
-            <button 
-              onClick={onKnow}
-              className="relative group w-20 h-20 bg-white border-4 border-[#06D6A0] rounded-full shadow-[0_8px_0_0_#06D6A0] hover:-translate-y-1 hover:shadow-[0_12px_0_0_#06D6A0] active:translate-y-2 active:shadow-[0_0_0_0_#06D6A0] transition-all duration-200 flex items-center justify-center"
-            >
-              <span className="text-[2.5rem] group-active:scale-90 transition-transform flex items-center justify-center">
-                {customHappyImg ? (
-                  <img src={customHappyImg} alt="Nhớ" className="w-10 h-10 object-contain" />
-                ) : (
-                  "🤩"
-                )}
-              </span>
-              <span className="absolute -top-3 bg-[#06D6A0] text-white text-[10px] font-bold px-3 py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
-                Nhớ luôn!
-              </span>
-            </button>
-            
+            {/* Cột phải trống để cân bằng grid */}
+            <div className="w-[80px]" />
           </motion.div>
-
         ) : (
           /* ==========================================
              TRẠNG THÁI 1: TRƯỚC KHI LẬT (ĐIỀU HƯỚNG)
@@ -127,19 +144,20 @@ export function ControlPanel({
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="flex items-center justify-between w-full"
+            className="grid grid-cols-[80px_1fr_80px] items-center w-full"
           >
-            
-            {/* Nút Trộn bài (Shuffle) độc lập bên trái */}
-            <button 
+            {/* Nút Shuffle bên trái */}
+            <motion.button 
+              layoutId="shuffle-btn"
+              transition={{ type: "spring", stiffness: 350, damping: 25 }}
               onClick={onShuffle} 
               className="w-12 h-12 bg-white border-2 border-zinc-200 rounded-full shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 active:translate-y-1 active:shadow-[0_0_0_0_#E4E4E7] transition-all flex items-center justify-center hover:text-zinc-600"
             >
               <Shuffle size={20} strokeWidth={2.5} />
-            </button>
+            </motion.button>
             
-            {/* Cụm Điều hướng (Prev - Flip - Next) */}
-            <div className="flex items-center gap-3">
+            {/* Cụm Điều hướng ở giữa */}
+            <div className="flex items-center justify-center gap-3">
               <button 
                 onClick={onPrev} 
                 disabled={currentIndex === 0} 
@@ -164,6 +182,8 @@ export function ControlPanel({
               </button>
             </div>
 
+            {/* Cột phải trống */}
+            <div className="w-[80px]" />
           </motion.div>
         )}
 

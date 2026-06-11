@@ -47,15 +47,19 @@ export default async function DeckPage({
         </Link>
 
         {/* Nhãn dán Tên Bộ Bài (Vàng viền Cam đâm) */}
-        <div className="bg-[#FFD166] border-2 border-[#FF9F1C] px-4 py-2 rounded-[1.25rem] shadow-[0_4px_0_0_#FF9F1C] font-rounded font-black text-amber-900 text-xs uppercase tracking-widest flex items-center gap-1.5 truncate max-w-[160px]">
+        <div className="bg-[#FFD166] border-2 border-[#ffe11c] px-4 py-2 rounded-[1.25rem] shadow-[0_4px_0_0_#FF9F1C] font-rounded font-black text-amber-900 text-xs uppercase tracking-widest flex items-center gap-1.5 truncate max-w-[160px]">
           {isCustomDeck ? (
             <>
-              <span>⭐</span> <span className="truncate">Thẻ Tự Tạo</span>
+              <span className="truncate"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >Thẻ Tự Tạo</span>
             </>
           ) : (
             <>
               <span>📚</span>{" "}
-              <span className="truncate">{id.replace(/_/g, " ")}</span>
+              <span className="truncate"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >{id.replace(/_/g, " ")}</span>
             </>
           )}
         </div>

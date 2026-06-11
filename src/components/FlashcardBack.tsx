@@ -3,9 +3,10 @@ import { parseFurigana } from "@/utils/textParser";
 
 interface FlashcardBackProps {
   card: FlashcardData;
+  showFurigana: boolean; // Dòng mới: Cho phép hiển thị Furigana hay không
 }
 
-export function FlashcardBack({ card }: FlashcardBackProps) {
+export function FlashcardBack({ card, showFurigana = true }: FlashcardBackProps) {
   return (
     /* 
       CONTAINER KẸO DẺO MẶT SAU:
@@ -32,14 +33,19 @@ export function FlashcardBack({ card }: FlashcardBackProps) {
         <span 
           className="px-4 py-1.5 bg-white border-2 border-[#A0E8D5] text-[#05b889] rounded-xl font-rounded font-bold text-sm tracking-widest uppercase shadow-[0_3px_0_0_#A0E8D5]"
           style={{ 
-            fontFamily: "var(--font-hachi-maru-pop)",
+            fontFamily: "var(--font-cute)",
             filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))" 
           }}>
           {card.romaji}
         </span>
         
         {/* Ý nghĩa tiếng Việt */}
-        <p className="text-2xl font-rounded font-black text-teal-800 mt-2 leading-snug">
+        <p className="text-2xl font-rounded font-black text-teal-800 mt-2 leading-snug"
+            style={{ 
+              fontFamily: "var(--font-cute)",
+              filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))" 
+            }}
+          >
           {card.meaning}
         </p>
       </div>
@@ -81,12 +87,14 @@ export function FlashcardBack({ card }: FlashcardBackProps) {
       {/* KHỐI 3: CÂU VÍ DỤ (Tích hợp Furigana) */}
       <div className="mt-auto pt-4 border-t-4 border-[#A0E8D5] bg-white/60 rounded-2xl p-4 border-dashed text-center">
         <div className="text-lg font-bold text-teal-900 mb-2 leading-loose">
-          {/* Render Furigana */}
+          {/* Render Furigana có truyền cờ showFurigana */}
           {card.example_jp_formatted 
-            ? parseFurigana(card.example_jp_formatted) 
+            ? parseFurigana(card.example_jp_formatted, showFurigana) 
             : card.example_jp}
         </div>
-        <p className="text-sm font-rounded font-bold text-teal-600/80">
+        <p className="text-sm font-rounded font-bold text-teal-600/80"
+          style={{ fontFamily: "var(--font-cute)" }}
+        >
           {card.example_vi}
         </p>
       </div>

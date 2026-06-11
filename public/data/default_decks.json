@@ -8,7 +8,7 @@
     "pos": "verb_transitive",
     "pitch_accent": "unknown",
     "example_jp": "毎日ご飯を食べる。",
-    "example_jp_formatted": "[毎日]{まいにち}ご飯{ごはん}を[食]{た}べる。",
+    "example_jp_formatted": "[毎日]{まいにち}[ご飯]{ごはん}を[食]{た}べる。",
     "example_vi": "Mỗi ngày ăn cơm.",
     "level": "N5",
     "tags": [
@@ -155,7 +155,7 @@
     "pos": "verb_transitive",
     "pitch_accent": "unknown",
     "example_jp": "先生の話を聞く。",
-    "example_jp_formatted": "[先生]{せんせい}の話{はなし}を[聞]{き}く。",
+    "example_jp_formatted": "[先生]{せんせい}の[話]{はなし}を[聞]{き}く。",
     "example_vi": "Nghe lời thầy giáo.",
     "level": "N5",
     "tags": [
@@ -183,7 +183,7 @@
     "pos": "verb_transitive",
     "pitch_accent": "unknown",
     "example_jp": "日本語で話す。",
-    "example_jp_formatted": "日本語{にほんご}で[話]{はな}す。",
+    "example_jp_formatted": "[日本語]{にほんご}で[話]{はな}す。",
     "example_vi": "Nói bằng tiếng Nhật.",
     "level": "N5",
     "tags": [
@@ -372,7 +372,7 @@
     "pos": "verb_transitive",
     "pitch_accent": "unknown",
     "example_jp": "日本語を勉強する。",
-    "example_jp_formatted": "日本語{にほんご}を[勉強]{べんきょう}する。",
+    "example_jp_formatted": "[日本語]{にほんご}を[勉強]{べんきょう}する。",
     "example_vi": "Học tiếng Nhật.",
     "level": "N5",
     "tags": [
@@ -910,7 +910,7 @@
     "pos": "verb_transitive",
     "pitch_accent": "unknown",
     "example_jp": "その人を知る。",
-    "example_jp_formatted": "その人{ひと}を[知]{し}る。",
+    "example_jp_formatted": "その[人]{ひと}を[知]{し}る。",
     "example_vi": "Biết người đó.",
     "level": "N5",
     "tags": [
@@ -938,7 +938,7 @@
     "pos": "verb_intransitive",
     "pitch_accent": "unknown",
     "example_jp": "日本語が分かる。",
-    "example_jp_formatted": "日本語{にほんご}が[分]{わ}かる。",
+    "example_jp_formatted": "[日本語]{にほんご}が[分]{わ}かる。",
     "example_vi": "Hiểu tiếng Nhật.",
     "level": "N5",
     "tags": [
@@ -1213,7 +1213,7 @@
     "pos": "noun",
     "pitch_accent": "unknown",
     "example_jp": "毎日日本語を勉強する。",
-    "example_jp_formatted": "[毎日]{まいにち}日本語{にほんご}を[勉強]{べんきょう}する。",
+    "example_jp_formatted": "[毎日]{まいにち}[日本語]{にほんご}を[勉強]{べんきょう}する。",
     "example_vi": "Mỗi ngày học tiếng Nhật.",
     "level": "N5",
     "tags": [
@@ -1447,7 +1447,7 @@
     "pos": "noun",
     "pitch_accent": "unknown",
     "example_jp": "お茶を飲む。",
-    "example_jp_formatted": "お茶{おちゃ}を[飲]{の}む。",
+    "example_jp_formatted": "[お茶]{おちゃ}を[飲]{の}む。",
     "example_vi": "Uống trà.",
     "level": "N5",
     "tags": [
@@ -1475,7 +1475,7 @@
     "pos": "noun",
     "pitch_accent": "unknown",
     "example_jp": "ご飯を食べる。",
-    "example_jp_formatted": "ご飯{ごはん}を[食]{た}べる。",
+    "example_jp_formatted": "[ご飯]{ごはん}を[食]{た}べる。",
     "example_vi": "Ăn cơm.",
     "level": "N5",
     "tags": [
@@ -1993,7 +1993,7 @@
     "pos": "noun",
     "pitch_accent": "unknown",
     "example_jp": "空は青い。",
-    "example_jp_formatted": "[空]{そら}は青{あお}い。",
+    "example_jp_formatted": "[空]{そら}は[青]{あお}い。",
     "example_vi": "Bầu trời xanh.",
     "level": "N5",
     "tags": [
@@ -2021,7 +2021,7 @@
     "pos": "noun",
     "pitch_accent": "unknown",
     "example_jp": "右に曲がる。",
-    "example_jp_formatted": "[右]{みぎ}に曲{ま}がる。",
+    "example_jp_formatted": "[右]{みぎ}に[曲]{ま}がる。",
     "example_vi": "Rẽ phải.",
     "level": "N5",
     "tags": [
@@ -2441,7 +2441,7 @@
     "pos": "adjective_i",
     "pitch_accent": "unknown",
     "example_jp": "お金が少ない。",
-    "example_jp_formatted": "お金{おかね}が[少]{すく}ない。",
+    "example_jp_formatted": "[お金]{おかね}が[少]{すく}ない。",
     "example_vi": "Ít tiền.",
     "level": "N5",
     "tags": [
@@ -2705,7 +2705,7 @@
     "pos": "na_adjective",
     "pitch_accent": "unknown",
     "example_jp": "この町は静かだ。",
-    "example_jp_formatted": "この町{まち}は[静]{しず}かだ。",
+    "example_jp_formatted": "この[町]{まち}は[静]{しず}かだ。",
     "example_vi": "Thị trấn này yên tĩnh.",
     "level": "N5",
     "tags": [

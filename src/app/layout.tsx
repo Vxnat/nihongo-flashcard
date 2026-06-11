@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Quicksand, Cherry_Bomb_One } from "next/font/google";
+import { Inter, Quicksand, Cherry_Bomb_One, Hachi_Maru_Pop , Cute_Font } from "next/font/google";
 import "./globals.css";
 
 // 1. Font Cherry Bomb One: Siêu mập, dễ thương (Dành cho Tiêu đề)
@@ -16,17 +16,28 @@ const quicksand = Quicksand({
   variable: "--font-rounded" 
 });
 
-const hachiMaruPop = Cherry_Bomb_One({ 
+const hachiMaruPop = Hachi_Maru_Pop({ 
   weight: "400", 
-  subsets: ["latin"], // Hỗ trợ tiếng Anh & Romaji chuẩn
+  subsets: ["latin"], 
   variable: "--font-hachi-maru-pop" 
+});
+
+const cuteFont = Cute_Font({ 
+  weight: "400", 
+  subsets: ["latin"], 
+  variable: "--font-cute" 
 });
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Japanese Flashcards - Kawaii Edition",
-  description: "Học từ vựng tiếng Nhật phong cách Cute App",
+  title: "Flashcard Tiếng Nhật",
+  description: "Học từ vựng tiếng Nhật siêu cute",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Nihongo Card",
+  },
 };
 
 export default function RootLayout({
