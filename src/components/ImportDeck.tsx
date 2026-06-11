@@ -29,7 +29,8 @@ export function ImportDeck() {
   // States mới cho thông tin bộ bài
   const [deckTitle, setDeckTitle] = useState("");
   const [deckDescription, setDeckDescription] = useState("");
-  const [deckLevel, setDeckLevel] = useState("Khác");
+  const [deckLevel, setDeckLevel] = useState("N4");
+  const [customLevel, setCustomLevel] = useState("");
   const [showAiHint, setShowAiHint] = useState(false);
 
   const resetState = () => {
@@ -39,7 +40,8 @@ export function ImportDeck() {
     setTextValue("");
     setDeckTitle("");
     setDeckDescription("");
-    setDeckLevel("Khác");
+    setDeckLevel("N4");
+    setCustomLevel("");
     setIsTextInput(false);
   };
 
@@ -103,7 +105,7 @@ export function ImportDeck() {
       title: deckTitle.trim() || "Bộ bài bí mật ✨",
       description: deckDescription.trim() || "Chưa có ghi chú nào",
       count: deckData.length,
-      level: deckLevel,
+      level: deckLevel === "Khác" ? (customLevel.trim() || "Khác") : deckLevel,
       cards: deckData
     };
 
@@ -322,6 +324,18 @@ export function ImportDeck() {
                       );
                     })}
                   </div>
+                  {deckLevel === "Khác" && (
+                    <div className="px-1 animate-in slide-in-from-top-2 fade-in duration-200">
+                      <input 
+                        type="text" 
+                        placeholder="Nhập cấp độ tùy chỉnh (VD: Giao tiếp...)" 
+                        value={customLevel}
+                        onChange={(e) => setCustomLevel(e.target.value)}
+                        className="w-full mt-1 px-4 py-2.5 text-sm font-bold text-amber-900 rounded-[1.25rem] border-2 border-[#FFE2D1] focus:outline-none focus:border-[#FF9F1C] focus:bg-orange-50 bg-white transition-colors placeholder:text-zinc-300"
+                        autoFocus
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* 4. Nút Lưu bóp mềm */}

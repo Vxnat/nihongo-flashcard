@@ -10,9 +10,10 @@ interface TypingBossFightProps {
   card: FlashcardData;
   onCorrect: () => void;
   onCancel: () => void; // Nút để thoát chế độ Boss Fight quay về quẹt thẻ
+  onWrong?: () => void;
 }
 
-export function TypingBossFight({ card, onCorrect, onCancel }: TypingBossFightProps) {
+export function TypingBossFight({ card, onCorrect, onCancel, onWrong }: TypingBossFightProps) {
   const {
     inputValue,
     setInputValue,
@@ -22,7 +23,7 @@ export function TypingBossFight({ card, onCorrect, onCancel }: TypingBossFightPr
     handleSubmit,
     handleProvideHint,
     getHintString,
-  } = useTypingMode({ currentCard: card, onCorrect });
+  } = useTypingMode({ currentCard: card, onCorrect, onWrong });
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -46,13 +47,13 @@ export function TypingBossFight({ card, onCorrect, onCancel }: TypingBossFightPr
         onClick={onCancel}
         className="absolute top-4 left-4 font-rounded font-bold text-xs text-zinc-400 hover:text-zinc-600 px-3 py-1 bg-white rounded-full border-2 border-zinc-200 active:translate-y-0.5 active:shadow-none shadow-[0_2px_0_0_#e4e4e7] transition-all"
       >
-        🏃 <span style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1px", paddingTop: "2px" }}>Quay xe</span>
+        🏃 <span style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1px", paddingTop: "2px" }}>Kó qá</span>
       </button>
 
       {/* HEADER: Chế độ Vượt Ải */}
       <div className="flex flex-col items-center mt-10">
         <div className="bg-[#E0F7FA] text-[#00ACC1] px-3 py-1 rounded-xl border-2 border-[#80DEEA] font-rounded font-black text-xs uppercase tracking-widest flex items-center gap-1.5 mb-4 shadow-sm">
-          <Brain size={14} /> Nhớ đi nào !
+          <Brain size={14} /> <span style={{ fontFamily: "var(--font-cherry)" }}>Nhớ đi nào !</span>
         </div>
       </div>
 

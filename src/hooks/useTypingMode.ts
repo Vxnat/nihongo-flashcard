@@ -7,9 +7,10 @@ import { playSFX } from "@/utils/sfx";
 interface UseTypingModeProps {
   currentCard: FlashcardData;
   onCorrect: () => void; // Hàm trigger khi gõ đúng (vd: chuyển sang thẻ tiếp theo)
+  onWrong?: () => void;  // Hàm trigger khi gõ sai
 }
 
-export function useTypingMode({ currentCard, onCorrect }: UseTypingModeProps) {
+export function useTypingMode({ currentCard, onCorrect, onWrong }: UseTypingModeProps) {
   const [inputValue, setInputValue] = useState("");
   const [status, setStatus] = useState<"typing" | "wrong" | "correct">("typing");
   const [isShaking, setIsShaking] = useState(false);
@@ -52,6 +53,7 @@ export function useTypingMode({ currentCard, onCorrect }: UseTypingModeProps) {
       setStatus("wrong");
       setIsShaking(true); // Kích hoạt cờ rung lắc UI
       playSFX("fail"); // Kêu tiếng "Bóp 💦"
+      if (onWrong) onWrong(); // Kích hoạt hàm báo sai
       
       // Tự động tắt cờ rung sau 0.5s để chuẩn bị cho lần gõ sai tiếp theo (nếu có)
       setTimeout(() => {

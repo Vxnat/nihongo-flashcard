@@ -31,7 +31,7 @@ export function FlashcardBack({ card, showFurigana = true }: FlashcardBackProps)
         
         {/* Romaji trong viên kẹo */}
         <span 
-          className="px-4 py-1.5 bg-white border-2 border-[#A0E8D5] text-[#05b889] rounded-xl font-rounded font-bold text-sm tracking-widest uppercase shadow-[0_3px_0_0_#A0E8D5]"
+          className="px-4 py-1.5 bg-white border-2 border-[#A0E8D5] text-[#05b889] rounded-xl font-rounded font-bold text-md tracking-widest uppercase shadow-[0_3px_0_0_#A0E8D5]"
           style={{ 
             fontFamily: "var(--font-cute)",
             filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))" 
@@ -42,7 +42,6 @@ export function FlashcardBack({ card, showFurigana = true }: FlashcardBackProps)
         {/* Ý nghĩa tiếng Việt */}
         <p className="text-2xl font-rounded font-black text-teal-800 mt-2 leading-snug"
             style={{ 
-              fontFamily: "var(--font-cute)",
               filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))" 
             }}
           >
@@ -93,7 +92,9 @@ export function FlashcardBack({ card, showFurigana = true }: FlashcardBackProps)
             : card.example_jp}
         </div>
         <p className="text-sm font-rounded font-bold text-teal-600/80"
-          style={{ fontFamily: "var(--font-cute)" }}
+          style={{ 
+            filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))" 
+          }}
         >
           {card.example_vi}
         </p>

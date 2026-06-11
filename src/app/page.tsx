@@ -231,7 +231,9 @@ export default function Home() {
                       {deck.title}
                     </h3>
 
-                    <p className="font-rounded text-zinc-500 font-bold mt-1 text-sm line-clamp-2">
+                    <p className="font-rounded text-zinc-500 font-bold mt-1 text-sm line-clamp-2"
+                      style={{ fontFamily: "var(--font-cherry)" }}
+                    >
                       {deck.description}
                     </p>
                   </div>

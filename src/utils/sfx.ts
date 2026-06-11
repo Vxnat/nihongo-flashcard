@@ -1,5 +1,5 @@
 // Quản lý các âm thanh Micro-interactions của app
-export const playSFX = (type: 'flip' | 'success' | 'fail') => {
+export const playSFX = (type: 'flip' | 'success' | 'fail' | 'splash') => {
   try {
     const audio = new Audio(`/sounds/${type}.mp3`);
     audio.volume = 0.3; // Chỉnh âm lượng nhỏ mượt mà, không làm át tiếng đọc từ vựng (TTS)

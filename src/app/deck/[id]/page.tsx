@@ -40,7 +40,9 @@ export default async function DeckPage({
               className="w-5 h-5 mr-1.5 group-hover:-translate-x-1 transition-transform"
               strokeWidth={3}
             />
-            <span className="font-rounded font-bold text-sm tracking-wide">
+            <span className="font-rounded font-bold text-sm tracking-wide"
+              style={{ fontFamily: "var(--font-cherry)" }}
+            >
               Về nhà
             </span>
           </button>
