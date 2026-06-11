@@ -31,8 +31,10 @@ export function useUserStats() {
 
     // 2. XỬ LÝ NGÀY THÁNG & CHUỖI LỬA (STREAK)
     const today = new Date().toLocaleDateString("en-CA"); // Lấy chuẩn YYYY-MM-DD
-    const savedStats = JSON.parse(localStorage.getItem("flashcard_user_stats") || "{}");
-    
+    const savedStats = JSON.parse(
+      localStorage.getItem("flashcard_user_stats") || "{}",
+    );
+
     let currentStreak = savedStats.streak || 0;
     let flippedToday = savedStats.cardsFlippedToday || 0;
     let learningTime = savedStats.learningTimeToday || 0;
@@ -42,16 +44,20 @@ export function useUserStats() {
     if (lastActiveDate !== today) {
       flippedToday = 0; // Sang ngày mới -> Reset lại số thẻ lật hôm nay về 0
       learningTime = 0; // Reset luôn đồng hồ học
-      
+
       // Tính ngày hôm qua
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
       const yesterdayStr = yesterday.toLocaleDateString("en-CA");
-      
+
       // Nếu ngày học cuối cùng KHÔNG PHẢI là hôm qua (và cũng ko phải hôm nay)
       // -> Nghĩa là đã lười biếng bỏ học -> Đứt chuỗi, dập tắt lửa! 💦
-      if (lastActiveDate && lastActiveDate !== yesterdayStr && lastActiveDate !== today) {
-        currentStreak = 0; 
+      if (
+        lastActiveDate &&
+        lastActiveDate !== yesterdayStr &&
+        lastActiveDate !== today
+      ) {
+        currentStreak = 0;
       }
     }
 
@@ -73,10 +79,13 @@ export function useUserStats() {
   // 3. HÀM GHI NHẬN HÀNH ĐỘNG (Gọi mỗi khi vuốt hoặc lật thẻ)
   const recordAction = () => {
     const today = new Date().toLocaleDateString("en-CA");
-    const savedStats = JSON.parse(localStorage.getItem("flashcard_user_stats") || "{}");
-    
+    const savedStats = JSON.parse(
+      localStorage.getItem("flashcard_user_stats") || "{}",
+    );
+
     let newStreak = savedStats.streak || 0;
     let newFlipped = savedStats.cardsFlippedToday || 0;
+    let newLearningTime = savedStats.learningTimeToday || 0;
     const lastActiveDate = savedStats.lastActiveDate;
 
     if (lastActiveDate === today) {
@@ -85,11 +94,12 @@ export function useUserStats() {
     } else {
       // Cú lật thẻ ĐẦU TIÊN của một ngày mới!
       newFlipped = 1;
-      
+      newLearningTime = 0; // Reset thời gian học của ngày cũ
+
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
       const yesterdayStr = yesterday.toLocaleDateString("en-CA");
-      
+
       if (lastActiveDate === yesterdayStr) {
         newStreak += 1; // Nối tiếp chuỗi từ hôm qua 🔥
       } else {
@@ -98,12 +108,15 @@ export function useUserStats() {
     }
 
     // Lưu lại não bộ
-    localStorage.setItem("flashcard_user_stats", JSON.stringify({
-      streak: newStreak,
-      cardsFlippedToday: newFlipped,
-      lastActiveDate: today,
-      learningTimeToday: savedStats.learningTimeToday || 0 // Giữ nguyên giờ học cũ
-    }));
+    localStorage.setItem(
+      "flashcard_user_stats",
+      JSON.stringify({
+        streak: newStreak,
+        cardsFlippedToday: newFlipped,
+        lastActiveDate: today,
+        learningTimeToday: newLearningTime,
+      }),
+    );
 
     // Phóng tín hiệu ra toàn app để update thanh UI ngay lập tức
     window.dispatchEvent(new Event("stats_updated"));
@@ -112,22 +125,40 @@ export function useUserStats() {
   // 4. HÀM CỘNG THỜI GIAN HỌC THẬT (Mới)
   const addLearningTime = useCallback((seconds: number) => {
     const today = new Date().toLocaleDateString("en-CA");
-    const savedStats = JSON.parse(localStorage.getItem("flashcard_user_stats") || "{}");
-    
+    const savedStats = JSON.parse(
+      localStorage.getItem("flashcard_user_stats") || "{}",
+    );
+
     let currentLearningTime = savedStats.learningTimeToday || 0;
-    
+    let currentFlipped = savedStats.cardsFlippedToday || 0;
+    let currentStreak = savedStats.streak || 0;
+
     // Đề phòng trường hợp mở tab từ đêm hôm trước sang ngày hôm sau
     if (savedStats.lastActiveDate === today) {
       currentLearningTime += seconds;
     } else {
-      currentLearningTime = seconds; // Qua ngày mới thì reset lại
+      // Bước sang ngày mới -> Xử lý chuỗi lửa và reset thời gian / số thẻ
+      currentLearningTime = seconds;
+      currentFlipped = 0;
+
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = yesterday.toLocaleDateString("en-CA");
+
+      if (savedStats.lastActiveDate === yesterdayStr) {
+        currentStreak += 1; // Nối chuỗi 🔥
+      } else {
+        currentStreak = 1; // Bắt đầu chuỗi mới 🔥
+      }
     }
 
     savedStats.learningTimeToday = currentLearningTime;
+    savedStats.cardsFlippedToday = currentFlipped;
+    savedStats.streak = currentStreak;
     savedStats.lastActiveDate = today;
-    
+
     localStorage.setItem("flashcard_user_stats", JSON.stringify(savedStats));
-    
+
     // Chỉ đẩy update ra UI (không bắt buộc tải lại toàn bộ app để tránh giật lag)
     window.dispatchEvent(new Event("stats_updated"));
   }, []);
