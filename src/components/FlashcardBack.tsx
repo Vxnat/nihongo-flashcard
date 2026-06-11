@@ -92,7 +92,7 @@ export function FlashcardBack({
       )}
 
       {/* KHỐI 3: CÂU VÍ DỤ (Tích hợp Furigana) */}
-      <div className="mt-auto pt-4 border-t-4 border-[#A0E8D5] bg-white/60 rounded-2xl p-4 border-dashed text-center shrink-0 mb-2">
+      <div className="mt-auto pt-4 border-t-4 border-[#A0E8D5] bg-white/60 rounded-2xl p-4 border-dashed text-center shrink-0">
         <div className="text-lg font-bold text-teal-900 mb-2 leading-loose">
           {/* Render Furigana có truyền cờ showFurigana */}
           {card.example_jp_formatted
@@ -100,7 +100,7 @@ export function FlashcardBack({
             : card.example_jp}
         </div>
         <p
-          className="text-sm font-rounded font-bold text-teal-600/80 pb-1 leading-relaxed"
+          className="text-sm font-rounded font-bold text-teal-600/80 pb-3 leading-relaxed"
           style={{
             filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))",
           }}
@@ -108,6 +108,9 @@ export function FlashcardBack({
           {card.example_vi}
         </p>
       </div>
+
+      {/* Khoảng đệm vô hình fix lỗi Safari (iPhone) hay bị nuốt khoảng trống dưới đáy khi scroll */}
+      <div className="shrink-0 h-4 w-full" />
     </div>
   );
 }

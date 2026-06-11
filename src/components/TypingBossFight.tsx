@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlashcardData } from "@/types/flashcard";
 import { useTypingMode } from "@/hooks/useTypingMode";
@@ -31,11 +31,6 @@ export function TypingBossFight({
   } = useTypingMode({ currentCard: card, onCorrect, onWrong });
 
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // Tự động focus vào ô nhập liệu khi vừa mở lên
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [card.id]);
 
   // Cấu hình màu sắc viền dựa trên trạng thái (Đúng / Sai / Đang gõ)
   const statusStyles = {
