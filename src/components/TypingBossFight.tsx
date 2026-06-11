@@ -13,7 +13,12 @@ interface TypingBossFightProps {
   onWrong?: () => void;
 }
 
-export function TypingBossFight({ card, onCorrect, onCancel, onWrong }: TypingBossFightProps) {
+export function TypingBossFight({
+  card,
+  onCorrect,
+  onCancel,
+  onWrong,
+}: TypingBossFightProps) {
   const {
     inputValue,
     setInputValue,
@@ -34,26 +39,38 @@ export function TypingBossFight({ card, onCorrect, onCancel, onWrong }: TypingBo
 
   // Cấu hình màu sắc viền dựa trên trạng thái (Đúng / Sai / Đang gõ)
   const statusStyles = {
-    typing: "border-zinc-200 focus:border-[#5390D9] shadow-[0_4px_0_0_#E4E4E7] focus:shadow-[0_4px_0_0_#5390D9]",
-    wrong: "border-[#FF7096] bg-[#FFF0F3] text-[#C7486B] shadow-[0_4px_0_0_#FF7096]",
-    correct: "border-[#06D6A0] bg-[#F0FAF5] text-[#048c68] shadow-[0_4px_0_0_#06D6A0]",
+    typing:
+      "border-zinc-200 focus:border-[#5390D9] shadow-[0_4px_0_0_#E4E4E7] focus:shadow-[0_4px_0_0_#5390D9]",
+    wrong:
+      "border-[#FF7096] bg-[#FFF0F3] text-[#C7486B] shadow-[0_4px_0_0_#FF7096]",
+    correct:
+      "border-[#06D6A0] bg-[#F0FAF5] text-[#048c68] shadow-[0_4px_0_0_#06D6A0]",
   };
 
   return (
     <div className="w-full max-w-md h-[450px] bg-[#FDFBF7] rounded-[2.5rem] border-4 border-[#5390D9] shadow-[0_12px_0_0_#5390D9] relative flex flex-col items-center justify-between p-6 overflow-hidden">
-      
       {/* Nút Hủy (Thoát ải) */}
-      <button 
+      <button
         onClick={onCancel}
         className="absolute top-4 left-4 font-rounded font-bold text-xs text-zinc-400 hover:text-zinc-600 px-3 py-1 bg-white rounded-full border-2 border-zinc-200 active:translate-y-0.5 active:shadow-none shadow-[0_2px_0_0_#e4e4e7] transition-all"
       >
-        🏃 <span style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1px", paddingTop: "2px" }}>Kó qá</span>
+        🏃{" "}
+        <span
+          style={{
+            fontFamily: "var(--font-cherry)",
+            letterSpacing: "1px",
+            paddingTop: "2px",
+          }}
+        >
+          Kó qá
+        </span>
       </button>
 
       {/* HEADER: Chế độ Vượt Ải */}
       <div className="flex flex-col items-center mt-10">
         <div className="bg-[#E0F7FA] text-[#00ACC1] px-3 py-1 rounded-xl border-2 border-[#80DEEA] font-rounded font-black text-xs uppercase tracking-widest flex items-center gap-1.5 mb-4 shadow-sm">
-          <Brain size={14} /> <span style={{ fontFamily: "var(--font-cherry)" }}>Nhớ đi nào !</span>
+          <Brain size={14} />{" "}
+          <span style={{ fontFamily: "var(--font-cherry)" }}>Nhớ đi nào !</span>
         </div>
       </div>
 
@@ -65,12 +82,23 @@ export function TypingBossFight({ card, onCorrect, onCancel, onWrong }: TypingBo
             <motion.div
               key="correct-view"
               initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1, transition: { type: "spring", bounce: 0.6 } }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                transition: { type: "spring", bounce: 0.6 },
+              }}
               className="flex flex-col items-center text-[#06D6A0]"
             >
               <Sparkles className="w-12 h-12 mb-2 animate-spin-slow" />
-              <h3 className="text-5xl" style={{ fontFamily: "var(--font-cherry)" }}>{card.word}</h3>
-              <p className="font-rounded font-black text-xl mt-2">{card.romaji || card.reading}</p>
+              <h3
+                className="text-5xl"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >
+                {card.word}
+              </h3>
+              <p className="font-rounded font-black text-xl mt-2">
+                {card.romaji || card.reading}
+              </p>
             </motion.div>
           ) : (
             // TRẠNG THÁI BÌNH THƯỜNG (Câu đố)
@@ -81,17 +109,22 @@ export function TypingBossFight({ card, onCorrect, onCancel, onWrong }: TypingBo
               exit={{ opacity: 0, scale: 0.9 }}
               className="flex flex-col items-center"
             >
-              <h3 className="text-6xl text-[#FF9F1C] drop-shadow-sm mb-3" style={{ fontFamily: "var(--font-cherry)" }}>
+              <h3
+                className="text-6xl text-[#FF9F1C] drop-shadow-sm mb-3"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >
                 {card.word}
               </h3>
-              <p className="font-rounded font-black text-2xl text-teal-800">{card.meaning}</p>
+              <p className="font-rounded font-black text-2xl text-teal-800">
+                {card.meaning}
+              </p>
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* GỢI Ý (Nếu có bấm nút Phao Bơi) */}
         {hintLevel > 0 && status !== "correct" && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             className="absolute bottom-2 font-rounded font-black text-lg text-indigo-400 tracking-[0.2em] bg-indigo-50 px-4 py-1.5 rounded-xl border border-indigo-100"
@@ -125,12 +158,23 @@ export function TypingBossFight({ card, onCorrect, onCancel, onWrong }: TypingBo
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            onFocus={(e) => {
+              // Delay 300ms chờ bàn phím điện thoại bật lên hoàn toàn rồi mới đẩy UI lên trung tâm
+              setTimeout(() => {
+                e.target.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center",
+                });
+              }, 300);
+            }}
             disabled={status === "correct"}
             placeholder="Gõ Romaji hoặc Kana..."
             className={`w-full h-14 pl-5 pr-14 rounded-2xl border-4 text-center font-rounded font-black text-xl transition-colors focus:outline-none placeholder:font-bold placeholder:text-base placeholder:text-zinc-300 ${statusStyles[status]}`}
-            style={status === "correct" ? { fontFamily: "var(--font-cherry)" } : {}} // Chữ đổi sang style cute khi gõ đúng
+            style={
+              status === "correct" ? { fontFamily: "var(--font-cherry)" } : {}
+            } // Chữ đổi sang style cute khi gõ đúng
           />
-          
+
           <button
             type="submit"
             disabled={!inputValue.trim() || status === "correct"}
@@ -140,7 +184,6 @@ export function TypingBossFight({ card, onCorrect, onCancel, onWrong }: TypingBo
           </button>
         </motion.form>
       </div>
-
     </div>
   );
 }

@@ -12,30 +12,40 @@ interface UseFlashcardDeckProps {
   isCustom?: boolean;
 }
 
-export function useFlashcardDeck({ deckId, initialCards, isCustom }: UseFlashcardDeckProps) {
+export function useFlashcardDeck({
+  deckId,
+  initialCards,
+  isCustom,
+}: UseFlashcardDeckProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [cards, setCards] = useState<FlashcardData[]>(initialCards);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [knownIds, setKnownIds] = useState<string[]>([]);
-  const [exitDir, setExitDir] = useState<'left' | 'right' | 'none'>('none');
+  const [exitDir, setExitDir] = useState<"left" | "right" | "none">("none");
   const [showFurigana, setShowFurigana] = useState(true);
   const { recordAction, addLearningTime } = useUserStats();
-  const [globalMode, setGlobalMode] = useState<"swipe" | "typing" | "podcast">("swipe");
+  const [globalMode, setGlobalMode] = useState<"swipe" | "typing" | "podcast">(
+    "swipe",
+  );
   const [tempTyping, setTempTyping] = useState(false);
   const [podcastIsPlaying, setPodcastIsPlaying] = useState(false);
-  const [podcastSpeed, setPodcastSpeed] = useState<"slow" | "normal" | "fast">("normal");
+  const [podcastSpeed, setPodcastSpeed] = useState<"slow" | "normal" | "fast">(
+    "normal",
+  );
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // --- MASCOT (LINH VẬT) STATES ---
   const [showMascot, setShowMascot] = useState(true);
-  const [mascotState, setMascotState] = useState<'idle' | 'success' | 'fail' | 'sleep'>('idle');
+  const [mascotState, setMascotState] = useState<
+    "idle" | "success" | "fail" | "sleep"
+  >("idle");
   const mascotTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const playMascotAnim = useCallback((state: 'success' | 'fail') => {
+  const playMascotAnim = useCallback((state: "success" | "fail") => {
     setMascotState(state);
     if (mascotTimeoutRef.current) clearTimeout(mascotTimeoutRef.current);
-    mascotTimeoutRef.current = setTimeout(() => setMascotState('idle'), 2000);
+    mascotTimeoutRef.current = setTimeout(() => setMascotState("idle"), 2000);
   }, []);
 
   const isTypingActive = globalMode === "typing" || tempTyping;
@@ -46,8 +56,12 @@ export function useFlashcardDeck({ deckId, initialCards, isCustom }: UseFlashcar
     if (savedProgress) setKnownIds(JSON.parse(savedProgress));
 
     if (isCustom) {
-      const allCustomDecks = JSON.parse(localStorage.getItem("custom_decks") || "[]");
-      const currentCustomDeck = allCustomDecks.find((d: any) => d.id === deckId);
+      const allCustomDecks = JSON.parse(
+        localStorage.getItem("custom_decks") || "[]",
+      );
+      const currentCustomDeck = allCustomDecks.find(
+        (d: any) => d.id === deckId,
+      );
       if (currentCustomDeck && currentCustomDeck.cards) {
         setCards(currentCustomDeck.cards);
       }
@@ -57,49 +71,58 @@ export function useFlashcardDeck({ deckId, initialCards, isCustom }: UseFlashcar
   const activeCards = cards.filter((card) => !knownIds.includes(card.id));
   const totalOriginalCards = cards.length;
   const learnedCardsCount = knownIds.length;
-  const progressPercent = totalOriginalCards === 0 ? 0 : Math.round((learnedCardsCount / totalOriginalCards) * 100);
+  const progressPercent =
+    totalOriginalCards === 0
+      ? 0
+      : Math.round((learnedCardsCount / totalOriginalCards) * 100);
   const currentCard = activeCards[currentIndex];
 
-  useEffect(() => {
-    if (isFlipped && activeCards.length > 0) {
+  const handleFlip = () => {
+    playSFX("flip");
+
+    if (!isFlipped && activeCards.length > 0) {
+      // Gọi đồng bộ ngay lập tức bên trong event click để vượt qua kiểm duyệt Autoplay của iOS
       playAudio(activeCards[currentIndex].word);
     }
-  }, [isFlipped, currentIndex, activeCards]);
-
-  const handleFlip = () => {
-    playSFX('flip');
     setIsFlipped((prev) => !prev);
   };
 
-  const triggerSwipe = (dir: 'left' | 'right', forcedFlippedState?: boolean) => {
+  const triggerSwipe = (
+    dir: "left" | "right",
+    forcedFlippedState?: boolean,
+  ) => {
     if (!activeCards[currentIndex]) return;
     recordAction();
     setExitDir(dir);
-    
-    const currentFlipped = forcedFlippedState !== undefined ? forcedFlippedState : isFlipped;
-    
-    if (dir === 'right') {
+
+    const currentFlipped =
+      forcedFlippedState !== undefined ? forcedFlippedState : isFlipped;
+
+    if (dir === "right") {
       if (currentFlipped) {
         const currentId = activeCards[currentIndex].id;
         const newKnownIds = [...knownIds, currentId];
         setKnownIds(newKnownIds);
-        localStorage.setItem(`flashcard_progress_${deckId}`, JSON.stringify(newKnownIds));
+        localStorage.setItem(
+          `flashcard_progress_${deckId}`,
+          JSON.stringify(newKnownIds),
+        );
         if (currentIndex >= activeCards.length - 1) setCurrentIndex(0);
         setIsFlipped(false);
-        playSFX('success'); 
-        playMascotAnim('success');
+        playSFX("success");
+        playMascotAnim("success");
       } else {
         if (currentIndex < activeCards.length - 1) {
           setCurrentIndex((prev) => prev + 1);
           setIsFlipped(false);
         }
       }
-    } else { 
+    } else {
       if (isFlipped) {
         setCurrentIndex((prev) => (prev + 1) % activeCards.length);
         setIsFlipped(false);
-        playSFX('fail');
-        playMascotAnim('fail');
+        playSFX("fail");
+        playMascotAnim("fail");
       } else {
         if (currentIndex > 0) {
           setCurrentIndex((prev) => prev - 1);
@@ -109,35 +132,60 @@ export function useFlashcardDeck({ deckId, initialCards, isCustom }: UseFlashcar
     }
   };
 
-  const handlePodcastNext = useCallback((direction: 1 | -1 = 1) => {
-    setExitDir(direction === 1 ? 'left' : 'right');
-    setTimeout(() => {
-      setCurrentIndex((prev) => {
-        if (direction === 1) return (prev + 1) % activeCards.length;
-        return prev === 0 ? activeCards.length - 1 : prev - 1;
-      });
-      setIsFlipped(false);
-      setExitDir('none');
-    }, 400);
-  }, [activeCards.length]);
+  const handlePodcastNext = useCallback(
+    (direction: 1 | -1 = 1) => {
+      setExitDir(direction === 1 ? "left" : "right");
+      setTimeout(() => {
+        setCurrentIndex((prev) => {
+          if (direction === 1) return (prev + 1) % activeCards.length;
+          return prev === 0 ? activeCards.length - 1 : prev - 1;
+        });
+        setIsFlipped(false);
+        setExitDir("none");
+      }, 400);
+    },
+    [activeCards.length],
+  );
 
   useEffect(() => {
-    if (globalMode !== "podcast" || !podcastIsPlaying || activeCards.length === 0) return;
+    if (
+      globalMode !== "podcast" ||
+      !podcastIsPlaying ||
+      activeCards.length === 0
+    )
+      return;
     let timeout: NodeJS.Timeout;
     const getPodcastDelays = () => {
       switch (podcastSpeed) {
-        case "slow": return { front: 3000, back: 4000 };
-        case "fast": return { front: 1000, back: 1500 };
-        default: return { front: 1500, back: 2500 };
+        case "slow":
+          return { front: 3000, back: 4000 };
+        case "fast":
+          return { front: 1000, back: 1500 };
+        default:
+          return { front: 1500, back: 2500 };
       }
     };
     const delays = getPodcastDelays();
 
-    if (!isFlipped) timeout = setTimeout(() => setIsFlipped(true), delays.front);
-    else timeout = setTimeout(() => handlePodcastNext(1), delays.back);
+    if (!isFlipped) {
+      timeout = setTimeout(() => {
+        setIsFlipped(true);
+        playAudio(activeCards[currentIndex].word); // Gọi phát âm thanh cho chế độ Podcast
+      }, delays.front);
+    } else {
+      timeout = setTimeout(() => handlePodcastNext(1), delays.back);
+    }
 
     return () => clearTimeout(timeout);
-  }, [globalMode, podcastIsPlaying, isFlipped, currentIndex, podcastSpeed, activeCards.length, handlePodcastNext]);
+  }, [
+    globalMode,
+    podcastIsPlaying,
+    isFlipped,
+    currentIndex,
+    podcastSpeed,
+    activeCards.length,
+    handlePodcastNext,
+  ]);
 
   const globalModeRef = useRef(globalMode);
   const podcastIsPlayingRef = useRef(podcastIsPlaying);
@@ -152,9 +200,12 @@ export function useFlashcardDeck({ deckId, initialCards, isCustom }: UseFlashcar
     let afkTimer: NodeJS.Timeout;
     const resetAfk = () => {
       isActive = true;
-      setMascotState(prev => prev === 'sleep' ? 'idle' : prev); // Đánh thức linh vật
+      setMascotState((prev) => (prev === "sleep" ? "idle" : prev)); // Đánh thức linh vật
       clearTimeout(afkTimer);
-      afkTimer = setTimeout(() => { isActive = false; setMascotState('sleep'); }, 30000); // Ngủ gật
+      afkTimer = setTimeout(() => {
+        isActive = false;
+        setMascotState("sleep");
+      }, 30000); // Ngủ gật
     };
     window.addEventListener("mousemove", resetAfk);
     window.addEventListener("keydown", resetAfk);
@@ -162,7 +213,10 @@ export function useFlashcardDeck({ deckId, initialCards, isCustom }: UseFlashcar
     window.addEventListener("click", resetAfk);
     resetAfk();
     const trackingInterval = setInterval(() => {
-      if (isActive || (globalModeRef.current === "podcast" && podcastIsPlayingRef.current)) {
+      if (
+        isActive ||
+        (globalModeRef.current === "podcast" && podcastIsPlayingRef.current)
+      ) {
         addLearningTime(5);
       }
     }, 5000);
@@ -177,9 +231,11 @@ export function useFlashcardDeck({ deckId, initialCards, isCustom }: UseFlashcar
   }, [isMounted, addLearningTime]);
 
   useEffect(() => {
-    const handleFullscreenChange = () => setIsFullscreen(!!document.fullscreenElement);
+    const handleFullscreenChange = () =>
+      setIsFullscreen(!!document.fullscreenElement);
     document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
   const toggleFullscreen = () => {
@@ -209,35 +265,80 @@ export function useFlashcardDeck({ deckId, initialCards, isCustom }: UseFlashcar
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (['INPUT', 'TEXTAREA'].includes((event.target as HTMLElement).tagName)) return;
+      if (["INPUT", "TEXTAREA"].includes((event.target as HTMLElement).tagName))
+        return;
       if (globalMode === "podcast") {
         switch (event.code) {
-          case 'Space': event.preventDefault(); setPodcastIsPlaying(p => !p); break;
-          case 'ArrowRight': handlePodcastNext(1); break;
-          case 'ArrowLeft': handlePodcastNext(-1); break;
+          case "Space":
+            event.preventDefault();
+            setPodcastIsPlaying((p) => !p);
+            break;
+          case "ArrowRight":
+            handlePodcastNext(1);
+            break;
+          case "ArrowLeft":
+            handlePodcastNext(-1);
+            break;
         }
         return;
       }
       switch (event.code) {
-        case 'Space': event.preventDefault(); handleFlip(); break;
-        case 'ArrowRight': triggerSwipe('right'); break;
-        case 'ArrowLeft': triggerSwipe('left'); break;
+        case "Space":
+          event.preventDefault();
+          handleFlip();
+          break;
+        case "ArrowRight":
+          triggerSwipe("right");
+          break;
+        case "ArrowLeft":
+          triggerSwipe("left");
+          break;
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isFlipped, currentIndex, activeCards, knownIds, globalMode, handlePodcastNext]);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [
+    isFlipped,
+    currentIndex,
+    activeCards,
+    knownIds,
+    globalMode,
+    handlePodcastNext,
+  ]);
 
   return {
-    isMounted, activeCards, currentCard,
-    globalMode, setGlobalMode, exitDir,
-    isFlipped, setIsFlipped, showFurigana, setShowFurigana,
-    podcastIsPlaying, setPodcastIsPlaying, podcastSpeed, setPodcastSpeed,
-    progressPercent, learnedCardsCount, totalOriginalCards,
-    tempTyping, setTempTyping, isTypingActive, currentIndex, isFullscreen,
-    showMascot, setShowMascot,
-    mascotState, playMascotAnim,
-    handleFlip, triggerSwipe, handlePodcastNext, handleShuffle,
-    resetProgress, handlePlayAudio, toggleFullscreen
+    isMounted,
+    activeCards,
+    currentCard,
+    globalMode,
+    setGlobalMode,
+    exitDir,
+    isFlipped,
+    setIsFlipped,
+    showFurigana,
+    setShowFurigana,
+    podcastIsPlaying,
+    setPodcastIsPlaying,
+    podcastSpeed,
+    setPodcastSpeed,
+    progressPercent,
+    learnedCardsCount,
+    totalOriginalCards,
+    tempTyping,
+    setTempTyping,
+    isTypingActive,
+    currentIndex,
+    isFullscreen,
+    showMascot,
+    setShowMascot,
+    mascotState,
+    playMascotAnim,
+    handleFlip,
+    triggerSwipe,
+    handlePodcastNext,
+    handleShuffle,
+    resetProgress,
+    handlePlayAudio,
+    toggleFullscreen,
   };
 }

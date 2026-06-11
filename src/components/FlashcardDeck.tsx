@@ -3,7 +3,18 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlashcardData } from "@/types/flashcard";
-import { RotateCcw, Headphones, Play, Pause, SkipBack, SkipForward, Layers, Keyboard, Maximize, Minimize } from "lucide-react";
+import {
+  RotateCcw,
+  Headphones,
+  Play,
+  Pause,
+  SkipBack,
+  SkipForward,
+  Layers,
+  Keyboard,
+  Maximize,
+  Minimize,
+} from "lucide-react";
 import { ControlPanel } from "./ControlPanel";
 import { TypingBossFight } from "@/components/TypingBossFight";
 import { FallingSparkles } from "./FallingSparkles";
@@ -20,21 +31,51 @@ interface FlashcardDeckProps {
   isCustom?: boolean;
 }
 
-export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckProps) {
+export function FlashcardDeck({
+  deckId,
+  initialCards,
+  isCustom,
+}: FlashcardDeckProps) {
   const {
-    isMounted, activeCards, currentCard,
-    globalMode, setGlobalMode, exitDir,
-    isFlipped, setIsFlipped, showFurigana, setShowFurigana,
-    podcastIsPlaying, setPodcastIsPlaying, podcastSpeed, setPodcastSpeed,
-    progressPercent, learnedCardsCount, totalOriginalCards,
-    tempTyping, setTempTyping, isTypingActive, currentIndex, isFullscreen,
-    showMascot, setShowMascot,
-    mascotState, playMascotAnim,
-    handleFlip, triggerSwipe, handlePodcastNext, handleShuffle,
-    resetProgress, handlePlayAudio, toggleFullscreen
+    isMounted,
+    activeCards,
+    currentCard,
+    globalMode,
+    setGlobalMode,
+    exitDir,
+    isFlipped,
+    setIsFlipped,
+    showFurigana,
+    setShowFurigana,
+    podcastIsPlaying,
+    setPodcastIsPlaying,
+    podcastSpeed,
+    setPodcastSpeed,
+    progressPercent,
+    learnedCardsCount,
+    totalOriginalCards,
+    tempTyping,
+    setTempTyping,
+    isTypingActive,
+    currentIndex,
+    isFullscreen,
+    showMascot,
+    setShowMascot,
+    mascotState,
+    playMascotAnim,
+    handleFlip,
+    triggerSwipe,
+    handlePodcastNext,
+    handleShuffle,
+    resetProgress,
+    handlePlayAudio,
+    toggleFullscreen,
   } = useFlashcardDeck({ deckId, initialCards, isCustom });
 
-  if (!isMounted) return <div className="h-[400px] w-full max-w-md mx-auto bg-[#FFE2D1]/30 animate-pulse rounded-[3rem]" />;
+  if (!isMounted)
+    return (
+      <div className="h-[400px] w-full max-w-md mx-auto bg-[#FFE2D1]/30 animate-pulse rounded-[3rem]" />
+    );
 
   // ==========================================
   // MÀN HÌNH CHÚC MỪNG (END SCREEN KẸO DẺO)
@@ -47,8 +88,7 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
   // MÀN HÌNH HỌC CHÍNH (MAIN PLAY SCREEN)
   // ==========================================
   return (
-    <div className="flex flex-col items-center w-full overflow-hidden px-4 pt-4 pb-20 min-h-[100dvh]">
-      
+    <div className="flex flex-col items-center w-full overflow-x-hidden px-4 pt-4 pb-20 min-h-[100dvh]">
       {/* ZEN MODE BACKGROUND OVERLAY (Chỉ tối đi khi bật Podcast) */}
       <div
         className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 z-0 overflow-hidden ${
@@ -56,25 +96,27 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
         }`}
       >
         {/* 1. Ảnh nền Lofi (Có thể tải file ảnh/GIF vào thư mục public và đổi src thành "/ten-anh.gif") */}
-        <img 
-          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=1920" 
-          alt="Lofi Background" 
-          className="absolute inset-0 w-full h-full object-cover opacity-50" 
+        <img
+          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=1920"
+          alt="Lofi Background"
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
-        
+
         {/* 2. Lớp phủ màu Đêm Trăng Kẹo Ngọt để giữ độ mộng mơ và làm mờ (blur) bớt ảnh gốc */}
         <div className="absolute inset-0 bg-[#4A306D]/70 backdrop-blur-[3px]" />
 
         {/* Hiệu ứng sao rơi chỉ bật khi vào mode Podcast */}
-        <AnimatePresence>{globalMode === "podcast" && <FallingSparkles />}</AnimatePresence>
+        <AnimatePresence>
+          {globalMode === "podcast" && <FallingSparkles />}
+        </AnimatePresence>
       </div>
 
       {/* 1. THANH TIẾN TRÌNH VIỀN TRÊN (TOP EDGE GLOW BAR) */}
       <div className="fixed top-0 left-0 w-full h-1.5 z-50 bg-zinc-200/40 overflow-hidden animate-in slide-in-from-top-2 duration-700">
-        <div 
+        <div
           // Nếu 0% thì set cứng w-3 (một chấm sáng) và cho nhấp nháy để gọi mời
           className={`h-full bg-[#06D6A0] transition-all duration-700 ease-out relative shadow-[0_0_12px_2px_rgba(6,214,160,0.8)] rounded-r-full ${
-            progressPercent === 0 ? 'w-3 animate-pulse' : ''
+            progressPercent === 0 ? "w-3 animate-pulse" : ""
           }`}
           style={progressPercent > 0 ? { width: `${progressPercent}%` } : {}}
         >
@@ -85,7 +127,6 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
 
       {/* HIỂN THỊ SỐ LƯỢNG VÀ CÔNG TẮC TOÀN CỤC (Chung 1 dòng để tiết kiệm không gian) */}
       <div className="w-full max-w-md mx-auto mb-4 mt-6 flex justify-between items-center px-4 relative z-20">
-        
         {/* NÚT TAI NGHE BÊN TRÁI (Bật/tắt chế độ Rảnh tay) */}
         <button
           onClick={() => {
@@ -100,8 +141,8 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
             }
           }}
           className={`relative z-10 w-[42px] h-[42px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:translate-y-1 active:scale-90 shadow-sm ${
-            globalMode === "podcast" 
-              ? "bg-[#FF7096] text-white shadow-[0_0_15px_rgba(255,112,150,0.8)] border-2 border-[#FFB3C6] scale-110" 
+            globalMode === "podcast"
+              ? "bg-[#FF7096] text-white shadow-[0_0_15px_rgba(255,112,150,0.8)] border-2 border-[#FFB3C6] scale-110"
               : "bg-zinc-100/80 text-zinc-500 border border-zinc-200/80 hover:bg-zinc-200 grayscale"
           }`}
           title="Chế độ Rảnh Tay (Podcast)"
@@ -110,11 +151,15 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
         </button>
 
         {/* CÔNG TẮC TIC-TAC (Micro-Pill Toggle) */}
-        <div className={`relative flex w-[88px] h-[38px] bg-zinc-100/80 backdrop-blur-sm p-1 rounded-full shadow-inner border border-zinc-200/80 transition-opacity ${globalMode === "podcast" ? "opacity-30 pointer-events-none" : "opacity-100"}`}>
+        <div
+          className={`relative flex w-[88px] h-[38px] bg-zinc-100/80 backdrop-blur-sm p-1 rounded-full shadow-inner border border-zinc-200/80 transition-opacity ${globalMode === "podcast" ? "opacity-30 pointer-events-none" : "opacity-100"}`}
+        >
           {/* Cục kẹo dẻo chạy qua chạy lại làm nền */}
           <motion.div
             className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-white rounded-full shadow-[0_2px_6px_rgba(0,0,0,0.1)] border border-zinc-100"
-            animate={{ left: globalMode === "swipe" ? "4px" : "calc(50% + 0px)" }}
+            animate={{
+              left: globalMode === "swipe" ? "4px" : "calc(50% + 0px)",
+            }}
             transition={{ type: "spring", stiffness: 500, damping: 30 }}
           />
 
@@ -126,7 +171,9 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
               setIsFlipped(false);
             }}
             className={`relative z-10 flex-1 flex items-center justify-center transition-all duration-300 active:duration-75 active:translate-y-[2px] active:scale-90 ${
-              globalMode === "swipe" ? "scale-110 text-[#FF7096] drop-shadow-sm" : "scale-90 text-zinc-400 hover:text-zinc-600"
+              globalMode === "swipe"
+                ? "scale-110 text-[#FF7096] drop-shadow-sm"
+                : "scale-90 text-zinc-400 hover:text-zinc-600"
             }`}
             title="Chế độ lật thẻ"
           >
@@ -141,7 +188,9 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
               setIsFlipped(false);
             }}
             className={`relative z-10 flex-1 flex items-center justify-center transition-all duration-300 active:duration-75 active:translate-y-[2px] active:scale-90 ${
-              globalMode === "typing" ? "scale-110 text-[#06D6A0] drop-shadow-sm" : "scale-90 text-zinc-400 hover:text-zinc-600"
+              globalMode === "typing"
+                ? "scale-110 text-[#06D6A0] drop-shadow-sm"
+                : "scale-90 text-zinc-400 hover:text-zinc-600"
             }`}
             title="Chế độ gõ phím"
           >
@@ -155,7 +204,8 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
             {progressPercent === 0 && (
               <span className="absolute -inset-1 rounded-full bg-[#06D6A0]/40 animate-ping duration-1000" />
             )}
-            <span className="relative font-rounded font-black text-[#06D6A0] text-sm bg-[#F0FAF5] px-3 py-1.5 rounded-full border border-[#A0E8D5]/50 shadow-sm transition-all flex items-center justify-center h-[38px]"
+            <span
+              className="relative font-rounded font-black text-[#06D6A0] text-sm bg-[#F0FAF5] px-3 py-1.5 rounded-full border border-[#A0E8D5]/50 shadow-sm transition-all flex items-center justify-center h-[38px]"
               style={{ fontFamily: "var(--font-cherry)" }}
             >
               {learnedCardsCount} / {totalOriginalCards}
@@ -166,16 +216,22 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
             className={`w-[38px] h-[38px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:scale-90 shadow-sm border ${showMascot ? "bg-[#FFD166] text-amber-900 border-[#FFE2D1]" : "bg-zinc-100 text-zinc-400 border-zinc-200 grayscale"}`}
             title="Bật/Tắt Linh Vật"
           >
-            <img src="/images/mascot-hi.gif" alt="Pet Toggle" className={`w-6 h-6 object-contain ${showMascot ? "animate-pulse" : "opacity-60"}`} />
+            <img
+              src="/images/mascot-hi.gif"
+              alt="Pet Toggle"
+              className={`w-6 h-6 object-contain ${showMascot ? "animate-pulse" : "opacity-60"}`}
+            />
           </button>
         </div>
-
       </div>
 
       {globalMode === "podcast" ? (
         // --- CHẾ ĐỘ RẢNH TAY (PODCAST / ZEN MODE) ---
         <>
-          <div className="w-full max-w-md h-[400px] relative z-10 mt-5" style={{ perspective: 1200 }}>
+          <div
+            className="w-full max-w-md h-[400px] relative z-10 mt-5"
+            style={{ perspective: 1200 }}
+          >
             <AnimatePresence custom={exitDir} mode="popLayout">
               <SwipeCard
                 key={currentCard.id}
@@ -194,30 +250,81 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
           {/* AUDIO PLAYER UI CHO PODCAST */}
           <div className="w-full max-w-md mx-auto relative z-10 mt-10 px-4 animate-in slide-in-from-bottom-6 fade-in duration-500">
             <div className="flex justify-center gap-1 sm:gap-3 mb-6 bg-[#FDFBF7] p-1.5 sm:p-2.5 rounded-full border-4 border-[#FFE2D1] w-fit mx-auto shadow-[0_8px_0_0_#FFE2D1] max-w-full overflow-x-auto hide-scrollbar">
-              <button onClick={() => setPodcastSpeed("slow")} className={`px-3 sm:px-4 py-1.5 rounded-full text-sm sm:text-base transition-all border-2 flex items-center gap-1 sm:gap-1.5 shrink-0 active:translate-y-1 active:shadow-none ${podcastSpeed === 'slow' ? 'bg-[#FFD166] border-[#FFD166] text-white shadow-[0_4px_0_0_#E6B74A] -translate-y-1' : 'bg-white border-[#FFE2D1] text-zinc-400 hover:text-zinc-500 shadow-[0_4px_0_0_#FFE2D1]'}`}>
+              <button
+                onClick={() => setPodcastSpeed("slow")}
+                className={`px-3 sm:px-4 py-1.5 rounded-full text-sm sm:text-base transition-all border-2 flex items-center gap-1 sm:gap-1.5 shrink-0 active:translate-y-1 active:shadow-none ${podcastSpeed === "slow" ? "bg-[#FFD166] border-[#FFD166] text-white shadow-[0_4px_0_0_#E6B74A] -translate-y-1" : "bg-white border-[#FFE2D1] text-zinc-400 hover:text-zinc-500 shadow-[0_4px_0_0_#FFE2D1]"}`}
+              >
                 <span className="text-xs sm:text-sm">🐢</span>
-                <span style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1px", paddingTop: "2px" }}>Chậm</span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-cherry)",
+                    letterSpacing: "1px",
+                    paddingTop: "2px",
+                  }}
+                >
+                  Chậm
+                </span>
               </button>
-              <button onClick={() => setPodcastSpeed("normal")} className={`px-3 sm:px-4 py-1.5 rounded-full text-sm sm:text-base transition-all border-2 flex items-center gap-1 sm:gap-1.5 shrink-0 active:translate-y-1 active:shadow-none ${podcastSpeed === 'normal' ? 'bg-[#06D6A0] border-[#06D6A0] text-white shadow-[0_4px_0_0_#05B889] -translate-y-1' : 'bg-white border-[#FFE2D1] text-zinc-400 hover:text-zinc-500 shadow-[0_4px_0_0_#FFE2D1]'}`}>
+              <button
+                onClick={() => setPodcastSpeed("normal")}
+                className={`px-3 sm:px-4 py-1.5 rounded-full text-sm sm:text-base transition-all border-2 flex items-center gap-1 sm:gap-1.5 shrink-0 active:translate-y-1 active:shadow-none ${podcastSpeed === "normal" ? "bg-[#06D6A0] border-[#06D6A0] text-white shadow-[0_4px_0_0_#05B889] -translate-y-1" : "bg-white border-[#FFE2D1] text-zinc-400 hover:text-zinc-500 shadow-[0_4px_0_0_#FFE2D1]"}`}
+              >
                 <span className="text-xs sm:text-sm">🚶</span>
-                <span style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1px", paddingTop: "2px" }}>Vừa</span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-cherry)",
+                    letterSpacing: "1px",
+                    paddingTop: "2px",
+                  }}
+                >
+                  Vừa
+                </span>
               </button>
-              <button onClick={() => setPodcastSpeed("fast")} className={`px-3 sm:px-4 py-1.5 rounded-full text-sm sm:text-base transition-all border-2 flex items-center gap-1 sm:gap-1.5 shrink-0 active:translate-y-1 active:shadow-none ${podcastSpeed === 'fast' ? 'bg-[#FF9F1C] border-[#FF9F1C] text-white shadow-[0_4px_0_0_#E68E19] -translate-y-1' : 'bg-white border-[#FFE2D1] text-zinc-400 hover:text-zinc-500 shadow-[0_4px_0_0_#FFE2D1]'}`}>
+              <button
+                onClick={() => setPodcastSpeed("fast")}
+                className={`px-3 sm:px-4 py-1.5 rounded-full text-sm sm:text-base transition-all border-2 flex items-center gap-1 sm:gap-1.5 shrink-0 active:translate-y-1 active:shadow-none ${podcastSpeed === "fast" ? "bg-[#FF9F1C] border-[#FF9F1C] text-white shadow-[0_4px_0_0_#E68E19] -translate-y-1" : "bg-white border-[#FFE2D1] text-zinc-400 hover:text-zinc-500 shadow-[0_4px_0_0_#FFE2D1]"}`}
+              >
                 <span className="text-xs sm:text-sm">🐇</span>
-                <span style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1px", paddingTop: "2px" }}>Nhanh</span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-cherry)",
+                    letterSpacing: "1px",
+                    paddingTop: "2px",
+                  }}
+                >
+                  Nhanh
+                </span>
               </button>
             </div>
 
             <div className="flex items-center justify-center gap-6 bg-[#FDFBF7] p-5 rounded-[2.5rem] border-4 border-[#FFE2D1] shadow-[0_12px_0_0_#FFE2D1]">
-              <button onClick={() => handlePodcastNext(-1)} className="w-14 h-14 flex items-center justify-center bg-white text-[#FF9F1C] border-2 border-[#FFE2D1] rounded-2xl shadow-[0_4px_0_0_#FFE2D1] active:translate-y-1 active:shadow-none transition-all hover:bg-orange-50">
+              <button
+                onClick={() => handlePodcastNext(-1)}
+                className="w-14 h-14 flex items-center justify-center bg-white text-[#FF9F1C] border-2 border-[#FFE2D1] rounded-2xl shadow-[0_4px_0_0_#FFE2D1] active:translate-y-1 active:shadow-none transition-all hover:bg-orange-50"
+              >
                 <SkipBack size={24} strokeWidth={3} fill="currentColor" />
               </button>
-              
-              <button onClick={() => setPodcastIsPlaying(!podcastIsPlaying)} className="w-20 h-20 flex items-center justify-center bg-[#FF7096] text-white border-b-4 border-[#C7486B] rounded-full shadow-md hover:bg-[#FF5C8A] active:border-b-0 active:translate-y-1 transition-all">
-                {podcastIsPlaying ? <Pause size={32} strokeWidth={3} fill="currentColor" /> : <Play size={32} strokeWidth={3} fill="currentColor" className="ml-1" />}
+
+              <button
+                onClick={() => setPodcastIsPlaying(!podcastIsPlaying)}
+                className="w-20 h-20 flex items-center justify-center bg-[#FF7096] text-white border-b-4 border-[#C7486B] rounded-full shadow-md hover:bg-[#FF5C8A] active:border-b-0 active:translate-y-1 transition-all"
+              >
+                {podcastIsPlaying ? (
+                  <Pause size={32} strokeWidth={3} fill="currentColor" />
+                ) : (
+                  <Play
+                    size={32}
+                    strokeWidth={3}
+                    fill="currentColor"
+                    className="ml-1"
+                  />
+                )}
               </button>
-              
-              <button onClick={() => handlePodcastNext(1)} className="w-14 h-14 flex items-center justify-center bg-white text-[#FF9F1C] border-2 border-[#FFE2D1] rounded-2xl shadow-[0_4px_0_0_#FFE2D1] active:translate-y-1 active:shadow-none transition-all hover:bg-orange-50">
+
+              <button
+                onClick={() => handlePodcastNext(1)}
+                className="w-14 h-14 flex items-center justify-center bg-white text-[#FF9F1C] border-2 border-[#FFE2D1] rounded-2xl shadow-[0_4px_0_0_#FFE2D1] active:translate-y-1 active:shadow-none transition-all hover:bg-orange-50"
+              >
                 <SkipForward size={24} strokeWidth={3} fill="currentColor" />
               </button>
             </div>
@@ -230,12 +337,12 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
             key={`typing-${currentCard.id}`} // Quan trọng: Ép React reset BossFight khi thẻ thay đổi
             card={currentCard}
             onCorrect={() => {
-              triggerSwipe('right' , true);
-              // Gõ đúng xong thì CHỈ tắt chế độ tạm thời. 
+              triggerSwipe("right", true);
+              // Gõ đúng xong thì CHỈ tắt chế độ tạm thời.
               // Nếu đang bật globalMode = "typing" thì nó vẫn giữ nguyên màn hình Gõ phím cho thẻ tiếp theo!
-              setTempTyping(false); 
+              setTempTyping(false);
             }}
-            onWrong={() => playMascotAnim('fail')} // Gọi trạng thái linh vật buồn
+            onWrong={() => playMascotAnim("fail")} // Gọi trạng thái linh vật buồn
             onCancel={() => {
               // Bấm nút Thoát ải: Tắt temp. Nếu đang ở global gõ phím thì ép về lại global quẹt thẻ.
               setTempTyping(false);
@@ -247,7 +354,10 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
         // --- CHẾ ĐỘ QUẸT THẺ (MẶC ĐỊNH) ---
         <>
           {/* 2. KHU VỰC THẺ BÀI (Giữ nguyên code cũ của bạn) */}
-          <div className="w-full max-w-md h-[400px] relative z-10 mt-5" style={{ perspective: 1200 }}>
+          <div
+            className="w-full max-w-md h-[400px] relative z-10 mt-5"
+            style={{ perspective: 1200 }}
+          >
             <AnimatePresence custom={exitDir} mode="popLayout">
               <SwipeCard
                 key={currentCard.id}
@@ -263,12 +373,12 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
 
           {/* 3. BẢNG ĐIỀU KHIỂN (Giữ nguyên code cũ của bạn) */}
           <ControlPanel
-            onPrev={() => triggerSwipe('left')}
-            onNext={() => triggerSwipe('right')}
+            onPrev={() => triggerSwipe("left")}
+            onNext={() => triggerSwipe("right")}
             onFlip={handleFlip}
             onShuffle={handleShuffle}
-            onKnow={() => triggerSwipe('right')}
-            onReview={() => triggerSwipe('left')}
+            onKnow={() => triggerSwipe("right")}
+            onReview={() => triggerSwipe("left")}
             onPlayAudio={handlePlayAudio}
             currentIndex={currentIndex}
             totalCards={activeCards.length}
@@ -286,7 +396,15 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
               }}
               className="w-full h-12 bg-indigo-50 hover:bg-indigo-100 text-indigo-500 rounded-2xl font-bold border-2 border-indigo-200 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-sm"
             >
-              <span style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1px", paddingTop: "2px" }}>Gõ đáp án</span>
+              <span
+                style={{
+                  fontFamily: "var(--font-cherry)",
+                  letterSpacing: "1px",
+                  paddingTop: "2px",
+                }}
+              >
+                Gõ đáp án
+              </span>
             </button>
           </div>
         </>
@@ -296,13 +414,17 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
       <button
         onClick={toggleFullscreen}
         className={`fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:scale-90 ${
-          globalMode === "podcast" 
-            ? "bg-white/10 backdrop-blur-md text-white/70 border-2 border-white/20 hover:text-white hover:bg-white/20 shadow-lg" 
+          globalMode === "podcast"
+            ? "bg-white/10 backdrop-blur-md text-white/70 border-2 border-white/20 hover:text-white hover:bg-white/20 shadow-lg"
             : "bg-white text-zinc-400 border-2 border-zinc-200 shadow-[0_4px_0_0_#e4e4e7] hover:text-[#5390D9] hover:-translate-y-1 hover:shadow-[0_6px_0_0_#e4e4e7] active:translate-y-1 active:shadow-none"
         }`}
         title={isFullscreen ? "Thu nhỏ" : "Toàn màn hình"}
       >
-        {isFullscreen ? <Minimize size={22} strokeWidth={2.5} /> : <Maximize size={22} strokeWidth={2.5} />}
+        {isFullscreen ? (
+          <Minimize size={22} strokeWidth={2.5} />
+        ) : (
+          <Maximize size={22} strokeWidth={2.5} />
+        )}
       </button>
 
       {/* LINH VẬT THÚ ẢO (MASCOT) GÓC DƯỚI PHẢI */}
@@ -310,19 +432,23 @@ export function FlashcardDeck({ deckId, initialCards, isCustom }: FlashcardDeckP
         {showMascot && (
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transition: { type: "spring", stiffness: 300, damping: 20 },
+            }}
             exit={{ opacity: 0, y: 50, scale: 0.8 }}
             className="fixed bottom-24 right-4 lg:bottom-28 lg:right-8 z-[90] pointer-events-none drop-shadow-xl"
           >
-            <img 
-              src={`/images/mascot-${mascotState}.gif`} 
-              alt="Mascot" 
-              className="w-24 h-24 lg:w-32 lg:h-32 object-contain" 
+            <img
+              src={`/images/mascot-${mascotState}.gif`}
+              alt="Mascot"
+              className="w-24 h-24 lg:w-32 lg:h-32 object-contain"
             />
           </motion.div>
         )}
       </AnimatePresence>
-
     </div>
   );
 }
