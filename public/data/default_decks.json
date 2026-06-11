@@ -1,0 +1,2876 @@
+[
+  {
+    "id": "n5-001",
+    "word": "食べる",
+    "reading": "たべる",
+    "romaji": "taberu",
+    "meaning": "Ăn",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "毎日ご飯を食べる。",
+    "example_jp_formatted": "[毎日]{まいにち}ご飯{ごはん}を[食]{た}べる。",
+    "example_vi": "Mỗi ngày ăn cơm.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "ăn-uống"
+    ],
+    "notes": "Động từ nhóm 2.",
+    "synonyms": [
+      "食事する"
+    ],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "食",
+        "meaning": "thực (ăn)",
+        "onyomi": "ショク",
+        "kunyomi": "た.べる"
+      }
+    ]
+  },
+  {
+    "id": "n5-002",
+    "word": "飲む",
+    "reading": "のむ",
+    "romaji": "nomu",
+    "meaning": "Uống",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "水を飲む。",
+    "example_jp_formatted": "[水]{みず}を[飲]{の}む。",
+    "example_vi": "Uống nước.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "ăn-uống"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "飲",
+        "meaning": "ẩm, uống",
+        "onyomi": "イン",
+        "kunyomi": "の.む"
+      }
+    ]
+  },
+  {
+    "id": "n5-003",
+    "word": "行く",
+    "reading": "いく",
+    "romaji": "iku",
+    "meaning": "Đi",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "学校へ行く。",
+    "example_jp_formatted": "[学校]{がっこう}へ[行]{い}く。",
+    "example_vi": "Đi đến trường.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "di-chuyển"
+    ],
+    "notes": "Dùng với へ hoặc に.",
+    "synonyms": [
+      "向かう"
+    ],
+    "antonyms": [
+      "来る",
+      "帰る"
+    ],
+    "kanji_info": [
+      {
+        "kanji": "行",
+        "meaning": "hành (đi)",
+        "onyomi": "コウ, ギョウ",
+        "kunyomi": "い.く, ゆ.く"
+      }
+    ]
+  },
+  {
+    "id": "n5-004",
+    "word": "来る",
+    "reading": "くる",
+    "romaji": "kuru",
+    "meaning": "Đến",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "友達が来る。",
+    "example_jp_formatted": "[友達]{ともだち}が[来]{く}る。",
+    "example_vi": "Bạn đến.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "di-chuyển"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "来",
+        "meaning": "lai, đến",
+        "onyomi": "ライ",
+        "kunyomi": "く.る, き.たる"
+      }
+    ]
+  },
+  {
+    "id": "n5-005",
+    "word": "見る",
+    "reading": "みる",
+    "romaji": "miru",
+    "meaning": "Nhìn, xem",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "テレビを見る。",
+    "example_jp_formatted": "テレビを[見]{み}る。",
+    "example_vi": "Xem TV.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "thị-giác"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "見",
+        "meaning": "kiến, thấy",
+        "onyomi": "ケン",
+        "kunyomi": "み.る, み.える"
+      }
+    ]
+  },
+  {
+    "id": "n5-006",
+    "word": "聞く",
+    "reading": "きく",
+    "romaji": "kiku",
+    "meaning": "Nghe, hỏi",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "先生の話を聞く。",
+    "example_jp_formatted": "[先生]{せんせい}の話{はなし}を[聞]{き}く。",
+    "example_vi": "Nghe lời thầy giáo.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "giao-tiếp"
+    ],
+    "notes": "Cũng có nghĩa là hỏi.",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "聞",
+        "meaning": "văn, nghe",
+        "onyomi": "ブン, モン",
+        "kunyomi": "き.く"
+      }
+    ]
+  },
+  {
+    "id": "n5-007",
+    "word": "話す",
+    "reading": "はなす",
+    "romaji": "hanasu",
+    "meaning": "Nói",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "日本語で話す。",
+    "example_jp_formatted": "日本語{にほんご}で[話]{はな}す。",
+    "example_vi": "Nói bằng tiếng Nhật.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "giao-tiếp"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "話",
+        "meaning": "thoại, nói chuyện",
+        "onyomi": "ワ",
+        "kunyomi": "はな.す, はなし"
+      }
+    ]
+  },
+  {
+    "id": "n5-008",
+    "word": "書く",
+    "reading": "かく",
+    "romaji": "kaku",
+    "meaning": "Viết",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "名前を書く。",
+    "example_jp_formatted": "[名前]{なまえ}を[書]{か}く。",
+    "example_vi": "Viết tên.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "học-tập"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "書",
+        "meaning": "thư, viết",
+        "onyomi": "ショ",
+        "kunyomi": "か.く"
+      }
+    ]
+  },
+  {
+    "id": "n5-009",
+    "word": "読む",
+    "reading": "よむ",
+    "romaji": "yomu",
+    "meaning": "Đọc",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "本を読む。",
+    "example_jp_formatted": "[本]{ほん}を[読]{よ}む。",
+    "example_vi": "Đọc sách.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "học-tập"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "読",
+        "meaning": "độc, đọc",
+        "onyomi": "ドク, トク, トウ",
+        "kunyomi": "よ.む"
+      }
+    ]
+  },
+  {
+    "id": "n5-010",
+    "word": "買う",
+    "reading": "かう",
+    "romaji": "kau",
+    "meaning": "Mua",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "本を買う。",
+    "example_jp_formatted": "[本]{ほん}を[買]{か}う。",
+    "example_vi": "Mua sách.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "mua-sắm"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "買",
+        "meaning": "mại, mua",
+        "onyomi": "バイ",
+        "kunyomi": "か.う"
+      }
+    ]
+  },
+  {
+    "id": "n5-011",
+    "word": "会う",
+    "reading": "あう",
+    "romaji": "au",
+    "meaning": "Gặp",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "友達に会う。",
+    "example_jp_formatted": "[友達]{ともだち}に[会]{あ}う。",
+    "example_vi": "Gặp bạn bè.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "giao-tiếp"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "会",
+        "meaning": "hội, gặp",
+        "onyomi": "カイ, エ",
+        "kunyomi": "あ.う"
+      }
+    ]
+  },
+  {
+    "id": "n5-012",
+    "word": "帰る",
+    "reading": "かえる",
+    "romaji": "kaeru",
+    "meaning": "Trở về",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "家に帰る。",
+    "example_jp_formatted": "[家]{いえ}に[帰]{かえ}る。",
+    "example_vi": "Về nhà.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "di-chuyển"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "帰",
+        "meaning": "quy, trở về",
+        "onyomi": "キ",
+        "kunyomi": "かえ.る"
+      }
+    ]
+  },
+  {
+    "id": "n5-013",
+    "word": "する",
+    "reading": "する",
+    "romaji": "suru",
+    "meaning": "Làm",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "宿題をする。",
+    "example_jp_formatted": "[宿題]{しゅくだい}をする。",
+    "example_vi": "Làm bài tập về nhà.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "hành-động"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": []
+  },
+  {
+    "id": "n5-014",
+    "word": "勉強する",
+    "reading": "べんきょうする",
+    "romaji": "benkyou suru",
+    "meaning": "Học",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "日本語を勉強する。",
+    "example_jp_formatted": "日本語{にほんご}を[勉強]{べんきょう}する。",
+    "example_vi": "Học tiếng Nhật.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "học-tập"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "勉",
+        "meaning": "miễn, siêng năng",
+        "onyomi": "ベン",
+        "kunyomi": ""
+      },
+      {
+        "kanji": "強",
+        "meaning": "cường, mạnh",
+        "onyomi": "キョウ, ゴウ",
+        "kunyomi": "つよ.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-015",
+    "word": "休む",
+    "reading": "やすむ",
+    "romaji": "yasumu",
+    "meaning": "Nghỉ, nghỉ ngơi",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "日曜日に休む。",
+    "example_jp_formatted": "[日曜日]{にちようび}に[休]{やす}む。",
+    "example_vi": "Nghỉ vào Chủ nhật.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "sinh-hoạt"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "休",
+        "meaning": "hưu, nghỉ",
+        "onyomi": "キュウ",
+        "kunyomi": "やす.む"
+      }
+    ]
+  },
+  {
+    "id": "n5-016",
+    "word": "立つ",
+    "reading": "たつ",
+    "romaji": "tatsu",
+    "meaning": "Đứng",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "ここに立つ。",
+    "example_jp_formatted": "ここに[立]{た}つ。",
+    "example_vi": "Đứng ở đây.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "tư-thế"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "立",
+        "meaning": "lập, đứng",
+        "onyomi": "リツ, リュウ",
+        "kunyomi": "た.つ"
+      }
+    ]
+  },
+  {
+    "id": "n5-017",
+    "word": "座る",
+    "reading": "すわる",
+    "romaji": "suwaru",
+    "meaning": "Ngồi",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "席に座る。",
+    "example_jp_formatted": "[席]{せき}に[座]{すわ}る。",
+    "example_vi": "Ngồi vào chỗ.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "tư-thế"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "座",
+        "meaning": "tọa, ngồi",
+        "onyomi": "ザ",
+        "kunyomi": "すわ.る"
+      }
+    ]
+  },
+  {
+    "id": "n5-018",
+    "word": "歩く",
+    "reading": "あるく",
+    "romaji": "aruku",
+    "meaning": "Đi bộ",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "駅まで歩く。",
+    "example_jp_formatted": "[駅]{えき}まで[歩]{ある}く。",
+    "example_vi": "Đi bộ đến ga.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "di-chuyển"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "歩",
+        "meaning": "bộ, đi bộ",
+        "onyomi": "ホ, ブ, フ",
+        "kunyomi": "ある.く"
+      }
+    ]
+  },
+  {
+    "id": "n5-019",
+    "word": "走る",
+    "reading": "はしる",
+    "romaji": "hashiru",
+    "meaning": "Chạy",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "公園で走る。",
+    "example_jp_formatted": "[公園]{こうえん}で[走]{はし}る。",
+    "example_vi": "Chạy ở công viên.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "thể-thao"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "走",
+        "meaning": "tẩu, chạy",
+        "onyomi": "ソウ",
+        "kunyomi": "はし.る"
+      }
+    ]
+  },
+  {
+    "id": "n5-020",
+    "word": "入る",
+    "reading": "はいる",
+    "romaji": "hairu",
+    "meaning": "Vào",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "教室に入る。",
+    "example_jp_formatted": "[教室]{きょうしつ}に[入]{はい}る。",
+    "example_vi": "Vào lớp học.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "di-chuyển"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "入",
+        "meaning": "nhập, vào",
+        "onyomi": "ニュウ",
+        "kunyomi": "はい.る"
+      }
+    ]
+  },
+  {
+    "id": "n5-021",
+    "word": "出る",
+    "reading": "でる",
+    "romaji": "deru",
+    "meaning": "Ra, rời khỏi",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "家を出る。",
+    "example_jp_formatted": "[家]{いえ}を[出]{で}る。",
+    "example_vi": "Rời khỏi nhà.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "di-chuyển"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "出",
+        "meaning": "xuất, ra",
+        "onyomi": "シュツ, スイ",
+        "kunyomi": "で.る, だ.す"
+      }
+    ]
+  },
+  {
+    "id": "n5-022",
+    "word": "開ける",
+    "reading": "あける",
+    "romaji": "akeru",
+    "meaning": "Mở",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "ドアを開ける。",
+    "example_jp_formatted": "ドアを[開]{あ}ける。",
+    "example_vi": "Mở cửa.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "hành-động"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "開",
+        "meaning": "khai, mở",
+        "onyomi": "カイ",
+        "kunyomi": "あ.ける, ひら.く"
+      }
+    ]
+  },
+  {
+    "id": "n5-023",
+    "word": "閉める",
+    "reading": "しめる",
+    "romaji": "shimeru",
+    "meaning": "Đóng",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "ドアを閉める。",
+    "example_jp_formatted": "ドアを[閉]{し}める。",
+    "example_vi": "Đóng cửa.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "hành-động"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "閉",
+        "meaning": "bế, đóng",
+        "onyomi": "ヘイ",
+        "kunyomi": "し.める"
+      }
+    ]
+  },
+  {
+    "id": "n5-024",
+    "word": "泳ぐ",
+    "reading": "およぐ",
+    "romaji": "oyogu",
+    "meaning": "Bơi",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "海で泳ぐ。",
+    "example_jp_formatted": "[海]{うみ}で[泳]{およ}ぐ。",
+    "example_vi": "Bơi ở biển.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "thể-thao"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "泳",
+        "meaning": "vịnh, bơi",
+        "onyomi": "エイ",
+        "kunyomi": "およ.ぐ"
+      }
+    ]
+  },
+  {
+    "id": "n5-025",
+    "word": "作る",
+    "reading": "つくる",
+    "romaji": "tsukuru",
+    "meaning": "Làm, tạo ra",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "料理を作る。",
+    "example_jp_formatted": "[料理]{りょうり}を[作]{つく}る。",
+    "example_vi": "Làm món ăn.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "hành-động"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "作",
+        "meaning": "tác, làm",
+        "onyomi": "サク, サ",
+        "kunyomi": "つく.る"
+      }
+    ]
+  },
+  {
+    "id": "n5-026",
+    "word": "使う",
+    "reading": "つかう",
+    "romaji": "tsukau",
+    "meaning": "Dùng",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "パソコンを使う。",
+    "example_jp_formatted": "パソコンを[使]{つか}う。",
+    "example_vi": "Dùng máy tính.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "sử-dụng"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "使",
+        "meaning": "sử, dùng",
+        "onyomi": "シ",
+        "kunyomi": "つか.う"
+      }
+    ]
+  },
+  {
+    "id": "n5-027",
+    "word": "持つ",
+    "reading": "もつ",
+    "romaji": "motsu",
+    "meaning": "Cầm, mang",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "かばんを持つ。",
+    "example_jp_formatted": "かばんを[持]{も}つ。",
+    "example_vi": "Cầm túi.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "sở-hữu"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "持",
+        "meaning": "trì, cầm giữ",
+        "onyomi": "ジ",
+        "kunyomi": "も.つ"
+      }
+    ]
+  },
+  {
+    "id": "n5-028",
+    "word": "取る",
+    "reading": "とる",
+    "romaji": "toru",
+    "meaning": "Lấy, cầm",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "写真を取る。",
+    "example_jp_formatted": "[写真]{しゃしん}を[取]{と}る。",
+    "example_vi": "Chụp ảnh.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "hành-động"
+    ],
+    "notes": "Trong câu này nghĩa là chụp.",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "取",
+        "meaning": "thủ, lấy",
+        "onyomi": "シュ",
+        "kunyomi": "と.る"
+      }
+    ]
+  },
+  {
+    "id": "n5-029",
+    "word": "貸す",
+    "reading": "かす",
+    "romaji": "kasu",
+    "meaning": "Cho mượn",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "友達に本を貸す。",
+    "example_jp_formatted": "[友達]{ともだち}に[本]{ほん}を[貸]{か}す。",
+    "example_vi": "Cho bạn mượn sách.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "mượn-trả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "貸",
+        "meaning": "thải, cho vay",
+        "onyomi": "タイ",
+        "kunyomi": "か.す"
+      }
+    ]
+  },
+  {
+    "id": "n5-030",
+    "word": "借りる",
+    "reading": "かりる",
+    "romaji": "kariru",
+    "meaning": "Mượn",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "本を借りる。",
+    "example_jp_formatted": "[本]{ほん}を[借]{か}りる。",
+    "example_vi": "Mượn sách.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "mượn-trả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "借",
+        "meaning": "tá, mượn",
+        "onyomi": "シャク",
+        "kunyomi": "か.りる"
+      }
+    ]
+  },
+  {
+    "id": "n5-031",
+    "word": "遊ぶ",
+    "reading": "あそぶ",
+    "romaji": "asobu",
+    "meaning": "Chơi",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "友達と遊ぶ。",
+    "example_jp_formatted": "[友達]{ともだち}と[遊]{あそ}ぶ。",
+    "example_vi": "Chơi với bạn.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "giải-trí"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "遊",
+        "meaning": "du, chơi",
+        "onyomi": "ユウ",
+        "kunyomi": "あそ.ぶ"
+      }
+    ]
+  },
+  {
+    "id": "n5-032",
+    "word": "住む",
+    "reading": "すむ",
+    "romaji": "sumu",
+    "meaning": "Sống, ở",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "東京に住む。",
+    "example_jp_formatted": "[東京]{とうきょう}に[住]{す}む。",
+    "example_vi": "Sống ở Tokyo.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "sinh-sống"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "住",
+        "meaning": "trú, ở",
+        "onyomi": "ジュウ",
+        "kunyomi": "す.む"
+      }
+    ]
+  },
+  {
+    "id": "n5-033",
+    "word": "知る",
+    "reading": "しる",
+    "romaji": "shiru",
+    "meaning": "Biết",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "その人を知る。",
+    "example_jp_formatted": "その人{ひと}を[知]{し}る。",
+    "example_vi": "Biết người đó.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "nhận-thức"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "知",
+        "meaning": "tri, biết",
+        "onyomi": "チ",
+        "kunyomi": "し.る"
+      }
+    ]
+  },
+  {
+    "id": "n5-034",
+    "word": "分かる",
+    "reading": "わかる",
+    "romaji": "wakaru",
+    "meaning": "Hiểu",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "日本語が分かる。",
+    "example_jp_formatted": "日本語{にほんご}が[分]{わ}かる。",
+    "example_vi": "Hiểu tiếng Nhật.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "nhận-thức"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "分",
+        "meaning": "phân, hiểu ra",
+        "onyomi": "ブン, フン, ブ",
+        "kunyomi": "わ.かる"
+      }
+    ]
+  },
+  {
+    "id": "n5-035",
+    "word": "思う",
+    "reading": "おもう",
+    "romaji": "omou",
+    "meaning": "Nghĩ",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "そう思う。",
+    "example_jp_formatted": "そう[思]{おも}う。",
+    "example_vi": "Tôi nghĩ vậy.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "tư-duy"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "思",
+        "meaning": "tư, nghĩ",
+        "onyomi": "シ",
+        "kunyomi": "おも.う"
+      }
+    ]
+  },
+  {
+    "id": "n5-036",
+    "word": "考える",
+    "reading": "かんがえる",
+    "romaji": "kangaeru",
+    "meaning": "Suy nghĩ, cân nhắc",
+    "pos": "verb_transitive",
+    "pitch_accent": "unknown",
+    "example_jp": "将来のことを考える。",
+    "example_jp_formatted": "[将来]{しょうらい}のことをよく[考]{かんが}える。",
+    "example_vi": "Suy nghĩ kỹ về tương lai.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "tư-duy"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "考",
+        "meaning": "khảo, suy nghĩ",
+        "onyomi": "コウ",
+        "kunyomi": "かんが.える"
+      }
+    ]
+  },
+  {
+    "id": "n5-037",
+    "word": "ある",
+    "reading": "ある",
+    "romaji": "aru",
+    "meaning": "Có (đồ vật)",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "机の上に本がある。",
+    "example_jp_formatted": "[机]{つくえ}の[上]{うえ}に[本]{ほん}がある。",
+    "example_vi": "Trên bàn có sách.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "tồn-tại"
+    ],
+    "notes": "Dùng cho đồ vật/sự vật.",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": []
+  },
+  {
+    "id": "n5-038",
+    "word": "いる",
+    "reading": "いる",
+    "romaji": "iru",
+    "meaning": "Có, ở (người/động vật)",
+    "pos": "verb_intransitive",
+    "pitch_accent": "unknown",
+    "example_jp": "部屋に友達がいる。",
+    "example_jp_formatted": "[部屋]{へや}に[友達]{ともだち}がいる。",
+    "example_vi": "Trong phòng có bạn.",
+    "level": "N5",
+    "tags": [
+      "động-từ",
+      "tồn-tại"
+    ],
+    "notes": "Dùng cho người và động vật.",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": []
+  },
+  {
+    "id": "n5-039",
+    "word": "いくつ",
+    "reading": "いくつ",
+    "romaji": "ikutsu",
+    "meaning": "Mấy tuổi, mấy cái",
+    "pos": "question_word",
+    "pitch_accent": "unknown",
+    "example_jp": "りんごはいくつありますか。",
+    "example_jp_formatted": "りんごはいくつありますか。",
+    "example_vi": "Có mấy quả táo?",
+    "level": "N5",
+    "tags": [
+      "từ-hỏi"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": []
+  },
+  {
+    "id": "n5-040",
+    "word": "いつ",
+    "reading": "いつ",
+    "romaji": "itsu",
+    "meaning": "Khi nào",
+    "pos": "question_word",
+    "pitch_accent": "unknown",
+    "example_jp": "いつ来ますか。",
+    "example_jp_formatted": "いつ[来]{き}ますか。",
+    "example_vi": "Khi nào đến?",
+    "level": "N5",
+    "tags": [
+      "từ-hỏi"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "来",
+        "meaning": "lai, đến",
+        "onyomi": "ライ",
+        "kunyomi": "く.る, き.たる"
+      }
+    ]
+  },
+  {
+    "id": "n5-041",
+    "word": "今日",
+    "reading": "きょう",
+    "romaji": "kyou",
+    "meaning": "Hôm nay",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "今日は忙しい。",
+    "example_jp_formatted": "[今日]{きょう}は[忙]{いそが}しい。",
+    "example_vi": "Hôm nay bận.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "thời-gian"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "今",
+        "meaning": "kim, hiện tại",
+        "onyomi": "コン",
+        "kunyomi": "いま"
+      },
+      {
+        "kanji": "日",
+        "meaning": "nhật, ngày",
+        "onyomi": "ニチ, ジツ",
+        "kunyomi": "ひ, か"
+      }
+    ]
+  },
+  {
+    "id": "n5-042",
+    "word": "明日",
+    "reading": "あした",
+    "romaji": "ashita",
+    "meaning": "Ngày mai",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "明日学校へ行く。",
+    "example_jp_formatted": "[明日]{あした}[学校]{がっこう}へ[行]{い}く。",
+    "example_vi": "Ngày mai đi đến trường.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "thời-gian"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "明",
+        "meaning": "minh, sáng",
+        "onyomi": "メイ, ミョウ",
+        "kunyomi": "あ.かり, あ.ける"
+      },
+      {
+        "kanji": "日",
+        "meaning": "nhật, ngày",
+        "onyomi": "ニチ, ジツ",
+        "kunyomi": "ひ, か"
+      }
+    ]
+  },
+  {
+    "id": "n5-043",
+    "word": "昨日",
+    "reading": "きのう",
+    "romaji": "kinou",
+    "meaning": "Hôm qua",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "昨日雨が降った。",
+    "example_jp_formatted": "[昨日]{きのう}[雨]{あめ}が[降]{ふ}った。",
+    "example_vi": "Hôm qua trời mưa.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "thời-gian"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "昨",
+        "meaning": "tạc, hôm qua",
+        "onyomi": "サク",
+        "kunyomi": ""
+      },
+      {
+        "kanji": "日",
+        "meaning": "nhật, ngày",
+        "onyomi": "ニチ, ジツ",
+        "kunyomi": "ひ, か"
+      }
+    ]
+  },
+  {
+    "id": "n5-044",
+    "word": "毎日",
+    "reading": "まいにち",
+    "romaji": "mainichi",
+    "meaning": "Mỗi ngày",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "毎日日本語を勉強する。",
+    "example_jp_formatted": "[毎日]{まいにち}日本語{にほんご}を[勉強]{べんきょう}する。",
+    "example_vi": "Mỗi ngày học tiếng Nhật.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "thời-gian"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "毎",
+        "meaning": "mỗi",
+        "onyomi": "マイ",
+        "kunyomi": ""
+      },
+      {
+        "kanji": "日",
+        "meaning": "nhật, ngày",
+        "onyomi": "ニチ, ジツ",
+        "kunyomi": "ひ, か"
+      }
+    ]
+  },
+  {
+    "id": "n5-045",
+    "word": "時間",
+    "reading": "じかん",
+    "romaji": "jikan",
+    "meaning": "Thời gian",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "時間がない。",
+    "example_jp_formatted": "[時間]{じかん}がない。",
+    "example_vi": "Không có thời gian.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "thời-gian"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "時",
+        "meaning": "thời, giờ",
+        "onyomi": "ジ",
+        "kunyomi": "とき"
+      },
+      {
+        "kanji": "間",
+        "meaning": "gian, khoảng",
+        "onyomi": "カン, ケン",
+        "kunyomi": "あいだ"
+      }
+    ]
+  },
+  {
+    "id": "n5-046",
+    "word": "学校",
+    "reading": "がっこう",
+    "romaji": "gakkou",
+    "meaning": "Trường học",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "学校へ行く。",
+    "example_jp_formatted": "[学校]{がっこう}へ[行]{い}く。",
+    "example_vi": "Đi đến trường.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-điểm"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "学",
+        "meaning": "học",
+        "onyomi": "ガク",
+        "kunyomi": "まな.ぶ"
+      },
+      {
+        "kanji": "校",
+        "meaning": "hiệu, trường",
+        "onyomi": "コウ",
+        "kunyomi": ""
+      }
+    ]
+  },
+  {
+    "id": "n5-047",
+    "word": "先生",
+    "reading": "せんせい",
+    "romaji": "sensei",
+    "meaning": "Thầy giáo, cô giáo",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "先生は教室にいる。",
+    "example_jp_formatted": "[先生]{せんせい}は[教室]{きょうしつ}にいる。",
+    "example_vi": "Thầy giáo ở trong lớp.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "con-người"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "先",
+        "meaning": "tiên, trước",
+        "onyomi": "セン",
+        "kunyomi": "さき"
+      },
+      {
+        "kanji": "生",
+        "meaning": "sinh, sống",
+        "onyomi": "セイ, ショウ",
+        "kunyomi": "い.きる"
+      }
+    ]
+  },
+  {
+    "id": "n5-048",
+    "word": "友達",
+    "reading": "ともだち",
+    "romaji": "tomodachi",
+    "meaning": "Bạn bè",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "友達と遊ぶ。",
+    "example_jp_formatted": "[友達]{ともだち}と[遊]{あそ}ぶ。",
+    "example_vi": "Chơi với bạn.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "con-người"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "友",
+        "meaning": "hữu, bạn",
+        "onyomi": "ユウ",
+        "kunyomi": "とも"
+      },
+      {
+        "kanji": "達",
+        "meaning": "đạt, số nhiều",
+        "onyomi": "タツ",
+        "kunyomi": "たち"
+      }
+    ]
+  },
+  {
+    "id": "n5-049",
+    "word": "家族",
+    "reading": "かぞく",
+    "romaji": "kazoku",
+    "meaning": "Gia đình",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "家族と住む。",
+    "example_jp_formatted": "[家族]{かぞく}と[住]{す}む。",
+    "example_vi": "Sống cùng gia đình.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "con-người"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "家",
+        "meaning": "gia, nhà",
+        "onyomi": "カ, ケ",
+        "kunyomi": "いえ"
+      },
+      {
+        "kanji": "族",
+        "meaning": "tộc, gia đình",
+        "onyomi": "ゾク",
+        "kunyomi": ""
+      }
+    ]
+  },
+  {
+    "id": "n5-050",
+    "word": "水",
+    "reading": "みず",
+    "romaji": "mizu",
+    "meaning": "Nước",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "水を飲む。",
+    "example_jp_formatted": "[水]{みず}を[飲]{の}む。",
+    "example_vi": "Uống nước.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "đồ-uống"
+    ],
+    "notes": "Nước nói chung.",
+    "synonyms": [],
+    "antonyms": [
+      "お湯"
+    ],
+    "kanji_info": [
+      {
+        "kanji": "水",
+        "meaning": "thủy (nước)",
+        "onyomi": "スイ",
+        "kunyomi": "みず"
+      }
+    ]
+  },
+  {
+    "id": "n5-051",
+    "word": "お茶",
+    "reading": "おちゃ",
+    "romaji": "ocha",
+    "meaning": "Trà",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "お茶を飲む。",
+    "example_jp_formatted": "お茶{おちゃ}を[飲]{の}む。",
+    "example_vi": "Uống trà.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "đồ-uống"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "茶",
+        "meaning": "trà",
+        "onyomi": "チャ",
+        "kunyomi": ""
+      }
+    ]
+  },
+  {
+    "id": "n5-052",
+    "word": "ご飯",
+    "reading": "ごはん",
+    "romaji": "gohan",
+    "meaning": "Cơm, bữa ăn",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "ご飯を食べる。",
+    "example_jp_formatted": "ご飯{ごはん}を[食]{た}べる。",
+    "example_vi": "Ăn cơm.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "đồ-ăn"
+    ],
+    "notes": "Cũng có nghĩa là bữa ăn.",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "飯",
+        "meaning": "phạn, cơm",
+        "onyomi": "ハン",
+        "kunyomi": "めし"
+      }
+    ]
+  },
+  {
+    "id": "n5-053",
+    "word": "本",
+    "reading": "ほん",
+    "romaji": "hon",
+    "meaning": "Sách",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "本を読む。",
+    "example_jp_formatted": "[本]{ほん}を[読]{よ}む。",
+    "example_vi": "Đọc sách.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "đồ-vật"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "本",
+        "meaning": "bản, gốc; sách",
+        "onyomi": "ホン",
+        "kunyomi": "もと"
+      }
+    ]
+  },
+  {
+    "id": "n5-054",
+    "word": "車",
+    "reading": "くるま",
+    "romaji": "kuruma",
+    "meaning": "Xe ô tô",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "車で行く。",
+    "example_jp_formatted": "[車]{くるま}で[行]{い}く。",
+    "example_vi": "Đi bằng xe ô tô.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "phương-tiện"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "車",
+        "meaning": "xa, xe",
+        "onyomi": "シャ",
+        "kunyomi": "くるま"
+      }
+    ]
+  },
+  {
+    "id": "n5-055",
+    "word": "電車",
+    "reading": "でんしゃ",
+    "romaji": "densha",
+    "meaning": "Tàu điện",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "電車で学校へ行く。",
+    "example_jp_formatted": "[電車]{でんしゃ}で[学校]{がっこう}へ[行]{い}く。",
+    "example_vi": "Đi đến trường bằng tàu điện.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "phương-tiện"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "電",
+        "meaning": "điện",
+        "onyomi": "デン",
+        "kunyomi": ""
+      },
+      {
+        "kanji": "車",
+        "meaning": "xa, xe",
+        "onyomi": "シャ",
+        "kunyomi": "くるま"
+      }
+    ]
+  },
+  {
+    "id": "n5-056",
+    "word": "駅",
+    "reading": "えき",
+    "romaji": "eki",
+    "meaning": "Nhà ga",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "駅で会う。",
+    "example_jp_formatted": "[駅]{えき}で[会]{あ}う。",
+    "example_vi": "Gặp ở ga.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-điểm"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "駅",
+        "meaning": "dịch, ga",
+        "onyomi": "エキ",
+        "kunyomi": ""
+      }
+    ]
+  },
+  {
+    "id": "n5-057",
+    "word": "会社",
+    "reading": "かいしゃ",
+    "romaji": "kaisha",
+    "meaning": "Công ty",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "会社へ行く。",
+    "example_jp_formatted": "[会社]{かいしゃ}へ[行]{い}く。",
+    "example_vi": "Đi đến công ty.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-điểm"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "会",
+        "meaning": "hội, gặp",
+        "onyomi": "カイ, エ",
+        "kunyomi": "あ.う"
+      },
+      {
+        "kanji": "社",
+        "meaning": "xã, công ty",
+        "onyomi": "シャ",
+        "kunyomi": "やしろ"
+      }
+    ]
+  },
+  {
+    "id": "n5-058",
+    "word": "部屋",
+    "reading": "へや",
+    "romaji": "heya",
+    "meaning": "Phòng",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "部屋にいる。",
+    "example_jp_formatted": "[部屋]{へや}にいる。",
+    "example_vi": "Ở trong phòng.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-điểm"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "部",
+        "meaning": "bộ, phần",
+        "onyomi": "ブ",
+        "kunyomi": ""
+      },
+      {
+        "kanji": "屋",
+        "meaning": "ốc, nhà; phòng",
+        "onyomi": "オク",
+        "kunyomi": "や"
+      }
+    ]
+  },
+  {
+    "id": "n5-059",
+    "word": "家",
+    "reading": "いえ",
+    "romaji": "ie",
+    "meaning": "Nhà",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "家に帰る。",
+    "example_jp_formatted": "[家]{いえ}に[帰]{かえ}る。",
+    "example_vi": "Về nhà.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-điểm"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "家",
+        "meaning": "gia, nhà",
+        "onyomi": "カ, ケ",
+        "kunyomi": "いえ"
+      }
+    ]
+  },
+  {
+    "id": "n5-060",
+    "word": "国",
+    "reading": "くに",
+    "romaji": "kuni",
+    "meaning": "Nước, quốc gia",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "日本はいい国だ。",
+    "example_jp_formatted": "[日本]{にほん}はいい[国]{くに}だ。",
+    "example_vi": "Nhật Bản là một đất nước tốt.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-lý"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "国",
+        "meaning": "quốc, nước",
+        "onyomi": "コク",
+        "kunyomi": "くに"
+      }
+    ]
+  },
+  {
+    "id": "n5-061",
+    "word": "日本",
+    "reading": "にほん",
+    "romaji": "nihon",
+    "meaning": "Nhật Bản",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "日本へ行く。",
+    "example_jp_formatted": "[日本]{にほん}へ[行]{い}く。",
+    "example_vi": "Đi Nhật Bản.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-lý"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "日",
+        "meaning": "nhật, mặt trời",
+        "onyomi": "ニチ, ジツ",
+        "kunyomi": "ひ, か"
+      },
+      {
+        "kanji": "本",
+        "meaning": "bản, gốc",
+        "onyomi": "ホン",
+        "kunyomi": "もと"
+      }
+    ]
+  },
+  {
+    "id": "n5-062",
+    "word": "男の人",
+    "reading": "おとこのひと",
+    "romaji": "otoko no hito",
+    "meaning": "Người đàn ông",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "男の人が来る。",
+    "example_jp_formatted": "[男]{おとこ}の[人]{ひと}が[来]{く}る。",
+    "example_vi": "Người đàn ông đến.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "con-người"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "男",
+        "meaning": "nam, đàn ông",
+        "onyomi": "ダン, ナン",
+        "kunyomi": "おとこ"
+      },
+      {
+        "kanji": "人",
+        "meaning": "nhân, người",
+        "onyomi": "ジン, ニン",
+        "kunyomi": "ひと"
+      }
+    ]
+  },
+  {
+    "id": "n5-063",
+    "word": "女の人",
+    "reading": "おんなのひと",
+    "romaji": "onna no hito",
+    "meaning": "Người phụ nữ",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "女の人がいる。",
+    "example_jp_formatted": "[女]{おんな}の[人]{ひと}がいる。",
+    "example_vi": "Có người phụ nữ.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "con-người"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "女",
+        "meaning": "nữ, phụ nữ",
+        "onyomi": "ジョ, ニョ, ニョウ",
+        "kunyomi": "おんな"
+      },
+      {
+        "kanji": "人",
+        "meaning": "nhân, người",
+        "onyomi": "ジン, ニン",
+        "kunyomi": "ひと"
+      }
+    ]
+  },
+  {
+    "id": "n5-064",
+    "word": "子ども",
+    "reading": "こども",
+    "romaji": "kodomo",
+    "meaning": "Trẻ em",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "子どもが遊ぶ。",
+    "example_jp_formatted": "[子]{こ}どもが[遊]{あそ}ぶ。",
+    "example_vi": "Trẻ em chơi.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "con-người"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "子",
+        "meaning": "tử, trẻ con",
+        "onyomi": "シ, ス",
+        "kunyomi": "こ"
+      }
+    ]
+  },
+  {
+    "id": "n5-065",
+    "word": "天気",
+    "reading": "てんき",
+    "romaji": "tenki",
+    "meaning": "Thời tiết",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "今日は天気がいい。",
+    "example_jp_formatted": "[今日]{きょう}は[天気]{てんき}がいい。",
+    "example_vi": "Hôm nay thời tiết đẹp.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "thời-tiết"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "天",
+        "meaning": "thiên, trời",
+        "onyomi": "テン",
+        "kunyomi": "あま"
+      },
+      {
+        "kanji": "気",
+        "meaning": "khí, thời tiết",
+        "onyomi": "キ, ケ",
+        "kunyomi": "いき"
+      }
+    ]
+  },
+  {
+    "id": "n5-066",
+    "word": "山",
+    "reading": "やま",
+    "romaji": "yama",
+    "meaning": "Núi",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "山が高い。",
+    "example_jp_formatted": "[山]{やま}が[高]{たか}い。",
+    "example_vi": "Núi cao.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-lý"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "山",
+        "meaning": "sơn, núi",
+        "onyomi": "サン",
+        "kunyomi": "やま"
+      }
+    ]
+  },
+  {
+    "id": "n5-067",
+    "word": "川",
+    "reading": "かわ",
+    "romaji": "kawa",
+    "meaning": "Sông",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "川で泳ぐ。",
+    "example_jp_formatted": "[川]{かわ}で[泳]{およ}ぐ。",
+    "example_vi": "Bơi ở sông.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-lý"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "川",
+        "meaning": "xuyên, sông",
+        "onyomi": "セン",
+        "kunyomi": "かわ"
+      }
+    ]
+  },
+  {
+    "id": "n5-068",
+    "word": "海",
+    "reading": "うみ",
+    "romaji": "umi",
+    "meaning": "Biển",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "海へ行く。",
+    "example_jp_formatted": "[海]{うみ}へ[行]{い}く。",
+    "example_vi": "Đi ra biển.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-lý"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "海",
+        "meaning": "hải, biển",
+        "onyomi": "カイ",
+        "kunyomi": "うみ"
+      }
+    ]
+  },
+  {
+    "id": "n5-069",
+    "word": "空",
+    "reading": "そら",
+    "romaji": "sora",
+    "meaning": "Bầu trời",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "空は青い。",
+    "example_jp_formatted": "[空]{そら}は青{あお}い。",
+    "example_vi": "Bầu trời xanh.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "địa-lý"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "空",
+        "meaning": "không, trời",
+        "onyomi": "クウ",
+        "kunyomi": "そら, あ.く"
+      }
+    ]
+  },
+  {
+    "id": "n5-070",
+    "word": "右",
+    "reading": "みぎ",
+    "romaji": "migi",
+    "meaning": "Bên phải",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "右に曲がる。",
+    "example_jp_formatted": "[右]{みぎ}に曲{ま}がる。",
+    "example_vi": "Rẽ phải.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "phương-hướng"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "右",
+        "meaning": "hữu, phải",
+        "onyomi": "ウ, ユウ",
+        "kunyomi": "みぎ"
+      }
+    ]
+  },
+  {
+    "id": "n5-071",
+    "word": "左",
+    "reading": "ひだり",
+    "romaji": "hidari",
+    "meaning": "Bên trái",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "左に行く。",
+    "example_jp_formatted": "[左]{ひだり}に[行]{い}く。",
+    "example_vi": "Đi sang trái.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "phương-hướng"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "左",
+        "meaning": "tả, trái",
+        "onyomi": "サ",
+        "kunyomi": "ひだり"
+      }
+    ]
+  },
+  {
+    "id": "n5-072",
+    "word": "上",
+    "reading": "うえ",
+    "romaji": "ue",
+    "meaning": "Trên, phía trên",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "机の上にある。",
+    "example_jp_formatted": "[机]{つくえ}の[上]{うえ}にある。",
+    "example_vi": "Ở trên bàn.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "phương-hướng"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "上",
+        "meaning": "thượng, trên",
+        "onyomi": "ジョウ, ショウ",
+        "kunyomi": "うえ, あ.がる"
+      }
+    ]
+  },
+  {
+    "id": "n5-073",
+    "word": "下",
+    "reading": "した",
+    "romaji": "shita",
+    "meaning": "Dưới, phía dưới",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "机の下にいる。",
+    "example_jp_formatted": "[机]{つくえ}の[下]{した}にいる。",
+    "example_vi": "Ở dưới bàn.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "phương-hướng"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "下",
+        "meaning": "hạ, dưới",
+        "onyomi": "カ, ゲ",
+        "kunyomi": "した, さ.がる"
+      }
+    ]
+  },
+  {
+    "id": "n5-074",
+    "word": "前",
+    "reading": "まえ",
+    "romaji": "mae",
+    "meaning": "Phía trước",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "学校の前で会う。",
+    "example_jp_formatted": "[学校]{がっこう}の[前]{まえ}で[会]{あ}う。",
+    "example_vi": "Gặp trước trường.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "phương-hướng"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "前",
+        "meaning": "tiền, trước",
+        "onyomi": "ゼン",
+        "kunyomi": "まえ"
+      }
+    ]
+  },
+  {
+    "id": "n5-075",
+    "word": "後ろ",
+    "reading": "うしろ",
+    "romaji": "ushiro",
+    "meaning": "Phía sau",
+    "pos": "noun",
+    "pitch_accent": "unknown",
+    "example_jp": "後ろに人がいる。",
+    "example_jp_formatted": "[後]{うし}ろに[人]{ひと}がいる。",
+    "example_vi": "Có người phía sau.",
+    "level": "N5",
+    "tags": [
+      "danh-từ",
+      "phương-hướng"
+    ],
+    "notes": "Từ này thường viết hiragana.",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "後",
+        "meaning": "hậu, sau",
+        "onyomi": "ゴ, コウ",
+        "kunyomi": "うし.ろ"
+      }
+    ]
+  },
+  {
+    "id": "n5-076",
+    "word": "大きい",
+    "reading": "おおきい",
+    "romaji": "ookii",
+    "meaning": "To, lớn",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "その犬は大きい。",
+    "example_jp_formatted": "その[犬]{いぬ}は[大]{おお}きい。",
+    "example_vi": "Con chó đó to.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "大",
+        "meaning": "đại, to lớn",
+        "onyomi": "ダイ, タイ",
+        "kunyomi": "おお.きい"
+      }
+    ]
+  },
+  {
+    "id": "n5-077",
+    "word": "小さい",
+    "reading": "ちいさい",
+    "romaji": "chiisai",
+    "meaning": "Nhỏ",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "小さい家だ。",
+    "example_jp_formatted": "[小]{ちい}さい[家]{いえ}だ。",
+    "example_vi": "Là căn nhà nhỏ.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "小",
+        "meaning": "tiểu, nhỏ",
+        "onyomi": "ショウ",
+        "kunyomi": "ちい.さい, こ"
+      }
+    ]
+  },
+  {
+    "id": "n5-078",
+    "word": "新しい",
+    "reading": "あたらしい",
+    "romaji": "atarashii",
+    "meaning": "Mới",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "新しい本を買う。",
+    "example_jp_formatted": "[新]{あたら}しい[本]{ほん}を[買]{か}う。",
+    "example_vi": "Mua quyển sách mới.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "新",
+        "meaning": "tân, mới",
+        "onyomi": "シン",
+        "kunyomi": "あたら.しい"
+      }
+    ]
+  },
+  {
+    "id": "n5-079",
+    "word": "古い",
+    "reading": "ふるい",
+    "romaji": "furui",
+    "meaning": "Cũ",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "古い車だ。",
+    "example_jp_formatted": "[古]{ふる}い[車]{くるま}だ。",
+    "example_vi": "Là chiếc xe cũ.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "古",
+        "meaning": "cổ, cũ",
+        "onyomi": "コ",
+        "kunyomi": "ふる.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-080",
+    "word": "良い",
+    "reading": "よい",
+    "romaji": "yoi",
+    "meaning": "Tốt",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "今日は良い天気だ。",
+    "example_jp_formatted": "[今日]{きょう}は[良]{よ}い[天気]{てんき}だ。",
+    "example_vi": "Hôm nay thời tiết đẹp.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "良",
+        "meaning": "lương, tốt",
+        "onyomi": "リョウ",
+        "kunyomi": "よ.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-081",
+    "word": "悪い",
+    "reading": "わるい",
+    "romaji": "warui",
+    "meaning": "Xấu, tệ",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "気分が悪い。",
+    "example_jp_formatted": "[気分]{きぶん}が[悪]{わる}い。",
+    "example_vi": "Tôi thấy không khỏe.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "悪",
+        "meaning": "ác, xấu",
+        "onyomi": "アク, オ",
+        "kunyomi": "わる.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-082",
+    "word": "高い",
+    "reading": "たかい",
+    "romaji": "takai",
+    "meaning": "Cao, đắt",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "この本は高い。",
+    "example_jp_formatted": "この[本]{ほん}は[高]{たか}い。",
+    "example_vi": "Cuốn sách này đắt.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "高",
+        "meaning": "cao, đắt",
+        "onyomi": "コウ",
+        "kunyomi": "たか.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-083",
+    "word": "安い",
+    "reading": "やすい",
+    "romaji": "yasui",
+    "meaning": "Rẻ",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "この店は安い。",
+    "example_jp_formatted": "この[店]{みせ}は[安]{やす}い。",
+    "example_vi": "Cửa hàng này rẻ.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "安",
+        "meaning": "an, rẻ",
+        "onyomi": "アン",
+        "kunyomi": "やす.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-084",
+    "word": "多い",
+    "reading": "おおい",
+    "romaji": "ooi",
+    "meaning": "Nhiều",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "人が多い。",
+    "example_jp_formatted": "[人]{ひと}が[多]{おお}い。",
+    "example_vi": "Nhiều người.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "多",
+        "meaning": "đa, nhiều",
+        "onyomi": "タ",
+        "kunyomi": "おお.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-085",
+    "word": "少ない",
+    "reading": "すくない",
+    "romaji": "sukunai",
+    "meaning": "Ít",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "お金が少ない。",
+    "example_jp_formatted": "お金{おかね}が[少]{すく}ない。",
+    "example_vi": "Ít tiền.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "少",
+        "meaning": "thiểu, ít",
+        "onyomi": "ショウ",
+        "kunyomi": "すく.ない"
+      }
+    ]
+  },
+  {
+    "id": "n5-086",
+    "word": "早い",
+    "reading": "はやい",
+    "romaji": "hayai",
+    "meaning": "Sớm, nhanh",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "朝早い。",
+    "example_jp_formatted": "[朝]{あさ}[早]{はや}い。",
+    "example_vi": "Buổi sáng sớm.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "早",
+        "meaning": "tảo, sớm",
+        "onyomi": "ソウ",
+        "kunyomi": "はや.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-087",
+    "word": "遅い",
+    "reading": "おそい",
+    "romaji": "osoi",
+    "meaning": "Muộn, chậm",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "電車が遅い。",
+    "example_jp_formatted": "[電車]{でんしゃ}が[遅]{おそ}い。",
+    "example_vi": "Tàu điện chậm.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "遅",
+        "meaning": "trì, muộn",
+        "onyomi": "チ",
+        "kunyomi": "おく.れる, おそ.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-088",
+    "word": "暑い",
+    "reading": "あつい",
+    "romaji": "atsui",
+    "meaning": "Nóng (thời tiết)",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "今日は暑い。",
+    "example_jp_formatted": "[今日]{きょう}は[暑]{あつ}い。",
+    "example_vi": "Hôm nay nóng.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "thời-tiết"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "暑",
+        "meaning": "thử, nóng",
+        "onyomi": "ショ",
+        "kunyomi": "あつ.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-089",
+    "word": "寒い",
+    "reading": "さむい",
+    "romaji": "samui",
+    "meaning": "Lạnh",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "冬は寒い。",
+    "example_jp_formatted": "[冬]{ふゆ}は[寒]{さむ}い。",
+    "example_vi": "Mùa đông lạnh.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "thời-tiết"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "寒",
+        "meaning": "hàn, lạnh",
+        "onyomi": "カン",
+        "kunyomi": "さむ.い"
+      }
+    ]
+  },
+  {
+    "id": "n5-090",
+    "word": "忙しい",
+    "reading": "いそがしい",
+    "romaji": "isogashii",
+    "meaning": "Bận",
+    "pos": "adjective_i",
+    "pitch_accent": "unknown",
+    "example_jp": "今日は忙しい。",
+    "example_jp_formatted": "[今日]{きょう}は[忙]{いそが}しい。",
+    "example_vi": "Hôm nay bận.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-i",
+      "sinh-hoạt"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "忙",
+        "meaning": "vong, bận",
+        "onyomi": "ボウ",
+        "kunyomi": "いそが.しい"
+      }
+    ]
+  },
+  {
+    "id": "n5-091",
+    "word": "暇",
+    "reading": "ひま",
+    "romaji": "hima",
+    "meaning": "Rảnh rỗi",
+    "pos": "na_adjective",
+    "pitch_accent": "unknown",
+    "example_jp": "今日は暇だ。",
+    "example_jp_formatted": "[今日]{きょう}は[暇]{ひま}だ。",
+    "example_vi": "Hôm nay rảnh.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-na",
+      "sinh-hoạt"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "暇",
+        "meaning": "hạ, rảnh",
+        "onyomi": "カ",
+        "kunyomi": "ひま"
+      }
+    ]
+  },
+  {
+    "id": "n5-092",
+    "word": "元気",
+    "reading": "げんき",
+    "romaji": "genki",
+    "meaning": "Khỏe, khỏe mạnh",
+    "pos": "na_adjective",
+    "pitch_accent": "unknown",
+    "example_jp": "元気ですか。",
+    "example_jp_formatted": "[元気]{げんき}ですか。",
+    "example_vi": "Bạn khỏe không?",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-na",
+      "trạng-thái"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "元",
+        "meaning": "nguyên, gốc",
+        "onyomi": "ゲン",
+        "kunyomi": "もと"
+      },
+      {
+        "kanji": "気",
+        "meaning": "khí, tinh thần",
+        "onyomi": "キ, ケ",
+        "kunyomi": "いき"
+      }
+    ]
+  },
+  {
+    "id": "n5-093",
+    "word": "有名",
+    "reading": "ゆうめい",
+    "romaji": "yuumei",
+    "meaning": "Nổi tiếng",
+    "pos": "na_adjective",
+    "pitch_accent": "unknown",
+    "example_jp": "この人は有名だ。",
+    "example_jp_formatted": "この[人]{ひと}は[有名]{ゆうめい}だ。",
+    "example_vi": "Người này nổi tiếng.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-na",
+      "xã-hội"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "有",
+        "meaning": "hữu, có",
+        "onyomi": "ユウ",
+        "kunyomi": "あ.る"
+      },
+      {
+        "kanji": "名",
+        "meaning": "danh, tên",
+        "onyomi": "メイ, ミョウ",
+        "kunyomi": "な"
+      }
+    ]
+  },
+  {
+    "id": "n5-094",
+    "word": "静か",
+    "reading": "しずか",
+    "romaji": "shizuka",
+    "meaning": "Yên tĩnh",
+    "pos": "na_adjective",
+    "pitch_accent": "unknown",
+    "example_jp": "この町は静かだ。",
+    "example_jp_formatted": "この町{まち}は[静]{しず}かだ。",
+    "example_vi": "Thị trấn này yên tĩnh.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-na",
+      "trạng-thái"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "静",
+        "meaning": "tĩnh, yên lặng",
+        "onyomi": "セイ, ジョウ",
+        "kunyomi": "しず.か"
+      }
+    ]
+  },
+  {
+    "id": "n5-095",
+    "word": "きれい",
+    "reading": "きれい",
+    "romaji": "kirei",
+    "meaning": "Đẹp, sạch",
+    "pos": "na_adjective",
+    "pitch_accent": "unknown",
+    "example_jp": "部屋がきれいだ。",
+    "example_jp_formatted": "[部屋]{へや}がきれいだ。",
+    "example_vi": "Phòng sạch đẹp.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-na",
+      "miêu-tả"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": []
+  },
+  {
+    "id": "n5-096",
+    "word": "便利",
+    "reading": "べんり",
+    "romaji": "benri",
+    "meaning": "Tiện lợi",
+    "pos": "na_adjective",
+    "pitch_accent": "unknown",
+    "example_jp": "このアプリは便利だ。",
+    "example_jp_formatted": "このアプリは[便利]{べんり}だ。",
+    "example_vi": "Ứng dụng này tiện lợi.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-na",
+      "đời-sống"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "便",
+        "meaning": "tiện",
+        "onyomi": "ベン",
+        "kunyomi": "たよ.り"
+      },
+      {
+        "kanji": "利",
+        "meaning": "lợi",
+        "onyomi": "リ",
+        "kunyomi": "き.く"
+      }
+    ]
+  },
+  {
+    "id": "n5-097",
+    "word": "必要",
+    "reading": "ひつよう",
+    "romaji": "hitsuyou",
+    "meaning": "Cần thiết",
+    "pos": "na_adjective",
+    "pitch_accent": "unknown",
+    "example_jp": "それは必要です。",
+    "example_jp_formatted": "それは[必要]{ひつよう}です。",
+    "example_vi": "Cái đó là cần thiết.",
+    "level": "N5",
+    "tags": [
+      "tính-từ-đuôi-na",
+      "quan-trọng"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "必",
+        "meaning": "tất, nhất định",
+        "onyomi": "ヒツ",
+        "kunyomi": "かなら.ず"
+      },
+      {
+        "kanji": "要",
+        "meaning": "yếu, cần",
+        "onyomi": "ヨウ",
+        "kunyomi": "い.る"
+      }
+    ]
+  },
+  {
+    "id": "n5-098",
+    "word": "ゆっくり",
+    "reading": "ゆっくり",
+    "romaji": "yukkuri",
+    "meaning": "Từ từ",
+    "pos": "adverb",
+    "pitch_accent": "unknown",
+    "example_jp": "ゆっくり話す。",
+    "example_jp_formatted": "ゆっくり[話]{はな}す。",
+    "example_vi": "Nói từ từ.",
+    "level": "N5",
+    "tags": [
+      "trạng-từ"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": []
+  },
+  {
+    "id": "n5-099",
+    "word": "たくさん",
+    "reading": "たくさん",
+    "romaji": "takusan",
+    "meaning": "Nhiều",
+    "pos": "adverb",
+    "pitch_accent": "unknown",
+    "example_jp": "たくさん食べる。",
+    "example_jp_formatted": "たくさん[食]{た}べる。",
+    "example_vi": "Ăn rất nhiều.",
+    "level": "N5",
+    "tags": [
+      "trạng-từ"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": []
+  },
+  {
+    "id": "n5-100",
+    "word": "どう",
+    "reading": "どう",
+    "romaji": "dou",
+    "meaning": "Như thế nào",
+    "pos": "adverb",
+    "pitch_accent": "unknown",
+    "example_jp": "これはどうですか。",
+    "example_jp_formatted": "これはどうですか。",
+    "example_vi": "Cái này thế nào?",
+    "level": "N5",
+    "tags": [
+      "từ-hỏi"
+    ],
+    "notes": "",
+    "synonyms": [],
+    "antonyms": [],
+    "kanji_info": []
+  }
+]

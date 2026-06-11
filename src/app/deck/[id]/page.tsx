@@ -6,9 +6,13 @@ import { ArrowLeft } from "lucide-react";
 import fs from "fs/promises";
 import path from "path";
 
-export default async function DeckPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function DeckPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
-  
+
   let cards: FlashcardData[] = [];
   const isCustomDeck = id.startsWith("custom_");
 
@@ -24,17 +28,42 @@ export default async function DeckPage({ params }: { params: Promise<{ id: strin
   }
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <div className="w-full max-w-md mb-6 flex items-center justify-between">
-        <Link href="/" className="text-zinc-500 hover:text-zinc-900 flex items-center text-sm font-medium transition-colors">
-          <ArrowLeft className="w-4 h-4 mr-1" /> Quay lại
+    <div className="w-full flex flex-col items-center pt-2 pb-10">
+      {/* ==========================================
+          HEADER KẸO DẺO (SQUISHY NAVIGATION)
+          ========================================== */}
+      <div className="w-full max-w-md mb-6 flex items-center justify-between px-4">
+        {/* Nút Về Nhà (Trắng viền Cam) */}
+        <Link href="/">
+          <button className="flex items-center justify-center h-12 px-4 bg-white border-4 border-[#FFE2D1] rounded-[1.25rem] shadow-[0_4px_0_0_#FFE2D1] text-orange-400 hover:text-orange-500 hover:bg-orange-50 active:translate-y-1 active:shadow-[0_0_0_0_#FFE2D1] transition-all group cursor-pointer">
+            <ArrowLeft
+              className="w-5 h-5 mr-1.5 group-hover:-translate-x-1 transition-transform"
+              strokeWidth={3}
+            />
+            <span className="font-rounded font-bold text-sm tracking-wide">
+              Về nhà
+            </span>
+          </button>
         </Link>
-        <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest truncate max-w-[150px]">
-          {isCustomDeck ? "Custom Deck" : id}
-        </span>
+
+        {/* Nhãn dán Tên Bộ Bài (Vàng viền Cam đâm) */}
+        <div className="bg-[#FFD166] border-2 border-[#FF9F1C] px-4 py-2 rounded-[1.25rem] shadow-[0_4px_0_0_#FF9F1C] font-rounded font-black text-amber-900 text-xs uppercase tracking-widest flex items-center gap-1.5 truncate max-w-[160px]">
+          {isCustomDeck ? (
+            <>
+              <span>⭐</span> <span className="truncate">Thẻ Tự Tạo</span>
+            </>
+          ) : (
+            <>
+              <span>📚</span>{" "}
+              <span className="truncate">{id.replace(/_/g, " ")}</span>
+            </>
+          )}
+        </div>
       </div>
 
-      {/* Truyền cờ isCustom xuống. FlashcardDeck sẽ tự tìm data trong localStorage */}
+      {/* ==========================================
+          KHU VỰC THẺ BÀI CHÍNH
+          ========================================== */}
       <FlashcardDeck deckId={id} initialCards={cards} isCustom={isCustomDeck} />
     </div>
   );
