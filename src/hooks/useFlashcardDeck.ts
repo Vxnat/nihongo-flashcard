@@ -34,6 +34,7 @@ export function useFlashcardDeck({
     "normal",
   );
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isFullscreenSupported, setIsFullscreenSupported] = useState(false);
 
   // --- MASCOT (LINH VẬT) STATES ---
   const [showMascot, setShowMascot] = useState(true);
@@ -231,18 +232,69 @@ export function useFlashcardDeck({
   }, [isMounted, addLearningTime]);
 
   useEffect(() => {
-    const handleFullscreenChange = () =>
-      setIsFullscreen(!!document.fullscreenElement);
+    // Kiểm tra xem trình duyệt có hỗ trợ Fullscreen API không (iPhone Safari không hỗ trợ)
+    const docEl = document.documentElement as any;
+    const isSupported = !!(
+      docEl.requestFullscreen ||
+      docEl.webkitRequestFullscreen ||
+      docEl.mozRequestFullScreen ||
+      docEl.msRequestFullscreen
+    );
+    setIsFullscreenSupported(isSupported);
+
+    const handleFullscreenChange = () => {
+      const doc = document as any;
+      setIsFullscreen(
+        !!(
+          doc.fullscreenElement ||
+          doc.webkitFullscreenElement ||
+          doc.mozFullScreenElement ||
+          doc.msFullscreenElement
+        ),
+      );
+    };
+
     document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () =>
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+    return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange,
+      );
+      document.removeEventListener(
+        "mozfullscreenchange",
+        handleFullscreenChange,
+      );
+      document.removeEventListener(
+        "MSFullscreenChange",
+        handleFullscreenChange,
+      );
+    };
   }, []);
 
   const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch(() => {});
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen();
+    const docEl = document.documentElement as any;
+    const doc = document as any;
+    const isCurrentlyFullscreen = !!(
+      doc.fullscreenElement ||
+      doc.webkitFullscreenElement ||
+      doc.mozFullScreenElement ||
+      doc.msFullscreenElement
+    );
+
+    if (!isCurrentlyFullscreen) {
+      if (docEl.requestFullscreen) docEl.requestFullscreen().catch(() => {});
+      else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen();
+      else if (docEl.mozRequestFullScreen) docEl.mozRequestFullScreen();
+      else if (docEl.msRequestFullscreen) docEl.msRequestFullscreen();
+    } else {
+      if (doc.exitFullscreen) doc.exitFullscreen();
+      else if (doc.webkitExitFullscreen) doc.webkitExitFullscreen();
+      else if (doc.mozCancelFullScreen) doc.mozCancelFullScreen();
+      else if (doc.msExitFullscreen) doc.msExitFullscreen();
     }
   };
 
@@ -329,6 +381,7 @@ export function useFlashcardDeck({
     isTypingActive,
     currentIndex,
     isFullscreen,
+    isFullscreenSupported,
     showMascot,
     setShowMascot,
     mascotState,

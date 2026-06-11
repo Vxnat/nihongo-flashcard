@@ -64,7 +64,7 @@ export function DeckWordList({
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className="flex flex-col w-full h-full max-h-[85vh] rounded-full overflow-hidden border-4 border-[#A0E8D5] shadow-2xl bg-[#FDFBF7]"
+          className="flex flex-col w-full h-full max-h-[85vh] rounded-xl overflow-hidden border-4 border-[#A0E8D5] shadow-2xl bg-[#FDFBF7]"
         >
           {/* ================= HEADER ================= */}
           <DialogHeader className="bg-[#06D6A0] p-6 pb-6 border-b-4 border-[#A0E8D5] shrink-0 text-center">

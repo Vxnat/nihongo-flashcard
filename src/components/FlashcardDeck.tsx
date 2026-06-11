@@ -59,6 +59,7 @@ export function FlashcardDeck({
     isTypingActive,
     currentIndex,
     isFullscreen,
+    isFullscreenSupported,
     showMascot,
     setShowMascot,
     mascotState,
@@ -411,21 +412,23 @@ export function FlashcardDeck({
       )}
 
       {/* NÚT FULLSCREEN NỔI (FLOATING ACTION BUTTON) TẠI GÓC DƯỚI PHẢI */}
-      <button
-        onClick={toggleFullscreen}
-        className={`fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:scale-90 ${
-          globalMode === "podcast"
-            ? "bg-white/10 backdrop-blur-md text-white/70 border-2 border-white/20 hover:text-white hover:bg-white/20 shadow-lg"
-            : "bg-white text-zinc-400 border-2 border-zinc-200 shadow-[0_4px_0_0_#e4e4e7] hover:text-[#5390D9] hover:-translate-y-1 hover:shadow-[0_6px_0_0_#e4e4e7] active:translate-y-1 active:shadow-none"
-        }`}
-        title={isFullscreen ? "Thu nhỏ" : "Toàn màn hình"}
-      >
-        {isFullscreen ? (
-          <Minimize size={22} strokeWidth={2.5} />
-        ) : (
-          <Maximize size={22} strokeWidth={2.5} />
-        )}
-      </button>
+      {isFullscreenSupported && (
+        <button
+          onClick={toggleFullscreen}
+          className={`fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:scale-90 ${
+            globalMode === "podcast"
+              ? "bg-white/10 backdrop-blur-md text-white/70 border-2 border-white/20 hover:text-white hover:bg-white/20 shadow-lg"
+              : "bg-white text-zinc-400 border-2 border-zinc-200 shadow-[0_4px_0_0_#e4e4e7] hover:text-[#5390D9] hover:-translate-y-1 hover:shadow-[0_6px_0_0_#e4e4e7] active:translate-y-1 active:shadow-none"
+          }`}
+          title={isFullscreen ? "Thu nhỏ" : "Toàn màn hình"}
+        >
+          {isFullscreen ? (
+            <Minimize size={22} strokeWidth={2.5} />
+          ) : (
+            <Maximize size={22} strokeWidth={2.5} />
+          )}
+        </button>
+      )}
 
       {/* LINH VẬT THÚ ẢO (MASCOT) GÓC DƯỚI PHẢI */}
       <AnimatePresence>
