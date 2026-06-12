@@ -390,7 +390,7 @@ export function FlashcardDeck({
           />
 
           {/* 4. NÚT VÀO ẢI (Hiển thị ngay dưới ControlPanel) */}
-          <div className="w-full max-w-md mx-auto mt-6 sm:mt-10 px-4">
+          <div className="w-full max-w-md mx-auto mt-8 sm:mt-10 px-4">
             <button
               onClick={() => {
                 setTempTyping(true); // Bật công tắc tạm thời
