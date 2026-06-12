@@ -20,6 +20,8 @@ export function useFlashcardDeck({
   initialCards,
   isCustom,
 }: UseFlashcardDeckProps) {
+  const appMode = useAppStore((state: any) => state.appMode || "focus");
+  const [comboCount, setComboCount] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
   const [cards, setCards] = useState<FlashcardData[]>(initialCards);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -139,6 +141,56 @@ export function useFlashcardDeck({
       }
     }
   };
+
+  // Ref để lưu trữ bộ đếm thời gian Combo
+  const comboTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // 3. THÊM HÀM MỚI: Xử lý Combo bọc ngoài triggerSwipe
+  const handleSwipeAction = (direction: "left" | "right", forceSwipe?: boolean) => {
+    // Xóa bộ đếm thời gian cũ mỗi khi có hành động mới
+    if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
+
+    // CHỈ áp dụng Combo khi đang ở chế độ Vui nhộn VÀ đang gõ phím (Boss Fight)
+    if (appMode === "fun" && isTypingActive) {
+      if (direction === "right") { // Gõ đúng = Tăng Combo
+        setComboCount((prev) => {
+          const next = prev + 1;
+          // Bắn pháo khi combo đạt 3, 5, 10, 15...
+          if (next === 3 || next === 5 || next % 5 === 0) {
+            import("canvas-confetti").then((confetti) => {
+              confetti.default({
+                particleCount: 120,
+                spread: 80,
+                origin: { y: 0.6 }, // Bắn từ nửa dưới màn hình lên
+                colors: ["#FF7096", "#06D6A0", "#FFD166", "#5390D9", "#FF9F1C"], // Tone màu kẹo
+                zIndex: 2000,
+              });
+            });
+          }
+          return next;
+        });
+
+        // Thiết lập thời gian "ngọn lửa tàn" nếu người dùng dừng suy nghĩ quá lâu (8 giây)
+        comboTimeoutRef.current = setTimeout(() => {
+          setComboCount(0);
+        }, 8000);
+      } else {
+        setComboCount(0); // Gõ sai = Mất chuỗi 💦
+      }
+    } else {
+      setComboCount(0); // Nếu quẹt thẻ bình thường thì reset combo về 0
+    }
+    
+    // Cuối cùng vẫn gọi triggerSwipe gốc để app lật thẻ bình thường
+    triggerSwipe(direction, forceSwipe);
+  };
+
+  // Dọn dẹp bộ đếm khi thoát khỏi màn hình học
+  useEffect(() => {
+    return () => {
+      if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
+    };
+  }, []);
 
   const handlePodcastNext = useCallback(
     (direction: 1 | -1 = 1) => {
@@ -393,11 +445,14 @@ export function useFlashcardDeck({
     mascotState,
     playMascotAnim,
     handleFlip,
-    triggerSwipe,
     handlePodcastNext,
     handleShuffle,
     resetProgress,
     handlePlayAudio,
     toggleFullscreen,
+    appMode,
+    comboCount,
+    setComboCount,
+    handleSwipeAction,
   };
 }

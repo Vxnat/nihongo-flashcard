@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAppStore } from "@/store/useAppStore";
+import { db } from "@/lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 interface LoadDefaultDecksBtnProps {
   onLoaded: () => void;
@@ -15,6 +18,9 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
   }>({ isOpen: false, type: "success", message: "" });
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const user = useAppStore((state: any) => state.user);
+  const customDecks = useAppStore((state: any) => state.customDecks);
 
   const closeDialog = () => {
     setDialogInfo((prev) => ({ ...prev, isOpen: false }));
@@ -39,31 +45,42 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
         },
       ];
 
-      const existingCustomDecks = JSON.parse(
-        localStorage.getItem("custom_decks") || "[]",
-      );
-
+      let localUpdatedDecks = [...customDecks];
       const newDecks = [];
 
       for (const sample of sampleDecksToLoad) {
-        const isAlreadyImported = existingCustomDecks.some(
-          (d: any) => d.id === sample.id,
-        );
+      // Đảm bảo ID độc nhất cho từng người dùng nếu lưu trên mây
+      const targetId = user ? `${sample.id}_${user.uid}` : sample.id;
+      const isAlreadyImported = customDecks.some((d: any) => d.id === targetId);
 
         if (!isAlreadyImported) {
           const res = await fetch(sample.dataPath);
           if (!res.ok) continue;
           const cards = await res.json();
 
-          newDecks.push({
-            id: sample.id,
-            title: sample.title,
-            description: sample.description,
-            level: sample.level,
-            count: cards.length,
-            cards: cards,
-            isCustom: true,
+        const newDeck = {
+          id: targetId,
+          title: sample.title,
+          description: sample.description,
+          level: sample.level,
+          count: cards.length,
+          cards: cards,
+          isCustom: true,
+          createdAt: new Date().toISOString(),
+        };
+
+        // Đẩy lên Firestore nếu đã đăng nhập
+        if (user) {
+          const deckRef = doc(db, "decks", targetId);
+          await setDoc(deckRef, {
+            ...newDeck,
+            userId: user.uid,
+            creatorName: "Hệ thống",
           });
+        }
+
+        localUpdatedDecks.push(newDeck);
+        newDecks.push(newDeck);
         }
       }
 
@@ -77,8 +94,10 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
         return;
       }
 
-      const updatedDecks = [...existingCustomDecks, ...newDecks];
-      localStorage.setItem("custom_decks", JSON.stringify(updatedDecks));
+    // Nếu chưa đăng nhập thì lưu tạm vào Local
+    if (!user) {
+      localStorage.setItem("custom_decks", JSON.stringify(localUpdatedDecks));
+    }
       setDialogInfo({
         isOpen: true,
         type: "success",

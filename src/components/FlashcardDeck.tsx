@@ -65,12 +65,15 @@ export function FlashcardDeck({
     mascotState,
     playMascotAnim,
     handleFlip,
-    triggerSwipe,
     handlePodcastNext,
     handleShuffle,
     resetProgress,
     handlePlayAudio,
     toggleFullscreen,
+    appMode,
+    comboCount,
+    setComboCount,
+    handleSwipeAction,
   } = useFlashcardDeck({ deckId, initialCards, isCustom });
 
   if (!isMounted)
@@ -125,6 +128,34 @@ export function FlashcardDeck({
           <div className="absolute right-0 top-0 h-full w-4 bg-white/80 blur-[1px] rounded-full" />
         </div>
       </div>
+
+      {/* HIỆU ỨNG COMBO (Chỉ hiện khi fun mode và combo >= 3) */}
+      <AnimatePresence>
+        {appMode === "fun" && isTypingActive && comboCount >= 3 && (  
+          <motion.div
+            key={comboCount} // Đổi key để force React chạy lại animation nhảy mỗi khi combo tăng
+            initial={{ opacity: 0, scale: 0.5, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0, transition: { type: "spring", bounce: 0.6 } }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="fixed top-15 left-1/2 -translate-x-1/2 z-[100] pointer-events-none flex flex-col items-center"
+          >
+            <span className="text-5xl animate-bounce drop-shadow-md">🔥</span>
+            <h2 
+              className="text-5xl text-[#FF9F1C] drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] mt-1 whitespace-nowrap" 
+              style={{ fontFamily: "var(--font-cherry)", WebkitTextStroke: "3px white" }}
+            >
+              Combo x{comboCount}!
+            </h2>
+            {/* Thanh thời gian ngọn lửa tàn (8 giây) */}
+            <motion.div 
+              initial={{ width: "100%" }}
+              animate={{ width: "0%" }}
+              transition={{ duration: 8, ease: "linear" }}
+              className="h-2 w-[120px] bg-gradient-to-r from-[#FFD166] to-[#FF9F1C] rounded-full mt-2 shadow-[0_0_8px_rgba(255,159,28,0.8)]"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* HIỂN THỊ SỐ LƯỢNG VÀ CÔNG TẮC TOÀN CỤC (Chung 1 dòng để tiết kiệm không gian) */}
       <div className="w-full max-w-md mx-auto mb-4 mt-6 flex justify-between items-center px-4 relative z-20">
@@ -239,7 +270,7 @@ export function FlashcardDeck({
                 card={currentCard}
                 isFlipped={isFlipped}
                 onFlip={handleFlip}
-                onSwipe={triggerSwipe}
+                onSwipe={handleSwipeAction}
                 exitDir={exitDir}
                 showFurigana={showFurigana}
                 isPodcastMode={true}
@@ -338,12 +369,15 @@ export function FlashcardDeck({
             key={`typing-${currentCard.id}`} // Quan trọng: Ép React reset BossFight khi thẻ thay đổi
             card={currentCard}
             onCorrect={() => {
-              triggerSwipe("right", true);
+              handleSwipeAction("right", true);
               // Gõ đúng xong thì CHỈ tắt chế độ tạm thời.
               // Nếu đang bật globalMode = "typing" thì nó vẫn giữ nguyên màn hình Gõ phím cho thẻ tiếp theo!
               setTempTyping(false);
             }}
-            onWrong={() => playMascotAnim("fail")} // Gọi trạng thái linh vật buồn
+            onWrong={() => {
+              playMascotAnim("fail");
+              if (appMode === "fun") setComboCount(0); // Gõ sai đứt chuỗi
+            }}
             onHint={() => playMascotAnim("hint")} // Gọi trạng thái linh vật gợi ý
             onCancel={() => {
               // Bấm nút Thoát ải: Tắt temp. Nếu đang ở global gõ phím thì ép về lại global quẹt thẻ.
@@ -366,7 +400,7 @@ export function FlashcardDeck({
                 card={currentCard}
                 isFlipped={isFlipped}
                 onFlip={handleFlip}
-                onSwipe={triggerSwipe}
+                onSwipe={handleSwipeAction}
                 exitDir={exitDir}
                 showFurigana={showFurigana}
               />
@@ -375,12 +409,12 @@ export function FlashcardDeck({
 
           {/* 3. BẢNG ĐIỀU KHIỂN (Giữ nguyên code cũ của bạn) */}
           <ControlPanel
-            onPrev={() => triggerSwipe("left")}
-            onNext={() => triggerSwipe("right")}
+            onPrev={() => handleSwipeAction("left")}
+            onNext={() => handleSwipeAction("right")}
             onFlip={handleFlip}
             onShuffle={handleShuffle}
-            onKnow={() => triggerSwipe("right")}
-            onReview={() => triggerSwipe("left")}
+            onKnow={() => handleSwipeAction("right")}
+            onReview={() => handleSwipeAction("left")}
             onPlayAudio={handlePlayAudio}
             currentIndex={currentIndex}
             totalCards={activeCards.length}
@@ -390,7 +424,7 @@ export function FlashcardDeck({
           />
 
           {/* 4. NÚT VÀO ẢI (Hiển thị ngay dưới ControlPanel) */}
-          <div className="w-full max-w-md mx-auto mt-6 sm:mt-10 px-4">
+          <div className="w-full max-w-md mx-auto mt-8 sm:mt-10 px-4">
             <button
               onClick={() => {
                 setTempTyping(true); // Bật công tắc tạm thời
