@@ -1,6 +1,15 @@
 import { create } from "zustand";
 import { User } from "firebase/auth";
-import { collection, query, where, getDocs, doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  getDoc,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 interface UserStats {
@@ -30,9 +39,33 @@ export interface DailyQuest {
 }
 
 const DEFAULT_QUESTS: DailyQuest[] = [
-  { id: "q_time", title: "Học 5 phút", target: 300, progress: 0, isCompleted: false, isClaimed: false, reward: 1 },
-  { id: "q_flip", title: "Lật 50 thẻ bài", target: 50, progress: 0, isCompleted: false, isClaimed: false, reward: 2 },
-  { id: "q_combo", title: "Đạt Combo x5", target: 5, progress: 0, isCompleted: false, isClaimed: false, reward: 2 },
+  {
+    id: "q_time",
+    title: "Học 5 phút",
+    target: 300,
+    progress: 0,
+    isCompleted: false,
+    isClaimed: false,
+    reward: 1,
+  },
+  {
+    id: "q_flip",
+    title: "Lật 10 thẻ bài",
+    target: 10,
+    progress: 0,
+    isCompleted: false,
+    isClaimed: false,
+    reward: 2,
+  },
+  {
+    id: "q_combo",
+    title: "Đạt Combo x5",
+    target: 5,
+    progress: 0,
+    isCompleted: false,
+    isClaimed: false,
+    reward: 2,
+  },
 ];
 
 export interface CustomDeck {
@@ -42,6 +75,15 @@ export interface CustomDeck {
   count: number;
   level: string;
   cards: any[];
+  folderId?: string | null;
+}
+
+export interface DeckFolder {
+  id: string;
+  name: string;
+  color: string;
+  createdAt: string;
+  isPinned?: boolean;
 }
 
 interface AppState {
@@ -67,6 +109,14 @@ interface AppState {
   addCustomDeck: (deck: CustomDeck) => void;
   deleteCustomDeck: (id: string) => void;
 
+  // --- FOLDER SLICE ---
+  folders: DeckFolder[];
+  loadFolders: (uid?: string) => Promise<void>;
+  addFolder: (folder: DeckFolder) => Promise<void>;
+  deleteFolder: (id: string) => Promise<void>;
+  updateFolder: (id: string, data: Partial<DeckFolder>) => Promise<void>;
+  moveDeckToFolder: (deckId: string, folderId: string | null) => Promise<void>;
+
   // --- PROGRESS SLICE ---
   progress: Record<string, string[]>;
   loadProgress: (deckId: string) => Promise<void>;
@@ -74,7 +124,11 @@ interface AppState {
   resetProgress: (deckId: string) => Promise<void>;
 
   // --- GACHA & QUESTS ACTIONS ---
-  updateQuestProgress: (questId: string, value: number, isAbsolute?: boolean) => Promise<void>;
+  updateQuestProgress: (
+    questId: string,
+    value: number,
+    isAbsolute?: boolean,
+  ) => Promise<void>;
   claimQuestReward: (questId: string) => Promise<void>;
   deductCoins: (amount: number) => Promise<boolean>;
   unlockSticker: (stickerId: string) => Promise<void>;
@@ -107,46 +161,45 @@ export const useAppStore = create<AppState>((set, get) => ({
     learningTimeToday: 0,
     lastActiveDate: new Date().toLocaleDateString("en-CA"),
     // --- GACHA & QUESTS ---
-    coins: 0,
+    coins: 1000,
     inventory: [],
     equippedSticker: null,
-    dailyQuests: { date: '', quests: DEFAULT_QUESTS },
+    dailyQuests: { date: "", quests: DEFAULT_QUESTS },
   },
 
   // 2. HÀM TẢI DỮ LIỆU (Đã tích hợp Firestore)
   loadUserStats: async () => {
     const uid = get().user?.uid;
     const today = new Date().toLocaleDateString("en-CA");
-    let savedStats: any = {};
 
-    // Lấy dữ liệu từ Firestore nếu có đăng nhập
-    if (uid) {
-      try {
-        const docRef = doc(db, "user_stats", uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          savedStats = docSnap.data();
-          localStorage.setItem("flashcard_user_stats", JSON.stringify(savedStats));
-        } else {
-          savedStats = JSON.parse(localStorage.getItem("flashcard_user_stats") || "{}");
-        }
-      } catch (error) {
-        console.error("Lỗi lấy thống kê từ mây:", error);
-        savedStats = JSON.parse(localStorage.getItem("flashcard_user_stats") || "{}");
-      }
-    } else {
-      savedStats = JSON.parse(localStorage.getItem("flashcard_user_stats") || "{}");
+    // Nếu chưa đăng nhập -> Trả về state mặc định sạch sẽ, KHÔNG ĐỌC LOCAL
+    if (!uid) {
+      set({
+        userStats: {
+          streak: 0,
+          cardsFlippedToday: 0,
+          totalLearned: 0, // Không còn local để đếm, mặc định là 0
+          learningTimeToday: 0,
+          lastActiveDate: today,
+          coins: 0,
+          inventory: [],
+          equippedSticker: null,
+          dailyQuests: { date: today, quests: DEFAULT_QUESTS },
+        },
+      });
+      return;
     }
 
-    let totalLearnedCount = 0;
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key?.startsWith("flashcard_progress_")) {
-        try {
-          const learnedArray = JSON.parse(localStorage.getItem(key) || "[]");
-          totalLearnedCount += learnedArray.length;
-        } catch (e) {}
+    let savedStats: any = {};
+
+    try {
+      const docRef = doc(db, "user_stats", uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        savedStats = docSnap.data();
       }
+    } catch (error) {
+      console.error("Lỗi lấy thống kê từ mây:", error);
     }
 
     let currentStreak = savedStats.streak || 0;
@@ -169,55 +222,57 @@ export const useAppStore = create<AppState>((set, get) => ({
       }
 
       // Tự động đẩy lên mây nếu qua ngày để reset Streak chuẩn trên hệ thống
-      if (uid) {
-        setDoc(doc(db, "user_stats", uid), {
+      setDoc(
+        doc(db, "user_stats", uid),
+        {
           streak: currentStreak,
           cardsFlippedToday: flippedToday,
           learningTimeToday: learningTime,
           lastActiveDate: today,
-        }, { merge: true }).catch(() => {});
-      }
+        },
+        { merge: true },
+      ).catch(() => {});
     }
 
     set({
       userStats: {
         streak: currentStreak,
         cardsFlippedToday: flippedToday,
-        totalLearned: totalLearnedCount,
+        totalLearned: savedStats.totalLearned || 0,
         learningTimeToday: learningTime,
         lastActiveDate: today || new Date().toLocaleDateString("en-CA"),
         // --- GACHA & QUESTS ---
         coins: savedStats.coins || 0,
         inventory: savedStats.inventory || [],
         equippedSticker: savedStats.equippedSticker || null,
-        dailyQuests: (savedStats.dailyQuests && savedStats.dailyQuests.date === today) 
-          ? savedStats.dailyQuests 
-          : { date: today, quests: DEFAULT_QUESTS },
+        dailyQuests:
+          savedStats.dailyQuests && savedStats.dailyQuests.date === today
+            ? savedStats.dailyQuests
+            : { date: today, quests: DEFAULT_QUESTS },
       },
     });
   },
 
   // 3. HÀM LƯU HÀNH ĐỘNG LẬT THẺ
   recordAction: async () => {
+    const state = get();
     const today = new Date().toLocaleDateString("en-CA");
-    const savedStats = JSON.parse(
-      localStorage.getItem("flashcard_user_stats") || "{}",
-    );
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
-    let newStreak = savedStats.streak || 0;
+    let newStreak = state.userStats.streak || 0;
     let newFlipped =
-      (savedStats.cardsFlippedToday || 0) +
-      (savedStats.lastActiveDate === today ? 1 : 1);
+      (state.userStats.lastActiveDate === today
+        ? state.userStats.cardsFlippedToday || 0
+        : 0) + 1;
     let newLearningTime =
-      savedStats.lastActiveDate === today
-        ? savedStats.learningTimeToday || 0
+      state.userStats.lastActiveDate === today
+        ? state.userStats.learningTimeToday || 0
         : 0;
 
-    if (savedStats.lastActiveDate !== today) {
+    if (state.userStats.lastActiveDate !== today) {
       newStreak =
-        savedStats.lastActiveDate === yesterday.toLocaleDateString("en-CA")
+        state.userStats.lastActiveDate === yesterday.toLocaleDateString("en-CA")
           ? newStreak + 1
           : 1;
     }
@@ -228,11 +283,12 @@ export const useAppStore = create<AppState>((set, get) => ({
       learningTimeToday: newLearningTime,
       lastActiveDate: today,
     };
-    localStorage.setItem("flashcard_user_stats", JSON.stringify(updatedStats));
-    set((state) => ({ userStats: { ...state.userStats, ...updatedStats } }));
+    const newUserStats = { ...state.userStats, ...updatedStats };
+
+    set({ userStats: newUserStats });
 
     // Bắn dữ liệu lên Firestore ngầm
-    const uid = get().user?.uid;
+    const uid = state.user?.uid;
     if (uid) {
       try {
         await setDoc(doc(db, "user_stats", uid), updatedStats, { merge: true });
@@ -247,23 +303,24 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   // 4. HÀM CỘNG GIỜ HỌC
   addLearningTime: async (seconds: number) => {
+    const state = get();
     const today = new Date().toLocaleDateString("en-CA");
-    const savedStats = JSON.parse(
-      localStorage.getItem("flashcard_user_stats") || "{}",
-    );
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
     let currentLearningTime =
-      (savedStats.lastActiveDate === today ? savedStats.learningTimeToday : 0) +
-      seconds;
+      (state.userStats.lastActiveDate === today
+        ? state.userStats.learningTimeToday || 0
+        : 0) + seconds;
     let currentFlipped =
-      savedStats.lastActiveDate === today ? savedStats.cardsFlippedToday : 0;
-    let currentStreak = savedStats.streak || 0;
+      state.userStats.lastActiveDate === today
+        ? state.userStats.cardsFlippedToday || 0
+        : 0;
+    let currentStreak = state.userStats.streak || 0;
 
-    if (savedStats.lastActiveDate !== today) {
+    if (state.userStats.lastActiveDate !== today) {
       currentStreak =
-        savedStats.lastActiveDate === yesterday.toLocaleDateString("en-CA")
+        state.userStats.lastActiveDate === yesterday.toLocaleDateString("en-CA")
           ? currentStreak + 1
           : 1;
     }
@@ -274,11 +331,12 @@ export const useAppStore = create<AppState>((set, get) => ({
       learningTimeToday: currentLearningTime,
       lastActiveDate: today,
     };
-    localStorage.setItem("flashcard_user_stats", JSON.stringify(updatedStats));
-    set((state) => ({ userStats: { ...state.userStats, ...updatedStats } }));
+    const newUserStats = { ...state.userStats, ...updatedStats };
+
+    set({ userStats: newUserStats });
 
     // Bắn dữ liệu lên Firestore ngầm
-    const uid = get().user?.uid;
+    const uid = state.user?.uid;
     if (uid) {
       try {
         await setDoc(doc(db, "user_stats", uid), updatedStats, { merge: true });
@@ -303,9 +361,13 @@ export const useAppStore = create<AppState>((set, get) => ({
         const snapshot = await getDocs(q);
         const decks: CustomDeck[] = [];
         snapshot.forEach((doc) => decks.push(doc.data() as CustomDeck));
-        
+
         // Xếp thẻ mới tạo lên trên cùng
-        decks.sort((a: any, b: any) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
+        decks.sort(
+          (a: any, b: any) =>
+            new Date(b.createdAt || 0).getTime() -
+            new Date(a.createdAt || 0).getTime(),
+        );
         set({ customDecks: decks, isLoadingDecks: false });
       } else {
         // Ai chưa đăng nhập thì kéo từ localStorage (tạm)
@@ -330,74 +392,166 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ customDecks: updated });
   },
 
+  // 5.5. HÀM QUẢN LÝ THƯ MỤC (FOLDER SLICE)
+  folders: [],
+  loadFolders: async (uid) => {
+    try {
+      if (uid) {
+        const q = query(collection(db, "folders"), where("userId", "==", uid));
+        const snapshot = await getDocs(q);
+        const folders: DeckFolder[] = [];
+        snapshot.forEach((doc) => folders.push(doc.data() as DeckFolder));
+        folders.sort(
+          (a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+        );
+        set({ folders });
+      } else {
+        const stored = JSON.parse(
+          localStorage.getItem("custom_folders") || "[]",
+        );
+        set({ folders: stored });
+      }
+    } catch (error) {
+      console.error("Lỗi lấy thư mục:", error);
+    }
+  },
+  addFolder: async (folder) => {
+    const current = get().folders;
+    const updated = [...current, folder];
+    set({ folders: updated });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      await setDoc(doc(db, "folders", folder.id), { ...folder, userId: uid });
+    } else {
+      localStorage.setItem("custom_folders", JSON.stringify(updated));
+    }
+  },
+  deleteFolder: async (id) => {
+    const currentDecks = get().customDecks;
+    const decksInFolder = currentDecks.filter((d) => d.folderId === id);
+
+    const updatedDecks = currentDecks.map((d) =>
+      d.folderId === id ? { ...d, folderId: null } : d,
+    );
+    const updatedFolders = get().folders.filter((f) => f.id !== id);
+    set({ folders: updatedFolders, customDecks: updatedDecks });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      await deleteDoc(doc(db, "folders", id));
+
+      // Đẩy tất cả deck trong folder ra ngoài kho chính trên Firebase
+      await Promise.all(
+        decksInFolder.map((d) =>
+          setDoc(doc(db, "decks", d.id), { folderId: null }, { merge: true }),
+        ),
+      ).catch((err) => console.error("Lỗi đồng bộ đưa thẻ ra ngoài:", err));
+    } else {
+      localStorage.setItem("custom_folders", JSON.stringify(updatedFolders));
+      localStorage.setItem("custom_decks", JSON.stringify(updatedDecks));
+    }
+  },
+  updateFolder: async (id, data) => {
+    const current = get().folders;
+    const updated = current.map((f) => (f.id === id ? { ...f, ...data } : f));
+    set({ folders: updated });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      await setDoc(doc(db, "folders", id), data, { merge: true });
+    } else {
+      localStorage.setItem("custom_folders", JSON.stringify(updated));
+    }
+  },
+  moveDeckToFolder: async (deckId, folderId) => {
+    const currentDecks = get().customDecks;
+    const updatedDecks = currentDecks.map((d) =>
+      d.id === deckId ? { ...d, folderId } : d,
+    );
+    set({ customDecks: updatedDecks });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      await setDoc(doc(db, "decks", deckId), { folderId }, { merge: true });
+    } else {
+      localStorage.setItem("custom_decks", JSON.stringify(updatedDecks));
+    }
+  },
+
   // 6. HÀM QUẢN LÝ TIẾN ĐỘ HỌC (PROGRESS SLICE)
   progress: {},
   loadProgress: async (deckId) => {
     const uid = get().user?.uid;
-    
-    // Nếu có đăng nhập, ưu tiên lấy từ Firestore
-    if (uid) {
-      try {
-        const docRef = doc(db, "user_progress", `${uid}_${deckId}`);
-        const docSnap = await getDoc(docRef);
-        
-        if (docSnap.exists()) {
-          const knownIds = docSnap.data().knownIds || [];
-          // Lưu ngược lại local dự phòng và set vào state
-          localStorage.setItem(`flashcard_progress_${deckId}`, JSON.stringify(knownIds));
-          set((state) => ({ progress: { ...state.progress, [deckId]: knownIds } }));
-          return;
-        }
-      } catch (error) {
-        console.error("Lỗi lấy tiến độ từ mây:", error);
-      }
+
+    if (!uid) {
+      // Chưa đăng nhập -> Chỉ lưu tạm trong RAM, F5 là mất
+      set((state) => ({
+        progress: { ...state.progress, [deckId]: [] },
+      }));
+      return;
     }
-    
-    // Fallback: Lấy từ LocalStorage nếu chưa đăng nhập hoặc mạng lỗi
-    const savedLocal = localStorage.getItem(`flashcard_progress_${deckId}`);
-    set((state) => ({
-      progress: { ...state.progress, [deckId]: savedLocal ? JSON.parse(savedLocal) : [] },
-    }));
+
+    try {
+      const docRef = doc(db, "user_progress", `${uid}_${deckId}`);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const knownIds = docSnap.data().knownIds || [];
+        set((state) => ({
+          progress: { ...state.progress, [deckId]: knownIds },
+        }));
+      } else {
+        set((state) => ({
+          progress: { ...state.progress, [deckId]: [] },
+        }));
+      }
+    } catch (error) {
+      console.error("Lỗi lấy tiến độ từ mây:", error);
+    }
   },
-  
+
   saveProgress: async (deckId, knownIds) => {
-    // 1. Luôn lưu Local và update State trước để UI mượt, không có độ trễ (Optimistic update)
-    localStorage.setItem(`flashcard_progress_${deckId}`, JSON.stringify(knownIds));
+    // 1. Update State trước để UI mượt (Optimistic update)
     set((state) => ({
       progress: { ...state.progress, [deckId]: knownIds },
     }));
-    
+
     // 2. Bắn data lên Firestore ngầm phía sau
     const uid = get().user?.uid;
-    if (uid) {
-      try {
-        await setDoc(doc(db, "user_progress", `${uid}_${deckId}`), {
+    if (!uid) return;
+
+    try {
+      await setDoc(
+        doc(db, "user_progress", `${uid}_${deckId}`),
+        {
           userId: uid,
           deckId: deckId,
           knownIds: knownIds,
-          updatedAt: new Date().toISOString()
-        }, { merge: true }); // Dùng merge để không ghi đè mất các trường cũ nếu có
-      } catch (error) {
-        console.error("Lỗi lưu tiến độ lên mây:", error);
-      }
+          updatedAt: new Date().toISOString(),
+        },
+        { merge: true },
+      );
+    } catch (error) {
+      console.error("Lỗi lưu tiến độ lên mây:", error);
     }
   },
-  
+
   resetProgress: async (deckId) => {
-    // 1. Xóa Local
-    localStorage.removeItem(`flashcard_progress_${deckId}`);
+    // 1. Xóa trong State
     set((state) => ({
       progress: { ...state.progress, [deckId]: [] },
     }));
-    
+
     // 2. Xóa trên Firestore
     const uid = get().user?.uid;
-    if (uid) {
-      try {
-        await deleteDoc(doc(db, "user_progress", `${uid}_${deckId}`));
-      } catch (error) {
-        console.error("Lỗi reset tiến độ trên mây:", error);
-      }
+    if (!uid) return;
+
+    try {
+      await deleteDoc(doc(db, "user_progress", `${uid}_${deckId}`));
+    } catch (error) {
+      console.error("Lỗi reset tiến độ trên mây:", error);
     }
   },
 
@@ -405,18 +559,29 @@ export const useAppStore = create<AppState>((set, get) => ({
   updateQuestProgress: async (questId, value, isAbsolute = false) => {
     const state = get();
     const today = new Date().toLocaleDateString("en-CA");
-    
+
     let currentQuests = state.userStats.dailyQuests.quests;
     if (state.userStats.dailyQuests.date !== today) {
-      currentQuests = DEFAULT_QUESTS.map(q => ({ ...q, progress: 0, isCompleted: false, isClaimed: false }));
+      currentQuests = DEFAULT_QUESTS.map((q) => ({
+        ...q,
+        progress: 0,
+        isCompleted: false,
+        isClaimed: false,
+      }));
     }
 
     let isChanged = false;
     const updatedQuests = currentQuests.map((q) => {
       if (q.id === questId && !q.isCompleted) {
-        const newProgress = isAbsolute ? value : q.progress + value;
+        // Nếu là update absolute (như Combo), chỉ cập nhật nếu giá trị mới cao hơn kỷ lục cao nhất hiện tại
+        const newProgress = isAbsolute
+          ? Math.max(q.progress, value)
+          : q.progress + value;
         const boundedProgress = Math.min(newProgress, q.target);
-        isChanged = true;
+
+        if (boundedProgress !== q.progress) {
+          isChanged = true;
+        }
         return {
           ...q,
           progress: boundedProgress,
@@ -429,15 +594,18 @@ export const useAppStore = create<AppState>((set, get) => ({
     if (!isChanged) return;
 
     const newDailyQuests = { date: today, quests: updatedQuests };
-    
-    set((s) => ({
-      userStats: { ...s.userStats, dailyQuests: newDailyQuests }
-    }));
+    const newUserStats = { ...state.userStats, dailyQuests: newDailyQuests };
+
+    set({ userStats: newUserStats });
 
     const uid = get().user?.uid;
     if (uid) {
       try {
-        await setDoc(doc(db, "user_stats", uid), { dailyQuests: newDailyQuests }, { merge: true });
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { dailyQuests: newDailyQuests },
+          { merge: true },
+        );
       } catch (error) {
         console.error("Lỗi updateQuestProgress:", error);
       }
@@ -447,7 +615,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   claimQuestReward: async (questId) => {
     const state = get();
     let rewardCoins = 0;
-    
+
     const updatedQuests = state.userStats.dailyQuests.quests.map((q) => {
       if (q.id === questId && q.isCompleted && !q.isClaimed) {
         rewardCoins = q.reward;
@@ -458,23 +626,28 @@ export const useAppStore = create<AppState>((set, get) => ({
 
     if (rewardCoins > 0) {
       const newCoins = state.userStats.coins + rewardCoins;
-      const newDailyQuests = { ...state.userStats.dailyQuests, quests: updatedQuests };
-      
-      set((s) => ({
-        userStats: { 
-          ...s.userStats, 
-          coins: newCoins,
-          dailyQuests: newDailyQuests
-        }
-      }));
+      const newDailyQuests = {
+        ...state.userStats.dailyQuests,
+        quests: updatedQuests,
+      };
+      const newUserStats = {
+        ...state.userStats,
+        coins: newCoins,
+        dailyQuests: newDailyQuests,
+      };
+      set({ userStats: newUserStats });
 
       const uid = get().user?.uid;
       if (uid) {
         try {
-          await setDoc(doc(db, "user_stats", uid), { 
-            coins: newCoins,
-            dailyQuests: newDailyQuests
-          }, { merge: true });
+          await setDoc(
+            doc(db, "user_stats", uid),
+            {
+              coins: newCoins,
+              dailyQuests: newDailyQuests,
+            },
+            { merge: true },
+          );
         } catch (error) {
           console.error("Lỗi claimQuestReward:", error);
         }
@@ -486,14 +659,17 @@ export const useAppStore = create<AppState>((set, get) => ({
     const state = get();
     if (state.userStats.coins >= amount) {
       const newCoins = state.userStats.coins - amount;
-      set((s) => ({
-        userStats: { ...s.userStats, coins: newCoins }
-      }));
-      
+      const newUserStats = { ...state.userStats, coins: newCoins };
+      set({ userStats: newUserStats });
+
       const uid = get().user?.uid;
       if (uid) {
         try {
-          await setDoc(doc(db, "user_stats", uid), { coins: newCoins }, { merge: true });
+          await setDoc(
+            doc(db, "user_stats", uid),
+            { coins: newCoins },
+            { merge: true },
+          );
         } catch (error) {
           console.error("Lỗi deductCoins:", error);
         }
@@ -506,35 +682,41 @@ export const useAppStore = create<AppState>((set, get) => ({
   unlockSticker: async (stickerId) => {
     const state = get();
     const currentInventory = state.userStats.inventory || [];
-    
+
     // Nếu đã sở hữu sticker này rồi thì bỏ qua
     if (currentInventory.includes(stickerId)) return;
 
     const newInventory = [...currentInventory, stickerId];
-    
-    set((s) => ({
-      userStats: { ...s.userStats, inventory: newInventory }
-    }));
+    const newUserStats = { ...state.userStats, inventory: newInventory };
+    set({ userStats: newUserStats });
 
     const uid = get().user?.uid;
     if (uid) {
       try {
-        await setDoc(doc(db, "user_stats", uid), { inventory: newInventory }, { merge: true });
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { inventory: newInventory },
+          { merge: true },
+        );
       } catch (error) {
         console.error("Lỗi unlockSticker:", error);
       }
     }
   },
-  
+
   equipSticker: async (stickerId) => {
-    set((s) => ({
-      userStats: { ...s.userStats, equippedSticker: stickerId }
-    }));
+    const state = get();
+    const newUserStats = { ...state.userStats, equippedSticker: stickerId };
+    set({ userStats: newUserStats });
 
     const uid = get().user?.uid;
     if (uid) {
       try {
-        await setDoc(doc(db, "user_stats", uid), { equippedSticker: stickerId }, { merge: true });
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { equippedSticker: stickerId },
+          { merge: true },
+        );
       } catch (error) {
         console.error("Lỗi equipSticker:", error);
       }

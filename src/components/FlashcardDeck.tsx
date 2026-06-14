@@ -65,6 +65,7 @@ export function FlashcardDeck({
     mascotState,
     playMascotAnim,
     handleFlip,
+    startReview,
     handlePodcastNext,
     handleShuffle,
     resetProgress,
@@ -85,8 +86,44 @@ export function FlashcardDeck({
   // MÀN HÌNH CHÚC MỪNG (END SCREEN KẸO DẺO)
   // ==========================================
   if (activeCards.length === 0) {
-    return <EndScreen resetProgress={resetProgress} />;
+    return <EndScreen onReview={startReview} />;
   }
+
+  // Hàm lấy giao diện Combo tùy theo mốc điểm
+  const getComboConfig = (count: number) => {
+    if (count >= 15)
+      return {
+        icon: "👑",
+        text: "GODLIKE",
+        color: "#FFD166",
+        glow: "rgba(255,209,102,0.8)",
+        gradient: "from-[#FF9F1C] to-[#E63946]",
+      };
+    if (count >= 10)
+      return {
+        icon: "🌟",
+        text: "UNSTOPPABLE",
+        color: "#FF7096",
+        glow: "rgba(255,112,150,0.8)",
+        gradient: "from-[#FFB3C6] to-[#FF7096]",
+      };
+    if (count >= 5)
+      return {
+        icon: "⚡",
+        text: "AWESOME",
+        color: "#06D6A0",
+        glow: "rgba(6,214,160,0.8)",
+        gradient: "from-[#A0E8D5] to-[#06D6A0]",
+      };
+    return {
+      icon: "🔥",
+      text: "COMBO",
+      color: "#FF9F1C",
+      glow: "rgba(255,159,28,0.8)",
+      gradient: "from-[#FFD166] to-[#FF9F1C]",
+    };
+  };
+  const comboConfig = getComboConfig(comboCount);
 
   // ==========================================
   // MÀN HÌNH HỌC CHÍNH (MAIN PLAY SCREEN)
@@ -131,27 +168,39 @@ export function FlashcardDeck({
 
       {/* HIỆU ỨNG COMBO (Chỉ hiện khi fun mode và combo >= 3) */}
       <AnimatePresence>
-        {appMode === "fun" && isTypingActive && comboCount >= 3 && (  
+        {appMode === "fun" && isTypingActive && comboCount >= 3 && (
           <motion.div
             key={comboCount} // Đổi key để force React chạy lại animation nhảy mỗi khi combo tăng
             initial={{ opacity: 0, scale: 0.5, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0, transition: { type: "spring", bounce: 0.6 } }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              transition: { type: "spring", bounce: 0.6 },
+            }}
             exit={{ opacity: 0, scale: 0.8 }}
-            className="fixed top-15 left-1/2 -translate-x-1/2 z-[100] pointer-events-none flex flex-col items-center"
+            className="fixed top-15 left-1/2 -translate-x-1/2 z-[100] pointer-events-none flex flex-col items-center w-full px-4"
           >
-            <span className="text-5xl animate-bounce drop-shadow-md">🔥</span>
-            <h2 
-              className="text-5xl text-[#FF9F1C] drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] mt-1 whitespace-nowrap" 
-              style={{ fontFamily: "var(--font-cherry)", WebkitTextStroke: "3px white" }}
+            <span className="text-4xl md:text-5xl animate-bounce drop-shadow-md">
+              {comboConfig.icon}
+            </span>
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.15)] mt-1 transition-colors duration-300 leading-tight"
+              style={{
+                color: comboConfig.color,
+                fontFamily: "var(--font-cherry)",
+                WebkitTextStroke: "2px white",
+              }}
             >
-              Combo x{comboCount}!
+              {comboConfig.text} x{comboCount}!
             </h2>
             {/* Thanh thời gian ngọn lửa tàn (8 giây) */}
-            <motion.div 
+            <motion.div
               initial={{ width: "100%" }}
               animate={{ width: "0%" }}
               transition={{ duration: 8, ease: "linear" }}
-              className="h-2 w-[120px] bg-gradient-to-r from-[#FFD166] to-[#FF9F1C] rounded-full mt-2 shadow-[0_0_8px_rgba(255,159,28,0.8)]"
+              className={`h-2 w-[120px] bg-gradient-to-r ${comboConfig.gradient} rounded-full mt-2 transition-all duration-300`}
+              style={{ boxShadow: `0 0 8px ${comboConfig.glow}` }}
             />
           </motion.div>
         )}

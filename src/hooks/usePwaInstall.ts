@@ -26,7 +26,10 @@ export function usePwaInstall() {
       setIsIOSInstallable(true);
     }
     return () =>
-      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
   }, []);
 
   const handleInstallClick = async () => {
@@ -35,6 +38,7 @@ export function usePwaInstall() {
       setShowIOSModal(true);
       return;
     }
+
     // Nếu là Android/Desktop thì gọi hàm cài đặt
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
@@ -45,5 +49,11 @@ export function usePwaInstall() {
     setDeferredPrompt(null);
   };
 
-  return { isInstallable, isIOSInstallable, showIOSModal, setShowIOSModal, handleInstallClick };
+  return {
+    isInstallable,
+    isIOSInstallable,
+    showIOSModal,
+    setShowIOSModal,
+    handleInstallClick,
+  };
 }

@@ -27,6 +27,8 @@ export function useFlashcardDeck({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [exitDir, setExitDir] = useState<"left" | "right" | "none">("none");
+  const [isReviewMode, setIsReviewMode] = useState(false);
+  const [reviewedIds, setReviewedIds] = useState<string[]>([]);
   const [showFurigana, setShowFurigana] = useState(true);
   const { recordAction, addLearningTime } = useUserStats();
   const [globalMode, setGlobalMode] = useState<"swipe" | "typing" | "podcast">(
@@ -47,6 +49,7 @@ export function useFlashcardDeck({
   const loadProgress = useAppStore((state) => state.loadProgress);
   const saveProgress = useAppStore((state) => state.saveProgress);
   const globalResetProgress = useAppStore((state) => state.resetProgress);
+  const updateQuestProgress = useAppStore((state) => state.updateQuestProgress);
 
   // --- MASCOT (LINH VẬT) STATES ---
   const [showMascot, setShowMascot] = useState(true);
@@ -83,14 +86,23 @@ export function useFlashcardDeck({
     }
   }, [deckId, isCustom, customDecks, loadProgress]);
 
-  const activeCards = cards.filter((card) => !knownIds.includes(card.id));
+  const activeCards = isReviewMode
+    ? cards.filter((card) => !reviewedIds.includes(card.id))
+    : cards.filter((card) => !knownIds.includes(card.id));
   const totalOriginalCards = cards.length;
-  const learnedCardsCount = knownIds.length;
+  const learnedCardsCount = isReviewMode ? reviewedIds.length : knownIds.length;
   const progressPercent =
     totalOriginalCards === 0
       ? 0
       : Math.round((learnedCardsCount / totalOriginalCards) * 100);
   const currentCard = activeCards[currentIndex];
+
+  const startReview = useCallback(() => {
+    setIsReviewMode(true);
+    setReviewedIds([]);
+    setCurrentIndex(0);
+    setIsFlipped(false);
+  }, []);
 
   const handleFlip = () => {
     playSFX("flip");
@@ -116,7 +128,11 @@ export function useFlashcardDeck({
     if (dir === "right") {
       if (currentFlipped) {
         const currentId = activeCards[currentIndex].id;
-        saveProgress(deckId, [...knownIds, currentId]);
+        if (isReviewMode) {
+          setReviewedIds((prev) => [...prev, currentId]);
+        } else if (!knownIds.includes(currentId)) {
+          saveProgress(deckId, [...knownIds, currentId]);
+        }
         if (currentIndex >= activeCards.length - 1) setCurrentIndex(0);
         setIsFlipped(false);
         playSFX("success");
@@ -146,23 +162,55 @@ export function useFlashcardDeck({
   const comboTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // 3. THÊM HÀM MỚI: Xử lý Combo bọc ngoài triggerSwipe
-  const handleSwipeAction = (direction: "left" | "right", forceSwipe?: boolean) => {
+  const handleSwipeAction = (
+    direction: "left" | "right",
+    forceSwipe?: boolean,
+  ) => {
     // Xóa bộ đếm thời gian cũ mỗi khi có hành động mới
     if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
 
     // CHỈ áp dụng Combo khi đang ở chế độ Vui nhộn VÀ đang gõ phím (Boss Fight)
     if (appMode === "fun" && isTypingActive) {
-      if (direction === "right") { // Gõ đúng = Tăng Combo
+      if (direction === "right") {
+        // Gõ đúng = Tăng Combo
         setComboCount((prev) => {
           const next = prev + 1;
+
+          // Cập nhật tiến độ nhiệm vụ ngầm (isAbsolute = true để ghi nhận mốc combo cao nhất)
+          updateQuestProgress("q_combo", next, true);
+
           // Bắn pháo khi combo đạt 3, 5, 10, 15...
           if (next === 3 || next === 5 || next % 5 === 0) {
             import("canvas-confetti").then((confetti) => {
+              let particleCount = 100;
+              let spread = 70;
+              let colors = [
+                "#FF7096",
+                "#06D6A0",
+                "#FFD166",
+                "#5390D9",
+                "#FF9F1C",
+              ]; // Mặc định kẹo ngọt
+
+              if (next >= 15) {
+                particleCount = 350; // Bắn siêu khủng
+                spread = 130;
+                colors = ["#FFD166", "#FF9F1C", "#E63946", "#FFFFFF"]; // Vàng, cam, đỏ rực
+              } else if (next >= 10) {
+                particleCount = 200; // Bắn vừa
+                spread = 100;
+                colors = ["#FF7096", "#FFB3C6", "#FFFFFF", "#FFD166"]; // Hồng, trắng, vàng
+              } else if (next >= 5) {
+                particleCount = 150;
+                spread = 85;
+                colors = ["#06D6A0", "#118AB2", "#FFFFFF", "#FFD166"]; // Xanh lá, xanh biển, vàng
+              }
+
               confetti.default({
-                particleCount: 120,
-                spread: 80,
+                particleCount,
+                spread,
                 origin: { y: 0.6 }, // Bắn từ nửa dưới màn hình lên
-                colors: ["#FF7096", "#06D6A0", "#FFD166", "#5390D9", "#FF9F1C"], // Tone màu kẹo
+                colors,
                 zIndex: 2000,
               });
             });
@@ -180,7 +228,7 @@ export function useFlashcardDeck({
     } else {
       setComboCount(0); // Nếu quẹt thẻ bình thường thì reset combo về 0
     }
-    
+
     // Cuối cùng vẫn gọi triggerSwipe gốc để app lật thẻ bình thường
     triggerSwipe(direction, forceSwipe);
   };
@@ -367,6 +415,8 @@ export function useFlashcardDeck({
     globalResetProgress(deckId);
     setCurrentIndex(0);
     setIsFlipped(false);
+    setIsReviewMode(false);
+    setReviewedIds([]);
   };
 
   const handlePlayAudio = () => {
@@ -445,6 +495,7 @@ export function useFlashcardDeck({
     mascotState,
     playMascotAnim,
     handleFlip,
+    startReview,
     handlePodcastNext,
     handleShuffle,
     resetProgress,

@@ -1,0 +1,888 @@
+[
+{
+"id": "sys_n5_minna_02_001",
+"word": "此れ",
+"reading": "これ",
+"romaji": "kore",
+"meaning": "Cái này",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "此れは辞書です。",
+"example_jp_formatted": "[此]{こ}れは[辞書]{じしょ}です。",
+"example_vi": "Cái này là quyển từ điển.",
+"level": "N5",
+"tags": ["đại-từ", "chỉ-định", "bài-2"],
+"notes": "Chỉ vật ở gần người nói.",
+"synonyms": [],
+"antonyms": ["其れ", "彼れ"],
+"kanji_info": [
+{
+"kanji": "此",
+"meaning": "thử (này)",
+"onyomi": "シ",
+"kunyomi": "これ, この, ここ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_002",
+"word": "其れ",
+"reading": "それ",
+"romaji": "sore",
+"meaning": "Cái đó",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "其れは私の本です。",
+"example_jp_formatted": "[其]{そ}れは[私]{わたし}の[本]{ほん}です。",
+"example_vi": "Cái đó là sách của tôi.",
+"level": "N5",
+"tags": ["đại-từ", "chỉ-định", "bài-2"],
+"notes": "Chỉ vật ở gần người nghe.",
+"synonyms": [],
+"antonyms": ["此れ", "彼れ"],
+"kanji_info": [
+{
+"kanji": "其",
+"meaning": "kì (đó)",
+"onyomi": "キ",
+"kunyomi": "それ, その, そこ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_003",
+"word": "彼れ",
+"reading": "あれ",
+"romaji": "are",
+"meaning": "Cái kia",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "彼れは誰の鞄ですか。",
+"example_jp_formatted": "[彼]{あ}れは[誰]{だれ}の[鞄]{かばん}ですか。",
+"example_vi": "Cái kia là cặp của ai vậy?",
+"level": "N5",
+"tags": ["đại-từ", "chỉ-định", "bài-2"],
+"notes": "Chỉ vật ở xa cả người nói và người nghe.",
+"synonyms": [],
+"antonyms": ["此れ", "其れ"],
+"kanji_info": [
+{
+"kanji": "彼",
+"meaning": "bỉ (kia, anh ấy)",
+"onyomi": "ヒ",
+"kunyomi": "かれ, かの, あれ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_004",
+"word": "此の",
+"reading": "この",
+"romaji": "kono",
+"meaning": "~ này",
+"pos": "determiner",
+"pitch_accent": "heiban",
+"example_jp": "此の本は私のです。",
+"example_jp_formatted": "[此]{こ}の[本]{ほん}は[私]{わたし}のです。",
+"example_vi": "Quyển sách này là của tôi.",
+"level": "N5",
+"tags": ["từ-bổ-nghĩa", "chỉ-định", "bài-2"],
+"notes": "Bổ nghĩa cho danh từ đi kèm phía sau (vật ở gần người nói).",
+"synonyms": [],
+"antonyms": ["其の", "彼の"],
+"kanji_info": [
+{
+"kanji": "此",
+"meaning": "thử (này)",
+"onyomi": "シ",
+"kunyomi": "これ, この, ここ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_005",
+"word": "其の",
+"reading": "その",
+"romaji": "sono",
+"meaning": "~ đó",
+"pos": "determiner",
+"pitch_accent": "heiban",
+"example_jp": "其の傘は貴方のですか。",
+"example_jp_formatted": "[其]{そ}の[傘]{かさ}は[貴方]{あなた}のですか。",
+"example_vi": "Cái ô đó là của bạn phải không?",
+"level": "N5",
+"tags": ["từ-bổ-nghĩa", "chỉ-định", "bài-2"],
+"notes": "Bổ nghĩa cho danh từ đi kèm phía sau (vật ở gần người nghe).",
+"synonyms": [],
+"antonyms": ["此の", "彼の"],
+"kanji_info": [
+{
+"kanji": "其",
+"meaning": "kì (đó)",
+"onyomi": "キ",
+"kunyomi": "それ, その, そこ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_006",
+"word": "彼の",
+"reading": "あの",
+"romaji": "ano",
+"meaning": "~ kia",
+"pos": "determiner",
+"pitch_accent": "heiban",
+"example_jp": "彼の人は誰ですか。",
+"example_jp_formatted": "[彼]{あ}の[人]{ひと}は[誰]{だれ}ですか。",
+"example_vi": "Người kia là ai vậy?",
+"level": "N5",
+"tags": ["từ-bổ-nghĩa", "chỉ-định", "bài-2"],
+"notes": "Bổ nghĩa cho danh từ đi kèm phía sau (vật ở xa cả hai người).",
+"synonyms": [],
+"antonyms": ["此の", "其の"],
+"kanji_info": [
+{
+"kanji": "彼",
+"meaning": "bỉ (kia)",
+"onyomi": "ヒ",
+"kunyomi": "かれ, かの, あれ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_007",
+"word": "本",
+"reading": "ほん",
+"romaji": "hon",
+"meaning": "Sách",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "此れは日本語の本です。",
+"example_jp_formatted": "[此]{こ}れは[日本語]{にほんご}の[本]{ほん}です。",
+"example_vi": "Đây là sách tiếng Nhật.",
+"level": "N5",
+"tags": ["đồ-vật", "bài-2"],
+"notes": "Chỉ các loại sách nói chung.",
+"synonyms": ["書籍"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "本",
+"meaning": "bản (sách, gốc)",
+"onyomi": "ホン",
+"kunyomi": "もと"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_008",
+"word": "辞書",
+"reading": "じしょ",
+"romaji": "jisho",
+"meaning": "Từ điển",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "英語の辞書を買いました。",
+"example_jp_formatted": "[英語]{えいご}の[辞書]{じしょ}を[買]{か}いました。",
+"example_vi": "Tôi đã mua từ điển tiếng Anh.",
+"level": "N5",
+"tags": ["đồ-vật", "học-tập", "bài-2"],
+"notes": "Sách dùng để tra cứu ý nghĩa, cách dùng của từ.",
+"synonyms": ["辞典"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "辞",
+"meaning": "từ (từ vựng)",
+"onyomi": "ジ",
+"kunyomi": "や.める"
+},
+{
+"kanji": "書",
+"meaning": "thư (viết, sách)",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_009",
+"word": "雑誌",
+"reading": "ざっし",
+"romaji": "zasshi",
+"meaning": "Tạp chí",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "其れは車の雑誌です。",
+"example_jp_formatted": "[其]{そ}れは[車]{くるま}の[雑誌]{ざっし}です。",
+"example_vi": "Đó là tạp chí về xe hơi.",
+"level": "N5",
+"tags": ["đồ-vật", "đọc-sách", "bài-2"],
+"notes": "Ấn phẩm xuất bản định kỳ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "雑",
+"meaning": "tạp (tạp nham)",
+"onyomi": "ザツ, ゾウ",
+"kunyomi": ""
+},
+{
+"kanji": "誌",
+"meaning": "chí (ghi chép)",
+"onyomi": "シ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_02_010",
+"word": "新聞",
+"reading": "しんぶん",
+"romaji": "shinbun",
+"meaning": "Báo",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "毎朝、新聞を読みます。",
+"example_jp_formatted": "[毎朝]{まいあさ}、[新聞]{しんぶん}を[読]{よ}みます。",
+"example_vi": "Mỗi sáng tôi đều đọc báo.",
+"level": "N5",
+"tags": ["đồ-vật", "đọc-sách", "bài-2"],
+"notes": "Báo giấy xuất bản hàng ngày.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "新",
+"meaning": "tân (mới)",
+"onyomi": "シン",
+"kunyomi": "あたら.しい"
+},
+{
+"kanji": "聞",
+"meaning": "văn (nghe)",
+"onyomi": "ブン, モン",
+"kunyomi": "き.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_011",
+"word": "ノート",
+"reading": "のーと",
+"romaji": "nooto",
+"meaning": "Vở",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "此のノートは百円です。",
+"example_jp_formatted": "[此]{こ}のノートは[百円]{ひゃくえん}です。",
+"example_vi": "Quyển vở này giá 100 yên.",
+"level": "N5",
+"tags": ["đồ-vật", "học-tập", "bài-2"],
+"notes": "Từ mượn tiếng Anh 'notebook'.",
+"synonyms": ["帳面"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_02_012",
+"word": "手帳",
+"reading": "てちょう",
+"romaji": "techou",
+"meaning": "Sổ tay",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "私の手帳は黒いです。",
+"example_jp_formatted": "[私]{わたし}の[手帳]{てちょう}は[黒]{くろ}いです。",
+"example_vi": "Sổ tay của tôi màu đen.",
+"level": "N5",
+"tags": ["đồ-vật", "văn-phòng", "bài-2"],
+"notes": "Sổ tay nhỏ thường mang theo người để ghi chép lịch trình.",
+"synonyms": ["メモ帳"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "手",
+"meaning": "thủ (tay)",
+"onyomi": "シュ",
+"kunyomi": "て"
+},
+{
+"kanji": "帳",
+"meaning": "trướng (sổ sách)",
+"onyomi": "チョウ",
+"kunyomi": "とばり"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_013",
+"word": "名刺",
+"reading": "めいし",
+"romaji": "meishi",
+"meaning": "Danh thiếp",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "名刺をお願いします。",
+"example_jp_formatted": "[名刺]{めいし}をお[願]{ねが}いします。",
+"example_vi": "Vui lòng cho tôi xin danh thiếp.",
+"level": "N5",
+"tags": ["đồ-vật", "giao-tiếp", "bài-2"],
+"notes": "Thẻ ghi tên và thông tin công việc, rất quan trọng trong văn hóa kinh doanh Nhật.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "名",
+"meaning": "danh (tên)",
+"onyomi": "メイ",
+"kunyomi": "な"
+},
+{
+"kanji": "刺",
+"meaning": "thứ (đâm, xiên)",
+"onyomi": "シ",
+"kunyomi": "さ.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_014",
+"word": "カード",
+"reading": "かーど",
+"romaji": "kaado",
+"meaning": "Thẻ, cạc",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "此のカードは使えますか。",
+"example_jp_formatted": "[此]{こ}のカードは[使]{つか}えますか。",
+"example_vi": "Cái thẻ này có dùng được không?",
+"level": "N5",
+"tags": ["đồ-vật", "bài-2"],
+"notes": "Từ mượn tiếng Anh 'card' (thẻ tín dụng, thẻ điện thoại...).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_02_015",
+"word": "鉛筆",
+"reading": "えんぴつ",
+"romaji": "enpitsu",
+"meaning": "Bút chì",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "鉛筆で書いて下さい。",
+"example_jp_formatted": "[鉛筆]{えんぴつ}で[書]{か}いて[下]{くだ}さい。",
+"example_vi": "Hãy viết bằng bút chì.",
+"level": "N5",
+"tags": ["đồ-vật", "văn-phòng", "bài-2"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "鉛",
+"meaning": "duyên (chì)",
+"onyomi": "エン",
+"kunyomi": "なまり"
+},
+{
+"kanji": "筆",
+"meaning": "bút (cây bút)",
+"onyomi": "ヒツ",
+"kunyomi": "ふで"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_016",
+"word": "ボールペン",
+"reading": "ぼーるぺん",
+"romaji": "boorupen",
+"meaning": "Bút bi",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "ボールペンで名前を書きます。",
+"example_jp_formatted": "ボールペンで[名前]{なまえ}を[書]{か}きます。",
+"example_vi": "Tôi viết tên bằng bút bi.",
+"level": "N5",
+"tags": ["đồ-vật", "văn-phòng", "bài-2"],
+"notes": "Từ mượn tiếng Anh 'ballpoint pen'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_02_017",
+"word": "シャープペンシル",
+"reading": "しゃーぷぺんしる",
+"romaji": "shaapupenshiru",
+"meaning": "Bút chì kim",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "シャープペンシルを貸して下さい。",
+"example_jp_formatted": "シャープペンシルを[貸]{か}して[下]{くだ}さい。",
+"example_vi": "Làm ơn cho tôi mượn bút chì kim.",
+"level": "N5",
+"tags": ["đồ-vật", "văn-phòng", "bài-2"],
+"notes": "Từ mượn tiếng Anh (được tạo ở Nhật) 'sharp pencil'.",
+"synonyms": ["シャーペン"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_02_018",
+"word": "鍵",
+"reading": "かぎ",
+"romaji": "kagi",
+"meaning": "Chìa khóa",
+"pos": "noun",
+"pitch_accent": "odaka",
+"example_jp": "此れは部屋の鍵です。",
+"example_jp_formatted": "[此]{こ}れは[部屋]{へや}の[鍵]{かぎ}です。",
+"example_vi": "Đây là chìa khóa phòng.",
+"level": "N5",
+"tags": ["đồ-vật", "bài-2"],
+"notes": "",
+"synonyms": ["キー"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "鍵",
+"meaning": "kiện (chìa khóa)",
+"onyomi": "ケン",
+"kunyomi": "かぎ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_019",
+"word": "時計",
+"reading": "とけい",
+"romaji": "tokei",
+"meaning": "Đồng hồ",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "其の時計は高いですか。",
+"example_jp_formatted": "[其]{そ}の[時計]{とけい}は[高]{たか}いですか。",
+"example_vi": "Cái đồng hồ đó đắt không?",
+"level": "N5",
+"tags": ["đồ-vật", "bài-2"],
+"notes": "Chỉ chung các loại đồng hồ (treo tường, đeo tay...).",
+"synonyms": ["腕時計"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "時",
+"meaning": "thời (thời gian)",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "計",
+"meaning": "kế (kế hoạch, đo lường)",
+"onyomi": "ケイ",
+"kunyomi": "はか.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_020",
+"word": "傘",
+"reading": "かさ",
+"romaji": "kasa",
+"meaning": "Cái ô, cây dù",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "私の傘は彼れです。",
+"example_jp_formatted": "[私]{わたし}の[傘]{かさ}は[彼]{あ}れです。",
+"example_vi": "Cái ô của tôi là cái kia.",
+"level": "N5",
+"tags": ["đồ-vật", "bài-2"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "傘",
+"meaning": "tản (cái ô)",
+"onyomi": "サン",
+"kunyomi": "かさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_021",
+"word": "鞄",
+"reading": "かばん",
+"romaji": "kaban",
+"meaning": "Cặp xách, túi xách",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "新しい鞄を買いました。",
+"example_jp_formatted": "[新]{あたら}しい[鞄]{かばん}を[買]{か}いました。",
+"example_vi": "Tôi đã mua cái cặp mới.",
+"level": "N5",
+"tags": ["đồ-vật", "thời-trang", "bài-2"],
+"notes": "Túi xách nói chung.",
+"synonyms": ["バッグ"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "鞄",
+"meaning": "bạc (cái cặp)",
+"onyomi": "ハク",
+"kunyomi": "かばん"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_022",
+"word": "机",
+"reading": "つくえ",
+"romaji": "tsukue",
+"meaning": "Cái bàn",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "机の上に本が有ります。",
+"example_jp_formatted": "[机]{つくえ}の[上]{うえ}に[本]{ほん}が[有]{あ}ります。",
+"example_vi": "Trên bàn có quyển sách.",
+"level": "N5",
+"tags": ["đồ-vật", "nội-thất", "bài-2"],
+"notes": "Thường chỉ bàn làm việc, bàn học.",
+"synonyms": ["テーブル"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "机",
+"meaning": "kỉ (cái bàn)",
+"onyomi": "キ",
+"kunyomi": "つくえ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_023",
+"word": "椅子",
+"reading": "いす",
+"romaji": "isu",
+"meaning": "Cái ghế",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "此の椅子は古いです。",
+"example_jp_formatted": "[此]{こ}の[椅子]{いす}は[古]{ふる}いです。",
+"example_vi": "Cái ghế này cũ rồi.",
+"level": "N5",
+"tags": ["đồ-vật", "nội-thất", "bài-2"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "椅",
+"meaning": "y (cái ghế)",
+"onyomi": "イ",
+"kunyomi": ""
+},
+{
+"kanji": "子",
+"meaning": "tử (con, hậu tố)",
+"onyomi": "シ",
+"kunyomi": "こ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_024",
+"word": "自動車",
+"reading": "じどうしゃ",
+"romaji": "jidousha",
+"meaning": "Ô tô, xe hơi",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "日本の自動車は良いです。",
+"example_jp_formatted": "[日本]{にほん}の[自動車]{じどうしゃ}は[良]{よ}いです。",
+"example_vi": "Xe ô tô của Nhật thì tốt.",
+"level": "N5",
+"tags": ["phương-tiện", "bài-2"],
+"notes": "Cách nói trang trọng hơn của 車 (くるま).",
+"synonyms": ["車"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "自",
+"meaning": "tự (tự bản thân)",
+"onyomi": "ジ, シ",
+"kunyomi": "みずか.ら"
+},
+{
+"kanji": "動",
+"meaning": "động (chuyển động)",
+"onyomi": "ドウ",
+"kunyomi": "うご.く"
+},
+{
+"kanji": "車",
+"meaning": "xa (xe)",
+"onyomi": "シャ",
+"kunyomi": "くるま"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_025",
+"word": "御土産",
+"reading": "おみやげ",
+"romaji": "omiyage",
+"meaning": "Quà lưu niệm, đặc sản",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "此れは京都の御土産です。",
+"example_jp_formatted": "[此]{こ}れは[京都]{きょうと}の[御土産]{おみやげ}です。",
+"example_vi": "Đây là quà lưu niệm của Kyoto.",
+"level": "N5",
+"tags": ["đồ-vật", "văn-hóa", "bài-2"],
+"notes": "Quà tặng thường mua sau một chuyến đi xa.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "御",
+"meaning": "ngự (kính ngữ)",
+"onyomi": "ギョ, ゴ",
+"kunyomi": "おん, お, み"
+},
+{
+"kanji": "土",
+"meaning": "thổ (đất)",
+"onyomi": "ド, ト",
+"kunyomi": "つち"
+},
+{
+"kanji": "産",
+"meaning": "sản (sinh sản)",
+"onyomi": "サン",
+"kunyomi": "う.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_026",
+"word": "英語",
+"reading": "えいご",
+"romaji": "eigo",
+"meaning": "Tiếng Anh",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "英語の辞書を持っていますか。",
+"example_jp_formatted": "[英語]{えいご}の[辞書]{じしょ}を[持]{も}っていますか。",
+"example_vi": "Bạn có mang theo từ điển tiếng Anh không?",
+"level": "N5",
+"tags": ["ngôn-ngữ", "bài-2"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "英",
+"meaning": "anh (anh dũng, nước Anh)",
+"onyomi": "エイ",
+"kunyomi": ""
+},
+{
+"kanji": "語",
+"meaning": "ngữ (ngôn ngữ)",
+"onyomi": "ゴ",
+"kunyomi": "かた.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_027",
+"word": "日本語",
+"reading": "にほんご",
+"romaji": "nihongo",
+"meaning": "Tiếng Nhật",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "私は日本語を勉強します。",
+"example_jp_formatted": "[私]{わたし}は[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật.",
+"level": "N5",
+"tags": ["ngôn-ngữ", "bài-2"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日",
+"meaning": "nhật (ngày, mặt trời)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, か"
+},
+{
+"kanji": "本",
+"meaning": "bản (sách, gốc)",
+"onyomi": "ホン",
+"kunyomi": "もと"
+},
+{
+"kanji": "語",
+"meaning": "ngữ (ngôn ngữ)",
+"onyomi": "ゴ",
+"kunyomi": "かた.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_028",
+"word": "何",
+"reading": "なん",
+"romaji": "nan",
+"meaning": "Cái gì",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "其れは何ですか。",
+"example_jp_formatted": "[其]{そ}れは[何]{なん}ですか。",
+"example_vi": "Cái đó là cái gì vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "bài-2"],
+"notes": "Đọc là 'nan' khi đứng trước d/n/t, nếu không sẽ đọc là 'nani'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_029",
+"word": "然うです",
+"reading": "そうです",
+"romaji": "sou desu",
+"meaning": "Đúng vậy / Phải rồi",
+"pos": "phrase",
+"pitch_accent": "atamadaka",
+"example_jp": "はい、然うです。",
+"example_jp_formatted": "はい、[然]{そ}うです。",
+"example_vi": "Vâng, đúng vậy.",
+"level": "N5",
+"tags": ["giao-tiếp", "bài-2"],
+"notes": "Dùng để xác nhận thông tin là chính xác.",
+"synonyms": [],
+"antonyms": ["違います"],
+"kanji_info": [
+{
+"kanji": "然",
+"meaning": "nhiên (quả nhiên)",
+"onyomi": "ゼン, ネン",
+"kunyomi": "しか.り, しか.し, そう"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_030",
+"word": "違います",
+"reading": "ちがいます",
+"romaji": "chigaimasu",
+"meaning": "Không phải / Nhầm rồi",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "いいえ、違います。",
+"example_jp_formatted": "いいえ、[違]{ちが}います。",
+"example_vi": "Không, không phải đâu / Bạn nhầm rồi.",
+"level": "N5",
+"tags": ["giao-tiếp", "động-từ", "bài-2"],
+"notes": "Dùng để phủ định phỏng đoán của người đối diện.",
+"synonyms": [],
+"antonyms": ["然うです"],
+"kanji_info": [
+{
+"kanji": "違",
+"meaning": "vi (sai khác, vi phạm)",
+"onyomi": "イ",
+"kunyomi": "ちが.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_031",
+"word": "気持ち",
+"reading": "きもち",
+"romaji": "kimochi",
+"meaning": "Tấm lòng / Cảm xúc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "ほんの気持ちです。",
+"example_jp_formatted": "ほんの[気持]{きも}ちです。",
+"example_vi": "Đây chỉ là chút lòng thành.",
+"level": "N5",
+"tags": ["giao-tiếp", "bài-2"],
+"notes": "Cụm 'ほんの気持ちです' thường dùng khi tặng quà, ngụ ý món quà nhỏ nhưng là tình cảm của mình.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "気",
+"meaning": "khí (tinh thần)",
+"onyomi": "キ, ケ",
+"kunyomi": "いき"
+},
+{
+"kanji": "持",
+"meaning": "trì (cầm, giữ)",
+"onyomi": "ジ",
+"kunyomi": "も.つ"
+}
+]
+},
+{
+"id": "sys_n5_minna_02_032",
+"word": "有難う御座います",
+"reading": "ありがとうございます",
+"romaji": "arigatou gozaimasu",
+"meaning": "Xin cám ơn (rất nhiều)",
+"pos": "phrase",
+"pitch_accent": "",
+"example_jp": "いつも有難う御座います。",
+"example_jp_formatted": "いつも[有難]{ありがと}う[御座]{ござ}います。",
+"example_vi": "Luôn luôn cám ơn bạn.",
+"level": "N5",
+"tags": ["giao-tiếp", "bài-2"],
+"notes": "Lời cảm ơn lịch sự.",
+"synonyms": ["感謝します"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "有",
+"meaning": "hữu (có)",
+"onyomi": "ユウ, ウ",
+"kunyomi": "あ.る"
+},
+{
+"kanji": "難",
+"meaning": "nan (khó khăn)",
+"onyomi": "ナン",
+"kunyomi": "むずか.しい, かた.い"
+},
+{
+"kanji": "御",
+"meaning": "ngự (kính ngữ)",
+"onyomi": "ギョ, ゴ",
+"kunyomi": "おん, お, み"
+},
+{
+"kanji": "座",
+"meaning": "tọa (chỗ ngồi)",
+"onyomi": "ザ",
+"kunyomi": "すわ.る"
+}
+]
+}
+]
