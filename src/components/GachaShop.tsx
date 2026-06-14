@@ -40,6 +40,7 @@ export function GachaShop() {
 
     let engine: any;
     let runner: any;
+    let handleOrientation: (event: DeviceOrientationEvent) => void;
 
     const initMatter = async () => {
       const MatterModule = await import("matter-js");
@@ -111,11 +112,32 @@ export function GachaShop() {
 
       runner = Matter.Runner.create();
       Matter.Runner.run(runner, engine);
+
+      // Lắng nghe sự kiện nghiêng điện thoại (Gyroscope)
+      handleOrientation = (event: DeviceOrientationEvent) => {
+        if (!engineRef.current) return;
+        const currentEngine = engineRef.current;
+        const gravity = currentEngine.gravity || currentEngine.world.gravity;
+
+        const gamma = event.gamma || 0; // Trục Trái/Phải [-90 đến 90]
+        const beta = event.beta || 0; // Trục Trước/Sau [-180 đến 180]
+
+        // Tính toán lại trọng lực theo góc nghiêng (giới hạn an toàn từ -1 đến 1)
+        gravity.x = Math.max(-1, Math.min(1, gamma / 45));
+        gravity.y = Math.max(-1, Math.min(1, beta / 45));
+      };
+
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", handleOrientation);
+      }
     };
 
     initMatter();
 
     return () => {
+      if (handleOrientation && window.DeviceOrientationEvent) {
+        window.removeEventListener("deviceorientation", handleOrientation);
+      }
       if (runner) {
         const MatterModule = require("matter-js");
         MatterModule.Runner.stop(runner);
@@ -129,6 +151,18 @@ export function GachaShop() {
 
   const handleTwist = async () => {
     if (gachaState !== "idle") return;
+
+    // Xin quyền truy cập cảm biến gia tốc trên iOS 13+ (Apple bắt buộc phải có thao tác của người dùng)
+    if (
+      typeof (DeviceOrientationEvent as any) !== "undefined" &&
+      typeof (DeviceOrientationEvent as any).requestPermission === "function"
+    ) {
+      try {
+        await (DeviceOrientationEvent as any).requestPermission();
+      } catch (err) {
+        console.warn("Không thể lấy quyền cảm biến nghiêng:", err);
+      }
+    }
 
     // Kiểm tra & Trừ tiền
     const success = await deductCoins(10);

@@ -342,7 +342,7 @@ export function SystemRoadmap() {
 
                         {/* LỚP SƯƠNG MỜ KHÓA HÀNH TRÌNH NẾU CHƯA ĐĂNG NHẬP */}
                         {!user && (
-                          <div className="absolute inset-0 z-50 bg-white/40 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
+                          <div className="absolute inset-0 z-30 bg-white/40 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
                             <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg mb-4 border-4 border-[#FFE2D1] animate-bounce">
                               <Lock
                                 className="w-10 h-10 text-[#FF7096]"
