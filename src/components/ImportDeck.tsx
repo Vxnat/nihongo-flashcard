@@ -1,8 +1,5 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
-import { useDropzone } from "react-dropzone";
-import { FlashcardData } from "@/types/flashcard";
 import { Button } from "@/components/ui/button";
 import {
   UploadCloud,
@@ -21,124 +18,39 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { useAppStore } from "@/store/useAppStore";
-
-type ImportState = "idle" | "error" | "preview";
+import { useImportDeck } from "@/hooks/useImportDeck";
 
 // Danh sách các cấp độ để render thành dãy nút kẹo dẻo
 const LEVELS = ["N5", "N4", "N3", "N2", "N1", "Khác"];
 
 export function ImportDeck() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState<ImportState>("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-  const [deckData, setDeckData] = useState<FlashcardData[]>([]);
-  const [isTextInput, setIsTextInput] = useState(false);
-  const [textValue, setTextValue] = useState("");
-
-  // States mới cho thông tin bộ bài
-  const [deckTitle, setDeckTitle] = useState("");
-  const [deckDescription, setDeckDescription] = useState("");
-  const [deckLevel, setDeckLevel] = useState("N4");
-  const [customLevel, setCustomLevel] = useState("");
-  const [showAiHint, setShowAiHint] = useState(false);
-
-  const addCustomDeck = useAppStore((state) => state.addCustomDeck);
-
-  const resetState = () => {
-    setStatus("idle");
-    setErrorMsg("");
-    setDeckData([]);
-    setTextValue("");
-    setDeckTitle("");
-    setDeckDescription("");
-    setDeckLevel("N4");
-    setCustomLevel("");
-    setIsTextInput(false);
-  };
-
-  const handleOpenChange = (open: boolean) => {
-    setIsOpen(open);
-    if (!open) {
-      setTimeout(resetState, 300);
-    }
-  };
-
-  const validateAndSetData = (parsedData: any) => {
-    if (!Array.isArray(parsedData) || parsedData.length === 0) {
-      setErrorMsg("Dữ liệu phải là một mảng (Array) và không rỗng nhé!");
-      setStatus("error");
-      return;
-    }
-    const firstCard = parsedData[0];
-    if (!firstCard.id || !firstCard.word) {
-      setErrorMsg("Thiếu trường 'id' hoặc 'word' mất rồi!");
-      setStatus("error");
-      return;
-    }
-    setDeckData(parsedData);
-    setStatus("preview");
-    setErrorMsg("");
-  };
-
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    const file = acceptedFiles[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        validateAndSetData(JSON.parse(e.target?.result as string));
-      } catch (err) {
-        setErrorMsg("File không đúng định dạng JSON.");
-        setStatus("error");
-      }
-    };
-    reader.readAsText(file);
-  }, []);
-
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: { "application/json": [".json"] },
-    maxFiles: 1,
-  });
-
-  const handleTextSubmit = () => {
-    try {
-      validateAndSetData(JSON.parse(textValue));
-    } catch (err) {
-      setErrorMsg("Văn bản không phải JSON hợp lệ.");
-      setStatus("error");
-    }
-  };
-
-  const handleSaveDeck = () => {
-    const newDeck = {
-      id: `custom_${Date.now()}`,
-      title: deckTitle.trim() || "Bộ bài bí mật ✨",
-      description: deckDescription.trim() || "Chưa có ghi chú nào",
-      count: deckData.length,
-      level: deckLevel === "Khác" ? customLevel.trim() || "Khác" : deckLevel,
-      cards: deckData,
-    };
-
-    addCustomDeck(newDeck);
-    setIsOpen(false);
-    setTimeout(resetState, 300);
-  };
-
-  // Hàm tải file JSON mẫu từ thư mục public
-  const handleDownloadSample = () => {
-    const a = document.createElement("a");
-    a.href = "/data/mau_flashcard_cute.json"; // Đường dẫn trỏ thẳng vào thư mục public
-    a.download = "mau_flashcard_cute.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    // Bật thông báo AI trong 5 giây rồi tắt
-    setShowAiHint(true);
-    setTimeout(() => setShowAiHint(false), 5000);
-  };
+  const {
+    isOpen,
+    status,
+    errorMsg,
+    deckData,
+    isTextInput,
+    setIsTextInput,
+    textValue,
+    setTextValue,
+    deckTitle,
+    setDeckTitle,
+    deckDescription,
+    setDeckDescription,
+    deckLevel,
+    setDeckLevel,
+    customLevel,
+    setCustomLevel,
+    showAiHint,
+    isSaving,
+    handleOpenChange,
+    handleTextSubmit,
+    handleSaveDeck,
+    handleDownloadSample,
+    getRootProps,
+    getInputProps,
+    isDragActive,
+  } = useImportDeck();
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
@@ -379,10 +291,11 @@ export function ImportDeck() {
 
                   {/* 4. Nút Lưu bóp mềm */}
                   <Button
+                    disabled={isSaving}
                     onClick={handleSaveDeck}
-                    className="w-full mt-2 h-12 rounded-[1.25rem] bg-[#FF7096] hover:bg-[#e05e81] text-white font-bold text-base border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all"
+                    className="w-full mt-2 h-12 rounded-[1.25rem] bg-[#FF7096] hover:bg-[#e05e81] text-white font-bold text-base border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all disabled:opacity-70 disabled:active:border-b-4 disabled:active:translate-y-0"
                   >
-                    <Save className="w-5 h-5 mr-2" /> Lưu bộ bài
+                    <Save className="w-5 h-5 mr-2" /> {isSaving ? "Đang bay lên mây..." : "Lưu bộ bài"}
                   </Button>
                 </div>
               </div>
