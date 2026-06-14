@@ -91,8 +91,14 @@ export function GachaShop() {
         mouse,
         constraint: { stiffness: 0.2, render: { visible: false } },
       });
-      mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
-      mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+      mouse.element.removeEventListener(
+        "mousewheel",
+        (mouse as any).mousewheel,
+      );
+      mouse.element.removeEventListener(
+        "DOMMouseScroll",
+        (mouse as any).mousewheel,
+      );
       Matter.World.add(world, mouseConstraint);
 
       Matter.Events.on(engine, "afterUpdate", () => {
