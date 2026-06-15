@@ -1,0 +1,1332 @@
+[
+{
+"id": "sys_n5_minna_25_001",
+"word": "～たら",
+"reading": "たら",
+"romaji": "tara",
+"meaning": "Nếu..., khi...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "時間があったら日本語を勉強します。",
+"example_jp_formatted": "[時間]{じかん}があったら[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Nếu có thời gian, tôi sẽ học tiếng Nhật.",
+"level": "N5",
+"tags": ["ngữ-pháp", "điều-kiện", "bài-25"],
+"notes": "Dùng để diễn tả điều kiện hoặc giả định.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "時間",
+"meaning": "thời gian",
+"onyomi": "ジカン",
+"kunyomi": ""
+},
+{
+"kanji": "日本語",
+"meaning": "tiếng Nhật",
+"onyomi": "ニホンゴ",
+"kunyomi": ""
+},
+{
+"kanji": "勉強",
+"meaning": "học tập",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_002",
+"word": "～ても",
+"reading": "ても",
+"romaji": "temo",
+"meaning": "Dù..., ngay cả khi...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "雨が降っても学校へ行きます。",
+"example_jp_formatted": "[雨]{あめ}が[降]{ふ}っても[学校]{がっこう}へ[行]{い}きます。",
+"example_vi": "Dù trời mưa tôi vẫn đi học.",
+"level": "N5",
+"tags": ["ngữ-pháp", "nhượng-bộ", "bài-25"],
+"notes": "Dùng để diễn tả kết quả không thay đổi dù điều kiện xảy ra.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "雨",
+"meaning": "mưa",
+"onyomi": "ウ",
+"kunyomi": "あめ"
+},
+{
+"kanji": "降",
+"meaning": "rơi",
+"onyomi": "コウ",
+"kunyomi": "ふ.る"
+},
+{
+"kanji": "学校",
+"meaning": "trường học",
+"onyomi": "ガッコウ",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_003",
+"word": "行ったら",
+"reading": "いったら",
+"romaji": "ittara",
+"meaning": "Nếu đi/Khi đi",
+"pos": "verb_ta_form",
+"pitch_accent": "nakadaka",
+"example_jp": "日本へ行ったら、寿司を食べたいです。",
+"example_jp_formatted": "[日本]{にほん}へ[行]{い}ったら、[寿司]{すし}を[食]{た}べたいです。",
+"example_vi": "Nếu đi Nhật, tôi muốn ăn sushi.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-25"],
+"notes": "Thể Ta + ra.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニホン",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+},
+{
+"kanji": "寿司",
+"meaning": "sushi",
+"onyomi": "スシ",
+"kunyomi": ""
+},
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_004",
+"word": "高かったら",
+"reading": "たかかったら",
+"romaji": "takakattara",
+"meaning": "Nếu đắt",
+"pos": "adjective_i_tara",
+"pitch_accent": "nakadaka",
+"example_jp": "高かったら、買いません。",
+"example_jp_formatted": "[高]{たか}かったら、[買]{か}いません。",
+"example_vi": "Nếu đắt, tôi sẽ không mua.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-25"],
+"notes": "Tính từ đuôi i (bỏ i + かったら).",
+"synonyms": [],
+"antonyms": ["安かったら"],
+"kanji_info": [
+{
+"kanji": "高",
+"meaning": "đắt/cao",
+"onyomi": "コウ",
+"kunyomi": "たか.い"
+},
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_005",
+"word": "暇だったら",
+"reading": "ひまだったら",
+"romaji": "hima dattara",
+"meaning": "Nếu rảnh",
+"pos": "adjective_na_tara",
+"pitch_accent": "nakadaka",
+"example_jp": "暇だったら、映画を見に行きます。",
+"example_jp_formatted": "[暇]{ひま}だったら、[映画]{えいが}を[見]{み}に[行]{い}きます。",
+"example_vi": "Nếu rảnh, tôi sẽ đi xem phim.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-25"],
+"notes": "Tính từ đuôi na + だったら.",
+"synonyms": [],
+"antonyms": ["忙しかったら"],
+"kanji_info": [
+{
+"kanji": "暇",
+"meaning": "rảnh",
+"onyomi": "カ",
+"kunyomi": "ひま"
+},
+{
+"kanji": "映画",
+"meaning": "phim",
+"onyomi": "エイガ",
+"kunyomi": ""
+},
+{
+"kanji": "見",
+"meaning": "xem",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_006",
+"word": "学生だったら",
+"reading": "がくせいだったら",
+"romaji": "gakusei dattara",
+"meaning": "Nếu là học sinh",
+"pos": "noun_tara",
+"pitch_accent": "nakadaka",
+"example_jp": "学生だったら、学割があります。",
+"example_jp_formatted": "[学生]{がくせい}だったら、[学割]{がくわり}があります。",
+"example_vi": "Nếu là học sinh thì có giảm giá cho học sinh.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-25"],
+"notes": "Danh từ + だったら.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "学生",
+"meaning": "học sinh",
+"onyomi": "ガクセイ",
+"kunyomi": ""
+},
+{
+"kanji": "学割",
+"meaning": "giảm giá học sinh",
+"onyomi": "ガクワリ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_007",
+"word": "高くても",
+"reading": "たかくても",
+"romaji": "takakutemo",
+"meaning": "Dù đắt",
+"pos": "adjective_i_temo",
+"pitch_accent": "nakadaka",
+"example_jp": "高くても、買います。",
+"example_jp_formatted": "[高]{たか}くても、[買]{か}います。",
+"example_vi": "Dù đắt, tôi vẫn mua.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-25"],
+"notes": "Tính từ đuôi i (bỏ i + くても).",
+"synonyms": [],
+"antonyms": ["安くても"],
+"kanji_info": [
+{
+"kanji": "高",
+"meaning": "đắt/cao",
+"onyomi": "コウ",
+"kunyomi": "たか.い"
+},
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_008",
+"word": "大切でも",
+"reading": "たいせつでも",
+"romaji": "taisetsu demo",
+"meaning": "Dù quan trọng",
+"pos": "adjective_na_temo",
+"pitch_accent": "nakadaka",
+"example_jp": "大切でも、時々忘れます。",
+"example_jp_formatted": "[大切]{たいせつ}でも、[時々]{ときどき}[忘]{わす}れます。",
+"example_vi": "Dù quan trọng nhưng thỉnh thoảng tôi vẫn quên.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-25"],
+"notes": "Tính từ đuôi na + でも.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "大切",
+"meaning": "quan trọng",
+"onyomi": "タイセツ",
+"kunyomi": ""
+},
+{
+"kanji": "時々",
+"meaning": "thỉnh thoảng",
+"onyomi": "ジジ",
+"kunyomi": "ときどき"
+},
+{
+"kanji": "忘",
+"meaning": "quên",
+"onyomi": "ボウ",
+"kunyomi": "わす.れる"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_009",
+"word": "勉強",
+"reading": "べんきょう",
+"romaji": "benkyou",
+"meaning": "Học tập",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "毎日勉強しても、疲れません。",
+"example_jp_formatted": "[毎日]{まいにち}[勉強]{べんきょう}しても、[疲]{つか}れません。",
+"example_vi": "Dù học mỗi ngày, tôi không thấy mệt.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "毎日",
+"meaning": "hàng ngày",
+"onyomi": "マイニチ",
+"kunyomi": ""
+},
+{
+"kanji": "勉強",
+"meaning": "học tập",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+},
+{
+"kanji": "疲",
+"meaning": "mệt",
+"onyomi": "ヒ",
+"kunyomi": "つか.れる"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_010",
+"word": "旅行",
+"reading": "りょこう",
+"romaji": "ryokou",
+"meaning": "Du lịch",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "お金があったら、旅行に行きたいです。",
+"example_jp_formatted": "[金]{かね}があったら、[旅行]{りょこう}に[行]{い}きたいです。",
+"example_vi": "Nếu có tiền, tôi muốn đi du lịch.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "金",
+"meaning": "tiền",
+"onyomi": "キン",
+"kunyomi": "かね"
+},
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_011",
+"word": "友達",
+"reading": "ともだち",
+"romaji": "tomodachi",
+"meaning": "Bạn bè",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "友達に会っても、話しません。",
+"example_jp_formatted": "[友達]{ともだち}に[会]{あ}っても、[話]{はな}しません。",
+"example_vi": "Dù gặp bạn, tôi vẫn không nói chuyện.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "友達",
+"meaning": "bạn",
+"onyomi": "トモダチ",
+"kunyomi": ""
+},
+{
+"kanji": "会",
+"meaning": "gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+},
+{
+"kanji": "話",
+"meaning": "nói",
+"onyomi": "ワ",
+"kunyomi": "はな.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_012",
+"word": "家族",
+"reading": "かぞく",
+"romaji": "kazoku",
+"meaning": "Gia đình",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "家族に会ったら、嬉しいです。",
+"example_jp_formatted": "[家族]{かぞく}に[会]{あ}ったら、[嬉]{うれ}しいです。",
+"example_vi": "Nếu gặp gia đình, tôi rất vui.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "家族",
+"meaning": "gia đình",
+"onyomi": "カゾク",
+"kunyomi": ""
+},
+{
+"kanji": "会",
+"meaning": "gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+},
+{
+"kanji": "嬉",
+"meaning": "vui",
+"onyomi": "キ",
+"kunyomi": "うれ.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_013",
+"word": "会社",
+"reading": "かいしゃ",
+"romaji": "kaisha",
+"meaning": "Công ty",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "会社へ行っても、仕事がありません。",
+"example_jp_formatted": "[会社]{かいしゃ}へ[行]{い}っても、[仕事]{しごと}がありません。",
+"example_vi": "Dù đến công ty, nhưng không có việc.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会社",
+"meaning": "công ty",
+"onyomi": "カイシャ",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+},
+{
+"kanji": "仕事",
+"meaning": "công việc",
+"onyomi": "シゴト",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_014",
+"word": "趣味",
+"reading": "しゅみ",
+"romaji": "shumi",
+"meaning": "Sở thích",
+"pos": "noun",
+"pitch_accent": "shumi",
+"example_jp": "趣味があったら、教えてください。",
+"example_jp_formatted": "[趣味]{しゅみ}があったら、[教]{おし}えてください。",
+"example_vi": "Nếu có sở thích, hãy dạy tôi.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "趣味",
+"meaning": "sở thích",
+"onyomi": "シュミ",
+"kunyomi": ""
+},
+{
+"kanji": "教",
+"meaning": "dạy",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_015",
+"word": "欲しい",
+"reading": "ほしい",
+"romaji": "hoshii",
+"meaning": "Muốn (có cái gì)",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "お金が欲しいです。",
+"example_jp_formatted": "[金]{かね}が[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có tiền.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "金",
+"meaning": "tiền",
+"onyomi": "キン",
+"kunyomi": "かね"
+},
+{
+"kanji": "欲",
+"meaning": "muốn",
+"onyomi": "ヨク",
+"kunyomi": "ほ.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_016",
+"word": "食べます",
+"reading": "たべます",
+"romaji": "tabemasu",
+"meaning": "Ăn",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "食べたら、元気になると思います。",
+"example_jp_formatted": "[食]{た}べたら、[元{げん}気]{き}になると思います。",
+"example_vi": "Nếu ăn thì tôi nghĩ sẽ khỏe lên.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+},
+{
+"kanji": "元気",
+"meaning": "khỏe mạnh",
+"onyomi": "ゲンキ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_017",
+"word": "飲みます",
+"reading": "のみます",
+"romaji": "nomimasu",
+"meaning": "Uống",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "飲んでも、喉が渇きます。",
+"example_jp_formatted": "[飲]{の}んでも、[喉]{のど}が[渇]{かわ}きます。",
+"example_vi": "Dù uống nhưng cổ họng vẫn khát.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "uống",
+"onyomi": "イン",
+"kunyomi": "の.む"
+},
+{
+"kanji": "喉",
+"meaning": "cổ họng",
+"onyomi": "コウ",
+"kunyomi": "のど"
+},
+{
+"kanji": "渇",
+"meaning": "khát",
+"onyomi": "カツ",
+"kunyomi": "かわ.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_018",
+"word": "見ます",
+"reading": "みます",
+"romaji": "mimasu",
+"meaning": "Xem, nhìn",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "見たら、わかります。",
+"example_jp_formatted": "[見]{み}たら、わかります。",
+"example_vi": "Nếu xem thì sẽ hiểu.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "見",
+"meaning": "nhìn",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_019",
+"word": "聞きます",
+"reading": "ききます",
+"romaji": "kikimasu",
+"meaning": "Nghe, hỏi",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "聞いても、わかりません。",
+"example_jp_formatted": "[聞]{き}いても、わかりません。",
+"example_vi": "Dù nghe nhưng tôi không hiểu.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "聞",
+"meaning": "nghe",
+"onyomi": "ブン",
+"kunyomi": "き.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_020",
+"word": "書きます",
+"reading": "かきます",
+"romaji": "kakimasu",
+"meaning": "Viết",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "書いたら、手紙になります。",
+"example_jp_formatted": "[書]{か}いたら、[手紙]{てがみ}になります。",
+"example_vi": "Nếu viết thì sẽ thành bức thư.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "書",
+"meaning": "viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+},
+{
+"kanji": "手紙",
+"meaning": "thư",
+"onyomi": "テガミ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_021",
+"word": "買います",
+"reading": "かいます",
+"romaji": "kaimasu",
+"meaning": "Mua",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "買ったら、後悔します。",
+"example_jp_formatted": "[買]{か}ったら、[後悔]{こうかい}します。",
+"example_vi": "Nếu mua thì tôi sẽ hối hận.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+},
+{
+"kanji": "後悔",
+"meaning": "hối hận",
+"onyomi": "コウカイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_022",
+"word": "帰ります",
+"reading": "かえります",
+"romaji": "kaerimasu",
+"meaning": "Về",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "帰ったら、連絡します。",
+"example_jp_formatted": "[帰]{かえ}ったら、[連絡]{れんらく}します。",
+"example_vi": "Nếu về nhà thì tôi sẽ liên lạc.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "帰",
+"meaning": "về",
+"onyomi": "キ",
+"kunyomi": "かえ.る"
+},
+{
+"kanji": "連絡",
+"meaning": "liên lạc",
+"onyomi": "レンラク",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_023",
+"word": "休みます",
+"reading": "やすみます",
+"romaji": "yasumimasu",
+"meaning": "Nghỉ",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "休んでも、疲れています。",
+"example_jp_formatted": "[休]{やす}んでも、[疲]{つか}れています。",
+"example_vi": "Dù nghỉ nhưng tôi vẫn mệt.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "休",
+"meaning": "nghỉ",
+"onyomi": "キュウ",
+"kunyomi": "やす.む"
+},
+{
+"kanji": "疲",
+"meaning": "mệt",
+"onyomi": "ヒ",
+"kunyomi": "つか.れる"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_024",
+"word": "起きます",
+"reading": "おきます",
+"romaji": "okimasu",
+"meaning": "Dậy",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "早く起きたら、散歩します。",
+"example_jp_formatted": "[早]{はや}く[起]{お}きたら、[散歩]{さんぽ}します。",
+"example_vi": "Nếu dậy sớm, tôi đi dạo.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "早",
+"meaning": "sớm",
+"onyomi": "ソウ",
+"kunyomi": "はや.い"
+},
+{
+"kanji": "起",
+"meaning": "dậy",
+"onyomi": "キ",
+"kunyomi": "お.きる"
+},
+{
+"kanji": "散歩",
+"meaning": "đi dạo",
+"onyomi": "サンポ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_025",
+"word": "寝ます",
+"reading": "ねます",
+"romaji": "nemasu",
+"meaning": "Ngủ",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "寝ても、眠いです。",
+"example_jp_formatted": "[寝]{ね}ても、[眠]{ねむ}いです。",
+"example_vi": "Dù đã ngủ nhưng vẫn buồn ngủ.",
+"level": "N5",
+"tags": ["động-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "寝",
+"meaning": "ngủ",
+"onyomi": "シン",
+"kunyomi": "ね.る"
+},
+{
+"kanji": "眠",
+"meaning": "buồn ngủ",
+"onyomi": "ミン",
+"kunyomi": "ねむ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_026",
+"word": "好き",
+"reading": "すき",
+"romaji": "suki",
+"meaning": "Thích",
+"pos": "na_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "好きだったら、たくさん食べます。",
+"example_jp_formatted": "[好]{す}きだったら、たくさん[食]{た}べます。",
+"example_vi": "Nếu thích thì ăn nhiều vào.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["嫌い"],
+"kanji_info": [
+{
+"kanji": "好",
+"meaning": "thích",
+"onyomi": "コウ",
+"kunyomi": "す.き"
+},
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_027",
+"word": "嫌い",
+"reading": "きらい",
+"romaji": "kirai",
+"meaning": "Ghét",
+"pos": "na_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "嫌いでも、少し食べます。",
+"example_jp_formatted": "[嫌]{きら}いでも、[少]{すこ}し[食]{た}べます。",
+"example_vi": "Dù ghét nhưng tôi ăn một chút.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["好き"],
+"kanji_info": [
+{
+"kanji": "嫌",
+"meaning": "ghét",
+"onyomi": "ケン",
+"kunyomi": "きら.い"
+},
+{
+"kanji": "少",
+"meaning": "một chút",
+"onyomi": "ショウ",
+"kunyomi": "すこ.し"
+},
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_028",
+"word": "上手",
+"reading": "じょうず",
+"romaji": "jouzu",
+"meaning": "Giỏi",
+"pos": "na_adjective",
+"pitch_accent": "heiban",
+"example_jp": "上手だったら、教えてください。",
+"example_jp_formatted": "[上手]{じょうず}だったら、[教]{おし}えてください。",
+"example_vi": "Nếu giỏi thì hãy dạy tôi.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["下手"],
+"kanji_info": [
+{
+"kanji": "上手",
+"meaning": "giỏi",
+"onyomi": "ジョウズ",
+"kunyomi": ""
+},
+{
+"kanji": "教",
+"meaning": "dạy",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_029",
+"word": "下手",
+"reading": "へた",
+"romaji": "heta",
+"meaning": "Kém",
+"pos": "na_adjective",
+"pitch_accent": "heiban",
+"example_jp": "下手でも、一生懸命します。",
+"example_jp_formatted": "[下手]{へた}でも、[一生懸命]{いっしょうけんめい}します。",
+"example_vi": "Dù kém nhưng tôi vẫn làm hết sức mình.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["上手"],
+"kanji_info": [
+{
+"kanji": "下手",
+"meaning": "kém",
+"onyomi": "ヘタ",
+"kunyomi": ""
+},
+{
+"kanji": "一生懸命",
+"meaning": "hết sức mình",
+"onyomi": "イッショウケンメイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_030",
+"word": "簡単",
+"reading": "かんたん",
+"romaji": "kantan",
+"meaning": "Đơn giản",
+"pos": "na_adjective",
+"pitch_accent": "atamadaka",
+"example_jp": "簡単だったら、すぐできます。",
+"example_jp_formatted": "[簡単]{かんたん}だったら、すぐできます。",
+"example_vi": "Nếu đơn giản, thì có thể làm ngay.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["易しい"],
+"antonyms": ["難しい"],
+"kanji_info": [
+{
+"kanji": "簡単",
+"meaning": "đơn giản",
+"onyomi": "カンタン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_031",
+"word": "大変",
+"reading": "たいへん",
+"romaji": "taihen",
+"meaning": "Vất vả, khó khăn",
+"pos": "na_adjective",
+"pitch_accent": "heiban",
+"example_jp": "大変でも、頑張ります。",
+"example_jp_formatted": "[大変]{たいへん}でも、[頑張]{がんば}ります。",
+"example_vi": "Dù vất vả nhưng tôi sẽ cố gắng.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["きつい"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "大変",
+"meaning": "vất vả",
+"onyomi": "タイヘン",
+"kunyomi": ""
+},
+{
+"kanji": "頑張",
+"meaning": "cố gắng",
+"onyomi": "ガンバ",
+"kunyomi": "がんば.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_032",
+"word": "美味しい",
+"reading": "おいしい",
+"romaji": "oishii",
+"meaning": "Ngon",
+"pos": "i_adjective",
+"pitch_accent": "heiban",
+"example_jp": "美味しかったら、もう一つください。",
+"example_jp_formatted": "[美味]{おい}しかったら、もう[一]{ひと}つください。",
+"example_vi": "Nếu ngon, hãy cho tôi thêm một cái nữa.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["うまい"],
+"antonyms": ["まずい"],
+"kanji_info": [
+{
+"kanji": "美味",
+"meaning": "ngon",
+"onyomi": "ビミ",
+"kunyomi": "おい.しい"
+},
+{
+"kanji": "一",
+"meaning": "một",
+"onyomi": "イチ",
+"kunyomi": "ひと"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_033",
+"word": "忙しい",
+"reading": "いそがしい",
+"romaji": "isogashii",
+"meaning": "Bận rộn",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "忙しくても、勉強します。",
+"example_jp_formatted": "[忙]{いそが}しくても、[勉強]{べんきょう}します。",
+"example_vi": "Dù bận, tôi vẫn học.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["暇"],
+"kanji_info": [
+{
+"kanji": "忙",
+"meaning": "bận",
+"onyomi": "ボウ",
+"kunyomi": "いそが.しい"
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_034",
+"word": "面白い",
+"reading": "おもしろい",
+"romaji": "omoshiroi",
+"meaning": "Thú vị",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "面白かったら、友達に紹介します。",
+"example_jp_formatted": "[面白]{おもしろ}かったら、[友達]{ともだち}に[紹介]{しょうかい}します。",
+"example_vi": "Nếu thú vị, tôi sẽ giới thiệu cho bạn.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["楽しい"],
+"antonyms": ["つまらない"],
+"kanji_info": [
+{
+"kanji": "面白",
+"meaning": "thú vị",
+"onyomi": "メンパク",
+"kunyomi": "おもしろ.い"
+},
+{
+"kanji": "友達",
+"meaning": "bạn",
+"onyomi": "トモダチ",
+"kunyomi": ""
+},
+{
+"kanji": "紹介",
+"meaning": "giới thiệu",
+"onyomi": "ショウカイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_035",
+"word": "経験",
+"reading": "けいけん",
+"romaji": "keiken",
+"meaning": "Kinh nghiệm",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "経験があったら、いいです。",
+"example_jp_formatted": "[経験]{けいけん}があったら、いいです。",
+"example_vi": "Nếu có kinh nghiệm thì tốt.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["体験"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "経験",
+"meaning": "kinh nghiệm",
+"onyomi": "ケイケン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_036",
+"word": "将来",
+"reading": "しょうらい",
+"romaji": "shourai",
+"meaning": "Tương lai",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "将来、日本に住んだら、楽しいです。",
+"example_jp_formatted": "[将来]{しょうらい}、[日本]{にほん}に[住]{す}んだら、[楽]{たの}しいです。",
+"example_vi": "Trong tương lai, nếu sống ở Nhật thì thật vui.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["未来"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "将来",
+"meaning": "tương lai",
+"onyomi": "ショウライ",
+"kunyomi": ""
+},
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニホン",
+"kunyomi": ""
+},
+{
+"kanji": "住",
+"meaning": "sống",
+"onyomi": "ジュウ",
+"kunyomi": "す.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_037",
+"word": "大切",
+"reading": "たいせつ",
+"romaji": "taisetsu",
+"meaning": "Quan trọng",
+"pos": "na_adjective",
+"pitch_accent": "atamadaka",
+"example_jp": "大切だったら、もっと勉強します。",
+"example_jp_formatted": "[大切]{たいせつ}だったら、もっと[勉強]{べんきょう}します。",
+"example_vi": "Nếu quan trọng, tôi sẽ học nhiều hơn.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["重要"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "大切",
+"meaning": "quan trọng",
+"onyomi": "タイセツ",
+"kunyomi": ""
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_038",
+"word": "お金",
+"reading": "おかね",
+"romaji": "okane",
+"meaning": "Tiền",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "お金があっても、買いません。",
+"example_jp_formatted": "[金]{かね}があっても、[買]{か}いません。",
+"example_vi": "Dù có tiền nhưng tôi không mua.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["通貨"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "金",
+"meaning": "tiền",
+"onyomi": "キン",
+"kunyomi": "かね"
+},
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_25_039",
+"word": "日本語",
+"reading": "にほんご",
+"romaji": "nihongo",
+"meaning": "Tiếng Nhật",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本語を勉強したら、合格できます。",
+"example_jp_formatted": "[日本語]{にほんご}を[勉強]{べんきょう}したら、[合格]{ごうかく}できます。",
+"example_vi": "Nếu học tiếng Nhật, bạn có thể đỗ.",
+"level": "N5",
+"tags": ["danh-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本語",
+"meaning": "tiếng Nhật",
+"onyomi": "ニホンゴ",
+"kunyomi": ""
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+},
+{
+"kanji": "合格",
+"meaning": "đỗ",
+"onyomi": "ゴウカク",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_25_040",
+"word": "大丈夫",
+"reading": "だいじょうぶ",
+"romaji": "daijoubu",
+"meaning": "Ổn, không sao",
+"pos": "na_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "大丈夫だったら、行きましょう。",
+"example_jp_formatted": "[大丈夫]{だいじょうぶ}だったら、[行]{い}きましょう。",
+"example_vi": "Nếu ổn thì đi thôi.",
+"level": "N5",
+"tags": ["tính-từ", "tổng-kết", "bài-25"],
+"notes": "",
+"synonyms": ["平気"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "大丈夫",
+"meaning": "ổn",
+"onyomi": "ダイジョウブ",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+}
+]
+}
+]

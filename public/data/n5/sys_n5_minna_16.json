@@ -1,0 +1,872 @@
+[
+{
+"id": "sys_n5_minna_16_001",
+"word": "起きます",
+"reading": "おきます",
+"romaji": "okimasu",
+"meaning": "Thức dậy",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "毎朝七時に起きます。",
+"example_jp_formatted": "[毎朝]{まいあさ}[七時]{しちじ}に[起]{お}きます。",
+"example_vi": "Tôi thức dậy lúc 7 giờ mỗi sáng.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ nhóm 2.",
+"synonyms": [],
+"antonyms": ["寝ます"],
+"kanji_info": [
+{
+"kanji": "起",
+"meaning": "thức dậy, khởi đầu",
+"onyomi": "キ",
+"kunyomi": "お.きる, お.こる, お.こす"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_002",
+"word": "洗います",
+"reading": "あらいます",
+"romaji": "araimasu",
+"meaning": "Rửa, giặt",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "朝、顔を洗います。",
+"example_jp_formatted": "[朝]{あさ}、[顔]{かお}を[洗]{あら}います。",
+"example_vi": "Buổi sáng tôi rửa mặt.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "洗",
+"meaning": "rửa",
+"onyomi": "セン",
+"kunyomi": "あら.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_003",
+"word": "磨きます",
+"reading": "みがきます",
+"romaji": "migakimasu",
+"meaning": "Đánh răng, mài",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "歯を磨きます。",
+"example_jp_formatted": "[歯]{は}を[磨]{みが}きます。",
+"example_vi": "Tôi đánh răng.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ nhóm 1. Dùng rất thường ngày trong chuỗi sinh hoạt buổi sáng.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "磨",
+"meaning": "mài, đánh bóng",
+"onyomi": "マ",
+"kunyomi": "みが.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_004",
+"word": "食べます",
+"reading": "たべます",
+"romaji": "tabemasu",
+"meaning": "Ăn",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "朝ごはんを食べます。",
+"example_jp_formatted": "[朝]{あさ}ごはんを[食]{た}べます。",
+"example_vi": "Tôi ăn sáng.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ nhóm 2.",
+"synonyms": [],
+"antonyms": ["飲みます"],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる, く.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_005",
+"word": "飲みます",
+"reading": "のみます",
+"romaji": "nomimasu",
+"meaning": "Uống",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "水を飲みます。",
+"example_jp_formatted": "[水]{みず}を[飲]{の}みます。",
+"example_vi": "Tôi uống nước.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["食べます"],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "uống",
+"onyomi": "イン",
+"kunyomi": "の.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_006",
+"word": "行きます",
+"reading": "いきます",
+"romaji": "ikimasu",
+"meaning": "Đi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "学校へ行きます。",
+"example_jp_formatted": "[学校]{がっこう}へ[行]{い}きます。",
+"example_vi": "Tôi đi đến trường.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-16"],
+"notes": "Động từ nhóm 1 rất cơ bản.",
+"synonyms": [],
+"antonyms": ["来ます"],
+"kanji_info": [
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く, ゆ.く, おこな.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_007",
+"word": "来ます",
+"reading": "きます",
+"romaji": "kimasu",
+"meaning": "Đến",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "友達が来ます。",
+"example_jp_formatted": "[友達]{ともだち}が[来]{き}ます。",
+"example_vi": "Bạn tôi sẽ đến.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-16"],
+"notes": "Động từ bất quy tắc くる.",
+"synonyms": [],
+"antonyms": ["行きます"],
+"kanji_info": [
+{
+"kanji": "来",
+"meaning": "đến",
+"onyomi": "ライ",
+"kunyomi": "く.る, き.たる, きた.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_008",
+"word": "帰ります",
+"reading": "かえります",
+"romaji": "kaerimasu",
+"meaning": "Về, quay về",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "六時に家へ帰ります。",
+"example_jp_formatted": "[六時]{ろくじ}に[家]{いえ}へ[帰]{かえ}ります。",
+"example_vi": "Tôi về nhà lúc 6 giờ.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["行きます"],
+"kanji_info": [
+{
+"kanji": "帰",
+"meaning": "về, trở về",
+"onyomi": "キ",
+"kunyomi": "かえ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_009",
+"word": "働きます",
+"reading": "はたらきます",
+"romaji": "hatarakimasu",
+"meaning": "Làm việc",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "会社で働きます。",
+"example_jp_formatted": "[会社]{かいしゃ}で[働]{はたら}きます。",
+"example_vi": "Tôi làm việc ở công ty.",
+"level": "N5",
+"tags": ["động-từ", "công-việc", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["休みます"],
+"kanji_info": [
+{
+"kanji": "働",
+"meaning": "làm việc",
+"onyomi": "ドウ",
+"kunyomi": "はたら.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_010",
+"word": "勉強します",
+"reading": "べんきょうします",
+"romaji": "benkyou shimasu",
+"meaning": "Học tập",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "毎日、日本語を勉強します。",
+"example_jp_formatted": "[毎日]{まいにち}、[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật mỗi ngày.",
+"level": "N5",
+"tags": ["động-từ", "học-tập", "bài-16"],
+"notes": "Động từ する rất thường gặp.",
+"synonyms": [],
+"antonyms": ["休みます"],
+"kanji_info": [
+{
+"kanji": "勉強",
+"meaning": "học tập",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_16_011",
+"word": "休みます",
+"reading": "やすみます",
+"romaji": "yasumimasu",
+"meaning": "Nghỉ, nghỉ ngơi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "今日は休みます。",
+"example_jp_formatted": "[今日]{きょう}は[休]{やす}みます。",
+"example_vi": "Hôm nay tôi nghỉ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["働きます"],
+"kanji_info": [
+{
+"kanji": "休",
+"meaning": "nghỉ",
+"onyomi": "キュウ",
+"kunyomi": "やす.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_012",
+"word": "散歩します",
+"reading": "さんぽします",
+"romaji": "sanpo shimasu",
+"meaning": "Đi dạo",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "公園を散歩します。",
+"example_jp_formatted": "[公園]{こうえん}を[散歩]{さんぽ}します。",
+"example_vi": "Tôi đi dạo trong công viên.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ する.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "散",
+"meaning": "rải, tản, đi dạo",
+"onyomi": "サン",
+"kunyomi": "ち.る, ち.らす"
+},
+{
+"kanji": "歩",
+"meaning": "đi bộ",
+"onyomi": "ホ",
+"kunyomi": "ある.く, あゆ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_013",
+"word": "買い物します",
+"reading": "かいものします",
+"romaji": "kaimono shimasu",
+"meaning": "Đi mua sắm",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "友達と買い物します。",
+"example_jp_formatted": "[友達]{ともだち}と[買]{か}い[物]{もの}します。",
+"example_vi": "Tôi đi mua sắm với bạn.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ する. Rất thường gặp trong sinh hoạt hằng ngày.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+},
+{
+"kanji": "物",
+"meaning": "vật, đồ",
+"onyomi": "ブツ, モツ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_014",
+"word": "出掛けます",
+"reading": "でかけます",
+"romaji": "dekakemasu",
+"meaning": "Ra ngoài, đi ra",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "午後、友達と出掛けます。",
+"example_jp_formatted": "[午後]{ごご}、[友達]{ともだち}と[出]{で}[掛]{か}けます。",
+"example_vi": "Buổi chiều tôi ra ngoài với bạn.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-16"],
+"notes": "Động từ nhóm 2. Viết theo dạng Kanji tối đa theo yêu cầu.",
+"synonyms": ["行きます"],
+"antonyms": ["帰ります"],
+"kanji_info": [
+{
+"kanji": "出",
+"meaning": "ra, xuất",
+"onyomi": "シュツ",
+"kunyomi": "で.る, だ.す"
+},
+{
+"kanji": "掛",
+"meaning": "treo, mắc, bắt đầu",
+"onyomi": "カイ, ケイ",
+"kunyomi": "か.ける"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_015",
+"word": "入ります",
+"reading": "はいります",
+"romaji": "hairimasu",
+"meaning": "Vào, đi vào",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "部屋に入ります。",
+"example_jp_formatted": "[部屋]{へや}に[入]{はい}ります。",
+"example_vi": "Tôi vào phòng.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["出ます"],
+"kanji_info": [
+{
+"kanji": "入",
+"meaning": "vào",
+"onyomi": "ニュウ",
+"kunyomi": "い.る, はい.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_016",
+"word": "出ます",
+"reading": "でます",
+"romaji": "demasu",
+"meaning": "Ra, rời khỏi",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "部屋を出ます。",
+"example_jp_formatted": "[部屋]{へや}を[出]{で}ます。",
+"example_vi": "Tôi ra khỏi phòng.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-16"],
+"notes": "Động từ nhóm 2.",
+"synonyms": [],
+"antonyms": ["入ります"],
+"kanji_info": [
+{
+"kanji": "出",
+"meaning": "ra, xuất",
+"onyomi": "シュツ",
+"kunyomi": "で.る, だ.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_017",
+"word": "乗ります",
+"reading": "のります",
+"romaji": "norimasu",
+"meaning": "Lên, đi (xe, tàu)",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "電車に乗ります。",
+"example_jp_formatted": "[電車]{でんしゃ}に[乗]{の}ります。",
+"example_vi": "Tôi lên tàu điện.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["降ります"],
+"kanji_info": [
+{
+"kanji": "乗",
+"meaning": "lên, cưỡi, đi (xe)",
+"onyomi": "ジョウ",
+"kunyomi": "の.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_018",
+"word": "会います",
+"reading": "あいます",
+"romaji": "aimasu",
+"meaning": "Gặp, gặp gỡ",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "駅で友達に会います。",
+"example_jp_formatted": "[駅]{えき}で[友達]{ともだち}に[会]{あ}います。",
+"example_vi": "Tôi gặp bạn ở ga.",
+"level": "N5",
+"tags": ["động-từ", "giao-tiếp", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_019",
+"word": "読みます",
+"reading": "よみます",
+"romaji": "yomimasu",
+"meaning": "Đọc",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "図書館で本を読みます。",
+"example_jp_formatted": "[図書館]{としょかん}で[本]{ほん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc sách ở thư viện.",
+"level": "N5",
+"tags": ["động-từ", "học-tập", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["書きます"],
+"kanji_info": [
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_020",
+"word": "書きます",
+"reading": "かきます",
+"romaji": "kakimasu",
+"meaning": "Viết",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "ノートを書きます。",
+"example_jp_formatted": "ノートを[書]{か}きます。",
+"example_vi": "Tôi viết vào vở.",
+"level": "N5",
+"tags": ["động-từ", "học-tập", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["読みます"],
+"kanji_info": [
+{
+"kanji": "書",
+"meaning": "viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_021",
+"word": "寝ます",
+"reading": "ねます",
+"romaji": "nemasu",
+"meaning": "Ngủ",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "十時に寝ます。",
+"example_jp_formatted": "[十時]{じゅうじ}に[寝]{ね}ます。",
+"example_vi": "Tôi đi ngủ lúc 10 giờ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-16"],
+"notes": "Động từ nhóm 2.",
+"synonyms": [],
+"antonyms": ["起きます"],
+"kanji_info": [
+{
+"kanji": "寝",
+"meaning": "ngủ, nằm",
+"onyomi": "シン",
+"kunyomi": "ね.る, ね.かす"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_022",
+"word": "終わります",
+"reading": "おわります",
+"romaji": "owarimasu",
+"meaning": "Kết thúc, xong",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "仕事は五時に終わります。",
+"example_jp_formatted": "[仕事]{しごと}は[五時]{ごじ}に[終]{お}わります。",
+"example_vi": "Công việc kết thúc lúc 5 giờ.",
+"level": "N5",
+"tags": ["động-từ", "công-việc", "bài-16"],
+"notes": "Động từ nhóm 1.",
+"synonyms": [],
+"antonyms": ["始まります"],
+"kanji_info": [
+{
+"kanji": "終",
+"meaning": "kết thúc",
+"onyomi": "シュウ",
+"kunyomi": "お.わる"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_023",
+"word": "そして",
+"reading": "そして",
+"romaji": "soshite",
+"meaning": "Và rồi, và",
+"pos": "conjunction",
+"pitch_accent": "heiban",
+"example_jp": "朝ごはんを食べます。そして会社へ行きます。",
+"example_jp_formatted": "[朝]{あさ}ごはんを[食]{た}べます。そして[会社]{かいしゃ}へ[行]{い}きます。",
+"example_vi": "Tôi ăn sáng, và rồi đi đến công ty.",
+"level": "N5",
+"tags": ["liên-từ", "nối-câu", "bài-16"],
+"notes": "Dùng để nối hai câu hoặc hai hành động.",
+"synonyms": ["それから"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_16_024",
+"word": "それから",
+"reading": "それから",
+"romaji": "sorekara",
+"meaning": "Sau đó, rồi thì",
+"pos": "conjunction",
+"pitch_accent": "heiban",
+"example_jp": "昼ごはんを食べました。それから勉強しました。",
+"example_jp_formatted": "[昼]{ひる}ごはんを[食]{た}べました。それから[勉強]{べんきょう}しました。",
+"example_vi": "Tôi đã ăn trưa. Sau đó tôi học bài.",
+"level": "N5",
+"tags": ["liên-từ", "nối-câu", "bài-16"],
+"notes": "Dùng để diễn tả trình tự hành động theo thời gian.",
+"synonyms": ["そして"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_16_025",
+"word": "Vて、Vます",
+"reading": "て、ます",
+"romaji": "te, masu",
+"meaning": "Làm A rồi làm B",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "朝起きて、顔を洗います。",
+"example_jp_formatted": "[朝]{あさ}[起]{お}きて、[顔]{かお}を[洗]{あら}います。",
+"example_vi": "Tôi thức dậy rồi rửa mặt.",
+"level": "N5",
+"tags": ["ngữ-pháp", "trình-tự", "bài-16"],
+"notes": "Nối hai hành động theo trình tự xảy ra.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_16_026",
+"word": "Vてから、Vます",
+"reading": "てから、ます",
+"romaji": "te kara, masu",
+"meaning": "Sau khi làm A thì làm B",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "昼ごはんを食べてから、勉強します。",
+"example_jp_formatted": "[昼]{ひる}ごはんを[食]{た}べてから、[勉強]{べんきょう}します。",
+"example_vi": "Sau khi ăn trưa, tôi học bài.",
+"level": "N5",
+"tags": ["ngữ-pháp", "trình-tự", "bài-16"],
+"notes": "Nhấn mạnh hành động sau khi hành động trước hoàn tất.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_16_027",
+"word": "朝",
+"reading": "あさ",
+"romaji": "asa",
+"meaning": "Buổi sáng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "朝は忙しいです。",
+"example_jp_formatted": "[朝]{あさ}は[忙]{いそが}しいです。",
+"example_vi": "Buổi sáng thì bận rộn.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-16"],
+"notes": "Từ chỉ thời gian rất thường gặp.",
+"synonyms": [],
+"antonyms": ["夜"],
+"kanji_info": [
+{
+"kanji": "朝",
+"meaning": "sáng",
+"onyomi": "チョウ",
+"kunyomi": "あさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_028",
+"word": "昼",
+"reading": "ひる",
+"romaji": "hiru",
+"meaning": "Buổi trưa, ban ngày",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "昼は会社で働きます。",
+"example_jp_formatted": "[昼]{ひる}は[会社]{かいしゃ}で[働]{はたら}きます。",
+"example_vi": "Ban ngày tôi làm việc ở công ty.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-16"],
+"notes": "Từ chỉ thời gian và phần trong ngày.",
+"synonyms": [],
+"antonyms": ["夜"],
+"kanji_info": [
+{
+"kanji": "昼",
+"meaning": "trưa, ban ngày",
+"onyomi": "チュウ",
+"kunyomi": "ひる"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_029",
+"word": "夜",
+"reading": "よる",
+"romaji": "yoru",
+"meaning": "Buổi tối, ban đêm",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "夜は家で寝ます。",
+"example_jp_formatted": "[夜]{よる}は[家]{いえ}で[寝]{ね}ます。",
+"example_vi": "Buổi tối tôi ngủ ở nhà.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-16"],
+"notes": "Từ chỉ thời gian rất thường gặp.",
+"synonyms": [],
+"antonyms": ["朝"],
+"kanji_info": [
+{
+"kanji": "夜",
+"meaning": "đêm",
+"onyomi": "ヤ",
+"kunyomi": "よ, よる"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_030",
+"word": "毎朝",
+"reading": "まいあさ",
+"romaji": "maiasa",
+"meaning": "Mỗi sáng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "毎朝七時に起きます。",
+"example_jp_formatted": "[毎朝]{まいあさ}[七時]{しちじ}に[起]{お}きます。",
+"example_vi": "Mỗi sáng tôi thức dậy lúc 7 giờ.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-16"],
+"notes": "Từ chỉ tần suất thời gian.",
+"synonyms": ["朝"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "毎",
+"meaning": "mỗi",
+"onyomi": "マイ",
+"kunyomi": "ごと"
+},
+{
+"kanji": "朝",
+"meaning": "sáng",
+"onyomi": "チョウ",
+"kunyomi": "あさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_031",
+"word": "会社",
+"reading": "かいしゃ",
+"romaji": "kaisha",
+"meaning": "Công ty",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "会社へ行きます。",
+"example_jp_formatted": "[会社]{かいしゃ}へ[行]{い}きます。",
+"example_vi": "Tôi đi đến công ty.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-16"],
+"notes": "Địa điểm thường gặp trong bài về lịch trình hằng ngày.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "gặp, hội",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+},
+{
+"kanji": "社",
+"meaning": "xã, công ty",
+"onyomi": "シャ",
+"kunyomi": "やしろ"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_032",
+"word": "学校",
+"reading": "がっこう",
+"romaji": "gakkou",
+"meaning": "Trường học",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "学校で勉強します。",
+"example_jp_formatted": "[学校]{がっこう}で[勉強]{べんきょう}します。",
+"example_vi": "Tôi học ở trường.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-16"],
+"notes": "Địa điểm rất quan trọng trong N5.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "学",
+"meaning": "học",
+"onyomi": "ガク",
+"kunyomi": "まな.ぶ"
+},
+{
+"kanji": "校",
+"meaning": "trường",
+"onyomi": "コウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_16_033",
+"word": "図書館",
+"reading": "としょかん",
+"romaji": "toshokan",
+"meaning": "Thư viện",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "図書館で本を読みます。",
+"example_jp_formatted": "[図書館]{としょかん}で[本]{ほん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc sách ở thư viện.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-16"],
+"notes": "Địa điểm thường gặp để học và đọc sách.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "図",
+"meaning": "đồ, bản vẽ",
+"onyomi": "ズ, ト",
+"kunyomi": ""
+},
+{
+"kanji": "書",
+"meaning": "sách, viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+},
+{
+"kanji": "館",
+"meaning": "quán, tòa nhà",
+"onyomi": "カン",
+"kunyomi": "やかた"
+}
+]
+},
+{
+"id": "sys_n5_minna_16_034",
+"word": "駅",
+"reading": "えき",
+"romaji": "eki",
+"meaning": "Ga, trạm tàu",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "駅で友達に会います。",
+"example_jp_formatted": "[駅]{えき}で[友達]{ともだち}に[会]{あ}います。",
+"example_vi": "Tôi gặp bạn ở ga.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-16"],
+"notes": "Địa điểm giao thông rất thường gặp.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "駅",
+"meaning": "ga, trạm",
+"onyomi": "エキ",
+"kunyomi": ""
+}
+]
+}
+]

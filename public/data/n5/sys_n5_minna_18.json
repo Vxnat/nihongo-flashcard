@@ -1,0 +1,813 @@
+[
+{
+"id": "sys_n5_minna_18_001",
+"word": "趣味",
+"reading": "しゅみ",
+"romaji": "shumi",
+"meaning": "Sở thích",
+"pos": "noun",
+"pitch_accent": "shumi",
+"example_jp": "私の趣味は映画を見ることです。",
+"example_jp_formatted": "[私]{わたし}の[趣味]{しゅみ}は[映画]{えいが}を[見]{み}ることです。",
+"example_vi": "Sở thích của tôi là xem phim.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "Dùng cấu trúc [趣味]{しゅみ}は[〜]{}ことです。",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "趣味",
+"meaning": "sở thích",
+"onyomi": "シュミ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_002",
+"word": "ことができます",
+"reading": "ことができます",
+"romaji": "koto ga dekimasu",
+"meaning": "Có thể làm...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "日本語を話すことができます。",
+"example_jp_formatted": "[日本語]{にほんご}を[話]{はな}すことができます。",
+"example_vi": "Tôi có thể nói tiếng Nhật.",
+"level": "N5",
+"tags": ["ngữ-pháp", "khả-năng", "bài-18"],
+"notes": "Đi sau động từ thể từ điển (辞書形).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本語",
+"meaning": "tiếng Nhật",
+"onyomi": "ニホンゴ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_003",
+"word": "前に",
+"reading": "まえに",
+"romaji": "mae ni",
+"meaning": "Trước khi...",
+"pos": "grammar",
+"pitch_accent": "mae ni",
+"example_jp": "寝る前に本を読みます。",
+"example_jp_formatted": "[寝]{ね}る[前]{まえ}に[本]{ほん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc sách trước khi đi ngủ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thời-gian", "bài-18"],
+"notes": "Dùng với động từ thể từ điển hoặc danh từ (kèm の).",
+"synonyms": [],
+"antonyms": ["後で"],
+"kanji_info": [
+{
+"kanji": "前",
+"meaning": "trước",
+"onyomi": "ゼン",
+"kunyomi": "まえ"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_004",
+"word": "辞書形",
+"reading": "じしょけい",
+"romaji": "jishokei",
+"meaning": "Thể từ điển (động từ)",
+"pos": "noun",
+"pitch_accent": "jishokei",
+"example_jp": "動詞の辞書形を覚えましょう。",
+"example_jp_formatted": "[動詞]{どうし}の[辞書形]{じしょけい}を[覚]{おぼ}えましょう。",
+"example_vi": "Hãy ghi nhớ thể từ điển của động từ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "động-từ", "bài-18"],
+"notes": "Còn gọi là thể nguyên dạng.",
+"synonyms": [],
+"antonyms": ["ます形"],
+"kanji_info": [
+{
+"kanji": "辞書形",
+"meaning": "thể từ điển",
+"onyomi": "ジショケイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_005",
+"word": "歌います",
+"reading": "うたいます",
+"romaji": "utaimasu",
+"meaning": "Hát",
+"pos": "verb",
+"pitch_accent": "utaimasu",
+"example_jp": "歌うことが好きです。",
+"example_jp_formatted": "[歌]{うた}うことが[好]{す}きです。",
+"example_vi": "Tôi thích hát.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 歌う (うたう).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "歌",
+"meaning": "hát/bài hát",
+"onyomi": "カ",
+"kunyomi": "うた.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_006",
+"word": "弾きます",
+"reading": "ひきます",
+"romaji": "hikimasu",
+"meaning": "Chơi (nhạc cụ)",
+"pos": "verb",
+"pitch_accent": "hikimasu",
+"example_jp": "ピアノを弾くことができます。",
+"example_jp_formatted": "[ピアノ]{ぴあの}を[弾]{ひ}くことができます。",
+"example_vi": "Tôi có thể chơi piano.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 弾く (ひく).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "弾",
+"meaning": "chơi (nhạc cụ)",
+"onyomi": "ダン",
+"kunyomi": "ひ.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_007",
+"word": "集めます",
+"reading": "あつめます",
+"romaji": "atsumemasu",
+"meaning": "Sưu tầm/Tập hợp",
+"pos": "verb",
+"pitch_accent": "atsumemasu",
+"example_jp": "切手を集めるのが趣味です。",
+"example_jp_formatted": "[切手]{きって}を[集]{あつ}めるのが[趣味]{しゅみ}です。",
+"example_vi": "Sưu tầm tem là sở thích của tôi.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 集める (あつめる).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "集",
+"meaning": "tập hợp/thu thập",
+"onyomi": "シュウ",
+"kunyomi": "あつ.める"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_008",
+"word": "登ります",
+"reading": "のぼります",
+"romaji": "noborimasu",
+"meaning": "Leo (núi)",
+"pos": "verb",
+"pitch_accent": "noborimasu",
+"example_jp": "富士山に登ります。",
+"example_jp_formatted": "[富士山]{ふじさん}に[登]{のぼ}ります。",
+"example_vi": "Tôi sẽ leo núi Phú Sĩ.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 登る (のぼる).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "登",
+"meaning": "leo",
+"onyomi": "トウ",
+"kunyomi": "のぼ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_009",
+"word": "旅行します",
+"reading": "りょこうします",
+"romaji": "ryokou shimasu",
+"meaning": "Du lịch",
+"pos": "verb",
+"pitch_accent": "ryokou shimasu",
+"example_jp": "日本へ旅行するのが夢です。",
+"example_jp_formatted": "[日本]{にほん}へ[旅行]{りょこう}するのが[夢]{ゆめ}です。",
+"example_vi": "Đi du lịch Nhật Bản là mơ ước của tôi.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 旅行する (りょこうする).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_010",
+"word": "料理します",
+"reading": "りょうりします",
+"romaji": "ryouri shimasu",
+"meaning": "Nấu ăn",
+"pos": "verb",
+"pitch_accent": "ryouri shimasu",
+"example_jp": "料理することが好きです。",
+"example_jp_formatted": "[料理]{りょうり}することが[好]{す}きです。",
+"example_vi": "Tôi thích nấu ăn.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 料理する (りょうりする).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "料理",
+"meaning": "nấu ăn/món ăn",
+"onyomi": "リョウリ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_011",
+"word": "読みます",
+"reading": "よみます",
+"romaji": "yomimasu",
+"meaning": "Đọc",
+"pos": "verb",
+"pitch_accent": "yomimasu",
+"example_jp": "寝る前に本を読む。",
+"example_jp_formatted": "[寝]{ね}る[前]{まえ}に[本]{ほん}を[読]{よ}む。",
+"example_vi": "Đọc sách trước khi ngủ.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 読む (よむ).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_012",
+"word": "書きます",
+"reading": "かきます",
+"romaji": "kakimasu",
+"meaning": "Viết",
+"pos": "verb",
+"pitch_accent": "kakimasu",
+"example_jp": "手紙を書くことができます。",
+"example_jp_formatted": "[手紙]{てがみ}を[書]{か}くことができます。",
+"example_vi": "Tôi có thể viết thư.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 書く (かく).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "書",
+"meaning": "viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_013",
+"word": "運転します",
+"reading": "うんてんします",
+"romaji": "unten shimasu",
+"meaning": "Lái xe",
+"pos": "verb",
+"pitch_accent": "unten shimasu",
+"example_jp": "車を運転することができます。",
+"example_jp_formatted": "[車]{くるま}を[運転]{うんてん}することができます。",
+"example_vi": "Tôi có thể lái xe hơi.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 運転する (うんてんする).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "運転",
+"meaning": "lái xe",
+"onyomi": "ウンテン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_014",
+"word": "泳ぎます",
+"reading": "およぎます",
+"romaji": "oyogimasu",
+"meaning": "Bơi",
+"pos": "verb",
+"pitch_accent": "oyogimasu",
+"example_jp": "海で泳ぐのは楽しいです。",
+"example_jp_formatted": "[海]{うみ}で[泳]{およ}ぐのは[楽]{たの}しいです。",
+"example_vi": "Bơi ở biển thì rất vui.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 泳ぐ (およぐ).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "泳",
+"meaning": "bơi",
+"onyomi": "エイ",
+"kunyomi": "およ.ぐ"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_015",
+"word": "買い物します",
+"reading": "かいものします",
+"romaji": "kaimono shimasu",
+"meaning": "Mua sắm",
+"pos": "verb",
+"pitch_accent": "kaimono shimasu",
+"example_jp": "明日、買い物する予定です。",
+"example_jp_formatted": "[明日]{あした}、[買い物]{かいもの}する[予定]{よてい}です。",
+"example_vi": "Ngày mai tôi dự định sẽ đi mua sắm.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 買い物する (かいものする).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "買い物",
+"meaning": "mua sắm",
+"onyomi": "カイモノ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_016",
+"word": "映画",
+"reading": "えいが",
+"romaji": "eiga",
+"meaning": "Phim",
+"pos": "noun",
+"pitch_accent": "eiga",
+"example_jp": "映画が好きです。",
+"example_jp_formatted": "[映画]{えいが}が[好]{す}きです。",
+"example_vi": "Tôi thích phim.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "映画",
+"meaning": "phim/điện ảnh",
+"onyomi": "エイガ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_017",
+"word": "音楽",
+"reading": "おんがく",
+"romaji": "ongaku",
+"meaning": "Âm nhạc",
+"pos": "noun",
+"pitch_accent": "ongaku",
+"example_jp": "音楽を聴くことが好きです。",
+"example_jp_formatted": "[音楽]{おんがく}を[聴]{き}くことが[好]{す}きです。",
+"example_vi": "Tôi thích nghe nhạc.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "音楽",
+"meaning": "âm nhạc",
+"onyomi": "オンガク",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_018",
+"word": "山",
+"reading": "やま",
+"romaji": "yama",
+"meaning": "Núi",
+"pos": "noun",
+"pitch_accent": "yama",
+"example_jp": "山に登るのが好きです。",
+"example_jp_formatted": "[山]{やま}に[登]{のぼ}るのが[好]{す}きです。",
+"example_vi": "Tôi thích leo núi.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["海"],
+"kanji_info": [
+{
+"kanji": "山",
+"meaning": "núi",
+"onyomi": "サン",
+"kunyomi": "やま"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_019",
+"word": "写真",
+"reading": "しゃしん",
+"romaji": "shashin",
+"meaning": "Ảnh/Hình ảnh",
+"pos": "noun",
+"pitch_accent": "shashin",
+"example_jp": "写真を撮ることが趣味です。",
+"example_jp_formatted": "[写真]{しゃしん}を[撮]{と}ることが[趣味]{しゅみ}です。",
+"example_vi": "Sở thích của tôi là chụp ảnh.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "写真",
+"meaning": "ảnh",
+"onyomi": "シャシン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_020",
+"word": "撮ります",
+"reading": "とります",
+"romaji": "torimasu",
+"meaning": "Chụp (ảnh)",
+"pos": "verb",
+"pitch_accent": "torimasu",
+"example_jp": "写真を撮る。",
+"example_jp_formatted": "[写真]{しゃしん}を[撮]{と}る。",
+"example_vi": "Chụp ảnh.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 撮る (とる).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "撮",
+"meaning": "chụp (ảnh)",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_021",
+"word": "待ちます",
+"reading": "まちます",
+"romaji": "machimasu",
+"meaning": "Chờ/Đợi",
+"pos": "verb",
+"pitch_accent": "machimasu",
+"example_jp": "駅で友達を待つ。",
+"example_jp_formatted": "[駅]{えき}で[友達]{ともだち}を[待]{ま}つ。",
+"example_vi": "Đợi bạn ở nhà ga.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 待つ (まつ).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "待",
+"meaning": "chờ/đợi",
+"onyomi": "タイ",
+"kunyomi": "ま.つ"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_022",
+"word": "送ります",
+"reading": "おくります",
+"romaji": "okurimasu",
+"meaning": "Gửi (hàng hóa, thư)",
+"pos": "verb",
+"pitch_accent": "okurimasu",
+"example_jp": "荷物を送る。",
+"example_jp_formatted": "[荷物]{にもつ}を[送]{おく}る。",
+"example_vi": "Gửi hành lý.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 送る (おくる).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "送",
+"meaning": "gửi",
+"onyomi": "ソウ",
+"kunyomi": "おく.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_023",
+"word": "使います",
+"reading": "つかいます",
+"romaji": "tsukaimasu",
+"meaning": "Sử dụng",
+"pos": "verb",
+"pitch_accent": "tsukaimasu",
+"example_jp": "辞書を使う。",
+"example_jp_formatted": "[辞書]{じしょ}を[使]{つか}う。",
+"example_vi": "Sử dụng từ điển.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 使う (つかう).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "使",
+"meaning": "sử dụng",
+"onyomi": "シ",
+"kunyomi": "つか.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_024",
+"word": "作ります",
+"reading": "つくります",
+"romaji": "tsukurimasu",
+"meaning": "Làm/Tạo ra",
+"pos": "verb",
+"pitch_accent": "tsukurimasu",
+"example_jp": "料理を作る。",
+"example_jp_formatted": "[料理]{りょうり}を[作]{つく}る。",
+"example_vi": "Nấu ăn (làm món ăn).",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 作る (つくる).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "作",
+"meaning": "làm",
+"onyomi": "サク",
+"kunyomi": "つく.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_025",
+"word": "事",
+"reading": "こと",
+"romaji": "koto",
+"meaning": "Việc (danh từ hóa)",
+"pos": "noun",
+"pitch_accent": "koto",
+"example_jp": "日本語を話すこと。",
+"example_jp_formatted": "[日本語]{にほんご}を[話]{はな}すこと。",
+"example_vi": "Việc nói tiếng Nhật.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-18"],
+"notes": "Dùng để danh từ hóa động từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "事",
+"meaning": "việc/sự việc",
+"onyomi": "ジ",
+"kunyomi": "こと"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_026",
+"word": "ピアノ",
+"reading": "ぴあの",
+"romaji": "piano",
+"meaning": "Đàn Piano",
+"pos": "noun",
+"pitch_accent": "pi_ano",
+"example_jp": "ピアノを弾くことが好きです。",
+"example_jp_formatted": "[ピアノ]{ぴあの}を[弾]{ひ}くことが[好]{す}きです。",
+"example_vi": "Tôi thích chơi đàn piano.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "Từ mượn (Katakana).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_18_027",
+"word": "食事",
+"reading": "しょくじ",
+"romaji": "shokuji",
+"meaning": "Bữa ăn",
+"pos": "noun",
+"pitch_accent": "shokuji",
+"example_jp": "食事の前に手を洗います。",
+"example_jp_formatted": "[食事]{しょくじ}の[前]{まえ}に[手]{て}を[洗]{あら}います。",
+"example_vi": "Rửa tay trước bữa ăn.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食事",
+"meaning": "bữa ăn",
+"onyomi": "ショクジ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_18_028",
+"word": "釣り",
+"reading": "つり",
+"romaji": "tsuri",
+"meaning": "Câu cá",
+"pos": "noun",
+"pitch_accent": "tsuri",
+"example_jp": "趣味は釣りです。",
+"example_jp_formatted": "[趣味]{しゅみ}は[釣]{つ}りです。",
+"example_vi": "Sở thích là câu cá.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "釣り",
+"meaning": "câu cá",
+"onyomi": "",
+"kunyomi": "つ.り"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_029",
+"word": "見ます",
+"reading": "みます",
+"romaji": "mimasu",
+"meaning": "Xem/Nhìn",
+"pos": "verb",
+"pitch_accent": "mimasu",
+"example_jp": "映画を見る。",
+"example_jp_formatted": "[映画]{えいが}を[見]{み}る。",
+"example_vi": "Xem phim.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 見る (みる).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "見",
+"meaning": "nhìn/xem",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_030",
+"word": "寝ます",
+"reading": "ねます",
+"romaji": "nemasu",
+"meaning": "Ngủ",
+"pos": "verb",
+"pitch_accent": "nemasu",
+"example_jp": "寝る前に歯を磨きます。",
+"example_jp_formatted": "[寝]{ね}る[前]{まえ}に[歯]{は}を[磨]{みが}きます。",
+"example_vi": "Đánh răng trước khi ngủ.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 寝る (ねる).",
+"synonyms": [],
+"antonyms": ["起きます"],
+"kanji_info": [
+{
+"kanji": "寝",
+"meaning": "ngủ",
+"onyomi": "シン",
+"kunyomi": "ね.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_031",
+"word": "行きます",
+"reading": "いきます",
+"romaji": "ikimasu",
+"meaning": "Đi",
+"pos": "verb",
+"pitch_accent": "ikimasu",
+"example_jp": "会社へ行く。",
+"example_jp_formatted": "[会社]{かいしゃ}へ[行]{い}く。",
+"example_vi": "Đi đến công ty.",
+"level": "N5",
+"tags": ["động-từ", "bài-18"],
+"notes": "Thể từ điển: 行く (いく).",
+"synonyms": [],
+"antonyms": ["来ます"],
+"kanji_info": [
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_032",
+"word": "踊り",
+"reading": "おどり",
+"romaji": "odori",
+"meaning": "Điệu nhảy/Múa",
+"pos": "noun",
+"pitch_accent": "odori",
+"example_jp": "踊りが上手です。",
+"example_jp_formatted": "[踊]{おど}りが[上手]{じょうず}です。",
+"example_vi": "Nhảy giỏi.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "踊り",
+"meaning": "nhảy/múa",
+"onyomi": "ヨウ",
+"kunyomi": "おど.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_18_033",
+"word": "スカイダイビング",
+"reading": "すかいだいびんぐ",
+"romaji": "sukaidaibingu",
+"meaning": "Nhảy dù (Skydive)",
+"pos": "noun",
+"pitch_accent": "sukaidaibingu",
+"example_jp": "スカイダイビングをすることができます。",
+"example_jp_formatted": "[スカイダイビング]{すかいだいびんぐ}をすることができます。",
+"example_vi": "Tôi có thể nhảy dù.",
+"level": "N5",
+"tags": ["danh-từ", "bài-18"],
+"notes": "Từ mượn.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+}
+]

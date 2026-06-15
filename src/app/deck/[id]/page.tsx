@@ -19,7 +19,11 @@ export default async function DeckPage({
   // Nếu KHÔNG PHẢI deck custom, Server mới tìm đọc file JSON cứng
   if (!isCustomDeck) {
     try {
-      const filePath = path.join(process.cwd(), "public", "data", `${id}.json`);
+      // Trích xuất cấp độ (n5, n4...) từ ID để làm tên thư mục con
+      const levelMatch = id.match(/n[1-5]/i);
+      const subFolder = levelMatch ? levelMatch[0].toLowerCase() : "";
+      
+      const filePath = path.join(process.cwd(), "public", "data", subFolder, `${id}.json`);
       const fileContents = await fs.readFile(filePath, "utf8");
       cards = JSON.parse(fileContents);
     } catch (error) {

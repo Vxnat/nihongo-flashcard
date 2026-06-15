@@ -161,7 +161,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     learningTimeToday: 0,
     lastActiveDate: new Date().toLocaleDateString("en-CA"),
     // --- GACHA & QUESTS ---
-    coins: 1000,
+    coins: 0,
     inventory: [],
     equippedSticker: null,
     dailyQuests: { date: "", quests: DEFAULT_QUESTS },

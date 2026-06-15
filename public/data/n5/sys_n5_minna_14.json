@@ -1,0 +1,917 @@
+[
+{
+"id": "sys_n5_minna_14_001",
+"word": "開けます",
+"reading": "あけます",
+"romaji": "akemasu",
+"meaning": "Mở",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "窓を開けてください。",
+"example_jp_formatted": "[窓]{まど}を[開]{あ}けてください。",
+"example_vi": "Xin hãy mở cửa sổ.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 2. Thể て: 開けて.",
+"synonyms": [],
+"antonyms": ["閉めます"],
+"kanji_info": [
+{
+"kanji": "開",
+"meaning": "mở",
+"onyomi": "カイ",
+"kunyomi": "あ.ける, ひら.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_002",
+"word": "閉めます",
+"reading": "しめます",
+"romaji": "shimemasu",
+"meaning": "Đóng",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "窓を閉めてください。",
+"example_jp_formatted": "[窓]{まど}を[閉]{し}めてください。",
+"example_vi": "Xin hãy đóng cửa sổ.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 2. Thể て: 閉めて.",
+"synonyms": [],
+"antonyms": ["開けます"],
+"kanji_info": [
+{
+"kanji": "閉",
+"meaning": "đóng",
+"onyomi": "ヘイ",
+"kunyomi": "し.める, と.じる"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_003",
+"word": "急ぎます",
+"reading": "いそぎます",
+"romaji": "isogimasu",
+"meaning": "Vội, nhanh lên",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "少し急いでください。",
+"example_jp_formatted": "[少]{すこ}し[急]{いそ}いでください。",
+"example_vi": "Xin hãy nhanh lên một chút.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 急いで.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "急",
+"meaning": "gấp, nhanh",
+"onyomi": "キュウ",
+"kunyomi": "いそ.ぐ"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_004",
+"word": "待ちます",
+"reading": "まちます",
+"romaji": "machimasu",
+"meaning": "Đợi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "ここで少し待ってください。",
+"example_jp_formatted": "ここで[少]{すこ}し[待]{ま}ってください。",
+"example_vi": "Xin hãy đợi ở đây một chút.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 待って.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "待",
+"meaning": "đợi",
+"onyomi": "タイ",
+"kunyomi": "ま.つ"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_005",
+"word": "止めます",
+"reading": "とめます",
+"romaji": "tomemasu",
+"meaning": "Dừng, đỗ",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "車を止めてください。",
+"example_jp_formatted": "[車]{くるま}を[止]{と}めてください。",
+"example_vi": "Xin hãy dừng/đỗ xe.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 2. Thể て: 止めて.",
+"synonyms": [],
+"antonyms": ["動かします"],
+"kanji_info": [
+{
+"kanji": "止",
+"meaning": "dừng",
+"onyomi": "シ",
+"kunyomi": "と.まる, と.める"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_006",
+"word": "座ります",
+"reading": "すわります",
+"romaji": "suwarimasu",
+"meaning": "Ngồi",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "ここに座ってください。",
+"example_jp_formatted": "ここに[座]{すわ}ってください。",
+"example_vi": "Xin hãy ngồi ở đây.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 座って.",
+"synonyms": [],
+"antonyms": ["立ちます"],
+"kanji_info": [
+{
+"kanji": "座",
+"meaning": "ngồi",
+"onyomi": "ザ",
+"kunyomi": "すわ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_007",
+"word": "立ちます",
+"reading": "たちます",
+"romaji": "tachimasu",
+"meaning": "Đứng",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "ここで立ってください。",
+"example_jp_formatted": "ここで[立]{た}ってください。",
+"example_vi": "Xin hãy đứng ở đây.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 立って.",
+"synonyms": [],
+"antonyms": ["座ります"],
+"kanji_info": [
+{
+"kanji": "立",
+"meaning": "đứng",
+"onyomi": "リツ, リュウ",
+"kunyomi": "た.つ, た.てる"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_008",
+"word": "使います",
+"reading": "つかいます",
+"romaji": "tsukaimasu",
+"meaning": "Dùng, sử dụng",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "この辞書を使ってもいいです。",
+"example_jp_formatted": "この[辞書]{じしょ}を[使]{つか}ってもいいです。",
+"example_vi": "Tôi có thể dùng quyển từ điển này không?",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 使って.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "使",
+"meaning": "dùng",
+"onyomi": "シ",
+"kunyomi": "つか.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_009",
+"word": "手伝います",
+"reading": "てつだいます",
+"romaji": "tetsudaimasu",
+"meaning": "Giúp đỡ",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "少し手伝ってください。",
+"example_jp_formatted": "[少]{すこ}し[手伝]{てつだ}ってください。",
+"example_vi": "Xin hãy giúp tôi một chút.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 手伝って.",
+"synonyms": [],
+"antonyms": ["休みます"],
+"kanji_info": [
+{
+"kanji": "手",
+"meaning": "tay",
+"onyomi": "シュ",
+"kunyomi": "て"
+},
+{
+"kanji": "伝",
+"meaning": "truyền, giúp",
+"onyomi": "デン",
+"kunyomi": "つた.わる, つた.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_010",
+"word": "呼びます",
+"reading": "よびます",
+"romaji": "yobimasu",
+"meaning": "Gọi",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "先生を呼んでください。",
+"example_jp_formatted": "[先生]{せんせい}を[呼]{よ}んでください。",
+"example_vi": "Xin hãy gọi thầy/cô giáo.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 呼んで.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "呼",
+"meaning": "gọi",
+"onyomi": "コ",
+"kunyomi": "よ.ぶ"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_011",
+"word": "持ちます",
+"reading": "もちます",
+"romaji": "mochimasu",
+"meaning": "Cầm, mang",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "荷物を持ってください。",
+"example_jp_formatted": "[荷物]{にもつ}を[持]{も}ってください。",
+"example_vi": "Xin hãy cầm/mang hành lý.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 持って.",
+"synonyms": [],
+"antonyms": ["置きます"],
+"kanji_info": [
+{
+"kanji": "持",
+"meaning": "cầm, giữ, mang",
+"onyomi": "ジ",
+"kunyomi": "も.つ"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_012",
+"word": "入ります",
+"reading": "はいります",
+"romaji": "hairimasu",
+"meaning": "Vào",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "会議室に入ってもいいですか。",
+"example_jp_formatted": "[会議室]{かいぎしつ}に[入]{はい}ってもいいですか。",
+"example_vi": "Tôi có thể vào phòng họp không?",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 入って.",
+"synonyms": [],
+"antonyms": ["出ます"],
+"kanji_info": [
+{
+"kanji": "入",
+"meaning": "vào",
+"onyomi": "ニュウ",
+"kunyomi": "い.る, はい.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_013",
+"word": "出ます",
+"reading": "でます",
+"romaji": "demasu",
+"meaning": "Ra, rời đi",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "部屋を出てください。",
+"example_jp_formatted": "[部屋]{へや}を[出]{で}てください。",
+"example_vi": "Xin hãy ra khỏi phòng.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 2. Thể て: 出て.",
+"synonyms": [],
+"antonyms": ["入ります"],
+"kanji_info": [
+{
+"kanji": "出",
+"meaning": "ra, xuất",
+"onyomi": "シュツ",
+"kunyomi": "で.る, だ.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_014",
+"word": "押します",
+"reading": "おします",
+"romaji": "oshimasu",
+"meaning": "Ấn, bấm",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "このボタンを押してください。",
+"example_jp_formatted": "このボタンを[押]{お}してください。",
+"example_vi": "Xin hãy bấm nút này.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 押して.",
+"synonyms": [],
+"antonyms": ["引きます"],
+"kanji_info": [
+{
+"kanji": "押",
+"meaning": "ấn, đẩy",
+"onyomi": "オウ",
+"kunyomi": "お.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_015",
+"word": "消します",
+"reading": "けします",
+"romaji": "keshimasu",
+"meaning": "Tắt, xóa",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "電気を消してください。",
+"example_jp_formatted": "[電気]{でんき}を[消]{け}してください。",
+"example_vi": "Xin hãy tắt đèn/điện.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 消して.",
+"synonyms": [],
+"antonyms": ["つけます"],
+"kanji_info": [
+{
+"kanji": "消",
+"meaning": "tắt, xóa, biến mất",
+"onyomi": "ショウ",
+"kunyomi": "き.える, け.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_016",
+"word": "見せます",
+"reading": "みせます",
+"romaji": "misemasu",
+"meaning": "Cho xem",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "ノートを見せてください。",
+"example_jp_formatted": "ノートを[見]{み}せてください。",
+"example_vi": "Xin hãy cho tôi xem vở.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 2. Thể て: 見せて.",
+"synonyms": [],
+"antonyms": ["隠します"],
+"kanji_info": [
+{
+"kanji": "見",
+"meaning": "nhìn, xem",
+"onyomi": "ケン",
+"kunyomi": "み.る, み.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_017",
+"word": "教えます",
+"reading": "おしえます",
+"romaji": "oshiemasu",
+"meaning": "Dạy, chỉ cho biết",
+"pos": "verb_group2",
+"pitch_accent": "nakadaka",
+"example_jp": "漢字を教えてください。",
+"example_jp_formatted": "[漢字]{かんじ}を[教]{おし}えてください。",
+"example_vi": "Xin hãy dạy/chỉ cho tôi chữ Hán.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 2. Thể て: 教えて.",
+"synonyms": [],
+"antonyms": ["忘れます"],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "dạy, chỉ",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_018",
+"word": "聞きます",
+"reading": "ききます",
+"romaji": "kikimasu",
+"meaning": "Nghe, hỏi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "先生に聞いてください。",
+"example_jp_formatted": "[先生]{せんせい}に[聞]{き}いてください。",
+"example_vi": "Xin hãy hỏi thầy/cô giáo.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 聞いて.",
+"synonyms": [],
+"antonyms": ["話します"],
+"kanji_info": [
+{
+"kanji": "聞",
+"meaning": "nghe, hỏi",
+"onyomi": "ブン, モン",
+"kunyomi": "き.く, き.こえる"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_019",
+"word": "読みます",
+"reading": "よみます",
+"romaji": "yomimasu",
+"meaning": "Đọc",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "この本を読んでください。",
+"example_jp_formatted": "この[本]{ほん}を[読]{よ}んでください。",
+"example_vi": "Xin hãy đọc quyển sách này.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 読んで.",
+"synonyms": [],
+"antonyms": ["書きます"],
+"kanji_info": [
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_020",
+"word": "書きます",
+"reading": "かきます",
+"romaji": "kakimasu",
+"meaning": "Viết",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "名前を書いてください。",
+"example_jp_formatted": "[名前]{なまえ}を[書]{か}いてください。",
+"example_vi": "Xin hãy viết tên.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 書いて.",
+"synonyms": [],
+"antonyms": ["読みます"],
+"kanji_info": [
+{
+"kanji": "書",
+"meaning": "viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_021",
+"word": "撮ります",
+"reading": "とります",
+"romaji": "torimasu",
+"meaning": "Chụp (ảnh)",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "ここで写真を撮ってもいいですか。",
+"example_jp_formatted": "ここで[写真]{しゃしん}を[撮]{と}ってもいいですか。",
+"example_vi": "Tôi có thể chụp ảnh ở đây không?",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 撮って.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "撮",
+"meaning": "chụp, nắm",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_022",
+"word": "吸います",
+"reading": "すいます",
+"romaji": "suimasu",
+"meaning": "Hút",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "教室でたばこを吸ってはいけません。",
+"example_jp_formatted": "[教室]{きょうしつ}でたばこを[吸]{す}ってはいけません。",
+"example_vi": "Không được hút thuốc trong lớp học.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 吸って.",
+"synonyms": [],
+"antonyms": ["やめます"],
+"kanji_info": [
+{
+"kanji": "吸",
+"meaning": "hút, hít",
+"onyomi": "キュウ",
+"kunyomi": "す.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_023",
+"word": "渡ります",
+"reading": "わたります",
+"romaji": "watarimasu",
+"meaning": "Băng qua",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "横断歩道を渡ってください。",
+"example_jp_formatted": "[横断歩道]{おうだんほどう}を[渡]{わた}ってください。",
+"example_vi": "Xin hãy băng qua đường ở vạch qua đường.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 渡って.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "渡",
+"meaning": "băng qua, trao",
+"onyomi": "ト",
+"kunyomi": "わた.る, わた.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_024",
+"word": "曲がります",
+"reading": "まがります",
+"romaji": "magarimasu",
+"meaning": "Rẽ, quẹo",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "右に曲がってください。",
+"example_jp_formatted": "[右]{みぎ}に[曲]{ま}がってください。",
+"example_vi": "Xin hãy rẽ phải.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 曲がって.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "曲",
+"meaning": "uốn, rẽ",
+"onyomi": "キョク",
+"kunyomi": "ま.がる"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_025",
+"word": "返します",
+"reading": "かえします",
+"romaji": "kaeshimasu",
+"meaning": "Trả lại",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "本を返してください。",
+"example_jp_formatted": "[本]{ほん}を[返]{かえ}してください。",
+"example_vi": "Xin hãy trả lại quyển sách.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 返して.",
+"synonyms": [],
+"antonyms": ["借ります"],
+"kanji_info": [
+{
+"kanji": "返",
+"meaning": "trả lại",
+"onyomi": "ヘン",
+"kunyomi": "かえ.す, かえ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_026",
+"word": "貸します",
+"reading": "かします",
+"romaji": "kashimasu",
+"meaning": "Cho mượn",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "辞書を貸してください。",
+"example_jp_formatted": "[辞書]{じしょ}を[貸]{か}してください。",
+"example_vi": "Xin hãy cho tôi mượn từ điển.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 貸して.",
+"synonyms": [],
+"antonyms": ["借ります"],
+"kanji_info": [
+{
+"kanji": "貸",
+"meaning": "cho mượn",
+"onyomi": "タイ",
+"kunyomi": "か.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_027",
+"word": "借ります",
+"reading": "かります",
+"romaji": "karimasu",
+"meaning": "Mượn",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "辞書を借りてもいいですか。",
+"example_jp_formatted": "[辞書]{じしょ}を[借]{か}りてもいいですか。",
+"example_vi": "Tôi có thể mượn từ điển không?",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 借りて.",
+"synonyms": [],
+"antonyms": ["貸します"],
+"kanji_info": [
+{
+"kanji": "借",
+"meaning": "mượn, vay",
+"onyomi": "シャク",
+"kunyomi": "か.りる"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_028",
+"word": "置きます",
+"reading": "おきます",
+"romaji": "okimasu",
+"meaning": "Đặt, để",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "荷物を机の上に置いてください。",
+"example_jp_formatted": "[荷物]{にもつ}を[机]{つくえ}の[上]{うえ}に[置]{お}いてください。",
+"example_vi": "Xin hãy đặt hành lý lên trên bàn.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 置いて.",
+"synonyms": [],
+"antonyms": ["持ちます"],
+"kanji_info": [
+{
+"kanji": "置",
+"meaning": "đặt, để",
+"onyomi": "チ",
+"kunyomi": "お.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_029",
+"word": "片付けます",
+"reading": "かたづけます",
+"romaji": "katazukemasu",
+"meaning": "Dọn dẹp, sắp xếp",
+"pos": "verb_group2",
+"pitch_accent": "nakadaka",
+"example_jp": "部屋を片付けてください。",
+"example_jp_formatted": "[部屋]{へや}を[片付]{かたづ}けてください。",
+"example_vi": "Xin hãy dọn phòng.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 2. Thể て: 片付けて.",
+"synonyms": ["掃除します"],
+"antonyms": ["散らかします"],
+"kanji_info": [
+{
+"kanji": "片",
+"meaning": "mảnh, một phía",
+"onyomi": "ヘン",
+"kunyomi": "かた"
+},
+{
+"kanji": "付",
+"meaning": "gắn, kèm",
+"onyomi": "フ",
+"kunyomi": "つ.く, つ.ける"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_030",
+"word": "掃除します",
+"reading": "そうじします",
+"romaji": "soujishimasu",
+"meaning": "Dọn vệ sinh, quét dọn",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "教室を掃除してください。",
+"example_jp_formatted": "[教室]{きょうしつ}を[掃除]{そうじ}してください。",
+"example_vi": "Xin hãy dọn lớp học.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ する. Thể て: 掃除して.",
+"synonyms": ["片付けます"],
+"antonyms": ["散らかします"],
+"kanji_info": [
+{
+"kanji": "掃",
+"meaning": "quét",
+"onyomi": "ソウ",
+"kunyomi": "は.く"
+},
+{
+"kanji": "除",
+"meaning": "loại bỏ",
+"onyomi": "ジョ",
+"kunyomi": "のぞ.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_031",
+"word": "洗います",
+"reading": "あらいます",
+"romaji": "araimasu",
+"meaning": "Rửa",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "手を洗ってください。",
+"example_jp_formatted": "[手]{て}を[洗]{あら}ってください。",
+"example_vi": "Xin hãy rửa tay.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 洗って.",
+"synonyms": [],
+"antonyms": ["汚します"],
+"kanji_info": [
+{
+"kanji": "洗",
+"meaning": "rửa",
+"onyomi": "セン",
+"kunyomi": "あら.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_032",
+"word": "脱ぎます",
+"reading": "ぬぎます",
+"romaji": "nugimasu",
+"meaning": "Cởi (quần áo, giày dép)",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "靴を脱いでください。",
+"example_jp_formatted": "[靴]{くつ}を[脱]{ぬ}いでください。",
+"example_vi": "Xin hãy cởi giày.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 脱いで.",
+"synonyms": [],
+"antonyms": ["履きます"],
+"kanji_info": [
+{
+"kanji": "脱",
+"meaning": "cởi, tháo",
+"onyomi": "ダツ",
+"kunyomi": "ぬ.ぐ"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_033",
+"word": "履きます",
+"reading": "はきます",
+"romaji": "hakimasu",
+"meaning": "Mang, đi (giày, quần, váy)",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "靴を履いてください。",
+"example_jp_formatted": "[靴]{くつ}を[履]{は}いてください。",
+"example_vi": "Xin hãy mang giày vào.",
+"level": "N5",
+"tags": ["động-từ", "thể-te", "bài-14"],
+"notes": "Động từ nhóm 1. Thể て: 履いて.",
+"synonyms": [],
+"antonyms": ["脱ぎます"],
+"kanji_info": [
+{
+"kanji": "履",
+"meaning": "mang, đi (giày)",
+"onyomi": "リ",
+"kunyomi": "は.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_14_034",
+"word": "Vてください",
+"reading": "てください",
+"romaji": "tekudasai",
+"meaning": "Hãy / xin hãy làm ...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "名前を書いてください。",
+"example_jp_formatted": "[名前]{なまえ}を[書]{か}いてください。",
+"example_vi": "Xin hãy viết tên.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-te", "bài-14"],
+"notes": "Mẫu yêu cầu lịch sự. Gắn với thể て của động từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_14_035",
+"word": "Vてもいいです",
+"reading": "てもいいです",
+"romaji": "temoiidesu",
+"meaning": "Được phép ..., có thể ...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "ここで写真を撮ってもいいです。",
+"example_jp_formatted": "ここで[写真]{しゃしん}を[撮]{と}ってもいいです。",
+"example_vi": "Được phép chụp ảnh ở đây.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-te", "bài-14"],
+"notes": "Mẫu xin phép / cho phép.",
+"synonyms": [],
+"antonyms": ["Vてはいけません"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_14_036",
+"word": "Vてはいけません",
+"reading": "てはいけません",
+"romaji": "tehaikemasen",
+"meaning": "Không được ...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "教室でたばこを吸ってはいけません。",
+"example_jp_formatted": "[教室]{きょうしつ}でたばこを[吸]{す}ってはいけません。",
+"example_vi": "Không được hút thuốc trong lớp học.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-te", "bài-14"],
+"notes": "Mẫu cấm đoán. Dùng khi cấm một hành động.",
+"synonyms": [],
+"antonyms": ["Vてもいいです"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_14_037",
+"word": "Vています",
+"reading": "ています",
+"romaji": "teimasu",
+"meaning": "Đang ... / trạng thái đang diễn ra",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "今、父が新聞を読んでいます。",
+"example_jp_formatted": "[今]{いま}、[父]{ちち}が[新聞]{しんぶん}を[読]{よ}んでいます。",
+"example_vi": "Bây giờ, bố tôi đang đọc báo.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-te", "bài-14"],
+"notes": "Mẫu diễn tả hành động đang diễn ra ở mức cơ bản.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+}
+]

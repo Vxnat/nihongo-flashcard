@@ -5,24 +5,30 @@ import {
   RotateCw,
   Shuffle,
   Volume2,
-  Frown,
-  Smile,
+  BookMarked,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { FlashcardData } from "@/types/flashcard";
 
 interface ControlPanelProps {
   onPrev: () => void;
   onNext: () => void;
   onFlip: () => void;
   onShuffle: () => void;
-  onKnow: () => void;
-  onReview: () => void;
   onPlayAudio: () => void;
   currentIndex: number;
   totalCards: number;
   isFlipped: boolean;
   showFurigana: boolean;
   onToggleFurigana: () => void; // Dòng mới: Cho phép toggle Furigana
+  card: FlashcardData;
 }
 
 export function ControlPanel({
@@ -30,19 +36,14 @@ export function ControlPanel({
   onNext,
   onFlip,
   onShuffle,
-  onKnow,
-  onReview,
   onPlayAudio,
   currentIndex,
   totalCards,
   isFlipped,
   showFurigana,
   onToggleFurigana, // Dòng mới: Cho phép toggle Furigana
+  card,
 }: ControlPanelProps) {
-  // Cấu hình ảnh tùy chỉnh (giữ nguyên như bạn đã setup)
-  const customSadImg = "";
-  const customHappyImg = "";
-
   // Animation Variant chuẩn phong cách "Squishy"
   const panelVariants: any = {
     hidden: { opacity: 0, y: 30, scale: 0.85 },
@@ -61,106 +62,71 @@ export function ControlPanel({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto mt-10 h-24 flex items-center justify-center relative px-2">
+    <div className="w-full max-w-md mx-auto mt-5 h-24 flex items-center justify-center relative px-2">
       <AnimatePresence mode="popLayout">
         {isFlipped ? (
-          /* ==========================================
-             TRẠNG THÁI 2: SAU KHI LẬT (CẢM XÚC & ÂM THANH)
-             ========================================== */
+          /* THANH CÔNG CỤ TIỆN ÍCH (Khi đã lật thẻ) */
           <motion.div
             key="flipped-panel"
             variants={panelVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="grid grid-cols-[50px_1fr_50px] sm:grid-cols-[80px_1fr_80px] items-center w-full"
+            className="flex items-center justify-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-md p-2 border-2 border-zinc-100 rounded-full shadow-lg"
           >
-            {/* Cụm nút tiện ích bên trái */}
-            <div className="flex flex-col gap-2">
-              <motion.button
-                layoutId="shuffle-btn"
-                transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                onClick={onShuffle}
-                className="w-10 h-10 bg-white border-2 border-zinc-200 rounded-full shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:text-zinc-600"
-              >
-                <Shuffle size={16} strokeWidth={3} />
-              </motion.button>
-
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="flex flex-col gap-2"
-              >
-                <button
-                  onClick={onPlayAudio}
-                  className="w-10 h-10 bg-[#E0F7FA] border-2 border-[#80DEEA] rounded-full shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:bg-[#B2EBF2]"
-                >
-                  <Volume2 size={18} strokeWidth={2.5} />
-                </button>
-                <button
-                  onClick={onToggleFurigana}
-                  className={`w-10 h-10 rounded-full border-2 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center font-bold font-rounded text-[17px] ${
-                    showFurigana
-                      ? "bg-[#E0F7FA] border-[#80DEEA] shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1]"
-                      : "bg-white border-zinc-200 shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 opacity-60"
-                  }`}
-                >
-                  あ
-                </button>
-              </motion.div>
-            </div>
-
-            {/* Cặp nút Cảm xúc ở giữa */}
-            <div className="flex justify-center gap-4 sm:gap-6">
-              <button
-                onClick={onReview}
-                className="relative group w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white border-4 border-[#FF7096] rounded-full shadow-[0_6px_0_0_#FF7096] sm:shadow-[0_8px_0_0_#FF7096] hover:-translate-y-1 hover:shadow-[0_10px_0_0_#FF7096] sm:hover:shadow-[0_12px_0_0_#FF7096] active:translate-y-2 active:shadow-[0_0_0_0_#FF7096] transition-all duration-200 flex items-center justify-center"
-              >
-                <span className="text-[2.5rem] group-active:scale-90 transition-transform flex items-center justify-center">
-                  {customSadImg ? (
-                    <img
-                      src={customSadImg}
-                      alt="Quên"
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
-                    />
-                  ) : (
-                    <Frown
-                      className="w-8 h-8 sm:w-11 sm:h-11 text-[#FF7096]"
-                      strokeWidth={2.5}
-                    />
-                  )}
-                </span>
-                <span className="absolute -top-3 sm:-top-3 bg-[#FF7096] text-white text-[9px] sm:text-[10px] font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
-                  Quên rùi!
-                </span>
-              </button>
-
-              <button
-                onClick={onKnow}
-                className="relative group w-16 h-16 sm:w-20 sm:h-20 shrink-0 bg-white border-4 border-[#06D6A0] rounded-full shadow-[0_6px_0_0_#06D6A0] sm:shadow-[0_8px_0_0_#06D6A0] hover:-translate-y-1 hover:shadow-[0_10px_0_0_#06D6A0] sm:hover:shadow-[0_12px_0_0_#06D6A0] active:translate-y-2 active:shadow-[0_0_0_0_#06D6A0] transition-all duration-200 flex items-center justify-center"
-              >
-                <span className="text-[2.5rem] group-active:scale-90 transition-transform flex items-center justify-center">
-                  {customHappyImg ? (
-                    <img
-                      src={customHappyImg}
-                      alt="Nhớ"
-                      className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
-                    />
-                  ) : (
-                    <Smile
-                      className="w-8 h-8 sm:w-11 sm:h-11 text-[#06D6A0]"
-                      strokeWidth={2.5}
-                    />
-                  )}
-                </span>
-                <span className="absolute -top-3 sm:-top-3 bg-[#06D6A0] text-white text-[9px] sm:text-[10px] font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full border-2 border-white shadow-sm whitespace-nowrap">
-                  Nhớ luôn!
-                </span>
-              </button>
-            </div>
-
-            {/* Cột phải trống để cân bằng grid */}
-            <div className="w-[50px] sm:w-[80px]" />
+            <button onClick={onPlayAudio} className="w-10 h-10 bg-[#E0F7FA] border-2 border-[#80DEEA] rounded-full shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:bg-[#B2EBF2]" title="Phát âm">
+              <Volume2 size={18} strokeWidth={2.5} />
+            </button>
+            <button onClick={onToggleFurigana} className={`w-10 h-10 rounded-full border-2 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center font-bold font-rounded text-[17px] ${ showFurigana ? "bg-[#E0F7FA] border-[#80DEEA] shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1]" : "bg-white border-zinc-200 shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 opacity-60" }`} title="Bật/tắt Furigana">
+              あ
+            </button>
+            {card.kanji_info && card.kanji_info.length > 0 && (
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="w-10 h-10 bg-indigo-50 border-2 border-indigo-200 rounded-full shadow-[0_4px_0_0_#C7D2FE] text-indigo-400 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:bg-indigo-100" title="Xem chi tiết Hán tự">
+                    <BookMarked size={18} strokeWidth={2.5} />
+                  </button>
+                </DialogTrigger>
+                <DialogContent aria-describedby={undefined} className="sm:max-w-[420px] w-[95vw] p-0 bg-transparent border-none shadow-none">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className="flex flex-col w-full h-full max-h-[85vh] rounded-xl overflow-hidden border-4 border-[#A0E8D5] shadow-2xl bg-[#FDFBF7]"
+                  >
+                    <DialogHeader className="bg-[#06D6A0] p-5 pb-6 border-b-4 border-[#A0E8D5] shrink-0 text-center">
+                      <DialogTitle className="text-2xl text-white tracking-wider" style={{ fontFamily: "var(--font-cherry)" }}>
+                        Chi tiết Hán tự
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="p-5 overflow-y-auto hide-scrollbar">
+                      <div className="grid grid-cols-1 gap-3">
+                        {card.kanji_info.map((kanjiItem, index) => (
+                          <div key={index} className="flex items-center gap-3 bg-white p-3 rounded-2xl border-2 border-[#A0E8D5] shadow-[0_4px_0_0_#A0E8D5]">
+                            <span className="text-4xl text-[#FF9F1C]" style={{ fontFamily: "var(--font-cherry)" }}>
+                              {kanjiItem.kanji}
+                            </span>
+                            <div className="flex flex-col font-rounded text-xs font-bold space-y-1 w-full overflow-hidden">
+                              <div className="bg-orange-50 px-2 py-1 rounded-lg text-orange-800 border border-orange-100 flex justify-between gap-2">
+                                <span>ON:</span>
+                                <span className="text-[#FF9F1C] truncate text-right" title={kanjiItem.onyomi}>{kanjiItem.onyomi || "---"}</span>
+                              </div>
+                              <div className="bg-pink-50 px-2 py-1 rounded-lg text-pink-800 border border-pink-100 flex justify-between gap-2">
+                                <span>KUN:</span>
+                                <span className="text-[#FF7096] truncate text-right" title={kanjiItem.kunyomi}>{kanjiItem.kunyomi || "---"}</span>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                </DialogContent>
+              </Dialog>
+            )}
+            <button onClick={onShuffle} className="w-10 h-10 bg-white border-2 border-zinc-200 rounded-full shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:text-zinc-600" title="Xáo bài">
+              <Shuffle size={16} strokeWidth={3} />
+            </button>
           </motion.div>
         ) : (
           /* ==========================================

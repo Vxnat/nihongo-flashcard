@@ -64,7 +64,6 @@ export function DeckWordList({
       <DialogContent
         aria-describedby={undefined}
         className="sm:max-w-[450px] w-[95vw] max-h-[85vh] p-0 bg-transparent border-none shadow-none"
-        onOpenAutoFocus={(e) => e.preventDefault()}
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}

@@ -1,0 +1,767 @@
+[
+{
+"id": "sys_n5_minna_13_001",
+"word": "欲しい",
+"reading": "ほしい",
+"romaji": "hoshii",
+"meaning": "Muốn có",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "新しい車が欲しいです。",
+"example_jp_formatted": "[新]{あたら}しい[車]{くるま}が[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có một chiếc xe mới.",
+"level": "N5",
+"tags": ["mong-muốn", "tính-từ", "bài-13"],
+"notes": "Dùng để diễn tả mong muốn sở hữu một vật gì đó.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "欲",
+"meaning": "dục, mong muốn",
+"onyomi": "ヨク",
+"kunyomi": "ほ.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_002",
+"word": "行きたい",
+"reading": "いきたい",
+"romaji": "ikitai",
+"meaning": "Muốn đi",
+"pos": "verb_tai",
+"pitch_accent": "nakadaka",
+"example_jp": "日本へ行きたいです。",
+"example_jp_formatted": "[日本]{にほん}へ[行]{い}きたいです。",
+"example_vi": "Tôi muốn đi Nhật Bản.",
+"level": "N5",
+"tags": ["mong-muốn", "thể-tai", "bài-13"],
+"notes": "Được tạo từ động từ 行きます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_003",
+"word": "食べたい",
+"reading": "たべたい",
+"romaji": "tabetai",
+"meaning": "Muốn ăn",
+"pos": "verb_tai",
+"pitch_accent": "heiban",
+"example_jp": "寿司を食べたいです。",
+"example_jp_formatted": "[寿司]{すし}を[食]{た}べたいです。",
+"example_vi": "Tôi muốn ăn sushi.",
+"level": "N5",
+"tags": ["mong-muốn", "ăn-uống", "bài-13"],
+"notes": "Được tạo từ 食べます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_004",
+"word": "飲みたい",
+"reading": "のみたい",
+"romaji": "nomitai",
+"meaning": "Muốn uống",
+"pos": "verb_tai",
+"pitch_accent": "heiban",
+"example_jp": "水を飲みたいです。",
+"example_jp_formatted": "[水]{みず}を[飲]{の}みたいです。",
+"example_vi": "Tôi muốn uống nước.",
+"level": "N5",
+"tags": ["mong-muốn", "ăn-uống", "bài-13"],
+"notes": "Được tạo từ 飲みます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "uống",
+"onyomi": "イン",
+"kunyomi": "の.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_005",
+"word": "買いたい",
+"reading": "かいたい",
+"romaji": "kaitai",
+"meaning": "Muốn mua",
+"pos": "verb_tai",
+"pitch_accent": "heiban",
+"example_jp": "新しい本を買いたいです。",
+"example_jp_formatted": "[新]{あたら}しい[本]{ほん}を[買]{か}いたいです。",
+"example_vi": "Tôi muốn mua sách mới.",
+"level": "N5",
+"tags": ["mong-muốn", "mua-sắm", "bài-13"],
+"notes": "Được tạo từ 買います.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_006",
+"word": "見たい",
+"reading": "みたい",
+"romaji": "mitai",
+"meaning": "Muốn xem",
+"pos": "verb_tai",
+"pitch_accent": "heiban",
+"example_jp": "映画を見たいです。",
+"example_jp_formatted": "[映画]{えいが}を[見]{み}たいです。",
+"example_vi": "Tôi muốn xem phim.",
+"level": "N5",
+"tags": ["mong-muốn", "giải-trí", "bài-13"],
+"notes": "Được tạo từ 見ます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "見",
+"meaning": "xem",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_007",
+"word": "会いたい",
+"reading": "あいたい",
+"romaji": "aitai",
+"meaning": "Muốn gặp",
+"pos": "verb_tai",
+"pitch_accent": "heiban",
+"example_jp": "友達に会いたいです。",
+"example_jp_formatted": "[友達]{ともだち}に[会]{あ}いたいです。",
+"example_vi": "Tôi muốn gặp bạn bè.",
+"level": "N5",
+"tags": ["mong-muốn", "gặp-gỡ", "bài-13"],
+"notes": "Được tạo từ 会います.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_008",
+"word": "したい",
+"reading": "したい",
+"romaji": "shitai",
+"meaning": "Muốn làm",
+"pos": "verb_tai",
+"pitch_accent": "heiban",
+"example_jp": "旅行したいです。",
+"example_jp_formatted": "[旅行]{りょこう}したいです。",
+"example_vi": "Tôi muốn đi du lịch.",
+"level": "N5",
+"tags": ["mong-muốn", "thể-tai", "bài-13"],
+"notes": "Thể たい của します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_13_009",
+"word": "勉強したい",
+"reading": "べんきょうしたい",
+"romaji": "benkyou shitai",
+"meaning": "Muốn học",
+"pos": "verb_tai",
+"pitch_accent": "heiban",
+"example_jp": "日本語を勉強したいです。",
+"example_jp_formatted": "[日本語]{にほんご}を[勉強]{べんきょう}したいです。",
+"example_vi": "Tôi muốn học tiếng Nhật.",
+"level": "N5",
+"tags": ["mong-muốn", "học-tập", "bài-13"],
+"notes": "Dùng với danh từ + します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "勉強",
+"meaning": "học tập",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_010",
+"word": "旅行",
+"reading": "りょこう",
+"romaji": "ryokou",
+"meaning": "Du lịch",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "旅行したいです。",
+"example_jp_formatted": "[旅行]{りょこう}したいです。",
+"example_vi": "Tôi muốn đi du lịch.",
+"level": "N5",
+"tags": ["du-lịch", "danh-từ", "bài-13"],
+"notes": "Hoạt động thường gặp với thể たい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_011",
+"word": "温泉",
+"reading": "おんせん",
+"romaji": "onsen",
+"meaning": "Suối nước nóng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "温泉へ行きたいです。",
+"example_jp_formatted": "[温泉]{おんせん}へ[行]{い}きたいです。",
+"example_vi": "Tôi muốn đi suối nước nóng.",
+"level": "N5",
+"tags": ["du-lịch", "địa-điểm", "bài-13"],
+"notes": "Địa điểm du lịch phổ biến ở Nhật.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "温泉",
+"meaning": "suối nước nóng",
+"onyomi": "オンセン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_012",
+"word": "写真",
+"reading": "しゃしん",
+"romaji": "shashin",
+"meaning": "Ảnh",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "写真を撮りたいです。",
+"example_jp_formatted": "[写真]{しゃしん}を[撮]{と}りたいです。",
+"example_vi": "Tôi muốn chụp ảnh.",
+"level": "N5",
+"tags": ["giải-trí", "danh-từ", "bài-13"],
+"notes": "Hay dùng với 撮ります.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "写真",
+"meaning": "ảnh",
+"onyomi": "シャシン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_013",
+"word": "時間",
+"reading": "じかん",
+"romaji": "jikan",
+"meaning": "Thời gian",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "時間が欲しいです。",
+"example_jp_formatted": "[時間]{じかん}が[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có thời gian.",
+"level": "N5",
+"tags": ["mong-muốn", "danh-từ", "bài-13"],
+"notes": "Danh từ thường đi với 欲しい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "時間",
+"meaning": "thời gian",
+"onyomi": "ジカン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_014",
+"word": "お金",
+"reading": "おかね",
+"romaji": "okane",
+"meaning": "Tiền",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "お金が欲しいです。",
+"example_jp_formatted": "お[金]{かね}が[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có tiền.",
+"level": "N5",
+"tags": ["mong-muốn", "danh-từ", "bài-13"],
+"notes": "Danh từ thường đi với 欲しい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "金",
+"meaning": "tiền",
+"onyomi": "キン",
+"kunyomi": "かね"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_015",
+"word": "誕生日",
+"reading": "たんじょうび",
+"romaji": "tanjoubi",
+"meaning": "Sinh nhật",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "誕生日にプレゼントが欲しいです。",
+"example_jp_formatted": "[誕生日]{たんじょうび}にプレゼントが[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn nhận quà vào sinh nhật.",
+"level": "N5",
+"tags": ["sự-kiện", "danh-từ", "bài-13"],
+"notes": "Thường đi với プレゼント.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "誕生日",
+"meaning": "sinh nhật",
+"onyomi": "タンジョウビ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_016",
+"word": "プレゼント",
+"reading": "ぷれぜんと",
+"romaji": "purezento",
+"meaning": "Quà tặng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "プレゼントが欲しいです。",
+"example_jp_formatted": "プレゼントが[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có quà tặng.",
+"level": "N5",
+"tags": ["mong-muốn", "quà-tặng", "bài-13"],
+"notes": "Từ mượn Katakana.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_13_017",
+"word": "友達",
+"reading": "ともだち",
+"romaji": "tomodachi",
+"meaning": "Bạn bè",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "友達に会いたいです。",
+"example_jp_formatted": "[友達]{ともだち}に[会]{あ}いたいです。",
+"example_vi": "Tôi muốn gặp bạn bè.",
+"level": "N5",
+"tags": ["con-người", "danh-từ", "bài-13"],
+"notes": "Thường dùng với 会いたい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "友達",
+"meaning": "bạn bè",
+"onyomi": "ユウタツ",
+"kunyomi": "ともだち"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_018",
+"word": "日本",
+"reading": "にほん",
+"romaji": "nihon",
+"meaning": "Nhật Bản",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本へ行きたいです。",
+"example_jp_formatted": "[日本]{にほん}へ[行]{い}きたいです。",
+"example_vi": "Tôi muốn đi Nhật Bản.",
+"level": "N5",
+"tags": ["địa-danh", "du-lịch", "bài-13"],
+"notes": "Quốc gia thường xuất hiện trong ví dụ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニホン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_019",
+"word": "京都",
+"reading": "きょうと",
+"romaji": "kyouto",
+"meaning": "Kyoto",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "京都へ行きたいです。",
+"example_jp_formatted": "[京都]{きょうと}へ[行]{い}きたいです。",
+"example_vi": "Tôi muốn đi Kyoto.",
+"level": "N5",
+"tags": ["địa-danh", "du-lịch", "bài-13"],
+"notes": "Thành phố du lịch nổi tiếng.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "京都",
+"meaning": "Kyoto",
+"onyomi": "キョウト",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_020",
+"word": "映画",
+"reading": "えいが",
+"romaji": "eiga",
+"meaning": "Phim",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "映画を見たいです。",
+"example_jp_formatted": "[映画]{えいが}を[見]{み}たいです。",
+"example_vi": "Tôi muốn xem phim.",
+"level": "N5",
+"tags": ["giải-trí", "danh-từ", "bài-13"],
+"notes": "Hay dùng với 見たい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "映画",
+"meaning": "phim ảnh",
+"onyomi": "エイガ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_021",
+"word": "寿司",
+"reading": "すし",
+"romaji": "sushi",
+"meaning": "Sushi",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "寿司を食べたいです。",
+"example_jp_formatted": "[寿司]{すし}を[食]{た}べたいです。",
+"example_vi": "Tôi muốn ăn sushi.",
+"level": "N5",
+"tags": ["ẩm-thực", "danh-từ", "bài-13"],
+"notes": "Món ăn nổi tiếng của Nhật.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "寿司",
+"meaning": "sushi",
+"onyomi": "スシ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_022",
+"word": "水",
+"reading": "みず",
+"romaji": "mizu",
+"meaning": "Nước",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "水を飲みたいです。",
+"example_jp_formatted": "[水]{みず}を[飲]{の}みたいです。",
+"example_vi": "Tôi muốn uống nước.",
+"level": "N5",
+"tags": ["đồ-uống", "danh-từ", "bài-13"],
+"notes": "Thường dùng với 飲みたい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "水",
+"meaning": "nước",
+"onyomi": "スイ",
+"kunyomi": "みず"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_023",
+"word": "本",
+"reading": "ほん",
+"romaji": "hon",
+"meaning": "Sách",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "本を買いたいです。",
+"example_jp_formatted": "[本]{ほん}を[買]{か}いたいです。",
+"example_vi": "Tôi muốn mua sách.",
+"level": "N5",
+"tags": ["mua-sắm", "danh-từ", "bài-13"],
+"notes": "Danh từ thường dùng với 買いたい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "本",
+"meaning": "sách",
+"onyomi": "ホン",
+"kunyomi": "もと"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_024",
+"word": "車",
+"reading": "くるま",
+"romaji": "kuruma",
+"meaning": "Xe hơi",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "新しい車が欲しいです。",
+"example_jp_formatted": "[新]{あたら}しい[車]{くるま}が[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có xe mới.",
+"level": "N5",
+"tags": ["phương-tiện", "danh-từ", "bài-13"],
+"notes": "Ví dụ điển hình với 欲しい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "車",
+"meaning": "xe",
+"onyomi": "シャ",
+"kunyomi": "くるま"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_025",
+"word": "新しい",
+"reading": "あたらしい",
+"romaji": "atarashii",
+"meaning": "Mới",
+"pos": "adj-i",
+"pitch_accent": "heiban",
+"example_jp": "新しいカメラが欲しいです。",
+"example_jp_formatted": "[新]{あたら}しいカメラが[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có máy ảnh mới.",
+"level": "N5",
+"tags": ["tính-từ", "mong-muốn", "bài-13"],
+"notes": "Hay dùng với 欲しい.",
+"synonyms": [],
+"antonyms": ["古い"],
+"kanji_info": [
+{
+"kanji": "新",
+"meaning": "mới",
+"onyomi": "シン",
+"kunyomi": "あたら.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_026",
+"word": "撮りたい",
+"reading": "とりたい",
+"romaji": "toritai",
+"meaning": "Muốn chụp",
+"pos": "verb_tai",
+"pitch_accent": "heiban",
+"example_jp": "写真を撮りたいです。",
+"example_jp_formatted": "[写真]{しゃしん}を[撮]{と}りたいです。",
+"example_vi": "Tôi muốn chụp ảnh.",
+"level": "N5",
+"tags": ["mong-muốn", "giải-trí", "bài-13"],
+"notes": "Được tạo từ 撮ります.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "撮",
+"meaning": "chụp",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_027",
+"word": "何",
+"reading": "なに",
+"romaji": "nani",
+"meaning": "Cái gì",
+"pos": "pron",
+"pitch_accent": "heiban",
+"example_jp": "何が欲しいですか。",
+"example_jp_formatted": "[何]{なに}が[欲]{ほ}しいですか。",
+"example_vi": "Bạn muốn cái gì?",
+"level": "N5",
+"tags": ["câu-hỏi", "đại-từ", "bài-13"],
+"notes": "Dùng trong mẫu 何が欲しいですか。",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "gì",
+"onyomi": "カ",
+"kunyomi": "なに"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_028",
+"word": "どこ",
+"reading": "どこ",
+"romaji": "doko",
+"meaning": "Ở đâu",
+"pos": "pron",
+"pitch_accent": "heiban",
+"example_jp": "どこへ行きたいですか。",
+"example_jp_formatted": "どこへ[行]{い}きたいですか。",
+"example_vi": "Bạn muốn đi đâu?",
+"level": "N5",
+"tags": ["câu-hỏi", "địa-điểm", "bài-13"],
+"notes": "Dùng trong mẫu hỏi nguyện vọng.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_13_029",
+"word": "〜たいですが",
+"reading": "〜たいですが",
+"romaji": "tai desu ga",
+"meaning": "Muốn... nhưng...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "旅行したいですが、時間がありません。",
+"example_jp_formatted": "[旅行]{りょこう}したいですが、[時間]{じかん}がありません。",
+"example_vi": "Tôi muốn đi du lịch nhưng không có thời gian.",
+"level": "N5",
+"tags": ["ngữ-pháp", "mong-muốn", "bài-13"],
+"notes": "Diễn tả mong muốn nhưng có trở ngại.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_13_030",
+"word": "友達に会います",
+"reading": "ともだちにあいます",
+"romaji": "tomodachi ni aimasu",
+"meaning": "Gặp bạn bè",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "友達に会いたいです。",
+"example_jp_formatted": "[友達]{ともだち}に[会]{あ}いたいです。",
+"example_vi": "Tôi muốn gặp bạn bè.",
+"level": "N5",
+"tags": ["động-từ", "gặp-gỡ", "bài-13"],
+"notes": "Động từ gốc của 会いたい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_13_031",
+"word": "日本語",
+"reading": "にほんご",
+"romaji": "nihongo",
+"meaning": "Tiếng Nhật",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本語を勉強したいです。",
+"example_jp_formatted": "[日本語]{にほんご}を[勉強]{べんきょう}したいです。",
+"example_vi": "Tôi muốn học tiếng Nhật.",
+"level": "N5",
+"tags": ["ngôn-ngữ", "học-tập", "bài-13"],
+"notes": "Ngôn ngữ thường đi với 勉強したい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本語",
+"meaning": "tiếng Nhật",
+"onyomi": "ニホンゴ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_13_032",
+"word": "カメラ",
+"reading": "かめら",
+"romaji": "kamera",
+"meaning": "Máy ảnh",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "新しいカメラが欲しいです。",
+"example_jp_formatted": "[新]{あたら}しいカメラが[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có máy ảnh mới.",
+"level": "N5",
+"tags": ["đồ-vật", "mong-muốn", "bài-13"],
+"notes": "Danh từ thường đi với 欲しい.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+}
+]
