@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlashcardData } from "@/types/flashcard";
 import {
-  RotateCcw,
   Headphones,
+  Frown, Smile,
   Play,
   Pause,
   SkipBack,
@@ -19,6 +19,7 @@ import { ControlPanel } from "./ControlPanel";
 import { TypingBossFight } from "@/components/TypingBossFight";
 import { FallingSparkles } from "./FallingSparkles";
 import { SwipeCard } from "./SwipeCard";
+import { SwipeGuide } from "./SwipeGuide";
 import { useFlashcardDeck } from "@/hooks/useFlashcardDeck";
 import { EndScreen } from "./EndScreen";
 
@@ -54,7 +55,6 @@ export function FlashcardDeck({
     progressPercent,
     learnedCardsCount,
     totalOriginalCards,
-    tempTyping,
     setTempTyping,
     isTypingActive,
     currentIndex,
@@ -68,7 +68,6 @@ export function FlashcardDeck({
     startReview,
     handlePodcastNext,
     handleShuffle,
-    resetProgress,
     handlePlayAudio,
     toggleFullscreen,
     appMode,
@@ -77,6 +76,21 @@ export function FlashcardDeck({
     handleSwipeAction,
   } = useFlashcardDeck({ deckId, initialCards, isCustom });
 
+  const [showSwipeGuide, setShowSwipeGuide] = useState(false);
+
+  useEffect(() => {
+    const hasSeenGuide = localStorage.getItem('hasSeenSwipeGuide');
+    if (!hasSeenGuide) {
+      // Delay một chút để UI chính kịp tải rồi mới hiện hướng dẫn
+      const timer = setTimeout(() => setShowSwipeGuide(true), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleCloseGuide = () => {
+    localStorage.setItem('hasSeenSwipeGuide', 'true');
+    setShowSwipeGuide(false);
+  };
   if (!isMounted)
     return (
       <div className="h-[400px] w-full max-w-md mx-auto bg-[#FFE2D1]/30 animate-pulse rounded-[3rem]" />
@@ -130,6 +144,10 @@ export function FlashcardDeck({
   // ==========================================
   return (
     <div className="flex flex-col items-center w-full overflow-x-hidden px-4 pt-4 pb-20 min-h-[100dvh]">
+      {/* POPUP HƯỚNG DẪN VUỐT (Chỉ hiện lần đầu) */}
+      <AnimatePresence>
+        {showSwipeGuide && <SwipeGuide onClose={handleCloseGuide} />}
+      </AnimatePresence>
       {/* ZEN MODE BACKGROUND OVERLAY (Chỉ tối đi khi bật Podcast) */}
       <div
         className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 z-0 overflow-hidden ${
@@ -439,10 +457,7 @@ export function FlashcardDeck({
         // --- CHẾ ĐỘ QUẸT THẺ (MẶC ĐỊNH) ---
         <>
           {/* 2. KHU VỰC THẺ BÀI (Giữ nguyên code cũ của bạn) */}
-          <div
-            className="w-full max-w-md h-[400px] relative z-10 mt-5"
-            style={{ perspective: 1200 }}
-          >
+          <div className="w-full max-w-md h-[400px] relative z-10 mt-5" style={{ perspective: 1200 }}>
             <AnimatePresence custom={exitDir} mode="popLayout">
               <SwipeCard
                 key={currentCard.id}
@@ -462,18 +477,17 @@ export function FlashcardDeck({
             onNext={() => handleSwipeAction("right")}
             onFlip={handleFlip}
             onShuffle={handleShuffle}
-            onKnow={() => handleSwipeAction("right")}
-            onReview={() => handleSwipeAction("left")}
             onPlayAudio={handlePlayAudio}
             currentIndex={currentIndex}
             totalCards={activeCards.length}
             isFlipped={isFlipped}
             showFurigana={showFurigana}
             onToggleFurigana={() => setShowFurigana(!showFurigana)}
+            card={currentCard}
           />
 
           {/* 4. NÚT VÀO ẢI (Hiển thị ngay dưới ControlPanel) */}
-          <div className="w-full max-w-md mx-auto mt-8 sm:mt-10 px-4">
+          <div className="w-full max-w-md mx-auto mt-5 sm:mt-10 px-4">
             <button
               onClick={() => {
                 setTempTyping(true); // Bật công tắc tạm thời

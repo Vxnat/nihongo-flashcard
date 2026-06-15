@@ -1,0 +1,755 @@
+[
+{
+"id": "sys_n5_minna_21_001",
+"word": "思います",
+"reading": "おもいます",
+"romaji": "omoimasu",
+"meaning": "Nghĩ, cho rằng",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "日本語は面白いと思います。",
+"example_jp_formatted": "[日本語]{にほんご}は[面白]{おもしろ}いと[思]{おも}います。",
+"example_vi": "Tôi nghĩ tiếng Nhật thú vị.",
+"level": "N5",
+"tags": ["động-từ", "ý-kiến", "bài-21"],
+"notes": "Dùng để diễn tả suy nghĩ hoặc quan điểm cá nhân.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "思",
+"meaning": "nghĩ",
+"onyomi": "シ",
+"kunyomi": "おも.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_002",
+"word": "と言います",
+"reading": "といいます",
+"romaji": "to iimasu",
+"meaning": "Nói rằng",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "田中さんは明日休みだと言いました。",
+"example_jp_formatted": "[田中]{たなか}さんは[明日]{あした}[休]{やす}みだと[言]{い}いました。",
+"example_vi": "Anh Tanaka nói rằng ngày mai anh ấy nghỉ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "trích-dẫn", "bài-21"],
+"notes": "Dùng để trích dẫn lời nói.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "言",
+"meaning": "nói",
+"onyomi": "ゲン",
+"kunyomi": "い.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_003",
+"word": "～と思います",
+"reading": "とおもいます",
+"romaji": "to omoimasu",
+"meaning": "Tôi nghĩ là...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "明日雨が降ると思います。",
+"example_jp_formatted": "[明日]{あした}[雨]{あめ}が[降]{ふ}る[と]{}思{おも}います。",
+"example_vi": "Tôi nghĩ rằng ngày mai trời sẽ mưa.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-21"],
+"notes": "Dùng sau thể thông thường (普通形).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "雨",
+"meaning": "mưa",
+"onyomi": "ウ",
+"kunyomi": "あめ"
+},
+{
+"kanji": "降",
+"meaning": "rơi (mưa/tuyết)",
+"onyomi": "コウ",
+"kunyomi": "ふ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_004",
+"word": "多分",
+"reading": "たぶん",
+"romaji": "tabun",
+"meaning": "Có lẽ, có khả năng",
+"pos": "adverb",
+"pitch_accent": "atamadaka",
+"example_jp": "多分明日は晴れると思います。",
+"example_jp_formatted": "[多分]{たぶん}[明日]{あした}は[晴]{は}れると[思]{おも}います。",
+"example_vi": "Có lẽ ngày mai trời sẽ nắng.",
+"level": "N5",
+"tags": ["trạng-từ", "bài-21"],
+"notes": "Thường đi kèm với ～と思います để diễn tả dự đoán.",
+"synonyms": ["恐らく"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "多分",
+"meaning": "có lẽ",
+"onyomi": "タブン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_005",
+"word": "必要",
+"reading": "ひつよう",
+"romaji": "hitsuyou",
+"meaning": "Cần thiết",
+"pos": "na_adjective",
+"pitch_accent": "heiban",
+"example_jp": "これは必要だと思います。",
+"example_jp_formatted": "これは[必要]{ひつよう}だと[思]{おも}います。",
+"example_vi": "Tôi nghĩ cái này là cần thiết.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["不必要"],
+"kanji_info": [
+{
+"kanji": "必要",
+"meaning": "cần thiết",
+"onyomi": "ヒツヨウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_006",
+"word": "大切",
+"reading": "たいせつ",
+"romaji": "taisetsu",
+"meaning": "Quan trọng",
+"pos": "na_adjective",
+"pitch_accent": "atamadaka",
+"example_jp": "健康は大切だと思います。",
+"example_jp_formatted": "[健康]{けんこう}は[大切]{たいせつ}だと[思]{おも}います。",
+"example_vi": "Tôi nghĩ sức khỏe là quan trọng.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": ["重要"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "大切",
+"meaning": "quan trọng",
+"onyomi": "タイセツ",
+"kunyomi": ""
+},
+{
+"kanji": "健康",
+"meaning": "sức khỏe",
+"onyomi": "ケンコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_007",
+"word": "難しい",
+"reading": "むずかしい",
+"romaji": "muzukashii",
+"meaning": "Khó",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "この仕事は難しいと思います。",
+"example_jp_formatted": "この[仕事]{しごと}は[難]{むずか}しいと[思]{おも}います。",
+"example_vi": "Tôi nghĩ công việc này khó.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["簡単"],
+"kanji_info": [
+{
+"kanji": "難",
+"meaning": "khó",
+"onyomi": "ナン",
+"kunyomi": "むずか.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_008",
+"word": "簡単",
+"reading": "かんたん",
+"romaji": "kantan",
+"meaning": "Đơn giản, dễ",
+"pos": "na_adjective",
+"pitch_accent": "atamadaka",
+"example_jp": "試験は簡単だと思います。",
+"example_jp_formatted": "[試験]{しけん}は[簡単]{かんたん}だと[思]{おも}います。",
+"example_vi": "Tôi nghĩ bài kiểm tra đơn giản.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": ["易しい"],
+"antonyms": ["難しい"],
+"kanji_info": [
+{
+"kanji": "試験",
+"meaning": "bài kiểm tra",
+"onyomi": "シケン",
+"kunyomi": ""
+},
+{
+"kanji": "簡単",
+"meaning": "đơn giản",
+"onyomi": "カンタン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_009",
+"word": "将来",
+"reading": "しょうらい",
+"romaji": "shourai",
+"meaning": "Tương lai",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "将来、日本へ行きたいと思います。",
+"example_jp_formatted": "[将来]{しょうらい}、[日本]{にほん}へ[行]{い}きたいと[思]{おも}います。",
+"example_vi": "Trong tương lai, tôi muốn đi Nhật.",
+"level": "N5",
+"tags": ["danh-từ", "bài-21"],
+"notes": "",
+"synonyms": ["未来"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "将来",
+"meaning": "tương lai",
+"onyomi": "ショウライ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_010",
+"word": "仕事",
+"reading": "しごと",
+"romaji": "shigoto",
+"meaning": "Công việc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "明日仕事が忙しいと思います。",
+"example_jp_formatted": "[明日]{あした}[仕事]{しごと}が[忙]{いそが}しいと[思]{おも}います。",
+"example_vi": "Tôi nghĩ ngày mai công việc sẽ bận.",
+"level": "N5",
+"tags": ["danh-từ", "bài-21"],
+"notes": "",
+"synonyms": ["作業"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "仕事",
+"meaning": "công việc",
+"onyomi": "シゴト",
+"kunyomi": ""
+},
+{
+"kanji": "忙",
+"meaning": "bận",
+"onyomi": "ボウ",
+"kunyomi": "いそが.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_011",
+"word": "生活",
+"reading": "せいかつ",
+"romaji": "seikatsu",
+"meaning": "Cuộc sống, sinh hoạt",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本の生活は楽しいと思います。",
+"example_jp_formatted": "[日本]{にほん}の[生活]{せいかつ}は[楽]{たの}しいと[思]{おも}います。",
+"example_vi": "Tôi nghĩ cuộc sống ở Nhật rất vui.",
+"level": "N5",
+"tags": ["danh-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "生活",
+"meaning": "cuộc sống",
+"onyomi": "セイカツ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_012",
+"word": "天気",
+"reading": "てんき",
+"romaji": "tenki",
+"meaning": "Thời tiết",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "天気はいいと思います。",
+"example_jp_formatted": "[天気]{てんき}はいいと[思]{おも}います。",
+"example_vi": "Tôi nghĩ thời tiết sẽ tốt.",
+"level": "N5",
+"tags": ["danh-từ", "bài-21"],
+"notes": "",
+"synonyms": ["気候"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "天気",
+"meaning": "thời tiết",
+"onyomi": "テンキ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_013",
+"word": "勉強",
+"reading": "べんきょう",
+"romaji": "benkyou",
+"meaning": "Việc học",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "勉強は大切だと思います。",
+"example_jp_formatted": "[勉強]{べんきょう}は[大切]{たいせつ}だと[思]{おも}います。",
+"example_vi": "Tôi nghĩ việc học là quan trọng.",
+"level": "N5",
+"tags": ["danh-từ", "bài-21"],
+"notes": "",
+"synonyms": ["学習"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_014",
+"word": "旅行",
+"reading": "りょこう",
+"romaji": "ryokou",
+"meaning": "Du lịch",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "旅行に行きたいと思います。",
+"example_jp_formatted": "[旅行]{りょこう}に[行]{い}きたいと[思]{おも}います。",
+"example_vi": "Tôi nghĩ tôi muốn đi du lịch.",
+"level": "N5",
+"tags": ["danh-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_015",
+"word": "日本語",
+"reading": "にほんご",
+"romaji": "nihongo",
+"meaning": "Tiếng Nhật",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本語は楽しいと思います。",
+"example_jp_formatted": "[日本語]{にほんご}は[楽]{たの}しいと[思]{おも}います。",
+"example_vi": "Tôi nghĩ tiếng Nhật thú vị.",
+"level": "N5",
+"tags": ["danh-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本語",
+"meaning": "tiếng Nhật",
+"onyomi": "ニホンゴ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_016",
+"word": "本当に",
+"reading": "ほんとうに",
+"romaji": "hontou ni",
+"meaning": "Thật sự, đúng là",
+"pos": "adverb",
+"pitch_accent": "heiban",
+"example_jp": "本当に暑いと思います。",
+"example_jp_formatted": "[本当]{ほんとう}に[暑]{あつ}いと[思]{おも}います。",
+"example_vi": "Tôi nghĩ thật sự nóng quá.",
+"level": "N5",
+"tags": ["trạng-từ", "bài-21"],
+"notes": "",
+"synonyms": ["とても", "非常に"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "本当に",
+"meaning": "thật sự",
+"onyomi": "ホントウニ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_21_017",
+"word": "言います",
+"reading": "いいます",
+"romaji": "iimasu",
+"meaning": "Nói",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "何と言いましたか。",
+"example_jp_formatted": "[何]{なに}と[言]{い}いましたか。",
+"example_vi": "Bạn đã nói cái gì?",
+"level": "N5",
+"tags": ["động-từ", "bài-21"],
+"notes": "",
+"synonyms": ["話します"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "言",
+"meaning": "nói",
+"onyomi": "ゲン",
+"kunyomi": "い.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_018",
+"word": "考えています",
+"reading": "かんがえています",
+"romaji": "kangaete imasu",
+"meaning": "Đang suy nghĩ",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "今、将来のことを考えています。",
+"example_jp_formatted": "今、[将来]{しょうらい}のことを[考]{かんが}えています。",
+"example_vi": "Hiện tại, tôi đang suy nghĩ về tương lai.",
+"level": "N5",
+"tags": ["động-từ", "bài-21"],
+"notes": "",
+"synonyms": ["思っています"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "考",
+"meaning": "suy nghĩ",
+"onyomi": "コウ",
+"kunyomi": "かんが.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_019",
+"word": "～でしょう",
+"reading": "でしょう",
+"romaji": "deshou",
+"meaning": "Phải không nhỉ? (xác nhận)",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "今日はいい天気でしょう。",
+"example_jp_formatted": "今日{きょう}はいい[天気]{てんき}でしょう。",
+"example_vi": "Hôm nay thời tiết đẹp phải không nhỉ?",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-21"],
+"notes": "Dùng để xác nhận thông tin với đối phương.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_21_020",
+"word": "面白い",
+"reading": "おもしろい",
+"romaji": "omoshiroi",
+"meaning": "Thú vị",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "この映画は面白いと思います。",
+"example_jp_formatted": "この[映画]{えいが}は[面白]{おもしろ}いと[思]{おも}います。",
+"example_vi": "Tôi nghĩ bộ phim này thú vị.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": ["楽しい"],
+"antonyms": ["つまらない"],
+"kanji_info": [
+{
+"kanji": "面白",
+"meaning": "thú vị",
+"onyomi": "メンパク",
+"kunyomi": "おもしろ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_021",
+"word": "つまらない",
+"reading": "つまらない",
+"romaji": "tsumaranai",
+"meaning": "Nhàm chán",
+"pos": "i_adjective",
+"pitch_accent": "heiban",
+"example_jp": "この本はつまらないと思います。",
+"example_jp_formatted": "この[本]{ほん}はつまらないと[思]{おも}います。",
+"example_vi": "Tôi nghĩ cuốn sách này chán.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["面白い"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_21_022",
+"word": "忙しい",
+"reading": "いそがしい",
+"romaji": "isogashii",
+"meaning": "Bận rộn",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "今週は忙しいと思います。",
+"example_jp_formatted": "[今週]{こんしゅう}は[忙]{いそが}しいと[思]{おも}います。",
+"example_vi": "Tôi nghĩ tuần này tôi bận.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["暇"],
+"kanji_info": [
+{
+"kanji": "忙",
+"meaning": "bận",
+"onyomi": "ボウ",
+"kunyomi": "いそが.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_023",
+"word": "暑い",
+"reading": "あつい",
+"romaji": "atsui",
+"meaning": "Nóng (thời tiết)",
+"pos": "i_adjective",
+"pitch_accent": "atamadaka",
+"example_jp": "今日は暑いと思います。",
+"example_jp_formatted": "今日{きょう}は[暑]{あつ}いと[思]{おも}います。",
+"example_vi": "Tôi nghĩ hôm nay nóng.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["寒い"],
+"kanji_info": [
+{
+"kanji": "暑",
+"meaning": "nóng",
+"onyomi": "ショ",
+"kunyomi": "あつ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_024",
+"word": "寒い",
+"reading": "さむい",
+"romaji": "samui",
+"meaning": "Lạnh (thời tiết)",
+"pos": "i_adjective",
+"pitch_accent": "atamadaka",
+"example_jp": "明日は寒いと思います。",
+"example_jp_formatted": "[明日]{あした}は[寒]{さむ}いと[思]{おも}います。",
+"example_vi": "Tôi nghĩ ngày mai trời lạnh.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["暑い"],
+"kanji_info": [
+{
+"kanji": "寒",
+"meaning": "lạnh",
+"onyomi": "カン",
+"kunyomi": "さむ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_025",
+"word": "いい",
+"reading": "いい",
+"romaji": "ii",
+"meaning": "Tốt, hay",
+"pos": "i_adjective",
+"pitch_accent": "heiban",
+"example_jp": "これはいいと思います。",
+"example_jp_formatted": "これはいいと[思]{おも}います。",
+"example_vi": "Tôi nghĩ cái này tốt.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": ["良い"],
+"antonyms": ["悪い"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_21_026",
+"word": "悪い",
+"reading": "わるい",
+"romaji": "warui",
+"meaning": "Xấu",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "天気は悪いと思います。",
+"example_jp_formatted": "[天気]{てんき}は[悪]{わる}いと[思]{おも}います。",
+"example_vi": "Tôi nghĩ thời tiết xấu.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["いい"],
+"kanji_info": [
+{
+"kanji": "悪",
+"meaning": "xấu",
+"onyomi": "アク",
+"kunyomi": "わる.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_027",
+"word": "晴れる",
+"reading": "はれる",
+"romaji": "hareru",
+"meaning": "Nắng, trời quang",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "明日は晴れると思います。",
+"example_jp_formatted": "[明日]{あした}は[晴]{は}れると[思]{おも}います。",
+"example_vi": "Tôi nghĩ ngày mai trời nắng.",
+"level": "N5",
+"tags": ["động-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["曇る"],
+"kanji_info": [
+{
+"kanji": "晴",
+"meaning": "nắng",
+"onyomi": "セイ",
+"kunyomi": "は.れる"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_028",
+"word": "降る",
+"reading": "ふる",
+"romaji": "furu",
+"meaning": "Rơi (mưa, tuyết)",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "雨が降ると思います。",
+"example_jp_formatted": "[雨]{あめ}が[降]{ふ}ると[思]{おも}います。",
+"example_vi": "Tôi nghĩ trời sẽ mưa.",
+"level": "N5",
+"tags": ["động-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "降",
+"meaning": "rơi",
+"onyomi": "コウ",
+"kunyomi": "ふ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_029",
+"word": "高い",
+"reading": "たかい",
+"romaji": "takai",
+"meaning": "Cao, đắt",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "この車は高いと思います。",
+"example_jp_formatted": "この[車]{くるま}は[高]{たか}いと[思]{おも}います。",
+"example_vi": "Tôi nghĩ chiếc xe này đắt.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["安い"],
+"kanji_info": [
+{
+"kanji": "高",
+"meaning": "cao",
+"onyomi": "コウ",
+"kunyomi": "たか.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_21_030",
+"word": "安い",
+"reading": "やすい",
+"romaji": "yasui",
+"meaning": "Rẻ",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "このペンは安いと思います。",
+"example_jp_formatted": "この[ペン]{ぺん}は[安]{やす}いと[思]{おも}います。",
+"example_vi": "Tôi nghĩ cái bút này rẻ.",
+"level": "N5",
+"tags": ["tính-từ", "bài-21"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["高い"],
+"kanji_info": [
+{
+"kanji": "安",
+"meaning": "rẻ",
+"onyomi": "アン",
+"kunyomi": "やす.い"
+}
+]
+}
+]

@@ -1,0 +1,1074 @@
+[
+{
+"id": "sys_n5_minna_20_001",
+"word": "普通形",
+"reading": "ふつうけい",
+"romaji": "futsuukei",
+"meaning": "Thể thông thường",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "普通形は親しい人に使います。",
+"example_jp_formatted": "[普通形]{ふつうけい}は[親]{した}しい[人]{ひと}に[使]{つか}います。",
+"example_vi": "Thể thông thường được dùng với người thân thiết.",
+"level": "N5",
+"tags": ["ngữ-pháp", "ôn-tập", "bài-20"],
+"notes": "Bao gồm thể từ điển, thể Nai, thể Ta, và thể không quá khứ phủ định.",
+"synonyms": [],
+"antonyms": ["丁寧形"],
+"kanji_info": [
+{
+"kanji": "普通形",
+"meaning": "thể thông thường",
+"onyomi": "フツウケイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_002",
+"word": "辞書形",
+"reading": "じしょけい",
+"romaji": "jishokei",
+"meaning": "Thể từ điển",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "動詞の辞書形を覚えましょう。",
+"example_jp_formatted": "[動詞]{どうし}の[辞書形]{じしょけい}を[覚]{おぼ}えましょう。",
+"example_vi": "Hãy ghi nhớ thể từ điển của động từ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-từ-điển", "bài-20"],
+"notes": "Dùng để tạo thành thể thông thường (khẳng định/hiện tại).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "辞書形",
+"meaning": "thể từ điển",
+"onyomi": "ジショケイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_003",
+"word": "ない形",
+"reading": "ないけい",
+"romaji": "naikei",
+"meaning": "Thể Nai (Phủ định)",
+"pos": "grammar",
+"pitch_accent": "naikei",
+"example_jp": "ない形は禁止や否定に使います。",
+"example_jp_formatted": "[ない形]{ないけい}は[禁止]{きんし}や[否定]{ひてい}に[使]{つか}います。",
+"example_vi": "Thể Nai được dùng để diễn tả sự cấm đoán hoặc phủ định.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-nai", "bài-20"],
+"notes": "Là dạng phủ định của thể thông thường.",
+"synonyms": [],
+"antonyms": ["辞書形"],
+"kanji_info": [
+{
+"kanji": "禁止",
+"meaning": "cấm",
+"onyomi": "キンシ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_004",
+"word": "た形",
+"reading": "たけい",
+"romaji": "takei",
+"meaning": "Thể Ta (Quá khứ)",
+"pos": "grammar",
+"pitch_accent": "takei",
+"example_jp": "た形は過去の経験を表します。",
+"example_jp_formatted": "[た形]{たけい}は[過去]{かこ}の[経験]{けいけん}を[表]{あらわ}します。",
+"example_vi": "Thể Ta diễn tả trải nghiệm trong quá khứ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-ta", "bài-20"],
+"notes": "Dùng cho sự việc đã hoàn thành.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "過去",
+"meaning": "quá khứ",
+"onyomi": "カコ",
+"kunyomi": ""
+},
+{
+"kanji": "経験",
+"meaning": "trải nghiệm",
+"onyomi": "ケイケン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_005",
+"word": "ことができます",
+"reading": "ことができます",
+"romaji": "koto ga dekimasu",
+"meaning": "Có thể làm...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "私は日本語を読むことができます。",
+"example_jp_formatted": "[私]{わたし}は[日本語]{にほんご}を[読]{よ}むことができます。",
+"example_vi": "Tôi có thể đọc tiếng Nhật.",
+"level": "N5",
+"tags": ["ngữ-pháp", "khả-năng", "bài-20"],
+"notes": "Dùng sau thể từ điển (辞書形).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本語",
+"meaning": "tiếng Nhật",
+"onyomi": "ニホンゴ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_006",
+"word": "たことがあります",
+"reading": "たことがあります",
+"romaji": "ta koto ga arimasu",
+"meaning": "Đã từng làm...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "日本へ行ったことがあります。",
+"example_jp_formatted": "[日本]{にほん}へ[行]{い}ったことがあります。",
+"example_vi": "Tôi đã từng đi Nhật Bản.",
+"level": "N5",
+"tags": ["ngữ-pháp", "kinh-nghiệm", "bài-20"],
+"notes": "Dùng sau thể Ta (た形).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニホン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_007",
+"word": "なければなりません",
+"reading": "なければなりません",
+"romaji": "nakereba narimasen",
+"meaning": "Phải làm...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "毎日勉強しなければなりません。",
+"example_jp_formatted": "[毎日]{まいにち}[勉強]{べんきょう}しなければなりません。",
+"example_vi": "Hàng ngày tôi phải học bài.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bắt-buộc", "bài-20"],
+"notes": "Dùng sau thể Nai (ない形).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "毎日",
+"meaning": "hàng ngày",
+"onyomi": "マイニチ",
+"kunyomi": ""
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_008",
+"word": "なくてもいいです",
+"reading": "なくてもいいです",
+"romaji": "nakutemo ii desu",
+"meaning": "Không phải làm... cũng được",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "明日、学校へ行かなくてもいいです。",
+"example_jp_formatted": "[明日]{あした}、[学校]{がっこう}へ[行]{い}かなくてもいいです。",
+"example_vi": "Ngày mai không cần đi học cũng được.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-20"],
+"notes": "Dùng sau thể Nai (ない形).",
+"synonyms": [],
+"antonyms": ["なければなりません"],
+"kanji_info": [
+{
+"kanji": "明日",
+"meaning": "ngày mai",
+"onyomi": "アシタ",
+"kunyomi": ""
+},
+{
+"kanji": "学校",
+"meaning": "trường học",
+"onyomi": "ガッコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_009",
+"word": "たり～たりします",
+"reading": "たり～たりします",
+"romaji": "tari~tari shimasu",
+"meaning": "Làm A, làm B (liệt kê)",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "休みの日は映画を見たり、本を読んだりします。",
+"example_jp_formatted": "[休]{やす}みの[日]{ひ}は[映画]{えいが}を[見]{み}たり、[本]{ほん}を[読]{よ}んだりします。",
+"example_vi": "Ngày nghỉ tôi xem phim, đọc sách...",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-20"],
+"notes": "Dùng sau thể Ta (た形).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "映画",
+"meaning": "phim",
+"onyomi": "エイガ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_010",
+"word": "～ないでください",
+"reading": "ないでください",
+"romaji": "naide kudasai",
+"meaning": "Xin đừng làm...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "ここで写真を撮らないでください。",
+"example_jp_formatted": "ここで[写真]{しゃしん}を[撮]{と}らないでください。",
+"example_vi": "Xin đừng chụp ảnh ở đây.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-20"],
+"notes": "Dùng sau thể Nai (ない形).",
+"synonyms": [],
+"antonyms": ["～てください"],
+"kanji_info": [
+{
+"kanji": "写真",
+"meaning": "ảnh",
+"onyomi": "シャシン",
+"kunyomi": ""
+},
+{
+"kanji": "撮",
+"meaning": "chụp",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_011",
+"word": "～てから",
+"reading": "てから",
+"romaji": "te kara",
+"meaning": "Sau khi làm V1 thì làm V2",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "手を洗ってから、食事をします。",
+"example_jp_formatted": "[手]{て}を[洗]{あら}ってから、[食事]{しょくじ}をします。",
+"example_vi": "Sau khi rửa tay, tôi sẽ ăn cơm.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-20"],
+"notes": "Dùng sau thể Te (て形).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食事",
+"meaning": "bữa ăn",
+"onyomi": "ショクジ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_012",
+"word": "～前に",
+"reading": "まえに",
+"romaji": "mae ni",
+"meaning": "Trước khi làm V",
+"pos": "grammar",
+"pitch_accent": "maeni",
+"example_jp": "寝る前に本を読みます。",
+"example_jp_formatted": "[寝]{ね}る[前]{まえ}に[本]{ほん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc sách trước khi đi ngủ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-20"],
+"notes": "Dùng sau thể từ điển (辞書形).",
+"synonyms": [],
+"antonyms": ["～後で"],
+"kanji_info": [
+{
+"kanji": "前",
+"meaning": "trước",
+"onyomi": "ゼン",
+"kunyomi": "まえ"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_013",
+"word": "～やすい",
+"reading": "やすい",
+"romaji": "yasui",
+"meaning": "Dễ làm V",
+"pos": "grammar",
+"pitch_accent": "yasui",
+"example_jp": "この漢字は覚えやすいです。",
+"example_jp_formatted": "この[漢字]{かんじ}は[覚]{おぼ}えやすいです。",
+"example_vi": "Chữ Hán này dễ nhớ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-20"],
+"notes": "Dùng sau thân động từ (bỏ ます).",
+"synonyms": [],
+"antonyms": ["～にくい"],
+"kanji_info": [
+{
+"kanji": "漢字",
+"meaning": "chữ Hán",
+"onyomi": "カンジ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_014",
+"word": "～にくい",
+"reading": "にくい",
+"romaji": "nikui",
+"meaning": "Khó làm V",
+"pos": "grammar",
+"pitch_accent": "nikui",
+"example_jp": "この薬は飲みにくいです。",
+"example_jp_formatted": "この[薬]{くすり}は[飲]{の}みにくいです。",
+"example_vi": "Thuốc này khó uống.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bài-20"],
+"notes": "Dùng sau thân động từ (bỏ ます).",
+"synonyms": [],
+"antonyms": ["～やすい"],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "uống",
+"onyomi": "イン",
+"kunyomi": "の.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_015",
+"word": "趣味",
+"reading": "しゅみ",
+"romaji": "shumi",
+"meaning": "Sở thích",
+"pos": "noun",
+"pitch_accent": "shumi",
+"example_jp": "趣味は何ですか。",
+"example_jp_formatted": "[趣味]{しゅみ}は[何]{なに}ですか。",
+"example_vi": "Sở thích của bạn là gì?",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "Từ khóa chính trong các bài sở thích.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "趣味",
+"meaning": "sở thích",
+"onyomi": "シュミ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_016",
+"word": "経験",
+"reading": "けいけん",
+"romaji": "keiken",
+"meaning": "Trải nghiệm/Kinh nghiệm",
+"pos": "noun",
+"pitch_accent": "keiken",
+"example_jp": "日本での経験は素晴らしいです。",
+"example_jp_formatted": "[日本]{にほん}での[経験]{けいけん}は[素晴]{すば}らしいです。",
+"example_vi": "Trải nghiệm ở Nhật Bản thật tuyệt vời.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "Dùng nhiều trong bài 19.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "経験",
+"meaning": "kinh nghiệm",
+"onyomi": "ケイケン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_017",
+"word": "旅行",
+"reading": "りょこう",
+"romaji": "ryokou",
+"meaning": "Du lịch",
+"pos": "noun",
+"pitch_accent": "ryokou",
+"example_jp": "旅行が好きです。",
+"example_jp_formatted": "[旅行]{りょこう}が[好]{す}きです。",
+"example_vi": "Tôi thích du lịch.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_018",
+"word": "温泉",
+"reading": "おんせん",
+"romaji": "onsen",
+"meaning": "Suối nước nóng",
+"pos": "noun",
+"pitch_accent": "onsen",
+"example_jp": "温泉に入ったことがあります。",
+"example_jp_formatted": "[温泉]{おんせん}に[入]{はい}ったことがあります。",
+"example_vi": "Tôi đã từng tắm suối nước nóng.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "温泉",
+"meaning": "suối nước nóng",
+"onyomi": "オンセン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_019",
+"word": "富士山",
+"reading": "ふじさん",
+"romaji": "fujisan",
+"meaning": "Núi Phú Sĩ",
+"pos": "noun",
+"pitch_accent": "fujisan",
+"example_jp": "富士山は日本で一番高いです。",
+"example_jp_formatted": "[富士山]{ふじさん}は[日本]{にほん}で[一番]{いちばん}[高]{たか}いです。",
+"example_vi": "Núi Phú Sĩ là cao nhất Nhật Bản.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "富士山",
+"meaning": "núi Phú Sĩ",
+"onyomi": "フジサン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_020",
+"word": "映画",
+"reading": "えいが",
+"romaji": "eiga",
+"meaning": "Phim",
+"pos": "noun",
+"pitch_accent": "eiga",
+"example_jp": "映画を見るのが趣味です。",
+"example_jp_formatted": "[映画]{えいが}を[見]{み}るのが[趣味]{しゅみ}です。",
+"example_vi": "Sở thích là xem phim.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "映画",
+"meaning": "phim",
+"onyomi": "エイガ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_021",
+"word": "音楽",
+"reading": "おんがく",
+"romaji": "ongaku",
+"meaning": "Âm nhạc",
+"pos": "noun",
+"pitch_accent": "ongaku",
+"example_jp": "音楽を聞くのが好きです。",
+"example_jp_formatted": "[音楽]{おんがく}を[聞]{き}くのが[好]{す}きです。",
+"example_vi": "Tôi thích nghe nhạc.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "音楽",
+"meaning": "âm nhạc",
+"onyomi": "オンガク",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_022",
+"word": "京都",
+"reading": "きょうと",
+"romaji": "kyouto",
+"meaning": "Kyoto",
+"pos": "noun",
+"pitch_accent": "kyouto",
+"example_jp": "京都はきれいな町です。",
+"example_jp_formatted": "[京都]{きょうと}はきれいな[町]{まち}です。",
+"example_vi": "Kyoto là thành phố đẹp.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "京都",
+"meaning": "Kyoto",
+"onyomi": "キョウト",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_023",
+"word": "会社",
+"reading": "かいしゃ",
+"romaji": "kaisha",
+"meaning": "Công ty",
+"pos": "noun",
+"pitch_accent": "kaisha",
+"example_jp": "会社へ行かなければなりません。",
+"example_jp_formatted": "[会社]{かいしゃ}へ[行]{い}かなければなりません。",
+"example_vi": "Tôi phải đi công ty.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会社",
+"meaning": "công ty",
+"onyomi": "カイシャ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_024",
+"word": "学校",
+"reading": "がっこう",
+"romaji": "gakkou",
+"meaning": "Trường học",
+"pos": "noun",
+"pitch_accent": "gakkou",
+"example_jp": "学校で日本語を勉強します。",
+"example_jp_formatted": "[学校]{がっこう}で[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật ở trường.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "学校",
+"meaning": "trường học",
+"onyomi": "ガッコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_025",
+"word": "読む",
+"reading": "よむ",
+"romaji": "yomu",
+"meaning": "Đọc (Từ điển)",
+"pos": "verb",
+"pitch_accent": "yomu",
+"example_jp": "新聞を読む。",
+"example_jp_formatted": "[新聞]{しんぶん}を[読]{よ}む。",
+"example_vi": "Đọc báo.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể từ điển.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "新聞",
+"meaning": "báo",
+"onyomi": "シンブン",
+"kunyomi": ""
+},
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_026",
+"word": "読んだ",
+"reading": "よんだ",
+"romaji": "yonda",
+"meaning": "Đã đọc (Thể Ta)",
+"pos": "verb",
+"pitch_accent": "yonda",
+"example_jp": "本を読んだことがあります。",
+"example_jp_formatted": "[本]{ほん}を[読]{よ}んだことがあります。",
+"example_vi": "Tôi đã từng đọc sách.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Ta.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_027",
+"word": "読まない",
+"reading": "よまない",
+"romaji": "yomanai",
+"meaning": "Không đọc (Thể Nai)",
+"pos": "verb",
+"pitch_accent": "yomanai",
+"example_jp": "新聞を読まないでください。",
+"example_jp_formatted": "[新聞]{しんぶん}を[読]{よ}まないでください。",
+"example_vi": "Xin đừng đọc báo.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Nai.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "新聞",
+"meaning": "báo",
+"onyomi": "シンブン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_028",
+"word": "行く",
+"reading": "いく",
+"romaji": "iku",
+"meaning": "Đi (Từ điển)",
+"pos": "verb",
+"pitch_accent": "iku",
+"example_jp": "明日学校へ行く。",
+"example_jp_formatted": "[明日]{あした}[学校]{がっこう}へ[行]{い}く。",
+"example_vi": "Ngày mai đi học.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể từ điển.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_029",
+"word": "行った",
+"reading": "いった",
+"romaji": "itta",
+"meaning": "Đã đi (Thể Ta)",
+"pos": "verb",
+"pitch_accent": "itta",
+"example_jp": "旅行に行ったことがあります。",
+"example_jp_formatted": "[旅行]{りょこう}に[行]{い}ったことがあります。",
+"example_vi": "Tôi đã từng đi du lịch.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Ta.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_030",
+"word": "行かない",
+"reading": "いかない",
+"romaji": "ikanai",
+"meaning": "Không đi (Thể Nai)",
+"pos": "verb",
+"pitch_accent": "ikanai",
+"example_jp": "学校へ行かない。",
+"example_jp_formatted": "[学校]{がっこう}へ[行]{い}かない。",
+"example_vi": "Không đi học.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Nai.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "学校",
+"meaning": "trường học",
+"onyomi": "ガッコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_031",
+"word": "食べる",
+"reading": "たべる",
+"romaji": "taberu",
+"meaning": "Ăn (Từ điển)",
+"pos": "verb",
+"pitch_accent": "taberu",
+"example_jp": "何を食べる。",
+"example_jp_formatted": "[何]{なに}を[食]{た}べる。",
+"example_vi": "Ăn cái gì?",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể từ điển.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_032",
+"word": "食べた",
+"reading": "たべた",
+"romaji": "tabeta",
+"meaning": "Đã ăn (Thể Ta)",
+"pos": "verb",
+"pitch_accent": "tabeta",
+"example_jp": "寿司を食べたことがあります。",
+"example_jp_formatted": "[寿司]{すし}を[食]{た}べたことがあります。",
+"example_vi": "Tôi đã từng ăn sushi.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Ta.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "寿司",
+"meaning": "món sushi",
+"onyomi": "スシ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_033",
+"word": "食べない",
+"reading": "たべない",
+"romaji": "tabenai",
+"meaning": "Không ăn (Thể Nai)",
+"pos": "verb",
+"pitch_accent": "tabenai",
+"example_jp": "朝ごはんを食べない。",
+"example_jp_formatted": "[朝]{あさ}ごはんを[食]{た}べない。",
+"example_vi": "Không ăn sáng.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Nai.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_034",
+"word": "話す",
+"reading": "はなす",
+"romaji": "hanasu",
+"meaning": "Nói chuyện (Từ điển)",
+"pos": "verb",
+"pitch_accent": "hanasu",
+"example_jp": "日本語を話す。",
+"example_jp_formatted": "[日本語]{にほんご}を[話]{はな}す。",
+"example_vi": "Nói tiếng Nhật.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể từ điển.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本語",
+"meaning": "tiếng Nhật",
+"onyomi": "ニホンゴ",
+"kunyomi": ""
+},
+{
+"kanji": "話",
+"meaning": "nói",
+"onyomi": "ワ",
+"kunyomi": "はな.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_035",
+"word": "話した",
+"reading": "はなした",
+"romaji": "hanashita",
+"meaning": "Đã nói chuyện (Thể Ta)",
+"pos": "verb",
+"pitch_accent": "hanashita",
+"example_jp": "先生と話したことがある。",
+"example_jp_formatted": "[先生]{せんせい}と[話]{はな}したことがある。",
+"example_vi": "Đã từng nói chuyện với giáo viên.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Ta.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "先生",
+"meaning": "giáo viên",
+"onyomi": "センセイ",
+"kunyomi": ""
+},
+{
+"kanji": "話",
+"meaning": "nói",
+"onyomi": "ワ",
+"kunyomi": "はな.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_036",
+"word": "話さない",
+"reading": "はなさない",
+"romaji": "hanasanai",
+"meaning": "Không nói chuyện (Thể Nai)",
+"pos": "verb",
+"pitch_accent": "hanasanai",
+"example_jp": "ここで話さないで。",
+"example_jp_formatted": "ここで[話]{はな}さないで。",
+"example_vi": "Xin đừng nói chuyện ở đây.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Nai.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "話",
+"meaning": "nói",
+"onyomi": "ワ",
+"kunyomi": "はな.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_20_037",
+"word": "勉強する",
+"reading": "べんきょうする",
+"romaji": "benkyou suru",
+"meaning": "Học (Từ điển)",
+"pos": "verb",
+"pitch_accent": "benkyou suru",
+"example_jp": "毎日勉強する。",
+"example_jp_formatted": "[毎日]{まいにち}[勉強]{べんきょう}する。",
+"example_vi": "Hàng ngày học bài.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Động từ nhóm 3.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "毎日",
+"meaning": "hàng ngày",
+"onyomi": "マイニチ",
+"kunyomi": ""
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_038",
+"word": "勉強した",
+"reading": "べんきょうした",
+"romaji": "benkyou shita",
+"meaning": "Đã học (Thể Ta)",
+"pos": "verb",
+"pitch_accent": "benkyou shita",
+"example_jp": "昨日勉強した。",
+"example_jp_formatted": "[昨日]{きのう}[勉強]{べんきょう}した。",
+"example_vi": "Hôm qua đã học.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Ta.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_039",
+"word": "勉強しない",
+"reading": "べんきょうしない",
+"romaji": "benkyou shinai",
+"meaning": "Không học (Thể Nai)",
+"pos": "verb",
+"pitch_accent": "benkyou shinai",
+"example_jp": "試験の前に勉強しない。",
+"example_jp_formatted": "[試験]{しけん}の[前]{まえ}に[勉強]{べんきょう}しない。",
+"example_vi": "Trước kỳ thi không được không học.",
+"level": "N5",
+"tags": ["động-từ", "bài-20"],
+"notes": "Thể Nai.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "試験",
+"meaning": "kỳ thi",
+"onyomi": "シケン",
+"kunyomi": ""
+},
+{
+"kanji": "前",
+"meaning": "trước",
+"onyomi": "ゼン",
+"kunyomi": "まえ"
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_20_040",
+"word": "写真",
+"reading": "しゃしん",
+"romaji": "shashin",
+"meaning": "Ảnh/Hình ảnh",
+"pos": "noun",
+"pitch_accent": "shashin",
+"example_jp": "きれいな写真を撮った。",
+"example_jp_formatted": "きれいな[写真]{しゃしん}を[撮]{と}った。",
+"example_vi": "Tôi đã chụp bức ảnh đẹp.",
+"level": "N5",
+"tags": ["danh-từ", "bài-20"],
+"notes": "Từ vựng quan trọng từ bài 18.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "写真",
+"meaning": "ảnh",
+"onyomi": "シャシン",
+"kunyomi": ""
+},
+{
+"kanji": "撮",
+"meaning": "chụp",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+}
+]
+}
+]

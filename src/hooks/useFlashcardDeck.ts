@@ -6,6 +6,8 @@ import { playAudio } from "@/utils/tts";
 import { playSFX } from "@/utils/sfx";
 import { useUserStats } from "@/hooks/useUserStats";
 import { useAppStore } from "@/store/useAppStore";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 interface UseFlashcardDeckProps {
   deckId: string;
@@ -67,7 +69,6 @@ export function useFlashcardDeck({
   const isTypingActive = globalMode === "typing" || tempTyping;
 
   useEffect(() => {
-    setIsMounted(true);
     loadProgress(deckId);
 
     if (isCustom) {
@@ -75,6 +76,7 @@ export function useFlashcardDeck({
       const localDecks = JSON.parse(
         localStorage.getItem("custom_decks") || "[]",
       );
+      
       const allCustomDecks = customDecks.length > 0 ? customDecks : localDecks;
 
       const currentCustomDeck = allCustomDecks.find(
@@ -82,7 +84,26 @@ export function useFlashcardDeck({
       );
       if (currentCustomDeck && currentCustomDeck.cards) {
         setCards(currentCustomDeck.cards);
+        setIsMounted(true);
+      } else {
+        // Nếu chưa có trong RAM hay LocalStorage, thử fetch trực tiếp từ Firebase
+        const fetchCustomDeck = async () => {
+          try {
+            const docRef = doc(db, "decks", deckId);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+              setCards(docSnap.data().cards || []);
+            }
+          } catch (error) {
+            console.error("Lỗi fetch custom deck:", error);
+          } finally {
+            setIsMounted(true);
+          }
+        };
+        fetchCustomDeck();
       }
+    } else {
+      setIsMounted(true);
     }
   }, [deckId, isCustom, customDecks, loadProgress]);
 
@@ -173,50 +194,7 @@ export function useFlashcardDeck({
     if (appMode === "fun" && isTypingActive) {
       if (direction === "right") {
         // Gõ đúng = Tăng Combo
-        setComboCount((prev) => {
-          const next = prev + 1;
-
-          // Cập nhật tiến độ nhiệm vụ ngầm (isAbsolute = true để ghi nhận mốc combo cao nhất)
-          updateQuestProgress("q_combo", next, true);
-
-          // Bắn pháo khi combo đạt 3, 5, 10, 15...
-          if (next === 3 || next === 5 || next % 5 === 0) {
-            import("canvas-confetti").then((confetti) => {
-              let particleCount = 100;
-              let spread = 70;
-              let colors = [
-                "#FF7096",
-                "#06D6A0",
-                "#FFD166",
-                "#5390D9",
-                "#FF9F1C",
-              ]; // Mặc định kẹo ngọt
-
-              if (next >= 15) {
-                particleCount = 350; // Bắn siêu khủng
-                spread = 130;
-                colors = ["#FFD166", "#FF9F1C", "#E63946", "#FFFFFF"]; // Vàng, cam, đỏ rực
-              } else if (next >= 10) {
-                particleCount = 200; // Bắn vừa
-                spread = 100;
-                colors = ["#FF7096", "#FFB3C6", "#FFFFFF", "#FFD166"]; // Hồng, trắng, vàng
-              } else if (next >= 5) {
-                particleCount = 150;
-                spread = 85;
-                colors = ["#06D6A0", "#118AB2", "#FFFFFF", "#FFD166"]; // Xanh lá, xanh biển, vàng
-              }
-
-              confetti.default({
-                particleCount,
-                spread,
-                origin: { y: 0.6 }, // Bắn từ nửa dưới màn hình lên
-                colors,
-                zIndex: 2000,
-              });
-            });
-          }
-          return next;
-        });
+        setComboCount((prev) => prev + 1);
 
         // Thiết lập thời gian "ngọn lửa tàn" nếu người dùng dừng suy nghĩ quá lâu (8 giây)
         comboTimeoutRef.current = setTimeout(() => {
@@ -232,6 +210,43 @@ export function useFlashcardDeck({
     // Cuối cùng vẫn gọi triggerSwipe gốc để app lật thẻ bình thường
     triggerSwipe(direction, forceSwipe);
   };
+
+  // Hiệu ứng và cập nhật tiến độ Combo
+  useEffect(() => {
+    if (comboCount > 0 && appMode === "fun") {
+      updateQuestProgress("q_combo", comboCount, true);
+
+      if (comboCount === 3 || comboCount === 5 || comboCount % 5 === 0) {
+        import("canvas-confetti").then((confetti) => {
+          let particleCount = 100;
+          let spread = 70;
+          let colors = ["#FF7096", "#06D6A0", "#FFD166", "#5390D9", "#FF9F1C"]; // Mặc định kẹo ngọt
+
+          if (comboCount >= 15) {
+            particleCount = 350; // Bắn siêu khủng
+            spread = 130;
+            colors = ["#FFD166", "#FF9F1C", "#E63946", "#FFFFFF"]; // Vàng, cam, đỏ rực
+          } else if (comboCount >= 10) {
+            particleCount = 200; // Bắn vừa
+            spread = 100;
+            colors = ["#FF7096", "#FFB3C6", "#FFFFFF", "#FFD166"]; // Hồng, trắng, vàng
+          } else if (comboCount >= 5) {
+            particleCount = 150;
+            spread = 85;
+            colors = ["#06D6A0", "#118AB2", "#FFFFFF", "#FFD166"]; // Xanh lá, xanh biển, vàng
+          }
+
+          confetti.default({
+            particleCount,
+            spread,
+            origin: { y: 0.6 }, // Bắn từ nửa dưới màn hình lên
+            colors,
+            zIndex: 2000,
+          });
+        });
+      }
+    }
+  }, [comboCount, appMode, updateQuestProgress]);
 
   // Dọn dẹp bộ đếm khi thoát khỏi màn hình học
   useEffect(() => {
@@ -484,7 +499,6 @@ export function useFlashcardDeck({
     progressPercent,
     learnedCardsCount,
     totalOriginalCards,
-    tempTyping,
     setTempTyping,
     isTypingActive,
     currentIndex,
@@ -498,7 +512,6 @@ export function useFlashcardDeck({
     startReview,
     handlePodcastNext,
     handleShuffle,
-    resetProgress,
     handlePlayAudio,
     toggleFullscreen,
     appMode,

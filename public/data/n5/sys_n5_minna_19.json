@@ -1,0 +1,1045 @@
+[
+{
+"id": "sys_n5_minna_19_001",
+"word": "行ったことがあります",
+"reading": "いったことがあります",
+"romaji": "itta koto ga arimasu",
+"meaning": "Đã từng đi...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "日本へ行ったことがあります。",
+"example_jp_formatted": "[日本]{にほん}へ[行]{い}ったことがあります。",
+"example_vi": "Tôi đã từng đi Nhật Bản.",
+"level": "N5",
+"tags": ["ngữ-pháp", "kinh-nghiệm", "bài-19"],
+"notes": "Dùng để diễn tả trải nghiệm đã đi đâu đó.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニチ, ホン",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_002",
+"word": "登ったことがあります",
+"reading": "のぼったことがあります",
+"romaji": "nobotta koto ga arimasu",
+"meaning": "Đã từng leo...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "富士山に登ったことがあります。",
+"example_jp_formatted": "[富士山]{ふじさん}に[登]{のぼ}ったことがあります。",
+"example_vi": "Tôi đã từng leo núi Phú Sĩ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "kinh-nghiệm", "bài-19"],
+"notes": "Diễn tả kinh nghiệm leo núi.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "富士山",
+"meaning": "núi Phú Sĩ",
+"onyomi": "フジサン",
+"kunyomi": ""
+},
+{
+"kanji": "登",
+"meaning": "leo",
+"onyomi": "トウ",
+"kunyomi": "のぼ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_003",
+"word": "食べたことがあります",
+"reading": "たべたことがあります",
+"romaji": "tabeta koto ga arimasu",
+"meaning": "Đã từng ăn...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "寿司を食べたことがあります。",
+"example_jp_formatted": "[寿司]{すし}を[食]{た}べたことがあります。",
+"example_vi": "Tôi đã từng ăn sushi.",
+"level": "N5",
+"tags": ["ngữ-pháp", "kinh-nghiệm", "bài-19"],
+"notes": "Dùng cho kinh nghiệm ẩm thực.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "寿司",
+"meaning": "món sushi",
+"onyomi": "スシ",
+"kunyomi": ""
+},
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_004",
+"word": "見たことがあります",
+"reading": "みたことがあります",
+"romaji": "mita koto ga arimasu",
+"meaning": "Đã từng xem/thấy...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "歌舞伎を見たことがあります。",
+"example_jp_formatted": "[歌舞伎]{かぶき}を[見]{み}たことがあります。",
+"example_vi": "Tôi đã từng xem kịch Kabuki.",
+"level": "N5",
+"tags": ["ngữ-pháp", "kinh-nghiệm", "bài-19"],
+"notes": "Dùng cho kinh nghiệm xem phim/biểu diễn.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "歌舞伎",
+"meaning": "kịch Kabuki",
+"onyomi": "カブキ",
+"kunyomi": ""
+},
+{
+"kanji": "見",
+"meaning": "nhìn, xem",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_005",
+"word": "温泉",
+"reading": "おんせん",
+"romaji": "onsen",
+"meaning": "Suối nước nóng",
+"pos": "noun",
+"pitch_accent": "onsen",
+"example_jp": "日本の温泉に入ったことがあります。",
+"example_jp_formatted": "[日本]{にほん}の[温泉]{おんせん}に[入]{はい}ったことがあります。",
+"example_vi": "Tôi đã từng tắm suối nước nóng ở Nhật.",
+"level": "N5",
+"tags": ["từ-vựng", "du-lịch", "bài-19"],
+"notes": "Địa điểm nổi tiếng tại Nhật.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "温泉",
+"meaning": "suối nước nóng",
+"onyomi": "オンセン",
+"kunyomi": ""
+},
+{
+"kanji": "入",
+"meaning": "vào",
+"onyomi": "ニュウ",
+"kunyomi": "はい.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_006",
+"word": "富士山",
+"reading": "ふじさん",
+"romaji": "fujisan",
+"meaning": "Núi Phú Sĩ",
+"pos": "noun",
+"pitch_accent": "fujisan",
+"example_jp": "富士山は高いです。",
+"example_jp_formatted": "[富士山]{ふじさん}は[高]{たか}いです。",
+"example_vi": "Núi Phú Sĩ rất cao.",
+"level": "N5",
+"tags": ["địa-danh", "bài-19"],
+"notes": "Biểu tượng của Nhật Bản.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "富士山",
+"meaning": "núi Phú Sĩ",
+"onyomi": "フジサン",
+"kunyomi": ""
+},
+{
+"kanji": "高",
+"meaning": "cao",
+"onyomi": "コウ",
+"kunyomi": "たか.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_007",
+"word": "京都",
+"reading": "きょうと",
+"romaji": "kyouto",
+"meaning": "Kyoto",
+"pos": "noun",
+"pitch_accent": "kyouto",
+"example_jp": "京都へ旅行したことがあります。",
+"example_jp_formatted": "[京都]{きょうと}へ[旅行]{りょこう}したことがあります。",
+"example_vi": "Tôi đã từng du lịch đến Kyoto.",
+"level": "N5",
+"tags": ["địa-danh", "bài-19"],
+"notes": "Cố đô của Nhật Bản.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "京都",
+"meaning": "Kyoto",
+"onyomi": "キョウト",
+"kunyomi": ""
+},
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_008",
+"word": "日本",
+"reading": "にほん",
+"romaji": "nihon",
+"meaning": "Nhật Bản",
+"pos": "noun",
+"pitch_accent": "nihon",
+"example_jp": "日本はとても美しいです。",
+"example_jp_formatted": "[日本]{にほん}はとても[美]{うつく}しいです。",
+"example_vi": "Nhật Bản rất đẹp.",
+"level": "N5",
+"tags": ["quốc-gia", "bài-19"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニチ, ホン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_009",
+"word": "外国",
+"reading": "がいこく",
+"romaji": "gaikoku",
+"meaning": "Nước ngoài",
+"pos": "noun",
+"pitch_accent": "gaikoku",
+"example_jp": "外国へ行ったことがありますか。",
+"example_jp_formatted": "[外国]{がいこく}へ[行]{い}ったことがありますか。",
+"example_vi": "Bạn đã từng đi nước ngoài chưa?",
+"level": "N5",
+"tags": ["từ-vựng", "bài-19"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["日本"],
+"kanji_info": [
+{
+"kanji": "外国",
+"meaning": "nước ngoài",
+"onyomi": "ガイコク",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_010",
+"word": "一度",
+"reading": "いちど",
+"romaji": "ichido",
+"meaning": "Một lần",
+"pos": "noun",
+"pitch_accent": "ichido",
+"example_jp": "一度だけ北海道へ行きました。",
+"example_jp_formatted": "[一度]{いちど}だけ[北海道]{ほっかいどう}へ[行]{い}きました。",
+"example_vi": "Tôi đã đi Hokkaido một lần.",
+"level": "N5",
+"tags": ["tần-suất", "bài-19"],
+"notes": "Dùng để nhấn mạnh số lần trải nghiệm.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "一度",
+"meaning": "một lần",
+"onyomi": "イチド",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_011",
+"word": "二度",
+"reading": "にど",
+"romaji": "nido",
+"meaning": "Hai lần",
+"pos": "noun",
+"pitch_accent": "nido",
+"example_jp": "二度同じ映画を見ました。",
+"example_jp_formatted": "[二度]{にど}[同じ]{おなじ}[映画]{えいが}を[見]{み}ました。",
+"example_vi": "Tôi đã xem cùng một bộ phim hai lần.",
+"level": "N5",
+"tags": ["tần-suất", "bài-19"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "二度",
+"meaning": "hai lần",
+"onyomi": "ニド",
+"kunyomi": ""
+},
+{
+"kanji": "同じ",
+"meaning": "giống nhau",
+"onyomi": "ドウ",
+"kunyomi": "おな.じ"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_012",
+"word": "泊まった",
+"reading": "とまった",
+"romaji": "tomatta",
+"meaning": "Đã trọ lại",
+"pos": "verb",
+"pitch_accent": "tomatta",
+"example_jp": "ホテルに泊まったことがあります。",
+"example_jp_formatted": "[ホテル]{ほてる}に[泊]{と}まったことがあります。",
+"example_vi": "Tôi đã từng trọ lại khách sạn.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 泊まります.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "泊",
+"meaning": "trọ lại",
+"onyomi": "ハク",
+"kunyomi": "と.まる"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_013",
+"word": "旅行した",
+"reading": "りょこうした",
+"romaji": "ryokou shita",
+"meaning": "Đã du lịch",
+"pos": "verb",
+"pitch_accent": "ryokou shita",
+"example_jp": "フランスへ旅行したことがあります。",
+"example_jp_formatted": "[フランス]{ふらんす}へ[旅行]{りょこう}したことがあります。",
+"example_vi": "Tôi đã từng đi du lịch Pháp.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 旅行します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_014",
+"word": "勉強した",
+"reading": "べんきょうした",
+"romaji": "benkyou shita",
+"meaning": "Đã học",
+"pos": "verb",
+"pitch_accent": "benkyou shita",
+"example_jp": "昨日日本語を勉強しました。",
+"example_jp_formatted": "[昨日]{きのう}[日本語]{にほんご}を[勉強]{べんきょう}しました。",
+"example_vi": "Hôm qua tôi đã học tiếng Nhật.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 勉強します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_015",
+"word": "働いた",
+"reading": "はたらいた",
+"romaji": "hataraita",
+"meaning": "Đã làm việc",
+"pos": "verb",
+"pitch_accent": "hataraita",
+"example_jp": "銀行で働いたことがあります。",
+"example_jp_formatted": "[銀行]{ぎんこう}で[働]{はたら}いたことがあります。",
+"example_vi": "Tôi đã từng làm việc tại ngân hàng.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 働きます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "銀行",
+"meaning": "ngân hàng",
+"onyomi": "ギンコウ",
+"kunyomi": ""
+},
+{
+"kanji": "働",
+"meaning": "làm việc",
+"onyomi": "ドウ",
+"kunyomi": "はたら.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_016",
+"word": "飲んだ",
+"reading": "のんだ",
+"romaji": "nonda",
+"meaning": "Đã uống",
+"pos": "verb",
+"pitch_accent": "nonda",
+"example_jp": "日本酒を飲んだことがあります。",
+"example_jp_formatted": "[日本酒]{にほんしゅ}を[飲]{の}んだことがあります。",
+"example_vi": "Tôi đã từng uống rượu Nhật.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 飲みます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本酒",
+"meaning": "rượu Nhật",
+"onyomi": "ニホンシュ",
+"kunyomi": ""
+},
+{
+"kanji": "飲",
+"meaning": "uống",
+"onyomi": "イン",
+"kunyomi": "の.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_017",
+"word": "読んだ",
+"reading": "よんだ",
+"romaji": "yonda",
+"meaning": "Đã đọc",
+"pos": "verb",
+"pitch_accent": "yonda",
+"example_jp": "面白い本を読んだことがあります。",
+"example_jp_formatted": "[面白]{おもしろ}い[本]{ほん}を[読]{よ}んだことがあります。",
+"example_vi": "Tôi đã từng đọc cuốn sách thú vị.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 読みます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "面白",
+"meaning": "thú vị",
+"onyomi": "メンパク",
+"kunyomi": "おもしろ.い"
+},
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_018",
+"word": "買った",
+"reading": "かった",
+"romaji": "katta",
+"meaning": "Đã mua",
+"pos": "verb",
+"pitch_accent": "katta",
+"example_jp": "お土産を買いました。",
+"example_jp_formatted": "[土産]{みやげ}を[買]{か}いました。",
+"example_vi": "Tôi đã mua quà lưu niệm.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 買います.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "土産",
+"meaning": "quà",
+"onyomi": "ドサン",
+"kunyomi": "みやげ"
+},
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_019",
+"word": "会った",
+"reading": "あった",
+"romaji": "atta",
+"meaning": "Đã gặp",
+"pos": "verb",
+"pitch_accent": "atta",
+"example_jp": "有名な人に会ったことがあります。",
+"example_jp_formatted": "[有名]{ゆうめい}な[人]{ひと}に[会]{あ}ったことがあります。",
+"example_vi": "Tôi đã từng gặp người nổi tiếng.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 会います.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "有名",
+"meaning": "nổi tiếng",
+"onyomi": "ユウメイ",
+"kunyomi": ""
+},
+{
+"kanji": "会",
+"meaning": "gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_020",
+"word": "聞いた",
+"reading": "きいた",
+"romaji": "kiita",
+"meaning": "Đã nghe/hỏi",
+"pos": "verb",
+"pitch_accent": "kiita",
+"example_jp": "音楽を聞いたことがあります。",
+"example_jp_formatted": "[音楽]{おんがく}を[聞]{き}いたことがあります。",
+"example_vi": "Tôi đã từng nghe nhạc.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 聞きます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "音楽",
+"meaning": "âm nhạc",
+"onyomi": "オンガク",
+"kunyomi": ""
+},
+{
+"kanji": "聞",
+"meaning": "nghe",
+"onyomi": "ブン",
+"kunyomi": "き.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_021",
+"word": "取った",
+"reading": "とった",
+"romaji": "totta",
+"meaning": "Đã lấy",
+"pos": "verb",
+"pitch_accent": "totta",
+"example_jp": "写真をたくさん取った。",
+"example_jp_formatted": "[写真]{しゃしん}をたくさん[取]{と}った。",
+"example_vi": "Đã chụp rất nhiều ảnh.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 取ります.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "写真",
+"meaning": "ảnh",
+"onyomi": "シャシン",
+"kunyomi": ""
+},
+{
+"kanji": "取",
+"meaning": "lấy",
+"onyomi": "シュ",
+"kunyomi": "と.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_022",
+"word": "泳いだ",
+"reading": "およいだ",
+"romaji": "oyoida",
+"meaning": "Đã bơi",
+"pos": "verb",
+"pitch_accent": "oyoida",
+"example_jp": "海で泳いだことがあります。",
+"example_jp_formatted": "[海]{うみ}で[泳]{およ}いだことがあります。",
+"example_vi": "Tôi đã từng bơi ở biển.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 泳ぎます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "海",
+"meaning": "biển",
+"onyomi": "カイ",
+"kunyomi": "うみ"
+},
+{
+"kanji": "泳",
+"meaning": "bơi",
+"onyomi": "エイ",
+"kunyomi": "およ.ぐ"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_023",
+"word": "話した",
+"reading": "はなした",
+"romaji": "hanashita",
+"meaning": "Đã nói chuyện",
+"pos": "verb",
+"pitch_accent": "hanashita",
+"example_jp": "先生と話したことがあります。",
+"example_jp_formatted": "[先生]{せんせい}と[話]{はな}したことがあります。",
+"example_vi": "Tôi đã từng nói chuyện với thầy giáo.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 話します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "先生",
+"meaning": "giáo viên",
+"onyomi": "センセイ",
+"kunyomi": ""
+},
+{
+"kanji": "話",
+"meaning": "nói",
+"onyomi": "ワ",
+"kunyomi": "はな.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_024",
+"word": "作った",
+"reading": "つくった",
+"romaji": "tsukutta",
+"meaning": "Đã làm/tạo ra",
+"pos": "verb",
+"pitch_accent": "tsukutta",
+"example_jp": "料理を作ったことがあります。",
+"example_jp_formatted": "[料理]{りょうり}を[作]{つく}ったことがあります。",
+"example_vi": "Tôi đã từng nấu ăn.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 作ります.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "料理",
+"meaning": "nấu ăn",
+"onyomi": "リョウリ",
+"kunyomi": ""
+},
+{
+"kanji": "作",
+"meaning": "làm",
+"onyomi": "サク",
+"kunyomi": "つく.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_025",
+"word": "寝た",
+"reading": "ねた",
+"romaji": "neta",
+"meaning": "Đã ngủ",
+"pos": "verb",
+"pitch_accent": "neta",
+"example_jp": "昨日早く寝ました。",
+"example_jp_formatted": "[昨日]{きのう}[早]{はや}く[寝]{ね}ました。",
+"example_vi": "Hôm qua tôi đã đi ngủ sớm.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 寝ます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "寝",
+"meaning": "ngủ",
+"onyomi": "シン",
+"kunyomi": "ね.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_026",
+"word": "起きた",
+"reading": "おきた",
+"romaji": "okita",
+"meaning": "Đã thức dậy",
+"pos": "verb",
+"pitch_accent": "okita",
+"example_jp": "今朝6時に起きました。",
+"example_jp_formatted": "[今朝]{けさ}6[時]{じ}に[起]{お}きました。",
+"example_vi": "Sáng nay tôi đã dậy lúc 6 giờ.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 起きます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "今朝",
+"meaning": "sáng nay",
+"onyomi": "コンチョウ",
+"kunyomi": "けさ"
+},
+{
+"kanji": "起",
+"meaning": "dậy",
+"onyomi": "キ",
+"kunyomi": "お.きる"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_027",
+"word": "食べた",
+"reading": "たべた",
+"romaji": "tabeta",
+"meaning": "Đã ăn",
+"pos": "verb",
+"pitch_accent": "tabeta",
+"example_jp": "昼ご飯を食べた。",
+"example_jp_formatted": "[昼ご飯]{ひるごはん}を[食]{た}べた。",
+"example_vi": "Đã ăn cơm trưa.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 食べます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昼ご飯",
+"meaning": "cơm trưa",
+"onyomi": "",
+"kunyomi": "ひるごはん"
+},
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_028",
+"word": "見た",
+"reading": "みた",
+"romaji": "mita",
+"meaning": "Đã xem",
+"pos": "verb",
+"pitch_accent": "mita",
+"example_jp": "昨日映画を見た。",
+"example_jp_formatted": "[昨日]{きのう}[映画]{えいが}を[見]{み}た。",
+"example_vi": "Hôm qua đã xem phim.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 見ます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "見",
+"meaning": "xem",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_029",
+"word": "した",
+"reading": "した",
+"romaji": "shita",
+"meaning": "Đã làm",
+"pos": "verb",
+"pitch_accent": "shita",
+"example_jp": "宿題をした。",
+"example_jp_formatted": "[宿題]{しゅくだい}をした。",
+"example_vi": "Đã làm bài tập.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "宿題",
+"meaning": "bài tập",
+"onyomi": "シュクダイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_030",
+"word": "来た",
+"reading": "きた",
+"romaji": "kita",
+"meaning": "Đã đến",
+"pos": "verb",
+"pitch_accent": "kita",
+"example_jp": "日本へ来た。",
+"example_jp_formatted": "[日本]{にほん}へ[来]{き}た。",
+"example_vi": "Đã đến Nhật Bản.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 来ます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニチ, ホン",
+"kunyomi": ""
+},
+{
+"kanji": "来",
+"meaning": "đến",
+"onyomi": "ライ",
+"kunyomi": "く.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_031",
+"word": "休んだ",
+"reading": "やすんだ",
+"romaji": "yasunda",
+"meaning": "Đã nghỉ ngơi",
+"pos": "verb",
+"pitch_accent": "yasunda",
+"example_jp": "昨日休んだ。",
+"example_jp_formatted": "[昨日]{きのう}[休]{やす}んだ。",
+"example_vi": "Hôm qua đã nghỉ.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 休みます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "休",
+"meaning": "nghỉ",
+"onyomi": "キュウ",
+"kunyomi": "やす.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_032",
+"word": "帰った",
+"reading": "かえった",
+"romaji": "kaetta",
+"meaning": "Đã về",
+"pos": "verb",
+"pitch_accent": "kaetta",
+"example_jp": "家に帰った。",
+"example_jp_formatted": "[家]{いえ}に[帰]{かえ}った。",
+"example_vi": "Đã về nhà.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 帰ります.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "家",
+"meaning": "nhà",
+"onyomi": "カ",
+"kunyomi": "いえ"
+},
+{
+"kanji": "帰",
+"meaning": "về",
+"onyomi": "キ",
+"kunyomi": "かえ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_19_033",
+"word": "掃除した",
+"reading": "そうじした",
+"romaji": "souji shita",
+"meaning": "Đã dọn dẹp",
+"pos": "verb",
+"pitch_accent": "souji shita",
+"example_jp": "部屋を掃除した。",
+"example_jp_formatted": "[部屋]{へや}を[掃除]{そうじ}した。",
+"example_vi": "Đã dọn dẹp phòng.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 掃除します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "部屋",
+"meaning": "phòng",
+"onyomi": "ヘヤ",
+"kunyomi": ""
+},
+{
+"kanji": "掃除",
+"meaning": "dọn dẹp",
+"onyomi": "ソウジ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_034",
+"word": "洗濯した",
+"reading": "せんたくした",
+"romaji": "sentaku shita",
+"meaning": "Đã giặt giũ",
+"pos": "verb",
+"pitch_accent": "sentaku shita",
+"example_jp": "服を洗濯した。",
+"example_jp_formatted": "[服]{ふく}を[洗濯]{せんたく}した。",
+"example_vi": "Đã giặt quần áo.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 洗濯します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "服",
+"meaning": "quần áo",
+"onyomi": "フク",
+"kunyomi": ""
+},
+{
+"kanji": "洗濯",
+"meaning": "giặt giũ",
+"onyomi": "センタク",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_19_035",
+"word": "練習した",
+"reading": "れんしゅうした",
+"romaji": "renshuu shita",
+"meaning": "Đã luyện tập",
+"pos": "verb",
+"pitch_accent": "renshuu shita",
+"example_jp": "ピアノを練習した。",
+"example_jp_formatted": "[ピアノ]{ぴあの}を[練習]{れんしゅう}した。",
+"example_vi": "Đã luyện tập đàn piano.",
+"level": "N5",
+"tags": ["động-từ", "bài-19"],
+"notes": "Thể Ta của 練習します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "練習",
+"meaning": "luyện tập",
+"onyomi": "レンシュウ",
+"kunyomi": ""
+}
+]
+}
+]

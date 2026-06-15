@@ -1,0 +1,737 @@
+[
+{
+"id": "sys_n5_minna_24_001",
+"word": "呉れます",
+"reading": "くれます",
+"romaji": "kuremasu",
+"meaning": "Cho tôi (ai đó cho mình)",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "友達が本を呉れました。",
+"example_jp_formatted": "[友達]{ともだち}が[本]{ほん}を[呉]{く}れました。",
+"example_vi": "Bạn tôi đã cho tôi một quyển sách.",
+"level": "N5",
+"tags": ["cho-nhận", "động-từ", "bài-24"],
+"notes": "Dùng khi người khác cho mình hoặc người thân của mình.",
+"synonyms": [],
+"antonyms": ["上げます"],
+"kanji_info": [
+{
+"kanji": "呉",
+"meaning": "cho",
+"onyomi": "ゴ",
+"kunyomi": "く.れる"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_002",
+"word": "上げます",
+"reading": "あげます",
+"romaji": "agemasu",
+"meaning": "Cho, tặng",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "私は妹に花を上げました。",
+"example_jp_formatted": "[私]{わたし}は[妹]{いもうと}に[花]{はな}を[上]{あ}げました。",
+"example_vi": "Tôi đã tặng hoa cho em gái.",
+"level": "N5",
+"tags": ["cho-nhận", "động-từ", "bài-24"],
+"notes": "Dùng khi cho người khác vật gì.",
+"synonyms": [],
+"antonyms": ["呉れます"],
+"kanji_info": [
+{
+"kanji": "上",
+"meaning": "trao cho",
+"onyomi": "ジョウ",
+"kunyomi": "あ.げる"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_003",
+"word": "貰います",
+"reading": "もらいます",
+"romaji": "moraimasu",
+"meaning": "Nhận",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "私は先生に本を貰いました。",
+"example_jp_formatted": "[私]{わたし}は[先生]{せんせい}に[本]{ほん}を[貰]{もら}いました。",
+"example_vi": "Tôi đã nhận sách từ giáo viên.",
+"level": "N5",
+"tags": ["cho-nhận", "động-từ", "bài-24"],
+"notes": "Dùng khi nhận vật gì từ ai đó.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "貰",
+"meaning": "nhận",
+"onyomi": "ライ",
+"kunyomi": "もら.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_004",
+"word": "～てあげます",
+"reading": "～てあげます",
+"romaji": "~te agemasu",
+"meaning": "Làm V cho ai",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "私は友達に日本語を教えてあげました。",
+"example_jp_formatted": "[私]{わたし}は[友達]{ともだち}に[日本語]{にほんご}を[教]{おし}えてあげました。",
+"example_vi": "Tôi đã dạy tiếng Nhật cho bạn.",
+"level": "N5",
+"tags": ["cho-nhận", "ngữ-pháp", "bài-24"],
+"notes": "Dùng khi mình làm giúp ai đó một việc gì.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "dạy",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_005",
+"word": "～てくれます",
+"reading": "～てくれます",
+"romaji": "~te kuremasu",
+"meaning": "Ai đó làm V cho mình",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "友達が日本語を教えてくれました。",
+"example_jp_formatted": "[友達]{ともだち}が[日本語]{にほんご}を[教]{おし}えてくれました。",
+"example_vi": "Bạn đã dạy tiếng Nhật cho tôi.",
+"level": "N5",
+"tags": ["cho-nhận", "ngữ-pháp", "bài-24"],
+"notes": "Dùng khi ai đó làm giúp mình một việc gì.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "dạy",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_006",
+"word": "～てもらいます",
+"reading": "～てもらいます",
+"romaji": "~te moraimasu",
+"meaning": "Nhận được sự giúp đỡ V",
+"pos": "grammar",
+"pitch_accent": "nakadaka",
+"example_jp": "私は先生に日本語を教えてもらいました。",
+"example_jp_formatted": "[私]{わたし}は[先生]{せんせい}に[日本語]{にほんご}を[教]{おし}えてもらいました。",
+"example_vi": "Tôi được giáo viên dạy tiếng Nhật cho.",
+"level": "N5",
+"tags": ["cho-nhận", "ngữ-pháp", "bài-24"],
+"notes": "Dùng khi mình nhờ/nhận sự giúp đỡ từ ai.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "dạy",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_007",
+"word": "教えます",
+"reading": "おしえます",
+"romaji": "oshiemasu",
+"meaning": "Dạy, chỉ bảo",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "先生は私に日本語を教えました。",
+"example_jp_formatted": "[先生]{せんせい}は[私]{わたし}に[日本語]{にほんご}を[教]{おし}えました。",
+"example_vi": "Giáo viên đã dạy tôi tiếng Nhật.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "Thường đi với mẫu cho nhận.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "dạy",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_008",
+"word": "貸します",
+"reading": "かします",
+"romaji": "kashimasu",
+"meaning": "Cho mượn",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "私は友達に本を貸しました。",
+"example_jp_formatted": "[私]{わたし}は[友達]{ともだち}に[本]{ほん}を[貸]{か}しました。",
+"example_vi": "Tôi đã cho bạn mượn sách.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["借ります"],
+"kanji_info": [
+{
+"kanji": "貸",
+"meaning": "cho mượn",
+"onyomi": "カ",
+"kunyomi": "か.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_009",
+"word": "借ります",
+"reading": "かります",
+"romaji": "karimasu",
+"meaning": "Mượn",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "私は友達に本を借りました。",
+"example_jp_formatted": "[私]{わたし}は[友達]{ともだち}に[本]{ほん}を[借]{か}りました。",
+"example_vi": "Tôi đã mượn sách của bạn.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["貸します"],
+"kanji_info": [
+{
+"kanji": "借",
+"meaning": "mượn",
+"onyomi": "シャク",
+"kunyomi": "か.りる"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_010",
+"word": "手伝います",
+"reading": "てつだいます",
+"romaji": "tetsudaimasu",
+"meaning": "Giúp đỡ",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "私は友達を手伝いました。",
+"example_jp_formatted": "[私]{わたし}は[友達]{ともだち}を[手伝]{てつだ}いました。",
+"example_vi": "Tôi đã giúp đỡ bạn.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "手伝",
+"meaning": "giúp đỡ",
+"onyomi": "シュデン",
+"kunyomi": "てつだ.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_011",
+"word": "送ります",
+"reading": "おくります",
+"romaji": "okurimasu",
+"meaning": "Gửi (hàng, thư)",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "私は母に手紙を送りました。",
+"example_jp_formatted": "[私]{わたし}は[母]{はは}に[手紙]{てがみ}を[送]{おく}りました。",
+"example_vi": "Tôi đã gửi thư cho mẹ.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "送",
+"meaning": "gửi",
+"onyomi": "ソウ",
+"kunyomi": "おく.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_012",
+"word": "電話します",
+"reading": "でんわします",
+"romaji": "denwa shimasu",
+"meaning": "Gọi điện thoại",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "母が私に電話してくれました。",
+"example_jp_formatted": "[母]{はは}が[私]{わたし}に[電話]{でんわ}してくれました。",
+"example_vi": "Mẹ đã gọi điện cho tôi.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "電話",
+"meaning": "điện thoại",
+"onyomi": "デンワ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_24_013",
+"word": "案内します",
+"reading": "あんないします",
+"romaji": "annai shimasu",
+"meaning": "Hướng dẫn",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "友達が町を案内してくれました。",
+"example_jp_formatted": "[友達]{ともだち}が[町]{まち}を[案内]{あんない}してくれました。",
+"example_vi": "Bạn đã hướng dẫn thị trấn cho tôi.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "案内",
+"meaning": "hướng dẫn",
+"onyomi": "アンナイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_24_014",
+"word": "プレゼント",
+"reading": "ぷれぜんと",
+"romaji": "purezento",
+"meaning": "Quà tặng",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "彼にプレゼントを上げました。",
+"example_jp_formatted": "[彼]{かれ}にプレゼントを[上]{あ}げました。",
+"example_vi": "Tôi đã tặng quà cho anh ấy.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": ["贈り物"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_24_015",
+"word": "手紙",
+"reading": "てがみ",
+"romaji": "tegami",
+"meaning": "Thư",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "友達から手紙を貰いました。",
+"example_jp_formatted": "[友達]{ともだち}から[手紙]{てがみ}を[貰]{もら}いました。",
+"example_vi": "Tôi đã nhận được thư từ bạn.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "手紙",
+"meaning": "thư",
+"onyomi": "テガミ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_24_016",
+"word": "花",
+"reading": "はな",
+"romaji": "hana",
+"meaning": "Hoa",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "妹に花を上げました。",
+"example_jp_formatted": "[妹]{いもうと}に[花]{はな}を[上]{あ}げました。",
+"example_vi": "Tôi đã tặng hoa cho em gái.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "花",
+"meaning": "hoa",
+"onyomi": "カ",
+"kunyomi": "はな"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_017",
+"word": "本",
+"reading": "ほん",
+"romaji": "hon",
+"meaning": "Sách",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "先生が本を呉れました。",
+"example_jp_formatted": "[先生]{せんせい}が[本]{ほん}を[呉]{く}れました。",
+"example_vi": "Giáo viên đã cho tôi sách.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "本",
+"meaning": "sách",
+"onyomi": "ホン",
+"kunyomi": "もと"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_018",
+"word": "友達",
+"reading": "ともだち",
+"romaji": "tomodachi",
+"meaning": "Bạn",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "友達に地図を書いてもらいました。",
+"example_jp_formatted": "[友達]{ともだち}に[地図]{ちず}を[書]{か}いてもらいました。",
+"example_vi": "Tôi đã được bạn vẽ bản đồ cho.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "友達",
+"meaning": "bạn",
+"onyomi": "トモダチ",
+"kunyomi": ""
+},
+{
+"kanji": "地図",
+"meaning": "bản đồ",
+"onyomi": "チズ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_24_019",
+"word": "先生",
+"reading": "せんせい",
+"romaji": "sensei",
+"meaning": "Giáo viên",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "先生に質問を教わりました。",
+"example_jp_formatted": "[先生]{せんせい}に[質問]{しつもん}を[教]{おし}わりました。",
+"example_vi": "Tôi đã nhận được câu trả lời từ giáo viên.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "先生",
+"meaning": "giáo viên",
+"onyomi": "センセイ",
+"kunyomi": ""
+},
+{
+"kanji": "質問",
+"meaning": "câu hỏi",
+"onyomi": "シツモン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_24_020",
+"word": "家族",
+"reading": "かぞく",
+"romaji": "kazoku",
+"meaning": "Gia đình",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "家族に写真を送ります。",
+"example_jp_formatted": "[家族]{かぞく}に[写真]{しゃしん}を[送]{おく}ります。",
+"example_vi": "Tôi gửi ảnh cho gia đình.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "家族",
+"meaning": "gia đình",
+"onyomi": "カゾク",
+"kunyomi": ""
+},
+{
+"kanji": "写真",
+"meaning": "ảnh",
+"onyomi": "シャシン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_24_021",
+"word": "兄弟",
+"reading": "きょうだい",
+"romaji": "kyoudai",
+"meaning": "Anh em",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "兄弟にプレゼントを上げました。",
+"example_jp_formatted": "[兄弟]{きょうだい}にプレゼントを[上]{あ}げました。",
+"example_vi": "Tôi đã tặng quà cho anh em.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "兄弟",
+"meaning": "anh em",
+"onyomi": "キョウダイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_24_022",
+"word": "母",
+"reading": "はは",
+"romaji": "haha",
+"meaning": "Mẹ (của tôi)",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "母が料理を作ってくれました。",
+"example_jp_formatted": "[母]{はは}が[料理]{りょうり}を[作]{つく}ってくれました。",
+"example_vi": "Mẹ đã nấu ăn cho tôi.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": ["お母さん"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "母",
+"meaning": "mẹ",
+"onyomi": "ボ",
+"kunyomi": "はは"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_023",
+"word": "父",
+"reading": "ちち",
+"romaji": "chichi",
+"meaning": "Bố (của tôi)",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "父が自転車を修理してくれました。",
+"example_jp_formatted": "[父]{ちち}が[自転車]{じてんしゃ}を[修理]{しゅうり}してくれました。",
+"example_vi": "Bố đã sửa xe đạp cho tôi.",
+"level": "N5",
+"tags": ["danh-từ", "bài-24"],
+"notes": "",
+"synonyms": ["お父さん"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "父",
+"meaning": "bố",
+"onyomi": "フ",
+"kunyomi": "ちち"
+},
+{
+"kanji": "自転車",
+"meaning": "xe đạp",
+"onyomi": "ジテンシャ",
+"kunyomi": ""
+},
+{
+"kanji": "修理",
+"meaning": "sửa chữa",
+"onyomi": "シュウリ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_24_024",
+"word": "誰",
+"reading": "だれ",
+"romaji": "dare",
+"meaning": "Ai",
+"pos": "pronoun",
+"pitch_accent": "atamadaka",
+"example_jp": "誰に日本語を教えてもらいましたか。",
+"example_jp_formatted": "[誰]{だれ}に[日本語]{にほんご}を[教]{おし}えてもらいましたか。",
+"example_vi": "Bạn đã được ai dạy tiếng Nhật cho?",
+"level": "N5",
+"tags": ["đại-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "誰",
+"meaning": "ai",
+"onyomi": "スイ",
+"kunyomi": "だれ"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_025",
+"word": "描きます",
+"reading": "かきます",
+"romaji": "kakimasu",
+"meaning": "Vẽ, tả",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "友達が絵を描いてくれました。",
+"example_jp_formatted": "[友達]{ともだち}が[絵]{え}を[描]{か}いてくれました。",
+"example_vi": "Bạn đã vẽ tranh cho tôi.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "描",
+"meaning": "vẽ",
+"onyomi": "ビョウ",
+"kunyomi": "か.く"
+},
+{
+"kanji": "絵",
+"meaning": "tranh",
+"onyomi": "カイ",
+"kunyomi": "え"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_026",
+"word": "買います",
+"reading": "かいます",
+"romaji": "kaimasu",
+"meaning": "Mua",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "私は母に服を買ってあげました。",
+"example_jp_formatted": "[私]{わたし}は[母]{はは}に[服]{ふく}を[買]{か}ってあげました。",
+"example_vi": "Tôi đã mua quần áo cho mẹ.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "服",
+"meaning": "quần áo",
+"onyomi": "フク",
+"kunyomi": ""
+},
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_027",
+"word": "探します",
+"reading": "さがします",
+"romaji": "sagashimasu",
+"meaning": "Tìm kiếm",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "先生が本を探してくれました。",
+"example_jp_formatted": "[先生]{せんせい}が[本]{ほん}を[探]{さが}してくれました。",
+"example_vi": "Giáo viên đã tìm sách giúp tôi.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "探",
+"meaning": "tìm",
+"onyomi": "タン",
+"kunyomi": "さが.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_24_028",
+"word": "歌います",
+"reading": "うたいます",
+"romaji": "utaimasu",
+"meaning": "Hát",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "友達が歌を歌ってくれました。",
+"example_jp_formatted": "[友達]{ともだち}が[歌]{うた}を[歌]{うた}ってくれました。",
+"example_vi": "Bạn đã hát bài hát cho tôi.",
+"level": "N5",
+"tags": ["động-từ", "bài-24"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "歌",
+"meaning": "hát/bài hát",
+"onyomi": "カ",
+"kunyomi": "うた.う"
+}
+]
+}
+]
