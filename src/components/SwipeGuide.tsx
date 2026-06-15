@@ -11,7 +11,7 @@ interface SwipeGuideProps {
 }
 
 export function SwipeGuide({ onClose }: SwipeGuideProps) {
-  const itemVariants : any = {
+  const itemVariants: any = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
@@ -87,16 +87,37 @@ export function SwipeGuide({ onClose }: SwipeGuideProps) {
           </p>
           <ArrowRight className="w-8 h-8" />
         </motion.div>
+
+        {/* Hướng dẫn: Bảng điều khiển */}
+        <motion.div
+          custom={3}
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          className="absolute -bottom-28 w-full flex flex-col items-center text-[#FFD166]"
+        >
+          <ArrowDown className="w-8 h-8 mb-2 animate-bounce" />
+          <p
+            className="font-bold text-lg text-center leading-tight drop-shadow-md"
+            style={{ fontFamily: "var(--font-cherry)" }}
+          >
+            Dùng các nút bên dưới để lật & chuyển thẻ
+            <br />
+            <span className="text-[#A0E8D5] text-base drop-shadow-none">
+              (Khi lật sẽ có Phát âm, Furigana & Kanji đó!)
+            </span>
+          </p>
+        </motion.div>
       </div>
 
       {/* Nút Đã hiểu */}
       <motion.button
-        custom={3}
+        custom={4}
         variants={itemVariants}
         initial="hidden"
         animate="visible"
         onClick={onClose}
-        className="mt-8 px-8 h-14 bg-[#FF7096] text-white rounded-2xl font-bold text-xl border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all shadow-lg"
+        className="mt-32 px-8 h-14 bg-[#FF7096] text-white rounded-2xl font-bold text-xl border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all shadow-lg"
       >
         Đã hiểu!
       </motion.button>

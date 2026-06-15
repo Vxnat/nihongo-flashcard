@@ -13,6 +13,9 @@ export default async function DeckPage({
 }) {
   const { id } = await params;
 
+  // Thêm delay giả 2 giây để xem màn hình loading (Xóa dòng này khi đưa lên production)
+  // await new Promise((resolve) => setTimeout(resolve, 100000));
+
   let cards: FlashcardData[] = [];
   const isCustomDeck = id.startsWith("custom_");
 
@@ -22,8 +25,14 @@ export default async function DeckPage({
       // Trích xuất cấp độ (n5, n4...) từ ID để làm tên thư mục con
       const levelMatch = id.match(/n[1-5]/i);
       const subFolder = levelMatch ? levelMatch[0].toLowerCase() : "";
-      
-      const filePath = path.join(process.cwd(), "public", "data", subFolder, `${id}.json`);
+
+      const filePath = path.join(
+        process.cwd(),
+        "public",
+        "data",
+        subFolder,
+        `${id}.json`,
+      );
       const fileContents = await fs.readFile(filePath, "utf8");
       cards = JSON.parse(fileContents);
     } catch (error) {
@@ -44,7 +53,8 @@ export default async function DeckPage({
               className="w-5 h-5 mr-1.5 group-hover:-translate-x-1 transition-transform"
               strokeWidth={3}
             />
-            <span className="font-rounded font-bold text-sm tracking-wide"
+            <span
+              className="font-rounded font-bold text-sm tracking-wide"
               style={{ fontFamily: "var(--font-cherry)" }}
             >
               Về nhà
@@ -56,16 +66,22 @@ export default async function DeckPage({
         <div className="bg-[#FFD166] border-2 border-[#ffe11c] px-4 py-2 rounded-[1.25rem] shadow-[0_4px_0_0_#FF9F1C] font-rounded font-black text-amber-900 text-xs uppercase tracking-widest flex items-center gap-1.5 truncate max-w-[160px]">
           {isCustomDeck ? (
             <>
-              <span className="truncate"
+              <span
+                className="truncate"
                 style={{ fontFamily: "var(--font-cherry)" }}
-              >Thẻ Tự Tạo</span>
+              >
+                Thẻ Tự Tạo
+              </span>
             </>
           ) : (
             <>
               <span>📚</span>{" "}
-              <span className="truncate"
+              <span
+                className="truncate"
                 style={{ fontFamily: "var(--font-cherry)" }}
-              >{id.replace(/_/g, " ")}</span>
+              >
+                {id.replace(/_/g, " ")}
+              </span>
             </>
           )}
         </div>
