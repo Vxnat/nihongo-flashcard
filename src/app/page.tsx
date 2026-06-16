@@ -11,11 +11,14 @@ import { useHome } from "@/hooks/useHome";
 import { CustomDecksTab } from "@/components/CustomDecksTab";
 import { BottomNav } from "@/components/BottomNav";
 import { PwaInstallPrompt } from "@/components/PwaInstallPrompt";
+import { VisualNovelMode } from "../../VisualNovelMode";
+import { useAppStore } from "@/store/useAppStore";
 
 export default function Home() {
   const homeState = useHome();
   const pwaState = usePwaInstall();
   const { activeTab, handleTabChange } = homeState;
+  const activeStoryId = useAppStore((state) => state.activeStoryId);
 
   return (
     <div className="w-full flex flex-col items-center pb-32 relative">
@@ -55,7 +58,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.2 }}
-            className="w-full flex flex-col items-center justify-center max-w-2xl px-2"
+            className="w-full flex flex-col items-center justify-center max-w-2xl px-4"
           >
             <SystemRoadmap />
           </motion.div>
@@ -69,7 +72,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
-            className="w-full flex flex-col items-center justify-center max-w-2xl px-2"
+            className="w-full flex flex-col items-center justify-center max-w-2xl px-4"
           >
             <CustomDecksTab homeState={homeState} />
           </motion.div>
@@ -83,7 +86,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
-            className="w-full flex flex-col items-center justify-center max-w-2xl px-2"
+            className="w-full flex flex-col items-center justify-center max-w-2xl px-4"
           >
             <GachaShop />
           </motion.div>
@@ -92,6 +95,21 @@ export default function Home() {
 
       <PwaInstallPrompt pwaState={pwaState} />
       <BottomNav activeTab={activeTab} handleTabChange={handleTabChange} />
+
+      {/* MÀN HÌNH VISUAL NOVEL OVERLAY (FULL SCREEN) */}
+      <AnimatePresence>
+        {activeStoryId && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[999] bg-black/95 flex items-center justify-center sm:p-4"
+          >
+            <VisualNovelMode />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

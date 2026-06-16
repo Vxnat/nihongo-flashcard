@@ -6,7 +6,7 @@ import { auth, googleProvider } from "@/lib/firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { LogIn, LogOut, UserCircle, Download } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { DailyQuestsModal } from "@/components/DailyQuestsModal";
 import { usePwaInstall } from "@/hooks/usePwaInstall";
 import { PwaInstallPrompt } from "@/components/PwaInstallPrompt";
@@ -29,6 +29,19 @@ export function AuthButton() {
   const unclaimedCount = user
     ? quests.filter((q) => q.isCompleted && !q.isClaimed).length
     : 0;
+
+  // Theo dõi thao tác cuộn để ẩn/hiện Smart Header
+  const [isHidden, setIsHidden] = useState(false);
+  const { scrollY } = useScroll();
+  
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 50) {
+      setIsHidden(true); // Cuộn xuống -> Ẩn
+    } else {
+      setIsHidden(false); // Cuộn lên -> Hiện
+    }
+  });
 
   // Tải cài đặt App Mode khi render
   useEffect(() => {
@@ -65,7 +78,12 @@ export function AuthButton() {
 
   return (
     <>
-      <div className="fixed top-4 right-4 z-[50] flex flex-col-reverse items-center gap-3">
+      <motion.div 
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: isHidden ? -100 : 0, opacity: isHidden ? 0 : 1 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        className="fixed top-4 right-4 z-[50] flex flex-col-reverse items-center gap-3"
+      >
         {/* NÚT MỞ NHIỆM VỤ (Ra ngoài để luôn thấy chấm đỏ) */}
         <button
           onClick={() => setIsQuestModalOpen(true)}
@@ -189,7 +207,7 @@ export function AuthButton() {
             )}
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
 
       {/* MODAL NHIỆM VỤ */}
       <DailyQuestsModal

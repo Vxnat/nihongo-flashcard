@@ -9,8 +9,8 @@ interface BottomNavProps {
 
 export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-[400px]">
-      <div className="flex bg-white/90 backdrop-blur-md border-4 border-[#FFE2D1] p-2 rounded-[2rem] shadow-[0_8px_0_0_#FFE2D1] justify-between items-center relative">
+    <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-[400px] md:max-w-[450px]">
+      <div className="flex bg-white/95 backdrop-blur-md border-4 border-[#FFE2D1] p-1.5 sm:p-2 rounded-[2rem] shadow-[0_6px_0_0_#FFE2D1] sm:shadow-[0_8px_0_0_#FFE2D1] justify-between items-center relative">
         {[
           {
             id: "journey",
@@ -59,12 +59,12 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
                 className="relative z-10 flex flex-col items-center justify-center h-full"
                 animate={{ y: isActive ? -2 : 0 }}
               >
-                <span className="text-2xl drop-shadow-sm">{tab.icon}</span>
+                <span className="text-xl sm:text-2xl drop-shadow-sm">{tab.icon}</span>
                 {isActive && (
                   <motion.span
                     initial={{ opacity: 0, scale: 0.5, y: 5 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    className={`text-[10px] font-black uppercase tracking-wider mt-1 ${tab.text}`}
+                    className={`text-[9px] sm:text-[10px] font-black uppercase tracking-wider mt-0.5 sm:mt-1 ${tab.text} whitespace-nowrap`}
                     style={{ fontFamily: "var(--font-rounded)" }}
                   >
                     {tab.label}

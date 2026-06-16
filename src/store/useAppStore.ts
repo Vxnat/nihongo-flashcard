@@ -70,6 +70,7 @@ const DEFAULT_QUESTS: DailyQuest[] = [
 
 export interface CustomDeck {
   id: string;
+  type?: "flashcard" | "story";
   title: string;
   description: string;
   count: number;
@@ -131,8 +132,13 @@ interface AppState {
   ) => Promise<void>;
   claimQuestReward: (questId: string) => Promise<void>;
   deductCoins: (amount: number) => Promise<boolean>;
+  addCoins: (amount: number) => Promise<void>;
   unlockSticker: (stickerId: string) => Promise<void>;
   equipSticker: (stickerId: string) => Promise<void>;
+
+  // --- VISUAL NOVEL SLICE ---
+  activeStoryId: string | null;
+  setActiveStoryId: (id: string | null) => void;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -166,6 +172,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     equippedSticker: null,
     dailyQuests: { date: "", quests: DEFAULT_QUESTS },
   },
+
+  // 1.5 VISUAL NOVEL STATE
+  activeStoryId: null,
+  setActiveStoryId: (id) => set({ activeStoryId: id }),
 
   // 2. HÀM TẢI DỮ LIỆU (Đã tích hợp Firestore)
   loadUserStats: async () => {
@@ -677,6 +687,26 @@ export const useAppStore = create<AppState>((set, get) => ({
       return true;
     }
     return false;
+  },
+
+  addCoins: async (amount) => {
+    const state = get();
+    const newCoins = state.userStats.coins + amount;
+    const newUserStats = { ...state.userStats, coins: newCoins };
+    set({ userStats: newUserStats });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      try {
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { coins: newCoins },
+          { merge: true },
+        );
+      } catch (error) {
+        console.error("Lỗi addCoins:", error);
+      }
+    }
   },
 
   unlockSticker: async (stickerId) => {
