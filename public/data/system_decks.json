@@ -96,7 +96,7 @@
 "level": "N5",
 "chapter": 2,
 "order": 6,
-"prerequisite": "chest_chap_1",
+"prerequisite": "vn_chapter_01",
 "rewardCoins": 10,
 "totalCards": 34
 },
@@ -156,7 +156,7 @@
 "level": "N5",
 "chapter": 3,
 "order": 11,
-"prerequisite": "chest_chap_2",
+"prerequisite": "sys_n5_minna_10",
 "rewardCoins": 15,
 "totalCards": 39
 },
@@ -216,7 +216,7 @@
 "level": "N5",
 "chapter": 4,
 "order": 16,
-"prerequisite": "chest_chap_3",
+"prerequisite": "sys_n5_minna_15",
 "rewardCoins": 20,
 "totalCards": 34
 },
@@ -276,7 +276,7 @@
 "level": "N5",
 "chapter": 5,
 "order": 21,
-"prerequisite": "chest_chap_4",
+"prerequisite": "sys_n5_minna_20",
 "rewardCoins": 25,
 "totalCards": 30
 },

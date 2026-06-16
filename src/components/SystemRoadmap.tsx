@@ -178,7 +178,7 @@ export function SystemRoadmap() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-sm sm:max-w-md mt-4 flex flex-col items-center justify-center py-16 px-4 bg-gradient-to-b from-white/90 to-[#E0F7FA]/40 border-4 border-dashed border-[#A0E8D5]/60 rounded-[3rem] text-center shadow-sm relative overflow-hidden min-h-[500px]"
+          className="w-full max-w-sm sm:max-w-md mt-4 flex flex-col items-center justify-center py-16 px-4 bg-gradient-to-b from-white/90 to-[#E0F7FA]/40 border-4 border-dashed border-[#ff7096]/60 rounded-[3rem] text-center shadow-sm relative overflow-hidden min-h-[500px]"
         >
           {/* Nền mờ tạo chiều sâu */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/50 to-white/90 backdrop-blur-[2px]" />

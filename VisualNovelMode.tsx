@@ -76,7 +76,7 @@ export function VisualNovelMode() {
   };
 
   return (
-    <div className="relative w-full max-w-md mx-auto h-[600px] sm:h-[700px] overflow-hidden rounded-[2.5rem] border-4 border-[#FFE2D1] shadow-2xl bg-black">
+    <div className="relative w-full max-w-md mx-auto h-[600px] sm:h-[700px] overflow-hidden rounded-[2.5rem] border-4 border-[#FFE2D1] shadow-2xl bg-[#FFFDF5]">
       {/* NÚT THOÁT */}
       <button
         onClick={() => setActiveStoryId(null)}

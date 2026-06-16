@@ -104,7 +104,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[999] bg-black/95 flex items-center justify-center sm:p-4"
+            className="fixed inset-0 z-[999] bg-white/80 backdrop-blur-md flex items-center justify-center sm:p-4"
           >
             <VisualNovelMode />
           </motion.div>
