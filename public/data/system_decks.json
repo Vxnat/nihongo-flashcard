@@ -70,12 +70,33 @@
 "totalCards": 40
 },
 {
+  "id": "vn_chapter_01",
+  "type": "story",
+  "title": "Cốt truyện: Chuyến tàu đến Tokyo",
+  "level": "N5",
+  "chapter": 1,
+  "order": 5.5,
+  "prerequisite": "sys_n5_minna_05",
+  "rewardCoins": 20,
+  "totalCards": 0
+},
+{
+  "id": "chest_chap_1",
+  "type": "chest",
+  "title": "Rương thưởng Chương 1",
+  "level": "N5",
+  "chapter": 1,
+  "order": 5.6,
+  "prerequisite": "vn_chapter_01",
+  "rewardCoins": 100
+},
+{
 "id": "sys_n5_minna_06",
 "title": "Bài 6: Hành động hàng ngày (Tha động từ)",
 "level": "N5",
 "chapter": 2,
 "order": 6,
-"prerequisite": "sys_n5_minna_05",
+"prerequisite": "chest_chap_1",
 "rewardCoins": 10,
 "totalCards": 34
 },
@@ -120,12 +141,22 @@
 "totalCards": 40
 },
 {
+  "id": "chest_chap_2",
+  "type": "chest",
+  "title": "Rương thưởng Chương 2",
+  "level": "N5",
+  "chapter": 2,
+  "order": 10.1,
+  "prerequisite": "sys_n5_minna_10",
+  "rewardCoins": 100
+},
+{
 "id": "sys_n5_minna_11",
 "title": "Bài 11: Số đếm & Lượng từ cơ bản",
 "level": "N5",
 "chapter": 3,
 "order": 11,
-"prerequisite": "sys_n5_minna_10",
+"prerequisite": "chest_chap_2",
 "rewardCoins": 15,
 "totalCards": 39
 },
@@ -170,12 +201,22 @@
 "totalCards": 40
 },
 {
+  "id": "chest_chap_3",
+  "type": "chest",
+  "title": "Rương thưởng Chương 3",
+  "level": "N5",
+  "chapter": 3,
+  "order": 15.1,
+  "prerequisite": "sys_n5_minna_15",
+  "rewardCoins": 100
+},
+{
 "id": "sys_n5_minna_16",
 "title": "Bài 16: Nối câu & Trình tự hành động",
 "level": "N5",
 "chapter": 4,
 "order": 16,
-"prerequisite": "sys_n5_minna_15",
+"prerequisite": "chest_chap_3",
 "rewardCoins": 20,
 "totalCards": 34
 },
@@ -220,12 +261,22 @@
 "totalCards": 40
 },
 {
+  "id": "chest_chap_4",
+  "type": "chest",
+  "title": "Rương thưởng Chương 4",
+  "level": "N5",
+  "chapter": 4,
+  "order": 20.1,
+  "prerequisite": "sys_n5_minna_20",
+  "rewardCoins": 100
+},
+{
 "id": "sys_n5_minna_21",
 "title": "Bài 21: Bày tỏ suy nghĩ & Trích dẫn (To omoimasu)",
 "level": "N5",
 "chapter": 5,
 "order": 21,
-"prerequisite": "sys_n5_minna_20",
+"prerequisite": "chest_chap_4",
 "rewardCoins": 25,
 "totalCards": 30
 },
@@ -268,5 +319,16 @@
 "prerequisite": "sys_n5_minna_24",
 "rewardCoins": 50,
 "totalCards": 40
+}
+,
+{
+  "id": "chest_chap_5",
+  "type": "chest",
+  "title": "Rương thưởng Chương 5",
+  "level": "N5",
+  "chapter": 5,
+  "order": 25.1,
+  "prerequisite": "sys_n5_minna_25",
+  "rewardCoins": 100
 }
 ]

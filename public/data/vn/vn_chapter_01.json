@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "id": "vn_chapter_01",
+    "title": "Chuyến tàu đến Tokyo",
+    "level": "N5",
+    "rewardCoins": 20
+  },
+  "characters": {
+    "mascot": {
+      "name": "Shiba",
+      "color": "#FF9F1C"
+    },
+    "stranger": {
+      "name": "Người lạ",
+      "color": "#5390D9"
+    }
+  },
+  "nodes": [
+    {
+      "id": "node_001",
+      "characterId": "mascot",
+      "emotion": "happy",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "おはよう！Hôm nay chúng ta sẽ đi 東京 nhé!",
+        "vi": "Chào buổi sáng! Hôm nay chúng ta sẽ đi Tokyo nhé!"
+      },
+      "interactableWords": [
+        {
+          "word": "東京",
+          "reading": "とうきょう",
+          "meaning": "Tokyo",
+          "id": "word_tokyo_01"
+        }
+      ],
+      "nextNode": "node_002"
+    },
+    {
+      "id": "node_002",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_train_inside.jpg",
+      "dialogue": {
+        "jp": "すみません、この電車は東京に行きますか？",
+        "vi": "Xin lỗi, chuyến tàu này có đi đến Tokyo không ạ?"
+      },
+      "interactableWords": [
+        {
+          "word": "電車",
+          "reading": "でんしゃ",
+          "meaning": "Tàu điện",
+          "id": "word_train_01"
+        }
+      ],
+      "choices": [
+        {
+          "text": "はい、行きます。 (Vâng, có đi ạ)",
+          "isCorrect": true,
+          "nextNode": "node_003_correct"
+        },
+        {
+          "text": "いいえ、行きません。 (Không, không đi ạ)",
+          "isCorrect": false,
+          "nextNode": "node_003_wrong"
+        }
+      ]
+    },
+    {
+      "id": "node_003_correct",
+      "characterId": "mascot",
+      "emotion": "success",
+      "background": "/images/bg_train_inside.jpg",
+      "dialogue": {
+        "jp": "Giỏi lắm! Trả lời đúng ngữ pháp rồi!",
+        "vi": "Giỏi lắm! Trả lời đúng ngữ pháp rồi!"
+      },
+      "interactableWords": [],
+      "nextNode": "END_STORY"
+    },
+    {
+      "id": "node_003_wrong",
+      "characterId": "mascot",
+      "emotion": "fail",
+      "background": "/images/bg_train_inside.jpg",
+      "dialogue": {
+        "jp": "Ôi không, bạn chỉ nhầm đường cho họ rồi kìa 😭",
+        "vi": "Ôi không, bạn chỉ nhầm đường cho họ rồi kìa 😭"
+      },
+      "interactableWords": [],
+      "nextNode": "node_002"
+    }
+  ]
+}

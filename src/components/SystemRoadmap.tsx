@@ -1,25 +1,44 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { ChevronDown, Lock, CheckCircle2 } from "lucide-react";
-import { useSystemRoadmap } from "@/hooks/useSystemRoadmap";
+import { ChevronDown, Lock, CheckCircle2, Sparkles } from "lucide-react";
+import { useSystemRoadmap, SystemDeck } from "@/hooks/useSystemRoadmap";
 import { useAppStore } from "@/store/useAppStore";
+import { RoadmapNode } from "./RoadmapNode";
+import { generateSVGPath, getZigZagOffset } from "@/utils/roadmapHelpers";
+import { MAP_DECORATIONS } from "@/constants/mapDecorations";
+import toast from "react-hot-toast";
 
 export function SystemRoadmap() {
   const router = useRouter();
   const { isLoading, decks, selectedLevel, setSelectedLevel, deckStatuses } =
     useSystemRoadmap();
   const user = useAppStore((state: any) => state.user);
+  const setActiveStoryId = useAppStore((state: any) => state.setActiveStoryId);
+  const addCoins = useAppStore((state) => state.addCoins);
+  const saveProgress = useAppStore((state) => state.saveProgress);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const LEVELS = ["N5", "N4", "N3", "N2", "N1"];
-  const BENTO_ITEMS = ["🍙", "🍱", "🍣", "🍤", "🍡", "🍵", "🍘", "🍢"];
+  const ROW_HEIGHT = 170; // Đã tăng khoảng cách chiều dọc từ 130 lên 170 để nhường khoảng trống cho Tooltip
 
-  const [expandedChapter, setExpandedChapter] = useState<string | null>(null);
+  const CHAPTER_COLORS = [
+    { bg: "bg-[#06D6A0]", border: "border-[#05B889]", shadow: "shadow-[0_6px_0_0_#04966F]" },
+    { bg: "bg-[#FF7096]", border: "border-[#C7486B]", shadow: "shadow-[0_6px_0_0_#C7486B]" },
+    { bg: "bg-[#5390D9]", border: "border-[#305f94]", shadow: "shadow-[0_6px_0_0_#305f94]" },
+    { bg: "bg-[#FF9F1C]", border: "border-[#D97706]", shadow: "shadow-[0_6px_0_0_#D97706]" },
+    { bg: "bg-[#B28DFF]", border: "border-[#8A56D6]", shadow: "shadow-[0_6px_0_0_#8A56D6]" },
+  ];
+
+  // Tìm bài học đang Active (Bài đầu tiên được mở khóa nhưng chưa hoàn thành)
+  const activeDeckId = useMemo(() => {
+    const activeStatus = deckStatuses.find((status) => status.unlocked && !status.completed);
+    return activeStatus ? activeStatus.deck.id : null;
+  }, [deckStatuses]);
 
   // Nhóm các bài học theo Chương (Chapter)
   const chapters = deckStatuses.reduce(
@@ -31,40 +50,6 @@ export function SystemRoadmap() {
     },
     {} as Record<number, typeof deckStatuses>,
   );
-
-  // Tự động mở Chương đang học dang dở
-  useEffect(() => {
-    if (deckStatuses.length > 0 && expandedChapter === null) {
-      let activeChap: string | null = null;
-      // 1. Ưu tiên tìm chương có bài học đã mở khóa nhưng CHƯA hoàn thành
-      for (const status of deckStatuses) {
-        if (status.unlocked && !status.completed) {
-          activeChap = (status.deck.chapter || 1).toString();
-          break;
-        }
-      }
-
-      // 2. Nếu đã hoàn thành hết các bài mở khóa, mở chương của bài mở khóa cuối cùng
-      if (!activeChap) {
-        for (let i = deckStatuses.length - 1; i >= 0; i--) {
-          if (deckStatuses[i].unlocked) {
-            activeChap = (deckStatuses[i].deck.chapter || 1).toString();
-            break;
-          }
-        }
-      }
-
-      // 3. Nếu không có gì, mặc định mở chương 1
-      if (!activeChap) activeChap = "1";
-
-      setExpandedChapter(activeChap);
-    }
-  }, [deckStatuses, expandedChapter]);
-
-  // Reset nắp hộp khi user đổi Level
-  useEffect(() => {
-    setExpandedChapter(null);
-  }, [selectedLevel]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -79,6 +64,18 @@ export function SystemRoadmap() {
       document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isDropdownOpen]);
+
+  // Tự động cuộn đến bài học Active
+  useEffect(() => {
+    if (activeDeckId) {
+      const el = document.getElementById(`node-${activeDeckId}`);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 500);
+      }
+    }
+  }, [activeDeckId, selectedLevel, isLoading]);
 
   if (isLoading) {
     return (
@@ -116,49 +113,51 @@ export function SystemRoadmap() {
 
   return (
     <div className="w-full flex flex-col items-center">
-      {/* DROPDOWN CHỌN CẤP ĐỘ */}
-      <div className="w-full flex justify-end px-4 mb-4 sm:mb-8 relative z-40">
-        <div className="relative" ref={dropdownRef}>
-          <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2 bg-white/90 backdrop-blur-sm border-2 border-[#FFE2D1] shadow-sm px-4 py-2.5 rounded-full font-bold text-amber-900 transition-all hover:bg-orange-50 active:translate-y-1"
-          >
-            <span style={{ fontFamily: "var(--font-cherry)" }}>
-              Trình độ {selectedLevel}
-            </span>
-            <ChevronDown
-              className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
-              strokeWidth={3}
-            />
-          </button>
+      {/* DROPDOWN CHỌN CẤP ĐỘ (Chỉ hiển thị khi đã đăng nhập) */}
+      {user && (
+        <div className="w-full flex justify-end mb-4 sm:mb-8 relative z-40">
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex items-center gap-2 bg-white/90 backdrop-blur-sm border-2 border-[#FFE2D1] shadow-sm px-4 py-2.5 rounded-full font-bold text-amber-900 transition-all hover:bg-orange-50 active:translate-y-1"
+            >
+              <span style={{ fontFamily: "var(--font-cherry)" }}>
+                Trình độ {selectedLevel}
+              </span>
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+                strokeWidth={3}
+              />
+            </button>
 
-          <AnimatePresence>
-            {isDropdownOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.15 }}
-                className="absolute right-0 top-full mt-2 w-36 bg-white border-4 border-[#FFE2D1] rounded-[1.5rem] shadow-xl overflow-hidden flex flex-col z-50"
-              >
-                {LEVELS.map((lvl) => (
-                  <button
-                    key={lvl}
-                    onClick={() => {
-                      setSelectedLevel(lvl);
-                      setIsDropdownOpen(false);
-                    }}
-                    className={`px-4 py-3 font-bold text-base text-left transition-colors hover:bg-orange-50 ${selectedLevel === lvl ? "text-[#FF9F1C] bg-orange-50/50" : "text-zinc-500"}`}
-                    style={{ fontFamily: "var(--font-cherry)" }}
-                  >
-                    {lvl}
-                  </button>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+            <AnimatePresence>
+              {isDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full mt-2 w-36 bg-white border-4 border-[#FFE2D1] rounded-[1.5rem] shadow-xl overflow-hidden flex flex-col z-50"
+                >
+                  {LEVELS.map((lvl) => (
+                    <button
+                      key={lvl}
+                      onClick={() => {
+                        setSelectedLevel(lvl);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`px-4 py-3 font-bold text-base text-left transition-colors hover:bg-orange-50 ${selectedLevel === lvl ? "text-[#FF9F1C] bg-orange-50/50" : "text-zinc-500"}`}
+                      style={{ fontFamily: "var(--font-cherry)" }}
+                    >
+                      {lvl}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-      </div>
+      )}
 
       {deckStatuses.length === 0 ? (
         <div className="w-full flex flex-col items-center justify-center py-16 px-4 bg-white/60 border-4 border-dashed border-[#FFD166] rounded-[3rem] text-center shadow-sm mt-4">
@@ -175,196 +174,204 @@ export function SystemRoadmap() {
             Lộ trình {selectedLevel} sẽ sớm ra mắt. Cùng chờ đón nhé! ✨
           </p>
         </div>
+      ) : !user ? (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full max-w-sm sm:max-w-md mt-4 flex flex-col items-center justify-center py-16 px-4 bg-gradient-to-b from-white/90 to-[#E0F7FA]/40 border-4 border-dashed border-[#A0E8D5]/60 rounded-[3rem] text-center shadow-sm relative overflow-hidden min-h-[500px]"
+        >
+          {/* Nền mờ tạo chiều sâu */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/50 to-white/90 backdrop-blur-[2px]" />
+
+          {/* Cụm thông báo trung tâm */}
+          <div className="flex flex-col items-center justify-center text-center z-10">
+            <div className="relative mb-8 mt-4">
+              <div className="absolute inset-0 bg-[#FFD166] blur-xl rounded-full opacity-60 animate-pulse" />
+              <div className="relative w-28 h-28 bg-white/95 rounded-full flex items-center justify-center shadow-[0_8px_0_0_#FFE2D1] border-4 border-white animate-pulse">
+                <img src="/images/decorations/decoration_14.gif" alt="Decoration" className="w-full h-full object-contain" />
+              </div>
+            </div>
+            
+            <h3 className="text-4xl text-[#FF7096] mb-4 drop-shadow-sm leading-tight" style={{ fontFamily: "var(--font-cherry)" }}>
+              Vùng Đất<br/>Mây Mù
+            </h3>
+            <p className="font-rounded font-bold text-zinc-500 bg-white/95 backdrop-blur-md px-6 py-4 rounded-[1.5rem] shadow-sm border-2 border-white max-w-[320px] leading-relaxed text-sm"
+              style={{ fontFamily: "var(--font-cherry)" }}
+            >
+              Hành trình phía trước đang bị sương mù che khuất! Đăng nhập ngay để vén màn mây và bắt đầu phiêu lưu nhé ☁️✨
+            </p>
+          </div>
+        </motion.div>
       ) : (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-sm sm:max-w-md mt-2 flex flex-col items-center pb-10 px-2 gap-6"
+          className="w-full max-w-sm sm:max-w-md mt-2 flex flex-col items-center relative"
         >
-          {Object.entries(chapters).map(([chapterNum, items]) => {
-            const isExpanded = expandedChapter === chapterNum;
+          {Object.entries(chapters).map(([chapterNum, items], idx) => {
             const totalCount = items.length;
             const completedCount = items.filter(
               (item) => item.completed,
             ).length;
             const isFullyCompleted = completedCount === totalCount;
+            
+            // Tính toán đoạn đường SVG cần tô màu vàng (đã học)
+            const firstUncompletedIdx = items.findIndex((item) => !item.completed);
+            let pathCompletedCount = 0;
+            if (firstUncompletedIdx === -1) {
+              pathCompletedCount = items.length;
+            } else if (firstUncompletedIdx > 0) {
+              pathCompletedCount = firstUncompletedIdx + 1;
+            }
+
+            // Chọn màu cho chapter dựa vào thứ tự
+            const colorStyle = CHAPTER_COLORS[(parseInt(chapterNum) - 1) % CHAPTER_COLORS.length] || CHAPTER_COLORS[0];
 
             return (
-              <div key={chapterNum} className="w-full">
-                {/* 🍱 NẮP HỘP (ACCORDION HEADER) - GUMMY BUTTON */}
-                <button
-                  onClick={() =>
-                    setExpandedChapter(isExpanded ? null : chapterNum)
-                  }
-                  className={`w-full flex items-center justify-between p-4 rounded-2xl border-4 border-b-[6px] active:border-b-4 active:translate-y-[2px] transition-all z-10 relative shadow-sm overflow-hidden ${
-                    isExpanded
-                      ? "bg-gradient-to-r from-[#FFB3C6] to-[#FF7096] border-[#FFE4EE] border-b-[#C7486B]"
-                      : "bg-white border-zinc-200 border-b-zinc-300 hover:bg-zinc-50"
-                  }`}
-                >
-                  <span
-                    className={`font-bold font-rounded text-lg flex items-center gap-2 ${isExpanded ? "text-white drop-shadow-md" : "text-zinc-600"}`}
+              <div key={chapterNum} className="w-full flex flex-col items-center">
+                {/* 🚧 VÁCH NGĂN VẬT LÝ GIỮA CÁC CHƯƠNG */}
+                {idx > 0 && (
+                  <div className="w-full flex items-center justify-center mb-10 relative z-10 pointer-events-none">
+                    {/* Dải phân cách trải dài hết chiều ngang màn hình */}
+                    <div className="absolute w-screen max-w-2xl h-4 bg-[#E4E4E7]/60 rounded-full shadow-inner border-y-2 border-[#D4D4D8]/30 left-1/2 -translate-x-1/2" />
+                    <div className="z-10 bg-[#FFFDF5] p-3 rounded-full border-4 border-[#D4D4D8] shadow-sm text-zinc-400">
+                      <Lock className="w-6 h-6" strokeWidth={3} />
+                    </div>
+                  </div>
+                )}
+
+                {/* BANNER CHƯƠNG (Chapter Header) */}
+                <div className={`w-full border-4 rounded-[2rem] p-4 mb-6 text-center z-20 relative overflow-hidden ${colorStyle.bg} ${colorStyle.border} ${colorStyle.shadow}`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/0 via-white/10 to-black/0 pointer-events-none" />
+                  <h3 
+                    className="text-2xl sm:text-3xl text-white drop-shadow-md mb-2"
                     style={{ fontFamily: "var(--font-cherry)" }}
                   >
-                    Chương {chapterNum}{" "}
-                    {isFullyCompleted ? "🏆" : isExpanded ? "🍱" : "🍙"}
-                  </span>
+                    Chương {chapterNum} {isFullyCompleted ? "🏆" : "🗺️"}
+                  </h3>
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-32 sm:w-40 h-2.5 bg-black/20 rounded-full overflow-hidden shadow-inner">
+                      <div
+                        className={`h-full rounded-full transition-all duration-500 ${isFullyCompleted ? "bg-white" : "bg-[#FFD166]"}`}
+                        style={{ width: `${(completedCount / totalCount) * 100}%` }}
+                      />
+                    </div>
+                    <span className="font-bold font-rounded text-xs text-white/90">
+                      {completedCount}/{totalCount}
+                    </span>
+                  </div>
+                </div>
 
-                  <div className="flex items-center gap-3">
-                    {/* MINI PROGRESS BAR */}
-                    <div className="flex items-center gap-2">
-                      <div className="w-12 sm:w-16 h-2 bg-black/10 rounded-full overflow-hidden shadow-inner">
-                        <div
-                          className={`h-full rounded-full transition-all duration-500 ${isFullyCompleted ? "bg-[#06D6A0]" : isExpanded ? "bg-white" : "bg-[#FF9F1C]"}`}
-                          style={{
-                            width: `${(completedCount / totalCount) * 100}%`,
+                {/* DANH SÁCH BÀI HỌC (ZIG-ZAG) */}
+                <div className="relative w-full flex flex-col items-center" style={{ paddingBottom: "20px" }}>
+                  {/* ĐƯỜNG NỐI SVG (Xám - Hành trình phía trước) */}
+                  <svg 
+                    className="absolute top-0 left-1/2 -translate-x-1/2 z-0 pointer-events-none"
+                    // The viewBox needs to be wide enough to contain the entire zig-zag path.
+                    // The path goes from -75px to +75px, so a width of 150 is needed. We add padding.
+                    viewBox={`-85 0 170 ${(items.length) * ROW_HEIGHT}`}
+                    width="170"
+                  >
+                    <path 
+                      d={generateSVGPath(items.length, ROW_HEIGHT, ROW_HEIGHT / 2)}
+                      fill="none"
+                      stroke="#E4E4E7"
+                      strokeWidth="20"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    {/* ĐƯỜNG NỐI SVG (Vàng - Hành trình đã qua) */}
+                    {pathCompletedCount > 0 && (
+                      <path 
+                        d={generateSVGPath(pathCompletedCount, ROW_HEIGHT, ROW_HEIGHT / 2)}
+                        fill="none"
+                        stroke="#FFD166"
+                        strokeWidth="20"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    )}
+                  </svg>
+
+                  {/* CÁC NÚT BÀI HỌC */}
+                  {items.map((item, idx) => {
+                    const isActive = item.deck.id === activeDeckId;
+                    const offsetX = getZigZagOffset(idx);
+
+                    const decorationVariants : any = {
+                      hidden: { opacity: 0, scale: 0.5 },
+                      visible: {
+                        opacity: 1,
+                        scale: 1,
+                        transition: {
+                          type: "spring", stiffness: 200, damping: 15, delay: 0.2,
+                        },
+                      },
+                    };
+
+                    return (
+                      <div 
+                        key={item.deck.id} 
+                        id={`node-${item.deck.id}`}
+                        style={{ height: ROW_HEIGHT }} 
+                        className="w-full flex items-center justify-center relative"
+                      >
+                        {/* ======================================= */}
+                        {/* ✨ HỌA TIẾT TRANG TRÍ HAI BÊN ĐƯỜNG ✨ */}
+                        {/* ======================================= */}
+                        {(() => {
+                          const decoration = MAP_DECORATIONS[parseInt(chapterNum)]?.[idx];
+                          if (!decoration) return null;
+
+                          return (
+                            <motion.div 
+                              className={`absolute top-1/2 ${decoration.yOffset} ${decoration.isLeft ? "left-2 sm:-left-12" : "right-2 sm:-right-12"} ${decoration.sizeClass} ${decoration.opacity} -z-10 select-none pointer-events-none`} 
+                              variants={decorationVariants} 
+                              initial="hidden" 
+                              whileInView="visible" 
+                              viewport={{ once: true }}
+                            >
+                              <img src={decoration.src} alt="Decoration" className="w-full h-full object-contain" />
+                            </motion.div>
+                          );
+                        })()}
+
+                        <RoadmapNode
+                          deck={item.deck}
+                          unlocked={item.unlocked}
+                          completed={item.completed}
+                          isActive={isActive}
+                          index={idx}
+                          offsetX={offsetX}
+                          onClick={() => {
+                            if (item.deck.type === "chest") {
+                              if (item.unlocked &&!item.completed) {
+                                // MỞ RƯƠNG LẦN ĐẦU TIÊN
+                                import("canvas-confetti").then((confetti) => {
+                                  confetti.default({
+                                    particleCount: 100,
+                                    spread: 70,
+                                    origin: { y: 0.6 },
+                                  });
+                                });
+                                toast.success(`Bạn nhận được ${item.deck.rewardCoins || 100} xu!`, { icon: "🎉" });
+                                addCoins(item.deck.rewardCoins || 100);
+                                saveProgress(item.deck.id, ["claimed"]);
+                              } else if (item.completed) {
+                                // RƯƠNG ĐÃ NHẬN RỒI
+                                toast.success("Rương này bạn đã mở rồi nhé!", { icon: "👑" });
+                              }
+                            } else if (item.deck.type === "story") {
+                              setActiveStoryId(item.deck.id);
+                            } else {
+                              router.push(`/deck/${item.deck.id}`);
+                            }
                           }}
                         />
                       </div>
-                      <span
-                        className={`font-bold font-rounded text-xs ${isExpanded ? "text-white drop-shadow-sm" : "text-zinc-500"}`}
-                      >
-                        {completedCount}/{totalCount}
-                      </span>
-                    </div>
-
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform duration-300 ${isExpanded ? "rotate-180 text-white drop-shadow-md" : "text-zinc-400"}`}
-                      strokeWidth={3}
-                    />
-                  </div>
-                </button>
-
-                {/* 🍱 BÊN TRONG HỘP CƠM (BENTO GRID) */}
-                <AnimatePresence>
-                  {isExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                      animate={{ height: "auto", opacity: 1, marginTop: 12 }}
-                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="w-full bg-[#A34333] border-[12px] border-[#7A2A1E] rounded-[2rem] p-3 sm:p-4 shadow-[0_15px_0_0_#5C1A10] relative overflow-hidden">
-                        {/* Lớp bóng bên trong hộp */}
-                        <div className="absolute inset-0 rounded-xl shadow-inner pointer-events-none" />
-
-                        <div className="grid grid-cols-2 gap-3 sm:gap-4 relative z-10">
-                          {items.map((item, idx) => {
-                            const foodIcon =
-                              BENTO_ITEMS[idx % BENTO_ITEMS.length];
-                            const isColSpan2 = idx % 3 === 2; // Cứ món thứ 3 sẽ chiếm 2 cột ngang
-
-                            return (
-                              <motion.button
-                                key={item.deck.id}
-                                onClick={() =>
-                                  // item.unlocked &&
-                                  router.push(`/deck/${item.deck.id}`)
-                                }
-                                // disabled={!item.unlocked}
-                                whileHover={
-                                  item.unlocked ? { scale: 0.97 } : {}
-                                }
-                                whileTap={item.unlocked ? { scale: 0.93 } : {}}
-                                className={`relative flex flex-col items-center justify-center bg-[#FDFBF7] rounded-[1.2rem] shadow-[inset_0_4px_8px_rgba(0,0,0,0.05),0_4px_0_0_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden group outline-none ${
-                                  isColSpan2
-                                    ? "col-span-2 aspect-[2.1/1]"
-                                    : "col-span-1 aspect-square"
-                                } ${
-                                  !item.unlocked
-                                    ? "border-4 border-[#E8D5C4] cursor-not-allowed opacity-90"
-                                    : item.completed
-                                      ? "border-4 border-[#06D6A0] cursor-pointer"
-                                      : "border-4 border-[#FF9F1C] cursor-pointer ring-4 ring-[#FF9F1C]/40 animate-pulse"
-                                }`}
-                              >
-                                {/* TRẠNG THÁI KHÓA */}
-                                {!item.unlocked && (
-                                  <div className="absolute inset-0 bg-zinc-200/50 z-20 flex flex-col items-center justify-center backdrop-blur-[1px]">
-                                    <Lock className="w-6 h-6 sm:w-8 sm:h-8 text-zinc-400 mb-1" />
-                                    <span className="text-[10px] font-bold text-zinc-500 uppercase font-rounded">
-                                      Bị khóa
-                                    </span>
-                                  </div>
-                                )}
-
-                                {/* TRẠNG THÁI HOÀN THÀNH */}
-                                {item.completed && (
-                                  <div className="absolute top-2 right-2 z-20 text-[#06D6A0] bg-white rounded-full shadow-sm">
-                                    <CheckCircle2
-                                      className="w-5 h-5 sm:w-6 sm:h-6"
-                                      fill="currentColor"
-                                      stroke="white"
-                                    />
-                                  </div>
-                                )}
-
-                                {/* ICON MÓN ĂN */}
-                                <span
-                                  className={`text-5xl sm:text-6xl drop-shadow-md transition-transform duration-300 relative z-10 ${
-                                    !item.unlocked
-                                      ? "grayscale opacity-40"
-                                      : "group-hover:scale-110 group-hover:-rotate-3"
-                                  }`}
-                                >
-                                  {foodIcon}
-                                </span>
-
-                                {/* THÔNG TIN BÀI HỌC BÊN DƯỚI */}
-                                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 flex flex-col items-center gap-1 z-10 bg-gradient-to-t from-white/90 to-transparent pt-4">
-                                  <h4
-                                    className={`text-xs sm:text-sm font-bold text-center leading-tight line-clamp-1 ${
-                                      !item.unlocked
-                                        ? "text-zinc-400"
-                                        : "text-amber-900"
-                                    }`}
-                                    style={{ fontFamily: "var(--font-cherry)" }}
-                                  >
-                                    {item.deck.title}
-                                  </h4>
-
-                                  {/* THANH TIẾN ĐỘ NẾU ĐANG HỌC */}
-                                  {item.unlocked && !item.completed && (
-                                    <div className="w-full max-w-[80%] bg-orange-100 rounded-full h-1.5 overflow-hidden">
-                                      <div
-                                        className="h-full bg-[#06D6A0]"
-                                        style={{
-                                          width: `${item.totalCount === 0 ? 0 : (item.learnedCount / item.totalCount) * 100}%`,
-                                        }}
-                                      />
-                                    </div>
-                                  )}
-                                </div>
-                              </motion.button>
-                            );
-                          })}
-                        </div>
-
-                        {/* LỚP SƯƠNG MỜ KHÓA HÀNH TRÌNH NẾU CHƯA ĐĂNG NHẬP */}
-                        {!user && (
-                          <div className="absolute inset-0 z-30 bg-white/40 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center">
-                            <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg mb-4 border-4 border-[#FFE2D1] animate-bounce">
-                              <Lock
-                                className="w-10 h-10 text-[#FF7096]"
-                                strokeWidth={2.5}
-                              />
-                            </div>
-                            <h3
-                              className="text-2xl text-amber-900 mb-2 drop-shadow-sm"
-                              style={{ fontFamily: "var(--font-cherry)" }}
-                            >
-                              Hành Trình Bị Khóa
-                            </h3>
-                            <p className="font-rounded font-bold text-zinc-600 bg-white/90 px-5 py-2.5 rounded-2xl shadow-sm border-2 border-white max-w-[250px]">
-                              Đăng nhập ngay để lưu tiến độ và chinh phục lộ
-                              trình nhé! ✨
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    );
+                  })}
+                </div>
               </div>
             );
           })}

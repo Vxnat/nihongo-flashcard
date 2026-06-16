@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useUserStats } from "@/hooks/useUserStats";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Flame, Star, Layers, Clock, X, Sparkles, Target } from "lucide-react";
 
 const DAILY_GOAL = 15; // Mục tiêu lật 15 thẻ mỗi ngày để giữ lửa
@@ -10,6 +10,18 @@ const DAILY_GOAL = 15; // Mục tiêu lật 15 thẻ mỗi ngày để giữ l�
 export function UserStatsPill() {
   const { stats } = useUserStats();
   const [isOpen, setIsOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+
+  // Theo dõi thao tác cuộn để ẩn/hiện Smart Header
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 50) {
+      setIsHidden(true); // Cuộn xuống -> Ẩn
+    } else {
+      setIsHidden(false); // Cuộn lên hoặc ở trên cùng -> Hiện
+    }
+  });
 
   // Tính toán tiến độ
   const cardsLeft = Math.max(0, DAILY_GOAL - stats.cardsFlippedToday);
@@ -22,8 +34,8 @@ export function UserStatsPill() {
     <>
       {/* 1. VIÊN THUỐC TRẠNG THÁI (Lơ lửng ở ngoài) */}
       <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: isHidden ? -100 : 0, opacity: isHidden ? 0 : 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         onClick={() => setIsOpen(true)}
         className="fixed top-4 left-1/2 -translate-x-1/2 z-[50] flex items-center gap-4 bg-white/80 backdrop-blur-md px-5 py-2.5 border-2 border-zinc-100 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer hover:bg-white hover:scale-105 transition-all"

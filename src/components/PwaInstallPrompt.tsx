@@ -9,7 +9,7 @@ interface PwaInstallPromptProps {
 }
 
 export function PwaInstallPrompt({ pwaState }: PwaInstallPromptProps) {
-  const { isInstallable, isIOSInstallable, showIOSModal, setShowIOSModal } =
+  const { showIOSModal, setShowIOSModal } =
     pwaState;
 
   return (

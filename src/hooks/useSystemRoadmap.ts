@@ -5,13 +5,14 @@ import { useAppStore } from "@/store/useAppStore";
 
 export interface SystemDeck {
   id: string;
+  type?: "flashcard" | "story" | "chest";
   title: string;
   level: string;
   chapter: number;
   order: number;
   prerequisite: string | null;
   rewardCoins: number;
-  totalCards: number;
+  totalCards?: number;
 }
 
 export function useSystemRoadmap() {
@@ -51,19 +52,31 @@ export function useSystemRoadmap() {
 
   const getDeckStatus = useCallback(
     (deck: SystemDeck) => {
-      const learnedCount = (progress[deck.id] || []).length;
-      const totalCount = deck.totalCards || 0;
-      const completed = totalCount > 0 && learnedCount >= totalCount;
-
+      // Xác định trạng thái Mở khóa (unlocked) trước, vì nó cần thiết để tính trạng thái của Rương
       let unlocked = true;
       if (deck.prerequisite) {
         const prereqDeck = decks.find((d) => d.id === deck.prerequisite);
         if (prereqDeck) {
           const preLearned = (progress[deck.prerequisite] || []).length;
           const preTotal = prereqDeck.totalCards || 0;
-          unlocked = preTotal === 0 || preLearned >= preTotal;
+          const preCompleted =
+            prereqDeck.type === "story" || prereqDeck.type === "chest"
+              ? preLearned > 0
+              : preTotal === 0 || preLearned >= preTotal;
+          unlocked = preCompleted;
         }
       }
+
+      const learnedCount = (progress[deck.id] || []).length;
+      const totalCount = deck.totalCards || 0;
+
+      // Rương và Truyện được coi là "hoàn thành" khi đã ghi nhận tiến độ (learnedCount > 0).
+      // Flashcard hoàn thành khi học đủ số thẻ.
+      const completed =
+        deck.type === "chest" || deck.type === "story"
+          ? learnedCount > 0
+          : totalCount === 0 || learnedCount >= totalCount;
+
       return { completed, unlocked, learnedCount, totalCount };
     },
     [decks, progress],
