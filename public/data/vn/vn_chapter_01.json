@@ -8,22 +8,34 @@
   "characters": {
     "mascot": {
       "name": "Shiba",
-      "color": "#FF9F1C"
+      "color": "#FF9F1C",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/shiba_idle.png"
+      }
     },
-    "nam": {
-      "name": "Nam",
-      "color": "#06D6A0"
+    "stranger": {
+      "name": "Cỏ",
+      "color": "#06D6A0",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/stranger_idle.png"
+      }
     },
     "npc": {
-      "name": "Bác Tanaka",
-      "color": "#5390D9"
+      "name": "Cheems",
+      "color": "#5390D9",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/npc_idle.png"
+      }
     }
   },
   "nodes": [
     {
       "id": "node_001",
       "characterId": "mascot",
-      "emotion": "happy",
+      "emotion": "idle",
       "background": "/images/bg_airport.jpg",
       "dialogue": {
         "jp": "おはよう！Chào mừng bạn đến 日本 nhé!",
@@ -41,12 +53,12 @@
     },
     {
       "id": "node_002",
-      "characterId": "nam",
+      "characterId": "stranger",
       "emotion": "idle",
       "background": "/images/bg_airport.jpg",
       "dialogue": {
-        "jp": "はじめまして。ナムです。ベトナムから来ました。",
-        "vi": "Rất vui được gặp bạn. Mình là Nam. Mình đến từ Việt Nam."
+        "jp": "はじめまして。Cỏです。ベトナムから来ました。",
+        "vi": "Rất vui được gặp bạn. Mình là Cỏ. Mình đến từ Việt Nam."
       },
       "interactableWords": [
         {
@@ -64,8 +76,8 @@
       "emotion": "idle",
       "background": "/images/bg_airport.jpg",
       "dialogue": {
-        "jp": "Ây da, cái vali này to quá. これはナムさんの鞄ですか？",
-        "vi": "Ây da, cái vali này to quá. Đây là cặp của Nam à?"
+        "jp": "Ây da, cái vali này to quá. これはCỏですか？",
+        "vi": "Ây da, cái vali này to quá. Đây là cặp của Cỏ à?"
       },
       "interactableWords": [
         {
@@ -85,8 +97,8 @@
     },
     {
       "id": "node_004",
-      "characterId": "nam",
-      "emotion": "happy",
+      "characterId": "stranger",
+      "emotion": "idle",
       "background": "/images/bg_airport.jpg",
       "dialogue": {
         "jp": "はい、そうです。Hành lý của mình đó.",
@@ -129,7 +141,7 @@
     },
     {
       "id": "node_006",
-      "characterId": "nam",
+      "characterId": "stranger",
       "emotion": "idle",
       "background": "/images/bg_airport.jpg",
       "dialogue": {
@@ -160,7 +172,7 @@
     },
     {
       "id": "node_008",
-      "characterId": "nam",
+      "characterId": "stranger",
       "emotion": "idle",
       "background": "/images/bg_airport.jpg",
       "dialogue": {
@@ -186,7 +198,7 @@
     {
       "id": "node_009",
       "characterId": "npc",
-      "emotion": "happy",
+      "emotion": "idle",
       "background": "/images/bg_airport.jpg",
       "dialogue": {
         "jp": "駅はあそこです。Đi thẳng là tới nhé!",
@@ -208,8 +220,8 @@
       "emotion": "idle",
       "background": "/images/bg_train_station.jpg",
       "dialogue": {
-        "jp": "Cảm ơn bác ạ! Này Nam, đố bạn biết chúng ta đi đến Tokyo BẰNG phương tiện gì?",
-        "vi": "Cảm ơn bác ạ! Này Nam, đố bạn biết chúng ta đi đến Tokyo BẰNG phương tiện gì?"
+        "jp": "Cảm ơn bác ạ! Này Cỏ, đố bạn biết chúng ta đi đến Tokyo BẰNG phương tiện gì?",
+        "vi": "Cảm ơn bác ạ! Này Cỏ, đố bạn biết chúng ta đi đến Tokyo BẰNG phương tiện gì?"
       },
       "interactableWords": [],
       "choices": [
@@ -228,11 +240,11 @@
     {
       "id": "node_011_wrong",
       "characterId": "mascot",
-      "emotion": "fail",
+      "emotion": "idle",
       "background": "/images/bg_train_station.jpg",
       "dialogue": {
-        "jp": "Sai rồi Nam ơi! Đi bằng phương tiện gì thì phải dùng trợ từ で (de) chứ!",
-        "vi": "Sai rồi Nam ơi! Đi bằng phương tiện gì thì phải dùng trợ từ で (de) chứ!"
+        "jp": "Sai rồi Cỏ ơi! Đi bằng phương tiện gì thì phải dùng trợ từ で (de) chứ!",
+        "vi": "Sai rồi Cỏ ơi! Đi bằng phương tiện gì thì phải dùng trợ từ で (de) chứ!" 
       },
       "interactableWords": [],
       "nextNode": "node_010"
@@ -240,7 +252,7 @@
     {
       "id": "node_011_correct",
       "characterId": "mascot",
-      "emotion": "success",
+      "emotion": "idle",
       "background": "/images/bg_train_station.jpg",
       "dialogue": {
         "jp": "Chuẩn luôn! Trợ từ で dùng để chỉ phương tiện! Lên tàu thôi!",

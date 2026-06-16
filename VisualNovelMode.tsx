@@ -19,7 +19,9 @@ export function VisualNovelMode() {
   const [storyData, setStoryData] = useState<any>(null);
   const [currentNodeId, setCurrentNodeId] = useState<string>("node_001");
   const [isTyping, setIsTyping] = useState<boolean>(true);
-  const [selectedWord, setSelectedWord] = useState<VNInteractableWord | null>(null);
+  const [selectedWord, setSelectedWord] = useState<VNInteractableWord | null>(
+    null,
+  );
   const lastNodeRef = useRef<any>(null);
   const isFirstClearRef = useRef<boolean>(false);
 
@@ -52,7 +54,7 @@ export function VisualNovelMode() {
   }
 
   const currentNode = storyData.nodes.find((n: any) => n.id === currentNodeId);
-  
+
   // Lưu lại Node cuối cùng để giữ hình nền không bị mất khi End Story
   if (currentNode) {
     lastNodeRef.current = currentNode;
@@ -88,20 +90,21 @@ export function VisualNovelMode() {
       {/* HÌNH NỀN */}
       <VNBackground src={displayNode.background} />
 
-      {/* NHÂN VẬT (Nằm ở giữa khung hình) */}
-      <div className="absolute bottom-[28%] left-0 right-0 flex justify-center pointer-events-none">
+      {/* NHÂN VẬT (Nằm ở góc lấp ló sau khung chat) */}
+      <div
+        className={`absolute bottom-[15%] pointer-events-none z-10 ${currentCharacterMeta?.position === "left" ? "left-[-10px]" : "right-[-10px]"}`}
+      >
         <VNCharacter
           characterId={displayNode.characterId}
           emotion={displayNode.emotion}
+          position={currentCharacterMeta?.position}
+          spriteUrl={currentCharacterMeta?.sprites?.[displayNode.emotion]}
         />
       </div>
 
       {/* NÚT LỰA CHỌN (Chỉ hiện khi chữ đã chạy xong và có lựa chọn) */}
       {currentNode && !isTyping && currentNode.choices && (
-        <VNChoices 
-          choices={currentNode.choices} 
-          onSelect={handleNextNode} 
-        />
+        <VNChoices choices={currentNode.choices} onSelect={handleNextNode} />
       )}
 
       {/* KHU VỰC CHATBOX THỰC TẾ */}
@@ -116,16 +119,18 @@ export function VisualNovelMode() {
       )}
 
       {/* POP-UP TỪ VỰNG */}
-      <VNWordTooltip 
-        word={selectedWord} 
-        onClose={() => setSelectedWord(null)} 
+      <VNWordTooltip
+        word={selectedWord}
+        onClose={() => setSelectedWord(null)}
       />
 
       {/* MÀN HÌNH KẾT THÚC TRUYỆN */}
       {currentNodeId === "END_STORY" && (
-        <VNEndScreen 
-          rewardCoins={isFirstClearRef.current ? (storyData.meta.rewardCoins || 20) : 0} 
-          onClose={() => setActiveStoryId(null)} 
+        <VNEndScreen
+          rewardCoins={
+            isFirstClearRef.current ? storyData.meta.rewardCoins || 20 : 0
+          }
+          onClose={() => setActiveStoryId(null)}
         />
       )}
     </div>

@@ -4,14 +4,23 @@ import { motion } from "framer-motion";
 interface VNCharacterProps {
   characterId: string;
   emotion: string;
+  position?: "left" | "right";
+  spriteUrl?: string;
 }
 
-export function VNCharacter({ characterId, emotion }: VNCharacterProps) {
+export function VNCharacter({
+  characterId,
+  emotion,
+  position = "right",
+  spriteUrl,
+}: VNCharacterProps) {
   // Mock Sprite (Thay thế bằng <img> thật khi bạn có ảnh)
   const getPlaceholderSprite = () => {
     const colors: Record<string, string> = {
       mascot: "#FF9F1C",
       stranger: "#5390D9",
+      nam: "#06D6A0",
+      npc: "#5390D9",
     };
     const emojis: Record<string, string> = {
       happy: "😄",
@@ -30,15 +39,26 @@ export function VNCharacter({ characterId, emotion }: VNCharacterProps) {
     );
   };
 
+  // Animation trượt ngang tùy theo vị trí nhân vật
+  const initialX = position === "left" ? -50 : 50;
+
   return (
     <motion.div
       key={`${characterId}-${emotion}`}
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ x: initialX, y: 20, opacity: 0 }}
+      animate={{ x: 0, y: 0, opacity: 1 }}
       transition={{ type: "spring", bounce: 0.6, duration: 0.5 }}
       className="relative z-10 drop-shadow-xl"
     >
-      {getPlaceholderSprite()}
+      {spriteUrl ? (
+        <img
+          src={spriteUrl}
+          alt={`${characterId} - ${emotion}`}
+          className="h-80 sm:h-90 w-auto object-contain pointer-events-none"
+        />
+      ) : (
+        getPlaceholderSprite()
+      )}
     </motion.div>
   );
 }
