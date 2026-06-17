@@ -24,7 +24,9 @@ export default function Home() {
   const { activeTab, handleTabChange } = homeState;
   const activeStoryId = useAppStore((state) => state.activeStoryId);
   const activeMinigameId = useAppStore((state: any) => state.activeMinigameId);
-  const setActiveMinigameId = useAppStore((state: any) => state.setActiveMinigameId);
+  const setActiveMinigameId = useAppStore(
+    (state: any) => state.setActiveMinigameId,
+  );
   const [minigameDeckData, setMinigameDeckData] = useState<any>(null); // Store minigame deck data
   const addCoins = useAppStore((state) => state.addCoins);
   const saveProgress = useAppStore((state) => state.saveProgress);
@@ -47,21 +49,29 @@ export default function Home() {
         const res = await fetch("/data/system_decks.json");
         const decks = await res.json();
 
-        const minigameIndex = decks.findIndex((d: any) => d.id === activeMinigameId);
+        const minigameIndex = decks.findIndex(
+          (d: any) => d.id === activeMinigameId,
+        );
         if (minigameIndex === -1) return;
         const minigameDeck = decks[minigameIndex];
         setMinigameDeckData(minigameDeck); // Save minigame deck data
 
         // Lọc các bài học flashcard trước đó trong cùng một level
-        const previousDecks = decks.slice(0, minigameIndex).filter(
-          (d: any) => d.level === minigameDeck.level && (!d.type || d.type === "flashcard")
-        );
+        const previousDecks = decks
+          .slice(0, minigameIndex)
+          .filter(
+            (d: any) =>
+              d.level === minigameDeck.level &&
+              (!d.type || d.type === "flashcard"),
+          );
 
         let allCards: FlashcardData[] = [];
         // Chọn tối đa 3 bài gần nhất để lấy data tránh request quá nhiều
         for (const deck of previousDecks.slice(-3)) {
           const folder = deck.level.toLowerCase(); // VD: n5, n4
-          const deckRes = await fetch(`/data/${folder}/${deck.id}.json`).catch(() => null);
+          const deckRes = await fetch(`/data/${folder}/${deck.id}.json`).catch(
+            () => null,
+          );
           if (deckRes && deckRes.ok) {
             const cards = await deckRes.json();
             allCards = [...allCards, ...cards];
@@ -69,7 +79,7 @@ export default function Home() {
         }
 
         const shuffled = allCards.sort(() => Math.random() - 0.5);
-        setMinigameCards(shuffled.slice(0, 8)); // Lấy ngẫu nhiên 8 thẻ
+        setMinigameCards(shuffled.slice(0, 7)); // Lấy ngẫu nhiên 7 thẻ
       } catch (err) {
         console.error("Lỗi tải minigame:", err);
       } finally {
@@ -183,13 +193,22 @@ export default function Home() {
             {isLoadingMinigame ? (
               <div className="flex flex-col items-center justify-center animate-pulse">
                 <span className="text-4xl mb-4">🧩</span>
-                <p className="font-rounded font-bold text-zinc-500 text-lg">Đang trộn bài...</p>
+                <p className="font-rounded font-bold text-zinc-500 text-lg">
+                  Đang trộn bài...
+                </p>
               </div>
             ) : minigameCards.length === 0 ? (
               <div className="flex flex-col items-center justify-center text-center p-4">
                 <span className="text-6xl mb-4">😭</span>
-                <p className="font-rounded font-bold text-zinc-500 text-lg">Không tìm thấy thẻ bài nào từ các bài trước!</p>
-                <button onClick={() => setActiveMinigameId(null)} className="mt-6 px-6 py-3 bg-white border-2 border-zinc-200 hover:bg-zinc-50 rounded-2xl font-bold font-rounded text-zinc-600 active:translate-y-1 transition-all shadow-sm">Thoát</button>
+                <p className="font-rounded font-bold text-zinc-500 text-lg">
+                  Không tìm thấy thẻ bài nào từ các bài trước!
+                </p>
+                <button
+                  onClick={() => setActiveMinigameId(null)}
+                  className="mt-6 px-6 py-3 bg-white border-2 border-zinc-200 hover:bg-zinc-50 rounded-2xl font-bold font-rounded text-zinc-600 active:translate-y-1 transition-all shadow-sm"
+                >
+                  Thoát
+                </button>
               </div>
             ) : (
               <MatchingPairsGame

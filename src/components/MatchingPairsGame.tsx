@@ -51,7 +51,9 @@ export function MatchingPairsGame({
   const addCoins = useAppStore((state) => state.addCoins);
   const deductCoins = useAppStore((state) => state.deductCoins);
   const useFreeMinigameHint = useAppStore((state) => state.useFreeMinigameHint);
-  const freeMinigameHints = useAppStore((state) => state.userStats.freeMinigameHints);
+  const freeMinigameHints = useAppStore(
+    (state) => state.userStats.freeMinigameHints,
+  );
   const progress = useAppStore((state) => state.progress);
   const isFirstClearRef = useRef<boolean>(false);
 
@@ -60,33 +62,39 @@ export function MatchingPairsGame({
   const [selectedItems, setSelectedItems] = useState<BoardItem[]>([]);
   const [wrongMatch, setWrongMatch] = useState<string[]>([]); // IDs of cards that were part of a wrong match
   const [hp, setHp] = useState(MAX_HP);
-  const [minigameStatus, setMinigameStatus] = useState<"playing" | "win" | "lose">(
-    "playing",
-  );
+  const [minigameStatus, setMinigameStatus] = useState<
+    "playing" | "win" | "lose"
+  >("playing");
 
   // --- Hint System State ---
   const [isPhaoActive, setIsPhaoActive] = useState(false);
-  const [phaoCountdownPercent, setPhaoCountdownPercent] = useState<number | undefined>(
-    undefined,
-  );
-  const [isKinhLupActive, setIsKinhLupActive] = useState(false); // Magnifier mode active
-  const [revealedCardId, setRevealedCardId] = useState<string | null>(null); // Card currently revealed by Magnifier
-  const [revealedCardCountdownPercent, setRevealedCardCountdownPercent] = useState<
+  const [phaoCountdownPercent, setPhaoCountdownPercent] = useState<
     number | undefined
   >(undefined);
+  const [isKinhLupActive, setIsKinhLupActive] = useState(false); // Magnifier mode active
+  const [revealedCardId, setRevealedCardId] = useState<string | null>(null); // Card currently revealed by Magnifier
+  const [revealedCardCountdownPercent, setRevealedCardCountdownPercent] =
+    useState<number | undefined>(undefined);
   const [showPhaoConfirm, setShowPhaoConfirm] = useState(false);
   const [showKinhLupConfirm, setShowKinhLupConfirm] = useState(false);
-  const [currentKinhLupTargetId, setCurrentKinhLupTargetId] = useState<string | null>(
-    null,
-  );
+  const [currentKinhLupTargetId, setCurrentKinhLupTargetId] = useState<
+    string | null
+  >(null);
 
   // --- Timer Hook ---
-  const initialDuration = gameLevel === "N5" ? BASE_TIME_N5 : BASE_TIME_N4_BELOW;
-  const { timeLeft, isRunning, startTimer, pauseTimer, resetTimer, progressPercent } =
-    useMinigameTimer({
-      duration: initialDuration,
-      onTimeUp: () => setMinigameStatus("lose"),
-    });
+  const initialDuration =
+    gameLevel === "N5" ? BASE_TIME_N5 : BASE_TIME_N4_BELOW;
+  const {
+    timeLeft,
+    isRunning,
+    startTimer,
+    pauseTimer,
+    resetTimer,
+    progressPercent,
+  } = useMinigameTimer({
+    duration: initialDuration,
+    onTimeUp: () => setMinigameStatus("lose"),
+  });
 
   // --- First Clear Check ---
   useEffect(() => {
@@ -151,11 +159,16 @@ export function MatchingPairsGame({
     if (selectedItems.length === 2) {
       const [card1, card2] = selectedItems;
 
-      if (card1.flashcardId === card2.flashcardId && card1.type !== card2.type) {
+      if (
+        card1.flashcardId === card2.flashcardId &&
+        card1.type !== card2.type
+      ) {
         // Match!
         setBoardItems((prev) =>
           prev.map((item) =>
-            item.flashcardId === card1.flashcardId ? { ...item, isMatched: true } : item,
+            item.flashcardId === card1.flashcardId
+              ? { ...item, isMatched: true }
+              : item,
           ),
         );
         setSelectedItems([]);
@@ -179,7 +192,9 @@ export function MatchingPairsGame({
         });
 
         // Check for win condition
-        const remainingUnmatched = boardItems.filter((item) => !item.isMatched).length;
+        const remainingUnmatched = boardItems.filter(
+          (item) => !item.isMatched,
+        ).length;
         if (remainingUnmatched <= 2) {
           pauseTimer();
           setMinigameStatus("win");
@@ -384,13 +399,23 @@ export function MatchingPairsGame({
   const showFuriganaByDefault = gameLevel === "N5";
 
   if (minigameStatus === "win" || minigameStatus === "lose") {
-    const timeBonus = minigameStatus === "win" && isFirstClearRef.current ? Math.floor(timeLeft / 5) * TIME_BONUS_PER_5_SECONDS : 0;
-    const rewardCoins = minigameStatus === "win" && isFirstClearRef.current ? baseRewardCoins : 0;
+    const timeBonus =
+      minigameStatus === "win" && isFirstClearRef.current
+        ? Math.floor(timeLeft / 5) * TIME_BONUS_PER_5_SECONDS
+        : 0;
+    const rewardCoins =
+      minigameStatus === "win" && isFirstClearRef.current ? baseRewardCoins : 0;
 
     return (
       <GameResultModal
         status={minigameStatus}
-        reason={minigameStatus === "lose" ? (hp <= 0 ? "Hết máu rồi!" : "Hết giờ!") : undefined}
+        reason={
+          minigameStatus === "lose"
+            ? hp <= 0
+              ? "Hết máu rồi!"
+              : "Hết giờ!"
+            : undefined
+        }
         rewardCoins={rewardCoins}
         timeBonus={timeBonus}
         onRestart={handleRestartGame}
@@ -470,14 +495,18 @@ export function MatchingPairsGame({
                   onClick={() => handleCardClick(item)}
                   key={item.id}
                   data-card-id={item.id} // For confetti target
-                  disabled={!isRunning || selectedItems.length >= 2 || (isKinhLupActive && item.type === "vi")} // Disable VI cards in Kính Lúp mode
+                  disabled={
+                    !isRunning ||
+                    selectedItems.length >= 2 ||
+                    (isKinhLupActive && item.type === "vi")
+                  } // Disable VI cards in Kính Lúp mode
                   className={`relative aspect-square sm:aspect-auto sm:h-28 rounded-xl sm:rounded-2xl p-1.5 min-[400px]:p-2 sm:p-4 flex flex-col items-center justify-center text-center shadow-sm border-b-4 transition-colors outline-none
                     ${
                       isSelected && !isWrong
                         ? "bg-[#E0F7FA] border-[#80DEEA] border-b-[#80DEEA] shadow-[0_0_15px_rgba(128,222,234,0.5)]"
                         : isWrong
-                        ? "bg-[#FFF0F3] border-[#FF7096] border-b-[#FF7096]"
-                        : "bg-white border-[#FFE2D1] border-b-[#FFD166] hover:bg-orange-50"
+                          ? "bg-[#FFF0F3] border-[#FF7096] border-b-[#FF7096]"
+                          : "bg-white border-[#FFE2D1] border-b-[#FFD166] hover:bg-orange-50"
                     }
                     ${
                       isKinhLupActive && item.type === "jp"
@@ -493,7 +522,11 @@ export function MatchingPairsGame({
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 0.7 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+                      transition={{
+                        duration: 0.5,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                      }}
                     />
                   )}
                   <span
@@ -504,7 +537,9 @@ export function MatchingPairsGame({
                     }`}
                     style={{
                       fontFamily:
-                        item.type === "jp" ? "var(--font-cherry)" : "var(--font-rounded)",
+                        item.type === "jp"
+                          ? "var(--font-cherry)"
+                          : "var(--font-rounded)",
                     }}
                   >
                     {item.type === "jp"
@@ -515,7 +550,9 @@ export function MatchingPairsGame({
                     <motion.div
                       className="absolute bottom-1 right-1 w-6 sm:w-8 h-1 bg-teal-400 rounded-full"
                       initial={{ scaleX: 1 }}
-                      animate={{ scaleX: (revealedCardCountdownPercent || 0) / 100 }}
+                      animate={{
+                        scaleX: (revealedCardCountdownPercent || 0) / 100,
+                      }}
                       transition={{ duration: 0.1, ease: "linear" }}
                       style={{ originX: 0 }}
                     />
@@ -528,7 +565,7 @@ export function MatchingPairsGame({
       </div>
 
       {/* Bottom Bar: Hint Buttons */}
-      <div className="w-full flex justify-center gap-2 sm:gap-4 mt-2 sm:mt-6 pb-2">
+      <div className="w-full flex justify-center gap-2 sm:gap-4 mt-4 sm:mt-6 pb-2">
         {/* Phao Bơi Button */}
         <ConfirmationPopover
           open={showPhaoConfirm}
@@ -539,7 +576,10 @@ export function MatchingPairsGame({
           costLabel={
             freeMinigameHints > 0 ? (
               <div className="flex flex-col items-center gap-1">
-                <div className="flex items-center gap-1">{freeMinigameHints} <LifeBuoy className="w-4 h-4" /></div> Miễn phí
+                <div className="flex items-center gap-1">
+                  {freeMinigameHints} <LifeBuoy className="w-4 h-4" />
+                </div>{" "}
+                Miễn phí
               </div>
             ) : (
               <div className="flex items-center gap-1">
