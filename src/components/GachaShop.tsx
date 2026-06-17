@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/store/useAppStore";
-import { Coins, Lock } from "lucide-react";
+import { Bone, Lock } from "lucide-react";
 import { GACHA_POOL } from "@/constants/gachaPool";
 import toast from "react-hot-toast";
 import { Badge } from "./ui/badge";
@@ -167,7 +167,7 @@ export function GachaShop() {
     // Kiểm tra & Trừ tiền
     const success = await deductCoins(10);
     if (!success) {
-      toast.error("Không đủ Xu! Hãy làm Nhiệm vụ nhé 🥺", { icon: "🪙" });
+      toast.error("Không đủ Xương! Hãy làm Nhiệm vụ nhé 🥺", { icon: "🦴" });
       return;
     }
 
@@ -226,7 +226,7 @@ export function GachaShop() {
         <span className="font-bold text-amber-900 text-sm">Số dư:</span>
         <span className="font-black text-[#FF9F1C] text-lg flex items-center gap-1">
           {user ? userStats.coins : "?"}{" "}
-          <Coins size={20} className="text-[#FFD166] fill-[#FFD166]" />
+          <Bone size={20} className="text-[#FFD166] fill-[#FFD166]" />
         </span>
       </div>
 
@@ -267,14 +267,14 @@ export function GachaShop() {
               className="text-xl text-amber-900 font-bold"
               style={{ fontFamily: "var(--font-cherry)" }}
             >
-              10 Xu / Lần
+              10 Xương / Lần
             </h4>
           </div>
 
           {!user ? (
             <button
               onClick={() =>
-                toast("Hãy đăng nhập để kiếm Xu và quay Gacha nhé! 🔒", {
+                toast("Hãy đăng nhập để kiếm Xương và quay Gacha nhé! 🔒", {
                   icon: "🥺",
                 })
               }

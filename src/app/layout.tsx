@@ -33,12 +33,12 @@ const cuteFont = Cute_Font({
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Flashcard Tiếng Nhật",
-  description: "Học từ vựng tiếng Nhật siêu cute",
+  title: "Shiba Town",
+  description: "Khám phá tiếng Nhật cùng bé Shiba!",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Nihongo Card",
+    title: "Shiba Town",
   },
 };
 

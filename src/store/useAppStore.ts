@@ -19,6 +19,7 @@ interface UserStats {
   learningTimeToday: number;
   lastActiveDate: string;
   // --- GACHA & QUESTS ---
+  freeMinigameHints: number;
   coins: number;
   inventory: string[];
   equippedSticker: string | null;
@@ -77,6 +78,7 @@ export interface CustomDeck {
   level: string;
   cards: any[];
   folderId?: string | null;
+  createdAt?: string;
 }
 
 export interface DeckFolder {
@@ -107,8 +109,9 @@ interface AppState {
   customDecks: CustomDeck[];
   isLoadingDecks: boolean;
   loadCustomDecks: (uid?: string) => Promise<void>;
-  addCustomDeck: (deck: CustomDeck) => void;
-  deleteCustomDeck: (id: string) => void;
+  addCustomDeck: (deck: CustomDeck) => Promise<void>;
+  deleteCustomDeck: (id: string) => Promise<void>;
+  updateCustomDeck: (deck: CustomDeck) => Promise<void>;
 
   // --- FOLDER SLICE ---
   folders: DeckFolder[];
@@ -134,11 +137,16 @@ interface AppState {
   deductCoins: (amount: number) => Promise<boolean>;
   addCoins: (amount: number) => Promise<void>;
   unlockSticker: (stickerId: string) => Promise<void>;
+  useFreeMinigameHint: () => Promise<boolean>;
   equipSticker: (stickerId: string) => Promise<void>;
 
   // --- VISUAL NOVEL SLICE ---
   activeStoryId: string | null;
   setActiveStoryId: (id: string | null) => void;
+
+  // --- MINIGAME SLICE ---
+  activeMinigameId: string | null;
+  setActiveMinigameId: (id: string | null) => void;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -167,6 +175,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     learningTimeToday: 0,
     lastActiveDate: new Date().toLocaleDateString("en-CA"),
     // --- GACHA & QUESTS ---
+    freeMinigameHints: 3,
     coins: 0,
     inventory: [],
     equippedSticker: null,
@@ -176,6 +185,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   // 1.5 VISUAL NOVEL STATE
   activeStoryId: null,
   setActiveStoryId: (id) => set({ activeStoryId: id }),
+
+  // 1.6 MINIGAME STATE
+  activeMinigameId: null,
+  setActiveMinigameId: (id) => set({ activeMinigameId: id }),
 
   // 2. HÀM TẢI DỮ LIỆU (Đã tích hợp Firestore)
   loadUserStats: async () => {
@@ -192,6 +205,7 @@ export const useAppStore = create<AppState>((set, get) => ({
           learningTimeToday: 0,
           lastActiveDate: today,
           coins: 0,
+          freeMinigameHints: 3,
           inventory: [],
           equippedSticker: null,
           dailyQuests: { date: today, quests: DEFAULT_QUESTS },
@@ -215,11 +229,13 @@ export const useAppStore = create<AppState>((set, get) => ({
     let currentStreak = savedStats.streak || 0;
     let flippedToday = savedStats.cardsFlippedToday || 0;
     let learningTime = savedStats.learningTimeToday || 0;
+    let freeHints = savedStats.freeMinigameHints ?? 3;
     const lastActiveDate = savedStats.lastActiveDate;
 
     if (lastActiveDate !== today) {
       flippedToday = 0;
       learningTime = 0;
+      freeHints = 3; // Reset lượt free mỗi ngày
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
 
@@ -238,6 +254,7 @@ export const useAppStore = create<AppState>((set, get) => ({
           streak: currentStreak,
           cardsFlippedToday: flippedToday,
           learningTimeToday: learningTime,
+          freeMinigameHints: freeHints,
           lastActiveDate: today,
         },
         { merge: true },
@@ -252,6 +269,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         learningTimeToday: learningTime,
         lastActiveDate: today || new Date().toLocaleDateString("en-CA"),
         // --- GACHA & QUESTS ---
+        freeMinigameHints: freeHints,
         coins: savedStats.coins || 0,
         inventory: savedStats.inventory || [],
         equippedSticker: savedStats.equippedSticker || null,
@@ -389,17 +407,50 @@ export const useAppStore = create<AppState>((set, get) => ({
       set({ isLoadingDecks: false });
     }
   },
-  addCustomDeck: (deck) => {
+  addCustomDeck: async (deck) => {
+    // Optimistic update, add to the top to match sorting logic in loadCustomDecks
     const currentDecks = get().customDecks;
-    const updated = [...currentDecks, deck];
-    localStorage.setItem("custom_decks", JSON.stringify(updated));
+    const updated = [deck, ...currentDecks];
     set({ customDecks: updated });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      await setDoc(doc(db, "decks", deck.id), { ...deck, userId: uid });
+    } else {
+      localStorage.setItem("custom_decks", JSON.stringify(updated));
+    }
   },
-  deleteCustomDeck: (id) => {
+  deleteCustomDeck: async (id) => {
+    // Optimistic update
     const currentDecks = get().customDecks;
     const updated = currentDecks.filter((d) => d.id !== id);
-    localStorage.setItem("custom_decks", JSON.stringify(updated));
     set({ customDecks: updated });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      await deleteDoc(doc(db, "decks", id));
+    } else {
+      localStorage.setItem("custom_decks", JSON.stringify(updated));
+    }
+  },
+  updateCustomDeck: async (updatedDeck) => {
+    // Optimistic UI update
+    const currentDecks = get().customDecks;
+    const updatedDecks = currentDecks.map((deck) =>
+      deck.id === updatedDeck.id ? updatedDeck : deck,
+    );
+    set({ customDecks: updatedDecks });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      // Overwrite the document in Firestore with the new deck data
+      await setDoc(doc(db, "decks", updatedDeck.id), updatedDeck, {
+        merge: true,
+      });
+    } else {
+      // Update in localStorage
+      localStorage.setItem("custom_decks", JSON.stringify(updatedDecks));
+    }
   },
 
   // 5.5. HÀM QUẢN LÝ THƯ MỤC (FOLDER SLICE)
@@ -732,6 +783,32 @@ export const useAppStore = create<AppState>((set, get) => ({
         console.error("Lỗi unlockSticker:", error);
       }
     }
+  },
+
+  useFreeMinigameHint: async () => {
+    const state = get();
+    const currentHints = state.userStats.freeMinigameHints;
+
+    if (currentHints > 0) {
+      const newHints = currentHints - 1;
+      const newUserStats = { ...state.userStats, freeMinigameHints: newHints };
+      set({ userStats: newUserStats });
+
+      const uid = get().user?.uid;
+      if (uid) {
+        try {
+          await setDoc(
+            doc(db, "user_stats", uid),
+            { freeMinigameHints: newHints },
+            { merge: true },
+          );
+        } catch (error) {
+          console.error("Lỗi đồng bộ useFreeMinigameHint:", error);
+        }
+      }
+      return true;
+    }
+    return false;
   },
 
   equipSticker: async (stickerId) => {

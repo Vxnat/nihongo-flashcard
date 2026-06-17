@@ -17,6 +17,7 @@ export function SystemRoadmap() {
     useSystemRoadmap();
   const user = useAppStore((state: any) => state.user);
   const setActiveStoryId = useAppStore((state: any) => state.setActiveStoryId);
+  const setActiveMinigameId = useAppStore((state: any) => state.setActiveMinigameId);
   const addCoins = useAppStore((state) => state.addCoins);
   const saveProgress = useAppStore((state) => state.saveProgress);
 
@@ -354,7 +355,7 @@ export function SystemRoadmap() {
                                     origin: { y: 0.6 },
                                   });
                                 });
-                                toast.success(`Bạn nhận được ${item.deck.rewardCoins || 100} xu!`, { icon: "🎉" });
+                                toast.success(`Bạn nhận được ${item.deck.rewardCoins || 100} Xương!`, { icon: "🎉" });
                                 addCoins(item.deck.rewardCoins || 100);
                                 saveProgress(item.deck.id, ["claimed"]);
                               } else if (item.completed) {
@@ -363,6 +364,8 @@ export function SystemRoadmap() {
                               }
                             } else if (item.deck.type === "story") {
                               setActiveStoryId(item.deck.id);
+                            } else if (item.deck.type === "minigame_matching") {
+                              setActiveMinigameId(item.deck.id);
                             } else {
                               router.push(`/deck/${item.deck.id}`);
                             }

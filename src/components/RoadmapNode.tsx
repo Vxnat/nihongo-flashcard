@@ -33,6 +33,8 @@ export function RoadmapNode({
     icon = completed ? "👑" : "📦";
   } else if (deck.type === "story") {
     icon = "📖";
+  } else if (deck.type === "minigame_matching") {
+    icon = "🧩";
   } else if (deck.title.toLowerCase().includes("boss") || deck.title.toLowerCase().includes("ôn tập")) {
     icon = "🏰";
   } else {

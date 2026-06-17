@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { VNInteractableWord } from "@/utils/vnTextParser";
-import { X, Plus, Check } from "lucide-react";
+import { X, Plus, Check, Loader2 } from "lucide-react";
 import { toast } from "react-hot-toast";
+import { useAppStore, CustomDeck } from "@/store/useAppStore";
 
 interface VNWordTooltipProps {
   word: VNInteractableWord | null;
@@ -11,49 +12,77 @@ interface VNWordTooltipProps {
 
 export function VNWordTooltip({ word, onClose }: VNWordTooltipProps) {
   const [isSaved, setIsSaved] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const customDecks = useAppStore((state) => state.customDecks);
+  const addCustomDeck = useAppStore((state) => state.addCustomDeck);
+  const updateCustomDeck = useAppStore((state) => state.updateCustomDeck);
 
   // Reset trạng thái lưu khi mở từ mới
   useEffect(() => {
     setIsSaved(false);
+    setIsSaving(false);
   }, [word]);
 
-  const handleSave = () => {
-    if (!word) return;
+  const handleSave = async () => {
+    if (!word || isSaving) return;
+    setIsSaving(true);
     try {
-      const savedDecksStr = localStorage.getItem("customDecks");
-      const savedDecks = savedDecksStr ? JSON.parse(savedDecksStr) : [];
-      
-      // Tìm hoặc tạo bộ bài "Sưu tầm từ Truyện"
-      let vnDeck = savedDecks.find((d: any) => d.id === "vn_collection");
-      if (!vnDeck) {
-        vnDeck = {
+      let vnDeck = customDecks.find((d) => d.id === "vn_collection");
+      const isNewDeck = !vnDeck;
+
+      let deckToUpdate: CustomDeck;
+
+      if (isNewDeck) {
+        deckToUpdate = {
           id: "vn_collection",
           title: "Sưu tầm từ Truyện 📖",
           description: "Các từ vựng lượm nhặt từ chế độ Visual Novel",
-          level: "Khác",
-          cards: []
+          level: "N/A",
+          cards: [],
+          count: 0,
+          createdAt: new Date().toISOString(),
         };
-        savedDecks.push(vnDeck);
+      } else {
+        // Create a copy to avoid direct state mutation
+        deckToUpdate = { ...vnDeck };
       }
-      
+
       // Kiểm tra xem từ đã tồn tại chưa
-      const exists = vnDeck.cards.find((c: any) => c.word === word.word);
-      if (!exists) {
-        vnDeck.cards.push({
-          id: `vn_card_${Date.now()}`,
-          word: word.word,
-          meaning: word.meaning,
-          reading: word.reading,
-          // Format cho TextParser hiển thị Furigana (nếu có thẻ mẫu)
-          example_jp_formatted: word.reading ? `[${word.word}]{${word.reading}}` : word.word,
-          example_vi: `(Từ vựng sưu tầm qua đoạn hội thoại)`
-        });
-        localStorage.setItem("customDecks", JSON.stringify(savedDecks));
+      const exists = deckToUpdate.cards.find((c: any) => c.word === word.word);
+      if (exists) {
+        toast("Từ này đã có trong bộ bài rồi!", { icon: "👍" });
+        setIsSaved(true);
+        setTimeout(() => {
+          onClose();
+          setIsSaved(false);
+        }, 1500);
+        return;
       }
-      
+
+      const newCard = {
+        id: `vn_card_${Date.now()}`,
+        word: word.word,
+        meaning: word.meaning,
+        reading: word.reading,
+        example_jp_formatted: word.reading
+          ? `[${word.word}]{${word.reading}}`
+          : word.word,
+        example_vi: `(Từ vựng sưu tầm qua đoạn hội thoại)`,
+      };
+
+      // Create a new array for cards to ensure immutability
+      deckToUpdate.cards = [...deckToUpdate.cards, newCard];
+      deckToUpdate.count = deckToUpdate.cards.length;
+
+      if (isNewDeck) {
+        await addCustomDeck(deckToUpdate);
+      } else {
+        await updateCustomDeck(deckToUpdate);
+      }
+
       setIsSaved(true);
       toast.success("Đã thêm vào bộ bài Sưu tầm!");
-      
+
       // Tự động đóng pop-up sau 1.5s
       setTimeout(() => {
         onClose();
@@ -62,6 +91,8 @@ export function VNWordTooltip({ word, onClose }: VNWordTooltipProps) {
     } catch (e) {
       console.error(e);
       toast.error("Lỗi khi lưu từ vựng!");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -104,8 +135,14 @@ export function VNWordTooltip({ word, onClose }: VNWordTooltipProps) {
             </div>
 
             {/* Nút Hành động */}
-            <button onClick={handleSave} disabled={isSaved} className={`w-full mt-6 h-14 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 border-b-4 active:border-b-0 active:translate-y-1 transition-all ${isSaved ? "bg-[#06D6A0] border-[#048c68] text-white" : "bg-[#FF7096] hover:bg-[#FF5C8A] border-[#C7486B] text-white"}`}>
-              {isSaved ? <><Check size={24} strokeWidth={3} /> Đã lưu thẻ</> : <><Plus size={24} strokeWidth={3} /> Thêm vào thẻ</>}
+            <button onClick={handleSave} disabled={isSaved || isSaving} className={`w-full mt-6 h-14 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 border-b-4 transition-all ${isSaved ? "bg-[#06D6A0] border-[#048c68] text-white" : isSaving ? "bg-zinc-300 border-zinc-400 text-zinc-500 cursor-not-allowed opacity-80" : "bg-[#FF7096] hover:bg-[#FF5C8A] border-[#C7486B] text-white active:border-b-0 active:translate-y-1"}`}>
+              {isSaved ? (
+                <><Check size={24} strokeWidth={3} /> Đã lưu thẻ</>
+              ) : isSaving ? (
+                <><Loader2 size={24} strokeWidth={3} className="animate-spin" /> Đang lưu...</>
+              ) : (
+                <><Plus size={24} strokeWidth={3} /> Thêm vào thẻ</>
+              )}
             </button>
           </motion.div>
         </motion.div>
