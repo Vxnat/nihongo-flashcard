@@ -8,29 +8,45 @@
   "characters": {
     "mascot": {
       "name": "Shiba",
-      "color": "#FF9F1C"
+      "color": "#FF9F1C",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/shiba_idle.png"
+      }
     },
     "stranger": {
-      "name": "Người lạ",
-      "color": "#5390D9"
+      "name": "Cỏ",
+      "color": "#06D6A0",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/stranger_idle.png"
+      }
+    },
+    "npc": {
+      "name": "Cheems",
+      "color": "#5390D9",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/npc_idle.png"
+      }
     }
   },
   "nodes": [
     {
       "id": "node_001",
       "characterId": "mascot",
-      "emotion": "happy",
-      "background": "/images/bg_train_station.jpg",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
       "dialogue": {
-        "jp": "おはよう！Hôm nay chúng ta sẽ đi 東京 nhé!",
-        "vi": "Chào buổi sáng! Hôm nay chúng ta sẽ đi Tokyo nhé!"
+        "jp": "おはよう！Chào mừng bạn đến 日本 nhé!",
+        "vi": "Chào buổi sáng! Chào mừng bạn đến Nhật Bản nhé!"
       },
       "interactableWords": [
         {
-          "word": "東京",
-          "reading": "とうきょう",
-          "meaning": "Tokyo",
-          "id": "word_tokyo_01"
+          "word": "日本",
+          "reading": "にほん",
+          "meaning": "Nhật Bản",
+          "id": "word_nihon_01"
         }
       ],
       "nextNode": "node_002"
@@ -39,55 +55,211 @@
       "id": "node_002",
       "characterId": "stranger",
       "emotion": "idle",
-      "background": "/images/bg_train_inside.jpg",
+      "background": "/images/bg_airport.jpg",
       "dialogue": {
-        "jp": "すみません、この電車は東京に行きますか？",
-        "vi": "Xin lỗi, chuyến tàu này có đi đến Tokyo không ạ?"
+        "jp": "はじめまして。Cỏです。ベトナムから来ました。",
+        "vi": "Rất vui được gặp bạn. Mình là Cỏ. Mình đến từ Việt Nam."
       },
       "interactableWords": [
         {
-          "word": "電車",
-          "reading": "でんしゃ",
-          "meaning": "Tàu điện",
-          "id": "word_train_01"
+          "word": "来ました",
+          "reading": "きました",
+          "meaning": "Đã đến",
+          "id": "word_kimashita_01"
         }
       ],
-      "choices": [
+      "nextNode": "node_003"
+    },
+    {
+      "id": "node_003",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Ây da, cái vali này to quá. これはCỏですか？",
+        "vi": "Ây da, cái vali này to quá. Đây là cặp của Cỏ à?"
+      },
+      "interactableWords": [
         {
-          "text": "はい、行きます。 (Vâng, có đi ạ)",
-          "isCorrect": true,
-          "nextNode": "node_003_correct"
+          "word": "これ",
+          "reading": "",
+          "meaning": "Cái này",
+          "id": "word_kore_01"
         },
         {
-          "text": "いいえ、行きません。 (Không, không đi ạ)",
+          "word": "鞄",
+          "reading": "かばん",
+          "meaning": "Cặp xách / Vali",
+          "id": "word_kaban_01"
+        }
+      ],
+      "nextNode": "node_004"
+    },
+    {
+      "id": "node_004",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "はい、そうです。Hành lý của mình đó.",
+        "vi": "Vâng, đúng vậy. Hành lý của mình đó."
+      },
+      "interactableWords": [
+        {
+          "word": "はい",
+          "reading": "",
+          "meaning": "Vâng / Đúng",
+          "id": "word_hai_01"
+        }
+      ],
+      "nextNode": "node_005"
+    },
+    {
+      "id": "node_005",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Chúng ta cần ra bến tàu. 今、何時ですか？",
+        "vi": "Chúng ta cần ra bến tàu. Bây giờ là mấy giờ rồi nhỉ?"
+      },
+      "interactableWords": [
+        {
+          "word": "今",
+          "reading": "いま",
+          "meaning": "Bây giờ",
+          "id": "word_ima_01"
+        },
+        {
+          "word": "何時",
+          "reading": "なんじ",
+          "meaning": "Mấy giờ",
+          "id": "word_nanji_01"
+        }
+      ],
+      "nextNode": "node_006"
+    },
+    {
+      "id": "node_006",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Để mình xem đồng hồ... 午前9時です。",
+        "vi": "Để mình xem đồng hồ... 9 giờ sáng rồi."
+      },
+      "interactableWords": [
+        {
+          "word": "午前",
+          "reading": "ごぜん",
+          "meaning": "Buổi sáng (AM)",
+          "id": "word_gozen_01"
+        }
+      ],
+      "nextNode": "node_007"
+    },
+    {
+      "id": "node_007",
+      "characterId": "npc",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "こんにちは！Hai cháu đang tìm đường à?",
+        "vi": "Xin chào! Hai cháu đang tìm đường à?"
+      },
+      "interactableWords": [],
+      "nextNode": "node_008"
+    },
+    {
+      "id": "node_008",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "すみません、駅はどこですか？",
+        "vi": "Xin lỗi bác, nhà ga ở đâu vậy ạ?"
+      },
+      "interactableWords": [
+        {
+          "word": "駅",
+          "reading": "えき",
+          "meaning": "Nhà ga",
+          "id": "word_eki_01"
+        },
+        {
+          "word": "どこ",
+          "reading": "",
+          "meaning": "Ở đâu",
+          "id": "word_doko_01"
+        }
+      ],
+      "nextNode": "node_009"
+    },
+    {
+      "id": "node_009",
+      "characterId": "npc",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "駅はあそこです。Đi thẳng là tới nhé!",
+        "vi": "Nhà ga ở đằng kia kìa. Đi thẳng là tới nhé!"
+      },
+      "interactableWords": [
+        {
+          "word": "あそこ",
+          "reading": "",
+          "meaning": "Chỗ kia / Đằng kia",
+          "id": "word_asoko_01"
+        }
+      ],
+      "nextNode": "node_010"
+    },
+    {
+      "id": "node_010",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Cảm ơn bác ạ! Này Cỏ, đố bạn biết chúng ta đi đến Tokyo BẰNG phương tiện gì?",
+        "vi": "Cảm ơn bác ạ! Này Cỏ, đố bạn biết chúng ta đi đến Tokyo BẰNG phương tiện gì?"
+      },
+      "interactableWords": [],
+      "choices": [
+        {
+          "text": "新幹線に行きます。 (Đi vào tàu Shinkansen)",
           "isCorrect": false,
-          "nextNode": "node_003_wrong"
+          "nextNode": "node_011_wrong"
+        },
+        {
+          "text": "新幹線で行きます。 (Đi bằng tàu Shinkansen)",
+          "isCorrect": true,
+          "nextNode": "node_011_correct"
         }
       ]
     },
     {
-      "id": "node_003_correct",
+      "id": "node_011_wrong",
       "characterId": "mascot",
-      "emotion": "success",
-      "background": "/images/bg_train_inside.jpg",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
       "dialogue": {
-        "jp": "Giỏi lắm! Trả lời đúng ngữ pháp rồi!",
-        "vi": "Giỏi lắm! Trả lời đúng ngữ pháp rồi!"
+        "jp": "Sai rồi Cỏ ơi! Đi bằng phương tiện gì thì phải dùng trợ từ で (de) chứ!",
+        "vi": "Sai rồi Cỏ ơi! Đi bằng phương tiện gì thì phải dùng trợ từ で (de) chứ!" 
+      },
+      "interactableWords": [],
+      "nextNode": "node_010"
+    },
+    {
+      "id": "node_011_correct",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Chuẩn luôn! Trợ từ で dùng để chỉ phương tiện! Lên tàu thôi!",
+        "vi": "Chuẩn luôn! Trợ từ で dùng để chỉ phương tiện! Lên tàu thôi!"
       },
       "interactableWords": [],
       "nextNode": "END_STORY"
-    },
-    {
-      "id": "node_003_wrong",
-      "characterId": "mascot",
-      "emotion": "fail",
-      "background": "/images/bg_train_inside.jpg",
-      "dialogue": {
-        "jp": "Ôi không, bạn chỉ nhầm đường cho họ rồi kìa 😭",
-        "vi": "Ôi không, bạn chỉ nhầm đường cho họ rồi kìa 😭"
-      },
-      "interactableWords": [],
-      "nextNode": "node_002"
     }
   ]
 }

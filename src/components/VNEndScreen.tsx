@@ -24,7 +24,7 @@ export function VNEndScreen({ rewardCoins, onClose }: VNEndScreenProps) {
     
     // Thông báo tạm thời để dễ hình dung
     if (rewardCoins > 0) {
-      toast.success(`Đã nhận ${rewardCoins} Xu!`, { icon: "🪙" });
+      toast.success(`Đã nhận ${rewardCoins} Xương!`, { icon: "🦴" });
     }
 
     // 2. HIỆU ỨNG PHÁO GIẤY
@@ -90,13 +90,13 @@ export function VNEndScreen({ rewardCoins, onClose }: VNEndScreenProps) {
             <span className="text-xs font-black text-orange-400 uppercase tracking-wider block">Phần thưởng</span>
             <div className="flex items-center justify-center gap-2">
               <span className="text-5xl font-bold text-[#FF9F1C] drop-shadow-md" style={{ fontFamily: "var(--font-cherry)" }}>+{rewardCoins}</span>
-              <span className="text-3xl filter drop-shadow-sm pb-1">🪙</span>
+              <span className="text-3xl filter drop-shadow-sm pb-1">🦴</span>
             </div>
           </div>
         )}
 
         <button onClick={onClose} className="w-full h-14 bg-[#06D6A0] hover:bg-[#05b889] text-white font-bold text-lg rounded-2xl border-b-4 border-[#048c68] active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-lg">
-          {rewardCoins > 0 ? "Nhận Xu & Đóng" : "Đóng"}
+          {rewardCoins > 0 ? "Nhận Xương & Đóng" : "Đóng"}
         </button>
       </motion.div>
     </motion.div>

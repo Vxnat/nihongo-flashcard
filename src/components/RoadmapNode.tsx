@@ -33,6 +33,8 @@ export function RoadmapNode({
     icon = completed ? "👑" : "📦";
   } else if (deck.type === "story") {
     icon = "📖";
+  } else if (deck.type === "minigame_matching") {
+    icon = "🧩";
   } else if (deck.title.toLowerCase().includes("boss") || deck.title.toLowerCase().includes("ôn tập")) {
     icon = "🏰";
   } else {
@@ -97,7 +99,7 @@ export function RoadmapNode({
 
         <motion.button
           // Rương có thể click ngay cả khi bị khóa, các node khác thì không
-          onClick={isChest || unlocked ? onClick : undefined}
+          onClick={onClick}
           whileHover={unlocked ? { scale: 1.05 } : {}}
           whileTap={unlocked ? { scale: 0.95 } : {}}
           className={`relative flex items-center justify-center border-4 transition-colors duration-300 ${sizeClass} ${nodeClass} outline-none rounded-full ${

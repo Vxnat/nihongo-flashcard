@@ -50,12 +50,23 @@
 "totalCards": 30
 },
 {
+  "id": "mg_match_n5_01",
+  "type": "minigame_matching",
+  "title": "Minigame: Nối từ",
+  "level": "N5",
+  "chapter": 1,
+  "order": 3.5,
+  "prerequisite": "sys_n5_minna_03",
+  "rewardCoins": 15,
+  "totalCards": 0
+},
+{
 "id": "sys_n5_minna_04",
 "title": "Bài 4: Thời gian & Ngày tháng",
 "level": "N5",
 "chapter": 1,
 "order": 4,
-"prerequisite": "sys_n5_minna_03",
+"prerequisite": "mg_match_n5_01",
 "rewardCoins": 5,
 "totalCards": 35
 },
@@ -96,7 +107,7 @@
 "level": "N5",
 "chapter": 2,
 "order": 6,
-"prerequisite": "chest_chap_1",
+"prerequisite": "vn_chapter_01",
 "rewardCoins": 10,
 "totalCards": 34
 },
@@ -121,12 +132,23 @@
 "totalCards": 38
 },
 {
+  "id": "vn_chapter_02",
+  "type": "story",
+  "title": "Cốt truyện: Tiệm mì Ramen",
+  "level": "N5",
+  "chapter": 2,
+  "order": 8.5,
+  "prerequisite": "sys_n5_minna_08",
+  "rewardCoins": 20,
+  "totalCards": 0
+},
+{
 "id": "sys_n5_minna_09",
 "title": "Bài 9: Sở thích, Khả năng & Mức độ",
 "level": "N5",
 "chapter": 2,
 "order": 9,
-"prerequisite": "sys_n5_minna_08",
+"prerequisite": "vn_chapter_02",
 "rewardCoins": 10,
 "totalCards": 35
 },
@@ -141,13 +163,24 @@
 "totalCards": 40
 },
 {
+  "id": "vn_chapter_03",
+  "type": "story",
+  "title": "Cốt truyện: Khách sạn ở đâu?",
+  "level": "N5",
+  "chapter": 2,
+  "order": 10.05,
+  "prerequisite": "sys_n5_minna_10",
+  "rewardCoins": 20,
+  "totalCards": 0
+},
+{
   "id": "chest_chap_2",
   "type": "chest",
   "title": "Rương thưởng Chương 2",
   "level": "N5",
   "chapter": 2,
   "order": 10.1,
-  "prerequisite": "sys_n5_minna_10",
+"prerequisite": "vn_chapter_03",
   "rewardCoins": 100
 },
 {
@@ -156,7 +189,7 @@
 "level": "N5",
 "chapter": 3,
 "order": 11,
-"prerequisite": "chest_chap_2",
+"prerequisite": "sys_n5_minna_10",
 "rewardCoins": 15,
 "totalCards": 39
 },
@@ -181,12 +214,23 @@
 "totalCards": 32
 },
 {
+  "id": "vn_chapter_04",
+  "type": "story",
+  "title": "Cốt truyện: Sự cố ở quán cafe",
+  "level": "N5",
+  "chapter": 3,
+  "order": 13.5,
+  "prerequisite": "sys_n5_minna_13",
+  "rewardCoins": 20,
+  "totalCards": 0
+},
+{
 "id": "sys_n5_minna_14",
 "title": "Bài 14: Thể Te - Yêu cầu & Sai khiến",
 "level": "N5",
 "chapter": 3,
 "order": 14,
-"prerequisite": "sys_n5_minna_13",
+"prerequisite": "vn_chapter_04",
 "rewardCoins": 15,
 "totalCards": 37
 },
@@ -201,13 +245,24 @@
 "totalCards": 40
 },
 {
+  "id": "vn_chapter_05",
+  "type": "story",
+  "title": "Cốt truyện: Ánh trăng đêm nay",
+  "level": "N5",
+  "chapter": 3,
+  "order": 15.05,
+  "prerequisite": "sys_n5_minna_15",
+  "rewardCoins": 20,
+  "totalCards": 0
+},
+{
   "id": "chest_chap_3",
   "type": "chest",
   "title": "Rương thưởng Chương 3",
   "level": "N5",
   "chapter": 3,
   "order": 15.1,
-  "prerequisite": "sys_n5_minna_15",
+  "prerequisite": "vn_chapter_05",
   "rewardCoins": 100
 },
 {
@@ -216,7 +271,7 @@
 "level": "N5",
 "chapter": 4,
 "order": 16,
-"prerequisite": "chest_chap_3",
+"prerequisite": "sys_n5_minna_15",
 "rewardCoins": 20,
 "totalCards": 34
 },
@@ -276,7 +331,7 @@
 "level": "N5",
 "chapter": 5,
 "order": 21,
-"prerequisite": "chest_chap_4",
+"prerequisite": "sys_n5_minna_20",
 "rewardCoins": 25,
 "totalCards": 30
 },

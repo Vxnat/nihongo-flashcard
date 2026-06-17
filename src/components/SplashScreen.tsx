@@ -61,7 +61,7 @@ export function SplashScreen() {
               className="text-3xl text-[#FF7096] tracking-wider flex items-center gap-2 drop-shadow-sm"
               style={{ fontFamily: "var(--font-cherry)" }}
             >
-              Nihongo Card
+              Shiba Town
               <Sparkles className="w-6 h-6 text-[#FFD166]" fill="#FFD166" />
             </h1>
 

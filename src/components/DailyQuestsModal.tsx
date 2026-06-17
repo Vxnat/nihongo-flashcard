@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/store/useAppStore";
-import { CheckCircle2, Coins, X, Lock } from "lucide-react";
+import { CheckCircle2, Bone, X, Lock } from "lucide-react";
 import confetti from "canvas-confetti";
 
 interface DailyQuestsModalProps {
@@ -69,7 +69,7 @@ export function DailyQuestsModal({ isOpen, onClose }: DailyQuestsModalProps) {
                 Nhiệm Vụ Ngày
               </h3>
               <p className="font-rounded text-zinc-500 font-bold text-sm mt-2 px-4">
-                Làm nhiệm vụ để lấy Xu quay đồ chơi nhé! ✨
+                Làm nhiệm vụ để lấy Xương quay đồ chơi nhé! ✨
               </p>
             </div>
 
@@ -84,7 +84,7 @@ export function DailyQuestsModal({ isOpen, onClose }: DailyQuestsModalProps) {
                     Nhiệm Vụ Bị Khóa
                   </h4>
                   <p className="text-zinc-500 text-sm font-bold font-rounded">
-                    Đăng nhập ngay để mở khóa hệ thống nhiệm vụ và kiếm Xu quay
+                    Đăng nhập ngay để mở khóa hệ thống nhiệm vụ và kiếm Xương quay
                     Gacha siêu cute nhé! ✨
                   </p>
                 </div>
@@ -105,7 +105,7 @@ export function DailyQuestsModal({ isOpen, onClose }: DailyQuestsModalProps) {
                           {quest.title}
                         </h4>
                         <span className="flex items-center gap-1 font-bold text-[#FF9F1C] bg-orange-50 px-2 py-1 rounded-xl text-xs">
-                          +{quest.reward} <Coins size={14} />
+                          +{quest.reward} <Bone size={14} />
                         </span>
                       </div>
 
@@ -133,7 +133,7 @@ export function DailyQuestsModal({ isOpen, onClose }: DailyQuestsModalProps) {
                             onClick={() => handleClaim(quest.id)}
                             className="animate-pulse bg-[#FFD166] hover:bg-[#FFC436] text-amber-900 font-bold px-4 py-1.5 rounded-xl border-b-4 border-[#E5B626] active:border-b-0 active:translate-y-1 transition-all flex items-center gap-2 cursor-pointer shadow-sm"
                           >
-                            Nhận {quest.reward} Xu
+                            Nhận {quest.reward} Xương
                           </button>
                         ) : (
                           <div className="text-zinc-400 font-bold text-xs px-3 py-1.5 bg-zinc-50 rounded-xl">

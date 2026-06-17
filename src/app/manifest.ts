@@ -2,9 +2,9 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Flashcard Tiếng Nhật Kawaii',
-    short_name: 'Nihongo Card',
-    description: 'Học từ vựng tiếng Nhật phong cách kẹo dẻo siêu cute!',
+    name: 'Shiba Town',
+    short_name: 'Shiba Town',
+    description: 'Khám phá tiếng Nhật cùng bé Shiba!',
     start_url: '/',
     display: 'standalone', // Bắt buộc là 'standalone' để ẩn thanh địa chỉ trình duyệt
     background_color: '#FDFBF7', // Màu nền lúc app đang load

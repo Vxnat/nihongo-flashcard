@@ -5,7 +5,7 @@ import { useAppStore } from "@/store/useAppStore";
 
 export interface SystemDeck {
   id: string;
-  type?: "flashcard" | "story" | "chest";
+  type?: "flashcard" | "story" | "chest" | "minigame_matching";
   title: string;
   level: string;
   chapter: number;
@@ -60,7 +60,7 @@ export function useSystemRoadmap() {
           const preLearned = (progress[deck.prerequisite] || []).length;
           const preTotal = prereqDeck.totalCards || 0;
           const preCompleted =
-            prereqDeck.type === "story" || prereqDeck.type === "chest"
+            prereqDeck.type === "story" || prereqDeck.type === "chest" || prereqDeck.type === "minigame_matching"
               ? preLearned > 0
               : preTotal === 0 || preLearned >= preTotal;
           unlocked = preCompleted;
@@ -73,7 +73,7 @@ export function useSystemRoadmap() {
       // Rương và Truyện được coi là "hoàn thành" khi đã ghi nhận tiến độ (learnedCount > 0).
       // Flashcard hoàn thành khi học đủ số thẻ.
       const completed =
-        deck.type === "chest" || deck.type === "story"
+        deck.type === "chest" || deck.type === "story" || deck.type === "minigame_matching"
           ? learnedCount > 0
           : totalCount === 0 || learnedCount >= totalCount;
 
