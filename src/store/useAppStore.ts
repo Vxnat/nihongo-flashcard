@@ -27,6 +27,13 @@ interface UserStats {
     date: string;
     quests: DailyQuest[];
   };
+  // --- GACHA 2.0 & META-GAME ---
+  goldenFur: number;
+  shards: Record<string, number>;
+  furniture: string[];
+  equippedTheme: string | null;
+  equippedOutfit: string | null;
+  pityCounter: number;
 }
 
 export interface DailyQuest {
@@ -141,6 +148,14 @@ interface AppState {
   useFreeMinigameHint: () => Promise<boolean>;
   equipSticker: (stickerId: string) => Promise<void>;
 
+  // --- GACHA 2.0 ACTIONS ---
+  processGachaRoll: (
+    item: any,
+    isFullItem: boolean,
+    duplicateFur: number,
+    newPity: number
+  ) => Promise<{ unlocked: boolean; shardsNow: number }>;
+
   // --- VISUAL NOVEL SLICE ---
   activeStoryId: string | null;
   setActiveStoryId: (id: string | null) => void;
@@ -185,6 +200,13 @@ export const useAppStore = create<AppState>((set, get) => ({
     inventory: [],
     equippedSticker: null,
     dailyQuests: { date: "", quests: DEFAULT_QUESTS },
+    // --- GACHA 2.0 & META-GAME ---
+    goldenFur: 0,
+    shards: {},
+    furniture: [],
+    equippedTheme: null,
+    equippedOutfit: null,
+    pityCounter: 0,
   },
 
   // 1.5 VISUAL NOVEL STATE
@@ -218,6 +240,12 @@ export const useAppStore = create<AppState>((set, get) => ({
           inventory: [],
           equippedSticker: null,
           dailyQuests: { date: today, quests: DEFAULT_QUESTS },
+          goldenFur: 0,
+          shards: {},
+          furniture: [],
+          equippedTheme: null,
+          equippedOutfit: null,
+          pityCounter: 0,
         },
       });
       return;
@@ -286,6 +314,13 @@ export const useAppStore = create<AppState>((set, get) => ({
           savedStats.dailyQuests && savedStats.dailyQuests.date === today
             ? savedStats.dailyQuests
             : { date: today, quests: DEFAULT_QUESTS },
+        // --- GACHA 2.0 & META-GAME ---
+        goldenFur: savedStats.goldenFur || 0,
+        shards: savedStats.shards || {},
+        furniture: savedStats.furniture || [],
+        equippedTheme: savedStats.equippedTheme || null,
+        equippedOutfit: savedStats.equippedOutfit || null,
+        pityCounter: savedStats.pityCounter || 0,
       },
     });
   },
@@ -787,6 +822,51 @@ export const useAppStore = create<AppState>((set, get) => ({
         console.error("Lỗi unlockSticker:", error);
       }
     }
+  },
+
+  processGachaRoll: async (item, isFullItem, duplicateFur, newPity) => {
+    const state = get();
+    let newShards = { ...state.userStats.shards };
+    let newInventory = [...(state.userStats.inventory || [])];
+    let newFurniture = [...(state.userStats.furniture || [])];
+    let newFur = (state.userStats.goldenFur || 0) + duplicateFur;
+    let unlocked = false;
+
+    const hasItem = newInventory.includes(item.id) || newFurniture.includes(item.id);
+
+    if (isFullItem && !hasItem) {
+      unlocked = true;
+    } else if (!isFullItem && !hasItem) {
+      newShards[item.id] = (newShards[item.id] || 0) + 1; // Rớt 1 mảnh
+      if (newShards[item.id] >= item.shardTarget) {
+        newShards[item.id] -= item.shardTarget;
+        unlocked = true;
+      }
+    }
+
+    if (unlocked) {
+      if (item.type === "furniture") newFurniture.push(item.id);
+      else newInventory.push(item.id);
+    }
+
+    const newUserStats = {
+      ...state.userStats,
+      shards: newShards,
+      inventory: newInventory,
+      furniture: newFurniture,
+      goldenFur: newFur,
+      pityCounter: newPity,
+    };
+
+    set({ userStats: newUserStats });
+
+    const uid = state.user?.uid;
+    if (uid) {
+      // Cập nhật ngầm lên Firestore để lưu thay đổi tài sản
+      setDoc(doc(db, "user_stats", uid), { shards: newShards, inventory: newInventory, furniture: newFurniture, goldenFur: newFur, pityCounter: newPity }, { merge: true }).catch(() => {});
+    }
+
+    return { unlocked, shardsNow: newShards[item.id] || 0 };
   },
 
   useFreeMinigameHint: async () => {
