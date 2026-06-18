@@ -5,7 +5,7 @@ import { useAppStore } from "@/store/useAppStore";
 
 export interface SystemDeck {
   id: string;
-  type?: "flashcard" | "story" | "chest" | "minigame_matching";
+  type?: "flashcard" | "story" | "chest" | "minigame_matching" | "minigame_kanji" | "minigame_rush";
   title: string;
   level: string;
   chapter: number;
@@ -13,6 +13,7 @@ export interface SystemDeck {
   prerequisite: string | null;
   rewardCoins: number;
   totalCards?: number;
+  kanjiList?: { char: string; meaning: string }[];
 }
 
 export function useSystemRoadmap() {
@@ -60,7 +61,7 @@ export function useSystemRoadmap() {
           const preLearned = (progress[deck.prerequisite] || []).length;
           const preTotal = prereqDeck.totalCards || 0;
           const preCompleted =
-            prereqDeck.type === "story" || prereqDeck.type === "chest" || prereqDeck.type === "minigame_matching"
+            prereqDeck.type === "story" || prereqDeck.type === "chest" || prereqDeck.type === "minigame_matching" || prereqDeck.type === "minigame_kanji" || prereqDeck.type === "minigame_rush"
               ? preLearned > 0
               : preTotal === 0 || preLearned >= preTotal;
           unlocked = preCompleted;
@@ -73,7 +74,7 @@ export function useSystemRoadmap() {
       // Rương và Truyện được coi là "hoàn thành" khi đã ghi nhận tiến độ (learnedCount > 0).
       // Flashcard hoàn thành khi học đủ số thẻ.
       const completed =
-        deck.type === "chest" || deck.type === "story" || deck.type === "minigame_matching"
+        deck.type === "chest" || deck.type === "story" || deck.type === "minigame_matching" || deck.type === "minigame_kanji" || deck.type === "minigame_rush"
           ? learnedCount > 0
           : totalCount === 0 || learnedCount >= totalCount;
 

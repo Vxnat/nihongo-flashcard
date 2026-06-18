@@ -14,9 +14,11 @@ import { BottomNav } from "@/components/BottomNav";
 import { PwaInstallPrompt } from "@/components/PwaInstallPrompt";
 import { VisualNovelMode } from "../components/VisualNovelMode";
 import { MatchingPairsGame } from "@/components/MatchingPairsGame";
+import { KanjiDojoGame } from "@/components/KanjiDojoGame";
+import { KanjiPractice } from "@/components/KanjiPractice";
 import { useAppStore } from "@/store/useAppStore";
-import toast from "react-hot-toast";
 import { FlashcardData } from "@/types/flashcard";
+import { TypingRushGame } from "@/components/TypingRushGame";
 
 export default function Home() {
   const homeState = useHome();
@@ -27,8 +29,9 @@ export default function Home() {
   const setActiveMinigameId = useAppStore(
     (state: any) => state.setActiveMinigameId,
   );
+  const activeKanjiPracticeDeck = useAppStore((state) => state.activeKanjiPracticeDeck);
+  const setActiveKanjiPracticeDeck = useAppStore((state) => state.setActiveKanjiPracticeDeck);
   const [minigameDeckData, setMinigameDeckData] = useState<any>(null); // Store minigame deck data
-  const addCoins = useAppStore((state) => state.addCoins);
   const saveProgress = useAppStore((state) => state.saveProgress);
 
   // State chứa data thẻ ngẫu nhiên cho minigame
@@ -49,37 +52,56 @@ export default function Home() {
         const res = await fetch("/data/system_decks.json");
         const decks = await res.json();
 
-        const minigameIndex = decks.findIndex(
-          (d: any) => d.id === activeMinigameId,
-        );
-        if (minigameIndex === -1) return;
-        const minigameDeck = decks[minigameIndex];
-        setMinigameDeckData(minigameDeck); // Save minigame deck data
+        const minigameDeck = decks.find((d: any) => d.id === activeMinigameId);
+        if (!minigameDeck) return;
+        
+        const folder = minigameDeck.level.toLowerCase(); // VD: n5, n4
 
-        // Lọc các bài học flashcard trước đó trong cùng một level
-        const previousDecks = decks
-          .slice(0, minigameIndex)
-          .filter(
-            (d: any) =>
-              d.level === minigameDeck.level &&
-              (!d.type || d.type === "flashcard"),
-          );
-
-        let allCards: FlashcardData[] = [];
-        // Chọn tối đa 3 bài gần nhất để lấy data tránh request quá nhiều
-        for (const deck of previousDecks.slice(-3)) {
-          const folder = deck.level.toLowerCase(); // VD: n5, n4
-          const deckRes = await fetch(`/data/${folder}/${deck.id}.json`).catch(
-            () => null,
-          );
-          if (deckRes && deckRes.ok) {
-            const cards = await deckRes.json();
-            allCards = [...allCards, ...cards];
+        // 1. GAME ĐẶC THÙ (KANJI) -> Fetch data từ file json rời
+        if (minigameDeck.type === "minigame_kanji") {
+          const dataRes = await fetch(`/data/${folder}/${minigameDeck.id}.json`).catch(() => null);
+          if (dataRes && dataRes.ok) {
+            const data = await dataRes.json();
+            // Tiêm mảng kanji vào lại object deck để truyền cho KanjiDojoGame
+            setMinigameDeckData({ ...minigameDeck, kanjiList: data });
+          } else {
+            setMinigameDeckData(minigameDeck);
           }
+          setMinigameCards([]);
+          setIsLoadingMinigame(false);
+          return;
+        }
+
+        setMinigameDeckData(minigameDeck);
+
+        // 2. GAME ÔN TẬP (MATCHING, RUSH) -> Lấy data dựa vào targetDeckIds
+        let allCards: FlashcardData[] = [];
+        
+        if (minigameDeck.targetDeckIds && minigameDeck.targetDeckIds.length > 0) {
+          // Dùng Promise.all để fetch tất cả các file cần ôn tập cùng lúc
+          const fetchPromises = minigameDeck.targetDeckIds.map((targetId: string) =>
+            fetch(`/data/${folder}/${targetId}.json`).then((r) => (r.ok ? r.json() : []))
+          );
+          
+          const results = await Promise.all(fetchPromises);
+          
+          // Gộp tất cả các mảng kết quả thành 1 mảng duy nhất
+          results.forEach((cards) => {
+            allCards = [...allCards, ...cards];
+          });
+        } else {
+          // Fallback: Lấy tất cả bài flashcard trước đó nếu chưa cấu hình targetDeckIds
+          const minigameIndex = decks.findIndex((d: any) => d.id === activeMinigameId);
+          const previousDecks = decks.slice(0, minigameIndex).filter((d: any) => d.level === minigameDeck.level && (!d.type || d.type === "flashcard"));
+          const fetchPromises = previousDecks.slice(-3).map((deck: any) => fetch(`/data/${folder}/${deck.id}.json`).then((r) => (r.ok ? r.json() : [])));
+          const results = await Promise.all(fetchPromises);
+          results.forEach((cards) => { allCards = [...allCards, ...cards]; });
         }
 
         const shuffled = allCards.sort(() => Math.random() - 0.5);
-        setMinigameCards(shuffled.slice(0, 7)); // Lấy ngẫu nhiên 7 thẻ
+        // Game Băng chuyền cần nhiều từ vựng hơn, Nối từ cần ít hơn
+        const limit = minigameDeck.type === "minigame_rush" ? 15 : 7;
+        setMinigameCards(shuffled.slice(0, limit));
       } catch (err) {
         console.error("Lỗi tải minigame:", err);
       } finally {
@@ -190,11 +212,27 @@ export default function Home() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[999] bg-white/80 backdrop-blur-md flex items-center justify-center"
           >
-            {isLoadingMinigame ? (
+            {minigameDeckData?.type === "minigame_kanji" ? (
+              <KanjiDojoGame
+                minigameDeck={minigameDeckData}
+                onClose={() => setActiveMinigameId(null)}
+                onWin={() => {
+                  setActiveMinigameId(null);
+                  saveProgress(activeMinigameId, ["completed"]);
+                }}
+              />
+            ) : isLoadingMinigame ? (
               <div className="flex flex-col items-center justify-center animate-pulse">
-                <span className="text-4xl mb-4">🧩</span>
-                <p className="font-rounded font-bold text-zinc-500 text-lg">
-                  Đang trộn bài...
+                <span className="mb-4">
+                  <img
+                    src="/images/mascot-hi.gif"
+                    alt="Đang tải..."
+                    className="w-24 h-24 object-contain animate-bounce opacity-80"
+                  /></span>
+                <p className="font-rounded font-bold text-zinc-500 text-lg"
+                  style={{ fontFamily: "var(--font-cherry)" }}
+                >
+                  Chờ xíu nè...
                 </p>
               </div>
             ) : minigameCards.length === 0 ? (
@@ -210,6 +248,16 @@ export default function Home() {
                   Thoát
                 </button>
               </div>
+            ) : minigameDeckData?.type === "minigame_rush" ? (
+              <TypingRushGame
+                cards={minigameCards}
+                minigameDeck={minigameDeckData}
+                onWin={() => {
+                  setActiveMinigameId(null);
+                  saveProgress(activeMinigameId, ["completed"]);
+                }}
+                onLose={() => setActiveMinigameId(null)}
+              />
             ) : (
               <MatchingPairsGame
                 cards={minigameCards}
@@ -218,11 +266,24 @@ export default function Home() {
                 onWin={() => {
                   setActiveMinigameId(null);
                   saveProgress(activeMinigameId, ["completed"]);
-                  // addCoins(15); // Reward logic moved inside MatchingPairsGame
-                  // toast.success("Chiến thắng! Bạn nhận được 15 Xương", { icon: "🎉" });
                 }}
               />
             )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* MÀN HÌNH KANJI PRACTICE OVERLAY (Luyện viết tự do) */}
+      <AnimatePresence>
+        {activeKanjiPracticeDeck && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[999] bg-white/80 backdrop-blur-md flex items-center justify-center"
+          >
+            <KanjiPractice deck={activeKanjiPracticeDeck} onClose={() => setActiveKanjiPracticeDeck(null)} />
           </motion.div>
         )}
       </AnimatePresence>

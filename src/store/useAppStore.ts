@@ -71,12 +71,13 @@ const DEFAULT_QUESTS: DailyQuest[] = [
 
 export interface CustomDeck {
   id: string;
-  type?: "flashcard" | "story";
+  type?: "flashcard" | "kanji"; // Thêm loại kanji
   title: string;
   description: string;
   count: number;
   level: string;
   cards: any[];
+  kanjiList?: { char: string; meaning: string }[]; // Mảng chứa chữ Hán
   folderId?: string | null;
   createdAt?: string;
 }
@@ -147,6 +148,10 @@ interface AppState {
   // --- MINIGAME SLICE ---
   activeMinigameId: string | null;
   setActiveMinigameId: (id: string | null) => void;
+
+  // --- KANJI PRACTICE SLICE ---
+  activeKanjiPracticeDeck: CustomDeck | null;
+  setActiveKanjiPracticeDeck: (deck: CustomDeck | null) => void;
 }
 
 export const useAppStore = create<AppState>((set, get) => ({
@@ -189,6 +194,10 @@ export const useAppStore = create<AppState>((set, get) => ({
   // 1.6 MINIGAME STATE
   activeMinigameId: null,
   setActiveMinigameId: (id) => set({ activeMinigameId: id }),
+
+  // 1.7 KANJI PRACTICE STATE
+  activeKanjiPracticeDeck: null,
+  setActiveKanjiPracticeDeck: (deck) => set({ activeKanjiPracticeDeck: deck }),
 
   // 2. HÀM TẢI DỮ LIỆU (Đã tích hợp Firestore)
   loadUserStats: async () => {
@@ -725,15 +734,10 @@ export const useAppStore = create<AppState>((set, get) => ({
 
       const uid = get().user?.uid;
       if (uid) {
-        try {
-          await setDoc(
-            doc(db, "user_stats", uid),
-            { coins: newCoins },
-            { merge: true },
-          );
-        } catch (error) {
-          console.error("Lỗi deductCoins:", error);
-        }
+        // Cập nhật ngầm lên mây (Fire and forget) để UI phản hồi ngay lập tức
+        setDoc(doc(db, "user_stats", uid), { coins: newCoins }, { merge: true }).catch(
+          (error) => console.error("Lỗi deductCoins:", error)
+        );
       }
       return true;
     }
@@ -796,15 +800,10 @@ export const useAppStore = create<AppState>((set, get) => ({
 
       const uid = get().user?.uid;
       if (uid) {
-        try {
-          await setDoc(
-            doc(db, "user_stats", uid),
-            { freeMinigameHints: newHints },
-            { merge: true },
-          );
-        } catch (error) {
-          console.error("Lỗi đồng bộ useFreeMinigameHint:", error);
-        }
+        // Cập nhật ngầm lên mây (Fire and forget) để UI phản hồi ngay lập tức
+        setDoc(doc(db, "user_stats", uid), { freeMinigameHints: newHints }, { merge: true }).catch(
+          (error) => console.error("Lỗi đồng bộ useFreeMinigameHint:", error)
+        );
       }
       return true;
     }

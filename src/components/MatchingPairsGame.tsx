@@ -1,44 +1,23 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Bone, Search, LifeBuoy, X } from "lucide-react";
-import toast from "react-hot-toast";
-import confetti from "canvas-confetti";
+import { Sparkles, Search, LifeBuoy, X } from "lucide-react";
 
-import { useAppStore } from "@/store/useAppStore";
 import { FlashcardData } from "@/types/flashcard";
 import { parseFurigana } from "@/utils/textParser";
-import { useMinigameTimer } from "@/hooks/useMinigameTimer";
 import { TimerBar } from "@/components/TimerBar";
 import { GameResultModal } from "@/components/GameResultModal";
-import { HintButton } from "@/components/HintButton";
-import { ConfirmationPopover } from "@/components/ConfirmationPopover";
-import { SystemDeck } from "@/hooks/useSystemRoadmap"; // To get minigameDeck type
-
-// --- Interfaces ---
-interface BoardItem {
-  id: string; // Unique ID for this board item (e.g., "jp-word_id" or "vi-word_id")
-  flashcardId: string; // ID of the original flashcard
-  type: "jp" | "vi"; // Type of the card (Japanese or Vietnamese)
-  text: string; // Display text (can be combined Kanji+Furigana string)
-  isMatched: boolean;
-}
+import { ShibaMasterDialog, ShibaMasterOption } from "@/components/ShibaMasterDialog";
+import { SystemDeck } from "@/hooks/useSystemRoadmap";
+import { useMatchingPairsGame, TIME_BONUS_PER_5_SECONDS, PHAO_DURATION_SECONDS, KINH_LUP_DURATION_SECONDS } from "@/hooks/useMatchingPairsGame";
 
 interface MatchingPairsGameProps {
-  cards: FlashcardData[]; // List of flashcards to use
-  minigameDeck: SystemDeck; // The minigame deck data from system_decks.json
+  cards: FlashcardData[];
+  minigameDeck: SystemDeck;
   onClose: () => void;
-  onWin: () => void; // Called when game is won
+  onWin: () => void;
 }
-
-// --- Constants ---
-const MAX_HP = 3;
-const PHAO_DURATION_SECONDS = 5;
-const KINH_LUP_DURATION_SECONDS = 2;
-const BASE_TIME_N5 = 90; // seconds
-const BASE_TIME_N4_BELOW = 60; // seconds
-const TIME_BONUS_PER_5_SECONDS = 1; // 1 Bone for every 5 seconds remaining
 
 export function MatchingPairsGame({
   cards,
@@ -46,356 +25,53 @@ export function MatchingPairsGame({
   onClose,
   onWin,
 }: MatchingPairsGameProps) {
-  const { level: gameLevel, rewardCoins: baseRewardCoins } = minigameDeck;
-
-  const addCoins = useAppStore((state) => state.addCoins);
-  const deductCoins = useAppStore((state) => state.deductCoins);
-  const useFreeMinigameHint = useAppStore((state) => state.useFreeMinigameHint);
-  const freeMinigameHints = useAppStore(
-    (state) => state.userStats.freeMinigameHints,
-  );
-  const progress = useAppStore((state) => state.progress);
-  const isFirstClearRef = useRef<boolean>(false);
-
-  // --- Game State ---
-  const [boardItems, setBoardItems] = useState<BoardItem[]>([]);
-  const [selectedItems, setSelectedItems] = useState<BoardItem[]>([]);
-  const [wrongMatch, setWrongMatch] = useState<string[]>([]); // IDs of cards that were part of a wrong match
-  const [hp, setHp] = useState(MAX_HP);
-  const [minigameStatus, setMinigameStatus] = useState<
-    "playing" | "win" | "lose"
-  >("playing");
-
-  // --- Hint System State ---
-  const [isPhaoActive, setIsPhaoActive] = useState(false);
-  const [phaoCountdownPercent, setPhaoCountdownPercent] = useState<
-    number | undefined
-  >(undefined);
-  const [isKinhLupActive, setIsKinhLupActive] = useState(false); // Magnifier mode active
-  const [revealedCardId, setRevealedCardId] = useState<string | null>(null); // Card currently revealed by Magnifier
-  const [revealedCardCountdownPercent, setRevealedCardCountdownPercent] =
-    useState<number | undefined>(undefined);
-  const [showPhaoConfirm, setShowPhaoConfirm] = useState(false);
-  const [showKinhLupConfirm, setShowKinhLupConfirm] = useState(false);
-  const [currentKinhLupTargetId, setCurrentKinhLupTargetId] = useState<
-    string | null
-  >(null);
-
-  // --- Timer Hook ---
-  const initialDuration =
-    gameLevel === "N5" ? BASE_TIME_N5 : BASE_TIME_N4_BELOW;
   const {
+    gameLevel,
+    baseRewardCoins,
+    freeMinigameHints,
+    boardItems,
+    selectedItems,
+    wrongMatch,
+    hp,
+    maxHp,
+    minigameStatus,
+    isPhaoActive,
+    isKinhLupActive,
+    setIsKinhLupActive,
+    revealedCardId,
     timeLeft,
     isRunning,
-    startTimer,
-    pauseTimer,
-    resetTimer,
     progressPercent,
-  } = useMinigameTimer({
-    duration: initialDuration,
-    onTimeUp: () => setMinigameStatus("lose"),
-  });
+    isFirstClearRef,
+    handleCardClick,
+    activatePhao,
+    activateKinhLupMode,
+    handleRestartGame,
+    handleGameWin,
+  } = useMatchingPairsGame({ cards, minigameDeck, onWin });
 
-  // --- First Clear Check ---
-  useEffect(() => {
-    if (minigameDeck?.id) {
-      const completed = progress[minigameDeck.id]?.includes("completed");
-      isFirstClearRef.current = !completed;
-    }
-  }, [minigameDeck, progress]);
+  const [isMasterOpen, setIsMasterOpen] = React.useState(false);
 
-  // --- Game Setup (on mount or restart) ---
-  const setupGame = useCallback(() => {
-    if (cards.length === 0) {
-      setMinigameStatus("lose"); // No cards to play with
-      return;
-    }
+  const masterOptions: ShibaMasterOption[] = [
+    {
+      id: "phao",
+      icon: <LifeBuoy className="w-5 h-5" />,
+      label: "Dùng Phao Bơi",
+      cost: 2,
+      allowFreeHint: true,
+      colorClass: "bg-[#E0F7FA] text-[#00ACC1] border-[#80DEEA] hover:bg-[#B2EBF2]",
+      onConfirm: () => activatePhao(),
+    },
+    {
+      id: "kinhlup",
+      icon: <Search className="w-5 h-5" />,
+      label: "Dùng Kính Lúp",
+      cost: 1,
+      colorClass: "bg-[#FFF0F3] text-[#C7486B] border-[#FF7096] hover:bg-[#FFE0E6]",
+      onConfirm: () => activateKinhLupMode(),
+    },
+  ];
 
-    const gameCards: BoardItem[] = [];
-    cards.forEach((card) => {
-      // Japanese card: Combine Kanji and Furigana for parseFurigana utility
-      gameCards.push({
-        id: `jp-${card.id}`,
-        flashcardId: card.id,
-        type: "jp",
-        text: card.reading ? `[${card.word}]{${card.reading}}` : card.word,
-        isMatched: false,
-      });
-      // Vietnamese card
-      gameCards.push({
-        id: `vi-${card.id}`,
-        flashcardId: card.id,
-        type: "vi",
-        text: card.meaning,
-        isMatched: false,
-      });
-    });
-
-    // Shuffle the cards
-    const shuffledCards = gameCards.sort(() => Math.random() - 0.5);
-    setBoardItems(shuffledCards);
-    setSelectedItems([]);
-    setWrongMatch([]);
-    setHp(MAX_HP);
-    setMinigameStatus("playing");
-    setIsPhaoActive(false);
-    setPhaoCountdownPercent(undefined);
-    setIsKinhLupActive(false);
-    setRevealedCardId(null);
-    setRevealedCardCountdownPercent(undefined);
-    setShowPhaoConfirm(false);
-    setShowKinhLupConfirm(false);
-    setCurrentKinhLupTargetId(null);
-    resetTimer();
-    startTimer();
-  }, [cards, startTimer, resetTimer]);
-
-  useEffect(() => {
-    setupGame();
-  }, [setupGame]);
-
-  // --- Card Matching Logic ---
-  useEffect(() => {
-    if (selectedItems.length === 2) {
-      const [card1, card2] = selectedItems;
-
-      if (
-        card1.flashcardId === card2.flashcardId &&
-        card1.type !== card2.type
-      ) {
-        // Match!
-        setBoardItems((prev) =>
-          prev.map((item) =>
-            item.flashcardId === card1.flashcardId
-              ? { ...item, isMatched: true }
-              : item,
-          ),
-        );
-        setSelectedItems([]);
-        setWrongMatch([]); // Clear any previous wrong match indication
-
-        // Confetti effect at the position of the matched cards
-        const cardElements = document.querySelectorAll(
-          `[data-card-id="${card1.id}"], [data-card-id="${card2.id}"]`,
-        );
-        cardElements.forEach((el) => {
-          const rect = el.getBoundingClientRect();
-          confetti({
-            particleCount: 50,
-            spread: 70,
-            origin: {
-              x: (rect.left + rect.right) / 2 / window.innerWidth,
-              y: (rect.top + rect.bottom) / 2 / window.innerHeight,
-            },
-            colors: ["#FFD166", "#FF9F1C", "#06D6A0"],
-          });
-        });
-
-        // Check for win condition
-        const remainingUnmatched = boardItems.filter(
-          (item) => !item.isMatched,
-        ).length;
-        if (remainingUnmatched <= 2) {
-          pauseTimer();
-          setMinigameStatus("win");
-
-          // Hiệu ứng pháo hoa tưng bừng khi chiến thắng
-          const duration = 2500;
-          const end = Date.now() + duration;
-          const frame = () => {
-            confetti({
-              particleCount: 5,
-              angle: 60,
-              spread: 55,
-              origin: { x: 0, y: 0.8 },
-              colors: ["#FF9F1C", "#FFD166", "#06D6A0", "#FF7096", "#5390D9"],
-              zIndex: 2000,
-            });
-            confetti({
-              particleCount: 5,
-              angle: 120,
-              spread: 55,
-              origin: { x: 1, y: 0.8 },
-              colors: ["#FF9F1C", "#FFD166", "#06D6A0", "#FF7096", "#5390D9"],
-              zIndex: 2000,
-            });
-            if (Date.now() < end) {
-              requestAnimationFrame(frame);
-            }
-          };
-          frame();
-        }
-      } else {
-        // No match
-        setWrongMatch([card1.id, card2.id]);
-        setHp((prev) => prev - 1);
-        setTimeout(() => {
-          setSelectedItems([]);
-          setWrongMatch([]);
-        }, 800); // Short delay for shake animation
-      }
-    }
-  }, [selectedItems, boardItems, pauseTimer]);
-
-  // --- HP Loss Logic ---
-  useEffect(() => {
-    if (hp <= 0 && minigameStatus === "playing") {
-      pauseTimer();
-      setMinigameStatus("lose");
-    }
-  }, [hp, minigameStatus, pauseTimer]);
-
-  // --- Phao Bơi Logic ---
-  useEffect(() => {
-    let phaoTimer: NodeJS.Timeout;
-    let phaoInterval: NodeJS.Timeout;
-
-    if (isPhaoActive) {
-      let countdown = PHAO_DURATION_SECONDS;
-      setPhaoCountdownPercent(100);
-
-      phaoInterval = setInterval(() => {
-        countdown--;
-        setPhaoCountdownPercent((countdown / PHAO_DURATION_SECONDS) * 100);
-        if (countdown <= 0) {
-          clearInterval(phaoInterval);
-        }
-      }, 1000);
-
-      phaoTimer = setTimeout(() => {
-        setIsPhaoActive(false);
-        setPhaoCountdownPercent(undefined);
-      }, PHAO_DURATION_SECONDS * 1000);
-    }
-
-    return () => {
-      clearTimeout(phaoTimer);
-      clearInterval(phaoInterval);
-    };
-  }, [isPhaoActive]);
-
-  // --- Kính Lúp Logic ---
-  useEffect(() => {
-    let kinhLupTimer: NodeJS.Timeout;
-    let kinhLupInterval: NodeJS.Timeout;
-
-    if (revealedCardId) {
-      let countdown = KINH_LUP_DURATION_SECONDS;
-      setRevealedCardCountdownPercent(100);
-
-      kinhLupInterval = setInterval(() => {
-        countdown--;
-        setRevealedCardCountdownPercent(
-          (countdown / KINH_LUP_DURATION_SECONDS) * 100,
-        );
-        if (countdown <= 0) {
-          clearInterval(kinhLupInterval);
-        }
-      }, 1000);
-
-      kinhLupTimer = setTimeout(() => {
-        setRevealedCardId(null);
-        setRevealedCardCountdownPercent(undefined);
-      }, KINH_LUP_DURATION_SECONDS * 1000);
-    }
-
-    return () => {
-      clearTimeout(kinhLupTimer);
-      clearInterval(kinhLupInterval);
-    };
-  }, [revealedCardId]);
-
-  // --- Handlers ---
-  const handleCardClick = (item: BoardItem) => {
-    if (
-      !isRunning || // Game not running
-      item.isMatched || // Already matched
-      wrongMatch.includes(item.id) // Card is shaking from wrong match
-    ) {
-      return;
-    }
-
-    // Toggle: Bỏ chọn nếu click lại vào thẻ đang được chọn
-    const isAlreadySelected = selectedItems.some((i) => i.id === item.id);
-    if (isAlreadySelected) {
-      setSelectedItems((prev) => prev.filter((i) => i.id !== item.id));
-      return;
-    }
-
-    // Khóa click nếu đã chọn đủ 2 thẻ (đang chờ xử lý check đúng/sai)
-    if (selectedItems.length >= 2) {
-      return;
-    }
-
-    if (isKinhLupActive) {
-      setCurrentKinhLupTargetId(item.id);
-      setShowKinhLupConfirm(true);
-      return;
-    }
-
-    setSelectedItems((prev) => [...prev, item]);
-  };
-
-  const handlePhaoConfirm = async () => {
-    const usedFree = await useFreeMinigameHint();
-    if (usedFree) {
-      toast.success("Dùng Phao miễn phí!", { icon: "🛟" });
-      setIsPhaoActive(true);
-    } else {
-      const success = await deductCoins(2);
-      if (success) {
-        toast.success("Dùng Phao (-2🦴)", { icon: "🛟" });
-        setIsPhaoActive(true);
-      } else {
-        toast.error("Không đủ Xương để dùng Phao!", { icon: "🦴" });
-      }
-    }
-    setShowPhaoConfirm(false);
-  };
-
-  const handleKinhLupConfirm = async () => {
-    if (!currentKinhLupTargetId) return;
-
-    const success = await deductCoins(1);
-    if (success) {
-      toast.success("Soi Kính Lúp (-1🦴)", { icon: "🔍" });
-      setRevealedCardId(currentKinhLupTargetId);
-      setIsKinhLupActive(false); // Deactivate magnifier mode after use
-    } else {
-      toast.error("Không đủ Xương để dùng Kính Lúp!", { icon: "🦴" });
-    }
-    setShowKinhLupConfirm(false);
-    setCurrentKinhLupTargetId(null);
-  };
-
-  const handleRestartGame = useCallback(() => {
-    setMinigameStatus("playing");
-    resetTimer();
-    setupGame();
-  }, [resetTimer, setupGame]);
-
-  const handleGameWin = useCallback(() => {
-    if (isFirstClearRef.current) {
-      const timeBonus = Math.floor(timeLeft / 5) * TIME_BONUS_PER_5_SECONDS;
-      const totalReward = (baseRewardCoins || 0) + timeBonus;
-      if (totalReward > 0) {
-        addCoins(totalReward);
-      }
-    }
-    onWin(); // Call parent onWin to save progress and close minigame
-  }, [addCoins, baseRewardCoins, onWin, timeLeft]);
-
-  const handleGameLose = useCallback(() => {
-    pauseTimer();
-  }, [pauseTimer]);
-
-  // --- Game Status Change Logic ---
-  useEffect(() => {
-    // Only handle lose condition here. Win condition is handled by the modal button.
-    if (minigameStatus === "lose") handleGameLose();
-  }, [minigameStatus, handleGameLose]);
-
-  // --- Render Logic ---
   const showFuriganaByDefault = gameLevel === "N5";
 
   if (minigameStatus === "win" || minigameStatus === "lose") {
@@ -431,7 +107,7 @@ export function MatchingPairsGame({
         <TimerBar timeLeft={timeLeft} progressPercent={progressPercent} />
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <div className="flex items-center gap-1 sm:gap-2">
-            {Array.from({ length: MAX_HP }).map((_, index) => (
+            {Array.from({ length: maxHp }).map((_, index) => (
               <motion.img
                 key={index}
                 src="/images/shiba_heart.png"
@@ -550,10 +226,8 @@ export function MatchingPairsGame({
                     <motion.div
                       className="absolute bottom-1 right-1 w-6 sm:w-8 h-1 bg-teal-400 rounded-full"
                       initial={{ scaleX: 1 }}
-                      animate={{
-                        scaleX: (revealedCardCountdownPercent || 0) / 100,
-                      }}
-                      transition={{ duration: 0.1, ease: "linear" }}
+                      animate={{ scaleX: 0 }}
+                      transition={{ duration: KINH_LUP_DURATION_SECONDS, ease: "linear" }}
                       style={{ originX: 0 }}
                     />
                   )}
@@ -564,80 +238,61 @@ export function MatchingPairsGame({
         </motion.div>
       </div>
 
-      {/* Bottom Bar: Hint Buttons */}
-      <div className="w-full flex justify-center gap-2 sm:gap-4 mt-4 sm:mt-6 pb-2">
-        {/* Phao Bơi Button */}
-        <ConfirmationPopover
-          open={showPhaoConfirm}
-          setOpen={setShowPhaoConfirm}
-          onConfirm={handlePhaoConfirm}
-          onCancel={() => setShowPhaoConfirm(false)}
-          message="Dùng Phao Bơi để xem tất cả Furigana trong 5 giây?"
-          costLabel={
-            freeMinigameHints > 0 ? (
-              <div className="flex flex-col items-center gap-1">
-                <div className="flex items-center gap-1">
-                  {freeMinigameHints} <LifeBuoy className="w-4 h-4" />
-                </div>{" "}
-                Miễn phí
-              </div>
-            ) : (
-              <div className="flex items-center gap-1">
-                2 <Bone className="w-4 h-4" />
-              </div>
-            )
-          }
-          popoverId="phao-confirm"
-        >
-          <HintButton
-            icon={<LifeBuoy className="w-5 h-5" />}
-            label="Phao Bơi"
-            costLabel={
-              freeMinigameHints > 0 ? (
-                <>
-                  {freeMinigameHints} <LifeBuoy className="w-3 h-3" />
-                </>
-              ) : (
-                <>
-                  2 <Bone className="w-3 h-3" />
-                </>
-              )
-            }
-            onClick={() => setShowPhaoConfirm(true)}
-            disabled={!isRunning || isKinhLupActive}
-            isActive={isPhaoActive}
-            countdownPercent={phaoCountdownPercent}
-          />
-        </ConfirmationPopover>
-
-        {/* Kính Lúp Button */}
-        <ConfirmationPopover
-          open={showKinhLupConfirm}
-          setOpen={setShowKinhLupConfirm}
-          onConfirm={handleKinhLupConfirm}
-          onCancel={() => setShowKinhLupConfirm(false)}
-          message="Dùng Kính Lúp để xem Furigana của 1 thẻ trong 2 giây?"
-          costLabel={
-            <div className="flex items-center gap-1">
-              1 <Bone className="w-4 h-4" />
+      {/* Bottom Bar: Shop / Active Buffs */}
+      <div className="w-full flex justify-center mt-4 sm:mt-6 pb-2 h-14">
+        {isPhaoActive && (
+          <div className="flex-1 max-w-[220px] h-full bg-[#E0F7FA] border-4 border-[#80DEEA] rounded-2xl flex items-center justify-center relative shadow-sm">
+            <div className="relative w-8 h-8 mr-2 flex items-center justify-center shrink-0 z-10">
+              <svg viewBox="0 0 32 32" className="absolute inset-0 w-full h-full -rotate-90">
+                <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" strokeWidth="3" className="text-[#00ACC1]/20" />
+                <motion.circle
+                  cx="16"
+                  cy="16"
+                  r="14"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  className="text-[#00ACC1]"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 1 }}
+                  animate={{ pathLength: 0 }}
+                  transition={{ duration: PHAO_DURATION_SECONDS, ease: "linear" }}
+                />
+              </svg>
+              <LifeBuoy className="w-4 h-4 text-[#00ACC1] animate-pulse" />
             </div>
-          }
-          popoverId="kinh-lup-confirm"
-        >
-          <HintButton
-            icon={<Search className="w-5 h-5" />}
-            label="Kính Lúp"
-            costLabel={
-              <>
-                1 <Bone className="w-3 h-3" />
-              </>
-            }
-            onClick={() => setIsKinhLupActive((prev) => !prev)}
-            disabled={!isRunning || isPhaoActive}
-            isActive={isKinhLupActive}
-          />
-        </ConfirmationPopover>
+            <span className="font-bold text-[#00ACC1] relative z-10 font-rounded">Phao Bơi (Đang bật)</span>
+          </div>
+        )}
+
+        {isKinhLupActive && (
+          <button
+            onClick={() => setIsKinhLupActive(false)}
+            className="flex-1 max-w-[220px] h-full bg-[#FFF0F3] border-4 border-[#FF7096] rounded-2xl flex items-center justify-center shadow-[0_4px_0_0_#FF7096] active:translate-y-1 active:shadow-none transition-all text-[#C7486B]"
+          >
+            <Search className="w-5 h-5 mr-2 animate-pulse" />
+            <span className="font-bold font-rounded">Đang soi... (Hủy)</span>
+          </button>
+        )}
+
+        {!isPhaoActive && !isKinhLupActive && (
+          <button
+            disabled={!isRunning}
+            onClick={() => setIsMasterOpen(true)}
+            className="w-full max-w-[220px] h-full bg-[#5390D9] hover:bg-[#4a81c3] disabled:bg-zinc-300 disabled:border-zinc-400 disabled:shadow-none disabled:active:translate-y-0 text-white rounded-2xl border-b-4 border-[#305f94] active:border-b-0 active:translate-y-1 font-bold text-lg transition-all shadow-sm flex items-center justify-center gap-2"
+          >
+            <Sparkles className="w-5 h-5" />
+            <span style={{ fontFamily: "var(--font-cherry)" }}>Hỏi Sư Phụ</span>
+          </button>
+        )}
       </div>
+
+      <ShibaMasterDialog
+        isOpen={isMasterOpen}
+        onClose={() => setIsMasterOpen(false)}
+        options={masterOptions}
+        message="Bí từ quá à đồ đệ? Đưa Xương đây ta quăng phao cho!"
+      />
     </div>
   );
 }

@@ -17,6 +17,7 @@ export function useImportDeck() {
   const [deckData, setDeckData] = useState<FlashcardData[]>([]);
   const [isTextInput, setIsTextInput] = useState(false);
   const [textValue, setTextValue] = useState("");
+  const [deckType, setDeckType] = useState<"flashcard" | "kanji">("flashcard");
 
   const [deckTitle, setDeckTitle] = useState("");
   const [deckDescription, setDeckDescription] = useState("");
@@ -38,6 +39,7 @@ export function useImportDeck() {
     setDeckLevel("N4");
     setCustomLevel("");
     setIsTextInput(false);
+    setDeckType("flashcard");
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -47,22 +49,30 @@ export function useImportDeck() {
     }
   };
 
-  const validateAndSetData = (parsedData: any) => {
+  const validateAndSetData = useCallback((parsedData: any) => {
     if (!Array.isArray(parsedData) || parsedData.length === 0) {
       setErrorMsg("Dữ liệu phải là một mảng (Array) và không rỗng nhé!");
       setStatus("error");
       return;
     }
+    
     const firstCard = parsedData[0];
-    if (!firstCard.id || !firstCard.word) {
-      setErrorMsg("Thiếu trường 'id' hoặc 'word' mất rồi!");
+    if (deckType === "kanji") {
+      if (!firstCard.char && !firstCard.word) {
+        setErrorMsg("Thẻ Kanji cần có trường 'char' hoặc 'word' nhé!");
+        setStatus("error");
+        return;
+      }
+    } else if (!firstCard.word) {
+      // Flashcard chỉ cần word, ID sẽ tự generate nếu thiếu
+      setErrorMsg("Thiếu trường 'word' mất rồi!");
       setStatus("error");
       return;
     }
     setDeckData(parsedData);
     setStatus("preview");
     setErrorMsg("");
-  };
+  }, [deckType]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
@@ -77,7 +87,7 @@ export function useImportDeck() {
       }
     };
     reader.readAsText(file);
-  }, []);
+  }, [validateAndSetData]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -96,14 +106,31 @@ export function useImportDeck() {
 
   const handleSaveDeck = async () => {
     setIsSaving(true);
-    const newDeck = {
+    const finalLevel = deckLevel === "Khác" ? customLevel.trim() || "Khác" : deckLevel;
+    
+    const newDeck: any = {
       id: `custom_${Date.now()}`,
-      title: deckTitle.trim() || "Bộ bài bí mật ✨",
-      description: deckDescription.trim() || "Chưa có ghi chú nào",
+      title: deckTitle.trim() || "Bộ bài mới ✨",
+      description: deckDescription.trim() || "",
       count: deckData.length,
-      level: deckLevel === "Khác" ? customLevel.trim() || "Khác" : deckLevel,
-      cards: deckData,
+      level: finalLevel || "N5",
+      type: deckType,
+      createdAt: new Date().toISOString(),
+      isCustom: true,
     };
+
+    if (deckType === "kanji") {
+      newDeck.kanjiList = deckData.map((item: any) => ({
+        char: item.char || item.word || "",
+        meaning: item.meaning || ""
+      }));
+      newDeck.cards = [];
+    } else {
+      newDeck.cards = deckData.map((item: any, index: number) => ({
+        id: item.id || `card_${Date.now()}_${index}`,
+        ...item
+      }));
+    }
 
     try {
       if (user) {
@@ -130,10 +157,10 @@ export function useImportDeck() {
     }
   };
 
-  const handleDownloadSample = () => {
+  const handleDownloadSample = (type: "flashcard" | "kanji") => {
     const a = document.createElement("a");
-    a.href = "/data/mau_flashcard_cute.json";
-    a.download = "mau_flashcard_cute.json";
+    a.href = type === "flashcard" ? "/data/mau_flashcard_cute.json" : "/data/mau_kanji_cute.json";
+    a.download = type === "flashcard" ? "mau_flashcard_cute.json" : "mau_kanji_cute.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -147,6 +174,7 @@ export function useImportDeck() {
     textValue, setTextValue, deckTitle, setDeckTitle, deckDescription,
     setDeckDescription, deckLevel, setDeckLevel, customLevel, setCustomLevel,
     showAiHint, isSaving, handleOpenChange, handleTextSubmit, handleSaveDeck,
-    handleDownloadSample, getRootProps, getInputProps, isDragActive
+    handleDownloadSample, getRootProps, getInputProps, isDragActive,
+    deckType, setDeckType
   };
 }

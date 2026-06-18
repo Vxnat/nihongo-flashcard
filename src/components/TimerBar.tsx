@@ -31,6 +31,7 @@ export function TimerBar({ progressPercent, timeLeft }: TimerBarProps) {
       </div>
       <div
         className="w-16 text-center font-cherry text-2xl sm:text-3xl text-zinc-600 drop-shadow-sm"
+        style={{ fontFamily: "var(--font-cherry)" }}
       >
         {timeLeft}
       </div>

@@ -7,6 +7,8 @@ interface GameResultModalProps {
   reason?: string; // e.g., "Hết giờ!", "Hết máu rồi!"
   rewardCoins?: number;
   timeBonus?: number;
+  scoreBonus?: number;
+  score?: number;
   onRestart: () => void;
   onClose: () => void;
 }
@@ -16,11 +18,13 @@ export function GameResultModal({
   reason,
   rewardCoins = 0,
   timeBonus = 0,
+  scoreBonus = 0,
+  score,
   onRestart,
   onClose,
 }: GameResultModalProps) {
   const isWin = status === "win";
-  const totalReward = rewardCoins + timeBonus;
+  const totalReward = rewardCoins + timeBonus + scoreBonus;
 
   const config = {
     win: {
@@ -73,6 +77,13 @@ export function GameResultModal({
         </h3>
         <p className="font-rounded text-zinc-500 font-bold mb-6">{currentConfig.message}</p>
 
+        {score !== undefined && (
+          <div className="bg-slate-50 border-2 border-slate-100 rounded-3xl p-4 w-full mb-6 relative overflow-hidden flex flex-col items-center justify-center gap-1 shadow-inner">
+            <span className="text-xs font-black text-slate-400 uppercase tracking-wider block font-rounded">Điểm số</span>
+            <span className="text-5xl font-bold text-[#FF7096] drop-shadow-md" style={{ fontFamily: "var(--font-cherry)" }}>{score}</span>
+          </div>
+        )}
+
         {isWin && totalReward > 0 && (
           <div className="bg-orange-50 border-2 border-orange-200 rounded-3xl p-4 w-full mb-6 relative overflow-hidden flex flex-col items-center justify-center gap-1 shadow-inner">
             <span className="text-xs font-black text-orange-400 uppercase tracking-wider block">Phần thưởng</span>
@@ -80,7 +91,7 @@ export function GameResultModal({
               <span className="text-5xl font-bold text-[#FF9F1C] drop-shadow-md" style={{ fontFamily: "var(--font-cherry)" }}>+{totalReward}</span>
               <span className="text-3xl filter drop-shadow-sm pb-1">🦴</span>
             </div>
-            {timeBonus > 0 && <p className="text-xs font-bold text-orange-400 font-rounded">({rewardCoins} cơ bản + {timeBonus} thời gian)</p>}
+            {(timeBonus > 0 || scoreBonus > 0) && <p className="text-xs font-bold text-orange-400 font-rounded">({rewardCoins} cơ bản + {timeBonus > 0 ? `${timeBonus} thời gian` : `${scoreBonus} điểm thưởng`})</p>}
           </div>
         )}
 

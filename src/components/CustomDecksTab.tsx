@@ -1,7 +1,6 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ImportDeck } from "@/components/ImportDeck";
 import { DeckWordList } from "@/components/DeckWordList";
 import { LoadDefaultDecksBtn } from "@/components/LoadDefaultDecksBtn";
@@ -11,16 +10,21 @@ import {
   Pencil,
   ChevronDown,
   PlusSquare,
-  LayoutGrid,
   Search,
   Pin,
   PinOff,
   X,
   Loader2,
+  PenTool,
+  Download,
+  MoreVertical,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useHome } from "@/hooks/useHome";
+import { useAppStore } from "@/store/useAppStore";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 // Hiệu ứng búng lần lượt từng thẻ (Stagger)
 const gridContainerVariants: any = {
@@ -89,9 +93,13 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
     folderSearchQuery,
     setFolderSearchQuery,
     handleTogglePinFolder,
-    user,
-    loadCustomDecks,
   } = homeState;
+
+  const [activeSubTab, setActiveSubTab] = useState<"flashcard" | "kanji">("flashcard");
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+  const addCustomDeck = useAppStore((state) => state.addCustomDeck);
+  const setActiveKanjiPracticeDeck = useAppStore((state) => state.setActiveKanjiPracticeDeck);
+  const user = useAppStore((state) => state.user);
 
   // Lọc thư mục được ghim và thư mục đang chọn (nếu nó không được ghim)
   const pinnedFolders = folders.filter((f) => f.isPinned);
@@ -104,115 +112,121 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
     f.name.toLowerCase().includes(folderSearchQuery.toLowerCase()),
   );
 
+  const selectedFolderName = selectedFolderId
+    ? folders.find((f) => f.id === selectedFolderId)?.name || "Thư mục ẩn"
+    : "Kho chính";
+
+  // Lọc bài học theo loại (Flashcard / Kanji)
+  const visibleDecks = currentFolderDecks.filter((d: any) => {
+    if (activeSubTab === "kanji") return d.type === "kanji";
+    return !d.type || d.type === "flashcard" || d.type === "story";
+  });
+
+  // Hàm tạo Bộ thủ mặc định
+  const handleAddDefaultRadicals = async () => {
+    const radicalsDeck: any = {
+      id: `radicals_basic_${Date.now()}`,
+      title: "214 Bộ Thủ (Phần 1)",
+      description: "Nền tảng cấu tạo nên mọi chữ Hán.",
+      type: "kanji",
+      level: "Cơ bản",
+      count: 5,
+      cards: [],
+      kanjiList: [
+        { char: "一", meaning: "Bộ Nhất (Số một)" },
+        { char: "丨", meaning: "Bộ Cổn (Nét sổ)" },
+        { char: "丶", meaning: "Bộ Chủ (Điểm, chấm)" },
+        { char: "丿", meaning: "Bộ Phiệt (Nét phẩy)" },
+        { char: "乙", meaning: "Bộ Ất (Can ất)" },
+      ],
+      createdAt: new Date().toISOString(),
+    };
+    await addCustomDeck(radicalsDeck);
+  };
+
+  // Hàm xuất file JSON
+  const handleExportDeck = (deck: any) => {
+    let exportData: any[] = [];
+
+    if (deck.type === "kanji" && deck.kanjiList) {
+      exportData = deck.kanjiList.map((k: any) => ({
+        char: k.char,
+        meaning: k.meaning,
+      }));
+    } else if (deck.cards) {
+      exportData = deck.cards.map((c: any) => {
+        // const cardData: any = { word: c.word || "", meaning: c.meaning || "" };
+        // if (c.reading) cardData.reading = c.reading;
+        // if (c.romaji) cardData.romaji = c.romaji;
+        // if (c.example_jp) cardData.example_jp = c.example_jp;
+        // if (c.example_vi) cardData.example_vi = c.example_vi;
+        return c;
+      });
+    }
+
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    
+    // Tạo tên file an toàn (loại bỏ dấu tiếng Việt và ký tự đặc biệt)
+    const safeTitle = (deck.title || "deck")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]/g, "_").toLowerCase();
+      
+    a.download = `${safeTitle}_${deck.level || "custom"}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    toast.success("Tải xuống thành công! 🎉", { icon: "⬇️" });
+  };
+
   return (
     <>
-      <ImportDeck />
-
-      {/* ĐIỀU HƯỚNG THƯ MỤC (HYBRID PILLS + DROPDOWN ACTIONS) */}
-      <div className="w-full mt-8 mb-6 px-2 max-w-2xl flex flex-col gap-3 relative">
-        {/* THANH TRƯỢT NGANG CHỌN THƯ MỤC */}
-        <div className="flex items-center gap-3 overflow-x-auto hide-scrollbar pb-2 snap-x">
-          <button
-            onClick={() => setSelectedFolderId(null)}
-            className={`shrink-0 h-10 px-5 rounded-full font-bold text-sm border-2 transition-all flex items-center gap-2 snap-start outline-none ${
-              !selectedFolderId
-                ? "bg-[#5390D9] text-white border-[#5390D9] shadow-[0_3px_0_0_#4a81c3]"
-                : "bg-white text-zinc-400 border-zinc-200 hover:bg-zinc-50 active:translate-y-1"
-            }`}
-            style={{ fontFamily: "var(--font-rounded)" }}
-          >
-            📦 Kho chính
-          </button>
-
-          {pinnedFolders.map((folder) => {
-            const isActive = selectedFolderId === folder.id;
-            return (
-              <button
-                key={folder.id}
-                onClick={() => setSelectedFolderId(folder.id)}
-                className={`shrink-0 h-10 px-5 rounded-full font-bold text-sm border-2 transition-all flex items-center gap-1.5 snap-start outline-none ${
-                  isActive
-                    ? "text-white shadow-[0_3px_0_0_rgba(0,0,0,0.15)]"
-                    : "bg-white text-zinc-500 border-zinc-200 hover:bg-zinc-50 active:translate-y-1"
-                }`}
-                style={{
-                  fontFamily: "var(--font-rounded)",
-                  backgroundColor: isActive ? folder.color : undefined,
-                  borderColor: isActive ? folder.color : undefined,
-                }}
-              >
-                📁 {folder.name}
-                {isActive && (
-                  <ChevronDown
-                    className="w-4 h-4 ml-1 opacity-80"
-                    strokeWidth={3}
-                  />
-                )}
-              </button>
-            );
-          })}
-
-          {activeUnpinnedFolder && (
-            <button
-              onClick={() => setSelectedFolderId(activeUnpinnedFolder.id)}
-              className="shrink-0 h-10 px-5 rounded-full font-bold text-sm border-2 transition-all flex items-center gap-1.5 snap-start outline-none text-white shadow-[0_3px_0_0_rgba(0,0,0,0.15)]"
-              style={{
-                fontFamily: "var(--font-rounded)",
-                backgroundColor: activeUnpinnedFolder.color,
-                borderColor: activeUnpinnedFolder.color,
-              }}
-            >
-              📁 {activeUnpinnedFolder.name}
-              <ChevronDown
-                className="w-4 h-4 ml-1 opacity-80"
-                strokeWidth={3}
-              />
-            </button>
+      {/* TOGGLE SUB-TABS (Flashcard vs Luyện Viết) */}
+      <div className="w-full flex justify-center gap-8 mb-6 mt-6 px-4 max-w-sm mx-auto relative z-10">
+        <button
+          onClick={() => setActiveSubTab("flashcard")}
+          className={`pb-2 text-xl transition-all relative ${
+            activeSubTab === "flashcard" ? "text-[#FF7096] font-black" : "text-zinc-300 font-bold hover:text-zinc-400"
+          }`}
+          style={{ fontFamily: "var(--font-cherry)" }}
+        >
+          Flashcard
+          {activeSubTab === "flashcard" && (
+            <motion.div layoutId="activeTabIndicator" className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#FF7096] rounded-full" />
           )}
-
-          <button
-            onClick={() => setIsFolderDrawerOpen(true)}
-            className="shrink-0 h-10 px-4 flex items-center justify-center rounded-full bg-zinc-100 border-2 border-zinc-200 text-zinc-500 hover:bg-zinc-200 transition-all snap-start active:translate-y-1 outline-none font-bold text-sm font-rounded"
-          >
-            <LayoutGrid className="w-4 h-4" />
-          </button>
-        </div>
-
-        {/* DROPDOWN ACTIONS (Sửa / Xóa) */}
-        <AnimatePresence>
-          {selectedFolderId && (
-            <motion.div
-              initial={{ opacity: 0, height: 0, marginTop: -10 }}
-              animate={{ opacity: 1, height: "auto", marginTop: 0 }}
-              exit={{ opacity: 0, height: 0, marginTop: -10 }}
-              className="flex items-center gap-2 overflow-hidden px-1"
-            >
-              <div className="flex-1 h-px bg-zinc-200 rounded-full" />
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 bg-white border-2 border-zinc-200 shadow-sm text-zinc-400 hover:text-blue-500 hover:border-blue-400 hover:bg-blue-50 rounded-xl transition-all"
-                onClick={() => {
-                  const folder = folders.find((f) => f.id === selectedFolderId);
-                  if (folder)
-                    setFolderToRename({ id: folder.id, name: folder.name });
-                }}
-              >
-                <Pencil className="w-3.5 h-3.5 mr-1.5" />{" "}
-                <span className="font-rounded font-bold text-xs">Đổi tên</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 bg-white border-2 border-zinc-200 shadow-sm text-zinc-400 hover:text-red-500 hover:border-red-400 hover:bg-red-50 rounded-xl transition-all"
-                onClick={() => setFolderToDelete(selectedFolderId)}
-              >
-                <Trash2 className="w-3.5 h-3.5 mr-1.5" />{" "}
-                <span className="font-rounded font-bold text-xs">Xóa</span>
-              </Button>
-            </motion.div>
+        </button>
+        <button
+          onClick={() => setActiveSubTab("kanji")}
+          className={`pb-2 text-xl transition-all relative ${
+            activeSubTab === "kanji" ? "text-[#06D6A0] font-black" : "text-zinc-300 font-bold hover:text-zinc-400"
+          }`}
+          style={{ fontFamily: "var(--font-cherry)" }}
+        >
+          Kanji
+          {activeSubTab === "kanji" && (
+            <motion.div layoutId="activeTabIndicator" className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#06D6A0] rounded-full" />
           )}
-        </AnimatePresence>
+        </button>
+      </div>
+
+      {/* ĐIỀU HƯỚNG THƯ MỤC (NÚT LỚN CHỌN DROPDOWN) */}
+      <div className="w-full mb-6 px-4 max-w-2xl mx-auto relative z-10">
+        <button
+          onClick={() => setIsFolderDrawerOpen(true)}
+          className="w-full h-16 bg-white/90 backdrop-blur-md rounded-[1.5rem] border-4 border-[#FFE2D1] shadow-sm hover:bg-orange-50 active:translate-y-1 transition-all flex items-center justify-between px-6 text-zinc-700 outline-none"
+        >
+          <span className="flex items-center gap-3">
+            <span className="text-2xl drop-shadow-sm">{selectedFolderId ? "📂" : "📦"}</span>
+            <span className="text-[#FF9F1C] font-black text-xl" style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1px" }}>
+              {selectedFolderName}
+            </span>
+          </span>
+          <ChevronDown className="w-6 h-6 text-[#FF9F1C]" strokeWidth={3} />
+        </button>
       </div>
 
       {/* GRID DANH SÁCH DECK */}
@@ -243,7 +257,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
               </motion.div>
             ))}
           </motion.div>
-        ) : currentFolderDecks.length === 0 ? (
+        ) : visibleDecks.length === 0 ? (
           <motion.div
             key="empty-state"
             variants={emptyBoxVariants}
@@ -254,23 +268,31 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
           >
             <div className="w-full flex flex-col items-center justify-center py-12 px-4 bg-white/60 border-4 border-dashed border-[#FFE2D1] rounded-[3rem] text-center">
               <span className="text-[5rem] mb-4 opacity-90 animate-bounce block select-none">
-                {selectedFolderId ? "📂" : "🫙"}
+                {selectedFolderId ? "🍱" : "🫙"}
               </span>
               <h3
-                className="text-3xl text-orange-300 mb-2 drop-shadow-sm"
+                className="text-3xl text-orange-400 mb-2 drop-shadow-sm"
                 style={{ fontFamily: "var(--font-cherry)" }}
               >
-                {selectedFolderId ? "Thư mục rỗng!" : "Hũ kẹo trống trơn!"}
+                {selectedFolderId ? "Hộp Bento trống không!" : "Hũ kẹo trống trơn!"}
               </h3>
               <p className="font-rounded text-zinc-500 font-bold text-sm md:text-base max-w-[250px] mx-auto mb-6">
                 {selectedFolderId
                   ? "Thư mục này chưa có bộ bài nào. Hãy chuyển bộ bài vào đây nhé! ✨"
-                  : "Chưa có thẻ bài nào ở đây cả. Bạn tự nhập hoặc lấy bộ bài mẫu nhé! ✨"}
+                  : activeSubTab === "flashcard"
+                    ? "Chưa có thẻ bài nào ở đây cả. Bạn tự nhập hoặc lấy bộ bài mẫu nhé! ✨"
+                    : "Bạn chưa có bộ Hán tự nào để luyện viết cả. Hãy thử bộ cơ bản nhé! 🖌️"}
               </p>
-              {!selectedFolderId && (
-                <LoadDefaultDecksBtn
-                  onLoaded={() => loadCustomDecks(user?.uid)}
-                />
+              {!selectedFolderId && activeSubTab === "flashcard" && (
+                <LoadDefaultDecksBtn onLoaded={() => homeState.loadCustomDecks(user?.uid)} />
+              )}
+              {!selectedFolderId && activeSubTab === "kanji" && (
+                <button
+                  onClick={handleAddDefaultRadicals}
+                  className="h-12 px-6 rounded-full bg-[#06D6A0] hover:bg-[#05b889] text-white font-rounded font-black text-base border-b-4 border-[#048c68] active:border-b-0 active:translate-y-1 transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  <PenTool className="w-5 h-5" /> <span style={{ fontFamily: "var(--font-cherry)" }}>Tải Bộ Thủ Cơ Bản</span>
+                </button>
               )}
             </div>
           </motion.div>
@@ -283,16 +305,26 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
             exit="exit"
             className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl px-2"
           >
-            {currentFolderDecks.map((deck: any) => (
+            {visibleDecks.map((deck: any) => (
               <motion.div
                 key={deck.id}
                 variants={cardItemVariants}
                 layout
-                className="relative group"
+                className={`relative group ${openMenuId === deck.id ? "z-30" : "z-0"}`}
               >
                 <div className="h-full bg-white rounded-[2.5rem] p-6 relative border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFE2D1] hover:-translate-y-1 hover:shadow-[0_12px_0_0_#FFE2D1] active:translate-y-2 active:shadow-[0_0_0_0_#FFE2D1] transition-all duration-200 flex flex-col">
                   <div
-                    onClick={() => router.push(`/deck/${deck.id}`)}
+                    onClick={() => {
+                      if (openMenuId === deck.id) {
+                        setOpenMenuId(null);
+                        return;
+                      }
+                      if (deck.type === "kanji") {
+                        setActiveKanjiPracticeDeck(deck);
+                      } else {
+                        router.push(`/deck/${deck.id}`);
+                      }
+                    }}
                     className="absolute inset-0 z-0 cursor-pointer rounded-[2.5rem]"
                   />
                   <div className="relative z-10 pointer-events-none flex flex-col flex-1">
@@ -335,31 +367,52 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
                       }
                     />
                   </div>
+
+                  {/* NÚT THAO TÁC (3 CHẤM) */}
                   {deck.isCustom && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute top-4 right-14 bg-blue-50 hover:bg-blue-100 text-[#5390D9] rounded-full w-8 h-8 z-20 cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDeckToMove(deck.id);
-                      }}
-                    >
-                      <FolderPlus className="w-4 h-4" />
-                    </Button>
-                  )}
-                  {deck.isCustom && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute top-4 right-4 bg-red-50 hover:bg-red-100 text-red-400 rounded-full w-8 h-8 z-20 cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDeckToDelete(deck.id);
-                      }}
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </Button>
+                    <div className="absolute top-4 right-4 z-30">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setOpenMenuId(openMenuId === deck.id ? null : deck.id);
+                        }}
+                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${openMenuId === deck.id ? "bg-zinc-200 text-zinc-700" : "bg-zinc-100/80 hover:bg-zinc-200 text-zinc-500"}`}
+                      >
+                        <MoreVertical className="w-5 h-5" />
+                      </button>
+                      
+                      <AnimatePresence>
+                        {openMenuId === deck.id && (
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.9, originY: 0, originX: 1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{ duration: 0.15 }}
+                            className="absolute top-11 right-0 bg-white rounded-2xl shadow-xl border-2 border-zinc-100 overflow-hidden flex flex-col py-2 z-40"
+                          >
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setOpenMenuId(null); handleExportDeck(deck); }}
+                              className="px-4 py-3 text-sm font-bold text-zinc-600 hover:bg-green-50 hover:text-green-600 transition-colors"
+                            >
+                              <Download className="w-[18px] h-[18px]" />
+                            </button>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setOpenMenuId(null); setDeckToMove(deck.id); }}
+                              className="px-4 py-3 text-sm font-bold text-zinc-600 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                            >
+                              <FolderPlus className="w-[18px] h-[18px]" />
+                            </button>
+                            <div className="w-full h-px bg-zinc-100 my-1" />
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setOpenMenuId(null); setDeckToDelete(deck.id); }}
+                              className="px-4 py-3 text-sm font-bold text-red-500 hover:bg-red-50 transition-colors"
+                            >
+                              <Trash2 className="w-[18px] h-[18px]" />
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   )}
                 </div>
               </motion.div>
@@ -368,6 +421,11 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
         )}
       </AnimatePresence>
 
+      {/* OVERLAY ĐÓNG MENU THẺ BÀI */}
+      {openMenuId && (
+        <div className="fixed inset-0 z-20" onClick={() => setOpenMenuId(null)} />
+      )}
+
       {/* CÁC POPUP MODALS CỦA TAB KHO THẺ */}
       <AnimatePresence>
         {deckToDelete && (
@@ -375,7 +433,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
             onClick={() => setDeckToDelete(null)}
           >
             <motion.div
@@ -429,7 +487,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
             onClick={() => setFolderToDelete(null)}
           >
             <motion.div
@@ -476,7 +534,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
             onClick={() => {
               setIsCreatingFolder(false);
               setFolderToRename(null);
@@ -547,7 +605,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
             onClick={() => setDeckToMove(null)}
           >
             <motion.div
@@ -654,7 +712,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
               }}
               exit={{ y: "100%", transition: { duration: 0.2 } }}
               drag="y"
-              dragConstraints={{ top: 0 }}
+              dragConstraints={{ top: 0, bottom: 0 }}
               dragElastic={0.2}
               onDragEnd={(e, info) => {
                 if (info.offset.y > 100) setIsFolderDrawerOpen(false);
@@ -692,7 +750,16 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
                   />
                 </div>
               </div>
-              <div className="flex-1 overflow-y-auto hide-scrollbar flex flex-col gap-3 pb-20">
+              <div className="flex-1 overflow-y-auto hide-scrollbar flex flex-col gap-3 pb-24 px-1">
+                {/* Nút Kho chính luôn nằm ở trên cùng */}
+                <div 
+                  className={`flex items-center gap-3 p-3 border-2 rounded-2xl transition-colors cursor-pointer ${!selectedFolderId ? "bg-blue-50 border-blue-200" : "bg-white border-zinc-100 hover:border-zinc-300"}`} 
+                  onClick={() => { setSelectedFolderId(null); setIsFolderDrawerOpen(false); }}
+                >
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl shrink-0 bg-blue-100 text-blue-500">📦</div>
+                  <span className="font-bold text-zinc-700 font-rounded text-[17px] truncate">Kho chính</span>
+                </div>
+
                 {filteredDrawerFolders.length === 0 ? (
                   <p className="text-center text-zinc-400 font-rounded mt-10 font-bold">
                     Không tìm thấy thư mục nào! 🥺
@@ -701,10 +768,10 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
                   filteredDrawerFolders.map((folder) => (
                     <div
                       key={folder.id}
-                      className="flex items-center gap-3 p-3 bg-white border-2 border-zinc-100 rounded-2xl hover:border-zinc-300 transition-colors"
+                      className="flex items-center gap-2 p-2.5 bg-white border-2 border-zinc-100 rounded-2xl hover:border-zinc-300 transition-colors"
                     >
                       <button
-                        className="flex-1 flex items-center gap-3 text-left outline-none"
+                        className="flex-1 flex items-center gap-3 text-left outline-none pl-1"
                         onClick={() => {
                           setSelectedFolderId(folder.id);
                           setIsFolderDrawerOpen(false);
@@ -719,22 +786,36 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
                         >
                           📁
                         </div>
-                        <span className="font-bold text-zinc-700 font-rounded text-lg truncate">
+                        <span className="font-bold text-zinc-700 font-rounded text-[17px] truncate">
                           {folder.name}
                         </span>
                       </button>
-                      <button
-                        onClick={() =>
-                          handleTogglePinFolder(folder.id, folder.isPinned)
-                        }
-                        className={`w-10 h-10 rounded-full flex items-center justify-center transition-all shrink-0 ${folder.isPinned ? "bg-[#FFD166]/20 text-[#FFD166] hover:bg-[#FFD166]/30" : "bg-zinc-100 text-zinc-400 hover:bg-zinc-200"}`}
-                      >
-                        {folder.isPinned ? (
-                          <Pin className="w-5 h-5 fill-current" />
-                        ) : (
-                          <PinOff className="w-5 h-5" />
-                        )}
-                      </button>
+                      
+                      {/* CÁC THAO TÁC SỬA/XÓA CHUYỂN VÀO TRONG DRAWER */}
+                      <div className="flex items-center gap-1 shrink-0">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setFolderToRename({ id: folder.id, name: folder.name }); }}
+                          className="w-9 h-9 rounded-full flex items-center justify-center bg-blue-50 text-blue-500 hover:bg-blue-100 transition-colors"
+                        >
+                          <Pencil className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setFolderToDelete(folder.id); }}
+                          className="w-9 h-9 rounded-full flex items-center justify-center bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                        {/* <button
+                          onClick={(e) => { e.stopPropagation(); handleTogglePinFolder(folder.id, folder.isPinned); }}
+                          className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${folder.isPinned ? "bg-[#FFD166]/20 text-[#FFD166] hover:bg-[#FFD166]/30" : "bg-zinc-50 text-zinc-400 hover:bg-zinc-100"}`}
+                        >
+                          {folder.isPinned ? (
+                            <Pin className="w-4 h-4 fill-current" />
+                          ) : (
+                            <PinOff className="w-4 h-4" />
+                          )}
+                        </button> */}
+                      </div>
                     </div>
                   ))
                 )}
@@ -743,6 +824,11 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
           </>
         )}
       </AnimatePresence>
+
+      {/* NÚT THÊM NỔI Ở GIỮA CẠNH PHẢI MÀN HÌNH */}
+      <div className="fixed top-[45%] right-0 z-[60] translate-x-2 hover:translate-x-0 transition-transform duration-300">
+        <ImportDeck />
+      </div>
     </>
   );
 }

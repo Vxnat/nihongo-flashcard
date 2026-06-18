@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   UploadCloud,
@@ -50,24 +51,20 @@ export function ImportDeck() {
     getRootProps,
     getInputProps,
     isDragActive,
+    deckType,
+    setDeckType,
   } = useImportDeck();
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        {/* NÚT THÊM BỘ BÀI: KẸO DÂU (STRAWBERRY CANDY PILL) */}
-        <Button className="group relative h-12 px-6 rounded-full bg-[#FF7096] hover:bg-[#FF5C8A] text-white border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all shadow-lg hover:shadow-xl overflow-hidden">
+        {/* NÚT THÊM BỘ BÀI: DÍNH CẠNH PHẢI */}
+        <Button className="group relative h-16 pl-3.5 pr-3 rounded-l-2xl rounded-r-none bg-[#FF7096] hover:bg-[#FF5C8A] text-white border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all shadow-[-4px_4px_10px_rgba(0,0,0,0.1)] hover:shadow-[-6px_6px_15px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col items-center justify-center">
           {/* Vệt sáng lướt qua khi di chuột (Shine effect) */}
           <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 transition-transform duration-700 ease-in-out pointer-events-none" />
 
-          <span
-            className="text-base font-bold drop-shadow-sm tracking-wide font-rounded mt-0.5"
-            style={{ fontFamily: "var(--font-cherry)" }}
-          >
-            Nhập bài mới!
-          </span>
           <Sparkles
-            className="w-4 h-4 ml-2 drop-shadow-sm text-[#FFD166]"
+            className="w-5 h-5 drop-shadow-sm text-[#FFD166]"
             fill="currentColor"
           />
         </Button>
@@ -100,6 +97,35 @@ export function ImportDeck() {
              ========================================= */}
             {status !== "preview" && (
               <div className="space-y-4">
+                {/* TOGGLE CHỌN LOẠI BỘ BÀI */}
+                <div className="flex bg-white p-1.5 rounded-full border-2 border-[#FFE2D1] shadow-inner w-full relative h-12 mb-2">
+                  <div
+                    className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] rounded-full transition-transform duration-300 shadow-sm border-2 ${
+                      deckType === "kanji"
+                        ? "translate-x-full bg-[#06D6A0] border-[#05B889]"
+                        : "translate-x-0 bg-[#5390D9] border-[#305f94]"
+                    }`}
+                  />
+                  <button
+                    onClick={() => setDeckType("flashcard")}
+                    className={`flex-1 relative z-10 font-bold text-sm rounded-full transition-colors flex items-center justify-center gap-1.5 ${
+                      deckType === "flashcard" ? "text-white" : "text-zinc-400 hover:text-zinc-600"
+                    }`}
+                    style={{ fontFamily: "var(--font-cherry)" }}
+                  >
+                    Flashcard
+                  </button>
+                  <button
+                    onClick={() => setDeckType("kanji")}
+                    className={`flex-1 relative z-10 font-bold text-sm rounded-full transition-colors flex items-center justify-center gap-1.5 ${
+                      deckType === "kanji" ? "text-white" : "text-zinc-400 hover:text-zinc-600"
+                    }`}
+                    style={{ fontFamily: "var(--font-cherry)" }}
+                  >
+                    Kanji
+                  </button>
+                </div>
+
                 <div className="flex bg-white border-2 border-zinc-100 p-1 rounded-2xl w-fit shrink-0 shadow-sm mx-auto">
                   <button
                     className={`px-4 py-2 text-sm font-bold rounded-xl transition-colors flex items-center ${!isTextInput ? "bg-[#FFD166] text-amber-900 shadow-sm" : "text-zinc-400 hover:text-zinc-600"}`}
@@ -134,7 +160,7 @@ export function ImportDeck() {
                   <div className="flex flex-col gap-3 shrink-0">
                     <textarea
                       className="w-full h-32 p-4 border-4 border-[#FFE2D1] rounded-[1.5rem] text-xs font-mono focus:outline-none focus:border-[#FF9F1C] bg-white placeholder:text-zinc-300 resize-none"
-                      placeholder='[{ "id": "1", "word": "漢字", "meaning": "Hán tự" }]'
+                      placeholder={deckType === "kanji" ? '[\n  { "char": "一", "meaning": "Số một" }\n]' : '[\n  { "word": "漢字", "meaning": "Hán tự" }\n]'}
                       value={textValue}
                       onChange={(e) => setTextValue(e.target.value)}
                     />
@@ -157,7 +183,7 @@ export function ImportDeck() {
                 {/* KHU VỰC TẢI FILE MẪU & GỢI Ý AI */}
                 <div className="flex flex-col items-center mt-2 pt-4 border-t-2 border-dashed border-[#FFE2D1] shrink-0">
                   <button
-                    onClick={handleDownloadSample}
+                    onClick={() => handleDownloadSample(deckType)}
                     className="text-sm font-bold text-[#5390D9] hover:text-[#3a70b0] flex items-center transition-colors px-4 py-2 rounded-xl hover:bg-blue-50"
                   >
                     Bạn chưa có file mẫu? Tải tại đây nhé!
@@ -172,7 +198,9 @@ export function ImportDeck() {
                         <span className="text-[#FF9F1C]">Mẹo xịn:</span> Bạn hãy
                         ném file này cho ChatGPT hoặc Claude rồi bảo:{" "}
                         <span className="bg-white px-1.5 py-0.5 rounded-md border border-[#FFE2D1]">
-                          "Dựa vào cấu trúc này, làm cho tôi 20 từ vựng N4"
+                          {deckType === "kanji" 
+                            ? '"Dựa vào cấu trúc này, làm cho tôi 10 chữ Kanji N5"'
+                            : '"Dựa vào cấu trúc này, làm cho tôi 20 từ vựng N4"'}
                         </span>{" "}
                         là có bài học liền nha! 🤖✨
                       </p>
@@ -204,7 +232,7 @@ export function ImportDeck() {
                         className="min-w-[100px] h-[70px] shrink-0 snap-center flex flex-col items-center justify-center bg-orange-50 border-2 border-orange-100 rounded-2xl"
                       >
                         <span className="text-base font-bold text-amber-900 truncate px-2 w-full text-center">
-                          {card.word}
+                          {deckType === "kanji" ? (card.char || card.word) : card.word}
                         </span>
                         <span className="text-[10px] text-amber-700/70 line-clamp-1 px-2 text-center mt-0.5 w-full">
                           {card.meaning}

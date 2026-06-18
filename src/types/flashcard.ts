@@ -34,6 +34,7 @@ export type JLPTLevel = "N5" | "N4" | "N3" | "N2" | "N1";
 export interface FlashcardData {
   id: string;
   word: string; // Từ vựng gốc (thường chứa Kanji)
+  char?: string;
   reading: string; // Cách đọc bằng Hiragana/Katakana
   romaji: string; // Phiên âm Romaji
   meaning: string; // Ý nghĩa tiếng Việt

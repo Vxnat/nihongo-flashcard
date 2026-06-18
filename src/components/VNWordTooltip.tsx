@@ -37,7 +37,7 @@ export function VNWordTooltip({ word, onClose }: VNWordTooltipProps) {
           id: "vn_collection",
           title: "Sưu tầm từ Truyện 📖",
           description: "Các từ vựng lượm nhặt từ chế độ Visual Novel",
-          level: "N/A",
+          level: "Sưu tầm",
           cards: [],
           count: 0,
           createdAt: new Date().toISOString(),

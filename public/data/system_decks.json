@@ -40,12 +40,23 @@
 "totalCards": 32
 },
 {
+  "id": "sys_n5_kanji_01",
+  "title": "Luyện viết Kanji Cơ bản 1",
+  "description": "Viết đúng thứ tự nét để không mất máu!",
+  "type": "minigame_kanji",
+  "level": "N5",
+  "chapter": 1,
+  "order": 2.5,
+  "prerequisite": "sys_n5_minna_02",
+  "rewardCoins": 15
+},
+{
 "id": "sys_n5_minna_03",
 "title": "Bài 3: Chỉ địa điểm & Vị trí (Koko/Soko/Asoko)",
 "level": "N5",
 "chapter": 1,
 "order": 3,
-"prerequisite": "sys_n5_minna_02",
+"prerequisite": "sys_n5_kanji_01",
 "rewardCoins": 5,
 "totalCards": 30
 },
@@ -58,7 +69,8 @@
   "order": 3.5,
   "prerequisite": "sys_n5_minna_03",
   "rewardCoins": 15,
-  "totalCards": 0
+  "totalCards": 0,
+  "targetDeckIds": ["sys_n5_minna_01", "sys_n5_minna_02", "sys_n5_minna_03"]
 },
 {
 "id": "sys_n5_minna_04",
@@ -122,12 +134,24 @@
 "totalCards": 36
 },
 {
+  "id": "mg_rush_n5_01",
+  "type": "minigame_rush",
+  "title": "Minigame: Băng chuyền Shiba",
+  "level": "N5",
+  "chapter": 2,
+  "order": 7.5,
+  "prerequisite": "sys_n5_minna_07",
+  "rewardCoins": 15,
+  "totalCards": 0,
+  "targetDeckIds": ["sys_n5_minna_06", "sys_n5_minna_07"]
+},
+{
 "id": "sys_n5_minna_08",
 "title": "Bài 8: Miêu tả sự vật (Tính từ đuôi I & Na)",
 "level": "N5",
 "chapter": 2,
 "order": 8,
-"prerequisite": "sys_n5_minna_07",
+"prerequisite": "mg_rush_n5_01",
 "rewardCoins": 10,
 "totalCards": 38
 },
