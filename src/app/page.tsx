@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Sparkles } from "lucide-react";
 import { SystemRoadmap } from "@/components/SystemRoadmap";
 import { GachaShop } from "@/components/GachaShop";
+import { ShibaRoom } from "@/components/ShibaRoom";
 import { motion, AnimatePresence } from "framer-motion";
 import { UserStatsPill } from "@/components/UserStatsPill";
 import { AuthButton } from "@/components/AuthButton";
@@ -19,6 +20,7 @@ import { KanjiPractice } from "@/components/KanjiPractice";
 import { useAppStore } from "@/store/useAppStore";
 import { FlashcardData } from "@/types/flashcard";
 import { TypingRushGame } from "@/components/TypingRushGame";
+import { SakuraEffect, LofiNightEffect, DivineShibaEffect } from "@/components/ThemeEffects";
 
 export default function Home() {
   const homeState = useHome();
@@ -33,6 +35,24 @@ export default function Home() {
   const setActiveKanjiPracticeDeck = useAppStore((state) => state.setActiveKanjiPracticeDeck);
   const [minigameDeckData, setMinigameDeckData] = useState<any>(null); // Store minigame deck data
   const saveProgress = useAppStore((state) => state.saveProgress);
+
+  const equippedTheme = useAppStore((state) => state.userStats.equippedTheme);
+
+  // Đồng bộ theme với body class
+  useEffect(() => {
+    let themeClass = "";
+    if (equippedTheme === "thm_sakura") themeClass = "theme-sakura";
+    else if (equippedTheme === "thm_night") themeClass = "theme-night";
+    else if (equippedTheme === "thm_divine_shiba") themeClass = "theme-divine";
+
+    document.body.classList.remove("theme-sakura", "theme-night", "theme-divine");
+    if (themeClass) {
+      document.body.classList.add(themeClass);
+    }
+    return () => {
+      document.body.classList.remove("theme-sakura", "theme-night", "theme-divine");
+    };
+  }, [equippedTheme]);
 
   // State chứa data thẻ ngẫu nhiên cho minigame
   const [minigameCards, setMinigameCards] = useState<FlashcardData[]>([]);
@@ -113,6 +133,10 @@ export default function Home() {
 
   return (
     <div className="w-full flex flex-col items-center pb-32 relative">
+      {/* HIỆU ỨNG THEME DYNAMIC */}
+      {equippedTheme === "thm_sakura" && <SakuraEffect />}
+      {equippedTheme === "thm_night" && <LofiNightEffect />}
+      {equippedTheme === "thm_divine_shiba" && <DivineShibaEffect />}
       {/* VIÊN THUỐC TRẠNG THÁI LUÔN LƠ LỬNG */}
       <UserStatsPill />
 
@@ -180,6 +204,20 @@ export default function Home() {
             className="w-full flex flex-col items-center justify-center max-w-2xl px-4"
           >
             <GachaShop />
+          </motion.div>
+        )}
+
+        {/* TAB 4: CĂN PHÒNG SHIBA */}
+        {activeTab === "room" && (
+          <motion.div
+            key="room-tab"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+            className="w-full flex flex-col items-center justify-center max-w-2xl px-4"
+          >
+            <ShibaRoom />
           </motion.div>
         )}
       </AnimatePresence>

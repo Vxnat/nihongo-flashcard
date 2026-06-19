@@ -10,7 +10,7 @@ const defaultDecks = [] as any[];
 export function useHome() {
   const [deckToDelete, setDeckToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [activeTab, setActiveTab] = useState<"journey" | "custom" | "shop">(
+  const [activeTab, setActiveTab] = useState<"journey" | "custom" | "shop" | "room">(
     "journey",
   );
   const [folderToDelete, setFolderToDelete] = useState<string | null>(null);
@@ -44,13 +44,14 @@ export function useHome() {
     if (
       savedTab === "journey" ||
       savedTab === "custom" ||
-      savedTab === "shop"
+      savedTab === "shop" ||
+      savedTab === "room"
     ) {
-      setActiveTab(savedTab as "journey" | "custom" | "shop");
+      setActiveTab(savedTab as "journey" | "custom" | "shop" | "room");
     }
   }, []);
 
-  const handleTabChange = (tab: "journey" | "custom" | "shop") => {
+  const handleTabChange = (tab: "journey" | "custom" | "shop" | "room") => {
     setActiveTab(tab);
     localStorage.setItem("flashcard_active_tab", tab);
   };

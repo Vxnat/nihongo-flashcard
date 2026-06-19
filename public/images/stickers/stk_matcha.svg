@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="46" fill="#F9FFF9" stroke="#E5C294" stroke-width="3" />
+  <!-- Matcha Bowl -->
+  <path d="M25,45 L75,45 L70,75 C68,80 58,82 50,82 C42,82 32,80 30,75 Z" fill="#E5C294" stroke="#8C6D58" stroke-width="3"/>
+  <!-- Matcha Tea inside -->
+  <ellipse cx="50" cy="45" rx="23" ry="5" fill="#78E08F" stroke="#2ED573" stroke-width="2"/>
+  <!-- Foam/Whisk bubbles -->
+  <circle cx="42" cy="45" r="1.5" fill="#FFF" opacity="0.8"/>
+  <circle cx="46" cy="44" r="1.2" fill="#FFF" opacity="0.8"/>
+  <circle cx="54" cy="45" r="1.5" fill="#FFF" opacity="0.8"/>
+  <!-- Steam steam -->
+  <path d="M42,32 Q46,22 42,17" stroke="#DFE6E9" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M50,34 Q54,24 50,19" stroke="#DFE6E9" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M58,32 Q62,22 58,17" stroke="#DFE6E9" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+</svg>

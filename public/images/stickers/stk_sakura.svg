@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="46" fill="#FFF5F7" stroke="#FF8FAB" stroke-width="3" />
+  <!-- Five petals of cherry blossom -->
+  <g transform="translate(50,50)" fill="#FF8FAB" stroke="#FF5E8C" stroke-width="2">
+    <path d="M0,0 C-15,-20 -20,-45 0,-45 C20,-45 15,-20 0,0 Z" />
+    <path d="M0,0 C-15,-20 -20,-45 0,-45 C20,-45 15,-20 0,0 Z" transform="rotate(72)" />
+    <path d="M0,0 C-15,-20 -20,-45 0,-45 C20,-45 15,-20 0,0 Z" transform="rotate(144)" />
+    <path d="M0,0 C-15,-20 -20,-45 0,-45 C20,-45 15,-20 0,0 Z" transform="rotate(216)" />
+    <path d="M0,0 C-15,-20 -20,-45 0,-45 C20,-45 15,-20 0,0 Z" transform="rotate(288)" />
+  </g>
+  <!-- Center pistils -->
+  <circle cx="50" cy="50" r="6" fill="#FFF"/>
+  <circle cx="50" cy="50" r="3" fill="#FF5E8C"/>
+</svg>

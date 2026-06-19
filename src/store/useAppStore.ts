@@ -34,6 +34,22 @@ interface UserStats {
   equippedTheme: string | null;
   equippedOutfit: string | null;
   pityCounter: number;
+  // --- GACHA EXTENSION & META-GAME ---
+  lastHarvestTime: string;
+  equippedFurniture: Record<string, string>;
+  equippedVoicePack: string | null;
+  unlockedMemes: string[];
+  unlockedVoices: string[];
+  equippedSlots: {
+    head: string | null;
+    armor: string | null;
+    earring: string | null;
+    gloves: string | null;
+    mount: string | null;
+    aura: string | null;
+  };
+  buffDoubleBonesUntil: string | null;
+  buffLuckyGachaRolls: number;
 }
 
 export interface DailyQuest {
@@ -156,6 +172,14 @@ interface AppState {
     newPity: number
   ) => Promise<{ unlocked: boolean; shardsNow: number }>;
 
+  // --- GACHA EXTENSION & META-GAME ACTIONS ---
+  equipFurniture: (slotId: string, itemId: string | null) => Promise<void>;
+  equipVoicePack: (voicePackId: string | null) => Promise<void>;
+  harvestBones: () => Promise<number>;
+  equipItem: (slotKey: string, itemId: string | null) => Promise<void>;
+  equipTheme: (themeId: string | null) => Promise<void>;
+  buyShopItem: (shopItemId: string, type: "shard" | "exclusive" | "consumable", targetId?: string) => Promise<boolean>;
+
   // --- VISUAL NOVEL SLICE ---
   activeStoryId: string | null;
   setActiveStoryId: (id: string | null) => void;
@@ -207,6 +231,22 @@ export const useAppStore = create<AppState>((set, get) => ({
     equippedTheme: null,
     equippedOutfit: null,
     pityCounter: 0,
+    // --- GACHA EXTENSION & META-GAME ---
+    lastHarvestTime: new Date().toISOString(),
+    equippedFurniture: {},
+    equippedVoicePack: null,
+    unlockedMemes: [],
+    unlockedVoices: [],
+    equippedSlots: {
+      head: null,
+      armor: null,
+      earring: null,
+      gloves: null,
+      mount: null,
+      aura: null,
+    },
+    buffDoubleBonesUntil: null,
+    buffLuckyGachaRolls: 0,
   },
 
   // 1.5 VISUAL NOVEL STATE
@@ -246,6 +286,21 @@ export const useAppStore = create<AppState>((set, get) => ({
           equippedTheme: null,
           equippedOutfit: null,
           pityCounter: 0,
+          lastHarvestTime: new Date().toISOString(),
+          equippedFurniture: {},
+          equippedVoicePack: null,
+          unlockedMemes: [],
+          unlockedVoices: [],
+          equippedSlots: {
+            head: null,
+            armor: null,
+            earring: null,
+            gloves: null,
+            mount: null,
+            aura: null,
+          },
+          buffDoubleBonesUntil: null,
+          buffLuckyGachaRolls: 0,
         },
       });
       return;
@@ -295,7 +350,7 @@ export const useAppStore = create<AppState>((set, get) => ({
           lastActiveDate: today,
         },
         { merge: true },
-      ).catch(() => {});
+      ).catch(() => { });
     }
 
     set({
@@ -321,6 +376,22 @@ export const useAppStore = create<AppState>((set, get) => ({
         equippedTheme: savedStats.equippedTheme || null,
         equippedOutfit: savedStats.equippedOutfit || null,
         pityCounter: savedStats.pityCounter || 0,
+        // --- GACHA EXTENSION & META-GAME ---
+        lastHarvestTime: savedStats.lastHarvestTime || new Date().toISOString(),
+        equippedFurniture: savedStats.equippedFurniture || {},
+        equippedVoicePack: savedStats.equippedVoicePack || null,
+        unlockedMemes: savedStats.unlockedMemes || [],
+        unlockedVoices: savedStats.unlockedVoices || [],
+        equippedSlots: savedStats.equippedSlots || {
+          head: null,
+          armor: null,
+          earring: null,
+          gloves: null,
+          mount: null,
+          aura: null,
+        },
+        buffDoubleBonesUntil: savedStats.buffDoubleBonesUntil || null,
+        buffLuckyGachaRolls: savedStats.buffLuckyGachaRolls || 0,
       },
     });
   },
@@ -829,10 +900,16 @@ export const useAppStore = create<AppState>((set, get) => ({
     let newShards = { ...state.userStats.shards };
     let newInventory = [...(state.userStats.inventory || [])];
     let newFurniture = [...(state.userStats.furniture || [])];
+    let newMemes = [...(state.userStats.unlockedMemes || [])];
+    let newVoices = [...(state.userStats.unlockedVoices || [])];
     let newFur = (state.userStats.goldenFur || 0) + duplicateFur;
     let unlocked = false;
 
-    const hasItem = newInventory.includes(item.id) || newFurniture.includes(item.id);
+    const hasItem =
+      newInventory.includes(item.id) ||
+      newFurniture.includes(item.id) ||
+      newMemes.includes(item.id) ||
+      newVoices.includes(item.id);
 
     if (isFullItem && !hasItem) {
       unlocked = true;
@@ -846,7 +923,9 @@ export const useAppStore = create<AppState>((set, get) => ({
 
     if (unlocked) {
       if (item.type === "furniture") newFurniture.push(item.id);
-      else newInventory.push(item.id);
+      else if (item.type === "meme") newMemes.push(item.id);
+      else if (item.type === "voice") newVoices.push(item.id);
+      else newInventory.push(item.id); // theme, outfit, sticker
     }
 
     const newUserStats = {
@@ -854,6 +933,8 @@ export const useAppStore = create<AppState>((set, get) => ({
       shards: newShards,
       inventory: newInventory,
       furniture: newFurniture,
+      unlockedMemes: newMemes,
+      unlockedVoices: newVoices,
       goldenFur: newFur,
       pityCounter: newPity,
     };
@@ -863,7 +944,19 @@ export const useAppStore = create<AppState>((set, get) => ({
     const uid = state.user?.uid;
     if (uid) {
       // Cập nhật ngầm lên Firestore để lưu thay đổi tài sản
-      setDoc(doc(db, "user_stats", uid), { shards: newShards, inventory: newInventory, furniture: newFurniture, goldenFur: newFur, pityCounter: newPity }, { merge: true }).catch(() => {});
+      setDoc(
+        doc(db, "user_stats", uid),
+        {
+          shards: newShards,
+          inventory: newInventory,
+          furniture: newFurniture,
+          unlockedMemes: newMemes,
+          unlockedVoices: newVoices,
+          goldenFur: newFur,
+          pityCounter: newPity,
+        },
+        { merge: true },
+      ).catch(() => { });
     }
 
     return { unlocked, shardsNow: newShards[item.id] || 0 };
@@ -907,5 +1000,256 @@ export const useAppStore = create<AppState>((set, get) => ({
         console.error("Lỗi equipSticker:", error);
       }
     }
+  },
+
+  equipFurniture: async (slotId, itemId) => {
+    const state = get();
+    const newEquipped = { ...state.userStats.equippedFurniture };
+    if (itemId === null) {
+      delete newEquipped[slotId];
+    } else {
+      newEquipped[slotId] = itemId;
+    }
+    const newUserStats = { ...state.userStats, equippedFurniture: newEquipped };
+    set({ userStats: newUserStats });
+
+    const uid = state.user?.uid;
+    if (uid) {
+      try {
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { equippedFurniture: newEquipped },
+          { merge: true },
+        );
+      } catch (error) {
+        console.error("Lỗi equipFurniture:", error);
+      }
+    }
+  },
+
+  equipVoicePack: async (voicePackId) => {
+    const state = get();
+    const newUserStats = { ...state.userStats, equippedVoicePack: voicePackId };
+    set({ userStats: newUserStats });
+
+    const uid = state.user?.uid;
+    if (uid) {
+      try {
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { equippedVoicePack: voicePackId },
+          { merge: true },
+        );
+      } catch (error) {
+        console.error("Lỗi equipVoicePack:", error);
+      }
+    }
+  },
+
+  harvestBones: async () => {
+    const state = get();
+    const lastHarvest = new Date(state.userStats.lastHarvestTime || new Date().toISOString()).getTime();
+    const now = Date.now();
+    const elapsedHours = (now - lastHarvest) / (1000 * 60 * 60);
+
+    const { GACHA_POOL } = await import("@/constants/gachaPool");
+
+    const totalBonesPerHour = Object.values(state.userStats.equippedFurniture || {}).reduce((sum, itemId) => {
+      const item = GACHA_POOL.find((i) => i.id === itemId);
+      return sum + (item?.bonesPerHour || 0);
+    }, 0);
+
+    let pendingBones = Math.floor(elapsedHours * totalBonesPerHour);
+    const isDoubleActive = state.userStats.buffDoubleBonesUntil
+      ? new Date(state.userStats.buffDoubleBonesUntil).getTime() > now
+      : false;
+    if (isDoubleActive) {
+      pendingBones *= 2;
+    }
+    if (pendingBones <= 0) return 0;
+
+    const newCoins = state.userStats.coins + pendingBones;
+    const nowStr = new Date().toISOString();
+    const newUserStats = {
+      ...state.userStats,
+      coins: newCoins,
+      lastHarvestTime: nowStr,
+    };
+    set({ userStats: newUserStats });
+
+    const uid = state.user?.uid;
+    if (uid) {
+      setDoc(
+        doc(db, "user_stats", uid),
+        { coins: newCoins, lastHarvestTime: nowStr },
+        { merge: true },
+      ).catch((error) => {
+        console.error("Lỗi đồng bộ harvestBones:", error);
+      });
+    }
+    return pendingBones;
+  },
+
+  equipItem: async (slotKey, itemId) => {
+    const state = get();
+    const newEquippedSlots = state.userStats.equippedSlots
+      ? { ...state.userStats.equippedSlots }
+      : {
+        head: null,
+        armor: null,
+        earring: null,
+        gloves: null,
+        mount: null,
+        aura: null,
+      };
+    newEquippedSlots[slotKey as keyof typeof newEquippedSlots] = itemId;
+
+    const newUserStats = { ...state.userStats, equippedSlots: newEquippedSlots };
+    set({ userStats: newUserStats });
+
+    const uid = state.user?.uid;
+    if (uid) {
+      try {
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { equippedSlots: newEquippedSlots },
+          { merge: true },
+        );
+      } catch (error) {
+        console.error("Lỗi đồng bộ equipItem:", error);
+      }
+    }
+  },
+
+  equipTheme: async (themeId) => {
+    const state = get();
+    const newUserStats = { ...state.userStats, equippedTheme: themeId };
+    set({ userStats: newUserStats });
+
+    const uid = state.user?.uid;
+    if (uid) {
+      try {
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { equippedTheme: themeId },
+          { merge: true },
+        );
+      } catch (error) {
+        console.error("Lỗi đồng bộ equipTheme:", error);
+      }
+    }
+  },
+
+  buyShopItem: async (shopItemId, type, targetId) => {
+    const state = get();
+    const { SHARD_PRICES, EXCLUSIVE_GOODS, CONSUMABLE_BUFFS } = await import("@/constants/shopItems");
+    const { GACHA_POOL } = await import("@/constants/gachaPool");
+
+    let cost = 0;
+    if (type === "shard") {
+      if (!targetId) return false;
+      const targetItem = GACHA_POOL.find(i => i.id === targetId);
+      if (!targetItem) return false;
+      const rarity = targetItem.rarity;
+      cost = SHARD_PRICES[rarity] || 0;
+    } else if (type === "exclusive") {
+      const item = EXCLUSIVE_GOODS.find(i => i.id === shopItemId);
+      if (!item) return false;
+      cost = item.cost;
+    } else if (type === "consumable") {
+      const item = CONSUMABLE_BUFFS.find(i => i.id === shopItemId);
+      if (!item) return false;
+      cost = item.cost;
+    }
+
+    if (cost <= 0 || (state.userStats.goldenFur || 0) < cost) {
+      return false;
+    }
+
+    const newGoldenFur = (state.userStats.goldenFur || 0) - cost;
+    const newShards = state.userStats.shards ? { ...state.userStats.shards } : {};
+    const newInventory = state.userStats.inventory ? [...state.userStats.inventory] : [];
+    const newFurniture = state.userStats.furniture ? [...state.userStats.furniture] : [];
+    const newUnlockedVoices = state.userStats.unlockedVoices ? [...state.userStats.unlockedVoices] : [];
+    let newDoubleBonesUntil = state.userStats.buffDoubleBonesUntil || null;
+    let newLuckyGachaRolls = state.userStats.buffLuckyGachaRolls || 0;
+
+    let dbUpdates: any = { goldenFur: newGoldenFur };
+
+    if (type === "shard") {
+      if (!targetId) return false;
+      const targetItem = GACHA_POOL.find(i => i.id === targetId);
+      if (!targetItem) return false;
+
+      const alreadyOwned = newInventory.includes(targetId) ||
+        newFurniture.includes(targetId) ||
+        newUnlockedVoices.includes(targetId) ||
+        (state.userStats.unlockedMemes || []).includes(targetId);
+      if (alreadyOwned) return false;
+
+      newShards[targetId] = (newShards[targetId] || 0) + 1;
+
+      if (newShards[targetId] >= targetItem.shardTarget) {
+        newShards[targetId] = 0;
+        if (targetItem.type === "furniture") newFurniture.push(targetId);
+        else if (targetItem.type === "voice") newUnlockedVoices.push(targetId);
+        else newInventory.push(targetId);
+      }
+
+      dbUpdates.shards = newShards;
+      dbUpdates.inventory = newInventory;
+      dbUpdates.furniture = newFurniture;
+      dbUpdates.unlockedVoices = newUnlockedVoices;
+    } else if (type === "exclusive") {
+      const alreadyOwned = newInventory.includes(shopItemId) ||
+        newFurniture.includes(shopItemId) ||
+        newUnlockedVoices.includes(shopItemId);
+      if (alreadyOwned) return false;
+
+      const targetItem = GACHA_POOL.find(i => i.id === shopItemId);
+      if (!targetItem) return false;
+
+      if (targetItem.type === "furniture") newFurniture.push(shopItemId);
+      else if (targetItem.type === "voice") newUnlockedVoices.push(shopItemId);
+      else newInventory.push(shopItemId);
+
+      dbUpdates.inventory = newInventory;
+      dbUpdates.furniture = newFurniture;
+      dbUpdates.unlockedVoices = newUnlockedVoices;
+    } else if (type === "consumable") {
+      if (shopItemId === "buff_double_bones") {
+        const currentUntil = newDoubleBonesUntil ? new Date(newDoubleBonesUntil).getTime() : 0;
+        const baseTime = currentUntil > Date.now() ? currentUntil : Date.now();
+        newDoubleBonesUntil = new Date(baseTime + 24 * 60 * 60 * 1000).toISOString();
+        dbUpdates.buffDoubleBonesUntil = newDoubleBonesUntil;
+      } else if (shopItemId === "buff_lucky_gacha") {
+        newLuckyGachaRolls = (newLuckyGachaRolls || 0) + 5;
+        dbUpdates.buffLuckyGachaRolls = newLuckyGachaRolls;
+      }
+      dbUpdates.buffDoubleBonesUntil = newDoubleBonesUntil;
+      dbUpdates.buffLuckyGachaRolls = newLuckyGachaRolls;
+    }
+
+    const newUserStats = {
+      ...state.userStats,
+      goldenFur: newGoldenFur,
+      shards: newShards,
+      inventory: newInventory,
+      furniture: newFurniture,
+      unlockedVoices: newUnlockedVoices,
+      buffDoubleBonesUntil: newDoubleBonesUntil,
+      buffLuckyGachaRolls: newLuckyGachaRolls,
+    };
+
+    set({ userStats: newUserStats });
+
+    const uid = state.user?.uid;
+    if (uid) {
+      setDoc(doc(db, "user_stats", uid), dbUpdates, { merge: true }).catch((err) => {
+        console.error("Lỗi đồng bộ buyShopItem:", err);
+      });
+    }
+
+    return true;
   },
 }));

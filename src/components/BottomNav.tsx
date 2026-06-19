@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 
 interface BottomNavProps {
-  activeTab: "journey" | "custom" | "shop";
-  handleTabChange: (tab: "journey" | "custom" | "shop") => void;
+  activeTab: "journey" | "custom" | "shop" | "room";
+  handleTabChange: (tab: "journey" | "custom" | "shop" | "room") => void;
 }
 
 export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
@@ -26,6 +26,14 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
             label: "Kho thẻ",
             color: "#5390D9",
             shadow: "#4a81c3",
+            text: "text-white",
+          },
+          {
+            id: "room",
+            icon: "🏠",
+            label: "Nhà",
+            color: "#06D6A0",
+            shadow: "#05B284",
             text: "text-white",
           },
           {

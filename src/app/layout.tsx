@@ -54,19 +54,7 @@ export default function RootLayout({
         {/* ==========================================
             CUTE APP BACKGROUND: SỔ TAY CARO (GRID NOTE)
            ========================================== */}
-        <div 
-          className="fixed inset-0 w-full h-full -z-50"
-          style={{
-            // Màu nền vàng bơ sữa
-            backgroundColor: "#FFFDF5",
-            // Tạo họa tiết kẻ caro bằng CSS Linear Gradient (Siêu nhẹ, không vỡ nét)
-            backgroundImage: `
-              linear-gradient(#F3E2C6 2px, transparent 2px),
-              linear-gradient(90deg, #F3E2C6 2px, transparent 2px)
-            `,
-            backgroundSize: "36px 36px" // Kích thước ô vuông
-          }}
-        />
+        <div className="fixed inset-0 w-full h-full -z-50 app-bg" />
 
         <main className="relative z-10 w-full min-h-screen pt-12 px-4 max-w-6xl mx-auto">
           <SplashScreen />

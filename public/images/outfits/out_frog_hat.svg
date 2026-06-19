@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <circle cx="50" cy="50" r="46" fill="#F0FFF4" stroke="#2ED573" stroke-width="3" />
+  <!-- Green cap dome -->
+  <path d="M22,65 C22,30 78,30 78,65 C78,73 22,73 22,65 Z" fill="#2ED573" stroke="#20BF6B" stroke-width="3"/>
+  <!-- Frog eyes on top -->
+  <circle cx="38" cy="32" r="11" fill="#2ED573" stroke="#20BF6B" stroke-width="2"/>
+  <circle cx="38" cy="32" r="7" fill="#FFF"/>
+  <circle cx="38" cy="32" r="3" fill="#2D3436"/>
+
+  <circle cx="62" cy="32" r="11" fill="#2ED573" stroke="#20BF6B" stroke-width="2"/>
+  <circle cx="62" cy="32" r="7" fill="#FFF"/>
+  <circle cx="62" cy="32" r="3" fill="#2D3436"/>
+  <!-- Cheeks -->
+  <circle cx="34" cy="56" r="4" fill="#FF7675" opacity="0.6"/>
+  <circle cx="66" cy="56" r="4" fill="#FF7675" opacity="0.6"/>
+  <!-- Smiley mouth -->
+  <path d="M44,58 Q50,65 56,58" stroke="#20BF6B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</svg>

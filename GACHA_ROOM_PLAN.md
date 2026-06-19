@@ -39,21 +39,34 @@
 - **Giao diện Gaming (UI Elements):**
   - Phía sau máy có **Poster Banner** quảng cáo vật phẩm đang Hot (VD: "SỰ KIỆN: NINJA MÈO XUẤT CHIÊU!").
   - Thêm **Thanh Pity (Bảo hiểm)** ngay dưới máy (VD: "Còn 12 lần chắc chắn nhận EPIC!").
-  - Cung cấp 2 lựa chọn: **[Quay x1 (10 🦴)]** và **[Quay x10 (90 🦴)]** (rớt 10 quả trứng cùng lúc lỉa chỉa xuống khe).
+  - **Tách biệt Nút bấm và Animation:** Cái chuông trái tim trên cổ Shiba sẽ trở thành một chi tiết trang trí, tự động xoay khi có hiệu ứng.
+  - **Thêm 2 Nút Quay riêng biệt:** Đặt 2 nút bấm rõ ràng ở phần đế của máy: **[Quay x1 (10 🦴)]** và **[Quay x10 (90 🦴)]**. Nút x10 sẽ to và có hiệu ứng lấp lánh để khuyến khích người dùng.
 - Xóa phần "Tủ đồ" (Inventory) hiển thị bên dưới máy quay.
 - Thêm thanh hiển thị tiền tệ: `Xương` và `Lông Shiba Vàng` ở trên cùng.
 - Thêm Nút `[ i ] Thông tin tỷ lệ` ở cạnh máy quay. Mở Modal hiển thị rõ bảng tỷ lệ %.
 
-**[ ] Bước 4: Viết lại Logic Quay Gacha (`handleTwist`)**
+**[ ] Bước 4: Nâng cấp Logic & Trải nghiệm Quay Gacha**
 - **Hiệu ứng "Vặn" Bùng nổ:** Rung bần bật toàn bộ màn hình (Camera Shake) khi bấm vặn để tạo lực ép mạnh mẽ.
 - **Thiết kế Quả trứng (Capsules):** Trứng rớt xuống có đa dạng họa tiết (ngôi sao, sọc vằn, poke-ball), kèm hiệu ứng khói bụi (particles) nảy lên sinh động.
 - **Hiệu ứng Ánh sáng (Anticipation):** Trứng rơi xuống chưa vỡ ngay mà phát sáng. Tia sáng Vàng (Legendary) hoặc Cầu vồng (Divine) sẽ nhấp nháy báo hiệu trúng đồ hiếm trước khi bung nổ.
-- Xây dựng hàm quay random có trọng số (Weighted Random) dựa trên % tỷ lệ rớt.
+
+### Logic xử lý (Backend/Store)
+- Xây dựng hàm quay random có trọng số (Weighted Random) dựa trên % tỷ lệ rớt cho 1 lần quay.
 - Logic khi quay trúng:
   - Rớt Mảnh: Cộng vào `shards`. Nếu đủ mảnh -> Hợp nhất thành Item -> Báo tin vui.
   - Trùng lặp (Duplicate): Nếu đã có Item đó rồi -> Báo "Đã sở hữu, phân rã thành X Lông Shiba Vàng!".
 
 - **Hệ thống Bảo hiểm (Pity):** Mỗi lần quay tăng `pityCounter` lên 1. Nếu chạm mốc 50, ép kết quả quay rớt vào nhóm [Epic, Legendary, Mythic, Divine]. Tự động reset `pityCounter = 0` mỗi khi người chơi quay ra được đồ Epic trở lên (dù là nổ bảo hiểm hay nổ tự nhiên).
+
+### Luồng Quay x10 (Trải nghiệm cao cấp)
+- **Animation:**
+  1. Khi bấm "Quay x10", máy Shiba rung lắc dữ dội hơn, mắt loé sáng.
+  2. Một quả trứng **Cầu Vồng** đặc biệt rơi xuống khe.
+  3. Quả trứng này không mở ra ngay, mà nó sẽ bay ra giữa màn hình và **NỔ TUNG**!
+- **Màn hình kết quả (Grid View):**
+  1. Sau cú nổ, một màn hình Overlay mới hiện ra, hiển thị 10 vật phẩm dưới dạng lưới (grid 2 cột, 5 hàng).
+  2. **Hiệu ứng lật bài:** Ban đầu 10 vật phẩm sẽ úp lại. Sau đó chúng sẽ lật ra lần lượt, tạo sự hồi hộp. Vật phẩm hiếm nhất sẽ được lật cuối cùng với hiệu ứng hào quang rực rỡ nhất.
+  3. Hiển thị badge **"MỚI!"** nếu là vật phẩm lần đầu nhận, hoặc **"+X Lông Vàng"** nếu là vật phẩm trùng lặp.
 
 **[ ] Bước 5: Cửa Hàng Lông Vàng (Golden Fur Shop)**
 - Tạo một khu vực nhỏ trong màn Shop để người dùng dùng Lông Vàng đổi trực tiếp lấy Mảnh ghép (Bảo hiểm xui xẻo) hoặc mua Theme đặc biệt.

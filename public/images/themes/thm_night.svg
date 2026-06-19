@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect x="5" y="5" width="90" height="90" rx="20" fill="#0F0C1B" stroke="#8A2BE2" stroke-width="4"/>
+  <!-- Crescent moon -->
+  <path d="M58,25 C45,25 35,38 35,52 C35,66 48,75 58,75 C48,75 42,66 42,52 C42,38 48,25 58,25 Z" fill="#FFEAA7"/>
+  <!-- Stars -->
+  <polygon points="25,25 27,28 30,29 28,31 29,34 25,32 21,34 22,31 20,29 23,28" fill="#FFF" opacity="0.8"/>
+  <polygon points="72,55 73,57 76,58 74,59 75,61 72,60 69,61 70,59 68,58 71,57" fill="#FFF" opacity="0.6"/>
+  <text x="50" y="78" font-family="sans-serif" font-weight="bold" font-size="11" fill="#9932CC" text-anchor="middle">LOFI NIGHT</text>
+</svg>

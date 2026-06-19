@@ -6,6 +6,7 @@ import { playAudio } from "@/utils/tts";
 import { playSFX } from "@/utils/sfx";
 import { useUserStats } from "@/hooks/useUserStats";
 import { useAppStore } from "@/store/useAppStore";
+import { GACHA_POOL } from "@/constants/gachaPool";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
@@ -52,6 +53,18 @@ export function useFlashcardDeck({
   const saveProgress = useAppStore((state) => state.saveProgress);
   const globalResetProgress = useAppStore((state) => state.resetProgress);
   const updateQuestProgress = useAppStore((state) => state.updateQuestProgress);
+  const equippedVoicePack = useAppStore((state) => state.userStats.equippedVoicePack);
+
+  const playCompanionVoice = useCallback((voiceType: "correct" | "incorrect" | "victory") => {
+    if (!equippedVoicePack) return;
+    const voiceItem = GACHA_POOL.find((item) => item.id === equippedVoicePack);
+    if (!voiceItem || !voiceItem.audioUrl) return;
+
+    const audioPath = `${voiceItem.audioUrl}_${voiceType}.mp3`;
+    const audio = new Audio(audioPath);
+    audio.volume = 0.65;
+    audio.play().catch((err) => console.warn("Failed to play companion voice:", err));
+  }, [equippedVoicePack]);
 
   // --- MASCOT (LINH VẬT) STATES ---
   const [showMascot, setShowMascot] = useState(true);
@@ -149,11 +162,28 @@ export function useFlashcardDeck({
     if (dir === "right") {
       if (currentFlipped) {
         const currentId = activeCards[currentIndex].id;
+        let isVictory = false;
+
         if (isReviewMode) {
-          setReviewedIds((prev) => [...prev, currentId]);
+          const nextReviewed = [...reviewedIds, currentId];
+          setReviewedIds(nextReviewed);
+          if (nextReviewed.length === cards.length) {
+            isVictory = true;
+          }
         } else if (!knownIds.includes(currentId)) {
-          saveProgress(deckId, [...knownIds, currentId]);
+          const nextKnown = [...knownIds, currentId];
+          saveProgress(deckId, nextKnown);
+          if (nextKnown.length === cards.length) {
+            isVictory = true;
+          }
         }
+
+        if (isVictory) {
+          playCompanionVoice("victory");
+        } else {
+          playCompanionVoice("correct");
+        }
+
         if (currentIndex >= activeCards.length - 1) setCurrentIndex(0);
         setIsFlipped(false);
         playSFX("success");
@@ -166,6 +196,7 @@ export function useFlashcardDeck({
       }
     } else {
       if (isFlipped) {
+        playCompanionVoice("incorrect");
         setCurrentIndex((prev) => (prev + 1) % activeCards.length);
         setIsFlipped(false);
         playSFX("fail");
