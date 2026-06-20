@@ -14,7 +14,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
         {[
           {
             id: "journey",
-            icon: "🗺️",
+            icon: "/images/ui/nav-journey.svg",
             label: "Hành trình",
             color: "#FFD166",
             shadow: "#e6bc5c",
@@ -22,7 +22,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
           },
           {
             id: "custom",
-            icon: "🎒",
+            icon: "/images/ui/nav-custom.svg",
             label: "Kho thẻ",
             color: "#5390D9",
             shadow: "#4a81c3",
@@ -30,7 +30,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
           },
           {
             id: "room",
-            icon: "🏠",
+            icon: "/images/ui/nav-room.svg",
             label: "Nhà",
             color: "#06D6A0",
             shadow: "#05B284",
@@ -38,7 +38,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
           },
           {
             id: "shop",
-            icon: "🏪",
+            icon: "/images/ui/nav-shop.svg",
             label: "Cửa hàng",
             color: "#FF7096",
             shadow: "#C7486B",
@@ -64,10 +64,15 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
                 />
               )}
               <motion.div
-                className="relative z-10 flex flex-col items-center justify-center h-full"
+                className="relative z-10 flex flex-col items-center justify-center h-full gap-0.5"
                 animate={{ y: isActive ? -2 : 0 }}
               >
-                <span className="text-xl sm:text-2xl drop-shadow-sm">{tab.icon}</span>
+                <img
+                  src={tab.icon}
+                  alt={tab.label}
+                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain select-none"
+                  draggable={false}
+                />
                 {isActive && (
                   <motion.span
                     initial={{ opacity: 0, scale: 0.5, y: 5 }}

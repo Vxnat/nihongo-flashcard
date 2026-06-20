@@ -7,6 +7,8 @@ import { GACHA_POOL, MemeItem, RARITY_CONFIG } from "@/constants/gachaPool";
 import toast from "react-hot-toast";
 import { useShibaRoom } from "@/hooks/shiba-room/useShibaRoom";
 import { FurShopModal } from "./FurShopModal";
+import { useAppStore } from "@/store/useAppStore";
+import { ShibaLoginModal } from "./ShibaLoginModal";
 
 // Helper to get image URL for furniture items dynamically from GACHA_POOL
 const getFurnitureImg = (id: string) => {
@@ -16,7 +18,7 @@ const getFurnitureImg = (id: string) => {
 
 export function ShibaRoom() {
   const {
-    userStats,
+    userStats: storeUserStats,
     equipFurniture,
     equipVoicePack,
     equipItem,
@@ -27,21 +29,21 @@ export function ShibaRoom() {
     setActiveTab,
     selectedItem,
     setSelectedItem,
-    pendingBones,
+    pendingBones: storePendingBones,
     dragConstraints,
     showStatsBreakdown,
     setShowStatsBreakdown,
     modalSubTab,
     setModalSubTab,
-    totalBonesPerHour,
-    handleHarvest,
-    shibaMascot,
+    totalBonesPerHour: storeTotalBonesPerHour,
+    handleHarvest: storeHandleHarvest,
+    shibaMascot: storeShibaMascot,
     baseStats,
-    statsBonus,
-    totalHp,
-    totalAtk,
-    totalDef,
-    totalCrit,
+    statsBonus: storeStatsBonus,
+    totalHp: storeTotalHp,
+    totalAtk: storeTotalAtk,
+    totalDef: storeTotalDef,
+    totalCrit: storeTotalCrit,
     handleSpeak,
     handlePlayVoice,
     activeGridItems,
@@ -50,7 +52,72 @@ export function ShibaRoom() {
     sakuraPetals,
   } = useShibaRoom();
 
+  const user = useAppStore((state: any) => state.user);
   const [isShopOpen, setIsShopOpen] = React.useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = React.useState(false);
+
+  // MOCK dữ liệu phòng mẫu nếu chưa đăng nhập
+  const userStats = React.useMemo(() => {
+    if (user) return storeUserStats;
+    return {
+      ...storeUserStats,
+      equippedFurniture: {
+        wall: "fur_fuji_paint",
+        corner: "fur_maneki",
+        floor: "fur_kotatsu",
+      },
+      equippedSlots: {
+        head: "out_frog_hat",
+        armor: "out_ninja",
+        earring: "stk_shiba",
+        gloves: "stk_onigiri",
+        mount: "stk_daruma",
+        aura: "stk_sakura",
+      },
+      equippedVoicePack: "voc_shiba",
+      equippedTheme: "thm_sakura",
+    };
+  }, [user, storeUserStats]);
+
+  const totalBonesPerHour = user ? storeTotalBonesPerHour : 10; // (4 + 3 + 3)
+
+  const [demoPendingBones, setDemoPendingBones] = React.useState(120);
+  React.useEffect(() => {
+    if (user) return;
+    const interval = setInterval(() => {
+      setDemoPendingBones((prev) => prev + 1);
+    }, 4000); // Tăng 1 xương sau mỗi 4 giây
+    return () => clearInterval(interval);
+  }, [user]);
+
+  const pendingBones = user ? storePendingBones : demoPendingBones;
+
+  const shibaMascot = React.useMemo(() => {
+    if (user) return storeShibaMascot;
+    return {
+      gif: "/images/mascot/shiba_master.gif",
+      style: { bottom: "32%", left: "54%", width: "24%" },
+    };
+  }, [user, storeShibaMascot]);
+
+  const statsBonus = React.useMemo(() => {
+    if (user) return storeStatsBonus;
+    return { hp: 30, atk: 55, def: 25, crit: 10 };
+  }, [user, storeStatsBonus]);
+
+  const totalHp = baseStats.hp + statsBonus.hp;
+  const totalAtk = baseStats.atk + statsBonus.atk;
+  const totalDef = baseStats.def + statsBonus.def;
+  const totalCrit = baseStats.crit + statsBonus.crit;
+
+  const handleHarvest = () => {
+    if (!user) {
+      setIsLoginModalOpen(true);
+    } else {
+      storeHandleHarvest();
+    }
+  };
+
 
   const renderRpgSlot = (slotKey: "head" | "armor" | "earring" | "gloves" | "mount" | "aura") => {
     const slotInfo = {
@@ -321,18 +388,38 @@ export function ShibaRoom() {
         dragConstraints={dragConstraints}
         dragElastic={0.1}
         dragMomentum={false}
-        onClick={() => setIsInventoryOpen(true)}
+        onClick={() => {
+          if (!user) {
+            setIsLoginModalOpen(true);
+          } else {
+            setIsInventoryOpen(true);
+          }
+        }}
         className="fixed right-0 top-1/2 -translate-y-1/2 z-[45] bg-[#8C6D58] hover:bg-[#735948] text-white flex flex-col items-center justify-center gap-1 w-11 h-24 rounded-l-2xl border-l-2 border-t-2 border-b-2 border-white/20 shadow-[inset_-2px_0_6px_rgba(0,0,0,0.25),-4px_4px_12px_rgba(0,0,0,0.2)] active:translate-x-1 transition-all cursor-pointer group touch-none"
       >
-        <span className="text-xl group-hover:scale-110 transition-transform pointer-events-none">🎒</span>
+        <img
+          src="/images/ui/rpg_backpack.png"
+          alt="Túi đồ"
+          className="w-7 h-7 object-contain group-hover:scale-110 transition-transform pointer-events-none select-none"
+        />
       </motion.button>
 
       {/* FLOATING SHOP TAB ON RIGHT SCREEN EDGE */}
       <button
-        onClick={() => setIsShopOpen(true)}
+        onClick={() => {
+          if (!user) {
+            setIsLoginModalOpen(true);
+          } else {
+            setIsShopOpen(true);
+          }
+        }}
         className="fixed right-0 top-1/2 translate-y-16 z-[45] bg-[#D4AF37] hover:bg-[#b09028] text-white flex flex-col items-center justify-center gap-1 w-11 h-14 rounded-l-2xl border-l-2 border-t-2 border-b-2 border-white/20 shadow-[inset_-2px_0_6px_rgba(0,0,0,0.25),-4px_4px_12px_rgba(0,0,0,0.2)] active:translate-x-1 transition-all cursor-pointer group"
       >
-        <span className="text-xl group-hover:scale-110 transition-transform pointer-events-none">🏮</span>
+        <img
+          src="/images/ui/rpg_shop_lantern.png"
+          alt="Cửa tiệm"
+          className="w-7 h-7 object-contain group-hover:scale-110 transition-transform pointer-events-none select-none"
+        />
       </button>
 
       {/* RPG CHARACTER & INVENTORY MODAL */}
@@ -541,74 +628,116 @@ export function ShibaRoom() {
                   </div>
 
                   {/* Inventory Grid (scrollable) */}
+                  <style>{`
+                    @keyframes inventoryBorderChase {
+                      from { transform: translate(-50%, -50%) rotate(0deg); }
+                      to { transform: translate(-50%, -50%) rotate(360deg); }
+                    }
+                    @keyframes inventoryHoloSweep {
+                      0%, 100% { background-position: -200% 0; }
+                      50% { background-position: 200% 0; }
+                    }
+                  `}</style>
                   <div className="grid grid-cols-3 gap-2 p-1.5 bg-white/50 rounded-2xl border border-[#8C6D58]/10 flex-1 overflow-y-auto min-h-0 content-start">
                     {activeGridItems.map((item) => {
                       const isUnlocked = isItemUnlocked(item);
                       const isEquipped = isItemEquipped(item);
                       const shardsCount = userStats.shards?.[item.id] || 0;
                       const rarityColor = RARITY_CONFIG[item.rarity].color;
+                      const rarityIdx = ["common", "rare", "epic", "legendary", "mythic", "divine"].indexOf(item.rarity);
+                      const hasChase = isUnlocked && rarityIdx >= 2; // Epic+
+                      const chaseSpeed = rarityIdx >= 5 ? 1.8 : rarityIdx >= 4 ? 2.2 : rarityIdx >= 3 ? 2.8 : 3.5;
+                      const holoSpeed = rarityIdx >= 5 ? 2 : rarityIdx >= 4 ? 2.5 : rarityIdx >= 3 ? 3 : rarityIdx >= 2 ? 3.5 : 4.5;
 
                       return (
-                        <div
-                          key={item.id}
-                          onClick={() => setSelectedItem(item)}
-                          className={`h-[76px] rounded-xl relative flex flex-col items-center justify-between p-1.5 cursor-pointer border-2 transition-all duration-200 active:scale-95 shadow-xs overflow-hidden ${isEquipped
-                            ? "border-emerald-500 bg-emerald-50/10"
-                            : selectedItem?.id === item.id
-                              ? "border-[#8C6D58] bg-[#FAF6EE]/30"
-                              : isUnlocked
-                                ? "border-zinc-200/80 hover:border-[#8C6D58]/40 bg-white"
-                                : "border-[#8C6D58]/20 bg-[#FAF8F5] hover:border-[#8C6D58]/40"
-                            }`}
-                          style={isUnlocked && !isEquipped && selectedItem?.id !== item.id ? { borderColor: `${rarityColor}30` } : {}}
-                        >
-                          {/* Card Background Progress Overlay for Locked items */}
-                          {!isUnlocked && (
-                            <div
-                              className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FBC579]/20 to-[#FF7096]/20 pointer-events-none transition-all duration-300"
-                              style={{ width: `${Math.min(100, (shardsCount / item.shardTarget) * 100)}%` }}
-                            />
+                        <div key={item.id} className="relative h-[76px]">
+                          {/* Border Chase Glow — Epic+ only */}
+                          {hasChase && (
+                            <div className="absolute inset-[-2px] rounded-[14px] overflow-hidden pointer-events-none">
+                              <div
+                                className="absolute left-1/2 top-1/2 w-[150%] h-[150%]"
+                                style={{
+                                  background: `conic-gradient(from 0deg, transparent 0%, ${rarityColor}${rarityIdx >= 4 ? "cc" : "88"} 12%, transparent 28%, transparent 100%)`,
+                                  filter: `blur(${rarityIdx >= 4 ? 2.5 : 1.5}px)`,
+                                  animation: `inventoryBorderChase ${chaseSpeed}s linear infinite`,
+                                }}
+                              />
+                            </div>
                           )}
 
-                          {/* Rarity Glow Backing for Unlocked items */}
-                          {isUnlocked && (
-                            <div
-                              className="absolute inset-0 rounded-xl opacity-[0.03] pointer-events-none"
-                              style={{ backgroundColor: rarityColor }}
-                            />
-                          )}
-
-                          {/* Top Half: Item Icon/Image */}
-                          <div className={`flex-1 flex items-center justify-center relative min-h-0 z-10 ${isUnlocked ? "" : "opacity-45 blur-[0.1px]"}`}>
-                            {item.type === "meme" ? (
-                              <img src={item.imageUrl} alt={item.name} className="w-10 h-7 object-cover rounded-md z-10 border border-zinc-100/50" />
-                            ) : (
-                              <img src={item.imageUrl} alt={item.name} className="w-7 h-7 object-contain z-10" />
+                          {/* The actual card */}
+                          <div
+                            onClick={() => setSelectedItem(item)}
+                            className={`h-full rounded-xl relative z-[1] flex flex-col items-center justify-between p-1.5 cursor-pointer border-2 transition-all duration-200 active:scale-95 shadow-xs overflow-hidden ${isEquipped
+                              ? "border-emerald-500 bg-emerald-50"
+                              : selectedItem?.id === item.id
+                                ? "border-[#8C6D58] bg-[#FAF6EE]"
+                                : isUnlocked
+                                  ? "border-zinc-200/80 hover:border-[#8C6D58]/40 bg-white"
+                                  : "border-[#8C6D58]/20 bg-[#FAF8F5] hover:border-[#8C6D58]/40"
+                              }`}
+                            style={isUnlocked && !isEquipped && selectedItem?.id !== item.id ? { borderColor: `${rarityColor}30` } : {}}
+                          >
+                            {/* Card Background Progress Overlay for Locked items */}
+                            {!isUnlocked && (
+                              <div
+                                className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#FBC579]/20 to-[#FF7096]/20 pointer-events-none transition-all duration-300"
+                                style={{ width: `${Math.min(100, (shardsCount / item.shardTarget) * 100)}%` }}
+                              />
                             )}
-                          </div>
 
-                          {/* Bottom Half: Name or Progress */}
-                          <div className="w-full mt-0.5 flex flex-col items-center z-10">
-                            {isUnlocked ? (
-                              <span className="text-[8px] font-black text-zinc-700 truncate w-full text-center" style={{ fontFamily: "var(--font-cherry)" }}>
-                                {item.name}
-                              </span>
-                            ) : (
-                              <div className="w-full flex items-center justify-center gap-0.5 bg-white/90 border border-[#8C6D58]/20 py-0.5 rounded-full text-[#8C6D58] shadow-2xs">
-                                <Lock size={7} className="stroke-[3]" />
-                                <span className="text-[7.5px] font-sans font-black select-none uppercase tracking-wide">
-                                  {shardsCount}/{item.shardTarget}
+                            {/* Rarity Glow Backing for Unlocked items */}
+                            {isUnlocked && (
+                              <div
+                                className="absolute inset-0 rounded-xl opacity-[0.03] pointer-events-none"
+                                style={{ backgroundColor: rarityColor }}
+                              />
+                            )}
+
+                            {/* Holo Sweep — all unlocked items */}
+                            {isUnlocked && (
+                              <div
+                                className="absolute inset-0 rounded-xl pointer-events-none z-[5]"
+                                style={{
+                                  background: `linear-gradient(115deg, transparent 30%, ${rarityColor}${rarityIdx >= 3 ? "30" : "18"} 44%, rgba(255,255,255,${rarityIdx >= 3 ? "0.35" : "0.2"}) 50%, transparent 65%)`,
+                                  backgroundSize: "200% 100%",
+                                  animation: `inventoryHoloSweep ${holoSpeed}s ease-in-out infinite`,
+                                }}
+                              />
+                            )}
+
+                            {/* Top Half: Item Icon/Image */}
+                            <div className={`flex-1 flex items-center justify-center relative min-h-0 z-10 ${isUnlocked ? "" : "opacity-45 blur-[0.1px]"}`}>
+                              {item.type === "meme" ? (
+                                <img src={item.imageUrl} alt={item.name} className="w-10 h-7 object-cover rounded-md z-10 border border-zinc-100/50" />
+                              ) : (
+                                <img src={item.imageUrl} alt={item.name} className="w-7 h-7 object-contain z-10" />
+                              )}
+                            </div>
+
+                            {/* Bottom Half: Name or Progress */}
+                            <div className="w-full mt-0.5 flex flex-col items-center z-10">
+                              {isUnlocked ? (
+                                <span className="text-[8px] font-black text-zinc-700 truncate w-full text-center" style={{ fontFamily: "var(--font-cherry)" }}>
+                                  {item.name}
                                 </span>
+                              ) : (
+                                <div className="w-full flex items-center justify-center gap-0.5 bg-white/90 border border-[#8C6D58]/20 py-0.5 rounded-full text-[#8C6D58] shadow-2xs">
+                                  <Lock size={7} className="stroke-[3]" />
+                                  <span className="text-[7.5px] font-sans font-black select-none uppercase tracking-wide">
+                                    {shardsCount}/{item.shardTarget}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Equipped Check Badge */}
+                            {isEquipped && (
+                              <div className="absolute top-0.5 left-0.5 w-3 h-3 bg-emerald-500 rounded-full flex items-center justify-center border border-white shadow-xs z-20">
+                                <Check size={7} className="text-white" strokeWidth={5} />
                               </div>
                             )}
                           </div>
-
-                          {/* Equipped Check Badge */}
-                          {isEquipped && (
-                            <div className="absolute top-0.5 left-0.5 w-3 h-3 bg-emerald-500 rounded-full flex items-center justify-center border border-white shadow-xs z-20">
-                              <Check size={7} className="text-white" strokeWidth={5} />
-                            </div>
-                          )}
                         </div>
                       );
                     })}
@@ -690,12 +819,12 @@ export function ShibaRoom() {
                                 <button
                                   onClick={() => {
                                     const isCurrentlyEquipped = isItemEquipped(selectedItem);
-                                     if (selectedItem.type === "furniture") {
-                                       const slot = selectedItem.furnitureSlot;
-                                       if (slot) {
-                                         equipFurniture(slot, isCurrentlyEquipped ? null : selectedItem.id);
-                                       }
-                                     } else if (selectedItem.type === "voice") {
+                                    if (selectedItem.type === "furniture") {
+                                      const slot = selectedItem.furnitureSlot;
+                                      if (slot) {
+                                        equipFurniture(slot, isCurrentlyEquipped ? null : selectedItem.id);
+                                      }
+                                    } else if (selectedItem.type === "voice") {
                                       equipVoicePack(isCurrentlyEquipped ? null : selectedItem.id);
                                     } else if (selectedItem.type === "theme") {
                                       equipTheme(isCurrentlyEquipped ? null : selectedItem.id);
@@ -739,6 +868,14 @@ export function ShibaRoom() {
         )}
       </AnimatePresence>
       <FurShopModal isOpen={isShopOpen} onClose={() => setIsShopOpen(false)} />
+
+      {/* POPUP ĐĂNG NHẬP GỖ CỰC CUTE (KHI CHƯA ĐĂNG NHẬP) */}
+      <ShibaLoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        title="Căn Phòng Shiba"
+        description="Căn phòng Shiba đang đợi cậu trang trí! Đăng nhập ngay để nhận nuôi chú Shiba cưng, quay Gacha nội thất và thu hoạch xương vàng nhé! 🐾🏠"
+      />
     </div>
   );
 }

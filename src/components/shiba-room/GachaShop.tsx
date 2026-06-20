@@ -8,6 +8,10 @@ import { GachaMultiResultModal } from "./GachaMultiResultModal";
 import { Badge } from "@/components/ui/badge";
 import { useGachaShop } from "@/hooks/shiba-room/useGachaShop";
 import { FurShopModal } from "./FurShopModal";
+import { ShibaLoginModal } from "./ShibaLoginModal";
+import { auth, googleProvider } from "@/lib/firebase";
+import { signInWithPopup } from "firebase/auth";
+import toast from "react-hot-toast";
 
 // Capsule nhựa 2 màu kiểu gachapon thật: nắp đậm + đáy trong sáng hơn
 const EGG_COLORS = [
@@ -52,10 +56,30 @@ export function GachaShop() {
   } = useGachaShop();
 
   const [isShopOpen, setIsShopOpen] = React.useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = React.useState(false);
+  const [isCardHovered, setIsCardHovered] = React.useState(false);
+
+  const handleLoginDirect = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+      toast.success("Đăng nhập thành công! 🎉", { icon: "🚀" });
+    } catch (error) {
+      console.error("Lỗi đăng nhập:", error);
+      toast.error("Đăng nhập thất bại. Bạn thử lại nhé! 💦", { icon: "🥺" });
+    }
+  };
 
   return (
-    <div className="w-full flex flex-col items-center pb-10">
-      {/* THANH HIỂN THỊ TÀI SẢN (XƯƠNG & LÔNG VÀNG) */}
+    <div className="w-full flex flex-col items-center pb-10 relative">
+      {/* Lớp nền mờ ảo của GachaShop */}
+      <div 
+        className={`w-full flex flex-col items-center transition-all duration-700 ${
+          !user 
+            ? `blur-[7px] opacity-35 scale-[0.98] pointer-events-none select-none ${isCardHovered ? 'blur-[4px] opacity-55 scale-[0.99]' : ''}` 
+            : ''
+        }`}
+      >
+      {/* THANH HIỂN THỊ TÀI SẢN (XƯƠNG & SHIBA COIN) */}
       <div className="w-full max-w-sm flex items-center gap-4 mb-8 px-4 relative z-10">
         {/* Hộp hiển thị Xương */}
         <div className="flex-1 bg-gradient-to-r from-white to-[#FFF5F7] border border-pink-100/90 pl-2.5 pr-4 py-2 rounded-2xl shadow-[0_4px_16px_rgba(255,112,150,0.06)] flex items-center gap-3">
@@ -63,20 +87,24 @@ export function GachaShop() {
             <Bone size={18} className="text-[#FF7096] fill-[#FF7096] rotate-45 transform scale-110" />
           </div>
           <div className="flex flex-col min-w-0">
-            <span className="font-black text-pink-400 text-[9px] uppercase tracking-wider leading-none mb-1">Xương</span>
+            <span className="font-black text-pink-400 text-[9px] uppercase tracking-wider leading-none mb-1"
+              style={{ fontFamily: "var(--font-cherry)" }}
+            >Xương</span>
             <span className="font-black text-pink-600 text-base leading-none" style={{ fontFamily: "var(--font-cherry)" }}>
               {user ? userStats.coins : "?"}
             </span>
           </div>
         </div>
 
-        {/* Hộp hiển thị Lông Vàng */}
+        {/* Hộp hiển thị Shiba Coin */}
         <div className="flex-1 bg-gradient-to-r from-white to-[#FFFDF5] border border-amber-100/90 pl-2.5 pr-4 py-2 rounded-2xl shadow-[0_4px_16px_rgba(245,158,11,0.06)] flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center shadow-inner shrink-0">
-            <span className="text-xl filter drop-shadow-[0_1px_2px_rgba(245,158,11,0.3)]">🪶</span>
+            <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-6 h-6 object-contain" />
           </div>
           <div className="flex flex-col min-w-0">
-            <span className="font-black text-amber-500 text-[9px] uppercase tracking-wider leading-none mb-1">Lông Vàng</span>
+            <span className="font-black text-amber-500 text-[9px] uppercase tracking-wider leading-none mb-1"
+              style={{ fontFamily: "var(--font-cherry)" }}
+            >Shiba Coin</span>
             <span className="font-black text-amber-700 text-base leading-none" style={{ fontFamily: "var(--font-cherry)" }}>
               {user ? userStats.goldenFur || 0 : "?"}
             </span>
@@ -93,14 +121,18 @@ export function GachaShop() {
         transition={{ duration: 0.4 }}
         className="w-full max-w-sm flex flex-col items-center relative"
       >
-        {/* NÚT CỬA TIỆM LÔNG VÀNG */}
+        {/* NÚT CỬA TIỆM SHIBA COIN */}
         <button
           onClick={() => setIsShopOpen(true)}
           className="absolute top-8 right-0 sm:-right-2 z-50 w-10 h-10 bg-gradient-to-br from-[#FFF8EE] to-[#FFE7C6] border-4 border-[#FBC579]/40 rounded-full flex items-center justify-center text-[#C85A28] hover:text-[#7A3E18] hover:from-[#FFE7C6] hover:to-[#FBC579] shadow-sm active:translate-y-1 transition-all outline-none animate-bounce"
           style={{ animationDuration: "3s" }}
           title="Tiệm Kỳ Trân Shiba"
         >
-          <span className="text-lg">🏮</span>
+          <img
+            src="/images/ui/rpg_shop_lantern.png"
+            alt="Cửa tiệm"
+            className="w-7 h-7 object-contain group-hover:scale-110 transition-transform pointer-events-none select-none"
+          />
         </button>
 
         {/* NÚT THÔNG TIN TỶ LỆ [ i ] */}
@@ -477,7 +509,7 @@ export function GachaShop() {
 
               <div className="mt-5 p-3 bg-orange-50 border-2 border-orange-100 rounded-2xl text-center relative z-10">
                 <p className="text-[11px] font-bold text-orange-600 leading-relaxed">
-                  * Vật phẩm bạn đã sở hữu sẽ tự động được phân rã thành <strong className="text-[#FF9F1C]">Lông Shiba Vàng</strong> nhé!
+                  * Vật phẩm bạn đã sở hữu sẽ tự động được phân rã thành <strong className="text-[#FF9F1C]">SHIBA COIN</strong> nhé!
                 </p>
               </div>
             </motion.div>
@@ -665,7 +697,7 @@ export function GachaShop() {
               </h4>
               <p className="text-sm font-bold text-zinc-500 mb-6 relative z-10">
                 {rewardData.duplicateFur > 0 ? (
-                  <>Đã sở hữu! Phân rã thành <span className="text-[#FF9F1C]">{rewardData.duplicateFur} Lông Vàng</span></>
+                  <>Đã sở hữu! Phân rã thành <span className="text-[#FF9F1C]">{rewardData.duplicateFur} Shiba Coin</span></>
                 ) : rewardData.unlocked ? (
                   <>Đã ghép thành công vật phẩm! 🎉</>
                 ) : (
@@ -687,6 +719,80 @@ export function GachaShop() {
         )}
       </AnimatePresence>
       <FurShopModal isOpen={isShopOpen} onClose={() => setIsShopOpen(false)} />
+      </div>
+
+      {/* Lớp phủ Đăng nhập Gacha Shop khi chưa đăng nhập */}
+      {!user && (
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center p-4 min-h-[500px]">
+          {/* Card gỗ Đăng nhập siêu đẹp */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full max-w-sm bg-[#FAF6EE] border-4 border-[#8C6D58] rounded-[2.5rem] p-6 shadow-2xl flex flex-col items-center text-center relative z-10 select-none"
+            onMouseEnter={() => setIsCardHovered(true)}
+            onMouseLeave={() => setIsCardHovered(false)}
+          >
+            {/* Chú Shiba thám hiểm dễ thương */}
+            <div className="relative mb-5 mt-2">
+              <div className="absolute inset-0 bg-[#FFD166]/40 blur-xl rounded-full opacity-60 animate-pulse" />
+              <div className="relative w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-[0_6px_0_0_#FFE2D1] border-4 border-white overflow-hidden">
+                <img
+                  src="/images/mascot/shiba_explorer_hi.png"
+                  alt="Shiba Explorer"
+                  className="w-20 h-20 object-contain"
+                />
+              </div>
+            </div>
+
+            <h3
+              className="text-2xl text-[#8C6D58] mb-3 font-black"
+              style={{ fontFamily: "var(--font-cherry)" }}
+            >
+              Cửa Hàng Gacha
+            </h3>
+
+            <p
+              className="font-rounded font-bold text-zinc-500 bg-white/90 border border-dashed border-[#FFE2D1] p-3.5 rounded-2xl shadow-inner text-xs leading-relaxed mb-5"
+              style={{ fontFamily: "var(--font-cherry)" }}
+            >
+              Cửa hàng Gacha đang khóa! Đăng nhập cùng Shiba để dùng Xương Vàng quay Gacha nhận trang phục hiếm và trang trí căn phòng của bạn nhé! 🐾🎁
+            </p>
+
+            {/* Nút Đăng nhập Google có Sheen/Pulse Effect */}
+            <button
+              onClick={handleLoginDirect}
+              className="w-full py-3 bg-[#06D6A0] hover:bg-[#05b889] text-white font-extrabold rounded-2xl border-b-4 border-[#048c68] active:border-b-0 active:translate-y-1 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer text-sm relative overflow-hidden group btn-sheen"
+              style={{ fontFamily: "var(--font-cherry)" }}
+            >
+              <span>🚀</span> Khám phá ngay
+            </button>
+          </motion.div>
+
+          {/* Keyframe css cho hiệu ứng nút bấm lướt sáng */}
+          <style jsx global>{`
+            @keyframes sheen {
+              0% { transform: translateX(-150%) skewX(-25deg); }
+              100% { transform: translateX(150%) skewX(-25deg); }
+            }
+            .btn-sheen::after {
+              content: '';
+              position: absolute;
+              top: 0; left: 0; width: 100%; height: 100%;
+              background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+              transform: translateX(-150%) skewX(-25deg);
+              animation: sheen 3s infinite;
+            }
+          `}</style>
+        </div>
+      )}
+
+      {/* ShibaLoginModal dùng chung */}
+      <ShibaLoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        title="Cửa Hàng Gacha"
+        description="Cửa hàng Gacha đang khóa! Đăng nhập cùng Shiba để dùng Xương Vàng quay Gacha nhận trang phục hiếm và trang trí căn phòng của bạn nhé! 🐾🎁"
+      />
     </div>
   );
 }

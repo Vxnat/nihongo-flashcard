@@ -38,7 +38,7 @@ export function AuthButton() {
   // Theo dõi thao tác cuộn để ẩn/hiện Smart Header
   const [isHidden, setIsHidden] = useState(false);
   const { scrollY } = useScroll();
-  
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     if (latest > previous && latest > 50) {
@@ -83,7 +83,7 @@ export function AuthButton() {
 
   return (
     <>
-      <motion.div 
+      <motion.div
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: isHidden ? -100 : 0, opacity: isHidden ? 0 : 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
@@ -94,7 +94,12 @@ export function AuthButton() {
           onClick={() => setIsQuestModalOpen(true)}
           className="bg-white/90 backdrop-blur px-2.5 py-1.5 md:px-4 rounded-full border-2 border-[#FFE2D1] text-[#FF9F1C] font-bold shadow-[0_4px_0_0_#FFE2D1] hover:bg-orange-50 active:shadow-none active:translate-y-1 transition-all flex items-center gap-2 cursor-pointer relative"
         >
-          <span className="text-lg">📜</span>
+          <img
+            src="/images/ui/quest_scroll.svg"
+            alt="Nhiệm vụ"
+            className="w-4 h-4 mx-auto select-none"
+            draggable={false}
+          />
           <span
             className="hidden md:inline font-rounded"
             style={{ fontFamily: "var(--font-cherry)" }}

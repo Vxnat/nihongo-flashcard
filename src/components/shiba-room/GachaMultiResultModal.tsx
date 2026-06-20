@@ -76,7 +76,7 @@ function ResultCard({
   return (
     <motion.div
       variants={itemVariants}
-      className={`aspect-square relative ${(isSpecial && !isRevealed) || (isRevealed && item.item.type === "voice") ? "cursor-pointer" : ""}`}
+      className={`aspect-square relative group ${(isSpecial && !isRevealed) || (isRevealed && item.item.type === "voice") ? "cursor-pointer" : ""}`}
       onClick={handleCardClick}
     >
       <AnimatePresence>
@@ -100,7 +100,7 @@ function ResultCard({
               {/* Tia sáng xoay phía sau - hiệu ứng "bùng nổ" kiểu anime cho item hiếm */}
               {isSpecial && (
                 <motion.div
-                  className="absolute inset-0 flex items-center justify-center overflow-hidden"
+                  className="absolute inset-0 flex items-center justify-center"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                 >
@@ -127,7 +127,9 @@ function ResultCard({
               />
 
               {isNew && (
-                <div className="absolute top-1.5 right-1.5 z-20 bg-red-500 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-sm font-sans tracking-wider">
+                <div className="absolute top-1.5 right-1.5 z-20 bg-red-500 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-sm font-sans tracking-wider"
+                  style={{ fontFamily: "var(--font-cherry)" }}
+                >
                   MỚI
                 </div>
               )}
@@ -141,9 +143,9 @@ function ResultCard({
                     scale: { type: "spring", stiffness: 300 },
                     rotate: { duration: 0.4, ease: "easeInOut" },
                   }}
-                  className="text-4xl text-[#C85A28] relative z-10 animate-bounce"
+                  className="text-3xl sm:text-4xl relative z-10"
                 >
-                  <Volume2 size={36} />
+                  <img src={item.item.imageUrl} alt="Voice" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
                 </motion.span>
               ) : (
                 <motion.img
@@ -152,18 +154,43 @@ function ResultCard({
                   transition={{ delay: 0.3 }}
                   src={item.item.imageUrl}
                   alt={item.item.name}
-                  className={`z-10 border border-white/20 ${item.item.type === "meme" ? "w-14 h-14 object-cover rounded-full" : "w-11 h-11 object-contain"
+                  className={`z-10 border border-white/20 object-contain ${item.item.type === "meme"
+                    ? "w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 object-cover rounded-full"
+                    : "w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12"
                     }`}
                 />
               )}
-              <p className="font-bold text-xs mt-2 line-clamp-2 relative z-10 font-sans" style={{ color: rarityConfig.textColor }}>
+
+              {/* Inline name & duplicate — visible on mobile, hidden on md+ (hover overlay replaces it) */}
+              <p className="font-bold text-[9px] sm:text-xs mt-1 sm:mt-2 line-clamp-2 relative z-10 font-sans leading-tight md:hidden" style={{ color: rarityConfig.textColor }}>
                 {item.item.name}
               </p>
               {isDuplicate && (
-                <p className="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full mt-1 relative z-10 font-sans">
-                  +{item.duplicateFur} Lông Vàng
+                <p className="flex items-center text-[8px] sm:text-[10px] font-bold text-amber-600 bg-amber-100 px-1.5 py-0.5 rounded-full mt-0.5 sm:mt-1 relative z-10 font-sans gap-0.5 md:hidden"
+                  style={{ fontFamily: "var(--font-cherry)" }}
+                >
+                  +{item.duplicateFur} <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 sm:w-3.5 sm:h-3.5 object-contain" />
                 </p>
               )}
+
+              {/* Hover overlay — PC only (md+) */}
+              <div
+                className="absolute inset-x-0 bottom-0 z-30 hidden md:flex flex-col items-center justify-end pb-2.5 pt-8 rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+                style={{
+                  background: `linear-gradient(to top, ${rarityConfig.bgColor} 40%, transparent 100%)`,
+                }}
+              >
+                <p className="font-bold text-[11px] line-clamp-2 font-sans leading-tight px-2 text-center" style={{ color: rarityConfig.textColor }}>
+                  {item.item.name}
+                </p>
+                {isDuplicate && (
+                  <p className="flex items-center text-[9px] font-bold text-amber-600 bg-amber-100/90 px-1.5 py-0.5 rounded-full mt-1 font-sans gap-0.5"
+                    style={{ fontFamily: "var(--font-cherry)" }}
+                  >
+                    +{item.duplicateFur} <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" />
+                  </p>
+                )}
+              </div>
             </div>
           </motion.div>
         )}
@@ -328,7 +355,7 @@ export function GachaMultiResultModal({
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.9, y: -20, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="bg-[#FFFDF5] border-4 border-[#FFD166] rounded-[2.5rem] p-6 max-w-md w-full shadow-2xl relative flex flex-col max-h-[90vh]"
+            className="bg-[#FFFDF5] border-4 border-[#FFD166] rounded-[2.5rem] p-4 sm:p-6 max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl w-full shadow-2xl relative flex flex-col max-h-[90vh]"
           >
             <div className="text-center mb-4 relative">
               <motion.div
@@ -360,7 +387,7 @@ export function GachaMultiResultModal({
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="flex-1 min-h-0 overflow-y-auto grid grid-cols-2 sm:grid-cols-5 gap-2 pr-2 -mr-2"
+              className="flex-1 min-h-0 overflow-y-auto grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 md:gap-4 pr-2 -mr-2"
               style={{ perspective: 1000 }}
             >
               {sortedResults.map((item, index) => (

@@ -15,8 +15,6 @@ interface RoadmapNodeProps {
   onClick: () => void;
 }
 
-const BENTO_ITEMS = ["🍙", "🍱", "🍣", "🍤", "🍡", "🍵", "🍘", "🍢"];
-
 export function RoadmapNode({
   deck,
   unlocked,
@@ -26,32 +24,35 @@ export function RoadmapNode({
   offsetX,
   onClick,
 }: RoadmapNodeProps) {
-  // Phân tích biểu tượng Icon
+  // Phân tích biểu tượng Icon dạng đường dẫn ảnh
   const isChest = deck.type === "chest";
-  let icon = "🍙";
+  const isStory = deck.type === "story";
+  const isBoss = deck.title.toLowerCase().includes("boss") || deck.title.toLowerCase().includes("ôn tập");
+
+  let iconSrc = "/images/ui/node_vocab.png";
   if (isChest) {
-    icon = completed ? "👑" : "📦";
-  } else if (deck.type === "story") {
-    icon = "📖";
-  } else if (deck.type === "minigame_matching") {
-    icon = "🧩";
-  } else if (deck.title.toLowerCase().includes("boss") || deck.title.toLowerCase().includes("ôn tập")) {
-    icon = "🏰";
+    iconSrc = completed ? "/images/ui/chest_opened.png" : "/images/ui/chest_closed.png";
+  } else if (isStory) {
+    iconSrc = "/images/ui/node_story.png";
+  } else if (deck.type === "minigame_matching" || deck.type === "minigame_rush") {
+    iconSrc = "/images/ui/node_minigame.png";
+  } else if (deck.type === "minigame_kanji") {
+    iconSrc = "/images/ui/node_kanji.png";
+  } else if (isBoss) {
+    iconSrc = "/images/ui/node_boss.png";
   } else {
-    icon = BENTO_ITEMS[index % BENTO_ITEMS.length];
+    // Luân phiên node_vocab và node_kanji dựa trên index
+    iconSrc = index % 2 === 0 ? "/images/ui/node_vocab.png" : "/images/ui/node_kanji.png";
   }
 
-  const isBoss = icon === "🏰";
-  const isStory = deck.type === "story";
-
   // Phân tích Kích thước (Size Class)
-  let sizeClass = "w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] text-3xl sm:text-4xl"; // Normal
+  let sizeClass = "w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem]"; // Normal
   if (isChest) {
-    sizeClass = "w-[4.5rem] h-[4.5rem] sm:w-[5.5rem] sm:h-[5.5rem] text-4xl sm:text-5xl rounded-[1.5rem]";
+    sizeClass = "w-[4.5rem] h-[4.5rem] sm:w-[5.5rem] sm:h-[5.5rem] rounded-[1.5rem]";
   } else if (isBoss) {
-    sizeClass = "w-20 h-20 sm:w-24 sm:h-24 text-4xl sm:text-5xl border-[5px]";
+    sizeClass = "w-20 h-20 sm:w-24 sm:h-24 border-[5px]";
   } else if (isStory) {
-    sizeClass = "w-[4.5rem] h-[4.5rem] sm:w-[5.5rem] sm:h-[5.5rem] text-4xl";
+    sizeClass = "w-[4.5rem] h-[4.5rem] sm:w-[5.5rem] sm:h-[5.5rem]";
   }
 
   // Phân tích Màu sắc (Color Class)
@@ -102,7 +103,7 @@ export function RoadmapNode({
           onClick={onClick}
           whileHover={unlocked ? { scale: 1.05 } : {}}
           whileTap={unlocked ? { scale: 0.95 } : {}}
-          className={`relative flex items-center justify-center border-4 transition-colors duration-300 ${sizeClass} ${nodeClass} outline-none rounded-full ${
+          className={`relative group flex items-center justify-center border-4 transition-colors duration-300 ${sizeClass} ${nodeClass} outline-none rounded-full ${
             unlocked ? "active:translate-y-[6px] active:shadow-none" : ""
           }`}
         >
@@ -120,9 +121,18 @@ export function RoadmapNode({
             </div>
           )}
 
-          <span className={`drop-shadow-sm transition-transform ${!unlocked ? "grayscale opacity-50" : "hover:scale-110 hover:-rotate-6"}`}>
-            {icon}
-          </span>
+          <img
+            src={iconSrc}
+            alt={deck.title}
+            className={`object-contain transition-transform select-none pointer-events-none ${
+              isChest
+                ? "w-11 h-11 sm:w-13 sm:h-13"
+                : isBoss
+                ? "w-13 h-13 sm:w-15 sm:h-15"
+                : "w-9 h-9 sm:w-11 sm:h-11"
+            } ${!unlocked ? "grayscale opacity-40" : "group-hover:scale-110 group-hover:-rotate-6"}`}
+            draggable={false}
+          />
         </motion.button>
       </div>
 

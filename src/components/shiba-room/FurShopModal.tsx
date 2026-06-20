@@ -14,11 +14,11 @@ interface FurShopModalProps {
 }
 
 const SHIBA_DIALOGS = [
-  "Irasshaimase! Đang có nhiều Lông Vàng lấp lánh chứ?",
+  "Irasshaimase! Đang có nhiều Shiba Coin lấp lánh chứ?",
   "Muốn đổi bùa may mắn hay mảnh ghép thần thoại đây nyan?",
-  "Học hành chăm chỉ thì mới có Lông Vàng xịn để đổi nha!",
+  "Học hành chăm chỉ thì mới có Shiba Coin xịn để đổi nha!",
   "Đồ hiếm ở đây chất lượng lắm, không lo trúng gió đâu nhe!",
-  "Bé Shiba thích Lông Vàng lắm, đem đổi quà xịn đi chủ nhân!"
+  "Bé Shiba thích Shiba Coin lắm, đem đổi quà xịn đi chủ nhân!"
 ];
 
 export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
@@ -61,7 +61,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
     return () => clearInterval(interval);
   }, [isOpen, userStats.buffDoubleBonesUntil]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !user) return null;
 
   // Audio coin drop sound
   const playCoinSound = () => {
@@ -117,7 +117,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
     }
 
     if (userStats.goldenFur < cost) {
-      toast.error("Không đủ Lông Vàng 🪶! Hãy quay gacha trùng để tích lũy nhé!");
+      toast.error("Không đủ Shiba Coin! Hãy quay gacha trùng để tích lũy nhé!");
       return;
     }
 
@@ -136,7 +136,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
         });
       });
 
-      setShibaBubble(`Cảm ơn chủ nhân đã ủng hộ! Shiba đã cất Lông Vàng đi rồi nyan! 🪶💖`);
+      setShibaBubble(`Cảm ơn chủ nhân đã ủng hộ! Shiba đã cất Shiba Coin đi rồi nyan! 💖`);
       setSelectedItem(null);
       setSelectedType(null);
     } else {
@@ -169,7 +169,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
           {/* Golden Fur Wallet */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 bg-amber-100/80 border-2 border-[#D4AF37] px-3 py-1 rounded-full text-xs font-black text-amber-900 shadow-xs">
-              <span className="text-sm">🪶</span>
+              <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" />
               <span>{userStats.goldenFur || 0}</span>
             </div>
 
@@ -256,7 +256,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                         Mảnh: {ownedShards}/{item.shardTarget}
                       </span>
                       <span className="text-[9px] font-black text-amber-600 flex items-center gap-0.5">
-                        🪶 {price}
+                        <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {price}
                       </span>
                     </div>
                   </div>
@@ -298,7 +298,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                         </span>
                       ) : (
                         <span className="text-[9px] font-black text-amber-600 flex items-center gap-0.5">
-                          🪶 {item.cost}
+                          <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {item.cost}
                         </span>
                       )}
                     </div>
@@ -356,8 +356,8 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                         )}
                       </div>
 
-                      <span className="text-xs font-black text-amber-600">
-                        🪶 {item.cost}
+                      <span className="text-xs font-black text-amber-600 flex items-center gap-0.5">
+                        <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
                       </span>
                     </div>
                   </div>
@@ -426,8 +426,8 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                     onClick={handleBuy}
                     className="flex-[1.5] py-2 bg-[#D4AF37] border-b-2 border-[#9E7815] text-white font-black rounded-xl text-xs active:translate-y-0.5 cursor-pointer shadow-xs flex items-center justify-center gap-1 hover:brightness-105"
                   >
-                    <span className="flex items-center">
-                      🪶 {selectedType === "shard" ? SHARD_PRICES[selectedItem.rarity] : selectedItem.cost}
+                    <span className="flex items-center gap-1">
+                      <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-4 h-4 object-contain" /> {selectedType === "shard" ? SHARD_PRICES[selectedItem.rarity] : selectedItem.cost}
                     </span>
                   </button>
                 )}

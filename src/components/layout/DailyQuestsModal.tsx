@@ -57,11 +57,13 @@ export function DailyQuestsModal({ isOpen, onClose }: DailyQuestsModalProps) {
               <X size={20} strokeWidth={3} />
             </button>
 
-            {/* Tiêu Đề */}
             <div className="text-center mb-6">
-              <span className="text-5xl mb-2 block animate-bounce select-none">
-                📜
-              </span>
+              <img
+                src="/images/ui/quest_scroll.svg"
+                alt="Nhiệm vụ"
+                className="w-16 h-16 mx-auto mb-2 animate-bounce select-none"
+                draggable={false}
+              />
               <h3
                 className="text-3xl text-[#FF9F1C] drop-shadow-sm"
                 style={{ fontFamily: "var(--font-cherry)" }}

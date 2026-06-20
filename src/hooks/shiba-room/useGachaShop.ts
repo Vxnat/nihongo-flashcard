@@ -9,6 +9,45 @@ const DUMMY_CAPSULES = Array.from({ length: 30 }).map((_, i) => ({
   id: `cap_${i}`,
 }));
 
+const FALLBACK_TYPE_WEIGHTS: Record<string, number> = {
+  theme: 10,
+  outfit: 25,
+  furniture: 50,
+  voice: 60,
+  meme: 80,
+  sticker: 100,
+};
+
+// Module-level cache: loaded once, shared across all hook instances
+let _cachedTypeWeights: Record<string, number> | null = null;
+let _fetchPromise: Promise<void> | null = null;
+
+const loadTypeWeights = () => {
+  if (_cachedTypeWeights) return;
+  if (_fetchPromise) return;
+  _fetchPromise = fetch("/data/configs/gacha_type_weights.json")
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load type weights");
+      return res.json();
+    })
+    .then(data => {
+      _cachedTypeWeights = data;
+    })
+    .catch(err => {
+      console.warn("Không tải được gacha_type_weights.json, dùng giá trị mặc định:", err);
+      _cachedTypeWeights = FALLBACK_TYPE_WEIGHTS;
+    });
+};
+
+const getTypeWeights = (): Record<string, number> => {
+  return _cachedTypeWeights || FALLBACK_TYPE_WEIGHTS;
+};
+
+const getItemWeight = (item: any) => {
+  if (item.weight !== undefined && item.weight !== null) return item.weight;
+  return getTypeWeights()[item.type] ?? 100;
+};
+
 export function useGachaShop() {
   const { userStats, deductCoins, processGachaRoll, user } = useAppStore(
     (state: any) => state,
@@ -26,6 +65,11 @@ export function useGachaShop() {
   const [isShaking, setIsShaking] = useState(false);
   const anticipatingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+
+  // Tải type weights từ JSON khi hook được mount
+  useEffect(() => {
+    loadTypeWeights();
+  }, []);
 
   // Khởi tạo máy Gacha (Matter.js) - Giữ nguyên logic vật lý
   useEffect(() => {
@@ -161,10 +205,10 @@ export function useGachaShop() {
     const hasLuckyTalisman = luckyRollsLeft > 0;
 
     if (currentPity >= 49) {
-      const pityRoll = Math.random() * 16;
-      if (pityRoll < 0.1) rarity = "divine";
-      else if (pityRoll < 1.1) rarity = "mythic";
-      else if (pityRoll < 6.0) rarity = "legendary";
+      const pityRoll = Math.random() * 100;
+      if (pityRoll < 0.5) rarity = "divine";
+      else if (pityRoll < 3.0) rarity = "mythic";
+      else if (pityRoll < 15.0) rarity = "legendary";
       else rarity = "epic";
     } else {
       let acc = 0;
@@ -194,7 +238,21 @@ export function useGachaShop() {
     }
 
     const itemsInRarity = GACHA_POOL.filter(i => i.rarity === rarity);
-    const selectedItem = itemsInRarity[Math.floor(Math.random() * itemsInRarity.length)];
+    let selectedItem = itemsInRarity[0];
+    
+    if (itemsInRarity.length > 0) {
+      const totalWeight = itemsInRarity.reduce((sum, item) => sum + getItemWeight(item), 0);
+      let rand = Math.random() * totalWeight;
+      for (const item of itemsInRarity) {
+        const w = getItemWeight(item);
+        if (rand < w) {
+          selectedItem = item;
+          break;
+        }
+        rand -= w;
+      }
+    }
+
     const isFullItem = Math.random() < RARITY_CONFIG[rarity].dropFullRate;
 
     const hasItem =

@@ -27,14 +27,14 @@ export function VNWordTooltip({ word, onClose }: VNWordTooltipProps) {
     if (!word || isSaving) return;
     setIsSaving(true);
     try {
-      let vnDeck = customDecks.find((d) => d.id === "vn_collection");
+      let vnDeck = customDecks.find((d) => d.id === "custom_vn_collection");
       const isNewDeck = !vnDeck;
 
       let deckToUpdate: CustomDeck;
 
       if (isNewDeck) {
         deckToUpdate = {
-          id: "vn_collection",
+          id: "custom_vn_collection",
           title: "Sưu tầm từ Truyện 📖",
           description: "Các từ vựng lượm nhặt từ chế độ Visual Novel",
           level: "Sưu tầm",
