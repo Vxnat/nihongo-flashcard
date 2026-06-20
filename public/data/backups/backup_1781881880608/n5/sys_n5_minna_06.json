@@ -1,0 +1,1065 @@
+[
+{
+"id": "sys_n5_minna_06_001",
+"word": "食べます",
+"reading": "たべます",
+"romaji": "tabemasu",
+"meaning": "Ăn",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "朝御飯を食べます。",
+"example_jp_formatted": "[朝御飯]{あさごはん}を[食]{た}べます。",
+"example_vi": "Tôi ăn sáng.",
+"level": "N5",
+"tags": [
+"động-từ",
+"ăn-uống",
+"bài-6"
+],
+"notes": "Động từ nhóm 2. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "thực (ăn)",
+"onyomi": "ショク, ジキ",
+"kunyomi": "た.べる, く.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_002",
+"word": "飲みます",
+"reading": "のみます",
+"romaji": "nomimasu",
+"meaning": "Uống",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "水を飲みます。",
+"example_jp_formatted": "[水]{みず}を[飲]{の}みます。",
+"example_vi": "Tôi uống nước.",
+"level": "N5",
+"tags": [
+"động-từ",
+"ăn-uống",
+"bài-6"
+],
+"notes": "Động từ nhóm 1. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "ẩm (uống)",
+"onyomi": "イン",
+"kunyomi": "の.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_003",
+"word": "吸います",
+"reading": "すいます",
+"romaji": "suimasu",
+"meaning": "Hút (thuốc lá)",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "タバコを吸います。",
+"example_jp_formatted": "タバコを[吸]{す}います。",
+"example_vi": "Tôi hút thuốc.",
+"level": "N5",
+"tags": [
+"động-từ",
+"ăn-uống",
+"bài-6"
+],
+"notes": "Động từ nhóm 1. Thường đi với タバコを.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "吸",
+"meaning": "hấp (hút)",
+"onyomi": "キュウ",
+"kunyomi": "す.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_004",
+"word": "見ます",
+"reading": "みます",
+"romaji": "mimasu",
+"meaning": "Xem, nhìn",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "テレビを見ます。",
+"example_jp_formatted": "テレビを[見]{み}ます。",
+"example_vi": "Tôi xem TV.",
+"level": "N5",
+"tags": [
+"động-từ",
+"giải-trí",
+"bài-6"
+],
+"notes": "Động từ nhóm 2. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "見",
+"meaning": "kiến (thấy)",
+"onyomi": "ケン",
+"kunyomi": "み.る, み.える, み.せる"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_005",
+"word": "聞きます",
+"reading": "ききます",
+"romaji": "kikimasu",
+"meaning": "Nghe, hỏi",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "音楽を聞きます。",
+"example_jp_formatted": "[音楽]{おんがく}を[聞]{き}きます。",
+"example_vi": "Tôi nghe nhạc.",
+"level": "N5",
+"tags": [
+"động-từ",
+"giải-trí",
+"bài-6"
+],
+"notes": "Động từ nhóm 1. Đi với を khi nghĩa là nghe.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "聞",
+"meaning": "văn (nghe/hỏi)",
+"onyomi": "ブン, モン",
+"kunyomi": "き.く, き.こえる"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_006",
+"word": "読みます",
+"reading": "よみます",
+"romaji": "yomimasu",
+"meaning": "Đọc",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "新聞を読みます。",
+"example_jp_formatted": "[新聞]{しんぶん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc báo.",
+"level": "N5",
+"tags": [
+"động-từ",
+"học-tập",
+"bài-6"
+],
+"notes": "Động từ nhóm 1. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "読",
+"meaning": "độc (đọc)",
+"onyomi": "ドク, トク, トウ",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_007",
+"word": "書きます",
+"reading": "かきます",
+"romaji": "kakimasu",
+"meaning": "Viết",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "手紙を書きます。",
+"example_jp_formatted": "[手紙]{てがみ}を[書]{か}きます。",
+"example_vi": "Tôi viết thư.",
+"level": "N5",
+"tags": [
+"động-từ",
+"học-tập",
+"bài-6"
+],
+"notes": "Động từ nhóm 1. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "書",
+"meaning": "thư (viết)",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_008",
+"word": "買います",
+"reading": "かいます",
+"romaji": "kaimasu",
+"meaning": "Mua",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "本を買います。",
+"example_jp_formatted": "[本]{ほん}を[買]{か}います。",
+"example_vi": "Tôi mua sách.",
+"level": "N5",
+"tags": [
+"động-từ",
+"mua-sắm",
+"bài-6"
+],
+"notes": "Động từ nhóm 1. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "買",
+"meaning": "mãi (mua)",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_009",
+"word": "撮ります",
+"reading": "とります",
+"romaji": "torimasu",
+"meaning": "Chụp (ảnh)",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "写真を撮ります。",
+"example_jp_formatted": "[写真]{しゃしん}を[撮]{と}ります。",
+"example_vi": "Tôi chụp ảnh.",
+"level": "N5",
+"tags": [
+"động-từ",
+"máy-ảnh",
+"bài-6"
+],
+"notes": "Động từ nhóm 1. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "撮",
+"meaning": "tối (chụp)",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_010",
+"word": "します",
+"reading": "します",
+"romaji": "shimasu",
+"meaning": "Làm",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "宿題をします。",
+"example_jp_formatted": "[宿題]{しゅくだい}をします。",
+"example_vi": "Tôi làm bài tập.",
+"level": "N5",
+"tags": [
+"động-từ",
+"công-việc",
+"bài-6"
+],
+"notes": "Động từ nhóm 3. Thường dùng với danh từ + をします.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_06_011",
+"word": "会います",
+"reading": "あいます",
+"romaji": "aimasu",
+"meaning": "Gặp, gặp gỡ",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "友達に会います。",
+"example_jp_formatted": "[友達]{ともだち}に[会]{あ}います。",
+"example_vi": "Tôi gặp bạn.",
+"level": "N5",
+"tags": [
+"động-từ",
+"giao-tiếp",
+"bài-6"
+],
+"notes": "Động từ nhóm 1. Thường đi với に khi chỉ đối tượng gặp.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "hội / gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_012",
+"word": "朝御飯",
+"reading": "あさごはん",
+"romaji": "asagohan",
+"meaning": "Bữa sáng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "朝御飯を食べます。",
+"example_jp_formatted": "[朝御飯]{あさごはん}を[食]{た}べます。",
+"example_vi": "Tôi ăn sáng.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"bữa-ăn",
+"bài-6"
+],
+"notes": "Chỉ bữa ăn buổi sáng.",
+"synonyms": [
+"朝食"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "朝",
+"meaning": "triêu (sáng)",
+"onyomi": "チョウ",
+"kunyomi": "あさ"
+},
+{
+"kanji": "御",
+"meaning": "kính / tiền tố lịch sự",
+"onyomi": "ギョ, ゴ",
+"kunyomi": "おん"
+},
+{
+"kanji": "飯",
+"meaning": "phạn (cơm, bữa ăn)",
+"onyomi": "ハン, ベン",
+"kunyomi": "めし"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_013",
+"word": "昼御飯",
+"reading": "ひるごはん",
+"romaji": "hirugohan",
+"meaning": "Bữa trưa",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "昼御飯を食べます。",
+"example_jp_formatted": "[昼御飯]{ひるごはん}を[食]{た}べます。",
+"example_vi": "Tôi ăn trưa.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"bữa-ăn",
+"bài-6"
+],
+"notes": "Chỉ bữa ăn buổi trưa.",
+"synonyms": [
+"昼食"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昼",
+"meaning": "trú (ban ngày, trưa)",
+"onyomi": "チュウ",
+"kunyomi": "ひる"
+},
+{
+"kanji": "御",
+"meaning": "kính / tiền tố lịch sự",
+"onyomi": "ギョ, ゴ",
+"kunyomi": "おん"
+},
+{
+"kanji": "飯",
+"meaning": "phạn (cơm, bữa ăn)",
+"onyomi": "ハン, ベン",
+"kunyomi": "めし"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_014",
+"word": "晩御飯",
+"reading": "ばんごはん",
+"romaji": "bangohan",
+"meaning": "Bữa tối",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "晩御飯を食べます。",
+"example_jp_formatted": "[晩御飯]{ばんごはん}を[食]{た}べます。",
+"example_vi": "Tôi ăn tối.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"bữa-ăn",
+"bài-6"
+],
+"notes": "Chỉ bữa ăn buổi tối.",
+"synonyms": [
+"夕食"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "晩",
+"meaning": "vãn (chiều tối)",
+"onyomi": "バン",
+"kunyomi": "よる"
+},
+{
+"kanji": "御",
+"meaning": "kính / tiền tố lịch sự",
+"onyomi": "ギョ, ゴ",
+"kunyomi": "おん"
+},
+{
+"kanji": "飯",
+"meaning": "phạn (cơm, bữa ăn)",
+"onyomi": "ハン, ベン",
+"kunyomi": "めし"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_015",
+"word": "パン",
+"reading": "ぱん",
+"romaji": "pan",
+"meaning": "Bánh mì",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "パンを食べます。",
+"example_jp_formatted": "パンを[食]{た}べます。",
+"example_vi": "Tôi ăn bánh mì.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-ăn",
+"bài-6"
+],
+"notes": "Từ mượn, giữ nguyên Katakana.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_06_016",
+"word": "卵",
+"reading": "たまご",
+"romaji": "tamago",
+"meaning": "Trứng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "卵を食べます。",
+"example_jp_formatted": "[卵]{たまご}を[食]{た}べます。",
+"example_vi": "Tôi ăn trứng.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-ăn",
+"bài-6"
+],
+"notes": "Trứng gà, trứng nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "卵",
+"meaning": "noãn (trứng)",
+"onyomi": "ラン",
+"kunyomi": "たまご"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_017",
+"word": "肉",
+"reading": "にく",
+"romaji": "niku",
+"meaning": "Thịt",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "肉を食べます。",
+"example_jp_formatted": "[肉]{にく}を[食]{た}べます。",
+"example_vi": "Tôi ăn thịt.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-ăn",
+"bài-6"
+],
+"notes": "Thịt nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "肉",
+"meaning": "nhục (thịt)",
+"onyomi": "ニク",
+"kunyomi": "しし"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_018",
+"word": "魚",
+"reading": "さかな",
+"romaji": "sakana",
+"meaning": "Cá",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "魚を食べます。",
+"example_jp_formatted": "[魚]{さかな}を[食]{た}べます。",
+"example_vi": "Tôi ăn cá.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-ăn",
+"bài-6"
+],
+"notes": "Cá nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "魚",
+"meaning": "ngư (cá)",
+"onyomi": "ギョ",
+"kunyomi": "さかな, うお"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_019",
+"word": "野菜",
+"reading": "やさい",
+"romaji": "yasai",
+"meaning": "Rau",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "野菜を食べます。",
+"example_jp_formatted": "[野菜]{やさい}を[食]{た}べます。",
+"example_vi": "Tôi ăn rau.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-ăn",
+"bài-6"
+],
+"notes": "Rau củ nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "野",
+"meaning": "dã (đồng ruộng, hoang)",
+"onyomi": "ヤ",
+"kunyomi": "の"
+},
+{
+"kanji": "菜",
+"meaning": "thái (rau)",
+"onyomi": "サイ",
+"kunyomi": "な"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_020",
+"word": "果物",
+"reading": "くだもの",
+"romaji": "kudamono",
+"meaning": "Hoa quả",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "果物を食べます。",
+"example_jp_formatted": "[果物]{くだもの}を[食]{た}べます。",
+"example_vi": "Tôi ăn hoa quả.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-ăn",
+"bài-6"
+],
+"notes": "Hoa quả, trái cây.",
+"synonyms": [
+"フルーツ"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "果",
+"meaning": "quả",
+"onyomi": "カ",
+"kunyomi": "は.てる, は.たす"
+},
+{
+"kanji": "物",
+"meaning": "vật",
+"onyomi": "ブツ, モツ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_021",
+"word": "水",
+"reading": "みず",
+"romaji": "mizu",
+"meaning": "Nước",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "水を飲みます。",
+"example_jp_formatted": "[水]{みず}を[飲]{の}みます。",
+"example_vi": "Tôi uống nước.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-uống",
+"bài-6"
+],
+"notes": "Nước nói chung.",
+"synonyms": [
+"お水"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "水",
+"meaning": "thủy (nước)",
+"onyomi": "スイ",
+"kunyomi": "みず"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_022",
+"word": "お茶",
+"reading": "おちゃ",
+"romaji": "ocha",
+"meaning": "Trà",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "お茶を飲みます。",
+"example_jp_formatted": "お[茶]{ちゃ}を[飲]{の}みます。",
+"example_vi": "Tôi uống trà.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-uống",
+"bài-6"
+],
+"notes": "Trà nói chung.",
+"synonyms": [
+"茶"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "茶",
+"meaning": "trà",
+"onyomi": "チャ, サ",
+"kunyomi": "ちゃ"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_023",
+"word": "牛乳",
+"reading": "ぎゅうにゅう",
+"romaji": "gyuunyuu",
+"meaning": "Sữa",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "牛乳を飲みます。",
+"example_jp_formatted": "[牛乳]{ぎゅうにゅう}を[飲]{の}みます。",
+"example_vi": "Tôi uống sữa.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-uống",
+"bài-6"
+],
+"notes": "Sữa bò nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "牛",
+"meaning": "ngưu (bò)",
+"onyomi": "ギュウ",
+"kunyomi": "うし"
+},
+{
+"kanji": "乳",
+"meaning": "nhũ (sữa)",
+"onyomi": "ニュウ",
+"kunyomi": "ちち, ち"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_024",
+"word": "ジュース",
+"reading": "じゅーす",
+"romaji": "juusu",
+"meaning": "Nước hoa quả",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "ジュースを飲みます。",
+"example_jp_formatted": "ジュースを[飲]{の}みます。",
+"example_vi": "Tôi uống nước hoa quả.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-uống",
+"bài-6"
+],
+"notes": "Từ mượn, giữ nguyên Katakana.",
+"synonyms": [
+"果汁"
+],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_06_025",
+"word": "ビール",
+"reading": "びーる",
+"romaji": "biiru",
+"meaning": "Bia",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "ビールを飲みます。",
+"example_jp_formatted": "ビールを[飲]{の}みます。",
+"example_vi": "Tôi uống bia.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-uống",
+"bài-6"
+],
+"notes": "Từ mượn, giữ nguyên Katakana.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_06_026",
+"word": "お酒",
+"reading": "おさけ",
+"romaji": "osake",
+"meaning": "Rượu",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "お酒を飲みます。",
+"example_jp_formatted": "お[酒]{さけ}を[飲]{の}みます。",
+"example_vi": "Tôi uống rượu.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-uống",
+"bài-6"
+],
+"notes": "Rượu nói chung.",
+"synonyms": [
+"酒"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "酒",
+"meaning": "tửu (rượu)",
+"onyomi": "シュ, シュウ",
+"kunyomi": "さけ, さか-"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_027",
+"word": "タバコ",
+"reading": "たばこ",
+"romaji": "tabako",
+"meaning": "Thuốc lá",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "タバコを吸います。",
+"example_jp_formatted": "タバコを[吸]{す}います。",
+"example_vi": "Tôi hút thuốc lá.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-uống",
+"bài-6"
+],
+"notes": "Từ thường dùng trong bài để chỉ thuốc lá.",
+"synonyms": [
+"たばこ"
+],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_06_028",
+"word": "手紙",
+"reading": "てがみ",
+"romaji": "tegami",
+"meaning": "Thư",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "手紙を書きます。",
+"example_jp_formatted": "[手紙]{てがみ}を[書]{か}きます。",
+"example_vi": "Tôi viết thư.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"học-tập",
+"bài-6"
+],
+"notes": "Thư tay.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "手",
+"meaning": "thủ (tay)",
+"onyomi": "シュ",
+"kunyomi": "て"
+},
+{
+"kanji": "紙",
+"meaning": "chỉ (giấy)",
+"onyomi": "シ",
+"kunyomi": "かみ"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_029",
+"word": "新聞",
+"reading": "しんぶん",
+"romaji": "shinbun",
+"meaning": "Báo",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "新聞を読みます。",
+"example_jp_formatted": "[新聞]{しんぶん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc báo.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"học-tập",
+"bài-6"
+],
+"notes": "Báo giấy, báo nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "新",
+"meaning": "tân (mới)",
+"onyomi": "シン",
+"kunyomi": "あたら.しい"
+},
+{
+"kanji": "聞",
+"meaning": "văn (nghe, tin tức)",
+"onyomi": "ブン, モン",
+"kunyomi": "き.く, き.こえる"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_030",
+"word": "写真",
+"reading": "しゃしん",
+"romaji": "shashin",
+"meaning": "Ảnh",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "写真を撮ります。",
+"example_jp_formatted": "[写真]{しゃしん}を[撮]{と}ります。",
+"example_vi": "Tôi chụp ảnh.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"máy-ảnh",
+"bài-6"
+],
+"notes": "Ảnh, tấm hình.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "写",
+"meaning": "tả (chụp, sao chép)",
+"onyomi": "シャ",
+"kunyomi": "うつ.す, うつ.る"
+},
+{
+"kanji": "真",
+"meaning": "chân (thật)",
+"onyomi": "シン",
+"kunyomi": "ま"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_031",
+"word": "宿題",
+"reading": "しゅくだい",
+"romaji": "shukudai",
+"meaning": "Bài tập",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "宿題をします。",
+"example_jp_formatted": "[宿題]{しゅくだい}をします。",
+"example_vi": "Tôi làm bài tập.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"học-tập",
+"bài-6"
+],
+"notes": "Bài tập, bài về nhà.",
+"synonyms": [
+"課題"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "宿",
+"meaning": "trú (ở lại, trọ)",
+"onyomi": "シュク",
+"kunyomi": "やど, やど.る"
+},
+{
+"kanji": "題",
+"meaning": "đề (đề tài)",
+"onyomi": "ダイ",
+"kunyomi": "なし"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_032",
+"word": "本",
+"reading": "ほん",
+"romaji": "hon",
+"meaning": "Sách",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "本を読みます。",
+"example_jp_formatted": "[本]{ほん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc sách.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"học-tập",
+"bài-6"
+],
+"notes": "Sách nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "本",
+"meaning": "bản (gốc, sách)",
+"onyomi": "ホン",
+"kunyomi": "もと"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_033",
+"word": "雑誌",
+"reading": "ざっし",
+"romaji": "zasshi",
+"meaning": "Tạp chí",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "雑誌を読みます。",
+"example_jp_formatted": "[雑誌]{ざっし}を[読]{よ}みます。",
+"example_vi": "Tôi đọc tạp chí.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"học-tập",
+"bài-6"
+],
+"notes": "Tạp chí nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "雑",
+"meaning": "tạp (nhiều loại)",
+"onyomi": "ザツ, ゾウ",
+"kunyomi": "まじ.る, まじ.える"
+},
+{
+"kanji": "誌",
+"meaning": "chí (ghi chép, tạp chí)",
+"onyomi": "シ",
+"kunyomi": "しる.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_06_034",
+"word": "友達",
+"reading": "ともだち",
+"romaji": "tomodachi",
+"meaning": "Bạn bè",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "友達に会います。",
+"example_jp_formatted": "[友達]{ともだち}に[会]{あ}います。",
+"example_vi": "Tôi gặp bạn bè.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"giao-tiếp",
+"bài-6"
+],
+"notes": "Người bạn, bạn bè.",
+"synonyms": [
+"友人"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "友",
+"meaning": "hữu (bạn)",
+"onyomi": "ユウ",
+"kunyomi": "とも"
+},
+{
+"kanji": "達",
+"meaning": "đạt (số nhiều, đám bạn)",
+"onyomi": "タツ",
+"kunyomi": "たち"
+}
+]
+}
+]

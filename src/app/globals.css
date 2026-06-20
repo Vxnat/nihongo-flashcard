@@ -327,3 +327,68 @@
   border-color: #F1E3B8 !important;
   box-shadow: 0 6px 0 0 #F1E3B8 !important;
 }
+
+/* ==========================================================
+   RARE ITEM CARD ROTATING GLOW EFFECT
+   ========================================================== */
+@keyframes rotate-glow {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.rare-glow-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.rare-glow-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 35%,
+    var(--glow-color, #FBBF24) 50%,
+    transparent 65%,
+    transparent 100%
+  );
+  animation: rotate-glow 4s linear infinite;
+  z-index: -2;
+  transform: translate(-50%, -50%);
+}
+
+.rare-glow-card::after {
+  content: '';
+  position: absolute;
+  inset: 2.5px; /* border thickness */
+  background: var(--card, #FFFFFF);
+  border-radius: 14px; /* matches outer rounded-2xl (16px) */
+  z-index: -1;
+  transition: background-color 0.3s ease;
+}
+
+/* Fallbacks for themes if CSS variables are not parsed */
+.theme-night .rare-glow-card::after {
+  background: #1D1B2E !important;
+}
+.theme-sakura .rare-glow-card::after {
+  background: #FFFFFF !important;
+}
+.theme-divine .rare-glow-card::after {
+  background: #FFFFFF !important;
+}
+.rare-glow-card > * {
+  position: relative;
+  z-index: 1;
+}

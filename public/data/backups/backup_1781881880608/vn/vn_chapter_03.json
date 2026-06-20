@@ -1,0 +1,285 @@
+{
+"meta": {
+"id": "vn_chapter_03",
+"title": "Khách sạn ở đâu?",
+"level": "N5",
+"rewardCoins": 20
+},
+"characters": {
+"mascot": {
+"name": "Shiba",
+"color": "#FF9F1C",
+"position": "right",
+"sprites": {
+"idle": "/images/characters/shiba_idle.png"
+}
+},
+"stranger": {
+"name": "Cỏ",
+"color": "#06D6A0",
+"position": "left",
+"sprites": {
+"idle": "/images/characters/stranger_idle.png"
+}
+},
+"npc_koro": {
+"name": "Koro",
+"color": "#219EBC",
+"position": "right",
+"sprites": {
+"idle": "/images/characters/koro_idle.png"
+}
+}
+},
+"nodes": [
+{
+"id": "node_001",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_tokyo_night_street.jpg",
+"dialogue": {
+"jp": "あー、食べすぎた… でも夜のTokyo đẹp ghê. Cỏ ơi, khách sạn của mình ở đâu nhỉ?",
+"vi": "Á, ăn no quá... nhưng Tokyo ban đêm đẹp ghê. Cỏ ơi, khách sạn của mình ở đâu nhỉ?"
+},
+"interactableWords": [
+{
+"word": "ホテル",
+"reading": "ほてる",
+"meaning": "Khách sạn",
+"id": "word_hotel_01"
+},
+{
+"word": "どこ",
+"reading": "",
+"meaning": "Ở đâu",
+"id": "word_doko_01"
+}
+],
+"nextNode": "node_002"
+},
+{
+"id": "node_002",
+"characterId": "stranger",
+"emotion": "idle",
+"background": "/images/bg_tokyo_night_street.jpg",
+"dialogue": {
+"jp": "えっ、迷子になったかも… Bản đồ đâu rồi ta? Mình thấy mình đang rất 迷子 luôn đó!",
+"vi": "Ơ, có khi bị lạc rồi... Bản đồ đâu rồi nhỉ? Mình thấy mình đang lạc thiệt rồi đó!"
+},
+"interactableWords": [
+{
+"word": "迷子",
+"reading": "まいご",
+"meaning": "Trẻ lạc / Đi lạc",
+"id": "word_maigo_01"
+}
+],
+"nextNode": "node_003"
+},
+{
+"id": "node_003",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_tokyo_night_street.jpg",
+"dialogue": {
+"jp": "Nhìn kìa, phía trước có 交番! Đi hỏi cảnh sát xem sao.",
+"vi": "Nhìn kìa, phía trước có đồn cảnh sát! Đi hỏi cảnh sát xem sao."
+},
+"interactableWords": [
+{
+"word": "交番",
+"reading": "こうばん",
+"meaning": "Đồn cảnh sát nhỏ",
+"id": "word_koban_01"
+}
+],
+"nextNode": "node_004"
+},
+{
+"id": "node_004",
+"characterId": "npc_koro",
+"emotion": "idle",
+"background": "/images/bg_koban_interior.jpg",
+"dialogue": {
+"jp": "こんばんは！Tôi là Koro, Corgi cảnh sát trực đêm đây. Hai bạn trông hơi 迷子 đấy nhé!",
+"vi": "Xin chào buổi tối! Tôi là Koro, Corgi cảnh sát trực đêm đây. Hai bạn trông hơi bị lạc rồi đấy nhé!"
+},
+"interactableWords": [
+{
+"word": "こんばんは",
+"reading": "",
+"meaning": "Chào buổi tối",
+"id": "word_konbanwa_01"
+},
+{
+"word": "迷子",
+"reading": "まいご",
+"meaning": "Đi lạc",
+"id": "word_maigo_02"
+}
+],
+"nextNode": "node_005"
+},
+{
+"id": "node_005",
+"characterId": "stranger",
+"emotion": "idle",
+"background": "/images/bg_koban_interior.jpg",
+"dialogue": {
+"jp": "すみません、ホテルはどこですか。ホテルの場所が分からなくて…",
+"vi": "Xin lỗi ạ, khách sạn ở đâu vậy? Mình không biết đường đến khách sạn..."
+},
+"interactableWords": [
+{
+"word": "ホテル",
+"reading": "ほてる",
+"meaning": "Khách sạn",
+"id": "word_hotel_02"
+},
+{
+"word": "どこ",
+"reading": "",
+"meaning": "Ở đâu",
+"id": "word_doko_02"
+}
+],
+"nextNode": "node_006"
+},
+{
+"id": "node_006",
+"characterId": "npc_koro",
+"emotion": "idle",
+"background": "/images/bg_koban_interior.jpg",
+"dialogue": {
+"jp": "Bình tĩnh nào! Trước hết, nhớ bài hôm nay: あります dùng cho đồ vật, います dùng cho người hoặc động vật.",
+"vi": "Bình tĩnh nào! Trước hết, nhớ bài hôm nay: あります dùng cho đồ vật, います dùng cho người hoặc động vật."
+},
+"interactableWords": [
+{
+"word": "あります",
+"reading": "あります",
+"meaning": "Có / Ở (vật vô tri)",
+"id": "word_arimasu_01"
+},
+{
+"word": "います",
+"reading": "います",
+"meaning": "Có / Ở (người, động vật)",
+"id": "word_imasu_01"
+}
+],
+"nextNode": "node_007"
+},
+{
+"id": "node_007",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_koban_interior.jpg",
+"dialogue": {
+"jp": "Ok, vậy khách sạn là vật vô tri. Nhưng câu hỏi thì phải hỏi sao cho chuẩn nhỉ? Cỏ, lên quiz!",
+"vi": "Ok, vậy khách sạn là vật vô tri. Nhưng câu hỏi thì phải hỏi sao cho chuẩn nhỉ? Cỏ, vào quiz!"
+},
+"interactableWords": [
+{
+"word": "ホテル",
+"reading": "ほてる",
+"meaning": "Khách sạn",
+"id": "word_hotel_03"
+},
+{
+"word": "あります",
+"reading": "あります",
+"meaning": "Có / Ở",
+"id": "word_arimasu_02"
+}
+],
+"nextNode": "node_008"
+},
+{
+"id": "node_008",
+"characterId": "npc_koro",
+"emotion": "idle",
+"background": "/images/bg_koban_interior.jpg",
+"dialogue": {
+"jp": "Câu hỏi rẽ nhánh đây: “Khách sạn ở đâu?” nói thế nào mới đúng? Chọn nhanh, tôi còn phải đi tuần!",
+"vi": "Câu hỏi rẽ nhánh đây: “Khách sạn ở đâu?” nói thế nào mới đúng? Chọn nhanh, tôi còn phải đi tuần!"
+},
+"interactableWords": [
+{
+"word": "どこ",
+"reading": "",
+"meaning": "Ở đâu",
+"id": "word_doko_03"
+},
+{
+"word": "ホテル",
+"reading": "ほてる",
+"meaning": "Khách sạn",
+"id": "word_hotel_04"
+}
+],
+"choices": [
+{
+"text": "ホテルはどこにいますか。",
+"isCorrect": false,
+"nextNode": "node_009_wrong"
+},
+{
+"text": "ホテルはどこにありますか。",
+"isCorrect": true,
+"nextNode": "node_009_correct"
+}
+]
+},
+{
+"id": "node_009_wrong",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_koban_interior.jpg",
+"dialogue": {
+"jp": "Sai rồi nha! Khách sạn là vật vô tri vô giác, không tự chạy đi đâu được nên phải dùng あります nhé!",
+"vi": "Sai rồi nha! Khách sạn là vật vô tri vô giác, không tự chạy đi đâu được nên phải dùng あります nhé!"
+},
+"interactableWords": [
+{
+"word": "あります",
+"reading": "あります",
+"meaning": "Có / Ở (vật vô tri)",
+"id": "word_arimasu_03"
+},
+{
+"word": "います",
+"reading": "います",
+"meaning": "Có / Ở (người, động vật)",
+"id": "word_imasu_02"
+}
+],
+"nextNode": "node_008"
+},
+{
+"id": "node_009_correct",
+"characterId": "npc_koro",
+"emotion": "idle",
+"background": "/images/bg_koban_interior.jpg",
+"dialogue": {
+"jp": "Đúng rồi! ホテルはどこにありますか。Khách sạn ở góc đường kia kìa, đi thẳng 2 phút là tới!",
+"vi": "Đúng rồi! ホテルはどこにありますか. Khách sạn ở góc đường kia kìa, đi thẳng 2 phút là tới!"
+},
+"interactableWords": [
+{
+"word": "あります",
+"reading": "あります",
+"meaning": "Có / Ở (vật vô tri)",
+"id": "word_arimasu_04"
+},
+{
+"word": "どこ",
+"reading": "",
+"meaning": "Ở đâu",
+"id": "word_doko_04"
+}
+],
+"nextNode": "END_STORY"
+}
+]
+}

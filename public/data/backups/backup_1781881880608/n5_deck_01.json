@@ -1,0 +1,131 @@
+[
+  {
+    "id": "n5-001",
+    "word": "食べる",
+    "reading": "たべる",
+    "romaji": "taberu",
+    "meaning": "Ăn",
+    "pos": "verb_transitive",
+    "pitch_accent": "atamadaka",
+    "example_jp": "私はりんごを食べる。",
+    "example_jp_formatted": "[私]{わたし}はりんごを[食]{た}べる。",
+    "example_vi": "Tôi ăn táo.",
+    "level": "N5",
+    "tags": ["từ-vựng-cơ-bản", "động-từ"],
+    "notes": "Động từ nhóm 2.",
+    "synonyms": ["食事する"],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "食",
+        "meaning": "thực (ăn)",
+        "onyomi": "ショク",
+        "kunyomi": "た.べる"
+      }
+    ]
+  },
+  {
+    "id": "n5-002",
+    "word": "水",
+    "reading": "みず",
+    "romaji": "mizu",
+    "meaning": "Nước",
+    "pos": "noun",
+    "pitch_accent": "heiban",
+    "example_jp": "毎日、水を飲みます。",
+    "example_jp_formatted": "[毎日]{まいにち}、[水]{みず}を[飲]{の}みます。",
+    "example_vi": "Mỗi ngày tôi đều uống nước.",
+    "level": "N5",
+    "tags": ["danh-từ", "đồ-uống"],
+    "notes": "Chỉ nước lạnh nói chung, nước nóng là お湯 (oyu).",
+    "synonyms": [],
+    "antonyms": ["お湯"],
+    "kanji_info": [
+      {
+        "kanji": "水",
+        "meaning": "thủy (nước)",
+        "onyomi": "スイ",
+        "kunyomi": "みず"
+      }
+    ]
+  },
+  {
+    "id": "n5-003",
+    "word": "大きい",
+    "reading": "おおきい",
+    "romaji": "ookii",
+    "meaning": "To, lớn",
+    "pos": "adjective_i",
+    "pitch_accent": "nakadaka",
+    "example_jp": "その犬はとても大きいです。",
+    "example_jp_formatted": "その[犬]{いぬ}はとても[大]{おお}きいです。",
+    "example_vi": "Con chó đó rất to.",
+    "level": "N5",
+    "tags": ["tính-từ-đuôi-i", "miêu-tả"],
+    "synonyms": ["巨大な"],
+    "antonyms": ["小さい"],
+    "kanji_info": [
+      {
+        "kanji": "大",
+        "meaning": "đại (to lớn)",
+        "onyomi": "ダイ, タイ",
+        "kunyomi": "おお.きい"
+      }
+    ]
+  },
+  {
+    "id": "n5-004",
+    "word": "行く",
+    "reading": "いく",
+    "romaji": "iku",
+    "meaning": "Đi",
+    "pos": "verb_intransitive",
+    "pitch_accent": "heiban",
+    "example_jp": "明日、学校へ行きます。",
+    "example_jp_formatted": "[明日]{あした}、[学校]{がっこう}へ[行]{い}きます。",
+    "example_vi": "Ngày mai tôi đi đến trường.",
+    "level": "N5",
+    "tags": ["động-từ", "di-chuyển"],
+    "notes": "Sử dụng với trợ từ へ (e) hoặc に (ni) để chỉ phương hướng.",
+    "synonyms": ["向かう"],
+    "antonyms": ["来る", "帰る"],
+    "kanji_info": [
+      {
+        "kanji": "行",
+        "meaning": "hành (đi)",
+        "onyomi": "コウ, ギョウ",
+        "kunyomi": "い.く, ゆ.く"
+      }
+    ]
+  },
+  {
+    "id": "n5-005",
+    "word": "友達",
+    "reading": "ともだち",
+    "romaji": "tomodachi",
+    "meaning": "Bạn bè",
+    "pos": "noun",
+    "pitch_accent": "heiban",
+    "example_jp": "週末は友達と遊びます。",
+    "example_jp_formatted": "[週末]{しゅうまつ}は[友達]{ともだち}と[遊]{あそ}びます。",
+    "example_vi": "Cuối tuần tôi đi chơi với bạn bè.",
+    "level": "N5",
+    "tags": ["danh-từ", "con-người"],
+    "synonyms": ["友人"],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "友",
+        "meaning": "hữu (bạn)",
+        "onyomi": "ユウ",
+        "kunyomi": "とも"
+      },
+      {
+        "kanji": "達",
+        "meaning": "đạt (chỉ số nhiều, đạt tới)",
+        "onyomi": "タツ",
+        "kunyomi": "たち"
+      }
+    ]
+  }
+]

@@ -1,0 +1,294 @@
+{
+"meta": {
+"id": "vn_chapter_05",
+"title": "Ánh trăng đêm nay",
+"level": "N5",
+"rewardCoins": 20
+},
+"characters": {
+"mascot": {
+"name": "Shiba",
+"color": "#FF9F1C",
+"position": "right",
+"sprites": {
+"idle": "/images/characters/shiba_idle.png",
+"confused": "/images/characters/shiba_confused.png"
+}
+},
+"stranger": {
+"name": "Cỏ",
+"color": "#06D6A0",
+"position": "left",
+"sprites": {
+"idle": "/images/characters/stranger_idle.png",
+"happy_wink": "/images/characters/stranger_happy_wink.png"
+}
+},
+"npc_you": {
+"name": "Lập trình viên",
+"color": "#0077B6",
+"position": "right",
+"sprites": {
+"idle": "/images/characters/programmer_idle.png",
+"happy": "/images/characters/programmer_happy.png",
+"nervous": "/images/characters/programmer_nervous.png"
+}
+},
+"npc_an": {
+"name": "An",
+"color": "#FFC2D1",
+"position": "left",
+"sprites": {
+"surprised": "/images/characters/an_surprised.png",
+"happy": "/images/characters/an_happy.png",
+"happy_blush": "/images/characters/an_happy_blush.png",
+"blush": "/images/characters/an_blush.png"
+}
+}
+},
+"nodes": [
+{
+"id": "node_001",
+"characterId": "stranger",
+"emotion": "idle",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "Kìa Shiba, là anh IT và chị Điều dưỡng kìa. Nhìn họ đi dạo dưới 月 sáng ghê.",
+"vi": "Kìa Shiba, là anh IT và chị Điều dưỡng kìa. Nhìn họ đi dạo dưới ánh trăng sáng ghê."
+},
+"interactableWords": [
+{
+"word": "月",
+"reading": "つき",
+"meaning": "Mặt trăng",
+"id": "word_tsuki_01"
+},
+{
+"word": "公園",
+"reading": "こうえん",
+"meaning": "Công viên",
+"id": "word_koen_01"
+}
+],
+"nextNode": "node_002"
+},
+{
+"id": "node_002",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "Ơ kìa, họ đang hẹn hò thật kìa! Thôi rút lui nhẹ nhàng thôi, không làm kỳ đà cản mũi.",
+"vi": "Ơ kìa, họ đang hẹn hò thật kìa! Thôi rút lui nhẹ nhàng thôi, không làm kỳ đà cản mũi."
+},
+"interactableWords": [
+{
+"word": "恋人",
+"reading": "こいびと",
+"meaning": "Người yêu",
+"id": "word_koibito_01"
+},
+{
+"word": "静か",
+"reading": "しずか",
+"meaning": "Yên tĩnh",
+"id": "word_shizuka_01"
+}
+],
+"nextNode": "node_003"
+},
+{
+"id": "node_003",
+"characterId": "npc_you",
+"emotion": "nervous",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "An này... anh có thể nắm tay em một chút không? 手を繋いでもいいですか。",
+"vi": "An này... anh có thể nắm tay em một chút không?"
+},
+"interactableWords": [
+{
+"word": "手",
+"reading": "て",
+"meaning": "Tay",
+"id": "word_te_01"
+},
+{
+"word": "繋ぐ",
+"reading": "つなぐ",
+"meaning": "Nắm / Kết nối",
+"id": "word_tsunagu_01"
+},
+{
+"word": "てもいいですか",
+"reading": "てもいいですか",
+"meaning": "Làm... có được không?",
+"id": "word_temoiidesuka_01"
+}
+],
+"nextNode": "node_004"
+},
+{
+"id": "node_004",
+"characterId": "npc_an",
+"emotion": "blush",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "…",
+"vi": "..."
+},
+"interactableWords": [
+{
+"word": "赤い",
+"reading": "あかい",
+"meaning": "Đỏ",
+"id": "word_akai_01"
+},
+{
+"word": "うなずく",
+"reading": "うなずく",
+"meaning": "Gật đầu",
+"id": "word_unazuku_01"
+}
+],
+"nextNode": "node_005"
+},
+{
+"id": "node_005",
+"characterId": "npc_you",
+"emotion": "idle",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "Cảm ơn em. Hai người im lặng một lúc nhé... chỉ cần cùng nhìn lên trời thôi.",
+"vi": "Cảm ơn em. Hai người im lặng một lúc nhé... chỉ cần cùng nhìn lên trời thôi."
+},
+"interactableWords": [
+{
+"word": "空",
+"reading": "そら",
+"meaning": "Bầu trời",
+"id": "word_sora_01"
+},
+{
+"word": "見る",
+"reading": "みる",
+"meaning": "Nhìn",
+"id": "word_miru_01"
+}
+],
+"nextNode": "node_006"
+},
+{
+"id": "node_006",
+"characterId": "npc_you",
+"emotion": "nervous",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "月が綺麗ですね。",
+"vi": "Trăng đẹp nhỉ."
+},
+"interactableWords": [
+{
+"word": "月",
+"reading": "つき",
+"meaning": "Mặt trăng",
+"id": "word_tsuki_02"
+},
+{
+"word": "綺麗",
+"reading": "きれい",
+"meaning": "Đẹp",
+"id": "word_kirei_01"
+}
+],
+"choices": [
+{
+"text": "月が綺麗ですね。",
+"isCorrect": true,
+"nextNode": "node_007"
+}
+]
+},
+{
+"id": "node_007",
+"characterId": "npc_an",
+"emotion": "blush",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "...はい。今夜は、月が本当に綺麗ですね。",
+"vi": "...Vâng. Đêm nay, trăng đẹp thật nhỉ."
+},
+"interactableWords": [
+{
+"word": "今夜",
+"reading": "こんや",
+"meaning": "Đêm nay",
+"id": "word_konya_01"
+},
+{
+"word": "本当に",
+"reading": "ほんとうに",
+"meaning": "Thật sự",
+"id": "word_hontoni_01"
+},
+{
+"word": "綺麗",
+"reading": "きれい",
+"meaning": "Đẹp",
+"id": "word_kirei_02"
+}
+],
+"nextNode": "node_008"
+},
+{
+"id": "node_008",
+"characterId": "mascot",
+"emotion": "confused",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "Ủa? Sao anh ấy lại nói chuyện thời tiết vậy Cỏ?",
+"vi": "Ủa? Sao anh ấy lại nói chuyện thời tiết vậy Cỏ?"
+},
+"interactableWords": [
+{
+"word": "天気",
+"reading": "てんき",
+"meaning": "Thời tiết",
+"id": "word_tenki_01"
+},
+{
+"word": "どうして",
+"reading": "",
+"meaning": "Tại sao",
+"id": "word_doushite_01"
+}
+],
+"nextNode": "node_009"
+},
+{
+"id": "node_009",
+"characterId": "stranger",
+"emotion": "happy_wink",
+"background": "/images/bg_park_night.jpg",
+"dialogue": {
+"jp": "Cậu ngốc quá Shiba. Đi thôi!",
+"vi": "Cậu ngốc quá Shiba. Đi thôi!"
+},
+"interactableWords": [
+{
+"word": "行く",
+"reading": "いく",
+"meaning": "Đi",
+"id": "word_iku_01"
+},
+{
+"word": "秘密",
+"reading": "ひみつ",
+"meaning": "Bí mật",
+"id": "word_himitsu_01"
+}
+],
+"nextNode": "END_STORY"
+}
+]
+}

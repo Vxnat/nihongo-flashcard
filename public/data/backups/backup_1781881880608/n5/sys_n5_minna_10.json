@@ -1,0 +1,1302 @@
+[
+{
+"id": "sys_n5_minna_10_001",
+"word": "居ます",
+"reading": "います",
+"romaji": "imasu",
+"meaning": "Có, tồn tại (người, động vật)",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "公園に犬が居ます。",
+"example_jp_formatted": "[公園]{こうえん}に[犬]{いぬ}が[居]{い}ます。",
+"example_vi": "Có con chó ở công viên.",
+"level": "N5",
+"tags": [
+"động-từ",
+"tồn-tại",
+"bài-10"
+],
+"notes": "Dùng cho người và động vật sống.",
+"synonyms": [],
+"antonyms": [
+"有ります"
+],
+"kanji_info": [
+{
+"kanji": "居",
+"meaning": "ở, tồn tại",
+"onyomi": "キョ",
+"kunyomi": "い.る, お.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_002",
+"word": "有ります",
+"reading": "あります",
+"romaji": "arimasu",
+"meaning": "Có, tồn tại (đồ vật)",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "部屋に机が有ります。",
+"example_jp_formatted": "[部屋]{へや}に[机]{つくえ}が[有]{あ}ります。",
+"example_vi": "Có cái bàn trong phòng.",
+"level": "N5",
+"tags": [
+"động-từ",
+"tồn-tại",
+"bài-10"
+],
+"notes": "Dùng cho đồ vật và sự vật vô tri.",
+"synonyms": [],
+"antonyms": [
+"居ます"
+],
+"kanji_info": [
+{
+"kanji": "有",
+"meaning": "có, tồn tại",
+"onyomi": "ユウ, ウ",
+"kunyomi": "あ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_003",
+"word": "何処",
+"reading": "どこ",
+"romaji": "doko",
+"meaning": "Ở đâu",
+"pos": "pron",
+"pitch_accent": "heiban",
+"example_jp": "本は何処に有りますか。",
+"example_jp_formatted": "[本]{ほん}は[何処]{どこ}に[有]{あ}りますか。",
+"example_vi": "Quyển sách ở đâu?",
+"level": "N5",
+"tags": [
+"đại-từ",
+"địa-điểm",
+"bài-10"
+],
+"notes": "Dùng để hỏi vị trí.",
+"synonyms": [
+"どちら"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "nào, gì",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "処",
+"meaning": "xứ, nơi",
+"onyomi": "ショ",
+"kunyomi": "ところ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_004",
+"word": "机",
+"reading": "つくえ",
+"romaji": "tsukue",
+"meaning": "Cái bàn",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "机の上に本が有ります。",
+"example_jp_formatted": "[机]{つくえ}の[上]{うえ}に[本]{ほん}が[有]{あ}ります。",
+"example_vi": "Có quyển sách trên bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-vật",
+"bài-10"
+],
+"notes": "Đồ dùng trong nhà hoặc lớp học.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "机",
+"meaning": "cơ (bàn)",
+"onyomi": "キ",
+"kunyomi": "つくえ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_005",
+"word": "椅子",
+"reading": "いす",
+"romaji": "isu",
+"meaning": "Cái ghế",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "椅子は机の隣に有ります。",
+"example_jp_formatted": "[椅子]{いす}は[机]{つくえ}の[隣]{となり}に[有]{あ}ります。",
+"example_vi": "Cái ghế ở cạnh cái bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-vật",
+"bài-10"
+],
+"notes": "Đồ dùng trong phòng học hoặc phòng ở.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "椅",
+"meaning": "ỷ",
+"onyomi": "イ",
+"kunyomi": ""
+},
+{
+"kanji": "子",
+"meaning": "tử",
+"onyomi": "シ",
+"kunyomi": "こ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_006",
+"word": "冷蔵庫",
+"reading": "れいぞうこ",
+"romaji": "reizouko",
+"meaning": "Tủ lạnh",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "冷蔵庫の中に水が有ります。",
+"example_jp_formatted": "[冷蔵庫]{れいぞうこ}の[中]{なか}に[水]{みず}が[有]{あ}ります。",
+"example_vi": "Có nước trong tủ lạnh.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-vật",
+"bài-10"
+],
+"notes": "Đồ điện gia dụng phổ biến.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "冷",
+"meaning": "lãnh (lạnh)",
+"onyomi": "レイ",
+"kunyomi": "つめ.たい, ひ.える"
+},
+{
+"kanji": "蔵",
+"meaning": "tàng",
+"onyomi": "ゾウ",
+"kunyomi": "くら"
+},
+{
+"kanji": "庫",
+"meaning": "khố",
+"onyomi": "コ",
+"kunyomi": "くら"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_007",
+"word": "電話",
+"reading": "でんわ",
+"romaji": "denwa",
+"meaning": "Điện thoại",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "電話は机の前に有ります。",
+"example_jp_formatted": "[電話]{でんわ}は[机]{つくえ}の[前]{まえ}に[有]{あ}ります。",
+"example_vi": "Điện thoại ở phía trước cái bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-vật",
+"bài-10"
+],
+"notes": "Điện thoại bàn hoặc điện thoại nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "電",
+"meaning": "điện",
+"onyomi": "デン",
+"kunyomi": ""
+},
+{
+"kanji": "話",
+"meaning": "thoại, lời nói",
+"onyomi": "ワ",
+"kunyomi": "はな.す, はなし"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_008",
+"word": "箱",
+"reading": "はこ",
+"romaji": "hako",
+"meaning": "Cái hộp",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "箱の中に本が有ります。",
+"example_jp_formatted": "[箱]{はこ}の[中]{なか}に[本]{ほん}が[有]{あ}ります。",
+"example_vi": "Có quyển sách trong hộp.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"đồ-vật",
+"bài-10"
+],
+"notes": "Dùng cho hộp đựng đồ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "箱",
+"meaning": "hộp",
+"onyomi": "ソウ",
+"kunyomi": "はこ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_009",
+"word": "部屋",
+"reading": "へや",
+"romaji": "heya",
+"meaning": "Phòng, căn phòng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "部屋に椅子が有ります。",
+"example_jp_formatted": "[部屋]{へや}に[椅子]{いす}が[有]{あ}ります。",
+"example_vi": "Có cái ghế trong phòng.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"địa-điểm",
+"bài-10"
+],
+"notes": "Không gian phòng ở hoặc phòng học.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "部",
+"meaning": "bộ",
+"onyomi": "ブ",
+"kunyomi": "へ"
+},
+{
+"kanji": "屋",
+"meaning": "ốc",
+"onyomi": "オク",
+"kunyomi": "や"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_010",
+"word": "庭",
+"reading": "にわ",
+"romaji": "niwa",
+"meaning": "Vườn, sân",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "庭に花が有ります。",
+"example_jp_formatted": "[庭]{にわ}に[花]{はな}が[有]{あ}ります。",
+"example_vi": "Có hoa trong vườn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"địa-điểm",
+"bài-10"
+],
+"notes": "Khu vườn hoặc sân nhà.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "庭",
+"meaning": "đình (vườn)",
+"onyomi": "テイ",
+"kunyomi": "にわ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_011",
+"word": "公園",
+"reading": "こうえん",
+"romaji": "kouen",
+"meaning": "Công viên",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "公園に子供が居ます。",
+"example_jp_formatted": "[公園]{こうえん}に[子供]{こども}が[居]{い}ます。",
+"example_vi": "Có trẻ em ở công viên.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"địa-điểm",
+"bài-10"
+],
+"notes": "Địa điểm công cộng.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "公",
+"meaning": "công",
+"onyomi": "コウ",
+"kunyomi": "おおやけ"
+},
+{
+"kanji": "園",
+"meaning": "viên",
+"onyomi": "エン",
+"kunyomi": "その"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_012",
+"word": "犬",
+"reading": "いぬ",
+"romaji": "inu",
+"meaning": "Chó",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "庭に犬が居ます。",
+"example_jp_formatted": "[庭]{にわ}に[犬]{いぬ}が[居]{い}ます。",
+"example_vi": "Có con chó ở sân.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"động-vật",
+"bài-10"
+],
+"notes": "Động vật sống, dùng với 居ます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "犬",
+"meaning": "khuyển (chó)",
+"onyomi": "ケン",
+"kunyomi": "いぬ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_013",
+"word": "猫",
+"reading": "ねこ",
+"romaji": "neko",
+"meaning": "Mèo",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "公園に猫が居ます。",
+"example_jp_formatted": "[公園]{こうえん}に[猫]{ねこ}が[居]{い}ます。",
+"example_vi": "Có con mèo ở công viên.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"động-vật",
+"bài-10"
+],
+"notes": "Động vật sống, dùng với 居ます.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "猫",
+"meaning": "miêu (mèo)",
+"onyomi": "ビョウ",
+"kunyomi": "ねこ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_014",
+"word": "木",
+"reading": "き",
+"romaji": "ki",
+"meaning": "Cây",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "庭に木が有ります。",
+"example_jp_formatted": "[庭]{にわ}に[木]{き}が[有]{あ}ります。",
+"example_vi": "Có cây trong vườn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"thiên-nhiên",
+"bài-10"
+],
+"notes": "Cây cối, thực vật.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "木",
+"meaning": "mộc, cây",
+"onyomi": "ボク, モク",
+"kunyomi": "き, こ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_015",
+"word": "花",
+"reading": "はな",
+"romaji": "hana",
+"meaning": "Hoa",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "庭に花が有ります。",
+"example_jp_formatted": "[庭]{にわ}に[花]{はな}が[有]{あ}ります。",
+"example_vi": "Có hoa trong vườn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"thiên-nhiên",
+"bài-10"
+],
+"notes": "Hoa cỏ nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "花",
+"meaning": "hoa",
+"onyomi": "カ",
+"kunyomi": "はな"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_016",
+"word": "上",
+"reading": "うえ",
+"romaji": "ue",
+"meaning": "Phía trên, trên",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "机の上に本が有ります。",
+"example_jp_formatted": "[机]{つくえ}の[上]{うえ}に[本]{ほん}が[有]{あ}ります。",
+"example_vi": "Có quyển sách trên bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ vị trí ở phía trên.",
+"synonyms": [],
+"antonyms": [
+"下"
+],
+"kanji_info": [
+{
+"kanji": "上",
+"meaning": "thượng, trên",
+"onyomi": "ジョウ, ショウ",
+"kunyomi": "うえ, あ.がる, あ.げる"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_017",
+"word": "下",
+"reading": "した",
+"romaji": "shita",
+"meaning": "Phía dưới, dưới",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "机の下に猫が居ます。",
+"example_jp_formatted": "[机]{つくえ}の[下]{した}に[猫]{ねこ}が[居]{い}ます。",
+"example_vi": "Có con mèo dưới cái bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ vị trí ở phía dưới.",
+"synonyms": [],
+"antonyms": [
+"上"
+],
+"kanji_info": [
+{
+"kanji": "下",
+"meaning": "hạ, dưới",
+"onyomi": "カ, ゲ",
+"kunyomi": "した, しも, くだ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_018",
+"word": "中",
+"reading": "なか",
+"romaji": "naka",
+"meaning": "Bên trong, trong",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "箱の中に本が有ります。",
+"example_jp_formatted": "[箱]{はこ}の[中]{なか}に[本]{ほん}が[有]{あ}ります。",
+"example_vi": "Có quyển sách bên trong hộp.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ vị trí bên trong một vật hoặc không gian.",
+"synonyms": [
+"内部"
+],
+"antonyms": [
+"外"
+],
+"kanji_info": [
+{
+"kanji": "中",
+"meaning": "trung, trong",
+"onyomi": "チュウ",
+"kunyomi": "なか, うち"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_019",
+"word": "外",
+"reading": "そと",
+"romaji": "soto",
+"meaning": "Bên ngoài",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "犬は外に居ます。",
+"example_jp_formatted": "[犬]{いぬ}は[外]{そと}に[居]{い}ます。",
+"example_vi": "Con chó ở bên ngoài.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ vị trí bên ngoài.",
+"synonyms": [],
+"antonyms": [
+"中"
+],
+"kanji_info": [
+{
+"kanji": "外",
+"meaning": "ngoại, ngoài",
+"onyomi": "ガイ, ゲ",
+"kunyomi": "そと, ほか"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_020",
+"word": "前",
+"reading": "まえ",
+"romaji": "mae",
+"meaning": "Phía trước, trước",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "電話は机の前に有ります。",
+"example_jp_formatted": "[電話]{でんわ}は[机]{つくえ}の[前]{まえ}に[有]{あ}ります。",
+"example_vi": "Điện thoại ở phía trước cái bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ vị trí phía trước.",
+"synonyms": [],
+"antonyms": [
+"後ろ"
+],
+"kanji_info": [
+{
+"kanji": "前",
+"meaning": "tiền, trước",
+"onyomi": "ゼン",
+"kunyomi": "まえ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_021",
+"word": "後ろ",
+"reading": "うしろ",
+"romaji": "ushiro",
+"meaning": "Phía sau, sau lưng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "椅子は机の後ろに有ります。",
+"example_jp_formatted": "[椅子]{いす}は[机]{つくえ}の[後]{うし}ろに[有]{あ}ります。",
+"example_vi": "Cái ghế ở phía sau cái bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ vị trí phía sau.",
+"synonyms": [],
+"antonyms": [
+"前"
+],
+"kanji_info": [
+{
+"kanji": "後",
+"meaning": "hậu, sau",
+"onyomi": "ゴ, コウ",
+"kunyomi": "うし.ろ, のち, あと"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_022",
+"word": "右",
+"reading": "みぎ",
+"romaji": "migi",
+"meaning": "Bên phải",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "冷蔵庫は部屋の右に有ります。",
+"example_jp_formatted": "[冷蔵庫]{れいぞうこ}は[部屋]{へや}の[右]{みぎ}に[有]{あ}ります。",
+"example_vi": "Tủ lạnh ở bên phải phòng.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ phía bên phải.",
+"synonyms": [],
+"antonyms": [
+"左"
+],
+"kanji_info": [
+{
+"kanji": "右",
+"meaning": "hữu, phải",
+"onyomi": "ユウ, ウ",
+"kunyomi": "みぎ"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_023",
+"word": "左",
+"reading": "ひだり",
+"romaji": "hidari",
+"meaning": "Bên trái",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "電話は机の左に有ります。",
+"example_jp_formatted": "[電話]{でんわ}は[机]{つくえ}の[左]{ひだり}に[有]{あ}ります。",
+"example_vi": "Điện thoại ở bên trái cái bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ phía bên trái.",
+"synonyms": [],
+"antonyms": [
+"右"
+],
+"kanji_info": [
+{
+"kanji": "左",
+"meaning": "tả, trái",
+"onyomi": "サ",
+"kunyomi": "ひだり"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_024",
+"word": "隣",
+"reading": "となり",
+"romaji": "tonari",
+"meaning": "Bên cạnh",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "椅子は机の隣に有ります。",
+"example_jp_formatted": "[椅子]{いす}は[机]{つくえ}の[隣]{となり}に[有]{あ}ります。",
+"example_vi": "Cái ghế ở bên cạnh cái bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"vị-trí",
+"bài-10"
+],
+"notes": "Chỉ vị trí ở sát bên cạnh.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "隣",
+"meaning": "lân, bên cạnh",
+"onyomi": "リン",
+"kunyomi": "とな.り"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_025",
+"word": "本",
+"reading": "ほん",
+"romaji": "hon",
+"meaning": "Sách",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "机の上に本が有ります。",
+"example_jp_formatted": "[机]{つくえ}の[上]{うえ}に[本]{ほん}が[有]{あ}ります。",
+"example_vi": "Có quyển sách trên bàn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"học-tập",
+"bài-10"
+],
+"notes": "Vật dụng rất thường gặp trong bài tồn tại.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "本",
+"meaning": "bản, sách",
+"onyomi": "ホン",
+"kunyomi": "もと"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_026",
+"word": "好き",
+"reading": "すき",
+"romaji": "suki",
+"meaning": "Thích",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は音楽が好きです。",
+"example_jp_formatted": "[私]{わたし}は[音楽]{おんがく}が[好]{す}きです。",
+"example_vi": "Tôi thích âm nhạc.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"sở-thích",
+"bài-10"
+],
+"notes": "Đi với が để diễn tả sở thích.",
+"synonyms": [
+"大好き"
+],
+"antonyms": [
+"嫌い"
+],
+"kanji_info": [
+{
+"kanji": "好",
+"meaning": "thích",
+"onyomi": "コウ",
+"kunyomi": "この.む, す.く, す.き"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_027",
+"word": "嫌い",
+"reading": "きらい",
+"romaji": "kirai",
+"meaning": "Ghét, không thích",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私はタバコが嫌いです。",
+"example_jp_formatted": "[私]{わたし}はタバコが[嫌]{きら}いです。",
+"example_vi": "Tôi ghét thuốc lá.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"sở-thích",
+"bài-10"
+],
+"notes": "Đi với が để diễn tả điều không thích.",
+"synonyms": [
+"大嫌い"
+],
+"antonyms": [
+"好き"
+],
+"kanji_info": [
+{
+"kanji": "嫌",
+"meaning": "ghét, chán",
+"onyomi": "ケン, ゲン",
+"kunyomi": "きら.う, きら.い, いや"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_028",
+"word": "上手",
+"reading": "じょうず",
+"romaji": "jouzu",
+"meaning": "Giỏi, khéo",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "母は料理が上手です。",
+"example_jp_formatted": "[母]{はは}は[料理]{りょうり}が[上手]{じょうず}です。",
+"example_vi": "Mẹ tôi nấu ăn giỏi.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"khả-năng",
+"bài-10"
+],
+"notes": "Dùng để khen kỹ năng của ai đó.",
+"synonyms": [
+"得意"
+],
+"antonyms": [
+"下手"
+],
+"kanji_info": [
+{
+"kanji": "上",
+"meaning": "trên",
+"onyomi": "ジョウ, ショウ",
+"kunyomi": "うえ, あ.がる"
+},
+{
+"kanji": "手",
+"meaning": "tay",
+"onyomi": "シュ",
+"kunyomi": "て"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_029",
+"word": "下手",
+"reading": "へた",
+"romaji": "heta",
+"meaning": "Kém, dở",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は歌が下手です。",
+"example_jp_formatted": "[私]{わたし}は[歌]{うた}が[下手]{へた}です。",
+"example_vi": "Tôi hát dở.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"khả-năng",
+"bài-10"
+],
+"notes": "Dùng để nói kỹ năng chưa tốt.",
+"synonyms": [
+"苦手"
+],
+"antonyms": [
+"上手"
+],
+"kanji_info": [
+{
+"kanji": "下",
+"meaning": "dưới",
+"onyomi": "カ, ゲ",
+"kunyomi": "した, しも, くだ.る"
+},
+{
+"kanji": "手",
+"meaning": "tay",
+"onyomi": "シュ, ズ",
+"kunyomi": "て, た"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_030",
+"word": "分かります",
+"reading": "わかります",
+"romaji": "wakarimasu",
+"meaning": "Hiểu, biết",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "私は英語が分かります。",
+"example_jp_formatted": "[私]{わたし}は[英語]{えいご}が[分]{わ}かります。",
+"example_vi": "Tôi hiểu tiếng Anh.",
+"level": "N5",
+"tags": [
+"động-từ",
+"khả-năng",
+"bài-10"
+],
+"notes": "Dùng để nói hiểu thông tin, ngôn ngữ, tình huống.",
+"synonyms": [
+"知っています"
+],
+"antonyms": [
+"分かりません"
+],
+"kanji_info": [
+{
+"kanji": "分",
+"meaning": "phân, hiểu",
+"onyomi": "ブン, フン, ブ",
+"kunyomi": "わ.ける, わ.かる, わ.かれる"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_031",
+"word": "料理",
+"reading": "りょうり",
+"romaji": "ryouri",
+"meaning": "Nấu ăn; món ăn",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "父は料理をします。",
+"example_jp_formatted": "[父]{ちち}は[料理]{りょうり}をします。",
+"example_vi": "Bố tôi nấu ăn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"nấu-ăn",
+"bài-10"
+],
+"notes": "Dùng cho hành động nấu ăn hoặc món ăn.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "料",
+"meaning": "liệu",
+"onyomi": "リョウ",
+"kunyomi": "はか.る"
+},
+{
+"kanji": "理",
+"meaning": "lý",
+"onyomi": "リ",
+"kunyomi": "ことわり"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_032",
+"word": "勉強",
+"reading": "べんきょう",
+"romaji": "benkyou",
+"meaning": "Học tập",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本語を勉強します。",
+"example_jp_formatted": "[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"học-tập",
+"bài-10"
+],
+"notes": "Thường dùng với します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "勉",
+"meaning": "cố gắng",
+"onyomi": "ベン",
+"kunyomi": "つと.める"
+},
+{
+"kanji": "強",
+"meaning": "mạnh, học",
+"onyomi": "キョウ, ゴウ",
+"kunyomi": "つよ.い, し.いる"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_033",
+"word": "仕事",
+"reading": "しごと",
+"romaji": "shigoto",
+"meaning": "Công việc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "私は仕事が好きです。",
+"example_jp_formatted": "[私]{わたし}は[仕事]{しごと}が[好]{す}きです。",
+"example_vi": "Tôi thích công việc.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"công-việc",
+"bài-10"
+],
+"notes": "Công việc, nghề nghiệp, việc làm.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "仕",
+"meaning": "làm",
+"onyomi": "シ",
+"kunyomi": "つか.える"
+},
+{
+"kanji": "事",
+"meaning": "việc",
+"onyomi": "ジ",
+"kunyomi": "こと"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_034",
+"word": "英語",
+"reading": "えいご",
+"romaji": "eigo",
+"meaning": "Tiếng Anh",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "私は英語が分かります。",
+"example_jp_formatted": "[私]{わたし}は[英語]{えいご}が[分]{わ}かります。",
+"example_vi": "Tôi hiểu tiếng Anh.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"ngoại-ngữ",
+"bài-10"
+],
+"notes": "Ngôn ngữ rất thường gặp trong bài.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "英",
+"meaning": "anh",
+"onyomi": "エイ",
+"kunyomi": "はなぶさ"
+},
+{
+"kanji": "語",
+"meaning": "ngữ",
+"onyomi": "ゴ",
+"kunyomi": "かた.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_035",
+"word": "日本語",
+"reading": "にほんご",
+"romaji": "nihongo",
+"meaning": "Tiếng Nhật",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本語を勉強します。",
+"example_jp_formatted": "[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"ngoại-ngữ",
+"bài-10"
+],
+"notes": "Ngôn ngữ quan trọng nhất của bài.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日",
+"meaning": "nhật",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, か"
+},
+{
+"kanji": "本",
+"meaning": "bản",
+"onyomi": "ホン",
+"kunyomi": "もと"
+},
+{
+"kanji": "語",
+"meaning": "ngữ",
+"onyomi": "ゴ",
+"kunyomi": "かた.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_036",
+"word": "音楽",
+"reading": "おんがく",
+"romaji": "ongaku",
+"meaning": "Âm nhạc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "音楽を聞きます。",
+"example_jp_formatted": "[音楽]{おんがく}を[聞]{き}きます。",
+"example_vi": "Tôi nghe nhạc.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"giải-trí",
+"bài-10"
+],
+"notes": "Danh từ rất quan trọng trong chủ đề sở thích.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "音",
+"meaning": "âm",
+"onyomi": "オン",
+"kunyomi": "おと, ね"
+},
+{
+"kanji": "楽",
+"meaning": "nhạc",
+"onyomi": "ガク, ラク",
+"kunyomi": "たの.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_037",
+"word": "食べます",
+"reading": "たべます",
+"romaji": "tabemasu",
+"meaning": "Ăn",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "朝御飯を食べます。",
+"example_jp_formatted": "[朝御飯]{あさごはん}を[食]{た}べます。",
+"example_vi": "Tôi ăn sáng.",
+"level": "N5",
+"tags": [
+"động-từ",
+"ăn-uống",
+"bài-10"
+],
+"notes": "Động từ nhóm 2. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "thực (ăn)",
+"onyomi": "ショク, ジキ",
+"kunyomi": "た.べる, く.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_038",
+"word": "飲みます",
+"reading": "のみます",
+"romaji": "nomimasu",
+"meaning": "Uống",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "水を飲みます。",
+"example_jp_formatted": "[水]{みず}を[飲]{の}みます。",
+"example_vi": "Tôi uống nước.",
+"level": "N5",
+"tags": [
+"động-từ",
+"ăn-uống",
+"bài-10"
+],
+"notes": "Động từ nhóm 1. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "ẩm (uống)",
+"onyomi": "イン",
+"kunyomi": "の.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_039",
+"word": "見ます",
+"reading": "みます",
+"romaji": "mimasu",
+"meaning": "Xem, nhìn",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "テレビを見ます。",
+"example_jp_formatted": "テレビを[見]{み}ます。",
+"example_vi": "Tôi xem TV.",
+"level": "N5",
+"tags": [
+"động-từ",
+"giải-trí",
+"bài-10"
+],
+"notes": "Động từ nhóm 2. Đi với を.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "見",
+"meaning": "kiến (thấy, xem)",
+"onyomi": "ケン",
+"kunyomi": "み.る, み.える, み.せる"
+}
+]
+},
+{
+"id": "sys_n5_minna_10_040",
+"word": "聞きます",
+"reading": "ききます",
+"romaji": "kikimasu",
+"meaning": "Nghe, hỏi",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "音楽を聞きます。",
+"example_jp_formatted": "[音楽]{おんがく}を[聞]{き}きます。",
+"example_vi": "Tôi nghe nhạc.",
+"level": "N5",
+"tags": [
+"động-từ",
+"giải-trí",
+"bài-10"
+],
+"notes": "Động từ nhóm 1. Đi với を khi nghĩa là nghe.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "聞",
+"meaning": "văn (nghe, hỏi)",
+"onyomi": "ブン, モン",
+"kunyomi": "き.く, き.こえる"
+}
+]
+}
+]

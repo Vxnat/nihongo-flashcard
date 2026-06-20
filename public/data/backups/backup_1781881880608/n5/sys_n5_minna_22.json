@@ -1,0 +1,1222 @@
+[
+{
+"id": "sys_n5_minna_22_001",
+"word": "買った本",
+"reading": "かったほん",
+"romaji": "katta hon",
+"meaning": "Cuốn sách đã mua",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "これは昨日買った本です。",
+"example_jp_formatted": "これは[昨日]{きのう}[買]{か}った[本]{ほん}です。",
+"example_vi": "Đây là cuốn sách tôi đã mua hôm qua.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Động từ thể quá khứ (Thể Ta) bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+},
+{
+"kanji": "本",
+"meaning": "sách",
+"onyomi": "ホン",
+"kunyomi": "もと"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_002",
+"word": "会った人",
+"reading": "あったひと",
+"romaji": "atta hito",
+"meaning": "Người đã gặp",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "日本で会った人は親切でした。",
+"example_jp_formatted": "[日本]{にほん}で[会]{あ}った[人]{ひと}は[親切]{しんせつ}でした。",
+"example_vi": "Người tôi gặp ở Nhật rất tốt bụng.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Mệnh đề bổ nghĩa cho danh từ người.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニホン",
+"kunyomi": ""
+},
+{
+"kanji": "会",
+"meaning": "gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+},
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン",
+"kunyomi": "ひと"
+},
+{
+"kanji": "親切",
+"meaning": "tốt bụng",
+"onyomi": "シンセツ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_003",
+"word": "働いている会社",
+"reading": "はたらいているかいしゃ",
+"romaji": "hataraite iru kaisha",
+"meaning": "Công ty đang làm việc",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "これは私が働いている会社です。",
+"example_jp_formatted": "これは[私]{わたし}が[働]{はたら}いている[会社]{かいしゃ}です。",
+"example_vi": "Đây là công ty tôi đang làm việc.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Thể V-ている bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "私",
+"meaning": "tôi",
+"onyomi": "シ",
+"kunyomi": "わたし"
+},
+{
+"kanji": "働",
+"meaning": "làm việc",
+"onyomi": "ドウ",
+"kunyomi": "はたら.く"
+},
+{
+"kanji": "会社",
+"meaning": "công ty",
+"onyomi": "カイシャ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_004",
+"word": "住んでいる町",
+"reading": "すんでいるまち",
+"romaji": "sunde iru machi",
+"meaning": "Thị trấn đang sống",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "私が住んでいる町は静かです。",
+"example_jp_formatted": "[私]{わたし}が[住]{す}んでいる[町]{まち}は[静]{しず}かです。",
+"example_vi": "Thị trấn tôi đang sống rất yên tĩnh.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "V-ている diễn tả trạng thái.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "私",
+"meaning": "tôi",
+"onyomi": "シ",
+"kunyomi": "わたし"
+},
+{
+"kanji": "住",
+"meaning": "sống",
+"onyomi": "ジュウ",
+"kunyomi": "す.む"
+},
+{
+"kanji": "町",
+"meaning": "thị trấn",
+"onyomi": "チョウ",
+"kunyomi": "まち"
+},
+{
+"kanji": "静",
+"meaning": "yên tĩnh",
+"onyomi": "セイ",
+"kunyomi": "しず.か"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_005",
+"word": "読んでいる本",
+"reading": "よんでいるほん",
+"romaji": "yonde iru hon",
+"meaning": "Cuốn sách đang đọc",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "今読んでいる本は面白いです。",
+"example_jp_formatted": "今[読]{よ}んでいる[本]{ほん}は[面白]{おもしろ}いです。",
+"example_vi": "Cuốn sách tôi đang đọc rất hay.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "V-ている bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+},
+{
+"kanji": "本",
+"meaning": "sách",
+"onyomi": "ホン",
+"kunyomi": "もと"
+},
+{
+"kanji": "面白",
+"meaning": "thú vị",
+"onyomi": "メンパク",
+"kunyomi": "おもしろ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_006",
+"word": "行く場所",
+"reading": "いくばしょ",
+"romaji": "iku basho",
+"meaning": "Địa điểm sẽ đi",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "明日行く場所はどこですか。",
+"example_jp_formatted": "[明日]{あした}[行]{い}く[場所]{ばしょ}はどこですか。",
+"example_vi": "Địa điểm bạn sẽ đi ngày mai là ở đâu?",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Thể từ điển (辞書形) bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "明日",
+"meaning": "ngày mai",
+"onyomi": "アシタ",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+},
+{
+"kanji": "場所",
+"meaning": "địa điểm",
+"onyomi": "バショ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_007",
+"word": "作った料理",
+"reading": "つくったりょうり",
+"romaji": "tsukutta ryouri",
+"meaning": "Món ăn đã làm",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "これは私が作った料理です。",
+"example_jp_formatted": "これは[私]{わたし}が[作]{つく}った[料理]{りょうり}です。",
+"example_vi": "Đây là món ăn tôi đã làm.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Thể Ta bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "私",
+"meaning": "tôi",
+"onyomi": "シ",
+"kunyomi": "わたし"
+},
+{
+"kanji": "作",
+"meaning": "làm",
+"onyomi": "サク",
+"kunyomi": "つく.る"
+},
+{
+"kanji": "料理",
+"meaning": "món ăn",
+"onyomi": "リョウリ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_008",
+"word": "食べた物",
+"reading": "たべたもの",
+"romaji": "tabeta mono",
+"meaning": "Thứ đã ăn",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "昨日食べた物は寿司です。",
+"example_jp_formatted": "[昨日]{きのう}[食]{た}べた[物]{もの}は[寿司]{すし}です。",
+"example_vi": "Thứ tôi đã ăn hôm qua là sushi.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+},
+{
+"kanji": "物",
+"meaning": "vật",
+"onyomi": "ブツ",
+"kunyomi": "もの"
+},
+{
+"kanji": "寿司",
+"meaning": "sushi",
+"onyomi": "スシ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_009",
+"word": "勉強している学生",
+"reading": "べんきょうしているがくせい",
+"romaji": "benkyou shite iru gakusei",
+"meaning": "Học sinh đang học",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "教室で勉強している学生は誰ですか。",
+"example_jp_formatted": "[教室]{きょうしつ}で[勉強]{べんきょう}している[学生]{がくせい}は[誰]{だれ}ですか。",
+"example_vi": "Học sinh đang học trong lớp là ai vậy?",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "教室",
+"meaning": "lớp học",
+"onyomi": "キョウシツ",
+"kunyomi": ""
+},
+{
+"kanji": "勉強",
+"meaning": "học",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+},
+{
+"kanji": "学生",
+"meaning": "học sinh",
+"onyomi": "ガクセイ",
+"kunyomi": ""
+},
+{
+"kanji": "誰",
+"meaning": "ai",
+"onyomi": "スイ",
+"kunyomi": "だれ"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_010",
+"word": "映画を見る人",
+"reading": "えいがをみるひと",
+"romaji": "eiga o miru hito",
+"meaning": "Người xem phim",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "映画を見る人はあそこです。",
+"example_jp_formatted": "[映画]{えいが}を[見]{み}る[人]{ひと}はあそこです。",
+"example_vi": "Người xem phim ở đằng kia.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "映画",
+"meaning": "phim",
+"onyomi": "エイガ",
+"kunyomi": ""
+},
+{
+"kanji": "見",
+"meaning": "xem",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+},
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン",
+"kunyomi": "ひと"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_011",
+"word": "撮った写真",
+"reading": "とったしゃしん",
+"romaji": "totta shashin",
+"meaning": "Ảnh đã chụp",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "これは昨日撮った写真です。",
+"example_jp_formatted": "これは[昨日]{きのう}[撮]{と}った[写真]{しゃしん}です。",
+"example_vi": "Đây là tấm ảnh đã chụp hôm qua.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "撮",
+"meaning": "chụp",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+},
+{
+"kanji": "写真",
+"meaning": "ảnh",
+"onyomi": "シャシン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_012",
+"word": "好きな人",
+"reading": "すきなひと",
+"romaji": "suki na hito",
+"meaning": "Người mình thích",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "あの人は私の好きな人です。",
+"example_jp_formatted": "あの[人]{ひと}は[私]{わたし}の[好]{す}きな[人]{ひと}です。",
+"example_vi": "Người đó là người tôi thích.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Tính từ đuôi な bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン",
+"kunyomi": "ひと"
+},
+{
+"kanji": "私",
+"meaning": "tôi",
+"onyomi": "シ",
+"kunyomi": "わたし"
+},
+{
+"kanji": "好",
+"meaning": "thích",
+"onyomi": "コウ",
+"kunyomi": "す.き"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_013",
+"word": "嫌いな食べ物",
+"reading": "きらいなたべもの",
+"romaji": "kirai na tabemono",
+"meaning": "Món ăn ghét",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "魚は私の嫌いな食べ物です。",
+"example_jp_formatted": "[魚]{さかな}は[私]{わたし}の[嫌]{きら}いな[食]{た}べ[物]{もの}です。",
+"example_vi": "Cá là món ăn tôi ghét.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["好きな食べ物"],
+"kanji_info": [
+{
+"kanji": "魚",
+"meaning": "cá",
+"onyomi": "ギョ",
+"kunyomi": "さかな"
+},
+{
+"kanji": "私",
+"meaning": "tôi",
+"onyomi": "シ",
+"kunyomi": "わたし"
+},
+{
+"kanji": "嫌",
+"meaning": "ghét",
+"onyomi": "ケン",
+"kunyomi": "きら.い"
+},
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+},
+{
+"kanji": "物",
+"meaning": "vật",
+"onyomi": "ブツ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_014",
+"word": "静かな町",
+"reading": "しずかなまち",
+"romaji": "shizuka na machi",
+"meaning": "Thị trấn yên tĩnh",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "ここは静かな町です。",
+"example_jp_formatted": "ここは[静]{しず}かな[町]{まち}です。",
+"example_vi": "Đây là thị trấn yên tĩnh.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["賑やかな町"],
+"kanji_info": [
+{
+"kanji": "静",
+"meaning": "yên tĩnh",
+"onyomi": "セイ",
+"kunyomi": "しず.か"
+},
+{
+"kanji": "町",
+"meaning": "thị trấn",
+"onyomi": "チョウ",
+"kunyomi": "まち"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_015",
+"word": "きれいな花",
+"reading": "きれいなはな",
+"romaji": "kirei na hana",
+"meaning": "Bông hoa đẹp",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "庭にきれいな花があります。",
+"example_jp_formatted": "[庭]{にわ}にきれいな[花]{はな}があります。",
+"example_vi": "Trong vườn có bông hoa đẹp.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "庭",
+"meaning": "vườn",
+"onyomi": "テイ",
+"kunyomi": "にわ"
+},
+{
+"kanji": "花",
+"meaning": "hoa",
+"onyomi": "カ",
+"kunyomi": "はな"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_016",
+"word": "難しい問題",
+"reading": "むずかしいもんだい",
+"romaji": "muzukashii mondai",
+"meaning": "Vấn đề khó",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "それは難しい問題です。",
+"example_jp_formatted": "それは[難]{むずか}しい[問題]{もんだい}です。",
+"example_vi": "Đó là vấn đề khó.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Tính từ đuôi い bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": ["簡単な問題"],
+"kanji_info": [
+{
+"kanji": "難",
+"meaning": "khó",
+"onyomi": "ナン",
+"kunyomi": "むずか.しい"
+},
+{
+"kanji": "問題",
+"meaning": "vấn đề",
+"onyomi": "モンダイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_017",
+"word": "面白い映画",
+"reading": "おもしろいえいが",
+"romaji": "omoshiroi eiga",
+"meaning": "Phim thú vị",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "これは面白い映画です。",
+"example_jp_formatted": "これは[面白]{おもしろ}い[映画]{えいが}です。",
+"example_vi": "Đây là bộ phim thú vị.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "面白",
+"meaning": "thú vị",
+"onyomi": "メンパク",
+"kunyomi": "おもしろ.い"
+},
+{
+"kanji": "映画",
+"meaning": "phim",
+"onyomi": "エイガ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_018",
+"word": "日本人の友達",
+"reading": "にほんじんのともだち",
+"romaji": "nihonjin no tomodachi",
+"meaning": "Bạn người Nhật",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "日本人の友達と話します。",
+"example_jp_formatted": "[日本人]{にほんじん}の[友達]{ともだち}と[話]{はな}します。",
+"example_vi": "Tôi nói chuyện với bạn người Nhật.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Danh từ bổ nghĩa bằng Noun+no+Noun.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本人",
+"meaning": "người Nhật",
+"onyomi": "ニホンジン",
+"kunyomi": ""
+},
+{
+"kanji": "友達",
+"meaning": "bạn",
+"onyomi": "トモダチ",
+"kunyomi": ""
+},
+{
+"kanji": "話",
+"meaning": "nói",
+"onyomi": "ワ",
+"kunyomi": "はな.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_019",
+"word": "私の傘",
+"reading": "わたしのかさ",
+"romaji": "watashi no kasa",
+"meaning": "Ô của tôi",
+"pos": "noun_modification",
+"pitch_accent": "atamadaka",
+"example_jp": "それは私の傘です。",
+"example_jp_formatted": "それは[私]{わたし}の[傘]{かさ}です。",
+"example_vi": "Đó là cái ô của tôi.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "私",
+"meaning": "tôi",
+"onyomi": "シ",
+"kunyomi": "わたし"
+},
+{
+"kanji": "傘",
+"meaning": "ô",
+"onyomi": "サン",
+"kunyomi": "かさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_020",
+"word": "先生の車",
+"reading": "せんせいのくるま",
+"romaji": "sensei no kuruma",
+"meaning": "Xe của giáo viên",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "あそこにあるのは先生の車です。",
+"example_jp_formatted": "あそこにあるのは[先生]{せんせい}の[車]{くるま}です。",
+"example_vi": "Cái ở đằng kia là xe của giáo viên.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "先生",
+"meaning": "giáo viên",
+"onyomi": "センセイ",
+"kunyomi": ""
+},
+{
+"kanji": "車",
+"meaning": "xe",
+"onyomi": "シャ",
+"kunyomi": "くるま"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_021",
+"word": "忙しい日",
+"reading": "いそがしいひ",
+"romaji": "isogashii hi",
+"meaning": "Ngày bận rộn",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "今日は忙しい日です。",
+"example_jp_formatted": "今日{きょう}は[忙]{いそが}しい[日]{ひ}です。",
+"example_vi": "Hôm nay là ngày bận rộn.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "忙",
+"meaning": "bận",
+"onyomi": "ボウ",
+"kunyomi": "いそが.しい"
+},
+{
+"kanji": "日",
+"meaning": "ngày",
+"onyomi": "ニチ",
+"kunyomi": "ひ"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_022",
+"word": "泳いでいる魚",
+"reading": "およいでいるさかな",
+"romaji": "oyoide iru sakana",
+"meaning": "Cá đang bơi",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "海に泳いでいる魚はきれいです。",
+"example_jp_formatted": "[海]{うみ}に[泳]{およ}いでいる[魚]{さかな}はきれいです。",
+"example_vi": "Con cá đang bơi ở biển rất đẹp.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "海",
+"meaning": "biển",
+"onyomi": "カイ",
+"kunyomi": "うみ"
+},
+{
+"kanji": "泳",
+"meaning": "bơi",
+"onyomi": "エイ",
+"kunyomi": "およ.ぐ"
+},
+{
+"kanji": "魚",
+"meaning": "cá",
+"onyomi": "ギョ",
+"kunyomi": "さかな"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_023",
+"word": "手紙を書いている人",
+"reading": "てがみをかいているひと",
+"romaji": "tegami o kaite iru hito",
+"meaning": "Người đang viết thư",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "手紙を書いている人は誰ですか。",
+"example_jp_formatted": "[手紙]{てがみ}を[書]{か}いている[人]{ひと}は[誰]{だれ}ですか。",
+"example_vi": "Người đang viết thư là ai vậy?",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "手紙",
+"meaning": "thư",
+"onyomi": "テガミ",
+"kunyomi": ""
+},
+{
+"kanji": "書",
+"meaning": "viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+},
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン",
+"kunyomi": "ひと"
+},
+{
+"kanji": "誰",
+"meaning": "ai",
+"onyomi": "スイ",
+"kunyomi": "だれ"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_024",
+"word": "お金がない人",
+"reading": "おかねがないひと",
+"romaji": "okane ga nai hito",
+"meaning": "Người không có tiền",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "お金がない人は困ります。",
+"example_jp_formatted": "[金]{かね}がない[人]{ひと}は[困]{こま}ります。",
+"example_vi": "Người không có tiền thì khó khăn.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Thể thông thường phủ định (ない) bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": ["お金がある人"],
+"kanji_info": [
+{
+"kanji": "金",
+"meaning": "tiền",
+"onyomi": "キン",
+"kunyomi": "かね"
+},
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン",
+"kunyomi": "ひと"
+},
+{
+"kanji": "困",
+"meaning": "khó khăn",
+"onyomi": "コン",
+"kunyomi": "こま.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_025",
+"word": "背が高い人",
+"reading": "せがたかいひと",
+"romaji": "se ga takai hito",
+"meaning": "Người cao",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "背が高い人は誰ですか。",
+"example_jp_formatted": "[背]{せ}が[高]{たか}い[人]{ひと}は[誰]{だれ}ですか。",
+"example_vi": "Người cao là ai vậy?",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["背が低い人"],
+"kanji_info": [
+{
+"kanji": "背",
+"meaning": "lưng/chiều cao",
+"onyomi": "ハイ",
+"kunyomi": "せ"
+},
+{
+"kanji": "高",
+"meaning": "cao",
+"onyomi": "コウ",
+"kunyomi": "たか.い"
+},
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン",
+"kunyomi": "ひと"
+},
+{
+"kanji": "誰",
+"meaning": "ai",
+"onyomi": "スイ",
+"kunyomi": "だれ"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_026",
+"word": "髪が長い女性",
+"reading": "かみがながいじょせい",
+"romaji": "kami ga nagai josei",
+"meaning": "Người phụ nữ tóc dài",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "髪が長い女性は先生です。",
+"example_jp_formatted": "[髪]{かみ}が[長]{なが}い[女性]{じょせい}は[先生]{せんせい}です。",
+"example_vi": "Người phụ nữ tóc dài là giáo viên.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "髪",
+"meaning": "tóc",
+"onyomi": "ハツ",
+"kunyomi": "かみ"
+},
+{
+"kanji": "長",
+"meaning": "dài",
+"onyomi": "チョウ",
+"kunyomi": "なが.い"
+},
+{
+"kanji": "女性",
+"meaning": "phụ nữ",
+"onyomi": "ジョセイ",
+"kunyomi": ""
+},
+{
+"kanji": "先生",
+"meaning": "giáo viên",
+"onyomi": "センセイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_027",
+"word": "目が大きい子供",
+"reading": "めがおおきいこども",
+"romaji": "me ga ookii kodomo",
+"meaning": "Đứa trẻ mắt to",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "目が大きい子供は可愛いです。",
+"example_jp_formatted": "[目]{め}が[大]{おお}きい[子供]{こども}は[可愛]{かわい}いです。",
+"example_vi": "Đứa trẻ mắt to rất dễ thương.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "目",
+"meaning": "mắt",
+"onyomi": "モク",
+"kunyomi": "め"
+},
+{
+"kanji": "大",
+"meaning": "lớn",
+"onyomi": "ダイ",
+"kunyomi": "おお.きい"
+},
+{
+"kanji": "子供",
+"meaning": "đứa trẻ",
+"onyomi": "コドモ",
+"kunyomi": ""
+},
+{
+"kanji": "可愛",
+"meaning": "dễ thương",
+"onyomi": "カワイ",
+"kunyomi": "かわい.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_028",
+"word": "頭がいい学生",
+"reading": "あたまがいいがくせい",
+"romaji": "atama ga ii gakusei",
+"meaning": "Học sinh thông minh",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "頭がいい学生は成績がいいです。",
+"example_jp_formatted": "[頭]{あたま}がいい[学生]{がくせい}は[成績]{せいせき}がいいです。",
+"example_vi": "Học sinh thông minh thì có kết quả học tập tốt.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["頭が悪い学生"],
+"kanji_info": [
+{
+"kanji": "頭",
+"meaning": "đầu/thông minh",
+"onyomi": "トウ",
+"kunyomi": "あたま"
+},
+{
+"kanji": "学生",
+"meaning": "học sinh",
+"onyomi": "ガクセイ",
+"kunyomi": ""
+},
+{
+"kanji": "成績",
+"meaning": "kết quả học tập",
+"onyomi": "セイセキ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_22_029",
+"word": "荷物を持っている人",
+"reading": "にもつをもっているひと",
+"romaji": "nimotsu o motte iru hito",
+"meaning": "Người đang cầm hành lý",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "荷物を持っている人は誰ですか。",
+"example_jp_formatted": "[荷物]{にもつ}を[持]{も}っている[人]{ひと}は[誰]{だれ}ですか。",
+"example_vi": "Người đang cầm hành lý là ai vậy?",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "荷物",
+"meaning": "hành lý",
+"onyomi": "ニモツ",
+"kunyomi": ""
+},
+{
+"kanji": "持",
+"meaning": "cầm",
+"onyomi": "ジ",
+"kunyomi": "も.つ"
+},
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン",
+"kunyomi": "ひと"
+},
+{
+"kanji": "誰",
+"meaning": "ai",
+"onyomi": "スイ",
+"kunyomi": "だれ"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_030",
+"word": "昨日の試験",
+"reading": "きのうのしけん",
+"romaji": "kinou no shiken",
+"meaning": "Bài kiểm tra hôm qua",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "昨日の試験は難しかったです。",
+"example_jp_formatted": "[昨日]{きのう}の[試験]{しけん}は[難]{むずか}しかったです。",
+"example_vi": "Bài kiểm tra hôm qua đã khó.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "Danh từ bổ nghĩa cho danh từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昨日",
+"meaning": "hôm qua",
+"onyomi": "サクジツ",
+"kunyomi": "きのう"
+},
+{
+"kanji": "試験",
+"meaning": "bài kiểm tra",
+"onyomi": "シケン",
+"kunyomi": ""
+},
+{
+"kanji": "難",
+"meaning": "khó",
+"onyomi": "ナン",
+"kunyomi": "むずか.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_031",
+"word": "休みの日",
+"reading": "やすみのひ",
+"romaji": "yasumi no hi",
+"meaning": "Ngày nghỉ",
+"pos": "noun_modification",
+"pitch_accent": "heiban",
+"example_jp": "休みの日には旅行へ行きます。",
+"example_jp_formatted": "[休]{やす}みの[日]{ひ}には[旅行]{りょこう}へ[行]{い}きます。",
+"example_vi": "Vào ngày nghỉ tôi đi du lịch.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "休",
+"meaning": "nghỉ",
+"onyomi": "キュウ",
+"kunyomi": "やす.む"
+},
+{
+"kanji": "日",
+"meaning": "ngày",
+"onyomi": "ニチ",
+"kunyomi": "ひ"
+},
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_22_032",
+"word": "富士山に登った人",
+"reading": "ふじさんにのぼったひと",
+"romaji": "fujisan ni nobotta hito",
+"meaning": "Người đã leo núi Phú Sĩ",
+"pos": "noun_modification",
+"pitch_accent": "nakadaka",
+"example_jp": "富士山に登った人は私です。",
+"example_jp_formatted": "[富士山]{ふじさん}に[登]{のぼ}った[人]{ひと}は[私]{わたし}です。",
+"example_vi": "Người đã leo núi Phú Sĩ là tôi.",
+"level": "N5",
+"tags": ["mệnh-đề-bổ-nghĩa", "bài-22"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "富士山",
+"meaning": "núi Phú Sĩ",
+"onyomi": "フジサン",
+"kunyomi": ""
+},
+{
+"kanji": "登",
+"meaning": "leo",
+"onyomi": "トウ",
+"kunyomi": "のぼ.る"
+},
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン",
+"kunyomi": "ひと"
+},
+{
+"kanji": "私",
+"meaning": "tôi",
+"onyomi": "シ",
+"kunyomi": "わたし"
+}
+]
+}
+]

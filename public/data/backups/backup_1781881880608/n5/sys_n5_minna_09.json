@@ -1,0 +1,1139 @@
+[
+{
+"id": "sys_n5_minna_09_001",
+"word": "好き",
+"reading": "すき",
+"romaji": "suki",
+"meaning": "Thích",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は音楽が好きです。",
+"example_jp_formatted": "[私]{わたし}は[音楽]{おんがく}が[好]{す}きです。",
+"example_vi": "Tôi thích âm nhạc.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"sở-thích",
+"bài-9"
+],
+"notes": "Đi với が để diễn tả sở thích.",
+"synonyms": [
+"大好き"
+],
+"antonyms": [
+"嫌い"
+],
+"kanji_info": [
+{
+"kanji": "好",
+"meaning": "thích",
+"onyomi": "コウ",
+"kunyomi": "この.む, す.く, す.き"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_002",
+"word": "嫌い",
+"reading": "きらい",
+"romaji": "kirai",
+"meaning": "Ghét, không thích",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は虫が嫌いです。",
+"example_jp_formatted": "[私]{わたし}は[虫]{むし}が[嫌]{きら}いです。",
+"example_vi": "Tôi ghét côn trùng.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"sở-thích",
+"bài-9"
+],
+"notes": "Đi với が để diễn tả điều không thích.",
+"synonyms": [
+"苦手"
+],
+"antonyms": [
+"好き"
+],
+"kanji_info": [
+{
+"kanji": "嫌",
+"meaning": "ghét, chán",
+"onyomi": "ケン, ゲン",
+"kunyomi": "きら.う, きら.い, いや"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_003",
+"word": "大好き",
+"reading": "だいすき",
+"romaji": "daisuki",
+"meaning": "Rất thích",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は猫が大好きです。",
+"example_jp_formatted": "[私]{わたし}は[猫]{ねこ}が[大好]{だいす}きです。",
+"example_vi": "Tôi rất thích mèo.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"sở-thích",
+"bài-9"
+],
+"notes": "Mức độ mạnh hơn 好き.",
+"synonyms": [
+"好き"
+],
+"antonyms": [
+"大嫌い"
+],
+"kanji_info": [
+{
+"kanji": "大",
+"meaning": "rất, lớn",
+"onyomi": "ダイ, タイ",
+"kunyomi": "おお.きい, おお.いに"
+},
+{
+"kanji": "好",
+"meaning": "thích",
+"onyomi": "コウ",
+"kunyomi": "この.む, す.く, す.き"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_004",
+"word": "大嫌い",
+"reading": "だいきらい",
+"romaji": "daikirai",
+"meaning": "Rất ghét",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私はタバコが大嫌いです。",
+"example_jp_formatted": "[私]{わたし}はタバコが[大嫌]{だいきら}いです。",
+"example_vi": "Tôi rất ghét thuốc lá.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"sở-thích",
+"bài-9"
+],
+"notes": "Mức độ mạnh hơn 嫌い.",
+"synonyms": [
+"嫌い"
+],
+"antonyms": [
+"大好き"
+],
+"kanji_info": [
+{
+"kanji": "大",
+"meaning": "rất, lớn",
+"onyomi": "ダイ, タイ",
+"kunyomi": "おお.きい, おお.いに"
+},
+{
+"kanji": "嫌",
+"meaning": "ghét, chán",
+"onyomi": "ケン, ゲン",
+"kunyomi": "きら.う, きら.い, いや"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_005",
+"word": "上手",
+"reading": "じょうず",
+"romaji": "jouzu",
+"meaning": "Giỏi, khéo",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "田中さんは料理が上手です。",
+"example_jp_formatted": "[田中]{たなか}さんは[料理]{りょうり}が[上手]{じょうず}です。",
+"example_vi": "Anh Tanaka nấu ăn rất giỏi.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"khả-năng",
+"bài-9"
+],
+"notes": "Dùng để khen kỹ năng của ai đó.",
+"synonyms": [
+"得意"
+],
+"antonyms": [
+"下手"
+],
+"kanji_info": [
+{
+"kanji": "上",
+"meaning": "trên",
+"onyomi": "ジョウ",
+"kunyomi": "うえ, あ.がる"
+},
+{
+"kanji": "手",
+"meaning": "tay",
+"onyomi": "シュ",
+"kunyomi": "て"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_006",
+"word": "下手",
+"reading": "へた",
+"romaji": "heta",
+"meaning": "Kém, dở",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は歌が下手です。",
+"example_jp_formatted": "[私]{わたし}は[歌]{うた}が[下手]{へた}です。",
+"example_vi": "Tôi hát dở.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"khả-năng",
+"bài-9"
+],
+"notes": "Dùng để nói kỹ năng chưa tốt.",
+"synonyms": [
+"苦手"
+],
+"antonyms": [
+"上手"
+],
+"kanji_info": [
+{
+"kanji": "下",
+"meaning": "dưới",
+"onyomi": "カ, ゲ",
+"kunyomi": "した, しも, くだ.る"
+},
+{
+"kanji": "手",
+"meaning": "tay",
+"onyomi": "シュ, ズ",
+"kunyomi": "て, た"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_007",
+"word": "得意",
+"reading": "とくい",
+"romaji": "tokui",
+"meaning": "Giỏi, sở trường",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "彼は英語が得意です。",
+"example_jp_formatted": "[彼]{かれ}は[英語]{えいご}が[得意]{とくい}です。",
+"example_vi": "Anh ấy giỏi tiếng Anh.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"khả-năng",
+"bài-9"
+],
+"notes": "Dùng để chỉ sở trường hoặc điều mình làm tốt.",
+"synonyms": [
+"上手"
+],
+"antonyms": [
+"苦手"
+],
+"kanji_info": [
+{
+"kanji": "得",
+"meaning": "đắc",
+"onyomi": "トク",
+"kunyomi": "え.る, う.る, う.まい"
+},
+{
+"kanji": "意",
+"meaning": "ý",
+"onyomi": "イ",
+"kunyomi": "こころ"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_008",
+"word": "苦手",
+"reading": "にがて",
+"romaji": "nigate",
+"meaning": "Không giỏi, ngại",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は運動が苦手です。",
+"example_jp_formatted": "[私]{わたし}は[運動]{うんどう}が[苦手]{にがて}です。",
+"example_vi": "Tôi không giỏi thể thao.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"khả-năng",
+"bài-9"
+],
+"notes": "Thường dùng khi không tự tin hoặc không giỏi một việc nào đó.",
+"synonyms": [
+"下手"
+],
+"antonyms": [
+"得意"
+],
+"kanji_info": [
+{
+"kanji": "苦",
+"meaning": "khổ",
+"onyomi": "ク",
+"kunyomi": "くる.しい, にが.い"
+},
+{
+"kanji": "手",
+"meaning": "tay",
+"onyomi": "シュ, ズ",
+"kunyomi": "て, た"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_009",
+"word": "分かります",
+"reading": "わかります",
+"romaji": "wakarimasu",
+"meaning": "Hiểu, biết",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "日本語が分かります。",
+"example_jp_formatted": "[日本語]{にほんご}が[分]{わ}かります。",
+"example_vi": "Tôi hiểu tiếng Nhật.",
+"level": "N5",
+"tags": [
+"động-từ",
+"khả-năng",
+"bài-9"
+],
+"notes": "Dùng để nói hiểu thông tin, ngôn ngữ, tình huống.",
+"synonyms": [
+"知っています"
+],
+"antonyms": [
+"分かりません"
+],
+"kanji_info": [
+{
+"kanji": "分",
+"meaning": "phân, hiểu",
+"onyomi": "ブン, フン, ブ",
+"kunyomi": "わ.ける, わ.かる, わ.かれる"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_010",
+"word": "できます",
+"reading": "できます",
+"romaji": "dekimasu",
+"meaning": "Có thể làm được",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "私は日本語で手紙ができます。",
+"example_jp_formatted": "[私]{わたし}は[日本語]{にほんご}で[手紙]{てがみ}ができます。",
+"example_vi": "Tôi có thể viết thư bằng tiếng Nhật.",
+"level": "N5",
+"tags": [
+"động-từ",
+"khả-năng",
+"bài-9"
+],
+"notes": "Diễn tả khả năng hoặc việc hoàn thành được một việc.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_09_011",
+"word": "運動",
+"reading": "うんどう",
+"romaji": "undou",
+"meaning": "Vận động, thể thao",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "運動が好きです。",
+"example_jp_formatted": "[運動]{うんどう}が[好]{す}きです。",
+"example_vi": "Tôi thích thể thao.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"thể-thao",
+"bài-9"
+],
+"notes": "Nói chung về vận động hoặc thể thao.",
+"synonyms": [
+"スポーツ"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "運",
+"meaning": "vận",
+"onyomi": "ウン",
+"kunyomi": "はこ.ぶ"
+},
+{
+"kanji": "動",
+"meaning": "động",
+"onyomi": "ドウ",
+"kunyomi": "うご.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_012",
+"word": "スポーツ",
+"reading": "すぽーつ",
+"romaji": "supootsu",
+"meaning": "Thể thao",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "スポーツが好きです。",
+"example_jp_formatted": "スポーツが[好]{す}きです。",
+"example_vi": "Tôi thích thể thao.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"thể-thao",
+"bài-9"
+],
+"notes": "Từ mượn, giữ nguyên Katakana.",
+"synonyms": [
+"運動"
+],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_09_013",
+"word": "野球",
+"reading": "やきゅう",
+"romaji": "yakyuu",
+"meaning": "Bóng chày",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "野球をします。",
+"example_jp_formatted": "[野球]{やきゅう}をします。",
+"example_vi": "Tôi chơi bóng chày.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"thể-thao",
+"bài-9"
+],
+"notes": "Môn thể thao bóng chày.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "野",
+"meaning": "dã",
+"onyomi": "ヤ",
+"kunyomi": "の"
+},
+{
+"kanji": "球",
+"meaning": "cầu",
+"onyomi": "キュウ",
+"kunyomi": "たま"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_014",
+"word": "テニス",
+"reading": "てにす",
+"romaji": "tenisu",
+"meaning": "Quần vợt",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "テニスが好きです。",
+"example_jp_formatted": "テニスが[好]{す}きです。",
+"example_vi": "Tôi thích quần vợt.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"thể-thao",
+"bài-9"
+],
+"notes": "Từ mượn, giữ nguyên Katakana.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_09_015",
+"word": "サッカー",
+"reading": "さっかー",
+"romaji": "sakkaa",
+"meaning": "Bóng đá",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "サッカーをします。",
+"example_jp_formatted": "サッカーをします。",
+"example_vi": "Tôi chơi bóng đá.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"thể-thao",
+"bài-9"
+],
+"notes": "Từ mượn, giữ nguyên Katakana.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_09_016",
+"word": "音楽",
+"reading": "おんがく",
+"romaji": "ongaku",
+"meaning": "Âm nhạc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "音楽が好きです。",
+"example_jp_formatted": "[音楽]{おんがく}が[好]{す}きです。",
+"example_vi": "Tôi thích âm nhạc.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"giải-trí",
+"bài-9"
+],
+"notes": "Danh từ rất quan trọng trong chủ đề sở thích.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "音",
+"meaning": "âm",
+"onyomi": "オン",
+"kunyomi": "おと, ね"
+},
+{
+"kanji": "楽",
+"meaning": "nhạc",
+"onyomi": "ガク, ラク",
+"kunyomi": "たの.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_017",
+"word": "映画",
+"reading": "えいが",
+"romaji": "eiga",
+"meaning": "Phim",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "映画を見ます。",
+"example_jp_formatted": "[映画]{えいが}を[見]{み}ます。",
+"example_vi": "Tôi xem phim.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"giải-trí",
+"bài-9"
+],
+"notes": "Phim điện ảnh.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "映",
+"meaning": "ánh, chiếu",
+"onyomi": "エイ",
+"kunyomi": "うつ.る, うつ.す"
+},
+{
+"kanji": "画",
+"meaning": "họa",
+"onyomi": "ガ, カク",
+"kunyomi": "えが.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_018",
+"word": "料理",
+"reading": "りょうり",
+"romaji": "ryouri",
+"meaning": "Nấu ăn; món ăn",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "料理をします。",
+"example_jp_formatted": "[料理]{りょうり}をします。",
+"example_vi": "Tôi nấu ăn.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"nấu-ăn",
+"bài-9"
+],
+"notes": "Dùng cho hành động nấu ăn hoặc món ăn.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "料",
+"meaning": "liệu",
+"onyomi": "リョウ",
+"kunyomi": "はか.る"
+},
+{
+"kanji": "理",
+"meaning": "lý",
+"onyomi": "リ",
+"kunyomi": "ことわり"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_019",
+"word": "勉強",
+"reading": "べんきょう",
+"romaji": "benkyou",
+"meaning": "Học tập",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本語を勉強します。",
+"example_jp_formatted": "[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"học-tập",
+"bài-9"
+],
+"notes": "Thường dùng với します.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "勉",
+"meaning": "miên, cố gắng",
+"onyomi": "ベン",
+"kunyomi": "つと.める"
+},
+{
+"kanji": "強",
+"meaning": "cường, học",
+"onyomi": "キョウ, ゴウ",
+"kunyomi": "つよ.い, し.いる"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_020",
+"word": "仕事",
+"reading": "しごと",
+"romaji": "shigoto",
+"meaning": "Công việc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "仕事が好きです。",
+"example_jp_formatted": "[仕事]{しごと}が[好]{す}きです。",
+"example_vi": "Tôi thích công việc.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"công-việc",
+"bài-9"
+],
+"notes": "Công việc, nghề nghiệp, việc làm.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "仕",
+"meaning": "thị",
+"onyomi": "シ",
+"kunyomi": "つか.える"
+},
+{
+"kanji": "事",
+"meaning": "sự, việc",
+"onyomi": "ジ",
+"kunyomi": "こと"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_021",
+"word": "英語",
+"reading": "えいご",
+"romaji": "eigo",
+"meaning": "Tiếng Anh",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "英語が分かります。",
+"example_jp_formatted": "[英語]{えいご}が[分]{わ}かります。",
+"example_vi": "Tôi hiểu tiếng Anh.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"ngoại-ngữ",
+"bài-9"
+],
+"notes": "Ngôn ngữ rất thường gặp trong bài.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "英",
+"meaning": "anh",
+"onyomi": "エイ",
+"kunyomi": "はなぶさ"
+},
+{
+"kanji": "語",
+"meaning": "ngữ",
+"onyomi": "ゴ",
+"kunyomi": "かた.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_022",
+"word": "日本語",
+"reading": "にほんご",
+"romaji": "nihongo",
+"meaning": "Tiếng Nhật",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本語を勉強します。",
+"example_jp_formatted": "[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"ngoại-ngữ",
+"bài-9"
+],
+"notes": "Ngôn ngữ quan trọng nhất của bài.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日",
+"meaning": "nhật (mặt trời, Nhật Bản)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, び, か"
+},
+{
+"kanji": "本",
+"meaning": "bản",
+"onyomi": "ホン",
+"kunyomi": "もと"
+},
+{
+"kanji": "語",
+"meaning": "ngữ",
+"onyomi": "ゴ",
+"kunyomi": "かた.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_023",
+"word": "外国語",
+"reading": "がいこくご",
+"romaji": "gaikokugo",
+"meaning": "Ngoại ngữ",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "外国語が好きです。",
+"example_jp_formatted": "[外国語]{がいこくご}が[好]{す}きです。",
+"example_vi": "Tôi thích ngoại ngữ.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"ngoại-ngữ",
+"bài-9"
+],
+"notes": "Chỉ các ngôn ngữ nước ngoài.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "外",
+"meaning": "ngoại",
+"onyomi": "ガイ, ゲ",
+"kunyomi": "そと, ほか"
+},
+{
+"kanji": "国",
+"meaning": "quốc",
+"onyomi": "コク",
+"kunyomi": "くに"
+},
+{
+"kanji": "語",
+"meaning": "ngữ",
+"onyomi": "ゴ",
+"kunyomi": "かた.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_024",
+"word": "猫",
+"reading": "ねこ",
+"romaji": "neko",
+"meaning": "Mèo",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "猫が大好きです。",
+"example_jp_formatted": "[猫]{ねこ}が[大好]{だいす}きです。",
+"example_vi": "Tôi rất thích mèo.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"động-vật",
+"bài-9"
+],
+"notes": "Động vật quen thuộc trong bài về sở thích.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "猫",
+"meaning": "miêu (mèo)",
+"onyomi": "ビョウ",
+"kunyomi": "ねこ"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_025",
+"word": "犬",
+"reading": "いぬ",
+"romaji": "inu",
+"meaning": "Chó",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "犬が好きです。",
+"example_jp_formatted": "[犬]{いぬ}が[好]{す}きです。",
+"example_vi": "Tôi thích chó.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"động-vật",
+"bài-9"
+],
+"notes": "Động vật quen thuộc.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "犬",
+"meaning": "khuyển (chó)",
+"onyomi": "ケン",
+"kunyomi": "いぬ"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_026",
+"word": "動物",
+"reading": "どうぶつ",
+"romaji": "doubutsu",
+"meaning": "Động vật",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "動物が好きです。",
+"example_jp_formatted": "[動物]{どうぶつ}が[好]{す}きです。",
+"example_vi": "Tôi thích động vật.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"động-vật",
+"bài-9"
+],
+"notes": "Từ vựng chủ đề sở thích.",
+"synonyms": [
+"生き物"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "動",
+"meaning": "động",
+"onyomi": "ドウ",
+"kunyomi": "うご.く"
+},
+{
+"kanji": "物",
+"meaning": "vật",
+"onyomi": "ブツ, モツ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_027",
+"word": "歌",
+"reading": "うた",
+"romaji": "uta",
+"meaning": "Bài hát",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "歌が好きです。",
+"example_jp_formatted": "[歌]{うた}が[好]{す}きです。",
+"example_vi": "Tôi thích bài hát.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"giải-trí",
+"bài-9"
+],
+"notes": "Có thể hiểu là bài hát hoặc ca hát tùy ngữ cảnh.",
+"synonyms": [
+"音楽"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "歌",
+"meaning": "ca (hát)",
+"onyomi": "カ",
+"kunyomi": "うた, うた.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_028",
+"word": "ピアノ",
+"reading": "ぴあの",
+"romaji": "piano",
+"meaning": "Piano",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "ピアノが上手です。",
+"example_jp_formatted": "ピアノが[上手]{じょうず}です。",
+"example_vi": "Tôi chơi piano giỏi.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"âm-nhạc",
+"bài-9"
+],
+"notes": "Nhạc cụ phổ biến.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_09_029",
+"word": "車",
+"reading": "くるま",
+"romaji": "kuruma",
+"meaning": "Xe hơi",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "車が好きです。",
+"example_jp_formatted": "[車]{くるま}が[好]{す}きです。",
+"example_vi": "Tôi thích xe hơi.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"phương-tiện",
+"bài-9"
+],
+"notes": "Từ vựng thường gặp trong mẫu câu sở thích.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "車",
+"meaning": "xa (xe)",
+"onyomi": "シャ",
+"kunyomi": "くるま"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_030",
+"word": "旅行",
+"reading": "りょこう",
+"romaji": "ryokou",
+"meaning": "Du lịch",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "旅行が好きです。",
+"example_jp_formatted": "[旅行]{りょこう}が[好]{す}きです。",
+"example_vi": "Tôi thích du lịch.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"sở-thích",
+"bài-9"
+],
+"notes": "Từ rất phù hợp cho chủ đề sở thích.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅",
+"meaning": "lữ",
+"onyomi": "リョ",
+"kunyomi": "たび"
+},
+{
+"kanji": "行",
+"meaning": "hành",
+"onyomi": "コウ, ギョウ, アン",
+"kunyomi": "い.く, ゆ.く, おこな.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_031",
+"word": "とても",
+"reading": "とても",
+"romaji": "totemo",
+"meaning": "Rất",
+"pos": "adv",
+"pitch_accent": "heiban",
+"example_jp": "この店はとても有名です。",
+"example_jp_formatted": "この[店]{みせ}はとても[有名]{ゆうめい}です。",
+"example_vi": "Cửa hàng này rất nổi tiếng.",
+"level": "N5",
+"tags": [
+"trạng-từ",
+"mức-độ",
+"bài-9"
+],
+"notes": "Dùng để nhấn mạnh mức độ cao.",
+"synonyms": [
+"非常に"
+],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_09_032",
+"word": "あまり",
+"reading": "あまり",
+"romaji": "amari",
+"meaning": "Không mấy, không lắm",
+"pos": "adv",
+"pitch_accent": "heiban",
+"example_jp": "私はあまりスポーツが好きではありません。",
+"example_jp_formatted": "[私]{わたし}はあまりスポーツが[好]{す}きではありません。",
+"example_vi": "Tôi không thích thể thao lắm.",
+"level": "N5",
+"tags": [
+"trạng-từ",
+"mức-độ",
+"bài-9"
+],
+"notes": "Thường đi với phủ định: あまり〜ません。",
+"synonyms": [],
+"antonyms": [
+"とても"
+],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_09_033",
+"word": "ぜんぜん",
+"reading": "ぜんぜん",
+"romaji": "zenzen",
+"meaning": "Hoàn toàn không",
+"pos": "adv",
+"pitch_accent": "heiban",
+"example_jp": "英語がぜんぜん分かりません。",
+"example_jp_formatted": "[英語]{えいご}がぜんぜん[分]{わ}かりません。",
+"example_vi": "Tôi hoàn toàn không hiểu tiếng Anh.",
+"level": "N5",
+"tags": [
+"trạng-từ",
+"mức-độ",
+"bài-9"
+],
+"notes": "Thường đi với phủ định trong văn nói thông dụng.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_09_034",
+"word": "何",
+"reading": "なに",
+"romaji": "nani",
+"meaning": "Cái gì",
+"pos": "pron",
+"pitch_accent": "atamadaka",
+"example_jp": "何が好きですか。",
+"example_jp_formatted": "[何]{なに}が[好]{す}きですか。",
+"example_vi": "Bạn thích cái gì?",
+"level": "N5",
+"tags": [
+"đại-từ",
+"câu-hỏi",
+"bài-9"
+],
+"notes": "Dùng trong câu hỏi về sở thích, khả năng.",
+"synonyms": [
+"何ですか"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+}
+]
+},
+{
+"id": "sys_n5_minna_09_035",
+"word": "一番",
+"reading": "いちばん",
+"romaji": "ichiban",
+"meaning": "Nhất, nhất là",
+"pos": "adv",
+"pitch_accent": "heiban",
+"example_jp": "何が一番好きですか。",
+"example_jp_formatted": "[何]{なに}が[一番]{いちばん}[好]{す}きですか。",
+"example_vi": "Bạn thích nhất cái gì?",
+"level": "N5",
+"tags": [
+"trạng-từ",
+"mức-độ",
+"bài-9"
+],
+"notes": "Dùng để hỏi hoặc nói mức độ cao nhất.",
+"synonyms": [
+"最も"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "一",
+"meaning": "nhất",
+"onyomi": "イチ, イツ",
+"kunyomi": "ひと, ひと.つ"
+},
+{
+"kanji": "番",
+"meaning": "phiên, thứ tự",
+"onyomi": "バン",
+"kunyomi": "つがい"
+}
+]
+}
+]

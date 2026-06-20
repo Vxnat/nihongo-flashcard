@@ -1,0 +1,1186 @@
+[
+{
+"id": "sys_n5_minna_05_001",
+"word": "行きます",
+"reading": "いきます",
+"romaji": "ikimasu",
+"meaning": "Đi",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "明日、東京へ行きます。",
+"example_jp_formatted": "[明日]{あした}、[東京]{とうきょう}へ[行]{い}きます。",
+"example_vi": "Ngày mai tôi sẽ đi Tokyo.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-5"],
+"notes": "Động từ nhóm 1. Trợ từ へ (e) hoặc に (ni) dùng để chỉ phương hướng.",
+"synonyms": [],
+"antonyms": ["来ます", "帰ります"],
+"kanji_info": [
+{
+"kanji": "行",
+"meaning": "hành (đi, tiến hành)",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く, ゆ.く, おこな.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_002",
+"word": "来ます",
+"reading": "きます",
+"romaji": "kimasu",
+"meaning": "Đến",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "昨日、日本へ来ました。",
+"example_jp_formatted": "[昨日]{きのう}、[日本]{にほん}へ[来]{き}ました。",
+"example_vi": "Hôm qua, tôi đã đến Nhật Bản.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-5"],
+"notes": "Động từ nhóm 3. Chỉ sự di chuyển về phía người nói.",
+"synonyms": [],
+"antonyms": ["行きます"],
+"kanji_info": [
+{
+"kanji": "来",
+"meaning": "lai (đến, tương lai)",
+"onyomi": "ライ",
+"kunyomi": "く.る, き.たる, き"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_003",
+"word": "帰ります",
+"reading": "かえります",
+"romaji": "kaerimasu",
+"meaning": "Về, trở về",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "七時に家へ帰ります。",
+"example_jp_formatted": "[七時]{しちじ}に[家]{うち}へ[帰]{かえ}ります。",
+"example_vi": "Tôi sẽ về nhà lúc 7 giờ.",
+"level": "N5",
+"tags": ["động-từ", "di-chuyển", "bài-5"],
+"notes": "Động từ nhóm 1. Thường dùng khi trở về nhà, quê hương, đất nước của mình.",
+"synonyms": [],
+"antonyms": ["行きます"],
+"kanji_info": [
+{
+"kanji": "帰",
+"meaning": "quy (trở về)",
+"onyomi": "キ",
+"kunyomi": "かえ.る, かえ.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_004",
+"word": "学校",
+"reading": "がっこう",
+"romaji": "gakkou",
+"meaning": "Trường học",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "月曜日から金曜日まで学校へ行きます。",
+"example_jp_formatted": "[月曜日]{げつようび}から[金曜日]{きんようび}まで[学校]{がっこう}へ[行]{い}きます。",
+"example_vi": "Tôi đi đến trường từ thứ Hai đến thứ Sáu.",
+"level": "N5",
+"tags": ["địa-điểm", "giáo-dục", "bài-5"],
+"notes": "Chỉ trường học nói chung.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "学",
+"meaning": "học (học tập)",
+"onyomi": "ガク",
+"kunyomi": "まな.ぶ"
+},
+{
+"kanji": "校",
+"meaning": "hiệu (trường học)",
+"onyomi": "コウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_05_005",
+"word": "駅",
+"reading": "えき",
+"romaji": "eki",
+"meaning": "Nhà ga",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "明日、駅へ行きます。",
+"example_jp_formatted": "[明日]{あした}、[駅]{えき}へ[行]{い}きます。",
+"example_vi": "Ngày mai tôi sẽ đi đến nhà ga.",
+"level": "N5",
+"tags": ["địa-điểm", "giao-thông", "bài-5"],
+"notes": "Nhà ga xe lửa, tàu điện.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "駅",
+"meaning": "dịch (nhà ga)",
+"onyomi": "エキ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_05_006",
+"word": "飛行機",
+"reading": "ひこうき",
+"romaji": "hikouki",
+"meaning": "Máy bay",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "飛行機で国へ帰ります。",
+"example_jp_formatted": "[飛行機]{ひこうき}で[国]{くに}へ[帰]{かえ}ります。",
+"example_vi": "Tôi về nước bằng máy bay.",
+"level": "N5",
+"tags": ["phương-tiện", "giao-thông", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "飛",
+"meaning": "phi (bay)",
+"onyomi": "ヒ",
+"kunyomi": "と.ぶ, と.ばす"
+},
+{
+"kanji": "行",
+"meaning": "hành (đi)",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く, ゆ.く"
+},
+{
+"kanji": "機",
+"meaning": "cơ (máy móc)",
+"onyomi": "キ",
+"kunyomi": "はた"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_007",
+"word": "船",
+"reading": "ふね",
+"romaji": "fune",
+"meaning": "Tàu thủy, thuyền",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "船でアメリカへ行きます。",
+"example_jp_formatted": "[船]{ふね}でアメリカへ[行]{い}きます。",
+"example_vi": "Tôi đi Mỹ bằng tàu thủy.",
+"level": "N5",
+"tags": ["phương-tiện", "giao-thông", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "船",
+"meaning": "thuyền (cái thuyền)",
+"onyomi": "セン",
+"kunyomi": "ふね, ふな"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_008",
+"word": "電車",
+"reading": "でんしゃ",
+"romaji": "densha",
+"meaning": "Tàu điện",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "電車で会社へ行きます。",
+"example_jp_formatted": "[電車]{でんしゃ}で[会社]{かいしゃ}へ[行]{い}きます。",
+"example_vi": "Tôi đi đến công ty bằng tàu điện.",
+"level": "N5",
+"tags": ["phương-tiện", "giao-thông", "bài-5"],
+"notes": "Chỉ các loại tàu chạy bằng điện trên mặt đất.",
+"synonyms": ["列車"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "電",
+"meaning": "điện (điện lực)",
+"onyomi": "デン",
+"kunyomi": ""
+},
+{
+"kanji": "車",
+"meaning": "xa (xe)",
+"onyomi": "シャ",
+"kunyomi": "くるま"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_009",
+"word": "地下鉄",
+"reading": "ちかてつ",
+"romaji": "chikatetsu",
+"meaning": "Tàu điện ngầm",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "地下鉄で駅へ行きます。",
+"example_jp_formatted": "[地下鉄]{ちかてつ}で[駅]{えき}へ[行]{い}きます。",
+"example_vi": "Tôi đi đến nhà ga bằng tàu điện ngầm.",
+"level": "N5",
+"tags": ["phương-tiện", "giao-thông", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "地",
+"meaning": "địa (đất)",
+"onyomi": "チ, ジ",
+"kunyomi": ""
+},
+{
+"kanji": "下",
+"meaning": "hạ (dưới)",
+"onyomi": "カ, ゲ",
+"kunyomi": "した, さ.がる"
+},
+{
+"kanji": "鉄",
+"meaning": "thiết (sắt)",
+"onyomi": "テツ",
+"kunyomi": "くろがね"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_010",
+"word": "新幹線",
+"reading": "しんかんせん",
+"romaji": "shinkansen",
+"meaning": "Tàu siêu tốc Shinkansen",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "新幹線で京都へ行きます。",
+"example_jp_formatted": "[新幹線]{しんかんせん}で[京都]{きょうと}へ[行]{い}きます。",
+"example_vi": "Tôi đi Kyoto bằng tàu Shinkansen.",
+"level": "N5",
+"tags": ["phương-tiện", "giao-thông", "bài-5"],
+"notes": "Hệ thống tàu điện siêu tốc của Nhật Bản.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "新",
+"meaning": "tân (mới)",
+"onyomi": "シン",
+"kunyomi": "あたら.しい"
+},
+{
+"kanji": "幹",
+"meaning": "cán (thân cây, cốt lõi)",
+"onyomi": "カン",
+"kunyomi": "みき"
+},
+{
+"kanji": "線",
+"meaning": "tuyến (đường dây)",
+"onyomi": "セン",
+"kunyomi": "すじ"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_011",
+"word": "バス",
+"reading": "ばす",
+"romaji": "basu",
+"meaning": "Xe buýt",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "バスで学校へ行きます。",
+"example_jp_formatted": "バスで[学校]{がっこう}へ[行]{い}きます。",
+"example_vi": "Tôi đi học bằng xe buýt.",
+"level": "N5",
+"tags": ["phương-tiện", "giao-thông", "bài-5"],
+"notes": "Từ mượn tiếng Anh 'bus'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_05_012",
+"word": "タクシー",
+"reading": "たくしー",
+"romaji": "takushii",
+"meaning": "Xe taxi",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "タクシーで家へ帰ります。",
+"example_jp_formatted": "タクシーで[家]{うち}へ[帰]{かえ}ります。",
+"example_vi": "Tôi về nhà bằng taxi.",
+"level": "N5",
+"tags": ["phương-tiện", "giao-thông", "bài-5"],
+"notes": "Từ mượn tiếng Anh 'taxi'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_05_013",
+"word": "自転車",
+"reading": "じてんしゃ",
+"romaji": "jitensha",
+"meaning": "Xe đạp",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "自転車でスーパーへ行きます。",
+"example_jp_formatted": "[自転車]{じてんしゃ}でスーパーへ[行]{い}きます。",
+"example_vi": "Tôi đi siêu thị bằng xe đạp.",
+"level": "N5",
+"tags": ["phương-tiện", "giao-thông", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "自",
+"meaning": "tự (tự bản thân)",
+"onyomi": "ジ, シ",
+"kunyomi": "みずか.ら"
+},
+{
+"kanji": "転",
+"meaning": "chuyển (chuyển động)",
+"onyomi": "テン",
+"kunyomi": "ころ.がる"
+},
+{
+"kanji": "車",
+"meaning": "xa (xe)",
+"onyomi": "シャ",
+"kunyomi": "くるま"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_014",
+"word": "歩いて",
+"reading": "あるいて",
+"romaji": "aruite",
+"meaning": "Đi bộ",
+"pos": "adverb",
+"pitch_accent": "nakadaka",
+"example_jp": "歩いて駅へ行きます。",
+"example_jp_formatted": "[歩]{ある}いて[駅]{えき}へ[行]{い}きます。",
+"example_vi": "Tôi đi bộ đến nhà ga.",
+"level": "N5",
+"tags": ["di-chuyển", "bài-5"],
+"notes": "Thể Te của động từ 歩く, dùng như phương thức di chuyển (không đi kèm trợ từ で).",
+"synonyms": ["徒歩で"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "歩",
+"meaning": "bộ (đi bộ)",
+"onyomi": "ホ, ブ",
+"kunyomi": "ある.く, あゆ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_015",
+"word": "人",
+"reading": "ひと",
+"romaji": "hito",
+"meaning": "Người",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "あの人は誰ですか。",
+"example_jp_formatted": "あの[人]{ひと}は[誰]{だれ}ですか。",
+"example_vi": "Người kia là ai vậy?",
+"level": "N5",
+"tags": ["danh-từ", "con-người", "bài-5"],
+"notes": "",
+"synonyms": ["人物"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "人",
+"meaning": "nhân (người)",
+"onyomi": "ジン, ニン",
+"kunyomi": "ひと"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_016",
+"word": "友達",
+"reading": "ともだち",
+"romaji": "tomodachi",
+"meaning": "Bạn bè",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "友達と日本へ来ました。",
+"example_jp_formatted": "[友達]{ともだち}と[日本]{にほん}へ[来]{き}ました。",
+"example_vi": "Tôi đã đến Nhật cùng với bạn bè.",
+"level": "N5",
+"tags": ["con-người", "bài-5"],
+"notes": "",
+"synonyms": ["友人"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "友",
+"meaning": "hữu (bạn bè)",
+"onyomi": "ユウ",
+"kunyomi": "とも"
+},
+{
+"kanji": "達",
+"meaning": "đạt (đạt tới, số nhiều)",
+"onyomi": "タツ, ダチ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_05_017",
+"word": "彼",
+"reading": "かれ",
+"romaji": "kare",
+"meaning": "Anh ấy, bạn trai",
+"pos": "pronoun",
+"pitch_accent": "atamadaka",
+"example_jp": "彼は会社員です。",
+"example_jp_formatted": "[彼]{かれ}は[会社員]{かいしゃいん}です。",
+"example_vi": "Anh ấy là nhân viên công ty.",
+"level": "N5",
+"tags": ["đại-từ", "con-người", "bài-5"],
+"notes": "Dùng để chỉ nam giới ngôi thứ ba, hoặc bạn trai.",
+"synonyms": ["彼氏"],
+"antonyms": ["彼女"],
+"kanji_info": [
+{
+"kanji": "彼",
+"meaning": "bỉ (kia, anh ấy)",
+"onyomi": "ヒ",
+"kunyomi": "かれ, かの"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_018",
+"word": "彼女",
+"reading": "かのじょ",
+"romaji": "kanojo",
+"meaning": "Cô ấy, bạn gái",
+"pos": "pronoun",
+"pitch_accent": "atamadaka",
+"example_jp": "彼女は学生です。",
+"example_jp_formatted": "[彼女]{かのじょ}は[学生]{がくせい}です。",
+"example_vi": "Cô ấy là học sinh.",
+"level": "N5",
+"tags": ["đại-từ", "con-người", "bài-5"],
+"notes": "Dùng để chỉ nữ giới ngôi thứ ba, hoặc bạn gái.",
+"synonyms": [],
+"antonyms": ["彼"],
+"kanji_info": [
+{
+"kanji": "彼",
+"meaning": "bỉ (kia)",
+"onyomi": "ヒ",
+"kunyomi": "かれ, かの"
+},
+{
+"kanji": "女",
+"meaning": "nữ (phụ nữ)",
+"onyomi": "ジョ, ニョ",
+"kunyomi": "おんな, め"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_019",
+"word": "家族",
+"reading": "かぞく",
+"romaji": "kazoku",
+"meaning": "Gia đình",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "家族と京都へ行きます。",
+"example_jp_formatted": "[家族]{かぞく}と[京都]{きょうと}へ[行]{い}きます。",
+"example_vi": "Tôi đi Kyoto cùng gia đình.",
+"level": "N5",
+"tags": ["con-người", "gia-đình", "bài-5"],
+"notes": "Thường chỉ gia đình của mình. Để gọi gia đình người khác thì dùng '御家族' (ごかぞく).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "家",
+"meaning": "gia (nhà)",
+"onyomi": "カ, ケ",
+"kunyomi": "いえ, や, うち"
+},
+{
+"kanji": "族",
+"meaning": "tộc (gia tộc)",
+"onyomi": "ゾク",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_05_020",
+"word": "一人で",
+"reading": "ひとりで",
+"romaji": "hitori de",
+"meaning": "Một mình",
+"pos": "adverb",
+"pitch_accent": "nakadaka",
+"example_jp": "一人で東京へ行きます。",
+"example_jp_formatted": "[一人]{ひとり}で[東京]{とうきょう}へ[行]{い}きます。",
+"example_vi": "Tôi đi Tokyo một mình.",
+"level": "N5",
+"tags": ["số-lượng", "bài-5"],
+"notes": "Chỉ trạng thái làm việc gì đó đơn độc.",
+"synonyms": [],
+"antonyms": ["みんなで"],
+"kanji_info": [
+{
+"kanji": "一",
+"meaning": "nhất (một)",
+"onyomi": "イチ, イツ",
+"kunyomi": "ひと, ひと.つ"
+},
+{
+"kanji": "人",
+"meaning": "nhân (người)",
+"onyomi": "ジン, ニン",
+"kunyomi": "ひと"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_021",
+"word": "先週",
+"reading": "せんしゅう",
+"romaji": "senshuu",
+"meaning": "Tuần trước",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "先週、日本へ来ました。",
+"example_jp_formatted": "[先週]{せんしゅう}、[日本]{にほん}へ[来]{き}ました。",
+"example_vi": "Tuần trước, tôi đã đến Nhật.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["来週"],
+"kanji_info": [
+{
+"kanji": "先",
+"meaning": "tiên (trước)",
+"onyomi": "セン",
+"kunyomi": "さき"
+},
+{
+"kanji": "週",
+"meaning": "chu (tuần)",
+"onyomi": "シュウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_05_022",
+"word": "今週",
+"reading": "こんしゅう",
+"romaji": "konshuu",
+"meaning": "Tuần này",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "今週、京都へ行きます。",
+"example_jp_formatted": "[今週]{こんしゅう}、[京都]{きょうと}へ[行]{い}きます。",
+"example_vi": "Tuần này tôi sẽ đi Kyoto.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (bây giờ)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+},
+{
+"kanji": "週",
+"meaning": "chu (tuần)",
+"onyomi": "シュウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_05_023",
+"word": "来週",
+"reading": "らいしゅう",
+"romaji": "raishuu",
+"meaning": "Tuần sau",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "来週、国へ帰ります。",
+"example_jp_formatted": "[来週]{らいしゅう}、[国]{くに}へ[帰]{かえ}ります。",
+"example_vi": "Tuần sau, tôi sẽ về nước.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["先週"],
+"kanji_info": [
+{
+"kanji": "来",
+"meaning": "lai (đến, tương lai)",
+"onyomi": "ライ",
+"kunyomi": "く.る"
+},
+{
+"kanji": "週",
+"meaning": "chu (tuần)",
+"onyomi": "シュウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_05_024",
+"word": "先月",
+"reading": "せんげつ",
+"romaji": "sengetsu",
+"meaning": "Tháng trước",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "先月、友達が来ました。",
+"example_jp_formatted": "[先月]{せんげつ}、[友達]{ともだち}が[来]{き}ました。",
+"example_vi": "Tháng trước, bạn tôi đã đến.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["来月"],
+"kanji_info": [
+{
+"kanji": "先",
+"meaning": "tiên (trước)",
+"onyomi": "セン",
+"kunyomi": "さき"
+},
+{
+"kanji": "月",
+"meaning": "nguyệt (tháng, mặt trăng)",
+"onyomi": "ゲツ, ガツ",
+"kunyomi": "つき"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_025",
+"word": "今月",
+"reading": "こんげつ",
+"romaji": "kongetsu",
+"meaning": "Tháng này",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "今月、大阪へ行きます。",
+"example_jp_formatted": "[今月]{こんげつ}、[大阪]{おおさか}へ[行]{い}きます。",
+"example_vi": "Tháng này tôi sẽ đi Osaka.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (bây giờ)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+},
+{
+"kanji": "月",
+"meaning": "nguyệt (tháng, mặt trăng)",
+"onyomi": "ゲツ, ガツ",
+"kunyomi": "つき"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_026",
+"word": "来月",
+"reading": "らいげつ",
+"romaji": "raigetsu",
+"meaning": "Tháng sau",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "来月、会社を休みます。",
+"example_jp_formatted": "[来月]{らいげつ}、[会社]{かいしゃ}を[休]{やす}みます。",
+"example_vi": "Tháng sau tôi sẽ xin nghỉ làm.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["先月"],
+"kanji_info": [
+{
+"kanji": "来",
+"meaning": "lai (đến, tương lai)",
+"onyomi": "ライ",
+"kunyomi": "く.る"
+},
+{
+"kanji": "月",
+"meaning": "nguyệt (tháng, mặt trăng)",
+"onyomi": "ゲツ, ガツ",
+"kunyomi": "つき"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_027",
+"word": "去年",
+"reading": "きょねん",
+"romaji": "kyonen",
+"meaning": "Năm ngoái",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "去年、日本へ来ました。",
+"example_jp_formatted": "[去年]{きょねん}、[日本]{にほん}へ[来]{き}ました。",
+"example_vi": "Năm ngoái, tôi đã đến Nhật Bản.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": ["昨年"],
+"antonyms": ["来年"],
+"kanji_info": [
+{
+"kanji": "去",
+"meaning": "khứ (quá khứ, rời đi)",
+"onyomi": "キョ, コ",
+"kunyomi": "さ.る"
+},
+{
+"kanji": "年",
+"meaning": "niên (năm)",
+"onyomi": "ネン",
+"kunyomi": "とし"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_028",
+"word": "今年",
+"reading": "ことし",
+"romaji": "kotoshi",
+"meaning": "Năm nay",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "今年、東京へ行きます。",
+"example_jp_formatted": "[今年]{ことし}、[東京]{とうきょう}へ[行]{い}きます。",
+"example_vi": "Năm nay tôi sẽ đi Tokyo.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": ["本年"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (bây giờ)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+},
+{
+"kanji": "年",
+"meaning": "niên (năm)",
+"onyomi": "ネン",
+"kunyomi": "とし"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_029",
+"word": "来年",
+"reading": "らいねん",
+"romaji": "rainen",
+"meaning": "Năm sau",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "来年、国へ帰ります。",
+"example_jp_formatted": "[来年]{らいねん}、[国]{くに}へ[帰]{かえ}ります。",
+"example_vi": "Năm sau, tôi sẽ về nước.",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": ["翌年"],
+"antonyms": ["去年"],
+"kanji_info": [
+{
+"kanji": "来",
+"meaning": "lai (đến, tương lai)",
+"onyomi": "ライ",
+"kunyomi": "く.る"
+},
+{
+"kanji": "年",
+"meaning": "niên (năm)",
+"onyomi": "ネン",
+"kunyomi": "とし"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_030",
+"word": "何月",
+"reading": "なんがつ",
+"romaji": "nangatsu",
+"meaning": "Tháng mấy",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "誕生日は何月ですか。",
+"example_jp_formatted": "[誕生日]{たんじょうび}は[何月]{なんがつ}ですか。",
+"example_vi": "Sinh nhật của bạn là tháng mấy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "月",
+"meaning": "nguyệt (tháng)",
+"onyomi": "ゲツ, ガツ",
+"kunyomi": "つき"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_031",
+"word": "何日",
+"reading": "なんにち",
+"romaji": "nannichi",
+"meaning": "Ngày mấy, bao nhiêu ngày",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "今日は何日ですか。",
+"example_jp_formatted": "[今日]{きょう}は[何日]{なんにち}ですか。",
+"example_vi": "Hôm nay là ngày mấy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, か"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_032",
+"word": "何時",
+"reading": "いつ",
+"romaji": "itsu",
+"meaning": "Khi nào",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "何時日本へ来ましたか。",
+"example_jp_formatted": "[何時]{いつ}[日本]{にほん}へ[来]{き}ましたか。",
+"example_vi": "Bạn đã đến Nhật Bản khi nào vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "thời-gian", "bài-5"],
+"notes": "Từ để hỏi thời gian chung chung. Chữ Hán '何時' thông thường hay đọc là 'nanji' (mấy giờ), nhưng để ép dùng Kanji cho 'itsu' theo quy tắc, ta cũng có thể viết 何時(いつ).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "時",
+"meaning": "thời (thời gian)",
+"onyomi": "ジ",
+"kunyomi": "とき"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_033",
+"word": "誕生日",
+"reading": "たんじょうび",
+"romaji": "tanjoubi",
+"meaning": "Sinh nhật",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "誕生日は何月何日ですか。",
+"example_jp_formatted": "[誕生日]{たんじょうび}は[何月何日]{なんがつなんにち}ですか。",
+"example_vi": "Sinh nhật của bạn là ngày mấy tháng mấy?",
+"level": "N5",
+"tags": ["thời-gian", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "誕",
+"meaning": "đản (ra đời)",
+"onyomi": "タン",
+"kunyomi": ""
+},
+{
+"kanji": "生",
+"meaning": "sinh (sống, sinh ra)",
+"onyomi": "セイ, ショウ",
+"kunyomi": "い.きる, う.まれる"
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, か"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_034",
+"word": "普通",
+"reading": "ふつう",
+"romaji": "futsuu",
+"meaning": "Tàu thường (dừng ở mọi ga)",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "普通電車で帰ります。",
+"example_jp_formatted": "[普通電車]{ふつうでんしゃ}で[帰]{かえ}ります。",
+"example_vi": "Tôi sẽ về bằng tàu thường.",
+"level": "N5",
+"tags": ["giao-thông", "bài-5"],
+"notes": "Chỉ loại tàu điện đỗ ở tất cả các ga.",
+"synonyms": ["各駅停車"],
+"antonyms": ["急行", "特急"],
+"kanji_info": [
+{
+"kanji": "普",
+"meaning": "phổ (phổ biến)",
+"onyomi": "フ",
+"kunyomi": "あまね.く"
+},
+{
+"kanji": "通",
+"meaning": "thông (giao thông)",
+"onyomi": "ツウ",
+"kunyomi": "とお.る, かよ.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_035",
+"word": "急行",
+"reading": "きゅうこう",
+"romaji": "kyuukou",
+"meaning": "Tàu tốc hành",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "急行で行きます。",
+"example_jp_formatted": "[急行]{きゅうこう}で[行]{い}きます。",
+"example_vi": "Tôi đi bằng tàu tốc hành.",
+"level": "N5",
+"tags": ["giao-thông", "bài-5"],
+"notes": "Tàu bỏ qua một số ga nhỏ để đi nhanh hơn.",
+"synonyms": [],
+"antonyms": ["普通"],
+"kanji_info": [
+{
+"kanji": "急",
+"meaning": "cấp (khẩn cấp)",
+"onyomi": "キュウ",
+"kunyomi": "いそ.ぐ"
+},
+{
+"kanji": "行",
+"meaning": "hành (đi)",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く, ゆ.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_036",
+"word": "特急",
+"reading": "とっきゅう",
+"romaji": "tokkyuu",
+"meaning": "Tàu tốc hành đặc biệt",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "特急で京都へ行きます。",
+"example_jp_formatted": "[特急]{とっきゅう}で[京都]{きょうと}へ[行]{い}きます。",
+"example_vi": "Tôi đi Kyoto bằng tàu tốc hành đặc biệt.",
+"level": "N5",
+"tags": ["giao-thông", "bài-5"],
+"notes": "Tàu chạy nhanh nhất, chỉ dừng ở các ga lớn trọng điểm.",
+"synonyms": [],
+"antonyms": ["普通"],
+"kanji_info": [
+{
+"kanji": "特",
+"meaning": "đặc (đặc biệt)",
+"onyomi": "トク",
+"kunyomi": ""
+},
+{
+"kanji": "急",
+"meaning": "cấp (khẩn cấp)",
+"onyomi": "キュウ",
+"kunyomi": "いそ.ぐ"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_037",
+"word": "次",
+"reading": "つぎ",
+"romaji": "tsugi",
+"meaning": "Tiếp theo",
+"pos": "noun",
+"pitch_accent": "odaka",
+"example_jp": "次の電車で行きます。",
+"example_jp_formatted": "[次]{つぎ}の[電車]{でんしゃ}で[行]{い}きます。",
+"example_vi": "Tôi sẽ đi bằng chuyến tàu tiếp theo.",
+"level": "N5",
+"tags": ["thứ-tự", "bài-5"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["前"],
+"kanji_info": [
+{
+"kanji": "次",
+"meaning": "thứ (tiếp theo)",
+"onyomi": "ジ, シ",
+"kunyomi": "つぎ, つぐ"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_038",
+"word": "何処",
+"reading": "どこ",
+"romaji": "doko",
+"meaning": "Ở đâu, chỗ nào",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "明日、何処へ行きますか。",
+"example_jp_formatted": "[明日]{あした}、[何処]{どこ}へ[行]{い}きますか。",
+"example_vi": "Ngày mai bạn sẽ đi đâu?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "ôn-tập", "bài-3"],
+"notes": "Từ ôn tập Bài 3, ghép với trợ từ へ để hỏi phương hướng di chuyển.",
+"synonyms": ["何方"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "処",
+"meaning": "xứ (nơi chốn)",
+"onyomi": "ショ",
+"kunyomi": "ところ"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_039",
+"word": "明日",
+"reading": "あした",
+"romaji": "ashita",
+"meaning": "Ngày mai",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "明日、学校へ行きます。",
+"example_jp_formatted": "[明日]{あした}、[学校]{がっこう}へ[行]{い}きます。",
+"example_vi": "Ngày mai tôi sẽ đi học.",
+"level": "N5",
+"tags": ["thời-gian", "ôn-tập", "bài-4"],
+"notes": "Từ ôn tập Bài 4, kết hợp với các động từ di chuyển Bài 5.",
+"synonyms": ["あす", "みょうにち"],
+"antonyms": ["昨日"],
+"kanji_info": [
+{
+"kanji": "明",
+"meaning": "minh (sáng sủa)",
+"onyomi": "メイ, ミョウ",
+"kunyomi": "あか.るい"
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, か"
+}
+]
+},
+{
+"id": "sys_n5_minna_05_040",
+"word": "誰",
+"reading": "だれ",
+"romaji": "dare",
+"meaning": "Ai",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "誰と東京へ行きますか。",
+"example_jp_formatted": "[誰]{だれ}と[東京]{とうきょう}へ[行]{い}きますか。",
+"example_vi": "Bạn đi Tokyo cùng với ai vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "ôn-tập", "bài-1"],
+"notes": "Từ ôn tập Bài 1, kết hợp với trợ từ と trong Bài 5 để hỏi đi cùng ai.",
+"synonyms": ["何方"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "誰",
+"meaning": "thùy (ai)",
+"onyomi": "スイ",
+"kunyomi": "だれ"
+}
+]
+}
+]

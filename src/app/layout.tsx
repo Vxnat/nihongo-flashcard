@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Quicksand, Cherry_Bomb_One, Hachi_Maru_Pop , Cute_Font } from "next/font/google";
 import "./globals.css";
-import { SplashScreen } from "@/components/SplashScreen";
 import { Toaster } from "react-hot-toast";
 
 // 1. Font Cherry Bomb One: Siêu mập, dễ thương (Dành cho Tiêu đề)
@@ -51,15 +50,7 @@ export default function RootLayout({
     <html lang="vi">
       <body className={`${inter.variable} ${cherryBomb.variable} ${quicksand.variable} ${hachiMaruPop.variable} ${cuteFont.variable} font-sans min-h-screen text-zinc-900 antialiased`} suppressHydrationWarning>
         
-        {/* ==========================================
-            CUTE APP BACKGROUND: SỔ TAY CARO (GRID NOTE)
-           ========================================== */}
-        <div className="fixed inset-0 w-full h-full -z-50 app-bg" />
-
-        <main className="relative z-10 w-full min-h-screen pt-12 px-4 max-w-6xl mx-auto">
-          <SplashScreen />
-          {children}
-        </main>
+        {children}
 
         {/* Cấu hình Toast Cute */}
         <Toaster 

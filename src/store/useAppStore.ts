@@ -11,6 +11,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import dailyQuestsJson from "../../public/data/configs/daily_quests.json";
 
 interface UserStats {
   streak: number;
@@ -18,6 +19,7 @@ interface UserStats {
   totalLearned: number;
   learningTimeToday: number;
   lastActiveDate: string;
+  role?: string | null;
   // --- GACHA & QUESTS ---
   freeMinigameHints: number;
   coins: number;
@@ -62,35 +64,7 @@ export interface DailyQuest {
   reward: number;
 }
 
-const DEFAULT_QUESTS: DailyQuest[] = [
-  {
-    id: "q_time",
-    title: "Học 5 phút",
-    target: 300,
-    progress: 0,
-    isCompleted: false,
-    isClaimed: false,
-    reward: 1,
-  },
-  {
-    id: "q_flip",
-    title: "Lật 10 thẻ bài",
-    target: 10,
-    progress: 0,
-    isCompleted: false,
-    isClaimed: false,
-    reward: 2,
-  },
-  {
-    id: "q_combo",
-    title: "Đạt Combo x5",
-    target: 5,
-    progress: 0,
-    isCompleted: false,
-    isClaimed: false,
-    reward: 2,
-  },
-];
+const DEFAULT_QUESTS: DailyQuest[] = dailyQuestsJson as DailyQuest[];
 
 export interface CustomDeck {
   id: string;
@@ -276,6 +250,7 @@ export const useAppStore = create<AppState>((set, get) => ({
           learningTimeToday: 0,
           lastActiveDate: today,
           coins: 0,
+          role: "user",
           freeMinigameHints: 3,
           inventory: [],
           equippedSticker: null,
@@ -316,6 +291,18 @@ export const useAppStore = create<AppState>((set, get) => ({
       }
     } catch (error) {
       console.error("Lỗi lấy thống kê từ mây:", error);
+    }
+
+    // Tự động đồng bộ email và displayName lên mây để Admin có thể xem danh sách
+    if (uid && get().user) {
+      setDoc(
+        doc(db, "user_stats", uid),
+        {
+          displayName: get().user?.displayName || "",
+          email: get().user?.email || "",
+        },
+        { merge: true },
+      ).catch(() => { });
     }
 
     let currentStreak = savedStats.streak || 0;
@@ -363,6 +350,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         // --- GACHA & QUESTS ---
         freeMinigameHints: freeHints,
         coins: savedStats.coins || 0,
+        role: savedStats.role || "user",
         inventory: savedStats.inventory || [],
         equippedSticker: savedStats.equippedSticker || null,
         dailyQuests:

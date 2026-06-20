@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Hanging String -->
+  <path d="M50,8 L24,20 M50,8 L76,20" stroke="#8C6D58" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Scroll Top Roller -->
+  <rect x="20" y="18" width="60" height="4" rx="1.5" fill="#5C4033" stroke="#1C1A1A" stroke-width="1.5"/>
+
+  <!-- Scroll Canvas (Kakejiku Paper Background) -->
+  <rect x="25" y="22" width="50" height="58" fill="#FAF6EE" stroke="#1C1A1A" stroke-width="2"/>
+  <!-- Border Matting (Golden/Silk borders) -->
+  <rect x="25" y="22" width="50" height="4" fill="#FFD166" opacity="0.6"/>
+  <rect x="25" y="76" width="50" height="4" fill="#FFD166" opacity="0.6"/>
+  <line x1="29" y1="22" x2="29" y2="78" stroke="#FFD166" stroke-width="1" opacity="0.6"/>
+  <line x1="71" y1="22" x2="71" y2="78" stroke="#FFD166" stroke-width="1" opacity="0.6"/>
+
+  <!-- Painting Artwork (Inside the scroll) -->
+  <g clip-path="url(#paint-clip)">
+    <clipPath id="paint-clip">
+      <rect x="29" y="26" width="42" height="50"/>
+    </clipPath>
+    
+    <!-- Red Sun -->
+    <circle cx="60" cy="45" r="10" fill="#EF476F"/>
+
+    <!-- Mt. Fuji Body -->
+    <path d="M30,76 L40,60 Q50,48 50,48 Q50,48 60,60 L70,76 Z" fill="#4B6F96" stroke="#1C1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- Mt. Fuji Snow Cap -->
+    <path d="M46,53 L50,48 L54,53 L56,57 L52,56 L50,59 L48,56 L44,57 Z" fill="#FFFFFF" stroke="#1C1A1A" stroke-width="1.5" stroke-linejoin="round"/>
+
+    <!-- Silhouette Pine Tree in foreground -->
+    <path d="M32,76 L32,68 M32,71 L29,69 M32,69 L35,67 M32,73 L36,72" stroke="#1C1A1A" stroke-width="1.5" stroke-linecap="round"/>
+    
+    <!-- Red Artist Seal (Square stamp) -->
+    <rect x="32" y="32" width="4" height="4" fill="#D81B43"/>
+    <rect x="33.5" y="33.5" width="1" height="1" fill="#FAF6EE"/>
+  </g>
+
+  <!-- Scroll Bottom Roller Weights -->
+  <rect x="18" y="80" width="64" height="6" rx="2" fill="#5C4033" stroke="#1C1A1A" stroke-width="2"/>
+  <circle cx="18" cy="83" r="2.5" fill="#FFD166"/>
+  <circle cx="82" cy="83" r="2.5" fill="#FFD166"/>
+</svg>

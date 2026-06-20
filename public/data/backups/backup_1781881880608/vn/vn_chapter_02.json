@@ -1,0 +1,303 @@
+{
+"meta": {
+"id": "vn_chapter_02",
+"title": "Bữa ăn đầu tiên ở Tokyo",
+"level": "N5",
+"rewardCoins": 20
+},
+"characters": {
+"mascot": {
+"name": "Shiba",
+"color": "#FF9F1C",
+"position": "right",
+"sprites": {
+"idle": "/images/characters/shiba_idle.png"
+}
+},
+"stranger": {
+"name": "Cỏ",
+"color": "#06D6A0",
+"position": "left",
+"sprites": {
+"idle": "/images/characters/stranger_idle.png"
+}
+},
+"npc": {
+"name": "Panko",
+"color": "#FFB703",
+"position": "right",
+"sprites": {
+"idle": "/images/characters/panko_idle.png"
+}
+}
+},
+"nodes": [
+{
+"id": "node_001",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_tokyo_street_ramen_shop.jpg",
+"dialogue": {
+"jp": "うわ、Tokyo vừa ra ga là bụng kêu như nhạc chuông luôn. Cỏ ơi, mình đi kiếm ラーメン nhé!",
+"vi": "Uầy, vừa ra ga Tokyo mà bụng mình réo như chuông báo thức luôn. Cỏ ơi, mình đi kiếm mì ramen nhé!"
+},
+"interactableWords": [
+{
+"word": "ラーメン",
+"reading": "らーめん",
+"meaning": "Mì ramen",
+"id": "word_ramen_01"
+}
+],
+"nextNode": "node_002"
+},
+{
+"id": "node_002",
+"characterId": "stranger",
+"emotion": "idle",
+"background": "/images/bg_tokyo_street_ramen_shop.jpg",
+"dialogue": {
+"jp": "いいね！Mình cũng đói xỉu. Tiệm kia nhìn nhỏ nhưng có vẻ おいしい đó.",
+"vi": "Ngon đó! Mình cũng đói xỉu luôn. Tiệm kia nhìn nhỏ nhưng có vẻ ngon lắm."
+},
+"interactableWords": [
+{
+"word": "おいしい",
+"reading": "おいしい",
+"meaning": "Ngon",
+"id": "word_oishii_01"
+},
+{
+"word": "店",
+"reading": "みせ",
+"meaning": "Cửa tiệm",
+"id": "word_mise_01"
+}
+],
+"nextNode": "node_003"
+},
+{
+"id": "node_003",
+"characterId": "npc",
+"emotion": "idle",
+"background": "/images/bg_ramen_shop_interior.jpg",
+"dialogue": {
+"jp": "いらっしゃいませ〜！Mời hai bạn vào. Tôi là Panko, chó Corgi phục vụ bàn chuyên chạy deadline... à không, chạy order!",
+"vi": "Chào mừng quý khách~! Mời hai bạn vào ạ. Tôi là Panko, chú chó Corgi phục vụ bàn chuyên chạy deadline... à không, chạy order!"
+},
+"interactableWords": [
+{
+"word": "いらっしゃいませ",
+"reading": "",
+"meaning": "Hoan nghênh quý khách",
+"id": "word_irasshaimase_01"
+},
+{
+"word": "店",
+"reading": "みせ",
+"meaning": "Cửa tiệm",
+"id": "word_mise_02"
+}
+],
+"nextNode": "node_004"
+},
+{
+"id": "node_004",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_ramen_shop_interior.jpg",
+"dialogue": {
+"jp": "Panko-san, ラーメンください！この店、めっちゃいい感じですね。",
+"vi": "Panko-san, cho bọn mình mì ramen với! Cửa tiệm này nhìn xịn phết luôn."
+},
+"interactableWords": [
+{
+"word": "ください",
+"reading": "ください",
+"meaning": "Làm ơn cho tôi / Xin hãy cho",
+"id": "word_kudasai_01"
+},
+{
+"word": "店",
+"reading": "みせ",
+"meaning": "Cửa tiệm",
+"id": "word_mise_03"
+},
+{
+"word": "ラーメン",
+"reading": "らーめん",
+"meaning": "Mì ramen",
+"id": "word_ramen_02"
+}
+],
+"nextNode": "node_005"
+},
+{
+"id": "node_005",
+"characterId": "npc",
+"emotion": "idle",
+"background": "/images/bg_ramen_shop_interior.jpg",
+"dialogue": {
+"jp": "ありがとうございます！Bàn này là bàn hot nhất quán. Trước khi ăn, Cỏ thử nhìn tô súp này đi, あついけど おいしい よ〜",
+"vi": "Cảm ơn nhé! Bàn này là bàn hot nhất quán đó. Trước khi ăn, Cỏ nhìn tô súp này thử đi, hơi nóng nhưng ngon lắm đó~"
+},
+"interactableWords": [
+{
+"word": "あつい",
+"reading": "あつい",
+"meaning": "Nóng",
+"id": "word_atsui_01"
+},
+{
+"word": "おいしい",
+"reading": "おいしい",
+"meaning": "Ngon",
+"id": "word_oishii_02"
+}
+],
+"nextNode": "node_006"
+},
+{
+"id": "node_006",
+"characterId": "stranger",
+"emotion": "idle",
+"background": "/images/bg_ramen_shop_interior.jpg",
+"dialogue": {
+"jp": "わあ、すごくおいしい！麺もちもち、スープもいい色。これ、ほんとに大好きです。",
+"vi": "Oa, ngon ghê! Sợi mì dai dai, nước súp cũng màu đẹp nữa. Món này đúng gu mình luôn."
+},
+"interactableWords": [
+{
+"word": "おいしい",
+"reading": "おいしい",
+"meaning": "Ngon",
+"id": "word_oishii_03"
+},
+{
+"word": "いい",
+"reading": "いい",
+"meaning": "Tốt / Đẹp / Hay",
+"id": "word_ii_01"
+}
+],
+"nextNode": "node_007"
+},
+{
+"id": "node_007",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_ramen_shop_interior.jpg",
+"dialogue": {
+"jp": "Ừm, đúng kiểu Bài 8 luôn: このラーメンはおいしいです。Và quán này いい感じ!",
+"vi": "Ừm, đúng chất Bài 8 luôn: tô ramen này ngon quá. Với lại quán này nhìn cũng ổn áp nữa!"
+},
+"interactableWords": [
+{
+"word": "おいしい",
+"reading": "おいしい",
+"meaning": "Ngon",
+"id": "word_oishii_04"
+},
+{
+"word": "いい",
+"reading": "いい",
+"meaning": "Tốt / Đẹp / Hay",
+"id": "word_ii_02"
+}
+],
+"nextNode": "node_008"
+},
+{
+"id": "node_008",
+"characterId": "npc",
+"emotion": "idle",
+"background": "/images/bg_ramen_shop_interior.jpg",
+"dialogue": {
+"jp": "さて、Bài 6 kiểm tra nhanh nhé! Nếu nói “Tôi ăn mì ở nhà hàng” thì nói sao? Chọn đúng đi, rồi tôi bưng tô đặc biệt ra ngay!",
+"vi": "Nào, kiểm tra nhanh Bài 6 nhé! Nếu nói “Tôi ăn mì ở nhà hàng” thì nói sao? Chọn đúng đi, rồi tôi bưng tô đặc biệt ra ngay!"
+},
+"interactableWords": [
+{
+"word": "食べる",
+"reading": "たべる",
+"meaning": "Ăn",
+"id": "word_taberu_01"
+},
+{
+"word": "店",
+"reading": "みせ",
+"meaning": "Cửa tiệm",
+"id": "word_mise_04"
+}
+],
+"choices": [
+{
+"text": "レストランにラーメンを食べます。",
+"isCorrect": false,
+"nextNode": "node_009_wrong"
+},
+{
+"text": "レストランでラーメンを食べます。",
+"isCorrect": true,
+"nextNode": "node_009_correct"
+}
+]
+},
+{
+"id": "node_009_wrong",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_ramen_shop_interior.jpg",
+"dialogue": {
+"jp": "Sai rồi! Hành động xảy ra ở đâu thì phải dùng trợ từ で (de) chứ không phải に (ni) nhé, chọn lại nào!",
+"vi": "Sai rồi! Hành động xảy ra ở đâu thì phải dùng trợ từ で (de) chứ không phải に (ni) nhé, chọn lại nào!"
+},
+"interactableWords": [
+{
+"word": "で",
+"reading": "",
+"meaning": "Tại / Ở / Bằng (trợ từ chỉ nơi diễn ra hành động, phương tiện)",
+"id": "word_de_01"
+},
+{
+"word": "に",
+"reading": "",
+"meaning": "Tới / Vào / Tại (mốc đích, vị trí)",
+"id": "word_ni_01"
+}
+],
+"nextNode": "node_008"
+},
+{
+"id": "node_009_correct",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_ramen_shop_interior.jpg",
+"dialogue": {
+"jp": "Chuẩn luôn! レストランでラーメンを食べます。Panko, cho bọn mình thêm nước nhé!",
+"vi": "Chuẩn luôn! レストランでラーメンを食べます. Panko ơi, cho bọn mình thêm nước với nhé!"
+},
+"interactableWords": [
+{
+"word": "食べる",
+"reading": "たべる",
+"meaning": "Ăn",
+"id": "word_taberu_02"
+},
+{
+"word": "で",
+"reading": "",
+"meaning": "Tại / Ở / Bằng",
+"id": "word_de_02"
+},
+{
+"word": "レストラン",
+"reading": "れすとらん",
+"meaning": "Nhà hàng",
+"id": "word_restaurant_01"
+}
+],
+"nextNode": "END_STORY"
+}
+]
+}

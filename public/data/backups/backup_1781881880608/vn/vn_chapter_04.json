@@ -1,0 +1,309 @@
+{
+"meta": {
+"id": "vn_chapter_04",
+"title": "Sự cố ở quán cafe",
+"level": "N5",
+"rewardCoins": 20
+},
+"characters": {
+"mascot": {
+"name": "Shiba",
+"color": "#FF9F1C",
+"position": "right",
+"sprites": {
+"idle": "/images/characters/shiba_idle.png"
+}
+},
+"stranger": {
+"name": "Cỏ",
+"color": "#06D6A0",
+"position": "left",
+"sprites": {
+"idle": "/images/characters/stranger_idle.png"
+}
+},
+"npc_you": {
+"name": "Tú",
+"color": "#0077B6",
+"position": "right",
+"sprites": {
+"idle": "/images/characters/programmer_idle.png",
+"happy": "/images/characters/programmer_happy.png"
+}
+},
+"npc_an": {
+"name": "An",
+"color": "#FFC2D1",
+"position": "left",
+"sprites": {
+"surprised": "/images/characters/an_surprised.png",
+"happy": "/images/characters/an_happy.png",
+"happy_blush": "/images/characters/an_happy_blush.png"
+}
+}
+},
+"nodes": [
+{
+"id": "node_001",
+"characterId": "stranger",
+"emotion": "idle",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "Nhìn kìa Shiba, chị ấy đang căng thẳng vì laptop treo luôn. Chắc chị ấy muốn hoàn thành レポートを終わりたい mà không được.",
+"vi": "Nhìn kìa Shiba, chị ấy đang căng thẳng vì laptop treo luôn. Chắc chị ấy muốn hoàn thành báo cáo mà không được."
+},
+"interactableWords": [
+{
+"word": "レポート",
+"reading": "れぽーと",
+"meaning": "Báo cáo",
+"id": "word_report_01"
+},
+{
+"word": "終わりたい",
+"reading": "おわりたい",
+"meaning": "Muốn kết thúc / muốn hoàn thành",
+"id": "word_owaritai_01"
+},
+{
+"word": "カフェ",
+"reading": "かふぇ",
+"meaning": "Quán cafe",
+"id": "word_cafe_01"
+}
+],
+"nextNode": "node_002"
+},
+{
+"id": "node_002",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "Ừ, nhìn là biết stress level max luôn. Quán này thì 静か mà laptop kia thì không 静か chút nào.",
+"vi": "Ừ, nhìn là biết stress level max luôn. Quán này thì yên tĩnh mà laptop kia thì không yên tĩnh chút nào."
+},
+"interactableWords": [
+{
+"word": "静か",
+"reading": "しずか",
+"meaning": "Yên tĩnh",
+"id": "word_shizuka_01"
+},
+{
+"word": "カフェ",
+"reading": "かふぇ",
+"meaning": "Quán cafe",
+"id": "word_cafe_02"
+}
+],
+"nextNode": "node_003"
+},
+{
+"id": "node_003",
+"characterId": "npc_an",
+"emotion": "surprised",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "A... máy mình bị đứng rồi. Mình phải làm xong レポートを終わりたいのに...",
+"vi": "A... máy mình bị đứng rồi. Mình phải làm xong báo cáo mà không được..."
+},
+"interactableWords": [
+{
+"word": "レポート",
+"reading": "れぽーと",
+"meaning": "Báo cáo",
+"id": "word_report_02"
+},
+{
+"word": "終わりたい",
+"reading": "おわりたい",
+"meaning": "Muốn hoàn thành",
+"id": "word_owaritai_02"
+}
+],
+"nextNode": "node_004"
+},
+{
+"id": "node_004",
+"characterId": "npc_you",
+"emotion": "idle",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "Xin lỗi, hình như máy của bạn đang gặp sự cố. Mình là lập trình viên, để mình xem giúp được không?",
+"vi": "Xin lỗi, hình như máy của bạn đang gặp sự cố. Mình là lập trình viên, để mình xem giúp được không?"
+},
+"interactableWords": [
+{
+"word": "プログラマー",
+"reading": "ぷろぐらまー",
+"meaning": "Lập trình viên",
+"id": "word_programmer_01"
+},
+{
+"word": "見る",
+"reading": "みる",
+"meaning": "Xem / Kiểm tra",
+"id": "word_miru_01"
+}
+],
+"nextNode": "node_005"
+},
+{
+"id": "node_005",
+"characterId": "npc_an",
+"emotion": "surprised",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "A, thật ạ? Cảm ơn bạn nhiều!",
+"vi": "A, thật ạ? Cảm ơn bạn nhiều!"
+},
+"interactableWords": [
+{
+"word": "本当",
+"reading": "ほんとう",
+"meaning": "Thật / Thật sự",
+"id": "word_hontou_01"
+},
+{
+"word": "ありがとうございます",
+"reading": "ありがとうございます",
+"meaning": "Cảm ơn rất nhiều",
+"id": "word_arigatou_01"
+}
+],
+"nextNode": "node_006"
+},
+{
+"id": "node_006",
+"characterId": "npc_you",
+"emotion": "happy",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "Xong rồi nhé. Chỉ là một lỗi nhỏ thôi, máy lại chạy mượt rồi.",
+"vi": "Xong rồi nhé. Chỉ là một lỗi nhỏ thôi, máy lại chạy mượt rồi."
+},
+"interactableWords": [
+{
+"word": "直る",
+"reading": "なおる",
+"meaning": "Được sửa / Hết lỗi",
+"id": "word_naoru_01"
+},
+{
+"word": "小さい",
+"reading": "ちいさい",
+"meaning": "Nhỏ",
+"id": "word_chiisai_01"
+}
+],
+"nextNode": "node_007"
+},
+{
+"id": "node_007",
+"characterId": "npc_an",
+"emotion": "happy_blush",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "Tuyệt quá! Cảm ơn bạn nhiều lắm! Mình là An, một điều dưỡng.",
+"vi": "Tuyệt quá! Cảm ơn bạn nhiều lắm! Mình là An, một điều dưỡng."
+},
+"interactableWords": [
+{
+"word": "看護師",
+"reading": "かんごし",
+"meaning": "Điều dưỡng",
+"id": "word_kangoshi_01"
+},
+{
+"word": "嬉しい",
+"reading": "うれしい",
+"meaning": "Vui / Hạnh phúc",
+"id": "word_ureshii_01"
+}
+],
+"nextNode": "node_008"
+},
+{
+"id": "node_008",
+"characterId": "npc_you",
+"emotion": "happy",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "Mình là Tú. Để ăn mừng máy tính hết 'bệnh', lần tới bạn có muốn đi uống cafe với mình không? コーヒーを飲みに行きたいですか。",
+"vi": "Mình là Tú. Để ăn mừng máy tính hết 'bệnh', lần tới bạn có muốn đi uống cafe với mình không?"
+},
+"interactableWords": [
+{
+"word": "コーヒー",
+"reading": "こーひー",
+"meaning": "Cafe",
+"id": "word_coffee_01"
+},
+{
+"word": "行きたいです",
+"reading": "いきたいです",
+"meaning": "Muốn đi",
+"id": "word_ikitai_01"
+},
+{
+"word": "飲む",
+"reading": "のむ",
+"meaning": "Uống",
+"id": "word_nomu_01"
+}
+],
+"nextNode": "node_009"
+},
+{
+"id": "node_009",
+"characterId": "npc_an",
+"emotion": "happy",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "Vâng, mình rất sẵn lòng! ぜひ行きたいです.",
+"vi": "Vâng, mình rất sẵn lòng! Mình rất muốn đi."
+},
+"interactableWords": [
+{
+"word": "ぜひ",
+"reading": "",
+"meaning": "Nhất định / Rất mong",
+"id": "word_zehi_01"
+},
+{
+"word": "行きたいです",
+"reading": "いきたいです",
+"meaning": "Muốn đi",
+"id": "word_ikitai_02"
+}
+],
+"nextNode": "node_010"
+},
+{
+"id": "node_010",
+"characterId": "mascot",
+"emotion": "idle",
+"background": "/images/bg_cafe_quiet.jpg",
+"dialogue": {
+"jp": "Oa, thế là có hẹn rồi! Đúng là trong cái rủi có cái may nhỉ!",
+"vi": "Oa, thế là có hẹn rồi! Đúng là trong cái rủi có cái may nhỉ!"
+},
+"interactableWords": [
+{
+"word": "約束",
+"reading": "やくそく",
+"meaning": "Cuộc hẹn / Lời hứa",
+"id": "word_yakusoku_01"
+},
+{
+"word": "幸運",
+"reading": "こううん",
+"meaning": "May mắn",
+"id": "word_koun_01"
+}
+],
+"nextNode": "END_STORY"
+}
+]
+}
