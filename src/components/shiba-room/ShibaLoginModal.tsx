@@ -4,7 +4,6 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
-import toast from "react-hot-toast";
 
 interface ShibaLoginModalProps {
   isOpen: boolean;
@@ -28,7 +27,7 @@ export function ShibaLoginModal({
       await loginWithGoogle();
       if (onSuccess) onSuccess();
       onClose();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
@@ -36,7 +35,7 @@ export function ShibaLoginModal({
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-xs p-4">
           <div className="absolute inset-0" onClick={onClose} />
-          
+
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -70,8 +69,8 @@ export function ShibaLoginModal({
             >
               {title}
             </h3>
-            
-            <p 
+
+            <p
               className="font-rounded font-bold text-zinc-500 bg-white/90 border border-dashed border-[#FFE2D1] p-3.5 rounded-2xl shadow-inner text-xs leading-relaxed mb-5"
               style={{ fontFamily: "var(--font-cherry)" }}
             >

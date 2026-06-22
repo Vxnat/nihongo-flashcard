@@ -10,6 +10,7 @@ import { VNWordTooltip } from "./VNWordTooltip";
 import { VNInteractableWord } from "@/utils/vnTextParser";
 import { VNEndScreen } from "./VNEndScreen";
 import { useAppStore } from "@/store/useAppStore";
+import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 
 export function VisualNovelMode() {
   const activeStoryId = useAppStore((state) => state.activeStoryId);
@@ -24,6 +25,8 @@ export function VisualNovelMode() {
   );
   const lastNodeRef = useRef<any>(null);
   const isFirstClearRef = useRef<boolean>(false);
+
+
 
   // Load Data
   useEffect(() => {
@@ -69,6 +72,10 @@ export function VisualNovelMode() {
       </div>
     );
   }
+
+  useLearningTimer({
+    isActive: true,
+  });
 
   // Hàm xử lý nhảy sang Node tiếp theo
   const handleNextNode = (nextNodeId: string) => {

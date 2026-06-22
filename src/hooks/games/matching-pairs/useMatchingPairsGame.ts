@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import toast from "react-hot-toast";
 import confetti from "canvas-confetti";
 
 import { useAppStore } from "@/store/useAppStore";

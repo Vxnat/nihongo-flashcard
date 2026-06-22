@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { X, FileJson } from "lucide-react";
+import { X } from "lucide-react";
 
 interface ExcelImportModalProps {
   setIsImportOpen: (open: boolean) => void;

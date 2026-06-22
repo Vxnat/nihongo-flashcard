@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Sparkles } from "lucide-react";
 import { SystemRoadmap } from "@/components/roadmap/SystemRoadmap";
 import { GachaShop } from "@/components/shiba-room/GachaShop";
@@ -17,119 +16,27 @@ import { VisualNovelMode } from "@/components/visual-novel/VisualNovelMode";
 import { MatchingPairsGame } from "@/components/games/matching-pairs/MatchingPairsGame";
 import { KanjiDojoGame } from "@/components/games/kanji-dojo/KanjiDojoGame";
 import { KanjiPractice } from "@/components/games/kanji-dojo/KanjiPractice";
-import { useAppStore } from "@/store/useAppStore";
-import { FlashcardData } from "@/types/flashcard";
 import { TypingRushGame } from "@/components/games/typing-rush/TypingRushGame";
 import { SakuraEffect, LofiNightEffect, DivineShibaEffect } from "@/components/common/ThemeEffects";
+import { ProfileTab } from "@/components/layout/ProfileTab";
 
 export default function Home() {
   const homeState = useHome();
   const pwaState = usePwaInstall();
-  const { activeTab, handleTabChange } = homeState;
-  const activeStoryId = useAppStore((state) => state.activeStoryId);
-  const activeMinigameId = useAppStore((state: any) => state.activeMinigameId);
-  const setActiveMinigameId = useAppStore(
-    (state: any) => state.setActiveMinigameId,
-  );
-  const activeKanjiPracticeDeck = useAppStore((state) => state.activeKanjiPracticeDeck);
-  const setActiveKanjiPracticeDeck = useAppStore((state) => state.setActiveKanjiPracticeDeck);
-  const [minigameDeckData, setMinigameDeckData] = useState<any>(null); // Store minigame deck data
-  const saveProgress = useAppStore((state) => state.saveProgress);
-
-  const equippedTheme = useAppStore((state) => state.userStats.equippedTheme);
-
-  // Đồng bộ theme với body class
-  useEffect(() => {
-    let themeClass = "";
-    if (equippedTheme === "thm_sakura") themeClass = "theme-sakura";
-    else if (equippedTheme === "thm_night") themeClass = "theme-night";
-    else if (equippedTheme === "thm_divine_shiba") themeClass = "theme-divine";
-
-    document.body.classList.remove("theme-sakura", "theme-night", "theme-divine");
-    if (themeClass) {
-      document.body.classList.add(themeClass);
-    }
-    return () => {
-      document.body.classList.remove("theme-sakura", "theme-night", "theme-divine");
-    };
-  }, [equippedTheme]);
-
-  // State chứa data thẻ ngẫu nhiên cho minigame
-  const [minigameCards, setMinigameCards] = useState<FlashcardData[]>([]);
-  const [isLoadingMinigame, setIsLoadingMinigame] = useState(false);
-
-  // Tự động fetch data lấy thẻ bài từ các bài trước khi mở Minigame
-  useEffect(() => {
-    const fetchMinigameCards = async () => {
-      if (!activeMinigameId) {
-        setMinigameCards([]);
-        setIsLoadingMinigame(false);
-        return;
-      }
-
-      setIsLoadingMinigame(true);
-      try {
-        const res = await fetch("/data/configs/system_decks.json");
-        const decks = await res.json();
-
-        const minigameDeck = decks.find((d: any) => d.id === activeMinigameId);
-        if (!minigameDeck) return;
-
-        const folder = minigameDeck.level.toLowerCase(); // VD: n5, n4
-
-        // 1. GAME ĐẶC THÙ (KANJI) -> Fetch data từ file json rời
-        if (minigameDeck.type === "minigame_kanji") {
-          const dataRes = await fetch(`/data/decks/${folder}/${minigameDeck.id}.json`).catch(() => null);
-          if (dataRes && dataRes.ok) {
-            const data = await dataRes.json();
-            // Tiêm mảng kanji vào lại object deck để truyền cho KanjiDojoGame
-            setMinigameDeckData({ ...minigameDeck, kanjiList: data });
-          } else {
-            setMinigameDeckData(minigameDeck);
-          }
-          setMinigameCards([]);
-          setIsLoadingMinigame(false);
-          return;
-        }
-
-        setMinigameDeckData(minigameDeck);
-
-        // 2. GAME ÔN TẬP (MATCHING, RUSH) -> Lấy data dựa vào targetDeckIds
-        let allCards: FlashcardData[] = [];
-
-        if (minigameDeck.targetDeckIds && minigameDeck.targetDeckIds.length > 0) {
-          // Dùng Promise.all để fetch tất cả các file cần ôn tập cùng lúc
-          const fetchPromises = minigameDeck.targetDeckIds.map((targetId: string) =>
-            fetch(`/data/decks/${folder}/${targetId}.json`).then((r) => (r.ok ? r.json() : []))
-          );
-
-          const results = await Promise.all(fetchPromises);
-
-          // Gộp tất cả các mảng kết quả thành 1 mảng duy nhất
-          results.forEach((cards) => {
-            allCards = [...allCards, ...cards];
-          });
-        } else {
-          // Fallback: Lấy tất cả bài flashcard trước đó nếu chưa cấu hình targetDeckIds
-          const minigameIndex = decks.findIndex((d: any) => d.id === activeMinigameId);
-          const previousDecks = decks.slice(0, minigameIndex).filter((d: any) => d.level === minigameDeck.level && (!d.type || d.type === "flashcard"));
-          const fetchPromises = previousDecks.slice(-3).map((deck: any) => fetch(`/data/decks/${folder}/${deck.id}.json`).then((r) => (r.ok ? r.json() : [])));
-          const results = await Promise.all(fetchPromises);
-          results.forEach((cards) => { allCards = [...allCards, ...cards]; });
-        }
-
-        const shuffled = allCards.sort(() => Math.random() - 0.5);
-        // Game Băng chuyền cần nhiều từ vựng hơn, Nối từ cần ít hơn
-        const limit = minigameDeck.type === "minigame_rush" ? 15 : 7;
-        setMinigameCards(shuffled.slice(0, limit));
-      } catch (err) {
-        console.error("Lỗi tải minigame:", err);
-      } finally {
-        setIsLoadingMinigame(false);
-      }
-    };
-    fetchMinigameCards();
-  }, [activeMinigameId]);
+  const {
+    activeTab,
+    handleTabChange,
+    activeStoryId,
+    activeMinigameId,
+    setActiveMinigameId,
+    activeKanjiPracticeDeck,
+    setActiveKanjiPracticeDeck,
+    minigameDeckData,
+    minigameCards,
+    isLoadingMinigame,
+    saveProgress,
+    equippedTheme,
+  } = homeState;
 
   return (
     <div className="w-full flex flex-col items-center pb-32 relative">
@@ -138,7 +45,7 @@ export default function Home() {
       {equippedTheme === "thm_night" && <LofiNightEffect />}
       {equippedTheme === "thm_divine_shiba" && <DivineShibaEffect />}
       {/* VIÊN THUỐC TRẠNG THÁI LUÔN LƠ LỬNG */}
-      <UserStatsPill />
+      <UserStatsPill onTabChange={handleTabChange} />
 
       {/* COMPONENT ĐĂNG NHẬP (GÓC TRÊN PHẢI) */}
       <AuthButton />
@@ -218,6 +125,20 @@ export default function Home() {
             className="w-full flex flex-col items-center justify-center max-w-2xl px-4"
           >
             <ShibaRoom />
+          </motion.div>
+        )}
+
+        {/* TAB 5: HỒ SƠ & THÀNH TÍCH */}
+        {activeTab === "profile" && (
+          <motion.div
+            key="profile-tab"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+            className="w-full flex flex-col items-center justify-center max-w-2xl px-4"
+          >
+            <ProfileTab />
           </motion.div>
         )}
       </AnimatePresence>

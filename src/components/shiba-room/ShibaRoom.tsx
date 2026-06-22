@@ -111,7 +111,6 @@ export function ShibaRoom() {
       <div className="w-full h-full flex flex-col items-center justify-center bg-amber-50/50 p-6 text-center" style={{ fontFamily: "var(--font-rounded)" }}>
         <div className="w-12 h-12 border-4 border-[#8C6D58] border-t-transparent rounded-full animate-spin mb-4" />
         <p className="text-[#8C6D58] font-black text-xs uppercase tracking-wider">Đang kết nối Shiba Town...</p>
-        <p className="text-zinc-400 text-[10px] mt-1 font-bold">Vui lòng đảm bảo kết nối mạng ổn định.</p>
       </div>
     );
   }

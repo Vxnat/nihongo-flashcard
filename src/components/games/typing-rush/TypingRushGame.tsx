@@ -10,6 +10,7 @@ import { X } from "lucide-react";
 import { GameResultModal } from "@/components/games/shared/GameResultModal";
 import { useAppStore } from "@/store/useAppStore";
 import { SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
+import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 
 interface TypingRushGameProps {
   cards: FlashcardData[];
@@ -44,6 +45,8 @@ export const TypingRushGame = ({ cards, minigameDeck, onWin, onLose }: TypingRus
     },
     initialHp: 3,
   });
+
+  useLearningTimer({ isActive: gameState === "playing" });
 
   const [bonks, setBonks] = useState<{ id: string; x: number; y: number }[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);

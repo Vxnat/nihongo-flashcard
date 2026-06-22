@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlashcardData } from "@/types/flashcard";
+import Link from "next/link";
 import {
   Headphones,
-  Frown, Smile,
   Play,
   Pause,
   SkipBack,
@@ -14,6 +14,7 @@ import {
   Keyboard,
   Maximize,
   Minimize,
+  ArrowLeft,
 } from "lucide-react";
 import { ControlPanel } from "./ControlPanel";
 import { TypingBossFight } from "@/components/flashcard/TypingBossFight";
@@ -21,7 +22,7 @@ import { FallingSparkles } from "./FallingSparkles";
 import { SwipeCard } from "./SwipeCard";
 import { SwipeGuide } from "./SwipeGuide";
 import { useFlashcardDeck } from "@/hooks/flashcard/useFlashcardDeck";
-import { EndScreen } from "./EndScreen";
+import { BossBattleScreen } from "./BossBattleScreen";
 
 // ==========================================
 // COMPONENT CHA: GIAO DIỆN DECK
@@ -74,6 +75,28 @@ export function FlashcardDeck({
     comboCount,
     setComboCount,
     handleSwipeAction,
+    isBossMode,
+    setIsBossMode,
+    bossHp,
+    bossMaxHp,
+    shibaHp,
+    bossWordsList,
+    currentBossCard,
+    bossTimeLeft,
+    isHintRevealed,
+    activeSkillEffect,
+    activeDamageText,
+    screenShake,
+    bossFlash,
+    projectileFlying,
+    bossStatus,
+    bossFailedAttempts,
+    startBossMode,
+    handleBossWordSubmit,
+    usePhaoBoi,
+    useKinhLup,
+    handleBossCancel,
+    bossCardMaxTime,
   } = useFlashcardDeck({ deckId, initialCards, isCustom });
 
   const [showSwipeGuide, setShowSwipeGuide] = useState(false);
@@ -91,16 +114,74 @@ export function FlashcardDeck({
     localStorage.setItem('hasSeenSwipeGuide', 'true');
     setShowSwipeGuide(false);
   };
-  if (!isMounted)
+  if (!isMounted || (!currentCard && !isBossMode))
     return (
-      <div className="h-[400px] w-full max-w-md mx-auto bg-[#FFE2D1]/30 animate-pulse rounded-[3rem]" />
+      <div className="w-full flex flex-col items-center">
+        {/* Giao diện header trong khi chờ tải */}
+        <div className="w-full max-w-md mb-6 flex items-center justify-between px-4">
+          <Link href="/">
+            <button className="flex items-center justify-center h-12 px-4 bg-white border-4 border-[#FFE2D1] rounded-[1.25rem] shadow-[0_4px_0_0_#FFE2D1] text-orange-400 hover:text-orange-500 hover:bg-orange-50 active:translate-y-1 active:shadow-[0_0_0_0_#FFE2D1] transition-all group cursor-pointer">
+              <ArrowLeft
+                className="w-5 h-5 mr-1.5 group-hover:-translate-x-1 transition-transform"
+                strokeWidth={3}
+              />
+              <span
+                className="font-rounded font-bold text-sm tracking-wide"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >
+                Về nhà
+              </span>
+            </button>
+          </Link>
+
+          <div className="bg-[#FFD166] border-2 border-[#ffe11c] px-4 py-2 rounded-[1.25rem] shadow-[0_4px_0_0_#FF9F1C] font-rounded font-black text-amber-900 text-xs uppercase tracking-widest flex items-center gap-1.5 truncate max-w-[160px]">
+            {isCustom ? (
+              <span className="truncate" style={{ fontFamily: "var(--font-cherry)" }}>
+                Thẻ Tự Tạo
+              </span>
+            ) : (
+              <>
+                <span>📚</span>{" "}
+                <span className="truncate" style={{ fontFamily: "var(--font-cherry)" }}>
+                  {deckId.replace(/_/g, " ")}
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="h-[400px] w-full max-w-md mx-auto bg-[#FFE2D1]/30 animate-pulse rounded-[3rem]" />
+      </div>
     );
 
   // ==========================================
-  // MÀN HÌNH CHÚC MỪNG (END SCREEN KẸO DẺO)
+  // MÀN HÌNH BOSS BATTLE (Nếu đang bật Boss Mode)
   // ==========================================
-  if (activeCards.length === 0) {
-    return <EndScreen onReview={startReview} />;
+  if (isBossMode) {
+    return (
+      <div className="flex flex-col items-center w-full px-4 pt-10 pb-20 justify-center min-h-[100dvh] relative">
+        <BossBattleScreen
+          deckId={deckId}
+          currentBossCard={currentBossCard}
+          bossHp={bossHp}
+          bossMaxHp={bossMaxHp}
+          shibaHp={shibaHp}
+          bossTimeLeft={bossTimeLeft}
+          comboCount={comboCount}
+          activeSkillEffect={activeSkillEffect}
+          activeDamageText={activeDamageText}
+          screenShake={screenShake}
+          bossFlash={bossFlash}
+          projectileFlying={projectileFlying}
+          isHintRevealed={isHintRevealed}
+          onSubmit={handleBossWordSubmit}
+          usePhaoBoi={usePhaoBoi}
+          useKinhLup={useKinhLup}
+          onCancel={handleBossCancel}
+          bossCardMaxTime={bossCardMaxTime}
+        />
+      </div>
+    );
   }
 
   // Hàm lấy giao diện Combo tùy theo mốc điểm
@@ -144,15 +225,59 @@ export function FlashcardDeck({
   // ==========================================
   return (
     <div className="flex flex-col items-center w-full overflow-x-hidden px-4 pt-4 pb-20 min-h-[100dvh]">
+      {/* ==========================================
+          HEADER KẸO DẺO (SQUISHY NAVIGATION)
+          ========================================== */}
+      <div className="w-full max-w-md mb-6 flex items-center justify-between px-4">
+        {/* Nút Về Nhà (Trắng viền Cam) */}
+        <Link href="/">
+          <button className="flex items-center justify-center h-12 px-4 bg-white border-4 border-[#FFE2D1] rounded-[1.25rem] shadow-[0_4px_0_0_#FFE2D1] text-orange-400 hover:text-orange-500 hover:bg-orange-50 active:translate-y-1 active:shadow-[0_0_0_0_#FFE2D1] transition-all group cursor-pointer">
+            <ArrowLeft
+              className="w-5 h-5 mr-1.5 group-hover:-translate-x-1 transition-transform"
+              strokeWidth={3}
+            />
+            <span
+              className="font-rounded font-bold text-sm tracking-wide"
+              style={{ fontFamily: "var(--font-cherry)" }}
+            >
+              Về nhà
+            </span>
+          </button>
+        </Link>
+
+        {/* Nhãn dán Tên Bộ Bài (Vàng viền Cam đâm) */}
+        <div className="bg-[#FFD166] border-2 border-[#ffe11c] px-4 py-2 rounded-[1.25rem] shadow-[0_4px_0_0_#FF9F1C] font-rounded font-black text-amber-900 text-xs uppercase tracking-widest flex items-center gap-1.5 truncate max-w-[160px]">
+          {isCustom ? (
+            <>
+              <span
+                className="truncate"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >
+                Thẻ Tự Tạo
+              </span>
+            </>
+          ) : (
+            <>
+              <span>📚</span>{" "}
+              <span
+                className="truncate"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >
+                {deckId.replace(/_/g, " ")}
+              </span>
+            </>
+          )}
+        </div>
+      </div>
+
       {/* POPUP HƯỚNG DẪN VUỐT (Chỉ hiện lần đầu) */}
       <AnimatePresence>
         {showSwipeGuide && <SwipeGuide onClose={handleCloseGuide} />}
       </AnimatePresence>
       {/* ZEN MODE BACKGROUND OVERLAY (Chỉ tối đi khi bật Podcast) */}
       <div
-        className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 z-0 overflow-hidden ${
-          globalMode === "podcast" ? "opacity-100" : "opacity-0"
-        }`}
+        className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 z-0 overflow-hidden ${globalMode === "podcast" ? "opacity-100" : "opacity-0"
+          }`}
       >
         {/* 1. Ảnh nền Lofi (Có thể tải file ảnh/GIF vào thư mục public và đổi src thành "/ten-anh.gif") */}
         <img
@@ -174,9 +299,8 @@ export function FlashcardDeck({
       <div className="fixed top-0 left-0 w-full h-1.5 z-50 bg-zinc-200/40 overflow-hidden animate-in slide-in-from-top-2 duration-700">
         <div
           // Nếu 0% thì set cứng w-3 (một chấm sáng) và cho nhấp nháy để gọi mời
-          className={`h-full bg-[#06D6A0] transition-all duration-700 ease-out relative shadow-[0_0_12px_2px_rgba(6,214,160,0.8)] rounded-r-full ${
-            progressPercent === 0 ? "w-3 animate-pulse" : ""
-          }`}
+          className={`h-full bg-[#06D6A0] transition-all duration-700 ease-out relative shadow-[0_0_12px_2px_rgba(6,214,160,0.8)] rounded-r-full ${progressPercent === 0 ? "w-3 animate-pulse" : ""
+            }`}
           style={progressPercent > 0 ? { width: `${progressPercent}%` } : {}}
         >
           {/* Điểm nhấn chói sáng ở mũi nhọn */}
@@ -239,11 +363,10 @@ export function FlashcardDeck({
               setPodcastIsPlaying(false);
             }
           }}
-          className={`relative z-10 w-[42px] h-[42px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:translate-y-1 active:scale-90 shadow-sm ${
-            globalMode === "podcast"
-              ? "bg-[#FF7096] text-white shadow-[0_0_15px_rgba(255,112,150,0.8)] border-2 border-[#FFB3C6] scale-110"
-              : "bg-zinc-100/80 text-zinc-500 border border-zinc-200/80 hover:bg-zinc-200 grayscale"
-          }`}
+          className={`relative z-10 w-[42px] h-[42px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:translate-y-1 active:scale-90 shadow-sm ${globalMode === "podcast"
+            ? "bg-[#FF7096] text-white shadow-[0_0_15px_rgba(255,112,150,0.8)] border-2 border-[#FFB3C6] scale-110"
+            : "bg-zinc-100/80 text-zinc-500 border border-zinc-200/80 hover:bg-zinc-200 grayscale"
+            }`}
           title="Chế độ Rảnh Tay (Podcast)"
         >
           <Headphones className="w-5 h-5" />
@@ -269,11 +392,10 @@ export function FlashcardDeck({
               setTempTyping(false);
               setIsFlipped(false);
             }}
-            className={`relative z-10 flex-1 flex items-center justify-center transition-all duration-300 active:duration-75 active:translate-y-[2px] active:scale-90 ${
-              globalMode === "swipe"
-                ? "scale-110 text-[#FF7096] drop-shadow-sm"
-                : "scale-90 text-zinc-400 hover:text-zinc-600"
-            }`}
+            className={`relative z-10 flex-1 flex items-center justify-center transition-all duration-300 active:duration-75 active:translate-y-[2px] active:scale-90 ${globalMode === "swipe"
+              ? "scale-110 text-[#FF7096] drop-shadow-sm"
+              : "scale-90 text-zinc-400 hover:text-zinc-600"
+              }`}
             title="Chế độ lật thẻ"
           >
             <Layers strokeWidth={2.5} className="w-5 h-5" />
@@ -286,11 +408,10 @@ export function FlashcardDeck({
               setTempTyping(false);
               setIsFlipped(false);
             }}
-            className={`relative z-10 flex-1 flex items-center justify-center transition-all duration-300 active:duration-75 active:translate-y-[2px] active:scale-90 ${
-              globalMode === "typing"
-                ? "scale-110 text-[#06D6A0] drop-shadow-sm"
-                : "scale-90 text-zinc-400 hover:text-zinc-600"
-            }`}
+            className={`relative z-10 flex-1 flex items-center justify-center transition-all duration-300 active:duration-75 active:translate-y-[2px] active:scale-90 ${globalMode === "typing"
+              ? "scale-110 text-[#06D6A0] drop-shadow-sm"
+              : "scale-90 text-zinc-400 hover:text-zinc-600"
+              }`}
             title="Chế độ gõ phím"
           >
             <Keyboard strokeWidth={2.5} className="w-5 h-5" />
@@ -487,8 +608,8 @@ export function FlashcardDeck({
             card={currentCard}
           />
 
-          {/* 4. NÚT VÀO ẢI (Hiển thị ngay dưới ControlPanel) */}
-          <div className="w-full max-w-md mx-auto mt-5 sm:mt-10 px-4">
+          {/* 4. NÚT VÀO ẢI VÀ THÁCH ĐẤU BOSS */}
+          <div className="w-full max-w-md mx-auto mt-5 sm:mt-10 px-4 flex flex-col gap-3">
             <button
               onClick={() => {
                 setTempTyping(true); // Bật công tắc tạm thời
@@ -506,6 +627,15 @@ export function FlashcardDeck({
                 Gõ đáp án
               </span>
             </button>
+
+            {(bossStatus === "boss_unlocked" || bossStatus === "completed") && (
+              <button
+                onClick={startBossMode}
+                className="w-full h-12 sm:h-14 bg-gradient-to-r from-[#FF7096] to-[#FF9F1C] hover:from-[#FF5C8A] hover:to-[#E68E19] text-white rounded-2xl font-bold border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-0.5 transition-all flex items-center justify-center gap-2 shadow-md animate-pulse"
+              >
+                <span style={{ fontFamily: "var(--font-cherry)" }}>THÁCH ĐẤU BOSS 🦊</span>
+              </button>
+            )}
           </div>
         </>
       )}
@@ -514,11 +644,10 @@ export function FlashcardDeck({
       {isFullscreenSupported && (
         <button
           onClick={toggleFullscreen}
-          className={`fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:scale-90 ${
-            globalMode === "podcast"
-              ? "bg-white/10 backdrop-blur-md text-white/70 border-2 border-white/20 hover:text-white hover:bg-white/20 shadow-lg"
-              : "bg-white text-zinc-400 border-2 border-zinc-200 shadow-[0_4px_0_0_#e4e4e7] hover:text-[#5390D9] hover:-translate-y-1 hover:shadow-[0_6px_0_0_#e4e4e7] active:translate-y-1 active:shadow-none"
-          }`}
+          className={`fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:scale-90 ${globalMode === "podcast"
+            ? "bg-white/10 backdrop-blur-md text-white/70 border-2 border-white/20 hover:text-white hover:bg-white/20 shadow-lg"
+            : "bg-white text-zinc-400 border-2 border-zinc-200 shadow-[0_4px_0_0_#e4e4e7] hover:text-[#5390D9] hover:-translate-y-1 hover:shadow-[0_6px_0_0_#e4e4e7] active:translate-y-1 active:shadow-none"
+            }`}
           title={isFullscreen ? "Thu nhỏ" : "Toàn màn hình"}
         >
           {isFullscreen ? (

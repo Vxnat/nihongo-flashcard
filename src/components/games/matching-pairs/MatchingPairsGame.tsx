@@ -11,6 +11,7 @@ import { GameResultModal } from "@/components/games/shared/GameResultModal";
 import { ShibaMasterDialog, ShibaMasterOption } from "@/components/games/shared/ShibaMasterDialog";
 import { SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
 import { useMatchingPairsGame, TIME_BONUS_PER_5_SECONDS, PHAO_DURATION_SECONDS, KINH_LUP_DURATION_SECONDS } from "@/hooks/games/matching-pairs/useMatchingPairsGame";
+import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 
 interface MatchingPairsGameProps {
   cards: FlashcardData[];
@@ -28,7 +29,6 @@ export function MatchingPairsGame({
   const {
     gameLevel,
     baseRewardCoins,
-    freeMinigameHints,
     boardItems,
     selectedItems,
     wrongMatch,
@@ -49,6 +49,8 @@ export function MatchingPairsGame({
     handleRestartGame,
     handleGameWin,
   } = useMatchingPairsGame({ cards, minigameDeck, onWin });
+
+  useLearningTimer({ isActive: minigameStatus === "playing" });
 
   const [isMasterOpen, setIsMasterOpen] = React.useState(false);
 
@@ -112,9 +114,8 @@ export function MatchingPairsGame({
                 key={index}
                 src="/images/mascot/shiba_heart.png"
                 alt="HP"
-                className={`w-6 h-6 min-[400px]:w-8 min-[400px]:h-8 sm:w-10 sm:h-10 transition-all duration-300 ${
-                  index < hp ? "opacity-100" : "opacity-30 grayscale"
-                }`}
+                className={`w-6 h-6 min-[400px]:w-8 min-[400px]:h-8 sm:w-10 sm:h-10 transition-all duration-300 ${index < hp ? "opacity-100" : "opacity-30 grayscale"
+                  }`}
                 initial={{ scale: 0.8 }}
                 animate={{ scale: index < hp ? 1 : 0.8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -177,17 +178,15 @@ export function MatchingPairsGame({
                     (isKinhLupActive && item.type === "vi")
                   } // Disable VI cards in Kính Lúp mode
                   className={`relative aspect-square sm:aspect-auto sm:h-28 rounded-xl sm:rounded-2xl p-1.5 min-[400px]:p-2 sm:p-4 flex flex-col items-center justify-center text-center shadow-sm border-b-4 transition-colors outline-none
-                    ${
-                      isSelected && !isWrong
-                        ? "bg-[#E0F7FA] border-[#80DEEA] border-b-[#80DEEA] shadow-[0_0_15px_rgba(128,222,234,0.5)]"
-                        : isWrong
-                          ? "bg-[#FFF0F3] border-[#FF7096] border-b-[#FF7096]"
-                          : "bg-white border-[#FFE2D1] border-b-[#FFD166] hover:bg-orange-50"
+                    ${isSelected && !isWrong
+                      ? "bg-[#E0F7FA] border-[#80DEEA] border-b-[#80DEEA] shadow-[0_0_15px_rgba(128,222,234,0.5)]"
+                      : isWrong
+                        ? "bg-[#FFF0F3] border-[#FF7096] border-b-[#FF7096]"
+                        : "bg-white border-[#FFE2D1] border-b-[#FFD166] hover:bg-orange-50"
                     }
-                    ${
-                      isKinhLupActive && item.type === "jp"
-                        ? "cursor-crosshair"
-                        : "cursor-pointer"
+                    ${isKinhLupActive && item.type === "jp"
+                      ? "cursor-crosshair"
+                      : "cursor-pointer"
                     }
                     ${!isRunning || selectedItems.length >= 2 || (isKinhLupActive && item.type === "vi") ? "opacity-70" : ""}
                   `}
@@ -206,11 +205,10 @@ export function MatchingPairsGame({
                     />
                   )}
                   <span
-                    className={`relative z-10 font-bold drop-shadow-sm line-clamp-3 sm:line-clamp-4 leading-tight ${
-                      item.type === "jp"
+                    className={`relative z-10 font-bold drop-shadow-sm line-clamp-3 sm:line-clamp-4 leading-tight ${item.type === "jp"
                         ? "text-lg min-[400px]:text-xl sm:text-3xl text-[#FF9F1C]"
                         : "text-[11px] min-[400px]:text-xs sm:text-sm text-[#5390D9]"
-                    }`}
+                      }`}
                     style={{
                       fontFamily:
                         item.type === "jp"

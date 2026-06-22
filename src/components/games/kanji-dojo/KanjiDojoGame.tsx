@@ -10,6 +10,7 @@ import { GameResultModal } from "@/components/games/shared/GameResultModal";
 import { ShibaMasterDialog, ShibaMasterOption } from "@/components/games/shared/ShibaMasterDialog";
 import { useAppStore } from "@/store/useAppStore";
 import { SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
+import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 
 interface KanjiDojoGameProps {
   minigameDeck: SystemDeck;
@@ -31,6 +32,8 @@ export function KanjiDojoGame({
   const [hp, setHp] = useState(MAX_HP);
   const [status, setStatus] = useState<"playing" | "win" | "lose">("playing");
   const [isShaking, setIsShaking] = useState(false);
+
+  useLearningTimer({ isActive: status === "playing" });
 
   const addCoins = useAppStore((state) => state.addCoins);
   const progress = useAppStore((state) => state.progress);

@@ -6,6 +6,7 @@ import { playAudio } from "@/utils/tts";
 import { playSFX } from "@/utils/sfx";
 import { useUserStats } from "@/hooks/common/useUserStats";
 import { useAppStore } from "@/store/useAppStore";
+import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -90,7 +91,7 @@ export function useFlashcardDeck({
       const localDecks = JSON.parse(
         localStorage.getItem("custom_decks") || "[]",
       );
-      
+
       const allCustomDecks = customDecks.length > 0 ? customDecks : localDecks;
 
       const currentCustomDeck = allCustomDecks.find(
@@ -342,48 +343,12 @@ export function useFlashcardDeck({
     handlePodcastNext,
   ]);
 
-  const globalModeRef = useRef(globalMode);
-  const podcastIsPlayingRef = useRef(podcastIsPlaying);
-  useEffect(() => {
-    globalModeRef.current = globalMode;
-    podcastIsPlayingRef.current = podcastIsPlaying;
-  }, [globalMode, podcastIsPlaying]);
-
-  useEffect(() => {
-    if (!isMounted || !addLearningTime) return;
-    let isActive = true;
-    let afkTimer: NodeJS.Timeout;
-    const resetAfk = () => {
-      isActive = true;
-      setMascotState((prev) => (prev === "sleep" ? "idle" : prev)); // Đánh thức linh vật
-      clearTimeout(afkTimer);
-      afkTimer = setTimeout(() => {
-        isActive = false;
-        setMascotState("sleep");
-      }, 30000); // Ngủ gật
-    };
-    window.addEventListener("mousemove", resetAfk);
-    window.addEventListener("keydown", resetAfk);
-    window.addEventListener("touchstart", resetAfk);
-    window.addEventListener("click", resetAfk);
-    resetAfk();
-    const trackingInterval = setInterval(() => {
-      if (
-        isActive ||
-        (globalModeRef.current === "podcast" && podcastIsPlayingRef.current)
-      ) {
-        addLearningTime(5);
-      }
-    }, 5000);
-    return () => {
-      clearTimeout(afkTimer);
-      clearInterval(trackingInterval);
-      window.removeEventListener("mousemove", resetAfk);
-      window.removeEventListener("keydown", resetAfk);
-      window.removeEventListener("touchstart", resetAfk);
-      window.removeEventListener("click", resetAfk);
-    };
-  }, [isMounted, addLearningTime]);
+  useLearningTimer({
+    isActive: isMounted,
+    forceActive: globalMode === "podcast" && podcastIsPlaying,
+    onActive: () => setMascotState((prev) => (prev === "sleep" ? "idle" : prev)),
+    onAfk: () => setMascotState("sleep"),
+  });
 
   useEffect(() => {
     // Kiểm tra xem trình duyệt có hỗ trợ Fullscreen API không (iPhone Safari không hỗ trợ)
@@ -440,7 +405,7 @@ export function useFlashcardDeck({
     );
 
     if (!isCurrentlyFullscreen) {
-      if (docEl.requestFullscreen) docEl.requestFullscreen().catch(() => {});
+      if (docEl.requestFullscreen) docEl.requestFullscreen().catch(() => { });
       else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen();
       else if (docEl.mozRequestFullScreen) docEl.mozRequestFullScreen();
       else if (docEl.msRequestFullscreen) docEl.msRequestFullscreen();
@@ -456,14 +421,6 @@ export function useFlashcardDeck({
     setCards([...cards].sort(() => Math.random() - 0.5));
     setCurrentIndex(0);
     setIsFlipped(false);
-  };
-
-  const resetProgress = () => {
-    globalResetProgress(deckId);
-    setCurrentIndex(0);
-    setIsFlipped(false);
-    setIsReviewMode(false);
-    setReviewedIds([]);
   };
 
   const handlePlayAudio = () => {
@@ -513,6 +470,392 @@ export function useFlashcardDeck({
     handlePodcastNext,
   ]);
 
+  // --- BOSS FIGHT STATES ---
+  const [isBossMode, setIsBossMode] = useState(false);
+  const [bossHp, setBossHp] = useState(0);
+  const [bossMaxHp, setBossMaxHp] = useState(0);
+  const [shibaHp, setShibaHp] = useState(3);
+  const [bossWordsList, setBossWordsList] = useState<FlashcardData[]>([]);
+  const [currentBossCard, setCurrentBossCard] = useState<FlashcardData | null>(null);
+  const [playedBossCardIds, setPlayedBossCardIds] = useState<string[]>([]);
+  const [bossTimeLeft, setBossTimeLeft] = useState(0);
+  const [bossCardMaxTime, setBossCardMaxTime] = useState(10);
+  const [isHintRevealed, setIsHintRevealed] = useState(false);
+
+  // FX States for battle animations
+  const [activeSkillEffect, setActiveSkillEffect] = useState<"normal" | "double" | "shiba_special" | null>(null);
+  const [activeDamageText, setActiveDamageText] = useState<{ damage: number; isCritical: boolean } | null>(null);
+  const [screenShake, setScreenShake] = useState(false);
+  const [bossFlash, setBossFlash] = useState(false);
+  const [projectileFlying, setProjectileFlying] = useState(false);
+
+  // Zustand Store mappings
+  const bossStatusMap = useAppStore((state) => state.bossStatus);
+  const bossFailedAttemptsMap = useAppStore((state) => state.bossFailedAttempts);
+  const wordStats = useAppStore((state) => state.userStats.wordStats || {});
+  const recordWordStat = useAppStore((state) => state.recordWordStat);
+  const submitBossResult = useAppStore((state) => state.submitBossResult);
+  const deductCoins = useAppStore((state) => state.deductCoins);
+
+  const bossStatus = bossStatusMap[deckId] || "learning";
+  const bossFailedAttempts = bossFailedAttemptsMap[deckId] || 0;
+
+  // Helpers
+  const getBossWordCountLimit = (deckSize: number) => {
+    if (deckSize <= 10) return Math.min(deckSize, 10);
+    if (deckSize <= 20) return Math.min(deckSize, 12);
+    if (deckSize <= 30) return Math.min(deckSize, 15);
+    return Math.min(deckSize, 20);
+  };
+
+  const calculateBaseDamage = (card: FlashcardData) => {
+    const romaji = card.romaji || card.reading || "";
+    const word = card.word || "";
+    const reading = card.reading || "";
+    const hasKanji = word !== reading;
+    return 10 + romaji.length + (hasKanji ? 5 : 0);
+  };
+
+  const getDamageMultiplier = (combo: number) => {
+    if (combo >= 5) return 2.0;
+    if (combo >= 3) return 1.5;
+    return 1.0;
+  };
+
+  const getCardDifficulty = useCallback((card: FlashcardData): "easy" | "medium" | "hard" => {
+    const word = card.word || "";
+    const reading = card.reading || "";
+    const romaji = card.romaji || card.reading || "";
+    const hasKanji = word !== reading;
+    const isKanaOnly = !hasKanji;
+    const stat = wordStats[card.id];
+    const isWeak = stat && stat.wrongCount >= 2;
+
+    if (romaji.length < 5 && isKanaOnly && !isWeak) {
+      return "easy";
+    }
+    if (romaji.length >= 8 || hasKanji || isWeak) {
+      return "hard";
+    }
+    return "medium";
+  }, [wordStats]);
+
+  const getCardTimeLimit = useCallback((card: FlashcardData) => {
+    const romaji = card.romaji || card.reading || "";
+    const word = card.word || "";
+    const reading = card.reading || "";
+    const hasKanji = word !== reading;
+
+    const baseTime = 2.5 + 0.35 * romaji.length;
+    const clampedTime = Math.max(3, Math.min(9, baseTime));
+
+    let modifier = 0;
+    if (hasKanji) modifier += 1.5;
+    else modifier -= 0.5;
+
+    const stat = wordStats[card.id];
+    if (stat) {
+      if (stat.wrongCount >= 2) modifier += 1.0;
+      if (stat.correctCount >= 5) modifier -= 1.0;
+    }
+
+    return Math.max(3, clampedTime + modifier);
+  }, [wordStats]);
+
+  const buildBossWordsList = useCallback(() => {
+    const deckSize = cards.length;
+    if (deckSize === 0) return [];
+    const limit = getBossWordCountLimit(deckSize);
+
+    const deckCards = [...cards];
+
+    const weakCards = deckCards
+      .filter(card => {
+        const stat = wordStats[card.id];
+        return stat && stat.wrongCount > 0;
+      })
+      .sort((a, b) => {
+        const statA = wordStats[a.id];
+        const statB = wordStats[b.id];
+        return (statB?.wrongCount || 0) - (statA?.wrongCount || 0);
+      });
+
+    const reviewCards = deckCards.filter(card => {
+      const stat = wordStats[card.id];
+      return stat && stat.correctCount > (stat.wrongCount || 0);
+    });
+
+    const weakCountTarget = Math.max(1, Math.round(limit * 0.25));
+    const reviewCountTarget = Math.max(1, Math.round(limit * 0.1));
+
+    const selectedMap = new Map<string, FlashcardData>();
+
+    weakCards.slice(0, weakCountTarget).forEach(card => {
+      selectedMap.set(card.id, card);
+    });
+
+    for (const card of reviewCards) {
+      if (selectedMap.size >= weakCountTarget + reviewCountTarget) break;
+      if (!selectedMap.has(card.id)) {
+        selectedMap.set(card.id, card);
+      }
+    }
+
+    const shuffledDeck = [...deckCards].sort(() => Math.random() - 0.5);
+    for (const card of shuffledDeck) {
+      if (selectedMap.size >= limit) break;
+      if (!selectedMap.has(card.id)) {
+        selectedMap.set(card.id, card);
+      }
+    }
+
+    for (const card of shuffledDeck) {
+      if (selectedMap.size >= limit) break;
+      selectedMap.set(card.id, card);
+    }
+
+    return Array.from(selectedMap.values()).sort(() => Math.random() - 0.5);
+  }, [cards, wordStats]);
+
+  const selectNextBossCard = useCallback((remainingCards: FlashcardData[], combo: number) => {
+    if (remainingCards.length === 0) return null;
+
+    const easyCards = remainingCards.filter(c => getCardDifficulty(c) === "easy");
+    const mediumCards = remainingCards.filter(c => getCardDifficulty(c) === "medium");
+    const hardCards = remainingCards.filter(c => getCardDifficulty(c) === "hard");
+
+    if (combo === 0) {
+      if (easyCards.length > 0) return easyCards[Math.floor(Math.random() * easyCards.length)];
+      if (mediumCards.length > 0) return mediumCards[Math.floor(Math.random() * mediumCards.length)];
+      return hardCards[Math.floor(Math.random() * hardCards.length)];
+    } else if (combo >= 3) {
+      if (hardCards.length > 0) return hardCards[Math.floor(Math.random() * hardCards.length)];
+      if (mediumCards.length > 0) return mediumCards[Math.floor(Math.random() * mediumCards.length)];
+      return easyCards[Math.floor(Math.random() * easyCards.length)];
+    } else {
+      if (mediumCards.length > 0) return mediumCards[Math.floor(Math.random() * mediumCards.length)];
+      if (easyCards.length > 0) return easyCards[Math.floor(Math.random() * easyCards.length)];
+      return hardCards[Math.floor(Math.random() * hardCards.length)];
+    }
+  }, [getCardDifficulty]);
+
+  const handleBossWordSubmit = useCallback(async (input: string) => {
+    if (!currentBossCard) return;
+
+    const targetReading = (currentBossCard.romaji || currentBossCard.reading || "").toLowerCase().trim();
+    const userInput = input.toLowerCase().trim();
+    const isCorrect = userInput === targetReading;
+
+    setIsHintRevealed(false);
+
+    if (isCorrect) {
+      playSFX("success");
+      playMascotAnim("success");
+      recordWordStat(currentBossCard.id, true);
+
+      const newCombo = comboCount + 1;
+      setComboCount(newCombo);
+
+      if (comboTimeoutRef.current) clearTimeout(comboTimeoutRef.current);
+      comboTimeoutRef.current = setTimeout(() => {
+        setComboCount(0);
+      }, 8000);
+
+      const baseDamage = calculateBaseDamage(currentBossCard);
+      const multiplier = getDamageMultiplier(newCombo);
+      const actualDamage = Math.round(baseDamage * multiplier);
+
+      setProjectileFlying(true);
+      setActiveSkillEffect(newCombo >= 5 ? "shiba_special" : newCombo >= 3 ? "double" : "normal");
+
+      setTimeout(() => {
+        setProjectileFlying(false);
+        const nextHp = Math.max(0, bossHp - actualDamage);
+        setBossHp(nextHp);
+        if (nextHp <= 0) {
+          playCompanionVoice("victory");
+          submitBossResult(deckId, true);
+          setIsBossMode(false);
+        }
+
+        setBossFlash(true);
+        setScreenShake(true);
+        setActiveDamageText({ damage: actualDamage, isCritical: newCombo >= 5 });
+
+        setTimeout(() => {
+          setBossFlash(false);
+          setScreenShake(false);
+        }, 300);
+
+        setTimeout(() => {
+          setActiveDamageText(null);
+        }, 1000);
+      }, 500);
+
+      const nextBossHp = Math.max(0, bossHp - actualDamage);
+      const nextPlayed = [...playedBossCardIds, currentBossCard.id];
+      setPlayedBossCardIds(nextPlayed);
+
+      if (nextBossHp <= 0) {
+        // Boss is dead, do not load next card or reset timer
+      } else {
+        const remaining = bossWordsList.filter(c => !nextPlayed.includes(c.id));
+        if (remaining.length === 0) {
+          submitBossResult(deckId, false);
+          setIsBossMode(false);
+        } else {
+          const nextCard = selectNextBossCard(remaining, newCombo);
+          if (nextCard) {
+            setCurrentBossCard(nextCard);
+            const limit = getCardTimeLimit(nextCard);
+            setBossCardMaxTime(limit);
+            setBossTimeLeft(limit);
+          }
+        }
+      }
+    } else {
+      playSFX("fail");
+      playMascotAnim("fail");
+      playCompanionVoice("incorrect");
+      recordWordStat(currentBossCard.id, false);
+
+      setComboCount(0);
+
+      const nextShibaHp = shibaHp - 1;
+      setShibaHp(nextShibaHp);
+
+      if (nextShibaHp <= 0) {
+        submitBossResult(deckId, false);
+        setIsBossMode(false);
+      } else {
+        const remaining = bossWordsList.filter(c => !playedBossCardIds.includes(c.id));
+        const nextCard = selectNextBossCard(remaining, 0);
+        if (nextCard) {
+          setCurrentBossCard(nextCard);
+          const limit = getCardTimeLimit(nextCard);
+          setBossCardMaxTime(limit);
+          setBossTimeLeft(limit);
+        }
+      }
+    }
+  }, [
+    currentBossCard,
+    comboCount,
+    bossWordsList,
+    playedBossCardIds,
+    bossHp,
+    shibaHp,
+    deckId,
+    recordWordStat,
+    submitBossResult,
+    selectNextBossCard,
+    getCardTimeLimit,
+    playCompanionVoice,
+    playMascotAnim
+  ]);
+
+  const startBossMode = useCallback(() => {
+    const list = buildBossWordsList();
+    if (list.length === 0) return;
+
+    setBossWordsList(list);
+    setPlayedBossCardIds([]);
+    setShibaHp(3);
+    setComboCount(0);
+
+    const calculatedMaxHp = list.reduce((sum, card) => sum + calculateBaseDamage(card), 0);
+    setBossMaxHp(calculatedMaxHp);
+    setBossHp(calculatedMaxHp);
+    setIsBossMode(true);
+
+    const firstCard = selectNextBossCard(list, 0);
+    if (firstCard) {
+      setCurrentBossCard(firstCard);
+      const limit = getCardTimeLimit(firstCard);
+      setBossCardMaxTime(limit);
+      setBossTimeLeft(limit);
+    }
+  }, [buildBossWordsList, selectNextBossCard, getCardTimeLimit]);
+
+  const usePhaoBoi = useCallback(async () => {
+    if (!isBossMode) return false;
+    const success = await deductCoins(5);
+    if (success) {
+      setBossTimeLeft((prev) => prev + 5);
+      setBossCardMaxTime((prev) => prev + 5);
+      import("react-hot-toast").then(({ toast }) => {
+        toast.success("Đã sử dụng Phao Bơi! +5 giây đóng băng! 🧊", { icon: "❄️" });
+      });
+      return true;
+    } else {
+      import("react-hot-toast").then(({ toast }) => {
+        toast.error("Không đủ xu! Phao Bơi cần 5 xu. 🪙");
+      });
+      return false;
+    }
+  }, [isBossMode, deductCoins]);
+
+  const useKinhLup = useCallback(async () => {
+    if (!isBossMode || !currentBossCard) return false;
+    if (isHintRevealed) return true;
+    const success = await deductCoins(3);
+    if (success) {
+      setIsHintRevealed(true);
+      import("react-hot-toast").then(({ toast }) => {
+        toast.success("Đã sử dụng Kính Lúp! Gợi ý chữ cái đầu. 🔍", { icon: "🔍" });
+      });
+      return true;
+    } else {
+      import("react-hot-toast").then(({ toast }) => {
+        toast.error("Không đủ xu! Kính Lúp cần 3 xu. 🪙");
+      });
+      return false;
+    }
+  }, [isBossMode, currentBossCard, isHintRevealed, deductCoins]);
+
+  const handleBossCancel = useCallback(() => {
+    submitBossResult(deckId, false);
+    setIsBossMode(false);
+  }, [deckId, submitBossResult]);
+
+  // Automatically reset review progress if they swipe everything in review mode, or if they finish learning
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const total = cards.length;
+    if (total === 0) return;
+
+    if (knownIds.length >= total && !isReviewMode) {
+      setIsReviewMode(true);
+      setReviewedIds([]);
+      setCurrentIndex(0);
+      setIsFlipped(false);
+    } else if (isReviewMode && reviewedIds.length >= total) {
+      // Loop review mode
+      setReviewedIds([]);
+      setCurrentIndex(0);
+      setIsFlipped(false);
+    }
+  }, [knownIds, reviewedIds, cards, isReviewMode, isMounted]);
+
+  // Timer useEffect for Boss Fight (only handles ticking down)
+  useEffect(() => {
+    if (!isBossMode || bossHp <= 0 || shibaHp <= 0 || !currentBossCard) return;
+
+    const timer = setInterval(() => {
+      setBossTimeLeft((prev) => Math.max(0, prev - 0.1));
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, [isBossMode, bossHp, shibaHp, currentBossCard]);
+
+  // Handle timeout side effect
+  useEffect(() => {
+    // if (isBossMode && bossTimeLeft <= 0 && currentBossCard && bossHp > 0 && shibaHp > 0) {
+    //   handleBossWordSubmit("");
+    // }
+  }, [bossTimeLeft, isBossMode, currentBossCard, bossHp, shibaHp, handleBossWordSubmit]);
+
   return {
     isMounted,
     activeCards,
@@ -550,5 +893,27 @@ export function useFlashcardDeck({
     comboCount,
     setComboCount,
     handleSwipeAction,
+    isBossMode,
+    setIsBossMode,
+    bossHp,
+    bossMaxHp,
+    shibaHp,
+    bossWordsList,
+    currentBossCard,
+    bossTimeLeft,
+    isHintRevealed,
+    activeSkillEffect,
+    activeDamageText,
+    screenShake,
+    bossFlash,
+    projectileFlying,
+    bossStatus,
+    bossFailedAttempts,
+    startBossMode,
+    handleBossWordSubmit,
+    usePhaoBoi,
+    useKinhLup,
+    handleBossCancel,
+    bossCardMaxTime,
   };
 }

@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 
 interface BottomNavProps {
-  activeTab: "journey" | "custom" | "shop" | "room";
-  handleTabChange: (tab: "journey" | "custom" | "shop" | "room") => void;
+  activeTab: "journey" | "custom" | "shop" | "room" | "profile";
+  handleTabChange: (tab: "journey" | "custom" | "shop" | "room" | "profile") => void;
 }
 
 export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
   return (
-    <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-[400px] md:max-w-[450px]">
+    <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] max-w-[420px] md:max-w-[480px]">
       <div className="flex bg-white/95 backdrop-blur-md border-4 border-[#FFE2D1] p-1.5 sm:p-2 rounded-[2rem] shadow-[0_6px_0_0_#FFE2D1] sm:shadow-[0_8px_0_0_#FFE2D1] justify-between items-center relative">
         {[
           {
@@ -42,6 +42,14 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
             label: "Cửa hàng",
             color: "#FF7096",
             shadow: "#C7486B",
+            text: "text-white",
+          },
+          {
+            id: "profile",
+            icon: "/images/ui/icons/trophy_icon.png",
+            label: "Hồ sơ",
+            color: "#B28DFF",
+            shadow: "#8A56D6",
             text: "text-white",
           },
         ].map((tab) => {

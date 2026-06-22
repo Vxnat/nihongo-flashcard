@@ -19,6 +19,11 @@ interface UserStats {
   learningTimeToday: number;
   lastActiveDate: string;
   role?: string | null;
+  // --- LEVEL & EXP ---
+  level: number;
+  exp: number;
+  dailyTimeGoalClaimed: boolean;
+  studyHistory: Record<string, number>;
   // --- GACHA & QUESTS ---
   freeMinigameHints: number;
   coins: number;
@@ -47,6 +52,7 @@ interface UserStats {
   };
   buffDoubleBonesUntil: string | null;
   buffLuckyGachaRolls: number;
+  wordStats?: Record<string, { wrongCount: number, correctCount: number }>;
   baseStats?: {
     hp: number;
     atk: number;
@@ -54,6 +60,57 @@ interface UserStats {
     crit: number;
   };
 }
+
+// Unified Reward Distributor Helper Function
+const applyRewards = (stats: UserStats, rewards: any): UserStats => {
+  if (!rewards) return stats;
+  const newStats = { ...stats };
+
+  // 1. Coins
+  if (rewards.coins) {
+    newStats.coins = (newStats.coins || 0) + rewards.coins;
+  }
+
+  // 2. Golden Fur
+  if (rewards.goldenFur) {
+    newStats.goldenFur = (newStats.goldenFur || 0) + rewards.goldenFur;
+  }
+
+  // 3. Items
+  if (rewards.items && Array.isArray(rewards.items)) {
+    const currentInventory = newStats.inventory || [];
+    newStats.inventory = [...currentInventory, ...rewards.items];
+  }
+
+  // 4. EXP & Level Up
+  if (rewards.exp) {
+    let currentExp = (newStats.exp || 0) + rewards.exp;
+    let currentLevel = newStats.level || 1;
+    let maxExp = Math.round(100 * Math.pow(currentLevel, 1.3));
+
+    while (currentExp >= maxExp) {
+      currentExp -= maxExp;
+      currentLevel += 1;
+      maxExp = Math.round(100 * Math.pow(currentLevel, 1.3));
+
+      // Level up reward: Level * 50 Coins
+      newStats.coins = (newStats.coins || 0) + (currentLevel * 50);
+
+      // Trigger level up toast
+      import("react-hot-toast").then(({ toast }) => {
+        toast.success(`Chúc mừng! Bạn đã thăng cấp lên Level ${currentLevel}! 🎉`, {
+          icon: "⭐",
+          duration: 4000
+        });
+      });
+    }
+
+    newStats.exp = currentExp;
+    newStats.level = currentLevel;
+  }
+
+  return newStats;
+};
 
 export interface DailyQuest {
   id: string;
@@ -63,6 +120,8 @@ export interface DailyQuest {
   isCompleted: boolean;
   isClaimed: boolean;
   reward: number;
+  rewards?: any;
+  type?: string;
 }
 
 const DEFAULT_QUESTS: DailyQuest[] = [
@@ -125,7 +184,9 @@ interface AppState {
   // --- DYNAMIC SYSTEM METADATA ---
   systemItems: any[];
   dailyQuestsConfig: DailyQuest[];
+  systemAchievements: any[];
   typeWeights: Record<string, number>;
+  dailyLearningTimeRequired: number;
   isMetadataLoaded: boolean;
   fetchSystemMetadata: () => Promise<void>;
 
@@ -158,9 +219,13 @@ interface AppState {
 
   // --- PROGRESS SLICE ---
   progress: Record<string, string[]>;
+  bossStatus: Record<string, "learning" | "boss_unlocked" | "completed">;
+  bossFailedAttempts: Record<string, number>;
   loadProgress: (deckId: string) => Promise<void>;
   saveProgress: (deckId: string, knownIds: string[]) => Promise<void>;
   resetProgress: (deckId: string) => Promise<void>;
+  recordWordStat: (wordId: string, isCorrect: boolean) => Promise<void>;
+  submitBossResult: (deckId: string, isWin: boolean) => Promise<void>;
 
   // --- GACHA & QUESTS ACTIONS ---
   updateQuestProgress: (
@@ -253,16 +318,20 @@ export const useAppStore = create<AppState>((set, get) => ({
   // --- DYNAMIC SYSTEM METADATA STATE ---
   systemItems: [],
   dailyQuestsConfig: [],
+  systemAchievements: [],
   typeWeights: {},
+  dailyLearningTimeRequired: 300,
   isMetadataLoaded: false,
 
   fetchSystemMetadata: async () => {
     if (get().isMetadataLoaded) return;
     try {
-      const [itemsSnap, questsSnap, weightsSnap] = await Promise.all([
+      const [itemsSnap, questsSnap, weightsSnap, settingsSnap, achievementsSnap] = await Promise.all([
         getDocs(collection(db, "system_items")),
         getDocs(collection(db, "daily_quests")),
-        getDoc(doc(db, "system_config", "gacha_type_weights"))
+        getDoc(doc(db, "system_config", "gacha_type_weights")),
+        getDoc(doc(db, "system_config", "settings")),
+        getDocs(collection(db, "system_achievements"))
       ]);
 
       const items: any[] = [];
@@ -275,6 +344,11 @@ export const useAppStore = create<AppState>((set, get) => ({
         quests.push({ id: doc.id, ...doc.data() });
       });
 
+      const achievements: any[] = [];
+      achievementsSnap.forEach(doc => {
+        achievements.push({ id: doc.id, ...doc.data() });
+      });
+
       const weights = weightsSnap.exists() ? weightsSnap.data() : {
         theme: 10,
         outfit: 25,
@@ -285,13 +359,18 @@ export const useAppStore = create<AppState>((set, get) => ({
         costume: 20
       };
 
+      const settings = settingsSnap.exists() ? settingsSnap.data() : { daily_learning_time_required: 300 };
+      const dailyLearningTimeRequired = settings.daily_learning_time_required || 300;
+
       set({
         systemItems: items,
         dailyQuestsConfig: quests,
+        systemAchievements: achievements,
         typeWeights: weights,
+        dailyLearningTimeRequired,
         isMetadataLoaded: true,
       });
-      console.log("System metadata loaded dynamically from Firestore! count:", items.length);
+      console.log("System metadata loaded dynamically from Firestore! count:", items.length, "achievements:", achievements.length);
     } catch (e) {
       console.error("Failed to load system metadata from Firestore:", e);
       // Keep isMetadataLoaded as false so components know we are offline/error
@@ -305,6 +384,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     totalLearned: 0,
     learningTimeToday: 0,
     lastActiveDate: new Date().toLocaleDateString("en-CA"),
+    level: 1,
+    exp: 0,
+    dailyTimeGoalClaimed: false,
+    studyHistory: {},
     // --- GACHA & QUESTS ---
     freeMinigameHints: 3,
     coins: 0,
@@ -330,6 +413,7 @@ export const useAppStore = create<AppState>((set, get) => ({
     },
     buffDoubleBonesUntil: null,
     buffLuckyGachaRolls: 0,
+    wordStats: {},
     baseStats: {
       hp: 150,
       atk: 25,
@@ -367,11 +451,29 @@ export const useAppStore = create<AppState>((set, get) => ({
           totalLearned: 0, // Không còn local để đếm, mặc định là 0
           learningTimeToday: 0,
           lastActiveDate: today,
+          level: 1,
+          exp: 0,
+          dailyTimeGoalClaimed: false,
+          studyHistory: {},
           coins: 0,
           role: "user",
           freeMinigameHints: 3,
           inventory: [],
-          dailyQuests: { date: today, quests: get().dailyQuestsConfig.length > 0 ? get().dailyQuestsConfig : DEFAULT_QUESTS },
+          dailyQuests: (() => {
+            const pool = get().dailyQuestsConfig.length > 0 ? get().dailyQuestsConfig : DEFAULT_QUESTS;
+            let hash = 0;
+            for (let i = 0; i < today.length; i++) {
+              hash = today.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const selectedIdx = Math.abs(hash) % pool.length;
+            const selectedQuest = {
+              ...pool[selectedIdx],
+              progress: 0,
+              isCompleted: false,
+              isClaimed: false,
+            };
+            return { date: today, quests: [selectedQuest] };
+          })(),
           goldenFur: 0,
           shards: {},
           equippedTheme: null,
@@ -390,6 +492,7 @@ export const useAppStore = create<AppState>((set, get) => ({
           },
           buffDoubleBonesUntil: null,
           buffLuckyGachaRolls: 0,
+          wordStats: {},
           baseStats: {
             hp: 150,
             atk: 25,
@@ -429,12 +532,15 @@ export const useAppStore = create<AppState>((set, get) => ({
     let flippedToday = savedStats.cardsFlippedToday || 0;
     let learningTime = savedStats.learningTimeToday || 0;
     let freeHints = savedStats.freeMinigameHints ?? 3;
+    let dailyTimeGoalClaimed = savedStats.dailyTimeGoalClaimed || false;
+    let studyHistory = savedStats.studyHistory || {};
     const lastActiveDate = savedStats.lastActiveDate;
 
     if (lastActiveDate !== today) {
       flippedToday = 0;
       learningTime = 0;
       freeHints = 3; // Reset lượt free mỗi ngày
+      dailyTimeGoalClaimed = false; // Reset dailyTimeGoalClaimed
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
 
@@ -454,6 +560,7 @@ export const useAppStore = create<AppState>((set, get) => ({
           cardsFlippedToday: flippedToday,
           learningTimeToday: learningTime,
           freeMinigameHints: freeHints,
+          dailyTimeGoalClaimed: false,
           lastActiveDate: today,
         },
         { merge: true },
@@ -467,15 +574,33 @@ export const useAppStore = create<AppState>((set, get) => ({
         totalLearned: savedStats.totalLearned || 0,
         learningTimeToday: learningTime,
         lastActiveDate: today || new Date().toLocaleDateString("en-CA"),
+        level: savedStats.level || 1,
+        exp: savedStats.exp || 0,
+        dailyTimeGoalClaimed: dailyTimeGoalClaimed,
+        studyHistory: studyHistory,
         // --- GACHA & QUESTS ---
         freeMinigameHints: freeHints,
         coins: savedStats.coins || 0,
         role: savedStats.role || "user",
         inventory: savedStats.inventory || [],
-        dailyQuests:
-          savedStats.dailyQuests && savedStats.dailyQuests.date === today
-            ? savedStats.dailyQuests
-            : { date: today, quests: get().dailyQuestsConfig.length > 0 ? get().dailyQuestsConfig : DEFAULT_QUESTS },
+        dailyQuests: (() => {
+          if (savedStats.dailyQuests && savedStats.dailyQuests.date === today) {
+            return savedStats.dailyQuests;
+          }
+          const pool = get().dailyQuestsConfig.length > 0 ? get().dailyQuestsConfig : DEFAULT_QUESTS;
+          let hash = 0;
+          for (let i = 0; i < today.length; i++) {
+            hash = today.charCodeAt(i) + ((hash << 5) - hash);
+          }
+          const selectedIdx = Math.abs(hash) % pool.length;
+          const selectedQuest = {
+            ...pool[selectedIdx],
+            progress: 0,
+            isCompleted: false,
+            isClaimed: false,
+          };
+          return { date: today, quests: [selectedQuest] };
+        })(),
         // --- GACHA 2.0 & META-GAME ---
         goldenFur: savedStats.goldenFur || 0,
         shards: savedStats.shards || {},
@@ -496,6 +621,7 @@ export const useAppStore = create<AppState>((set, get) => ({
         },
         buffDoubleBonesUntil: savedStats.buffDoubleBonesUntil || null,
         buffLuckyGachaRolls: savedStats.buffLuckyGachaRolls || 0,
+        wordStats: savedStats.wordStats || {},
         baseStats: savedStats.baseStats || {
           hp: 150,
           atk: 25,
@@ -551,7 +677,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
 
     // Tăng tiến độ quest lật thẻ
-    get().updateQuestProgress("q_flip", 1);
+    const activeQuest = state.userStats.dailyQuests.quests[0];
+    if (activeQuest && (activeQuest.type === "flip_cards" || activeQuest.id === "q_flip")) {
+      get().updateQuestProgress(activeQuest.id, 1);
+    }
   },
 
   // 4. HÀM CỘNG GIỜ HỌC
@@ -578,11 +707,33 @@ export const useAppStore = create<AppState>((set, get) => ({
           : 1;
     }
 
+    const studyHistory = { ...state.userStats.studyHistory };
+    studyHistory[today] = (studyHistory[today] || 0) + seconds;
+
+    let newStats = { ...state.userStats };
+    let dailyTimeGoalClaimed = newStats.dailyTimeGoalClaimed || false;
+    const requiredTime = state.dailyLearningTimeRequired || 300;
+
+    if (currentLearningTime >= requiredTime && !dailyTimeGoalClaimed) {
+      dailyTimeGoalClaimed = true;
+      newStats = applyRewards(newStats, { exp: 50 });
+      import("react-hot-toast").then(({ toast }) => {
+        toast.success("Đạt mục tiêu học tối thiểu hôm nay! +50 EXP 🎉", { icon: "🔥" });
+      });
+    }
+
     const updatedStats = {
       streak: currentStreak,
       cardsFlippedToday: currentFlipped,
       learningTimeToday: currentLearningTime,
       lastActiveDate: today,
+      studyHistory,
+      dailyTimeGoalClaimed,
+      level: newStats.level,
+      exp: newStats.exp,
+      coins: newStats.coins,
+      inventory: newStats.inventory,
+      goldenFur: newStats.goldenFur,
     };
     const newUserStats = { ...state.userStats, ...updatedStats };
 
@@ -599,7 +750,10 @@ export const useAppStore = create<AppState>((set, get) => ({
     }
 
     // Tăng tiến độ quest học thời gian
-    get().updateQuestProgress("q_time", seconds);
+    const activeQuest = state.userStats.dailyQuests.quests[0];
+    if (activeQuest && (activeQuest.type === "study_time" || activeQuest.id === "q_time")) {
+      get().updateQuestProgress(activeQuest.id, seconds);
+    }
   },
 
   // 5. HÀM QUẢN LÝ BỘ BÀI (DECK SLICE)
@@ -768,6 +922,8 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   // 6. HÀM QUẢN LÝ TIẾN ĐỘ HỌC (PROGRESS SLICE)
   progress: {},
+  bossStatus: {},
+  bossFailedAttempts: {},
   loadProgress: async (deckId) => {
     const uid = get().user?.uid;
 
@@ -775,6 +931,8 @@ export const useAppStore = create<AppState>((set, get) => ({
       // Chưa đăng nhập -> Chỉ lưu tạm trong RAM, F5 là mất
       set((state) => ({
         progress: { ...state.progress, [deckId]: [] },
+        bossStatus: { ...state.bossStatus, [deckId]: "learning" },
+        bossFailedAttempts: { ...state.bossFailedAttempts, [deckId]: 0 },
       }));
       return;
     }
@@ -784,13 +942,20 @@ export const useAppStore = create<AppState>((set, get) => ({
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        const knownIds = docSnap.data().knownIds || [];
+        const data = docSnap.data();
+        const knownIds = data.knownIds || [];
+        const status = data.bossStatus || "learning";
+        const attempts = data.bossFailedAttempts || 0;
         set((state) => ({
           progress: { ...state.progress, [deckId]: knownIds },
+          bossStatus: { ...state.bossStatus, [deckId]: status },
+          bossFailedAttempts: { ...state.bossFailedAttempts, [deckId]: attempts },
         }));
       } else {
         set((state) => ({
           progress: { ...state.progress, [deckId]: [] },
+          bossStatus: { ...state.bossStatus, [deckId]: "learning" },
+          bossFailedAttempts: { ...state.bossFailedAttempts, [deckId]: 0 },
         }));
       }
     } catch (error) {
@@ -799,13 +964,113 @@ export const useAppStore = create<AppState>((set, get) => ({
   },
 
   saveProgress: async (deckId, knownIds) => {
+    const state = get();
+    const prevProgress = state.progress[deckId] || [];
+
+    // Calculate bossStatus update
+    const currentBossStatus = state.bossStatus[deckId] || "learning";
+    let newBossStatus = currentBossStatus;
+
+    let totalCards = 0;
+    const customDeck = state.customDecks.find((d) => d.id === deckId);
+    if (customDeck) {
+      totalCards = customDeck.cards?.length || 0;
+    }
+
+    if (totalCards === 0) {
+      try {
+        const res = await fetch("/data/configs/system_decks.json");
+        if (res.ok) {
+          const decks = await res.json();
+          const deck = decks.find((d: any) => d.id === deckId);
+          if (deck) {
+            totalCards = deck.totalCards || 0;
+          }
+        }
+      } catch (e) {
+        console.error("Lỗi fetch system deck size trong saveProgress:", e);
+      }
+    }
+
+    if (totalCards > 0 && knownIds.length >= totalCards) {
+      if (currentBossStatus === "learning") {
+        newBossStatus = "boss_unlocked";
+      }
+    } else {
+      if (knownIds.length < totalCards) {
+        newBossStatus = "learning";
+      }
+    }
+
     // 1. Update State trước để UI mượt (Optimistic update)
     set((state) => ({
       progress: { ...state.progress, [deckId]: knownIds },
+      bossStatus: { ...state.bossStatus, [deckId]: newBossStatus },
     }));
 
     // 2. Bắn data lên Firestore ngầm phía sau
     const uid = get().user?.uid;
+
+    try {
+      const res = await fetch("/data/configs/system_decks.json");
+      if (res.ok) {
+        const decks = await res.json();
+        const deck = decks.find((d: any) => d.id === deckId);
+        if (deck) {
+          // Tính toán trạng thái hoàn thành trước đó
+          const wasCompleted = deck.type === "chest" || deck.type === "story" || deck.type === "minigame_matching" || deck.type === "minigame_kanji" || deck.type === "minigame_rush"
+            ? prevProgress.length > 0
+            : (deck.totalCards === 0 || prevProgress.length >= (deck.totalCards || 0));
+
+          // Tính toán trạng thái hoàn thành hiện tại
+          const isCompleted = deck.type === "chest" || deck.type === "story" || deck.type === "minigame_matching" || deck.type === "minigame_kanji" || deck.type === "minigame_rush"
+            ? knownIds.length > 0
+            : (deck.totalCards === 0 || knownIds.length >= (deck.totalCards || 0));
+
+          if (isCompleted && !wasCompleted) {
+            let rewards = deck.rewards;
+            if (!rewards) {
+              const fallbackCoins = deck.rewardCoins || 0;
+              const fallbackExp = (deck.type === "minigame_kanji" || deck.type === "minigame_rush" || deck.type === "minigame_matching") ? 50 : 30;
+              rewards = { coins: fallbackCoins, exp: fallbackExp };
+            }
+
+            if (deck.type === "chest") {
+              rewards = { ...rewards, coins: 0 }; // Deduplicate coin reward as chest handler already gives coins
+            }
+
+            const newUserStats = applyRewards(state.userStats, rewards);
+            set({ userStats: newUserStats });
+
+            if (uid) {
+              await setDoc(
+                doc(db, "user_stats", uid),
+                {
+                  coins: newUserStats.coins,
+                  inventory: newUserStats.inventory,
+                  level: newUserStats.level,
+                  exp: newUserStats.exp,
+                  goldenFur: newUserStats.goldenFur,
+                },
+                { merge: true }
+              );
+            }
+
+            if (rewards.exp || rewards.coins || (rewards.items && rewards.items.length > 0)) {
+              import("react-hot-toast").then(({ toast }) => {
+                let msg = `Hoàn thành "${deck.title}"!`;
+                if (rewards.exp) msg += ` +${rewards.exp} EXP`;
+                if (rewards.coins) msg += ` +${rewards.coins} xu`;
+                toast.success(msg, { icon: "🎉" });
+              });
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Lỗi khi tính toán phần thưởng node:", err);
+    }
+
     if (!uid) return;
 
     try {
@@ -815,6 +1080,8 @@ export const useAppStore = create<AppState>((set, get) => ({
           userId: uid,
           deckId: deckId,
           knownIds: knownIds,
+          bossStatus: newBossStatus,
+          bossFailedAttempts: state.bossFailedAttempts[deckId] || 0,
           updatedAt: new Date().toISOString(),
         },
         { merge: true },
@@ -828,6 +1095,8 @@ export const useAppStore = create<AppState>((set, get) => ({
     // 1. Xóa trong State
     set((state) => ({
       progress: { ...state.progress, [deckId]: [] },
+      bossStatus: { ...state.bossStatus, [deckId]: "learning" },
+      bossFailedAttempts: { ...state.bossFailedAttempts, [deckId]: 0 },
     }));
 
     // 2. Xóa trên Firestore
@@ -838,6 +1107,160 @@ export const useAppStore = create<AppState>((set, get) => ({
       await deleteDoc(doc(db, "user_progress", `${uid}_${deckId}`));
     } catch (error) {
       console.error("Lỗi reset tiến độ trên mây:", error);
+    }
+  },
+
+  recordWordStat: async (wordId: string, isCorrect: boolean) => {
+    const state = get();
+    const currentStats = state.userStats.wordStats || {};
+    const wordStat = currentStats[wordId]
+      ? { ...currentStats[wordId] }
+      : { wrongCount: 0, correctCount: 0 };
+
+    if (isCorrect) {
+      wordStat.correctCount += 1;
+    } else {
+      wordStat.wrongCount += 1;
+    }
+
+    const newWordStats = {
+      ...currentStats,
+      [wordId]: wordStat,
+    };
+
+    const newUserStats = {
+      ...state.userStats,
+      wordStats: newWordStats,
+    };
+
+    set({ userStats: newUserStats });
+
+    const uid = state.user?.uid;
+    if (uid) {
+      try {
+        await setDoc(
+          doc(db, "user_stats", uid),
+          { wordStats: newWordStats },
+          { merge: true }
+        );
+      } catch (error) {
+        console.error("Lỗi recordWordStat:", error);
+      }
+    }
+  },
+
+  submitBossResult: async (deckId: string, isWin: boolean) => {
+    const state = get();
+    const uid = state.user?.uid;
+    const currentAttempts = state.bossFailedAttempts[deckId] || 0;
+
+    let newStatus = state.bossStatus[deckId] || "learning";
+    let newAttempts = currentAttempts;
+    let nextKnownIds = state.progress[deckId] || [];
+
+    if (isWin) {
+      newStatus = "completed";
+      newAttempts = 0;
+
+      // Thắng Boss: Thưởng theo cấu hình của bài học, mặc định 10 xu + 30 EXP
+      let rewards = { coins: 10, exp: 30 };
+      const customDeck = state.customDecks.find((d) => d.id === deckId);
+      if (customDeck && (customDeck as any).rewards) {
+        rewards = (customDeck as any).rewards;
+      } else {
+        try {
+          const res = await fetch("/data/configs/system_decks.json");
+          if (res.ok) {
+            const decks = await res.json();
+            const deck = decks.find((d: any) => d.id === deckId);
+            if (deck && deck.rewards) {
+              // Nhân đôi EXP và Coins khi thắng Boss
+              const coins = deck.rewardCoins * 2 || 0;
+              const exp = deck.rewardExp * 2 || 0;
+              rewards = { coins, exp };
+            }
+          }
+        } catch (e) {
+          console.error("Lỗi fetch system deck rewards trong submitBossResult:", e);
+        }
+      }
+
+      const newUserStats = applyRewards(state.userStats, rewards);
+      set({ userStats: newUserStats });
+
+      if (uid) {
+        try {
+          await setDoc(
+            doc(db, "user_stats", uid),
+            {
+              coins: newUserStats.coins,
+              inventory: newUserStats.inventory,
+              level: newUserStats.level,
+              exp: newUserStats.exp,
+              goldenFur: newUserStats.goldenFur,
+            },
+            { merge: true }
+          );
+        } catch (error) {
+          console.error("Lỗi lưu user stats sau khi thắng boss:", error);
+        }
+      }
+
+      import("react-hot-toast").then(({ toast }) => {
+        toast.success(`Chúc mừng! Bạn đã tiêu diệt Boss thành công và hoàn thành bài học! Thưởng ${rewards.exp} EXP + ${rewards.coins} xu! 🎉🦊`, {
+          duration: 5000,
+          icon: "👑"
+        });
+      });
+    } else {
+      newAttempts += 1;
+      if (newAttempts >= 3) {
+        newStatus = "learning";
+        newAttempts = 0;
+        nextKnownIds = []; // reset progress
+
+        // Toast cảnh báo
+        import("react-hot-toast").then(({ toast }) => {
+          toast.error("Bạn đã thua 3 lần liên tiếp! Thách đấu Boss bị khóa. Bạn phải học lại từ đầu để mở khóa Boss! 💔", {
+            duration: 6000,
+            icon: "💔"
+          });
+        });
+      } else {
+        // Toast báo số mạng còn lại
+        import("react-hot-toast").then(({ toast }) => {
+          toast.error(`Chiến bại! Bạn còn ${3 - newAttempts} cơ hội trước khi tiến độ học bài này bị reset! 💔`, {
+            duration: 4000
+          });
+        });
+      }
+    }
+
+    // Cập nhật State
+    set((state) => ({
+      bossStatus: { ...state.bossStatus, [deckId]: newStatus },
+      bossFailedAttempts: { ...state.bossFailedAttempts, [deckId]: newAttempts },
+      progress: { ...state.progress, [deckId]: nextKnownIds },
+    }));
+
+    // Cập nhật Firestore user_progress
+    if (uid) {
+      try {
+        await setDoc(
+          doc(db, "user_progress", `${uid}_${deckId}`),
+          {
+            userId: uid,
+            deckId: deckId,
+            knownIds: nextKnownIds,
+            bossStatus: newStatus,
+            bossFailedAttempts: newAttempts,
+            updatedAt: new Date().toISOString(),
+          },
+          { merge: true }
+        );
+      } catch (error) {
+        console.error("Lỗi đồng bộ submitBossResult:", error);
+      }
     }
   },
 
@@ -900,43 +1323,44 @@ export const useAppStore = create<AppState>((set, get) => ({
 
   claimQuestReward: async (questId) => {
     const state = get();
-    let rewardCoins = 0;
+    let hasClaimed = false;
+    let rewards: any = null;
 
     const updatedQuests = state.userStats.dailyQuests.quests.map((q) => {
       if (q.id === questId && q.isCompleted && !q.isClaimed) {
-        rewardCoins = q.reward;
+        hasClaimed = true;
+        rewards = q.rewards || { coins: q.reward || 0, exp: 50 };
         return { ...q, isClaimed: true };
       }
       return q;
     });
 
-    if (rewardCoins > 0) {
-      const newCoins = state.userStats.coins + rewardCoins;
-      const newDailyQuests = {
-        ...state.userStats.dailyQuests,
-        quests: updatedQuests,
-      };
-      const newUserStats = {
-        ...state.userStats,
-        coins: newCoins,
-        dailyQuests: newDailyQuests,
-      };
-      set({ userStats: newUserStats });
+    if (!hasClaimed) return;
 
-      const uid = get().user?.uid;
-      if (uid) {
-        try {
-          await setDoc(
-            doc(db, "user_stats", uid),
-            {
-              coins: newCoins,
-              dailyQuests: newDailyQuests,
-            },
-            { merge: true },
-          );
-        } catch (error) {
-          console.error("Lỗi claimQuestReward:", error);
-        }
+    const newDailyQuests = { date: state.userStats.dailyQuests.date, quests: updatedQuests };
+
+    let newUserStats = applyRewards(state.userStats, rewards);
+    newUserStats = { ...newUserStats, dailyQuests: newDailyQuests };
+
+    set({ userStats: newUserStats });
+
+    const uid = get().user?.uid;
+    if (uid) {
+      try {
+        await setDoc(
+          doc(db, "user_stats", uid),
+          {
+            coins: newUserStats.coins,
+            inventory: newUserStats.inventory,
+            level: newUserStats.level,
+            exp: newUserStats.exp,
+            goldenFur: newUserStats.goldenFur,
+            dailyQuests: newDailyQuests
+          },
+          { merge: true },
+        );
+      } catch (error) {
+        console.error("Lỗi claimQuestReward:", error);
       }
     }
   },

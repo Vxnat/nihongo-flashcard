@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { RotateCcw, X, Bone } from "lucide-react";
+import { RotateCcw, X } from "lucide-react";
 
 interface GameResultModalProps {
   status: "win" | "lose";

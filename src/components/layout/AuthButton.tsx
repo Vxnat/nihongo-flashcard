@@ -3,9 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { LogIn, LogOut, UserCircle, Download } from "lucide-react";
-import { toast } from "react-hot-toast";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import { DailyQuestsModal } from "@/components/layout/DailyQuestsModal";
 import { usePwaInstall } from "@/hooks/common/usePwaInstall";
 import { PwaInstallPrompt } from "@/components/common/PwaInstallPrompt";
 
@@ -68,14 +66,14 @@ export function AuthButton() {
     try {
       await loginWithGoogle();
       setIsOpen(false);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handleLogout = async () => {
     try {
       await logout();
       setIsOpen(false);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
@@ -85,9 +83,10 @@ export function AuthButton() {
         animate={{ y: isHidden ? -100 : 0, opacity: isHidden ? 0 : 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         className="fixed top-4 right-4 z-[50] flex flex-col-reverse items-center gap-3"
+        style={{ fontFamily: "var(--font-cherry)" }}
       >
         {/* NÚT MỞ NHIỆM VỤ (Ra ngoài để luôn thấy chấm đỏ) */}
-        <button
+        {/* <button
           onClick={() => setIsQuestModalOpen(true)}
           className="bg-white/90 backdrop-blur p-2 md:p-2.5 rounded-full border-2 border-[#FFE2D1] text-[#FF9F1C] font-bold shadow-[0_4px_0_0_#FFE2D1] hover:bg-orange-50 active:shadow-none active:translate-y-1 transition-all flex items-center gap-2 cursor-pointer relative"
         >
@@ -103,7 +102,7 @@ export function AuthButton() {
               {unclaimedCount}
             </span>
           )}
-        </button>
+        </button> */}
 
         {/* KHU VỰC MENU AVATAR */}
         <div ref={menuRef} className="relative">
@@ -190,7 +189,7 @@ export function AuthButton() {
                       handleInstallClick();
                       setIsOpen(false);
                     }}
-                    className="w-full flex items-center justify-center gap-2 bg-white hover:bg-zinc-50 text-[#06D6A0] font-bold py-3 rounded-2xl transition-colors border-2 border-[#A0E8D5] shadow-[0_4px_0_0_#A0E8D5] active:translate-y-1 active:shadow-none mt-1"
+                    className="w-full flex items-center justify-center gap-2 bg-white hover:bg-zinc-50 text-[#06D6A0] font-bold py-1 rounded-2xl transition-colors border-2 border-[#A0E8D5] shadow-[0_4px_0_0_#A0E8D5] active:translate-y-1 active:shadow-none mt-1"
                   >
                     <Download className="w-5 h-5" strokeWidth={2.5} /> Tải App
                   </button>
@@ -219,10 +218,10 @@ export function AuthButton() {
       </motion.div>
 
       {/* MODAL NHIỆM VỤ */}
-      <DailyQuestsModal
+      {/* <DailyQuestsModal
         isOpen={isQuestModalOpen}
         onClose={() => setIsQuestModalOpen(false)}
-      />
+      /> */}
 
       {/* MODAL HƯỚNG DẪN CÀI ĐẶT PWA CHO IOS */}
       <PwaInstallPrompt pwaState={pwaState} />

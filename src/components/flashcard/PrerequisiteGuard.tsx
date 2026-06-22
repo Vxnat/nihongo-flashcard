@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppStore } from "@/store/useAppStore";
-import toast from "react-hot-toast";
 
 interface PrerequisiteDeckInfo {
   id: string;
@@ -58,12 +57,13 @@ export function PrerequisiteGuard({
         if (isCompleted) {
           setStatus("allowed");
         } else {
-          setStatus("blocked");
-          toast.error(
-            `Bạn cần hoàn thành bài học "${prerequisiteDeck.title}" trước để mở khóa bài này!`,
-            { id: "prereq-lock-toast", duration: 4000 }
-          );
-          router.replace("/");
+          setStatus("allowed");
+          // setStatus("blocked");
+          // toast.error(
+          //   `Bạn cần hoàn thành bài học "${prerequisiteDeck.title}" trước để mở khóa bài này!`,
+          //   { id: "prereq-lock-toast", duration: 4000 }
+          // );
+          // router.replace("/");
         }
       } catch (err) {
         console.error("Lỗi khi kiểm tra bài học tiền đề:", err);
@@ -83,10 +83,32 @@ export function PrerequisiteGuard({
 
   if (status === "checking") {
     return (
-      <div className="w-full max-w-md mx-auto h-[400px] flex flex-col items-center justify-center bg-white/60 border-4 border-[#FFE2D1] rounded-[3rem] shadow-sm py-16">
-        <div className="w-12 h-12 border-4 border-[#FFD166] border-t-transparent rounded-full animate-spin mb-4" />
-        <p className="font-rounded font-bold text-zinc-400">
-          Đang kiểm tra điều kiện học...
+      <div className="w-full max-w-md mx-auto h-[400px] flex flex-col items-center justify-center bg-white/80 border-4 border-[#FFE2D1] rounded-[3rem] shadow-[0_8px_0_0_#FFD6C0] py-16 px-6">
+        {/* Shiba Mascot */}
+        <img
+          src="/images/mascot/shiba_master.gif"
+          alt="Shiba đang kiểm tra"
+          className="w-20 h-20 object-contain drop-shadow-md mb-4"
+        />
+
+        {/* Paw prints animation */}
+        <div className="flex items-center gap-2 mb-3">
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="text-lg animate-bounce select-none"
+              style={{
+                animationDelay: `${i * 0.25}s`,
+                animationDuration: "0.8s",
+              }}
+            >
+              🐾
+            </span>
+          ))}
+        </div>
+
+        <p className="font-black text-[#FF9F1C] text-lg text-center" style={{ fontFamily: "var(--font-cherry)" }}>
+          Shiba đang kiểm tra xíu...
         </p>
       </div>
     );
@@ -94,9 +116,29 @@ export function PrerequisiteGuard({
 
   if (status === "blocked") {
     return (
-      <div className="w-full max-w-md mx-auto h-[400px] flex flex-col items-center justify-center bg-white/60 border-4 border-dashed border-red-300 rounded-[3rem] shadow-sm py-16">
-        <p className="font-rounded font-bold text-red-400">
-          Bài học chưa được mở khóa! Đang chuyển hướng...
+      <div className="w-full max-w-md mx-auto h-[400px] flex flex-col items-center justify-center bg-white/85 border-4 border-[#FFD166] rounded-[3rem] shadow-[0_8px_0_0_#FFE2B3] py-16 px-6 text-center">
+        {/* Lock icon bounce */}
+        <div className="text-6xl mb-6 animate-bounce select-none">
+          🔒
+        </div>
+
+        <h3 className="text-2xl text-[#FF7096] mb-3 font-black" style={{ fontFamily: "var(--font-cherry)" }}>
+          Bài học chưa được mở khóa!
+        </h3>
+
+        <p className="font-rounded font-bold text-zinc-500 flex items-center gap-1.5 justify-center">
+          Đang đưa bạn về bản đồ
+          <span className="flex gap-1">
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className="animate-pulse"
+                style={{ animationDelay: `${i * 0.2}s` }}
+              >
+                .
+              </span>
+            ))}
+          </span>
         </p>
       </div>
     );

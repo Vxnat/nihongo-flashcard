@@ -77,7 +77,7 @@ export function ControlPanel({
             <button onClick={onPlayAudio} className="w-10 h-10 bg-[#E0F7FA] border-2 border-[#80DEEA] rounded-full shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:bg-[#B2EBF2]" title="Phát âm">
               <Volume2 size={18} strokeWidth={2.5} />
             </button>
-            <button onClick={onToggleFurigana} className={`w-10 h-10 rounded-full border-2 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center font-bold font-rounded text-[17px] ${ showFurigana ? "bg-[#E0F7FA] border-[#80DEEA] shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1]" : "bg-white border-zinc-200 shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 opacity-60" }`} title="Bật/tắt Furigana">
+            <button onClick={onToggleFurigana} className={`w-10 h-10 rounded-full border-2 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center font-bold font-rounded text-[17px] ${showFurigana ? "bg-[#E0F7FA] border-[#80DEEA] shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1]" : "bg-white border-zinc-200 shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 opacity-60"}`} title="Bật/tắt Furigana">
               あ
             </button>
             {card.kanji_info && card.kanji_info.length > 0 && (
@@ -171,10 +171,9 @@ export function ControlPanel({
                 className="px-4 sm:px-8 h-12 sm:h-14 shrink-0 bg-[#FFD166] border-b-4 border-[#FF9F1C] rounded-[1.25rem] text-amber-900 font-black text-base sm:text-lg active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm"
               >
                 <RotateCw
-                  className="mr-1.5 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   strokeWidth={3}
                 />
-                <span className="whitespace-nowrap">Lật Thẻ</span>
               </button>
 
               <button

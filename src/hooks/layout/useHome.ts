@@ -4,13 +4,14 @@ import { auth, db } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, deleteDoc } from "firebase/firestore";
 import { toast } from "react-hot-toast";
+import { FlashcardData } from "@/types/flashcard";
 
 const defaultDecks = [] as any[];
 
 export function useHome() {
   const [deckToDelete, setDeckToDelete] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [activeTab, setActiveTab] = useState<"journey" | "custom" | "shop" | "room">(
+  const [activeTab, setActiveTab] = useState<"journey" | "custom" | "shop" | "room" | "profile">(
     "journey",
   );
   const [folderToDelete, setFolderToDelete] = useState<string | null>(null);
@@ -45,13 +46,14 @@ export function useHome() {
       savedTab === "journey" ||
       savedTab === "custom" ||
       savedTab === "shop" ||
-      savedTab === "room"
+      savedTab === "room" ||
+      savedTab === "profile"
     ) {
-      setActiveTab(savedTab as "journey" | "custom" | "shop" | "room");
+      setActiveTab(savedTab as "journey" | "custom" | "shop" | "room" | "profile");
     }
   }, []);
 
-  const handleTabChange = (tab: "journey" | "custom" | "shop" | "room") => {
+  const handleTabChange = (tab: "journey" | "custom" | "shop" | "room" | "profile") => {
     setActiveTab(tab);
     localStorage.setItem("flashcard_active_tab", tab);
   };
@@ -161,6 +163,110 @@ export function useHome() {
     }
   };
 
+  // States and actions for active stories and minigames moved from Home page
+  const activeStoryId = useAppStore((state) => state.activeStoryId);
+  const activeMinigameId = useAppStore((state: any) => state.activeMinigameId);
+  const setActiveMinigameId = useAppStore(
+    (state: any) => state.setActiveMinigameId,
+  );
+  const activeKanjiPracticeDeck = useAppStore((state) => state.activeKanjiPracticeDeck);
+  const setActiveKanjiPracticeDeck = useAppStore((state) => state.setActiveKanjiPracticeDeck);
+  const saveProgress = useAppStore((state) => state.saveProgress);
+  const equippedTheme = useAppStore((state) => state.userStats.equippedTheme);
+
+  const [minigameDeckData, setMinigameDeckData] = useState<any>(null); // Store minigame deck data
+  const [minigameCards, setMinigameCards] = useState<FlashcardData[]>([]);
+  const [isLoadingMinigame, setIsLoadingMinigame] = useState(false);
+
+  // Đồng bộ theme với body class
+  useEffect(() => {
+    let themeClass = "";
+    if (equippedTheme === "thm_sakura") themeClass = "theme-sakura";
+    else if (equippedTheme === "thm_night") themeClass = "theme-night";
+    else if (equippedTheme === "thm_divine_shiba") themeClass = "theme-divine";
+
+    document.body.classList.remove("theme-sakura", "theme-night", "theme-divine");
+    if (themeClass) {
+      document.body.classList.add(themeClass);
+    }
+    return () => {
+      document.body.classList.remove("theme-sakura", "theme-night", "theme-divine");
+    };
+  }, [equippedTheme]);
+
+  // Tự động fetch data lấy thẻ bài từ các bài trước khi mở Minigame
+  useEffect(() => {
+    const fetchMinigameCards = async () => {
+      if (!activeMinigameId) {
+        setMinigameCards([]);
+        setIsLoadingMinigame(false);
+        return;
+      }
+
+      setIsLoadingMinigame(true);
+      try {
+        const res = await fetch("/data/configs/system_decks.json");
+        const decks = await res.json();
+
+        const minigameDeck = decks.find((d: any) => d.id === activeMinigameId);
+        if (!minigameDeck) return;
+
+        const folder = minigameDeck.level.toLowerCase(); // VD: n5, n4
+
+        // 1. GAME ĐẶC THÙ (KANJI) -> Fetch data từ file json rời
+        if (minigameDeck.type === "minigame_kanji") {
+          const dataRes = await fetch(`/data/decks/${folder}/${minigameDeck.id}.json`).catch(() => null);
+          if (dataRes && dataRes.ok) {
+            const data = await dataRes.json();
+            // Tiêm mảng kanji vào lại object deck để truyền cho KanjiDojoGame
+            setMinigameDeckData({ ...minigameDeck, kanjiList: data });
+          } else {
+            setMinigameDeckData(minigameDeck);
+          }
+          setMinigameCards([]);
+          setIsLoadingMinigame(false);
+          return;
+        }
+
+        setMinigameDeckData(minigameDeck);
+
+        // 2. GAME ÔN TẬP (MATCHING, RUSH) -> Lấy data dựa vào targetDeckIds
+        let allCards: FlashcardData[] = [];
+
+        if (minigameDeck.targetDeckIds && minigameDeck.targetDeckIds.length > 0) {
+          // Dùng Promise.all để fetch tất cả các file cần ôn tập cùng lúc
+          const fetchPromises = minigameDeck.targetDeckIds.map((targetId: string) =>
+            fetch(`/data/decks/${folder}/${targetId}.json`).then((r) => (r.ok ? r.json() : []))
+          );
+
+          const results = await Promise.all(fetchPromises);
+
+          // Gộp tất cả các mảng kết quả thành 1 mảng duy nhất
+          results.forEach((cards) => {
+            allCards = [...allCards, ...cards];
+          });
+        } else {
+          // Fallback: Lấy tất cả bài flashcard trước đó nếu chưa cấu hình targetDeckIds
+          const minigameIndex = decks.findIndex((d: any) => d.id === activeMinigameId);
+          const previousDecks = decks.slice(0, minigameIndex).filter((d: any) => d.level === minigameDeck.level && (!d.type || d.type === "flashcard"));
+          const fetchPromises = previousDecks.slice(-3).map((deck: any) => fetch(`/data/decks/${folder}/${deck.id}.json`).then((r) => (r.ok ? r.json() : [])));
+          const results = await Promise.all(fetchPromises);
+          results.forEach((cards) => { allCards = [...allCards, ...cards]; });
+        }
+
+        const shuffled = allCards.sort(() => Math.random() - 0.5);
+        // Game Băng chuyền cần nhiều từ vựng hơn, Nối từ cần ít hơn
+        const limit = minigameDeck.type === "minigame_rush" ? 15 : 7;
+        setMinigameCards(shuffled.slice(0, limit));
+      } catch (err) {
+        console.error("Lỗi tải minigame:", err);
+      } finally {
+        setIsLoadingMinigame(false);
+      }
+    };
+    fetchMinigameCards();
+  }, [activeMinigameId]);
+
   return {
     activeTab,
     handleTabChange,
@@ -192,5 +298,15 @@ export function useHome() {
     handleTogglePinFolder,
     user,
     loadCustomDecks,
+    activeStoryId,
+    activeMinigameId,
+    setActiveMinigameId,
+    activeKanjiPracticeDeck,
+    setActiveKanjiPracticeDeck,
+    minigameDeckData,
+    minigameCards,
+    isLoadingMinigame,
+    saveProgress,
+    equippedTheme,
   };
 }

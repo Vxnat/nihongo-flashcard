@@ -6,7 +6,10 @@
     "chapter": 1,
     "order": -1,
     "prerequisite": null,
-    "rewardCoins": 10,
+    "rewards": {
+      "coins": 10,
+      "exp": 30
+    },
     "totalCards": 104,
     "description": "Làm quen với bảng chữ cái Hiragana cơ bản",
     "type": "flashcard"
@@ -18,7 +21,10 @@
     "chapter": 1,
     "order": 0,
     "prerequisite": "sys_n5_kana_01",
-    "rewardCoins": 10,
+    "rewards": {
+      "coins": 10,
+      "exp": 30
+    },
     "totalCards": 104,
     "type": "flashcard"
   },
@@ -29,7 +35,10 @@
     "chapter": 1,
     "order": 1,
     "prerequisite": "sys_n5_kana_02",
-    "rewardCoins": 5,
+    "rewards": {
+      "coins": 5,
+      "exp": 30
+    },
     "totalCards": 25,
     "type": "flashcard"
   },
@@ -40,7 +49,10 @@
     "chapter": 1,
     "order": 2,
     "prerequisite": "sys_n5_minna_01",
-    "rewardCoins": 5,
+    "rewards": {
+      "coins": 5,
+      "exp": 30
+    },
     "totalCards": 32,
     "type": "flashcard"
   },
@@ -53,7 +65,10 @@
     "chapter": 1,
     "order": 2.5,
     "prerequisite": "sys_n5_minna_02",
-    "rewardCoins": 15
+    "rewards": {
+      "coins": 15,
+      "exp": 50
+    }
   },
   {
     "id": "sys_n5_minna_03",
@@ -62,7 +77,10 @@
     "chapter": 1,
     "order": 3,
     "prerequisite": "sys_n5_kanji_01",
-    "rewardCoins": 5,
+    "rewards": {
+      "coins": 5,
+      "exp": 30
+    },
     "totalCards": 30,
     "type": "flashcard"
   },
@@ -74,7 +92,10 @@
     "chapter": 1,
     "order": 3.2,
     "prerequisite": "sys_n5_minna_03",
-    "rewardCoins": 20,
+    "rewards": {
+      "coins": 20,
+      "exp": 30
+    },
     "totalCards": 0
   },
   {
@@ -85,7 +106,10 @@
     "chapter": 1,
     "order": 3.5,
     "prerequisite": "vn_chapter_01_mid",
-    "rewardCoins": 15,
+    "rewards": {
+      "coins": 15,
+      "exp": 50
+    },
     "totalCards": 0,
     "targetDeckIds": [
       "sys_n5_minna_01",

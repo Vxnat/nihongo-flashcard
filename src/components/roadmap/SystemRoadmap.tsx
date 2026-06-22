@@ -3,8 +3,8 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { ChevronDown, Lock, CheckCircle2, Sparkles } from "lucide-react";
-import { useSystemRoadmap, SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
+import { ChevronDown, Lock, Sparkles } from "lucide-react";
+import { useSystemRoadmap } from "@/hooks/roadmap/useSystemRoadmap";
 import { useAppStore } from "@/store/useAppStore";
 import { RoadmapNode } from "./RoadmapNode";
 import { generateSVGPath, getZigZagOffset } from "@/utils/roadmapHelpers";
@@ -87,10 +87,38 @@ export function SystemRoadmap() {
   if (isLoading) {
     return (
       <div className="w-full flex flex-col items-center justify-center py-16">
-        <div className="w-12 h-12 border-4 border-[#FFD166] border-t-transparent rounded-full animate-spin mb-4" />
-        <p className="font-rounded font-bold text-zinc-400 flex items-center justify-center gap-2">
-          Đang tải bản đồ... <img src="/images/ui/roadmap/treasure_map_icon.png" alt="Map" className="w-6 h-6 object-contain inline" />
-        </p>
+        <div className="bg-white/80 border-4 border-[#FFE2D1] rounded-[2rem] shadow-[0_6px_0_0_#FFD6C0] px-8 py-6 flex flex-col items-center gap-3">
+          {/* Shiba Mascot */}
+          <img
+            src="/images/mascot/shiba_master.gif"
+            alt="Shiba đang tìm đường"
+            className="w-16 h-16 object-contain drop-shadow-md"
+          />
+
+          {/* Paw prints animation */}
+          <div className="flex items-center gap-2">
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className="text-lg animate-bounce select-none"
+                style={{
+                  animationDelay: `${i * 0.25}s`,
+                  animationDuration: "0.8s",
+                }}
+              >
+                🐾
+              </span>
+            ))}
+          </div>
+
+          {/* Text */}
+          <p
+            className="font-black text-[#FF9F1C] text-base"
+            style={{ fontFamily: "var(--font-cherry)" }}
+          >
+            Shiba đang tìm đường...
+          </p>
+        </div>
       </div>
     );
   }

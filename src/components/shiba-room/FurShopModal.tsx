@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, Lock, Coins, Sparkles, Clock, Volume2, ShieldAlert } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import { X, Sparkles, Clock } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
-import { GachaItem, RARITY_CONFIG, GachaRarity } from "@/constants/gachaPool";
+import { RARITY_CONFIG, GachaRarity } from "@/constants/gachaPool";
 import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
 import { SHARD_PRICES } from "@/constants/shopItems";
 import { playAudioUrl } from "@/utils/tts";
