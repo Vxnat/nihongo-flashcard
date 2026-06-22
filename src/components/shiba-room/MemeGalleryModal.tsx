@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Lock, Volume2, ZoomIn, Star } from "lucide-react";
-import { GACHA_POOL, MemeItem } from "@/constants/gachaPool";
+import { MemeItem } from "@/constants/gachaPool";
+import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
 import { useAppStore } from "@/store/useAppStore";
 
 interface MemeGalleryModalProps {
@@ -12,8 +13,9 @@ interface MemeGalleryModalProps {
 }
 
 export function MemeGalleryModal({ isOpen, onClose }: MemeGalleryModalProps) {
-  const unlockedMemes = useAppStore((state) => state.userStats.unlockedMemes || []);
-  const memeItems = GACHA_POOL.filter((item) => item.type === "meme") as MemeItem[];
+  const { allItems } = useSystemItems();
+  const unlockedMemes = useAppStore((state) => state.userStats.inventory || []);
+  const memeItems = allItems.filter((item) => item.type === "meme") as MemeItem[];
 
   const [selectedMeme, setSelectedMeme] = useState<MemeItem | null>(null);
 

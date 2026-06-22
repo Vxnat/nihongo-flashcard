@@ -31,10 +31,8 @@ interface DecksTabProps {
 }
 
 export function DecksTab({
-  decks,
   filteredDecks,
   selectedDeck,
-  setSelectedDeck,
   cards,
   cardSearch,
   setCardSearch,
@@ -94,11 +92,10 @@ export function DecksTab({
                 <button
                   key={lvl}
                   onClick={() => setLevelFilter(lvl)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer border-2 ${
-                    levelFilter === lvl
+                  className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer border-2 ${levelFilter === lvl
                       ? "bg-[#8C6D58] border-[#8C6D58] text-white shadow-xs"
                       : "bg-[#FAF6EE] border-zinc-200 text-zinc-600 hover:bg-zinc-100"
-                  }`}
+                    }`}
                 >
                   {lvl === "all" ? "Tất cả" : lvl}
                 </button>
@@ -120,11 +117,10 @@ export function DecksTab({
                 <button
                   key={t.key}
                   onClick={() => setTypeFilter(t.key)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer border-2 ${
-                    typeFilter === t.key
+                  className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all cursor-pointer border-2 ${typeFilter === t.key
                       ? "bg-[#8C6D58] border-[#8C6D58] text-white shadow-xs"
                       : "bg-[#FAF6EE] border-zinc-200 text-zinc-600 hover:bg-zinc-100"
-                  }`}
+                    }`}
                 >
                   {t.label}
                 </button>

@@ -6,7 +6,7 @@ import { playAudio } from "@/utils/tts";
 import { playSFX } from "@/utils/sfx";
 import { useUserStats } from "@/hooks/common/useUserStats";
 import { useAppStore } from "@/store/useAppStore";
-import { GACHA_POOL } from "@/constants/gachaPool";
+import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
@@ -23,6 +23,7 @@ export function useFlashcardDeck({
   initialCards,
   isCustom,
 }: UseFlashcardDeckProps) {
+  const { gachaPool } = useSystemItems();
   const appMode = useAppStore((state: any) => state.appMode || "focus");
   const [comboCount, setComboCount] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
@@ -53,18 +54,18 @@ export function useFlashcardDeck({
   const saveProgress = useAppStore((state) => state.saveProgress);
   const globalResetProgress = useAppStore((state) => state.resetProgress);
   const updateQuestProgress = useAppStore((state) => state.updateQuestProgress);
-  const equippedVoicePack = useAppStore((state) => state.userStats.equippedVoicePack);
+  const equippedVoicePack = useAppStore((state) => state.userStats.equippedSlots?.voice);
 
   const playCompanionVoice = useCallback((voiceType: "correct" | "incorrect" | "victory") => {
     if (!equippedVoicePack) return;
-    const voiceItem = GACHA_POOL.find((item) => item.id === equippedVoicePack);
+    const voiceItem = gachaPool.find((item) => item.id === equippedVoicePack);
     if (!voiceItem || !voiceItem.audioUrl) return;
 
     const audioPath = `${voiceItem.audioUrl}_${voiceType}.mp3`;
     const audio = new Audio(audioPath);
     audio.volume = 0.65;
     audio.play().catch((err) => console.warn("Failed to play companion voice:", err));
-  }, [equippedVoicePack]);
+  }, [equippedVoicePack, gachaPool]);
 
   // --- MASCOT (LINH VẬT) STATES ---
   const [showMascot, setShowMascot] = useState(true);

@@ -59,7 +59,7 @@ export function DailyQuestsModal({ isOpen, onClose }: DailyQuestsModalProps) {
 
             <div className="text-center mb-6">
               <img
-                src="/images/ui/quest_scroll.svg"
+                src="/images/ui/icons/quest_scroll.png"
                 alt="Nhiệm vụ"
                 className="w-16 h-16 mx-auto mb-2 animate-bounce select-none"
                 draggable={false}

@@ -1,5 +1,5 @@
 export type GachaRarity = "common" | "rare" | "epic" | "legendary" | "mythic" | "divine";
-export type GachaItemType = "sticker" | "theme" | "outfit" | "furniture" | "meme" | "voice";
+export type GachaItemType = "accessory" | "theme" | "outfit" | "furniture" | "meme" | "voice" | "costume";
 
 export interface GachaItem {
   id: string;
@@ -8,6 +8,9 @@ export interface GachaItem {
   description: string;
   rarity: GachaRarity;
   imageUrl: string; // Path to item image asset
+  avatarUrl?: string; // Full character skin/costume image path
+  booster?: string; // Learning booster/bonus (e.g. coin_boost_10)
+  animation?: "none" | "pulse" | "float" | "spin"; // Dynamic animation style for layers
   shardTarget: number;
   japanesePoint?: {       // Cho loại meme
     word: string;
@@ -20,7 +23,7 @@ export interface GachaItem {
   atkBonus?: number;      // RPG Stat: Sức công kích cộng thêm
   defBonus?: number;      // RPG Stat: Phòng thủ cộng thêm
   critBonus?: number;     // RPG Stat: Tỷ lệ chí mạng (%) cộng thêm
-  rpgSlot?: "head" | "armor" | "earring" | "gloves" | "mount" | "aura"; // RPG Slot: Vị trí trang bị trên nhân vật
+  rpgSlot?: "head" | "armor" | "earring" | "gloves" | "mount" | "aura"; // RPG Slot: Vị trí trang bị thực tế trên nhân vật (khớp với store)
   // Cấu hình linh hoạt cho đồ trang trí để tránh fix cứng trong code
   furnitureSlot?: "wall" | "corner" | "floor";
   roomStyle?: Record<string, string | number>;
@@ -28,6 +31,7 @@ export interface GachaItem {
   gardenImgStyle?: Record<string, string | number>;
   pedestalType?: "stone" | "wood" | "hanger";
   shibaMascotStyle?: Record<string, string | number>;
+  shardPrice?: number;
 }
 
 export interface MemeItem extends GachaItem {
@@ -119,6 +123,4 @@ export const DUPLICATE_FUR_VALUES: Record<GachaRarity, number> = {
   divine: 2000,
 };
 
-import gachaPoolJson from "../../public/data/configs/gacha_pool.json";
 
-export const GACHA_POOL = gachaPoolJson as GachaItem[];

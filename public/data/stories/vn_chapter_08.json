@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "id": "vn_chapter_08",
+    "title": "Lập kế hoạch leo núi Phú Sĩ",
+    "level": "N5",
+    "rewardCoins": 20
+  },
+  "characters": {
+    "mascot": {
+      "name": "Shiba",
+      "color": "#FF9F1C",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/shiba_idle.png"
+      }
+    },
+    "stranger": {
+      "name": "Cỏ",
+      "color": "#06D6A0",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/stranger_idle.png"
+      }
+    },
+    "npc_you": {
+      "name": "Tú",
+      "color": "#0077B6",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/programmer_idle.png"
+      }
+    },
+    "npc_an": {
+      "name": "An",
+      "color": "#FFC2D1",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/an_happy.png"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "node_001",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "An ơi, tuần sau tụi mình cùng đi leo 富士山 (Núi Phú Sĩ) nhé! Anh nghĩ đây sẽ là chuyến đi tuyệt vời.",
+        "vi": "An ơi, tuần sau tụi mình cùng đi leo núi Phú Sĩ nhé! Anh nghĩ đây sẽ là chuyến đi tuyệt vời."
+      },
+      "interactableWords": [
+        {
+          "word": "富士山",
+          "reading": "ふじさん",
+          "meaning": "Núi Phú Sĩ",
+          "id": "word_fujisan_01"
+        }
+      ],
+      "nextNode": "node_002"
+    },
+    {
+      "id": "node_002",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "Ý kiến hay quá anh Tú! Em nghĩ là thời tiết mùa này rất thích hợp để leo núi. 天気はいいと思います。",
+        "vi": "Ý kiến hay quá anh Tú! Em nghĩ là thời tiết mùa này rất thích hợp để leo núi. Em nghĩ thời tiết tốt."
+      },
+      "interactableWords": [
+        {
+          "word": "と思います",
+          "reading": "とおもいます",
+          "meaning": "Tôi nghĩ rằng... (Lesson 21)",
+          "id": "word_toomoimasu_01"
+        }
+      ],
+      "nextNode": "node_003"
+    },
+    {
+      "id": "node_003",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "Leo núi Phú Sĩ sao Shiba? Tuyệt vời ghê! Nhưng chuẩn bị đồ đạc thế nào nhỉ?",
+        "vi": "Leo núi Phú Sĩ sao Shiba? Tuyệt vời ghê! Nhưng chuẩn bị đồ đạc thế nào nhỉ?"
+      },
+      "interactableWords": [],
+      "nextNode": "node_004"
+    },
+    {
+      "id": "node_004",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "Nhắc mới nhớ! Cấu trúc ngữ pháp Bài 23 'Khi làm gì đó (toki)' rất quan trọng đấy. Cỏ chọn giúp anh Tú câu này nhé!",
+        "vi": "Nhắc mới nhớ! Cấu trúc ngữ pháp Bài 23 'Khi làm gì đó (toki)' rất quan trọng đấy. Cỏ chọn giúp anh Tú câu này nhé!"
+      },
+      "interactableWords": [],
+      "nextNode": "node_005"
+    },
+    {
+      "id": "node_005",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "Đố An biết: 'Khi leo núi (登る - noboru), hãy mang giày thể thao' nói thế nào cho đúng ngữ pháp nhỉ?",
+        "vi": "Đố An biết: 'Khi leo núi (登る - noboru), hãy mang giày thể thao' nói thế nào cho đúng ngữ pháp nhỉ?"
+      },
+      "interactableWords": [
+        {
+          "word": "登る",
+          "reading": "のぼる",
+          "meaning": "Leo (núi)",
+          "id": "word_noboru_01"
+        },
+        {
+          "word": "靴",
+          "reading": "くつ",
+          "meaning": "Giày",
+          "id": "word_kutsu_01"
+        }
+      ],
+      "nextNode": "node_006"
+    },
+    {
+      "id": "node_006",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "Ưm... Cấu trúc chỉ thời điểm 'Khi leo núi' (toki) kết hợp với động từ sẽ dùng thể nào?",
+        "vi": "Ưm... Cấu trúc chỉ thời điểm 'Khi leo núi' (toki) kết hợp với động từ sẽ dùng thể nào?"
+      },
+      "interactableWords": [],
+      "choices": [
+        {
+          "text": "山に登りますとき、スニーカーを履いてください。",
+          "isCorrect": false,
+          "nextNode": "node_007_wrong"
+        },
+        {
+          "text": "山に登るとき、スニーカーを履いてください。",
+          "isCorrect": true,
+          "nextNode": "node_007_correct"
+        }
+      ]
+    },
+    {
+      "id": "node_007_wrong",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "Chưa chính xác rồi! Đứng trước とき (toki), động từ phải chia về thể thông thường (ở đây là thể nguyên dạng 登る - noboru) chứ không dùng thể lịch sự ます nhé!",
+        "vi": "Chưa chính xác rồi! Đứng trước とき (toki), động từ phải chia về thể thông thường (ở đây là thể nguyên dạng 登る - noboru) chứ không dùng thể lịch sự ます nhé!"
+      },
+      "interactableWords": [],
+      "nextNode": "node_006"
+    },
+    {
+      "id": "node_007_correct",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "Dễ ợt hà! 山に登るときですね。Em sẽ chuẩn bị cả cơm hộp bento và nước uống nữa nha!",
+        "vi": "Dễ ợt hà! Khi leo núi đúng không. Em sẽ chuẩn bị cả cơm hộp bento và nước uống nữa nha!"
+      },
+      "interactableWords": [
+        {
+          "word": "とき",
+          "reading": "",
+          "meaning": "Khi / Lúc (Lesson 23)",
+          "id": "word_toki_01"
+        },
+        {
+          "word": "弁当",
+          "reading": "べんとう",
+          "meaning": "Cơm hộp",
+          "id": "word_bento_01"
+        }
+      ],
+      "nextNode": "node_008"
+    },
+    {
+      "id": "node_008",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_cafe_quiet.jpg",
+      "dialogue": {
+        "jp": "Tuyệt vời quá! Vậy chúng ta cùng chốt kế hoạch leo núi Phú Sĩ vào tuần sau nhé!",
+        "vi": "Tuyệt vời quá! Vậy chúng ta cùng chốt kế hoạch leo núi Phú Sĩ vào tuần sau nhé!"
+      },
+      "interactableWords": [],
+      "nextNode": "END_STORY"
+    }
+  ]
+}

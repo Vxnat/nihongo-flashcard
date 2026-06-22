@@ -14,7 +14,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
         {[
           {
             id: "journey",
-            icon: "/images/ui/nav-journey.svg",
+            icon: "/images/ui/nav/nav-journey.png",
             label: "Hành trình",
             color: "#FFD166",
             shadow: "#e6bc5c",
@@ -22,7 +22,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
           },
           {
             id: "custom",
-            icon: "/images/ui/nav-custom.svg",
+            icon: "/images/ui/nav/nav-custom.png",
             label: "Kho thẻ",
             color: "#5390D9",
             shadow: "#4a81c3",
@@ -30,7 +30,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
           },
           {
             id: "room",
-            icon: "/images/ui/nav-room.svg",
+            icon: "/images/ui/nav/nav-room.png",
             label: "Nhà",
             color: "#06D6A0",
             shadow: "#05B284",
@@ -38,7 +38,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
           },
           {
             id: "shop",
-            icon: "/images/ui/nav-shop.svg",
+            icon: "/images/ui/nav/nav-shop.png",
             label: "Cửa hàng",
             color: "#FF7096",
             shadow: "#C7486B",

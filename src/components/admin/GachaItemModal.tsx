@@ -2,6 +2,8 @@
 
 import React from "react";
 import { X } from "lucide-react";
+import toast from "react-hot-toast";
+import { uploadToCloudinary } from "@/utils/cloudinary";
 
 interface GachaItemModalProps {
   selectedGachaItem: any;
@@ -28,6 +30,25 @@ export function GachaItemModal({
   }, [selectedGachaItem]);
 
   const isEdit = gachaPool.some(i => i.id === selectedGachaItem.id);
+
+  const [isUploadingImg, setIsUploadingImg] = React.useState(false);
+  const [isUploadingAvatar, setIsUploadingAvatar] = React.useState(false);
+
+  const handleUpload = async (file: File, type: "imageUrl" | "avatarUrl") => {
+    if (type === "imageUrl") setIsUploadingImg(true);
+    else setIsUploadingAvatar(true);
+
+    const subCategory = type === "avatarUrl" ? "avatar" : "icon";
+    const secureUrl = await uploadToCloudinary(file, form.type, subCategory);
+
+    if (secureUrl) {
+      setForm((prev: any) => ({ ...prev, [type]: secureUrl }));
+      toast.success("Tải ảnh lên Cloudinary thành công! 🎉");
+    }
+
+    if (type === "imageUrl") setIsUploadingImg(false);
+    else setIsUploadingAvatar(false);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" style={{ fontFamily: "var(--font-rounded)" }}>
@@ -72,12 +93,13 @@ export function GachaItemModal({
                 onChange={(e) => setForm({ ...form, type: e.target.value })}
                 className="w-full px-3.5 py-2 border border-zinc-200 focus:border-[#8C6D58] outline-none rounded-xl mt-1 bg-white"
               >
-                <option value="sticker">Sticker (Dán nhãn)</option>
+                <option value="accessory">Accessory (Phụ kiện)</option>
                 <option value="theme">Theme (Hình nền)</option>
                 <option value="outfit">Outfit (Trang phục)</option>
                 <option value="furniture">Furniture (Nội thất sinh xương)</option>
                 <option value="meme">Meme (Kiến thức vui)</option>
                 <option value="voice">Voice (Giọng nói)</option>
+                <option value="costume">Costume (Cải trang)</option>
               </select>
             </div>
             <div>
@@ -98,7 +120,22 @@ export function GachaItemModal({
           </div>
 
           <div>
-            <label className="text-[10px] text-zinc-400 uppercase">Đường dẫn hình ảnh (ImageUrl)</label>
+            <div className="flex justify-between items-center">
+              <label className="text-[10px] text-zinc-400 uppercase">Đường dẫn hình ảnh (ImageUrl)</label>
+              <label className="text-[10px] text-emerald-600 hover:text-emerald-700 cursor-pointer flex items-center gap-1">
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleUpload(file, "imageUrl");
+                  }}
+                  disabled={isUploadingImg}
+                />
+                <span>{isUploadingImg ? "Đang tải..." : "📁 Tải ảnh"}</span>
+              </label>
+            </div>
             <input
               type="text"
               value={form.imageUrl || ""}
@@ -107,28 +144,79 @@ export function GachaItemModal({
               placeholder="VD: /images/stickers/st_chibi.png"
             />
           </div>
+          {/* Cấu hình Phân loại Hệ thống (Gacha & Shop) */}
+          <div className="p-3 border border-[#8C6D58]/20 rounded-xl bg-orange-50/20 space-y-3">
+            <p className="text-[9px] font-black text-[#8C6D58] uppercase">Phân loại Hệ thống (Gacha / Cửa hàng)</p>
+            
+            <div className="flex gap-6 text-[10px]">
+              <label className="flex items-center gap-1.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={!!form.isGacha}
+                  onChange={(e) => setForm({ ...form, isGacha: e.target.checked })}
+                  className="rounded border-zinc-300 text-[#8C6D58] focus:ring-[#8C6D58]"
+                />
+                <span>Có trong Gacha</span>
+              </label>
 
-          <div className="grid grid-cols-2 gap-3">
+              <label className="flex items-center gap-1.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={!!form.isShop}
+                  onChange={(e) => setForm({ ...form, isShop: e.target.checked })}
+                  className="rounded border-zinc-300 text-[#8C6D58] focus:ring-[#8C6D58]"
+                />
+                <span>Bán trong Cửa hàng</span>
+              </label>
+            </div>
+
+            {form.isShop && (
+              <div>
+                <label className="text-[9px] text-zinc-400 uppercase">Giá bán (Shiba Coin)</label>
+                <input
+                  type="number"
+                  value={form.cost === undefined ? 50 : form.cost}
+                  onChange={(e) => setForm({ ...form, cost: parseInt(e.target.value) || 0 })}
+                  className="w-full px-3 py-1.5 border border-zinc-200 focus:border-[#8C6D58] outline-none rounded-xl mt-1 text-xs"
+                  placeholder="VD: 50, 100, 300..."
+                />
+              </div>
+            )}
+          </div>
+          <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="text-[10px] text-zinc-400 uppercase">Mục tiêu mảnh ghép (Shard Target)</label>
+              <label className="text-[10px] text-zinc-400 uppercase">Mục tiêu mảnh (Shard Target)</label>
               <input
                 type="number"
                 value={form.shardTarget || 2}
                 onChange={(e) => setForm({ ...form, shardTarget: parseInt(e.target.value) || 2 })}
-                className="w-full px-3.5 py-2 border border-zinc-200 focus:border-[#8C6D58] outline-none rounded-xl mt-1"
+                className="w-full px-3.5 py-2 border border-zinc-200 focus:border-[#8C6D58] outline-none rounded-xl mt-1 text-xs"
               />
             </div>
             <div>
-              <label className="text-[10px] text-zinc-400 uppercase">Trọng số tỷ lệ (Weight - Trống = Mặc định)</label>
+              <label className="text-[10px] text-zinc-400 uppercase">Giá bán mảnh (Trống = Mặc định)</label>
               <input
                 type="number"
-                placeholder="VD: 10, 50, 100..."
+                placeholder="Mặc định theo độ hiếm"
+                value={form.shardPrice === undefined || form.shardPrice === null ? "" : form.shardPrice}
+                onChange={(e) => {
+                  const val = e.target.value.trim();
+                  setForm({ ...form, shardPrice: val === "" ? undefined : parseInt(val) || undefined });
+                }}
+                className="w-full px-3.5 py-2 border border-zinc-200 focus:border-[#8C6D58] outline-none rounded-xl mt-1 text-xs"
+              />
+            </div>
+            <div>
+              <label className="text-[10px] text-zinc-400 uppercase">Trọng số tỷ lệ (Weight)</label>
+              <input
+                type="number"
+                placeholder="Trống = Mặc định"
                 value={form.weight === undefined || form.weight === null ? "" : form.weight}
                 onChange={(e) => {
                   const val = e.target.value.trim();
                   setForm({ ...form, weight: val === "" ? undefined : parseInt(val) || undefined });
                 }}
-                className="w-full px-3.5 py-2 border border-zinc-200 focus:border-[#8C6D58] outline-none rounded-xl mt-1"
+                className="w-full px-3.5 py-2 border border-zinc-200 focus:border-[#8C6D58] outline-none rounded-xl mt-1 text-xs"
               />
             </div>
           </div>
@@ -305,12 +393,71 @@ export function GachaItemModal({
             </div>
           )}
 
-          {/* RPG Stats option for outfits / stickers */}
-          {(form.type === "outfit" || form.type === "sticker") && (
+          {/* Specific fields for costume */}
+          {form.type === "costume" && (
+            <div className="p-3 border border-orange-200 rounded-xl bg-orange-50/50 space-y-2 mt-2">
+              <p className="text-[9px] font-black text-amber-800 uppercase">Cấu hình Cải trang (Costume)</p>
+              <div className="space-y-2 text-[10px]">
+                <div>
+                  <div className="flex justify-between items-center">
+                    <label className="text-zinc-400 uppercase">Đường dẫn ảnh toàn thân (avatarUrl)</label>
+                    <label className="text-[10px] text-emerald-600 hover:text-emerald-700 cursor-pointer flex items-center gap-1">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) handleUpload(file, "avatarUrl");
+                        }}
+                        disabled={isUploadingAvatar}
+                      />
+                      <span>{isUploadingAvatar ? "Đang tải..." : "📁 Tải ảnh"}</span>
+                    </label>
+                  </div>
+                  <input
+                    type="text"
+                    value={form.avatarUrl || ""}
+                    onChange={(e) => setForm({ ...form, avatarUrl: e.target.value })}
+                    className="w-full px-2.5 py-1.5 border rounded-lg bg-white mt-0.5 font-mono"
+                    placeholder="VD: /images/mascot/skins/shiba_luffy.png"
+                  />
+                </div>
+                <div>
+                  <label className="text-zinc-400 uppercase">Hiệu ứng học tập (booster)</label>
+                  <select
+                    value={form.booster || ""}
+                    onChange={(e) => setForm({ ...form, booster: e.target.value })}
+                    className="w-full px-2.5 py-1.5 border rounded-lg bg-white mt-0.5"
+                  >
+                    <option value="">Không có chỉ số (No Booster)</option>
+                    <option value="coin_boost_10">Coin Boost +10% (Tăng Coin nhận bài học)</option>
+                    <option value="xp_boost_15">XP Boost +15% (Tăng XP chơi Minigame)</option>
+                    <option value="streak_shield">Streak Shield (Giảm giá bùa Streak)</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-zinc-400 uppercase">Hiệu ứng Hoạt ảnh</label>
+                  <select
+                    value={form.animation || "none"}
+                    onChange={(e) => setForm({ ...form, animation: e.target.value })}
+                    className="w-full px-2.5 py-1.5 border rounded-lg bg-white mt-0.5"
+                  >
+                    <option value="none">Không có (none)</option>
+                    <option value="pulse">Mờ ảo nhấp nháy (pulse)</option>
+                    <option value="float">Bay bồng bềnh (float)</option>
+                    <option value="spin">Xoay tròn (spin)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {(form.type === "outfit" || form.type === "accessory") && (
             <div className="p-3 border border-orange-200 rounded-xl bg-orange-50/50 space-y-2 mt-2">
               <p className="text-[9px] font-black text-amber-800 uppercase">RPG Stats (Chiến đấu hệ Shiba Room)</p>
               <div className="grid grid-cols-2 gap-2 text-[10px]">
-                <div>
+                <div className="col-span-2">
                   <label className="text-zinc-400">Vị trí slot trang bị</label>
                   <select
                     value={form.rpgSlot || "head"}
@@ -318,13 +465,14 @@ export function GachaItemModal({
                     className="w-full px-2.5 py-1.5 border rounded-lg bg-white mt-0.5"
                   >
                     <option value="head">Mũ/Đầu (Head)</option>
-                    <option value="armor">Mũi giáp/Thân (Armor)</option>
-                    <option value="earring">Bông tai/Phụ kiện (Earring)</option>
+                    <option value="armor">Trang phục/Giáp (Armor)</option>
+                    <option value="earring">Trang sức tai (Earring)</option>
                     <option value="gloves">Bao tay/Vũ khí (Gloves)</option>
                     <option value="mount">Thú cưỡi/Đồng hành (Mount)</option>
                     <option value="aura">Hào quang/Khí tức (Aura)</option>
                   </select>
                 </div>
+
                 <div>
                   <label className="text-zinc-400">Cộng HP</label>
                   <input

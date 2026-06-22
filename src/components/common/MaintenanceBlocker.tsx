@@ -6,7 +6,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAppStore } from "@/store/useAppStore";
 
-const ADMIN_EMAILS = ["admin@example.com", "admin@shibatown.com"];
+const ADMIN_EMAILS = ["nguyenatu2003@gmail.com"];
 
 export function MaintenanceBlocker() {
   const pathname = usePathname();

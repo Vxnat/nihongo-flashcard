@@ -3,8 +3,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { auth, googleProvider } from "@/lib/firebase";
-import { signInWithPopup } from "firebase/auth";
+import { useAppStore } from "@/store/useAppStore";
 import toast from "react-hot-toast";
 
 interface ShibaLoginModalProps {
@@ -22,16 +21,14 @@ export function ShibaLoginModal({
   description = "Căn phòng Shiba đang đợi cậu trang trí! Đăng nhập ngay để nhận nuôi chú Shiba cưng, quay Gacha nội thất và thu hoạch xương vàng nhé! 🐾🏠",
   onSuccess,
 }: ShibaLoginModalProps) {
+  const loginWithGoogle = useAppStore((state: any) => state.loginWithGoogle);
+
   const handleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      toast.success("Đăng nhập thành công! 🎉", { icon: "🚀" });
+      await loginWithGoogle();
       if (onSuccess) onSuccess();
       onClose();
-    } catch (error) {
-      console.error("Lỗi đăng nhập:", error);
-      toast.error("Đăng nhập thất bại. Bạn thử lại nhé! 💦", { icon: "🥺" });
-    }
+    } catch (error) {}
   };
 
   return (

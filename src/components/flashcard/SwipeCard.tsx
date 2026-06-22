@@ -50,8 +50,8 @@ export function SwipeCard({ card, isFlipped, onFlip, onSwipe, exitDir, showFurig
     })
   };
 
-  const customSadImg = "/images/ui/sad.png";
-  const customHappyImg = "/images/ui/happy.png";
+  const customSadImg = "/images/ui/feedback/sad.png";
+  const customHappyImg = "/images/ui/feedback/happy.png";
 
   return (
     <motion.div

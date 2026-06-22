@@ -67,7 +67,7 @@ export function UsersTab({
                 <div className="flex items-center gap-3 text-right">
                   <div>
                     <p className="text-xs font-black text-[#8C6D58] flex items-center justify-end gap-1">
-                      <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {u.goldenFur || 0}
+                      <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {u.goldenFur || 0}
                     </p>
                     <p className="text-[10px] font-bold text-zinc-400">Coins: {u.coins || 0}</p>
                   </div>

@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Lock, Coins, Sparkles, Clock, Volume2, ShieldAlert } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
-import { GACHA_POOL, GachaItem, RARITY_CONFIG, GachaRarity } from "@/constants/gachaPool";
-import { SHARD_PRICES, EXCLUSIVE_GOODS, CONSUMABLE_BUFFS, ShopItem } from "@/constants/shopItems";
+import { GachaItem, RARITY_CONFIG, GachaRarity } from "@/constants/gachaPool";
+import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
+import { SHARD_PRICES } from "@/constants/shopItems";
+import { playAudioUrl } from "@/utils/tts";
 import toast from "react-hot-toast";
 
 interface FurShopModalProps {
@@ -22,6 +24,7 @@ const SHIBA_DIALOGS = [
 ];
 
 export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
+  const { gachaPool, shopExclusives, shopConsumables } = useSystemItems();
   const { userStats, buyShopItem, user } = useAppStore((state: any) => state);
   const [activeTab, setActiveTab] = useState<"shard" | "exclusive" | "consumable">("shard");
   const [shibaBubble, setShibaBubble] = useState(SHIBA_DIALOGS[0]);
@@ -65,22 +68,17 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
 
   // Audio coin drop sound
   const playCoinSound = () => {
-    const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2019/2019-84.wav");
-    audio.volume = 0.5;
-    audio.play().catch(() => { });
+    playAudioUrl("https://assets.mixkit.co/active_storage/sfx/2019/2019-84.wav", 0.5);
   };
 
   // Filter Gacha items for the Shard tab
-  const shardItems = GACHA_POOL.filter(item =>
+  const shardItems = gachaPool.filter(item =>
     ["epic", "legendary", "mythic", "divine"].includes(item.rarity)
   );
 
   // Helper check if item is owned
-  const isItemOwned = (itemId: string, type: string) => {
-    if (type === "furniture") return userStats.furniture?.includes(itemId);
-    if (type === "voice") return userStats.unlockedVoices?.includes(itemId);
-    if (type === "outfit" || type === "sticker") return userStats.inventory?.includes(itemId);
-    return false;
+  const isItemOwned = (itemId: string) => {
+    return userStats.inventory?.includes(itemId) || false;
   };
 
   const handleItemClick = (item: any, type: "shard" | "exclusive" | "consumable") => {
@@ -101,7 +99,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
     if (!selectedItem || !selectedType) return;
 
     // Check if owned (for exclusive)
-    if (selectedType === "exclusive" && isItemOwned(selectedItem.id, selectedItem.type)) {
+    if (selectedType === "exclusive" && isItemOwned(selectedItem.id)) {
       toast.error("Bạn đã sở hữu vật phẩm này rồi! 🚫");
       return;
     }
@@ -110,7 +108,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
     let targetId = undefined;
 
     if (selectedType === "shard") {
-      cost = SHARD_PRICES[selectedItem.rarity] || 0;
+      cost = selectedItem.shardPrice !== undefined ? selectedItem.shardPrice : (SHARD_PRICES[selectedItem.rarity] || 0);
       targetId = selectedItem.id;
     } else {
       cost = selectedItem.cost;
@@ -169,7 +167,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
           {/* Golden Fur Wallet */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 bg-amber-100/80 border-2 border-[#D4AF37] px-3 py-1 rounded-full text-xs font-black text-amber-900 shadow-xs">
-              <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" />
+              <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" />
               <span>{userStats.goldenFur || 0}</span>
             </div>
 
@@ -185,9 +183,9 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
         {/* Shopkeeper Area */}
         <div className="flex items-center gap-4 bg-white/40 border-b border-[#8C6D58]/10 p-3 mx-4 mt-3 rounded-2xl relative">
           <div className="relative flex-shrink-0">
-            <div className="w-14 h-14 bg-amber-100 rounded-full border border-[#8C6D58]/20 overflow-hidden">
+            <div className="w-17 h-17 bg-amber-100 rounded-full border border-[#8C6D58]/20 overflow-hidden">
               <img
-                src="/images/mascot/shiba_master.gif"
+                src="/images/mascot/shiba_shop.gif"
                 alt="Merchant Shiba"
                 className="w-full h-full object-cover scale-120 translate-y-1.5"
               />
@@ -230,9 +228,9 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
           {activeTab === "shard" && (
             <div className="grid grid-cols-3 gap-3">
               {shardItems.map((item) => {
-                const price = SHARD_PRICES[item.rarity];
+                const price = item.shardPrice !== undefined ? item.shardPrice : (SHARD_PRICES[item.rarity as string] || 0);
                 const ownedShards = userStats.shards?.[item.id] || 0;
-                const rarityColor = RARITY_CONFIG[item.rarity].color;
+                const rarityColor = RARITY_CONFIG[item.rarity as GachaRarity]?.color;
 
                 return (
                   <div
@@ -256,7 +254,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                         Mảnh: {ownedShards}/{item.shardTarget}
                       </span>
                       <span className="text-[9px] font-black text-amber-600 flex items-center gap-0.5">
-                        <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {price}
+                        <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {price}
                       </span>
                     </div>
                   </div>
@@ -268,18 +266,16 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
           {/* TAB 2: EXCLUSIVES */}
           {activeTab === "exclusive" && (
             <div className="grid grid-cols-3 gap-3">
-              {EXCLUSIVE_GOODS.map((item) => {
-                const targetGachaItem = GACHA_POOL.find(i => i.id === item.id);
-                const owned = isItemOwned(item.id, targetGachaItem?.type || "sticker");
-                const rarityColor = targetGachaItem ? RARITY_CONFIG[targetGachaItem.rarity].color : undefined;
+              {shopExclusives.map((item) => {
+                const owned = isItemOwned(item.id);
+                const rarityColor = RARITY_CONFIG[item.rarity as GachaRarity]?.color;
 
                 return (
                   <div
                     key={item.id}
                     onClick={() => handleItemClick(item, "exclusive")}
-                    className={`bg-white border-2 hover:border-[#8C6D58] p-2 rounded-2xl flex flex-col justify-between h-[100px] cursor-pointer transition-all active:scale-95 shadow-xs relative ${
-                      rarityColor ? "rare-glow-card" : ""
-                    } ${owned ? "opacity-75" : ""} ${selectedItem?.id === item.id ? "border-[#8C6D58] ring-2 ring-[#8C6D58]/20" : "border-zinc-200/60"}`}
+                    className={`bg-white border-2 hover:border-[#8C6D58] p-2 rounded-2xl flex flex-col justify-between h-[100px] cursor-pointer transition-all active:scale-95 shadow-xs relative ${rarityColor ? "rare-glow-card" : ""
+                      } ${owned ? "opacity-75" : ""} ${selectedItem?.id === item.id ? "border-[#8C6D58] ring-2 ring-[#8C6D58]/20" : "border-zinc-200/60"}`}
                     style={rarityColor ? ({ '--glow-color': rarityColor } as React.CSSProperties) : undefined}
                   >
                     <div className="flex flex-col items-center">
@@ -298,7 +294,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                         </span>
                       ) : (
                         <span className="text-[9px] font-black text-amber-600 flex items-center gap-0.5">
-                          <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {item.cost}
+                          <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {item.cost}
                         </span>
                       )}
                     </div>
@@ -311,7 +307,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
           {/* TAB 3: CONSUMABLES */}
           {activeTab === "consumable" && (
             <div className="grid grid-cols-2 gap-4">
-              {CONSUMABLE_BUFFS.map((item) => {
+              {shopConsumables.map((item) => {
                 const isDoubleBones = item.id === "buff_double_bones";
                 const isLuckyGacha = item.id === "buff_lucky_gacha";
 
@@ -357,7 +353,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                       </div>
 
                       <span className="text-xs font-black text-amber-600 flex items-center gap-0.5">
-                        <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                        <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
                       </span>
                     </div>
                   </div>
@@ -402,7 +398,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
               {/* Effects details */}
               <div className="bg-[#FAF6EE] border border-[#8C6D58]/20 p-2.5 rounded-xl text-[10px] md:text-xs font-bold text-[#8C6D58] flex items-center gap-1.5">
                 <Sparkles size={12} className="text-[#D4AF37] flex-shrink-0" />
-                <span>Hiệu quả: {selectedItem.effects || (selectedType === "shard" ? `Nhận 1 mảnh ghép. Thu thập đủ ${selectedItem.shardTarget} mảnh để mở khóa vật phẩm này.` : "Cấp vĩnh viễn vật phẩm.")}</span>
+                <span>{selectedType === "shard" ? `Nhận 1 mảnh ghép. Thu thập đủ ${selectedItem.shardTarget} mảnh để mở khóa vật phẩm này.` : "Cấp vĩnh viễn vật phẩm."}</span>
               </div>
 
               {/* Action Buttons */}
@@ -417,7 +413,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                   HUỶ
                 </button>
 
-                {selectedType === "exclusive" && isItemOwned(selectedItem.id, selectedItem.type) ? (
+                {selectedType === "exclusive" && isItemOwned(selectedItem.id) ? (
                   <div className="flex-[1.5] py-2 text-center text-xs font-black text-[#06D6A0] bg-[#06D6A0]/10 rounded-xl border border-[#06D6A0]">
                     ĐÃ SỞ HỮU VẬT PHẨM
                   </div>
@@ -427,7 +423,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                     className="flex-[1.5] py-2 bg-[#D4AF37] border-b-2 border-[#9E7815] text-white font-black rounded-xl text-xs active:translate-y-0.5 cursor-pointer shadow-xs flex items-center justify-center gap-1 hover:brightness-105"
                   >
                     <span className="flex items-center gap-1">
-                      <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-4 h-4 object-contain" /> {selectedType === "shard" ? SHARD_PRICES[selectedItem.rarity] : selectedItem.cost}
+                      <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-4 h-4 object-contain" /> {selectedType === "shard" ? (selectedItem.shardPrice !== undefined ? selectedItem.shardPrice : SHARD_PRICES[selectedItem.rarity]) : selectedItem.cost}
                     </span>
                   </button>
                 )}

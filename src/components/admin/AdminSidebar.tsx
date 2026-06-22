@@ -8,15 +8,13 @@ interface AdminSidebarProps {
   setActiveTab: (tab: "decks" | "gacha_shop" | "quests" | "users" | "settings") => void;
   setSelectedDeck: (deck: any) => void;
   user: any;
-  isDev: boolean;
 }
 
 export function AdminSidebar({
   activeTab,
   setActiveTab,
   setSelectedDeck,
-  user,
-  isDev
+  user
 }: AdminSidebarProps) {
   return (
     <div className="w-64 bg-[#8C6D58] text-white flex flex-col p-4 shrink-0 shadow-lg select-none border-r-4 border-[#735642]" style={{ fontFamily: "var(--font-rounded)" }}>
@@ -72,19 +70,6 @@ export function AdminSidebar({
           <span>CÀI ĐẶT HỆ THỐNG</span>
         </button>
       </nav>
-
-      <div className="pt-4 border-t border-white/20 text-center text-[10px] text-white/50 font-bold">
-        {isDev ? (
-          <span className="text-emerald-300 font-extrabold bg-emerald-950/40 px-2.5 py-1 rounded-full border border-emerald-500/20">
-            🛠️ Chế độ Development (Ghi file cục bộ)
-          </span>
-        ) : (
-          <span className="text-amber-300 font-extrabold bg-amber-950/40 px-2.5 py-1 rounded-full border border-amber-500/20">
-            🌐 Chế độ Production (Chỉ đọc)
-          </span>
-        )}
-        <p className="mt-4">Đăng nhập: {user?.email}</p>
-      </div>
     </div>
   );
 }

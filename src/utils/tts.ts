@@ -35,6 +35,13 @@ export const playAudio = (text: string, lang: string = "ja-JP") => {
   window.speechSynthesis.speak(utterance);
 };
 
+export const playAudioUrl = (url: string, volume: number = 0.6) => {
+  if (typeof window === "undefined") return;
+  const audio = new Audio(url);
+  audio.volume = volume;
+  audio.play().catch((err) => console.warn("Failed to play audio url:", err));
+};
+
 // Kích hoạt tải trước danh sách giọng đọc để hàm getVoices() không bị rỗng ở lần bấm đầu tiên
 if (typeof window !== "undefined" && "speechSynthesis" in window) {
   window.speechSynthesis.getVoices();

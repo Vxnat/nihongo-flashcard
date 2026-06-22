@@ -29,20 +29,20 @@ export function RoadmapNode({
   const isStory = deck.type === "story";
   const isBoss = deck.title.toLowerCase().includes("boss") || deck.title.toLowerCase().includes("ôn tập");
 
-  let iconSrc = "/images/ui/node_vocab.png";
+  let iconSrc = "/images/ui/roadmap/node_vocab.png";
   if (isChest) {
-    iconSrc = completed ? "/images/ui/chest_opened.png" : "/images/ui/chest_closed.png";
+    iconSrc = completed ? "/images/ui/roadmap/chest_opened.png" : "/images/ui/roadmap/chest_closed.png";
   } else if (isStory) {
-    iconSrc = "/images/ui/node_story.png";
+    iconSrc = "/images/ui/roadmap/node_story.png";
   } else if (deck.type === "minigame_matching" || deck.type === "minigame_rush") {
-    iconSrc = "/images/ui/node_minigame.png";
+    iconSrc = "/images/ui/roadmap/node_minigame.png";
   } else if (deck.type === "minigame_kanji") {
-    iconSrc = "/images/ui/node_kanji.png";
+    iconSrc = "/images/ui/roadmap/node_kanji.png";
   } else if (isBoss) {
-    iconSrc = "/images/ui/node_boss.png";
+    iconSrc = "/images/ui/roadmap/node_boss.png";
   } else {
     // Luân phiên node_vocab và node_kanji dựa trên index
-    iconSrc = index % 2 === 0 ? "/images/ui/node_vocab.png" : "/images/ui/node_kanji.png";
+    iconSrc = index % 2 === 0 ? "/images/ui/roadmap/node_vocab.png" : "/images/ui/roadmap/node_kanji.png";
   }
 
   // Phân tích Kích thước (Size Class)

@@ -2,8 +2,6 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useAppStore } from "@/store/useAppStore";
-import { auth, googleProvider } from "@/lib/firebase";
-import { signInWithPopup, signOut } from "firebase/auth";
 import { LogIn, LogOut, UserCircle, Download } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
@@ -17,6 +15,8 @@ export function AuthButton() {
   const appMode = useAppStore((state: any) => state.appMode || "focus");
   const setAppMode = useAppStore((state: any) => state.setAppMode);
   const loadAppMode = useAppStore((state: any) => state.loadAppMode);
+  const loginWithGoogle = useAppStore((state: any) => state.loginWithGoogle);
+  const logout = useAppStore((state: any) => state.logout);
 
   const ADMIN_EMAILS = ["admin@example.com", "admin@shibatown.com"];
   const isDev = process.env.NODE_ENV === "development";
@@ -66,19 +66,16 @@ export function AuthButton() {
 
   const handleLogin = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      toast.success("Đăng nhập thành công! 🎉", { icon: "🚀" });
+      await loginWithGoogle();
       setIsOpen(false);
-    } catch (error) {
-      console.error("Lỗi đăng nhập:", error);
-      toast.error("Đăng nhập thất bại. Bạn thử lại nhé! 💦", { icon: "🥺" });
-    }
+    } catch (error) {}
   };
 
   const handleLogout = async () => {
-    await signOut(auth);
-    setIsOpen(false);
-    toast.success("Đã đăng xuất! Hẹn gặp lại nhé 👋", { icon: "👋" });
+    try {
+      await logout();
+      setIsOpen(false);
+    } catch (error) {}
   };
 
   return (
@@ -92,20 +89,14 @@ export function AuthButton() {
         {/* NÚT MỞ NHIỆM VỤ (Ra ngoài để luôn thấy chấm đỏ) */}
         <button
           onClick={() => setIsQuestModalOpen(true)}
-          className="bg-white/90 backdrop-blur px-2.5 py-1.5 md:px-4 rounded-full border-2 border-[#FFE2D1] text-[#FF9F1C] font-bold shadow-[0_4px_0_0_#FFE2D1] hover:bg-orange-50 active:shadow-none active:translate-y-1 transition-all flex items-center gap-2 cursor-pointer relative"
+          className="bg-white/90 backdrop-blur p-2 md:p-2.5 rounded-full border-2 border-[#FFE2D1] text-[#FF9F1C] font-bold shadow-[0_4px_0_0_#FFE2D1] hover:bg-orange-50 active:shadow-none active:translate-y-1 transition-all flex items-center gap-2 cursor-pointer relative"
         >
           <img
-            src="/images/ui/quest_scroll.svg"
+            src="/images/ui/icons/quest_scroll.png"
             alt="Nhiệm vụ"
             className="w-4 h-4 mx-auto select-none"
             draggable={false}
           />
-          <span
-            className="hidden md:inline font-rounded"
-            style={{ fontFamily: "var(--font-cherry)" }}
-          >
-            Nhiệm vụ
-          </span>
 
           {unclaimedCount > 0 && (
             <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white shadow-sm animate-bounce">

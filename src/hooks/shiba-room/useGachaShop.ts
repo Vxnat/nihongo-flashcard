@@ -1,60 +1,28 @@
 import { useEffect, useState, useRef } from "react";
 import { useAppStore } from "@/store/useAppStore";
-import { GACHA_POOL, RARITY_CONFIG, GachaRarity, GachaItem, DUPLICATE_FUR_VALUES } from "@/constants/gachaPool";
+import { RARITY_CONFIG, GachaRarity, GachaItem, DUPLICATE_FUR_VALUES } from "@/constants/gachaPool";
 import toast from "react-hot-toast";
 import { GachaResultItem } from "@/components/shiba-room/GachaMultiResultModal";
+import { useSystemItems } from "./useSystemItems";
 
 // 20 quả trứng bù nhìn để tạo hiệu ứng lấp đầy máy
 const DUMMY_CAPSULES = Array.from({ length: 30 }).map((_, i) => ({
   id: `cap_${i}`,
 }));
 
-const FALLBACK_TYPE_WEIGHTS: Record<string, number> = {
-  theme: 10,
-  outfit: 25,
-  furniture: 50,
-  voice: 60,
-  meme: 80,
-  sticker: 100,
-};
-
-// Module-level cache: loaded once, shared across all hook instances
-let _cachedTypeWeights: Record<string, number> | null = null;
-let _fetchPromise: Promise<void> | null = null;
-
-const loadTypeWeights = () => {
-  if (_cachedTypeWeights) return;
-  if (_fetchPromise) return;
-  _fetchPromise = fetch("/data/configs/gacha_type_weights.json")
-    .then(res => {
-      if (!res.ok) throw new Error("Failed to load type weights");
-      return res.json();
-    })
-    .then(data => {
-      _cachedTypeWeights = data;
-    })
-    .catch(err => {
-      console.warn("Không tải được gacha_type_weights.json, dùng giá trị mặc định:", err);
-      _cachedTypeWeights = FALLBACK_TYPE_WEIGHTS;
-    });
-};
-
-const getTypeWeights = (): Record<string, number> => {
-  return _cachedTypeWeights || FALLBACK_TYPE_WEIGHTS;
-};
-
-const getItemWeight = (item: any) => {
-  if (item.weight !== undefined && item.weight !== null) return item.weight;
-  return getTypeWeights()[item.type] ?? 100;
-};
-
 export function useGachaShop() {
-  const { userStats, deductCoins, processGachaRoll, user } = useAppStore(
+  const { gachaPool, typeWeights } = useSystemItems();
+  const { userStats, deductCoins, processGachaRoll, processGachaRollsBatch, user } = useAppStore(
     (state: any) => state,
   );
   const sceneRef = useRef<HTMLDivElement>(null);
   const engineRef = useRef<any>(null);
   const capsulesRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  const getItemWeight = (item: any) => {
+    if (item.weight !== undefined && item.weight !== null) return item.weight;
+    return typeWeights[item.type] ?? 100;
+  };
 
   const [gachaState, setGachaState] = useState<"idle" | "twisting" | "anticipating" | "opened" | "multi_opened">(
     "idle",
@@ -66,10 +34,7 @@ export function useGachaShop() {
   const anticipatingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
-  // Tải type weights từ JSON khi hook được mount
-  useEffect(() => {
-    loadTypeWeights();
-  }, []);
+
 
   // Khởi tạo máy Gacha (Matter.js) - Giữ nguyên logic vật lý
   useEffect(() => {
@@ -200,6 +165,10 @@ export function useGachaShop() {
 
   // LOGIC THUẬT TOÁN QUAY GACHA
   const rollGacha = (currentPity: number, luckyRollsLeft: number) => {
+    if (!gachaPool || gachaPool.length === 0) {
+      return { selectedItem: null, isFullItem: false, duplicateFur: 0, rarity: "common" as GachaRarity };
+    }
+
     let rarity: GachaRarity = "common";
     const randRarity = Math.random() * 100;
     const hasLuckyTalisman = luckyRollsLeft > 0;
@@ -237,11 +206,18 @@ export function useGachaShop() {
       }
     }
 
-    const itemsInRarity = GACHA_POOL.filter(i => i.rarity === rarity);
+    let itemsInRarity = gachaPool.filter(i => i && i.rarity === rarity);
+    if (itemsInRarity.length === 0) {
+      itemsInRarity = gachaPool.filter(i => i !== undefined && i !== null);
+    }
+
+    if (itemsInRarity.length === 0) {
+      return { selectedItem: null, isFullItem: false, duplicateFur: 0, rarity };
+    }
+
     let selectedItem = itemsInRarity[0];
-    
-    if (itemsInRarity.length > 0) {
-      const totalWeight = itemsInRarity.reduce((sum, item) => sum + getItemWeight(item), 0);
+    const totalWeight = itemsInRarity.reduce((sum, item) => sum + getItemWeight(item), 0);
+    if (totalWeight > 0) {
       let rand = Math.random() * totalWeight;
       for (const item of itemsInRarity) {
         const w = getItemWeight(item);
@@ -253,23 +229,35 @@ export function useGachaShop() {
       }
     }
 
-    const isFullItem = Math.random() < RARITY_CONFIG[rarity].dropFullRate;
-
-    const hasItem =
-      (userStats.inventory || []).includes(selectedItem.id) ||
-      (userStats.furniture || []).includes(selectedItem.id) ||
-      (userStats.unlockedMemes || []).includes(selectedItem.id) ||
-      (userStats.unlockedVoices || []).includes(selectedItem.id);
-    let duplicateFur = 0;
-    if (hasItem) {
-      duplicateFur = isFullItem ? DUPLICATE_FUR_VALUES[rarity] : Math.ceil(DUPLICATE_FUR_VALUES[rarity] / selectedItem.shardTarget);
+    if (!selectedItem) {
+      selectedItem = gachaPool[0];
     }
 
-    return { selectedItem, isFullItem, duplicateFur, rarity };
+    if (!selectedItem) {
+      return { selectedItem: null, isFullItem: false, duplicateFur: 0, rarity };
+    }
+
+    const finalRarity = (selectedItem.rarity || rarity) as GachaRarity;
+    const isFullItem = Math.random() < (RARITY_CONFIG[finalRarity]?.dropFullRate ?? 0.5);
+
+    const hasItem = (userStats.inventory || []).includes(selectedItem.id);
+
+    let duplicateFur = 0;
+    if (hasItem) {
+      const baseDup = DUPLICATE_FUR_VALUES[finalRarity] ?? 10;
+      duplicateFur = isFullItem ? baseDup : Math.ceil(baseDup / (selectedItem.shardTarget || 5));
+    }
+
+    return { selectedItem, isFullItem, duplicateFur, rarity: finalRarity };
   };
 
   const handleTwist = async () => {
     if (gachaState !== "idle") return;
+
+    if (!gachaPool || gachaPool.length === 0) {
+      toast.error("Máy Gacha hiện tại chưa có vật phẩm nào! Hãy thêm vật phẩm ở trang Admin.");
+      return;
+    }
 
     // Xin quyền truy cập cảm biến gia tốc trên iOS 13+
     if (
@@ -318,6 +306,12 @@ export function useGachaShop() {
       const luckyRollsLeft = userStats.buffLuckyGachaRolls || 0;
       const { selectedItem, isFullItem, duplicateFur, rarity } = rollGacha(currentPity, luckyRollsLeft);
 
+      if (!selectedItem) {
+        toast.error("Không tìm thấy vật phẩm Gacha phù hợp.");
+        setGachaState("idle");
+        return;
+      }
+
       // Đặt lại bảo hiểm nếu ra đồ xịn
       let newPity = currentPity + 1;
       if (["epic", "legendary", "mythic", "divine"].includes(rarity)) {
@@ -350,6 +344,11 @@ export function useGachaShop() {
   const handleMultiRoll = async (count: number) => {
     const cost = 90; // Hardcoded for 10 rolls
     if (gachaState !== "idle" || !user || userStats.coins < cost) {
+      return;
+    }
+
+    if (!gachaPool || gachaPool.length === 0) {
+      toast.error("Máy Gacha hiện tại chưa có vật phẩm nào! Hãy thêm vật phẩm ở trang Admin.");
       return;
     }
 
@@ -400,14 +399,19 @@ export function useGachaShop() {
       let tempPity = userStats.pityCounter || 0;
       let luckyRollsLeft = userStats.buffLuckyGachaRolls || 0;
       const rollResultsForUI: Omit<GachaResultItem, 'unlocked' | 'shardsNow'>[] = [];
-      const itemsToProcess: { selectedItem: GachaItem, isFullItem: boolean, duplicateFur: number }[] = [];
+      const itemsToProcess: { item: GachaItem, isFullItem: boolean, duplicateFur: number }[] = [];
 
       // 1. Calculate all 10 rolls and their results first
       for (let i = 0; i < count; i++) {
         const { selectedItem, isFullItem, duplicateFur, rarity } = rollGacha(tempPity, luckyRollsLeft);
+        if (!selectedItem) {
+          toast.error("Có lỗi xảy ra khi quay Gacha: Không tìm thấy vật phẩm phù hợp.");
+          setGachaState("idle");
+          return;
+        }
         if (luckyRollsLeft > 0) luckyRollsLeft--;
         rollResultsForUI.push({ item: selectedItem, isFullItem, duplicateFur, rarity });
-        itemsToProcess.push({ selectedItem, isFullItem, duplicateFur });
+        itemsToProcess.push({ item: selectedItem, isFullItem, duplicateFur });
 
         // Update pity for the next roll in this batch
         tempPity++;
@@ -416,12 +420,13 @@ export function useGachaShop() {
         }
       }
 
-      // 2. Process all items and update state in a batch.
+      // 2. Process all items and update state in a single batch.
       const finalPity = tempPity;
-      const processedResultsForUI: GachaResultItem[] = await Promise.all(itemsToProcess.map(async (item, i) => {
-        const pityForThisCall = (i === itemsToProcess.length - 1) ? finalPity : (userStats.pityCounter || 0) + i + 1;
-        const { unlocked, shardsNow } = await processGachaRoll(item.selectedItem, item.isFullItem, item.duplicateFur, pityForThisCall);
-        return { ...rollResultsForUI[i], unlocked, shardsNow };
+      const batchResults = await processGachaRollsBatch(itemsToProcess, finalPity);
+      const processedResultsForUI: GachaResultItem[] = rollResultsForUI.map((res, i) => ({
+        ...res,
+        unlocked: batchResults[i].unlocked,
+        shardsNow: batchResults[i].shardsNow,
       }));
 
       // 3. Set state to show the results screen

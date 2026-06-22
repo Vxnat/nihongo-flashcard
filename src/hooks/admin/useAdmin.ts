@@ -2,15 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useAppStore } from "@/store/useAppStore";
-import { auth, db } from "@/lib/firebase";
-import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, User } from "firebase/auth";
+import { db } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
-import { collection, getDocs, doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
-import { GACHA_POOL } from "@/constants/gachaPool";
-import { EXCLUSIVE_GOODS, CONSUMABLE_BUFFS } from "@/constants/shopItems";
-
-const ADMIN_EMAILS = ["admin@example.com", "admin@shibatown.com"];
 
 export interface SystemDeck {
   id: string;
@@ -46,6 +41,7 @@ export function useAdmin() {
   const router = useRouter();
   const user = useAppStore((state: any) => state.user);
   const setUser = useAppStore((state: any) => state.setUser);
+  const loginWithGoogle = useAppStore((state: any) => state.loginWithGoogle);
 
   const [activeTab, setActiveTab] = useState<"decks" | "gacha_shop" | "quests" | "users" | "settings">("decks");
   const [decks, setDecks] = useState<SystemDeck[]>([]);
@@ -90,7 +86,8 @@ export function useAdmin() {
     furniture: 50,
     voice: 60,
     meme: 80,
-    sticker: 100,
+    accessory: 100,
+    costume: 20,
   });
 
   // System Settings state
@@ -122,56 +119,15 @@ export function useAdmin() {
   const [gachaSearch, setGachaSearch] = useState<string>("");
   const [questSearch, setQuestSearch] = useState<string>("");
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [authChecking, setAuthChecking] = useState(true);
-  const isDev = process.env.NODE_ENV === "development";
-
-  // Authentication check on mount
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (currentUser) => {
-      if (!currentUser) {
-        toast.error("Vui lòng đăng nhập tài khoản Admin!");
-        router.push("/");
-        return;
-      }
-
-      try {
-        const snap = await getDoc(doc(db, "user_stats", currentUser.uid));
-        const data = snap.data();
-        const role = data?.role || "user";
-
-        const isDevEnv = process.env.NODE_ENV === "development";
-        const isEmailAdmin = currentUser.email && ADMIN_EMAILS.includes(currentUser.email);
-        const isRoleAdmin = role === "admin";
-
-        if (isDevEnv || isEmailAdmin || isRoleAdmin) {
-          setIsAdmin(true);
-          setAuthChecking(false);
-        } else {
-          toast.error("Bạn không có quyền truy cập trang quản trị!");
-          router.push("/");
-        }
-      } catch (err) {
-        console.error("Lỗi xác thực quyền admin:", err);
-        toast.error("Lỗi xác thực quyền hạn!");
-        router.push("/");
-      }
-    });
-
-    return () => unsub();
-  }, [router, setUser]);
-
   // Load configuration on mount
   useEffect(() => {
-    if (isAdmin) {
-      loadSystemDecks();
-      loadUsersStats();
-      loadGachaAndShop();
-      loadDailyQuests();
-      loadSystemSettings();
-      loadTypeWeights();
-    }
-  }, [isAdmin]);
+    loadSystemDecks();
+    loadUsersStats();
+    loadGachaAndShop();
+    loadDailyQuests();
+    loadSystemSettings();
+    loadTypeWeights();
+  }, []);
 
   const loadSystemDecks = async () => {
     setIsLoading(true);
@@ -202,40 +158,31 @@ export function useAdmin() {
 
   const loadGachaAndShop = async () => {
     try {
-      const gachaRes = await fetch("/api/admin/save-json?filePath=public/data/configs/gacha_pool.json");
-      if (gachaRes.ok) {
-        const data = await gachaRes.json();
-        setGachaPool(data);
-      } else {
-        setGachaPool(GACHA_POOL);
-      }
+      const querySnapshot = await getDocs(collection(db, "system_items"));
+      const items: any[] = [];
+      querySnapshot.forEach((doc) => {
+        items.push({ id: doc.id, ...doc.data() });
+      });
 
-      const shopRes = await fetch("/api/admin/save-json?filePath=public/data/configs/shop_items.json");
-      if (shopRes.ok) {
-        const data = await shopRes.json();
-        setShopExclusives(data.EXCLUSIVE_GOODS || []);
-        setShopConsumables(data.CONSUMABLE_BUFFS || []);
-      } else {
-        setShopExclusives(EXCLUSIVE_GOODS);
-        setShopConsumables(CONSUMABLE_BUFFS);
-      }
+      setGachaPool(items.filter((i) => i.isGacha));
+      setShopExclusives(items.filter((i) => i.isShop && i.type !== "consumable"));
+      setShopConsumables(items.filter((i) => i.isShop && i.type === "consumable"));
     } catch (e) {
-      console.error("Lỗi tải gacha/shop:", e);
-      setGachaPool(GACHA_POOL);
-      setShopExclusives(EXCLUSIVE_GOODS);
-      setShopConsumables(CONSUMABLE_BUFFS);
+      console.error("Lỗi tải gacha/shop từ Firestore:", e);
+      toast.error("Không thể tải danh sách vật phẩm từ Firestore");
     }
   };
 
   const loadDailyQuests = async () => {
     try {
-      const res = await fetch("/api/admin/save-json?filePath=public/data/configs/daily_quests.json");
-      if (res.ok) {
-        const data = await res.json();
-        setDailyQuests(data);
-      }
+      const querySnapshot = await getDocs(collection(db, "daily_quests"));
+      const list: any[] = [];
+      querySnapshot.forEach((doc) => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      setDailyQuests(list);
     } catch (e) {
-      console.error("Lỗi tải nhiệm vụ:", e);
+      console.error("Lỗi tải nhiệm vụ từ Firestore:", e);
     }
   };
 
@@ -252,29 +199,23 @@ export function useAdmin() {
 
   const loadTypeWeights = async () => {
     try {
-      const res = await fetch("/api/admin/save-json?filePath=public/data/configs/gacha_type_weights.json");
-      if (res.ok) {
-        const data = await res.json();
-        setTypeWeights(data);
+      const snap = await getDoc(doc(db, "system_config", "gacha_type_weights"));
+      if (snap.exists()) {
+        setTypeWeights(snap.data() as Record<string, number>);
       }
     } catch (e) {
-      console.error("Lỗi tải Type Weights:", e);
+      console.error("Lỗi tải Type Weights từ Firestore:", e);
     }
   };
 
   const handleSaveTypeWeights = async (updatedWeights: Record<string, number>) => {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/admin/save-json", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ filePath: "public/data/configs/gacha_type_weights.json", data: updatedWeights })
-      });
-      if (!res.ok) throw new Error("Lưu Type Weights thất bại");
+      await setDoc(doc(db, "system_config", "gacha_type_weights"), updatedWeights);
       setTypeWeights(updatedWeights);
-      toast.success("Đã lưu Type Weights thành công! ⚖️");
+      toast.success("Đã lưu Type Weights lên Firestore thành công! ⚖️");
     } catch (err: any) {
-      toast.error(err.message || "Lỗi lưu Type Weights");
+      toast.error("Lỗi lưu Type Weights: " + err.message);
     } finally {
       setIsLoading(false);
     }
@@ -450,30 +391,20 @@ export function useAdmin() {
 
   // Gacha Pool functions
   const handleSaveGachaPool = async (updatedPool = gachaPool) => {
-    setIsLoading(true);
-    try {
-      const res = await fetch("/api/admin/save-json", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ filePath: "public/data/configs/gacha_pool.json", data: updatedPool })
-      });
-      if (!res.ok) throw new Error("Lưu Gacha Pool thất bại");
-      toast.success("Đã lưu Gacha Pool thành công! 🎟️");
-    } catch (err: any) {
-      toast.error(err.message || "Lỗi lưu Gacha Pool");
-    } finally {
-      setIsLoading(false);
-    }
+    // Deprecated for per-item Firestore updates
   };
 
   const handleCreateGachaItem = () => {
     setSelectedGachaItem({
-      id: `gacha_${Date.now()}`,
+      id: `item_${Date.now()}`,
       type: "outfit",
       name: "",
       description: "",
       rarity: "common",
       imageUrl: "",
+      avatarUrl: "",
+      booster: "",
+      animation: "none",
       shardTarget: 2,
       japanesePoint: { word: "", meaning: "", grammarNote: "" },
       audioUrl: "",
@@ -482,7 +413,10 @@ export function useAdmin() {
       atkBonus: 0,
       defBonus: 0,
       critBonus: 0,
-      rpgSlot: "head"
+      rpgSlot: "head",
+      isGacha: true,
+      isShop: false,
+      cost: 50
     });
     setIsGachaModalOpen(true);
   };
@@ -490,7 +424,14 @@ export function useAdmin() {
   const handleEditGachaItem = (item: any) => {
     setSelectedGachaItem({
       ...item,
-      japanesePoint: item.japanesePoint || { word: "", meaning: "", grammarNote: "" }
+      japanesePoint: item.japanesePoint || { word: "", meaning: "", grammarNote: "" },
+      avatarUrl: item.avatarUrl || "",
+      booster: item.booster || "",
+      animation: item.animation || "none",
+      rpgSlot: item.rpgSlot || "head",
+      isGacha: item.isGacha === undefined ? true : item.isGacha,
+      isShop: !!item.isShop,
+      cost: item.cost === undefined ? 50 : item.cost
     });
     setIsGachaModalOpen(true);
   };
@@ -501,47 +442,61 @@ export function useAdmin() {
       return;
     }
 
-    const exists = gachaPool.some(i => i.id === updatedItem.id);
-    let newPool = [];
-    if (exists) {
-      newPool = gachaPool.map(i => i.id === updatedItem.id ? updatedItem : i);
-    } else {
-      newPool = [...gachaPool, updatedItem];
+    const cleanItem = { ...updatedItem };
+    if (cleanItem.type === "outfit" || cleanItem.type === "accessory") {
+      delete cleanItem.animation;
     }
-    setGachaPool(newPool);
-    setIsGachaModalOpen(false);
-    await handleSaveGachaPool(newPool);
+
+    setIsLoading(true);
+    try {
+      await setDoc(doc(db, "system_items", cleanItem.id), cleanItem);
+
+      setGachaPool(prev => {
+        if (!cleanItem.isGacha) return prev.filter(i => i.id !== cleanItem.id);
+        const exists = prev.some(i => i.id === cleanItem.id);
+        return exists ? prev.map(i => i.id === cleanItem.id ? cleanItem : i) : [...prev, cleanItem];
+      });
+
+      setShopExclusives(prev => {
+        if (!cleanItem.isShop || cleanItem.type === "consumable") return prev.filter(i => i.id !== cleanItem.id);
+        const exists = prev.some(i => i.id === cleanItem.id);
+        return exists ? prev.map(i => i.id === cleanItem.id ? cleanItem : i) : [...prev, cleanItem];
+      });
+
+      setShopConsumables(prev => {
+        if (!cleanItem.isShop || cleanItem.type !== "consumable") return prev.filter(i => i.id !== cleanItem.id);
+        const exists = prev.some(i => i.id === cleanItem.id);
+        return exists ? prev.map(i => i.id === cleanItem.id ? cleanItem : i) : [...prev, cleanItem];
+      });
+
+      setIsGachaModalOpen(false);
+      toast.success("Đã lưu vật phẩm lên Firestore! 🎟️");
+    } catch (err: any) {
+      toast.error("Lỗi khi lưu vật phẩm: " + err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleDeleteGachaItem = async (itemId: string) => {
-    if (!confirm("Bạn có chắc chắn muốn xóa vật phẩm này khỏi Gacha Pool?")) return;
-    const newPool = gachaPool.filter(i => i.id !== itemId);
-    setGachaPool(newPool);
-    await handleSaveGachaPool(newPool);
+    if (!confirm("Bạn có chắc chắn muốn xóa vật phẩm này khỏi Firestore?")) return;
+    setIsLoading(true);
+    try {
+      await deleteDoc(doc(db, "system_items", itemId));
+      setGachaPool(prev => prev.filter(i => i.id !== itemId));
+      setShopExclusives(prev => prev.filter(i => i.id !== itemId));
+      setShopConsumables(prev => prev.filter(i => i.id !== itemId));
+      toast.success("Đã xóa vật phẩm khỏi Firestore!");
+    } catch (err: any) {
+      toast.error("Lỗi khi xóa vật phẩm: " + err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Shop items functions
   const handleSaveShopItems = async (updatedExclusives = shopExclusives, updatedConsumables = shopConsumables) => {
-    setIsLoading(true);
-    try {
-      const res = await fetch("/api/admin/save-json", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          filePath: "public/data/configs/shop_items.json",
-          data: {
-            EXCLUSIVE_GOODS: updatedExclusives,
-            CONSUMABLE_BUFFS: updatedConsumables
-          }
-        })
-      });
-      if (!res.ok) throw new Error("Lưu Shop Items thất bại");
-      toast.success("Đã lưu Cửa hàng thành công! 🛒");
-    } catch (err: any) {
-      toast.error(err.message || "Lỗi lưu Cửa hàng");
-    } finally {
-      setIsLoading(false);
-    }
+    // Deprecated for per-item Firestore updates
   };
 
   const handleCreateShopItem = (type: "exclusive" | "consumable") => {
@@ -554,14 +509,28 @@ export function useAdmin() {
       cost: 50,
       type: type === "exclusive" ? "furniture" : "consumable",
       lore: "",
-      effects: ""
+      avatarUrl: "",
+      rpgSlot: "head",
+      animation: "none",
+      audioUrl: "",
+      isGacha: false,
+      isShop: true
     });
     setIsShopModalOpen(true);
   };
 
   const handleEditShopItem = (item: any, type: "exclusive" | "consumable") => {
     setShopItemType(type);
-    setSelectedShopItem({ ...item });
+    setSelectedShopItem({
+      ...item,
+      avatarUrl: item.avatarUrl || "",
+      booster: item.booster || "",
+      rpgSlot: item.rpgSlot || "head",
+      animation: item.animation || "none",
+      audioUrl: item.audioUrl || "",
+      isGacha: !!item.isGacha,
+      isShop: item.isShop === undefined ? true : item.isShop
+    });
     setIsShopModalOpen(true);
   };
 
@@ -571,63 +540,61 @@ export function useAdmin() {
       return;
     }
 
-    let newExclusives = [...shopExclusives];
-    let newConsumables = [...shopConsumables];
-
-    if (shopItemType === "exclusive") {
-      const exists = shopExclusives.some(i => i.id === updatedItem.id);
-      if (exists) {
-        newExclusives = shopExclusives.map(i => i.id === updatedItem.id ? updatedItem : i);
-      } else {
-        newExclusives = [...shopExclusives, updatedItem];
-      }
-      setShopExclusives(newExclusives);
-    } else {
-      const exists = shopConsumables.some(i => i.id === updatedItem.id);
-      if (exists) {
-        newConsumables = shopConsumables.map(i => i.id === updatedItem.id ? updatedItem : i);
-      } else {
-        newConsumables = [...shopConsumables, updatedItem];
-      }
-      setShopConsumables(newConsumables);
+    const cleanItem = { ...updatedItem };
+    if (cleanItem.type === "outfit" || cleanItem.type === "accessory") {
+      delete cleanItem.animation;
     }
 
-    setIsShopModalOpen(false);
-    await handleSaveShopItems(newExclusives, newConsumables);
+    setIsLoading(true);
+    try {
+      await setDoc(doc(db, "system_items", cleanItem.id), cleanItem);
+
+      setGachaPool(prev => {
+        if (!cleanItem.isGacha) return prev.filter(i => i.id !== cleanItem.id);
+        const exists = prev.some(i => i.id === cleanItem.id);
+        return exists ? prev.map(i => i.id === cleanItem.id ? cleanItem : i) : [...prev, cleanItem];
+      });
+
+      setShopExclusives(prev => {
+        if (!cleanItem.isShop || cleanItem.type === "consumable") return prev.filter(i => i.id !== cleanItem.id);
+        const exists = prev.some(i => i.id === cleanItem.id);
+        return exists ? prev.map(i => i.id === cleanItem.id ? cleanItem : i) : [...prev, cleanItem];
+      });
+
+      setShopConsumables(prev => {
+        if (!cleanItem.isShop || cleanItem.type !== "consumable") return prev.filter(i => i.id !== cleanItem.id);
+        const exists = prev.some(i => i.id === cleanItem.id);
+        return exists ? prev.map(i => i.id === cleanItem.id ? cleanItem : i) : [...prev, cleanItem];
+      });
+
+      setIsShopModalOpen(false);
+      toast.success("Đã lưu vật phẩm cửa hàng lên Firestore! 🛒");
+    } catch (err: any) {
+      toast.error("Lỗi khi lưu vật phẩm: " + err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleDeleteShopItem = async (itemId: string, type: "exclusive" | "consumable") => {
-    if (!confirm("Bạn có chắc chắn muốn xóa vật phẩm này khỏi Cửa hàng?")) return;
-    let newExclusives = [...shopExclusives];
-    let newConsumables = [...shopConsumables];
-
-    if (type === "exclusive") {
-      newExclusives = shopExclusives.filter(i => i.id !== itemId);
-      setShopExclusives(newExclusives);
-    } else {
-      newConsumables = shopConsumables.filter(i => i.id !== itemId);
-      setShopConsumables(newConsumables);
+    if (!confirm("Bạn có chắc chắn muốn xóa vật phẩm này khỏi Firestore?")) return;
+    setIsLoading(true);
+    try {
+      await deleteDoc(doc(db, "system_items", itemId));
+      setGachaPool(prev => prev.filter(i => i.id !== itemId));
+      setShopExclusives(prev => prev.filter(i => i.id !== itemId));
+      setShopConsumables(prev => prev.filter(i => i.id !== itemId));
+      toast.success("Đã xóa vật phẩm khỏi Firestore!");
+    } catch (err: any) {
+      toast.error("Lỗi khi xóa vật phẩm: " + err.message);
+    } finally {
+      setIsLoading(false);
     }
-
-    await handleSaveShopItems(newExclusives, newConsumables);
   };
 
   // Quests functions
   const handleSaveQuests = async (updatedQuests = dailyQuests) => {
-    setIsLoading(true);
-    try {
-      const res = await fetch("/api/admin/save-json", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ filePath: "public/data/configs/daily_quests.json", data: updatedQuests })
-      });
-      if (!res.ok) throw new Error("Lưu Nhiệm vụ thất bại");
-      toast.success("Đã lưu Nhiệm vụ hàng ngày thành công! 📅");
-    } catch (err: any) {
-      toast.error(err.message || "Lỗi lưu Nhiệm vụ");
-    } finally {
-      setIsLoading(false);
-    }
+    // Deprecated for per-item Firestore updates
   };
 
   const handleCreateQuest = () => {
@@ -654,23 +621,34 @@ export function useAdmin() {
       return;
     }
 
-    const exists = dailyQuests.some(q => q.id === updatedQuest.id);
-    let newQuests = [];
-    if (exists) {
-      newQuests = dailyQuests.map(q => q.id === updatedQuest.id ? updatedQuest : q);
-    } else {
-      newQuests = [...dailyQuests, updatedQuest];
+    setIsLoading(true);
+    try {
+      await setDoc(doc(db, "daily_quests", updatedQuest.id), updatedQuest);
+      setDailyQuests(prev => {
+        const exists = prev.some(q => q.id === updatedQuest.id);
+        return exists ? prev.map(q => q.id === updatedQuest.id ? updatedQuest : q) : [...prev, updatedQuest];
+      });
+      setIsQuestModalOpen(false);
+      toast.success("Đã lưu nhiệm vụ lên Firestore! 📅");
+    } catch (err: any) {
+      toast.error("Lỗi khi lưu nhiệm vụ: " + err.message);
+    } finally {
+      setIsLoading(false);
     }
-    setDailyQuests(newQuests);
-    setIsQuestModalOpen(false);
-    await handleSaveQuests(newQuests);
   };
 
   const handleDeleteQuest = async (questId: string) => {
     if (!confirm("Bạn có chắc chắn muốn xóa nhiệm vụ này?")) return;
-    const newQuests = dailyQuests.filter(q => q.id !== questId);
-    setDailyQuests(newQuests);
-    await handleSaveQuests(newQuests);
+    setIsLoading(true);
+    try {
+      await deleteDoc(doc(db, "daily_quests", questId));
+      setDailyQuests(prev => prev.filter(q => q.id !== questId));
+      toast.success("Đã xóa nhiệm vụ khỏi Firestore!");
+    } catch (err: any) {
+      toast.error("Lỗi khi xóa nhiệm vụ: " + err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // System settings function
@@ -850,16 +828,6 @@ export function useAdmin() {
     }
   };
 
-  const handleLogin = async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      setUser(result.user);
-    } catch (err) {
-      toast.error("Đăng nhập thất bại");
-    }
-  };
-
   const filteredDecks = decks.filter(deck => {
     if (levelFilter !== "all" && deck.level !== levelFilter) {
       return false;
@@ -957,9 +925,6 @@ export function useAdmin() {
     gachaTypeFilter, setGachaTypeFilter,
     gachaSearch, setGachaSearch,
     questSearch, setQuestSearch,
-    isAdmin, setIsAdmin,
-    authChecking, setAuthChecking,
-    isDev,
     user,
 
     // Derived values
@@ -1005,6 +970,6 @@ export function useAdmin() {
     handleAddCard,
     handleImport,
     handleUpdateUserStat,
-    handleLogin
+    loginWithGoogle
   };
 }

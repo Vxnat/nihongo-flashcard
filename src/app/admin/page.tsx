@@ -2,8 +2,9 @@
 
 import React from "react";
 import { AnimatePresence } from "framer-motion";
-import { ArrowLeft, ShieldAlert } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useAdmin } from "@/hooks/admin/useAdmin";
+import { withAdminAuth } from "@/components/admin/withAdminAuth";
 
 // Subcomponents imports
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
@@ -21,35 +22,8 @@ import { GachaItemModal } from "@/components/admin/GachaItemModal";
 import { ShopItemModal } from "@/components/admin/ShopItemModal";
 import { QuestModal } from "@/components/admin/QuestModal";
 
-export default function AdminPage() {
+function AdminPage() {
   const admin = useAdmin();
-
-  if (admin.authChecking) {
-    return (
-      <div className="min-h-screen bg-[#FAF6EE] flex flex-col items-center justify-center p-6 text-center" style={{ fontFamily: "var(--font-rounded)" }}>
-        <div className="flex flex-col items-center gap-2">
-          <img src="/images/mascot/mascot-hi.gif" className="w-16 h-16 animate-bounce" />
-          <p className="text-xs font-black text-[#8C6D58] animate-pulse">Đang xác thực quyền Admin...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!admin.isAdmin) {
-    return (
-      <div className="min-h-screen bg-[#FAF6EE] flex flex-col items-center justify-center p-6 text-center" style={{ fontFamily: "var(--font-rounded)" }}>
-        <div className="bg-white border-4 border-[#8C6D58] rounded-[2rem] p-8 shadow-xl max-w-md w-full flex flex-col items-center gap-6">
-          <ShieldAlert size={64} className="text-red-500 animate-bounce" />
-          <h1 className="text-2xl font-black text-[#8C6D58]" style={{ fontFamily: "var(--font-cherry)" }}>
-            KHÔNG CÓ QUYỀN TRUY CẬP
-          </h1>
-          <p className="text-sm text-zinc-550 font-bold">
-            Trang web này chỉ dành cho nhà quản lý. Bạn đang được chuyển hướng về trang chủ...
-          </p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen w-full bg-[#FAF6EE] text-zinc-800 flex" style={{ fontFamily: "var(--font-rounded)" }}>
@@ -59,7 +33,6 @@ export default function AdminPage() {
         setActiveTab={admin.setActiveTab}
         setSelectedDeck={admin.setSelectedDeck}
         user={admin.user}
-        isDev={admin.isDev}
       />
 
       {/* Main Content Pane */}
@@ -264,3 +237,5 @@ export default function AdminPage() {
     </div>
   );
 }
+
+export default withAdminAuth(AdminPage);

@@ -169,7 +169,7 @@ function ResultCard({
                 <p className="flex items-center text-[8px] sm:text-[10px] font-bold text-amber-600 bg-amber-100 px-1.5 py-0.5 rounded-full mt-0.5 sm:mt-1 relative z-10 font-sans gap-0.5 md:hidden"
                   style={{ fontFamily: "var(--font-cherry)" }}
                 >
-                  +{item.duplicateFur} <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 sm:w-3.5 sm:h-3.5 object-contain" />
+                  +{item.duplicateFur} <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 sm:w-3.5 sm:h-3.5 object-contain" />
                 </p>
               )}
 
@@ -187,7 +187,7 @@ function ResultCard({
                   <p className="flex items-center text-[9px] font-bold text-amber-600 bg-amber-100/90 px-1.5 py-0.5 rounded-full mt-1 font-sans gap-0.5"
                     style={{ fontFamily: "var(--font-cherry)" }}
                   >
-                    +{item.duplicateFur} <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" />
+                    +{item.duplicateFur} <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" />
                   </p>
                 )}
               </div>

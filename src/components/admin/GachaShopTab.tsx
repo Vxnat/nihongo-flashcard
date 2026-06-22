@@ -9,7 +9,8 @@ const TYPE_WEIGHT_LABELS: Record<string, { label: string; emoji: string; color: 
   furniture: { label: "Furniture", emoji: "🪑", color: "#F59E0B" },
   voice: { label: "Voice", emoji: "🎤", color: "#3B82F6" },
   meme: { label: "Meme", emoji: "😂", color: "#10B981" },
-  sticker: { label: "Sticker", emoji: "🏷️", color: "#6366F1" },
+  accessory: { label: "Accessory", emoji: "🏷️", color: "#6366F1" },
+  costume: { label: "Costume", emoji: "🦊", color: "#F97316" },
 };
 
 interface GachaShopTabProps {
@@ -218,12 +219,13 @@ export function GachaShopTab({
             <div className="flex flex-wrap gap-1.5">
               {[
                 { key: "all", label: "Tất cả" },
-                { key: "sticker", label: "Sticker" },
+                { key: "accessory", label: "Accessory" },
                 { key: "furniture", label: "Furniture" },
                 { key: "outfit", label: "Outfit" },
                 { key: "theme", label: "Theme" },
                 { key: "meme", label: "Meme" },
-                { key: "voice", label: "Voice" }
+                { key: "voice", label: "Voice" },
+                { key: "costume", label: "Costume" }
               ].map(t => (
                 <button
                   key={t.key}
@@ -317,7 +319,7 @@ export function GachaShopTab({
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-xs font-black text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg flex items-center gap-1">
-                    <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                    <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
                   </span>
                   <button
                     onClick={() => handleEditShopItem(item, "exclusive")}
@@ -363,7 +365,7 @@ export function GachaShopTab({
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-xs font-black text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg flex items-center gap-1">
-                    <img src="/images/ui/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                    <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
                   </span>
                   <button
                     onClick={() => handleEditShopItem(item, "consumable")}

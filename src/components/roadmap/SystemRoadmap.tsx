@@ -10,8 +10,7 @@ import { RoadmapNode } from "./RoadmapNode";
 import { generateSVGPath, getZigZagOffset } from "@/utils/roadmapHelpers";
 import { MAP_DECORATIONS } from "@/constants/mapDecorations";
 import toast from "react-hot-toast";
-import { auth, googleProvider } from "@/lib/firebase";
-import { signInWithPopup } from "firebase/auth";
+
 
 export function SystemRoadmap() {
   const router = useRouter();
@@ -22,21 +21,14 @@ export function SystemRoadmap() {
   const setActiveMinigameId = useAppStore((state: any) => state.setActiveMinigameId);
   const addCoins = useAppStore((state) => state.addCoins);
   const saveProgress = useAppStore((state) => state.saveProgress);
+  const loginWithGoogle = useAppStore((state: any) => state.loginWithGoogle);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const [isCardHovered, setIsCardHovered] = useState(false);
 
-  const handleLogin = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      toast.success("Đăng nhập thành công! 🎉", { icon: "🚀" });
-    } catch (error) {
-      console.error("Lỗi đăng nhập:", error);
-      toast.error("Đăng nhập thất bại. Bạn thử lại nhé! 💦", { icon: "🥺" });
-    }
-  };
+
 
   const LEVELS = ["N5", "N4", "N3", "N2", "N1"];
   const ROW_HEIGHT = 170; // Đã tăng khoảng cách chiều dọc từ 130 lên 170 để nhường khoảng trống cho Tooltip
@@ -97,7 +89,7 @@ export function SystemRoadmap() {
       <div className="w-full flex flex-col items-center justify-center py-16">
         <div className="w-12 h-12 border-4 border-[#FFD166] border-t-transparent rounded-full animate-spin mb-4" />
         <p className="font-rounded font-bold text-zinc-400 flex items-center justify-center gap-2">
-          Đang tải bản đồ... <img src="/images/ui/treasure_map_icon.png" alt="Map" className="w-6 h-6 object-contain inline" />
+          Đang tải bản đồ... <img src="/images/ui/roadmap/treasure_map_icon.png" alt="Map" className="w-6 h-6 object-contain inline" />
         </p>
       </div>
     );
@@ -107,7 +99,7 @@ export function SystemRoadmap() {
     return (
       <div className="w-full flex flex-col items-center justify-center py-16 px-4 bg-white/60 border-4 border-dashed border-[#FF7096] rounded-[3rem] text-center shadow-sm">
         <span className="mb-4 animate-bounce block select-none">
-          <img src="/images/ui/treasure_map_icon.png" alt="Map" className="w-20 h-20 object-contain" />
+          <img src="/images/ui/roadmap/treasure_map_icon.png" alt="Map" className="w-20 h-20 object-contain" />
         </span>
         <h3
           className="text-3xl text-[#FF7096] mb-2 drop-shadow-sm"
@@ -293,7 +285,7 @@ export function SystemRoadmap() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={handleLogin}
+                  onClick={loginWithGoogle}
                   className="relative group w-full py-4 px-6 bg-gradient-to-r from-[#FF7096] to-[#FF9F1C] hover:from-[#ff5882] hover:to-[#f08b00] rounded-2xl font-bold font-rounded text-white flex items-center justify-center gap-3 transition-colors shadow-[0_6px_0_0_#C7486B] hover:shadow-[0_4px_0_0_#C7486B] active:shadow-none active:translate-y-[6px] transition-transform duration-100 overflow-hidden border-2 border-white/20 cursor-pointer"
                 >
                   {/* Sheen effect (Ánh sáng trượt qua nút) */}
@@ -417,7 +409,7 @@ export function SystemRoadmap() {
                                 initial={isFullyCompleted ? { scale: 0.8, rotate: -10 } : { scale: 0.9 }}
                                 animate={isFullyCompleted ? { scale: [1, 1.15, 1], rotate: [0, 5, -5, 0] } : { scale: 1 }}
                                 transition={isFullyCompleted ? { repeat: Infinity, repeatType: "reverse", duration: 2, ease: "easeInOut" } : {}}
-                                src={isFullyCompleted ? "/images/ui/shiba_chapter_badge.png" : "/images/ui/treasure_map_icon.png"}
+                                src={isFullyCompleted ? "/images/ui/roadmap/shiba_chapter_badge.png" : "/images/ui/roadmap/treasure_map_icon.png"}
                                 alt="Badge"
                                 className={`w-8 h-8 object-contain ${isFullyCompleted ? "drop-shadow-[0_2px_4px_rgba(255,215,0,0.5)]" : ""}`}
                               />
@@ -510,6 +502,15 @@ export function SystemRoadmap() {
                             index={idx}
                             offsetX={offsetX}
                             onClick={() => {
+                              // HƯỚNG DẪN: Nếu muốn chặn click vào bài học đang bị khóa (ví dụ khi đưa lên production),
+                              // bạn chỉ cần bỏ comment đoạn code check điều kiện dưới đây:
+                              /*
+                              if (!item.unlocked && item.deck.type !== "chest") {
+                                toast.error(`Bài học "${item.deck.title}" đang bị khóa!`);
+                                return;
+                              }
+                              */
+
                               if (item.deck.type === "chest") {
                                 if (item.unlocked && !item.completed) {
                                   // MỞ RƯƠNG LẦN ĐẦU TIÊN
