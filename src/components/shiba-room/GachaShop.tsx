@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { useGachaShop } from "@/hooks/shiba-room/useGachaShop";
 import { FurShopModal } from "./FurShopModal";
 import { ShibaLoginModal } from "./ShibaLoginModal";
+import { ShibaLoginCard } from "@/components/common/ShibaLoginCard";
 import { useAppStore } from "@/store/useAppStore";
 
 // Capsule nhựa 2 màu kiểu gachapon thật: nắp đậm + đáy trong sáng hơn
@@ -713,74 +714,14 @@ export function GachaShop() {
       {!user && (
         <div className="absolute inset-0 z-30 flex flex-col items-center justify-center p-4 min-h-[500px]">
           {/* Card gỗ Đăng nhập siêu đẹp */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="w-full max-w-sm bg-[#FAF6EE] border-4 border-[#8C6D58] rounded-[2.5rem] p-6 shadow-2xl flex flex-col items-center text-center relative z-10 select-none"
-            onMouseEnter={() => setIsCardHovered(true)}
-            onMouseLeave={() => setIsCardHovered(false)}
-          >
-            {/* Chú Shiba thám hiểm dễ thương */}
-            <div className="relative mb-5 mt-2">
-              <div className="absolute inset-0 bg-[#FFD166]/40 blur-xl rounded-full opacity-60 animate-pulse" />
-              <div className="relative w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-[0_6px_0_0_#FFE2D1] border-4 border-white overflow-hidden">
-                <img
-                  src="/images/mascot/shiba_explorer_hi.png"
-                  alt="Shiba Explorer"
-                  className="w-20 h-20 object-contain"
-                />
-              </div>
-            </div>
-
-            <h3
-              className="text-2xl text-[#8C6D58] mb-3 font-black"
-              style={{ fontFamily: "var(--font-cherry)" }}
-            >
-              Cửa Hàng Gacha
-            </h3>
-
-            <p
-              className="font-rounded font-bold text-zinc-500 bg-white/90 border border-dashed border-[#FFE2D1] p-3.5 rounded-2xl shadow-inner text-xs leading-relaxed mb-5"
-              style={{ fontFamily: "var(--font-cherry)" }}
-            >
-              Cửa hàng Gacha đang khóa! Đăng nhập cùng Shiba để dùng Xương Vàng quay Gacha nhận trang phục hiếm và trang trí căn phòng của bạn nhé! 🐾🎁
-            </p>
-
-            {/* Nút Đăng nhập Google có Sheen/Pulse Effect */}
-            <button
-              onClick={loginWithGoogle}
-              className="w-full py-3 bg-[#06D6A0] hover:bg-[#05b889] text-white font-extrabold rounded-2xl border-b-4 border-[#048c68] active:border-b-0 active:translate-y-1 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer text-sm relative overflow-hidden group btn-sheen"
-              style={{ fontFamily: "var(--font-cherry)" }}
-            >
-              <span>🚀</span> Khám phá ngay
-            </button>
-          </motion.div>
-
-          {/* Keyframe css cho hiệu ứng nút bấm lướt sáng */}
-          <style jsx global>{`
-            @keyframes sheen {
-              0% { transform: translateX(-150%) skewX(-25deg); }
-              100% { transform: translateX(150%) skewX(-25deg); }
-            }
-            .btn-sheen::after {
-              content: '';
-              position: absolute;
-              top: 0; left: 0; width: 100%; height: 100%;
-              background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-              transform: translateX(-150%) skewX(-25deg);
-              animation: sheen 3s infinite;
-            }
-          `}</style>
+          <ShibaLoginCard
+            title="Cửa Hàng Gacha"
+            description="Cửa hàng Gacha đang khóa! Đăng nhập cùng Shiba để dùng Xương Vàng quay Gacha nhận trang phục hiếm và trang trí căn phòng của bạn nhé! 🐾🎁"
+            variant="wood"
+            onHoverChange={setIsCardHovered}
+          />
         </div>
       )}
-
-      {/* ShibaLoginModal dùng chung */}
-      <ShibaLoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-        title="Cửa Hàng Gacha"
-        description="Cửa hàng Gacha đang khóa! Đăng nhập cùng Shiba để dùng Xương Vàng quay Gacha nhận trang phục hiếm và trang trí căn phòng của bạn nhé! 🐾🎁"
-      />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { ChevronDown, Lock, Sparkles } from "lucide-react";
 import { useSystemRoadmap } from "@/hooks/roadmap/useSystemRoadmap";
 import { useAppStore } from "@/store/useAppStore";
 import { RoadmapNode } from "./RoadmapNode";
+import { ShibaLoginCard } from "@/components/common/ShibaLoginCard";
 import { generateSVGPath, getZigZagOffset } from "@/utils/roadmapHelpers";
 import { MAP_DECORATIONS } from "@/constants/mapDecorations";
 import toast from "react-hot-toast";
@@ -266,64 +267,12 @@ export function SystemRoadmap() {
               </div>
 
               {/* CARD ĐĂNG NHẬP THÁM HIỂM SHIBA */}
-              <motion.div
-                onMouseEnter={() => setIsCardHovered(true)}
-                onMouseLeave={() => setIsCardHovered(false)}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                className="bg-white/80 backdrop-blur-md border-4 border-[#FFE2D1] rounded-[2.5rem] shadow-xl p-6 sm:p-8 flex flex-col items-center text-center max-w-sm w-full relative z-20 mt-10 hover:shadow-2xl transition-shadow duration-300 pointer-events-auto"
-              >
-                {/* Style keyframe cho hiệu ứng shimmer */}
-                <style>{`
-                  @keyframes shimmer {
-                    0% { transform: translateX(-100%); }
-                    100% { transform: translateX(100%); }
-                  }
-                  .shimmer-effect {
-                    animation: shimmer 2s infinite;
-                  }
-                `}</style>
-
-                {/* Ảnh Shiba thám hiểm dễ thương mới tạo */}
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-[#FFD166]/40 blur-xl rounded-full opacity-60 animate-pulse" />
-                  <div className="relative w-28 h-28 bg-white/95 rounded-full flex items-center justify-center shadow-[0_8px_0_0_#FFE2D1] border-4 border-white overflow-hidden transition-transform duration-300 hover:scale-105">
-                    <img
-                      src="/images/mascot/shiba_explorer_hi.png"
-                      alt="Shiba Explorer"
-                      className="w-24 h-24 object-contain mt-1"
-                    />
-                  </div>
-                </div>
-
-                <h3
-                  className="text-3xl text-[#FF7096] mb-3 drop-shadow-sm leading-tight"
-                  style={{ fontFamily: "var(--font-cherry)" }}
-                >
-                  Vùng Đất Mây Mù
-                </h3>
-                <p className="font-rounded font-bold text-zinc-500 bg-white/90 backdrop-blur-sm px-4 py-3 rounded-[1.5rem] shadow-inner border border-dashed border-[#FFE2D1] leading-relaxed text-sm mb-6 max-w-[280px]"
-                  style={{ fontFamily: "var(--font-cherry)" }}
-                >
-                  Hành trình phía trước đang bị sương mù che phủ. Cùng Shiba để thám hiểm con đường chinh phục tiếng Nhật nhé! 🐾
-                </p>
-
-                {/* NÚT ĐĂNG NHẬP GOOGLE 3D PREMIUM */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={loginWithGoogle}
-                  className="relative group w-full py-4 px-6 bg-gradient-to-r from-[#FF7096] to-[#FF9F1C] hover:from-[#ff5882] hover:to-[#f08b00] rounded-2xl font-bold font-rounded text-white flex items-center justify-center gap-3 transition-colors shadow-[0_6px_0_0_#C7486B] hover:shadow-[0_4px_0_0_#C7486B] active:shadow-none active:translate-y-[6px] transition-transform duration-100 overflow-hidden border-2 border-white/20 cursor-pointer"
-                >
-                  {/* Sheen effect (Ánh sáng trượt qua nút) */}
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full shimmer-effect" />
-
-                  <span style={{ fontFamily: "var(--font-cherry)" }} className="tracking-wide">
-                    Khám phá ngay
-                  </span>
-                </motion.button>
-              </motion.div>
+              <ShibaLoginCard
+                title="Vùng Đất Mây Mù"
+                description="Hành trình phía trước đang bị sương mù che phủ. Cùng Shiba để thám hiểm con đường chinh phục tiếng Nhật nhé! 🐾"
+                variant="roadmap"
+                onHoverChange={setIsCardHovered}
+              />
             </div>
           )}
 
