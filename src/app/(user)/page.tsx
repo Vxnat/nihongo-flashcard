@@ -38,6 +38,88 @@ export default function Home() {
     equippedTheme,
   } = homeState;
 
+  // Render nội dung minigame theo thể loại tương ứng
+  const renderMinigameContent = () => {
+    // 1. Trạng thái đang tải dữ liệu
+    if (isLoadingMinigame) {
+      return (
+        <div className="flex flex-col items-center justify-center animate-pulse">
+          <span className="mb-4">
+            <img
+              src="/images/mascot/mascot-hi.gif"
+              alt="Đang tải..."
+              className="w-24 h-24 object-contain animate-bounce opacity-80"
+            />
+          </span>
+          <p className="font-rounded font-bold text-zinc-500 text-lg" style={{ fontFamily: "var(--font-cherry)" }}>
+            Chờ xíu nè...
+          </p>
+        </div>
+      );
+    }
+
+    // 2. Trường hợp đặc biệt: Minigame Kanji không yêu cầu có thẻ học trước
+    if (minigameDeckData?.type === "minigame_kanji") {
+      return (
+        <KanjiDojoGame
+          minigameDeck={minigameDeckData}
+          onClose={() => setActiveMinigameId(null)}
+          onWin={() => {
+            setActiveMinigameId(null);
+            saveProgress(activeMinigameId!, ["completed"]);
+          }}
+        />
+      );
+    }
+
+    // 3. Trạng thái lỗi: Thiếu thẻ học từ các bài trước
+    if (minigameCards.length === 0) {
+      return (
+        <div className="flex flex-col items-center justify-center text-center p-4">
+          <span className="text-6xl mb-4">😭</span>
+          <p className="font-rounded font-bold text-zinc-500 text-lg">
+            Không tìm thấy thẻ bài nào từ các bài trước!
+          </p>
+          <button
+            onClick={() => setActiveMinigameId(null)}
+            className="mt-6 px-6 py-3 bg-white border-2 border-zinc-200 hover:bg-zinc-50 rounded-2xl font-bold font-rounded text-zinc-600 active:translate-y-1 transition-all shadow-sm"
+          >
+            Thoát
+          </button>
+        </div>
+      );
+    }
+
+    // 4. Định tuyến các loại Minigame khác dựa trên Type
+    switch (minigameDeckData?.type) {
+      case "minigame_rush":
+        return (
+          <TypingRushGame
+            cards={minigameCards}
+            minigameDeck={minigameDeckData}
+            onWin={() => {
+              setActiveMinigameId(null);
+              saveProgress(activeMinigameId!, ["completed"]);
+            }}
+            onLose={() => setActiveMinigameId(null)}
+          />
+        );
+      case "minigame_matching":
+      default:
+        return (
+          <MatchingPairsGame
+            cards={minigameCards}
+            minigameDeck={minigameDeckData}
+            onClose={() => setActiveMinigameId(null)}
+            onWin={() => {
+              setActiveMinigameId(null);
+              saveProgress(activeMinigameId!, ["completed"]);
+            }}
+          />
+        );
+    }
+  };
+
   return (
     <div className="w-full flex flex-col items-center pb-32 relative">
       {/* HIỆU ỨNG THEME DYNAMIC */}
@@ -171,63 +253,7 @@ export default function Home() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[999] bg-white/80 backdrop-blur-md flex items-center justify-center"
           >
-            {minigameDeckData?.type === "minigame_kanji" ? (
-              <KanjiDojoGame
-                minigameDeck={minigameDeckData}
-                onClose={() => setActiveMinigameId(null)}
-                onWin={() => {
-                  setActiveMinigameId(null);
-                  saveProgress(activeMinigameId, ["completed"]);
-                }}
-              />
-            ) : isLoadingMinigame ? (
-              <div className="flex flex-col items-center justify-center animate-pulse">
-                <span className="mb-4">
-                  <img
-                    src="/images/mascot/mascot-hi.gif"
-                    alt="Đang tải..."
-                    className="w-24 h-24 object-contain animate-bounce opacity-80"
-                  /></span>
-                <p className="font-rounded font-bold text-zinc-500 text-lg"
-                  style={{ fontFamily: "var(--font-cherry)" }}
-                >
-                  Chờ xíu nè...
-                </p>
-              </div>
-            ) : minigameCards.length === 0 ? (
-              <div className="flex flex-col items-center justify-center text-center p-4">
-                <span className="text-6xl mb-4">😭</span>
-                <p className="font-rounded font-bold text-zinc-500 text-lg">
-                  Không tìm thấy thẻ bài nào từ các bài trước!
-                </p>
-                <button
-                  onClick={() => setActiveMinigameId(null)}
-                  className="mt-6 px-6 py-3 bg-white border-2 border-zinc-200 hover:bg-zinc-50 rounded-2xl font-bold font-rounded text-zinc-600 active:translate-y-1 transition-all shadow-sm"
-                >
-                  Thoát
-                </button>
-              </div>
-            ) : minigameDeckData?.type === "minigame_rush" ? (
-              <TypingRushGame
-                cards={minigameCards}
-                minigameDeck={minigameDeckData}
-                onWin={() => {
-                  setActiveMinigameId(null);
-                  saveProgress(activeMinigameId, ["completed"]);
-                }}
-                onLose={() => setActiveMinigameId(null)}
-              />
-            ) : (
-              <MatchingPairsGame
-                cards={minigameCards}
-                minigameDeck={minigameDeckData} // Pass minigame deck data
-                onClose={() => setActiveMinigameId(null)}
-                onWin={() => {
-                  setActiveMinigameId(null);
-                  saveProgress(activeMinigameId, ["completed"]);
-                }}
-              />
-            )}
+            {renderMinigameContent()}
           </motion.div>
         )}
       </AnimatePresence>

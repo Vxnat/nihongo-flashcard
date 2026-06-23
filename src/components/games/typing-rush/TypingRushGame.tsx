@@ -9,7 +9,7 @@ import confetti from "canvas-confetti";
 import { X } from "lucide-react";
 import { GameResultModal } from "@/components/games/shared/GameResultModal";
 import { useAppStore } from "@/store/useAppStore";
-import { SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
+import { SystemDeck } from "@/types/flashcard";
 import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 
 interface TypingRushGameProps {

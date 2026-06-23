@@ -26,8 +26,6 @@ export function VisualNovelMode() {
   const lastNodeRef = useRef<any>(null);
   const isFirstClearRef = useRef<boolean>(false);
 
-
-
   // Load Data
   useEffect(() => {
     if (!activeStoryId) return;
@@ -47,6 +45,17 @@ export function VisualNovelMode() {
       saveProgress(activeStoryId, ["completed"]);
     }
   }, [currentNodeId, activeStoryId, saveProgress]);
+
+  useLearningTimer({
+    isActive: true,
+  });
+
+  // Hàm xử lý nhảy sang Node tiếp theo
+  const handleNextNode = (nextNodeId: string) => {
+    if (nextNodeId) {
+      setCurrentNodeId(nextNodeId);
+    }
+  };
 
   if (!storyData) {
     return (
@@ -72,17 +81,6 @@ export function VisualNovelMode() {
       </div>
     );
   }
-
-  useLearningTimer({
-    isActive: true,
-  });
-
-  // Hàm xử lý nhảy sang Node tiếp theo
-  const handleNextNode = (nextNodeId: string) => {
-    if (nextNodeId) {
-      setCurrentNodeId(nextNodeId);
-    }
-  };
 
   return (
     <div className="relative w-full max-w-md mx-auto h-[600px] sm:h-[700px] overflow-hidden rounded-[2.5rem] border-4 border-[#FFE2D1] shadow-2xl bg-[#FFFDF5]">

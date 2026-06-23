@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
-import { CardData } from "@/hooks/admin/useAdmin";
+import { CardData } from "@/types/flashcard";
 
 interface CardEditorDrawerProps {
   selectedCard: CardData;

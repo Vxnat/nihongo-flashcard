@@ -9,7 +9,7 @@ import { KanjiCanvas, KanjiCanvasRef } from "@/components/games/kanji-dojo/Kanji
 import { GameResultModal } from "@/components/games/shared/GameResultModal";
 import { ShibaMasterDialog, ShibaMasterOption } from "@/components/games/shared/ShibaMasterDialog";
 import { useAppStore } from "@/store/useAppStore";
-import { SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
+import { SystemDeck } from "@/types/flashcard";
 import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 
 interface KanjiDojoGameProps {

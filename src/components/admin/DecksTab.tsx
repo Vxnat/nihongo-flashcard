@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Download, Plus, Search, Edit3, Trash2, Save, Upload } from "lucide-react";
-import { SystemDeck, CardData } from "@/hooks/admin/useAdmin";
+import { SystemDeck, CardData } from "@/types/flashcard";
 
 interface DecksTabProps {
   decks: SystemDeck[];

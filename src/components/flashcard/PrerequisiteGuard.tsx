@@ -40,19 +40,7 @@ export function PrerequisiteGuard({
         if (!isSubscribed) return;
 
         // Lấy dữ liệu tiến trình mới nhất của bài tiền đề từ Zustand store
-        const prereqProgress = useAppStore.getState().progress[prerequisiteDeck.id] || [];
-        const learnedCount = prereqProgress.length;
-        const totalCount = prerequisiteDeck.totalCards || 0;
-
-        // Cơ chế check đã hoàn thành tương tự useSystemRoadmap
-        const isCompleted =
-          prerequisiteDeck.type === "story" ||
-            prerequisiteDeck.type === "chest" ||
-            prerequisiteDeck.type === "minigame_matching" ||
-            prerequisiteDeck.type === "minigame_kanji" ||
-            prerequisiteDeck.type === "minigame_rush"
-            ? learnedCount > 0
-            : totalCount === 0 || learnedCount >= totalCount;
+        const isCompleted = useAppStore.getState().completedDecks[prerequisiteDeck.id] || false;
 
         if (isCompleted) {
           setStatus("allowed");

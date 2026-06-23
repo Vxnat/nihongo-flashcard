@@ -2,7 +2,7 @@
 
 import React from "react";
 import { X } from "lucide-react";
-import { SystemDeck } from "@/hooks/admin/useAdmin";
+import { SystemDeck } from "@/types/flashcard";
 
 interface DeckMetadataModalProps {
   editingDeck: SystemDeck | null;

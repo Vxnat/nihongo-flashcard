@@ -4,7 +4,7 @@ import confetti from "canvas-confetti";
 import { useAppStore } from "@/store/useAppStore";
 import { FlashcardData } from "@/types/flashcard";
 import { useMinigameTimer } from "@/hooks/games/shared/useMinigameTimer";
-import { SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
+import { SystemDeck } from "@/types/flashcard";
 
 export interface BoardItem {
   id: string;

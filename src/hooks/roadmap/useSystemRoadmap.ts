@@ -3,18 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useAppStore } from "@/store/useAppStore";
 
-export interface SystemDeck {
-  id: string;
-  type?: "flashcard" | "story" | "chest" | "minigame_matching" | "minigame_kanji" | "minigame_rush";
-  title: string;
-  level: string;
-  chapter: number;
-  order: number;
-  prerequisite: string | null;
-  rewardCoins: number;
-  totalCards?: number;
-  kanjiList?: { char: string; meaning: string }[];
-}
+import { SystemDeck } from "@/types/flashcard";
 
 export function useSystemRoadmap() {
   const [decks, setDecks] = useState<SystemDeck[]>([]);
@@ -22,6 +11,7 @@ export function useSystemRoadmap() {
   const [selectedLevel, setSelectedLevel] = useState("N5");
 
   const progress = useAppStore((state) => state.progress);
+  const completedDecks = useAppStore((state) => state.completedDecks);
   const loadProgress = useAppStore((state) => state.loadProgress);
   const user = useAppStore((state: any) => state.user);
 
@@ -58,29 +48,17 @@ export function useSystemRoadmap() {
       if (deck.prerequisite) {
         const prereqDeck = decks.find((d) => d.id === deck.prerequisite);
         if (prereqDeck) {
-          const preLearned = (progress[deck.prerequisite] || []).length;
-          const preTotal = prereqDeck.totalCards || 0;
-          const preCompleted =
-            prereqDeck.type === "story" || prereqDeck.type === "chest" || prereqDeck.type === "minigame_matching" || prereqDeck.type === "minigame_kanji" || prereqDeck.type === "minigame_rush"
-              ? preLearned > 0
-              : preTotal === 0 || preLearned >= preTotal;
-          unlocked = preCompleted;
+          unlocked = completedDecks[deck.prerequisite] || false;
         }
       }
 
       const learnedCount = (progress[deck.id] || []).length;
       const totalCount = deck.totalCards || 0;
-
-      // Rương và Truyện được coi là "hoàn thành" khi đã ghi nhận tiến độ (learnedCount > 0).
-      // Flashcard hoàn thành khi học đủ số thẻ.
-      const completed =
-        deck.type === "chest" || deck.type === "story" || deck.type === "minigame_matching" || deck.type === "minigame_kanji" || deck.type === "minigame_rush"
-          ? learnedCount > 0
-          : totalCount === 0 || learnedCount >= totalCount;
+      const completed = completedDecks[deck.id] || false;
 
       return { completed, unlocked, learnedCount, totalCount };
     },
-    [decks, progress],
+    [decks, progress, completedDecks],
   );
 
   const deckStatuses = filteredDecks.map((deck) => ({

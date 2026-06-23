@@ -9,7 +9,7 @@ import { parseFurigana } from "@/utils/textParser";
 import { TimerBar } from "@/components/games/shared/TimerBar";
 import { GameResultModal } from "@/components/games/shared/GameResultModal";
 import { ShibaMasterDialog, ShibaMasterOption } from "@/components/games/shared/ShibaMasterDialog";
-import { SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
+import { SystemDeck } from "@/types/flashcard";
 import { useMatchingPairsGame, TIME_BONUS_PER_5_SECONDS, PHAO_DURATION_SECONDS, KINH_LUP_DURATION_SECONDS } from "@/hooks/games/matching-pairs/useMatchingPairsGame";
 import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 

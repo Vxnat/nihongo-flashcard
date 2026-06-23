@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Lock, CheckCircle2 } from "lucide-react";
-import { SystemDeck } from "@/hooks/roadmap/useSystemRoadmap";
+import { SystemDeck } from "@/types/flashcard";
 
 interface RoadmapNodeProps {
   deck: SystemDeck;
