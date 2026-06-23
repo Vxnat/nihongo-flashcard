@@ -163,6 +163,27 @@ export const createGachaQuestSlice: StateCreator<
     return false;
   },
 
+  deductGoldenFur: async (amount) => {
+    const state = get();
+    const goldenFur = state.userStats.goldenFur || 0;
+    if (goldenFur >= amount) {
+      const newGoldenFur = goldenFur - amount;
+      const newUserStats = { ...state.userStats, goldenFur: newGoldenFur };
+      set({ userStats: newUserStats });
+
+      const uid = get().user?.uid;
+      if (uid) {
+        setDoc(
+          doc(db, "user_stats", uid),
+          { goldenFur: newGoldenFur },
+          { merge: true }
+        ).catch((error) => console.error("Lỗi deductGoldenFur:", error));
+      }
+      return true;
+    }
+    return false;
+  },
+
   addCoins: async (amount) => {
     const state = get();
     const newCoins = state.userStats.coins + amount;

@@ -97,6 +97,8 @@ export function FlashcardDeck({
     useKinhLup,
     handleBossCancel,
     bossCardMaxTime,
+    isTimerActive,
+    startBossBattleTimer,
   } = useFlashcardDeck({ deckId, initialCards, isCustom });
 
   const [showSwipeGuide, setShowSwipeGuide] = useState(false);
@@ -179,6 +181,8 @@ export function FlashcardDeck({
           useKinhLup={useKinhLup}
           onCancel={handleBossCancel}
           bossCardMaxTime={bossCardMaxTime}
+          isTimerActive={isTimerActive}
+          onStartBattle={startBossBattleTimer}
         />
       </div>
     );

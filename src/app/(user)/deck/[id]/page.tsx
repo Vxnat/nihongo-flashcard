@@ -4,6 +4,7 @@ import { PrerequisiteGuard } from "@/components/flashcard/PrerequisiteGuard";
 import { FlashcardData } from "@/types/flashcard";
 import fs from "fs/promises";
 import path from "path";
+import { getDeckFolder } from "@/utils/deckResolver";
 
 export default async function DeckPage({
   params,
@@ -47,8 +48,7 @@ export default async function DeckPage({
       }
 
       // 2. Đọc file thẻ từ vựng của deck
-      const levelMatch = id.match(/n[1-5]/i);
-      const subFolder = levelMatch ? levelMatch[0].toLowerCase() : "";
+      const subFolder = getDeckFolder(currentDeck?.type);
 
       const filePath = path.join(
         process.cwd(),

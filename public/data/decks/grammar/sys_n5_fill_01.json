@@ -1,0 +1,65 @@
+[
+  {
+    "id": "fill_n5_01_01",
+    "sentence": "[私]{わたし}は {0} で [東京]{とうきょう}に {1}。",
+    "translation": "Tôi đi đến Tokyo bằng tàu điện.",
+    "blanks": [
+      {
+        "correctAnswer": "電車",
+        "wrongAnswers": ["自転車", "飛行機", "船"],
+        "hint": "Phương tiện đi lại bằng đường sắt",
+        "reading": "でんしゃ",
+        "meaning": "Tàu điện"
+      },
+      {
+        "correctAnswer": "行きます",
+        "wrongAnswers": ["来ます", "帰ります", "食べます"],
+        "hint": "Động từ di chuyển hướng đi",
+        "reading": "いきます",
+        "meaning": "Đi"
+      }
+    ]
+  },
+  {
+    "id": "fill_n5_01_02",
+    "sentence": "[今日]{きょう}は [天]{てん}[気]{き} {0} いいですから、[散]{さん}[歩]{ぽ}に {1}。",
+    "translation": "Hôm nay thời tiết đẹp nên chúng ta hãy đi dạo nhé.",
+    "blanks": [
+      {
+        "correctAnswer": "が",
+        "wrongAnswers": ["は", "を", "に"],
+        "hint": "Trợ từ đi kèm sau chủ ngữ phụ (thời tiết)",
+        "reading": "ga",
+        "meaning": "Trợ từ gá (chỉ chủ ngữ)"
+      },
+      {
+        "correctAnswer": "行きましょう",
+        "wrongAnswers": ["行きます", "行きました", "行きません"],
+        "hint": "Đuôi câu rủ rê, đề nghị lịch sự (hãy cùng đi)",
+        "reading": "いきましょう",
+        "meaning": "Hãy cùng đi"
+      }
+    ]
+  },
+  {
+    "id": "fill_n5_01_03",
+    "sentence": "あそこに [犬]{いぬ} {0} [猫]{ねこ} {1} います。",
+    "translation": "Ở đằng kia có con chó và con mèo (trong số các con vật khác).",
+    "blanks": [
+      {
+        "correctAnswer": "や",
+        "wrongAnswers": ["と", "が", "を"],
+        "hint": "Trợ từ liệt kê không đầy đủ (và... và...)",
+        "reading": "ya",
+        "meaning": "Trợ từ ya (liệt kê không đầy đủ)"
+      },
+      {
+        "correctAnswer": "など",
+        "wrongAnswers": ["から", "まで", "tại"],
+        "hint": "Từ đi kèm trợ từ liệt kê thể hiện nghĩa 'vân vân'",
+        "reading": "など",
+        "meaning": "Vân vân"
+      }
+    ]
+  }
+]

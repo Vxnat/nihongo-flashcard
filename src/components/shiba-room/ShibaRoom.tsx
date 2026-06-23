@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
 import { useShibaRoom } from "@/hooks/shiba-room/useShibaRoom";
 import { FurShopModal } from "./FurShopModal";
-import { useAppStore } from "@/store/useAppStore";
 import { ShibaLoginModal } from "./ShibaLoginModal";
 import { RpgInventoryModal } from "./RpgInventoryModal";
 import { ShibaAvatar } from "./ShibaAvatar";
@@ -18,93 +17,43 @@ const getFurnitureImg = (id: string, allItems: any[]) => {
 export function ShibaRoom() {
   const { allItems, isMetadataLoaded } = useSystemItems();
   const {
-    userStats: storeUserStats,
+    user,
+    userStats,
     equipFurniture,
     equipItem,
     equipTheme,
     isInventoryOpen,
     setIsInventoryOpen,
+    isShopOpen,
+    setIsShopOpen,
+    isLoginModalOpen,
+    setIsLoginModalOpen,
     activeTab,
     setActiveTab,
     selectedItem,
     setSelectedItem,
-    pendingBones: storePendingBones,
+    pendingBones,
     dragConstraints,
     showStatsBreakdown,
     setShowStatsBreakdown,
     modalSubTab,
     setModalSubTab,
-    totalBonesPerHour: storeTotalBonesPerHour,
-    handleHarvest: storeHandleHarvest,
-    shibaMascot: storeShibaMascot,
+    totalBonesPerHour,
+    handleHarvest,
+    shibaMascot,
     baseStats,
-    statsBonus: storeStatsBonus,
+    statsBonus,
+    totalHp,
+    totalAtk,
+    totalDef,
+    totalCrit,
     handleSpeak,
     handlePlayVoice,
-    activeGridItems,
     isItemUnlocked,
     isItemEquipped,
     sakuraPetals,
+    filteredGridItems,
   } = useShibaRoom();
-
-  const user = useAppStore((state: any) => state.user);
-  const [isShopOpen, setIsShopOpen] = React.useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = React.useState(false);
-
-  // MOCK dữ liệu phòng mẫu nếu chưa đăng nhập
-  const userStats = React.useMemo(() => {
-    if (user) return storeUserStats;
-    return {
-      ...storeUserStats
-    };
-  }, [user, storeUserStats]);
-
-  const totalBonesPerHour = user ? storeTotalBonesPerHour : 10; // (4 + 3 + 3)
-
-  const [demoPendingBones, setDemoPendingBones] = React.useState(120);
-  React.useEffect(() => {
-    if (user) return;
-    const interval = setInterval(() => {
-      setDemoPendingBones((prev) => prev + 1);
-    }, 4000); // Tăng 1 xương sau mỗi 4 giây
-    return () => clearInterval(interval);
-  }, [user]);
-
-  const pendingBones = user ? storePendingBones : demoPendingBones;
-
-  const filteredGridItems = React.useMemo(() => {
-    return activeGridItems.filter((item) => {
-      const unlocked = isItemUnlocked(item);
-      const shardsCount = userStats.shards?.[item.id] || 0;
-      return unlocked || shardsCount > 0;
-    });
-  }, [activeGridItems, isItemUnlocked, userStats.shards]);
-
-  const shibaMascot = React.useMemo(() => {
-    if (user) return storeShibaMascot;
-    return {
-      gif: "/images/mascot/shiba_room.gif",
-      style: { bottom: "32%", left: "54%", width: "24%" },
-    };
-  }, [user, storeShibaMascot]);
-
-  const statsBonus = React.useMemo(() => {
-    if (user) return storeStatsBonus;
-    return { hp: 30, atk: 55, def: 25, crit: 10 };
-  }, [user, storeStatsBonus]);
-
-  const totalHp = baseStats.hp + statsBonus.hp;
-  const totalAtk = baseStats.atk + statsBonus.atk;
-  const totalDef = baseStats.def + statsBonus.def;
-  const totalCrit = baseStats.crit + statsBonus.crit;
-
-  const handleHarvest = () => {
-    if (!user) {
-      setIsLoginModalOpen(true);
-    } else {
-      storeHandleHarvest();
-    }
-  };
 
   if (!isMetadataLoaded) {
     return (

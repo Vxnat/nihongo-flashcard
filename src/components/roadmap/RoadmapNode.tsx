@@ -38,6 +38,8 @@ export function RoadmapNode({
     iconSrc = "/images/ui/roadmap/node_minigame.png";
   } else if (deck.type === "minigame_kanji") {
     iconSrc = "/images/ui/roadmap/node_kanji.png";
+  } else if (deck.type === "minigame_fill") {
+    iconSrc = "/images/ui/roadmap/node_fill.png";
   } else if (isBoss) {
     iconSrc = "/images/ui/roadmap/node_boss.png";
   } else {

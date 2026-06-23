@@ -507,7 +507,7 @@ export function SystemRoadmap() {
                                 }
                               } else if (item.deck.type === "story") {
                                 setActiveStoryId(item.deck.id);
-                              } else if (item.deck.type === "minigame_matching" || item.deck.type === "minigame_kanji" || item.deck.type === "minigame_rush") {
+                              } else if (item.deck.type && item.deck.type.startsWith("minigame_")) {
                                 setActiveMinigameId(item.deck.id);
                               } else {
                                 router.push(`/deck/${item.deck.id}`);

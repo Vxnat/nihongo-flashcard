@@ -129,12 +129,26 @@
     "type": "flashcard"
   },
   {
+    "id": "sys_n5_fill_01",
+    "title": "Minigame: Điền trợ từ & từ vựng",
+    "type": "minigame_fill",
+    "level": "N5",
+    "chapter": 1,
+    "order": 4.5,
+    "prerequisite": "sys_n5_minna_04",
+    "rewardCoins": 15,
+    "rewards": {
+      "coins": 15,
+      "exp": 50
+    }
+  },
+  {
     "id": "sys_n5_minna_05",
     "title": "[Boss] Bài 5: Đi lại & Ôn tập Chương 1",
     "level": "N5",
     "chapter": 1,
     "order": 5,
-    "prerequisite": "sys_n5_minna_04",
+    "prerequisite": "sys_n5_fill_01",
     "rewardCoins": 50,
     "totalCards": 40,
     "type": "flashcard"

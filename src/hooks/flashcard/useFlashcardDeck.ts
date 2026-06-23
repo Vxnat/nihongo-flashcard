@@ -141,6 +141,8 @@ export function useFlashcardDeck({
     usePhaoBoi,
     useKinhLup,
     handleBossCancel,
+    isTimerActive,
+    startBossBattleTimer,
   } = useBossBattle(
     deckId,
     cards,
@@ -458,5 +460,7 @@ export function useFlashcardDeck({
     usePhaoBoi,
     useKinhLup,
     handleBossCancel,
+    isTimerActive,
+    startBossBattleTimer,
   };
 }

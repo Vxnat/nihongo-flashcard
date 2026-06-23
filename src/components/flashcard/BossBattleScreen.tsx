@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FlashcardData } from "@/types/flashcard";
 import { Heart, Flame, Swords, Zap } from "lucide-react";
 import { playSFX } from "@/utils/sfx";
-import Image from "next/image";
-
+import { BossHelpersPanel } from "./BossHelpersPanel";
 interface BossBattleScreenProps {
   deckId: string;
   currentBossCard: FlashcardData | null;
@@ -23,24 +22,11 @@ interface BossBattleScreenProps {
   projectileFlying: boolean;
   isHintRevealed: boolean;
   onSubmit: (input: string) => void;
-  usePhaoBoi: () => Promise<boolean>;
-  useKinhLup: () => Promise<boolean>;
+  usePhaoBoi: (currency: "coins" | "goldenFur") => Promise<boolean>;
+  useKinhLup: (currency: "coins" | "goldenFur") => Promise<boolean>;
   onCancel: () => void;
-}
-
-// ==========================================
-// COIN ICON COMPONENT (Tái sử dụng cho các nút hỗ trợ)
-// ==========================================
-function CoinIcon({ size = 14 }: { size?: number }) {
-  return (
-    <Image
-      src="/images/ui/shiba-room/golden_shiba_coin.png"
-      alt="xu"
-      width={size}
-      height={size}
-      className="inline-block align-middle"
-    />
-  );
+  isTimerActive: boolean;
+  onStartBattle: () => void;
 }
 
 // ==========================================
@@ -79,7 +65,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
           className="text-amber-900 font-black text-xl mb-4 pr-12"
           style={{ fontFamily: "var(--font-cherry)" }}
         >
-          Shiba Sensei hướng dẫn! 🥋
+          Shiba Sensei hướng dẫn!
         </h2>
 
         {/* Tutorial Steps */}
@@ -152,30 +138,63 @@ export function BossBattleScreen({
   usePhaoBoi,
   useKinhLup,
   onCancel,
+  isTimerActive,
+  onStartBattle,
 }: BossBattleScreenProps) {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const [showTutorial, setShowTutorial] = useState(false);
+  const [countdownVal, setCountdownVal] = useState<number | "FIGHT" | null>(null);
+
+  const startCountdownSequence = () => {
+    setCountdownVal(3);
+  };
 
   // Check if user has seen the tutorial before
   useEffect(() => {
     const hasSeen = localStorage.getItem("hasSeenBossTutorial");
     if (!hasSeen) {
       setShowTutorial(true);
+    } else {
+      startCountdownSequence();
     }
   }, []);
 
   const handleCloseTutorial = () => {
     localStorage.setItem("hasSeenBossTutorial", "true");
     setShowTutorial(false);
+    startCountdownSequence();
   };
 
-  // Auto focus input
+  // Countdown runner
   useEffect(() => {
-    if (inputRef.current && !showTutorial) {
+    if (countdownVal === null) return;
+
+    if (countdownVal === "FIGHT") {
+      const timer = setTimeout(() => {
+        setCountdownVal(null);
+        onStartBattle(); // Start the timer
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+
+    const timer = setTimeout(() => {
+      if (countdownVal === 1) {
+        setCountdownVal("FIGHT");
+      } else {
+        setCountdownVal((countdownVal as number) - 1);
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [countdownVal, onStartBattle]);
+
+  // Auto focus input when active
+  useEffect(() => {
+    if (inputRef.current && !showTutorial && isTimerActive && countdownVal === null) {
       inputRef.current.focus();
     }
-  }, [currentBossCard, showTutorial]);
+  }, [currentBossCard, showTutorial, isTimerActive, countdownVal]);
 
   // Handle submit word
   const handleSubmit = (e: React.FormEvent) => {
@@ -206,7 +225,7 @@ export function BossBattleScreen({
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className={`w-full max-w-xl mx-auto min-h-[550px] bg-white rounded-[3rem] border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFD6C0,0_16px_40px_rgba(255,159,28,0.15)] relative flex flex-col justify-between p-6 sm:p-8 overflow-hidden transition-all duration-300 ${screenShake ? "animate-[shake_0.3s_ease-in-out_infinite]" : ""
+        className={`w-full max-w-xl mx-auto min-h-[640px] bg-white rounded-[3rem] border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFD6C0,0_16px_40px_rgba(255,159,28,0.15)] relative flex flex-col justify-between p-6 sm:p-8 overflow-hidden transition-all duration-300 ${screenShake ? "animate-[shake_0.3s_ease-in-out_infinite]" : ""
           }`}
       >
         {/* Background Decorative Blobs */}
@@ -361,12 +380,12 @@ export function BossBattleScreen({
               >
                 {currentBossCard.word}
               </h3>
-              {currentBossCard.reading && currentBossCard.reading !== currentBossCard.word && (
+              {/* {currentBossCard.reading && currentBossCard.reading !== currentBossCard.word && (
                 <p className="text-amber-600/70 font-medium text-sm mt-1">({currentBossCard.reading})</p>
               )}
               <p className="text-amber-800 font-rounded font-black text-lg sm:text-xl mt-3 select-none">
                 {currentBossCard.meaning}
-              </p>
+              </p> */}
             </div>
           )}
 
@@ -403,47 +422,58 @@ export function BossBattleScreen({
             <input
               ref={inputRef}
               type="text"
+              disabled={countdownVal !== null || !isTimerActive}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Gõ phiên âm Romaji..."
-              className="w-full h-14 rounded-[1.25rem] border-4 border-[#FFE2D1] bg-[#FFF8F0] text-center font-rounded font-black text-xl text-amber-900 placeholder:text-amber-300 focus:outline-none focus:border-[#FF9F1C] shadow-[0_4px_0_0_#FFD6C0] focus:shadow-[0_4px_0_0_#FF9F1C] transition-all"
+              placeholder={countdownVal !== null ? "Chuẩn bị..." : "Gõ phiên âm Romaji..."}
+              className="w-full h-14 rounded-[1.25rem] border-4 border-[#FFE2D1] bg-[#FFF8F0] text-center font-rounded font-black text-xl text-amber-900 placeholder:text-amber-300 focus:outline-none focus:border-[#FF9F1C] shadow-[0_4px_0_0_#FFD6C0] focus:shadow-[0_4px_0_0_#FF9F1C] transition-all disabled:opacity-50"
+              style={{ fontFamily: "var(--font-cherry)" }}
             />
             <button
               type="submit"
-              disabled={!inputValue.trim()}
+              disabled={!inputValue.trim() || countdownVal !== null || !isTimerActive}
               className="absolute right-2 top-1/2 -translate-y-[60%] px-4 py-2 bg-[#FF9F1C] hover:bg-[#e68a00] text-white font-rounded font-black rounded-xl text-sm border-b-4 border-[#cc7a00] active:border-b-0 active:translate-y-[-40%] transition-all disabled:opacity-40 disabled:active:translate-y-[-60%] shadow-md cursor-pointer"
             >
-              ĐÁNH 💥
+              💥
             </button>
           </form>
 
           {/* Shiba Master Helpers Area */}
-          <div className="grid grid-cols-2 gap-3 w-full">
-            {/* Phao bơi */}
-            <button
-              type="button"
-              onClick={usePhaoBoi}
-              className="h-14 bg-[#E0F7FA] hover:bg-[#B2EBF2] border-2 border-[#80DEEA] rounded-[1.25rem] flex items-center justify-center gap-2 text-[#00838F] font-rounded font-black text-sm active:scale-95 shadow-[0_3px_0_0_#4DD0E1] active:shadow-[0_0_0_0_#4DD0E1] active:translate-y-0.5 transition-all group cursor-pointer"
-            >
-              <div className="flex flex-col items-start leading-tight">
-                <span>Phao Bơi (+5s)</span>
-                <span className="text-[10px] text-[#00838F]/60 font-semibold font-sans flex items-center gap-1">5 xu <CoinIcon size={12} /></span>
-              </div>
-            </button>
-
-            {/* Kính lúp */}
-            <button
-              type="button"
-              onClick={useKinhLup}
-              className="h-14 bg-[#FFF3E0] hover:bg-[#FFE0B2] border-2 border-[#FFCC80] rounded-[1.25rem] flex items-center justify-center gap-2 text-[#E65100] font-rounded font-black text-sm active:scale-95 shadow-[0_3px_0_0_#FFB74D] active:shadow-[0_0_0_0_#FFB74D] active:translate-y-0.5 transition-all group cursor-pointer"
-            >
-              <div className="flex flex-col items-start leading-tight">
-                <span>Kính Lúp (Gợi ý)</span>
-                <span className="text-[10px] text-[#E65100]/60 font-semibold font-sans flex items-center gap-1">3 xu <CoinIcon size={12} /></span>
-              </div>
-            </button>
-          </div>
+          <BossHelpersPanel
+            usePhaoBoi={usePhaoBoi}
+            useKinhLup={useKinhLup}
+            isHintRevealed={isHintRevealed}
+          />
         </div>
+
+        {/* 3-2-1 Countdown Overlay */}
+        <AnimatePresence>
+          {countdownVal !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-[#FFFDF9]/95 backdrop-blur-xs flex flex-col items-center justify-center z-50 select-none pointer-events-none"
+            >
+              <motion.div
+                key={countdownVal}
+                initial={{ scale: 0.3, opacity: 0, rotate: -15 }}
+                animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                exit={{ scale: 1.5, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 12 }}
+                className="font-black text-center"
+                style={{
+                  fontFamily: "var(--font-cherry)",
+                  fontSize: countdownVal === "FIGHT" ? "4.5rem" : "6rem",
+                  color: countdownVal === "FIGHT" ? "#E63946" : "#FF9F1C",
+                  textShadow: "0 8px 16px rgba(255, 159, 28, 0.2), 0 0 10px currentColor",
+                }}
+              >
+                {countdownVal}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </>
   );

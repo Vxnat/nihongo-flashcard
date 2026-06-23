@@ -148,6 +148,7 @@ export interface GachaQuestSlice {
   ) => Promise<void>;
   claimQuestReward: (questId: string) => Promise<void>;
   deductCoins: (amount: number) => Promise<boolean>;
+  deductGoldenFur: (amount: number) => Promise<boolean>;
   addCoins: (amount: number) => Promise<void>;
   useFreeMinigameHint: () => Promise<boolean>;
 

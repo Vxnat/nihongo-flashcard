@@ -24,6 +24,7 @@ export function useBossBattle(
   const recordWordStat = useAppStore((state) => state.recordWordStat);
   const submitBossResult = useAppStore((state) => state.submitBossResult);
   const deductCoins = useAppStore((state) => state.deductCoins);
+  const deductGoldenFur = useAppStore((state) => state.deductGoldenFur);
 
   const bossStatus = bossStatusMap[deckId] || "learning";
   const bossFailedAttempts = bossFailedAttemptsMap[deckId] || 0;
@@ -39,6 +40,7 @@ export function useBossBattle(
   const [bossTimeLeft, setBossTimeLeft] = useState(0);
   const [bossCardMaxTime, setBossCardMaxTime] = useState(10);
   const [isHintRevealed, setIsHintRevealed] = useState(false);
+  const [isTimerActive, setIsTimerActive] = useState(false);
 
   // --- Battle VFX States ---
   const [activeSkillEffect, setActiveSkillEffect] = useState<"normal" | "double" | "shiba_special" | null>(null);
@@ -174,6 +176,11 @@ export function useBossBattle(
     setPlayedBossCardIds([]);
     setShibaHp(3);
     setComboCount(0);
+    setIsTimerActive(false);
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("activeBossBattle", deckId);
+    }
 
     const calculatedMaxHp = list.reduce((sum, card) => sum + calculateBaseDamage(card), 0);
     setBossMaxHp(calculatedMaxHp);
@@ -310,46 +317,72 @@ export function useBossBattle(
   ]);
 
   /**
-   * Đạo cụ "Phao bơi": Sử dụng 5 xu đóng băng / tăng thêm 5 giây suy nghĩ
+   * Đạo cụ "Phao bơi": Sử dụng 5 xu đóng băng / 1 lông shiba tăng thêm 5 giây suy nghĩ
    */
-  const usePhaoBoi = useCallback(async () => {
+  const usePhaoBoi = useCallback(async (currency: "coins" | "goldenFur") => {
     if (!isBossMode) return false;
-    const success = await deductCoins(5);
+
+    const isGold = currency === "goldenFur";
+    const cost = isGold ? 1 : 5;
+    const success = isGold ? await deductGoldenFur(cost) : await deductCoins(cost);
+
     if (success) {
       setBossTimeLeft((prev) => prev + 5);
       setBossCardMaxTime((prev) => prev + 5);
       import("react-hot-toast").then(({ toast }) => {
-        toast.success("Đã sử dụng Phao Bơi! +5 giây đóng băng! 🧊", { icon: "❄️" });
+        toast.success(
+          isGold
+            ? "Đã sử dụng Phao Bơi! +5 giây đóng băng! 🧊"
+            : "Đã sử dụng Phao Bơi! +5 giây đóng băng! 🧊",
+          { icon: "❄️" }
+        );
       });
       return true;
     } else {
       import("react-hot-toast").then(({ toast }) => {
-        toast.error("Không đủ xu! Phao Bơi cần 5 xu. 🪙");
+        toast.error(
+          isGold
+            ? "Không đủ Lông Vàng! Phao Bơi cần 1 Lông Vàng. 🪙"
+            : "Không đủ xu! Phao Bơi cần 5 xu. 🪙"
+        );
       });
       return false;
     }
-  }, [isBossMode, deductCoins]);
+  }, [isBossMode, deductCoins, deductGoldenFur]);
 
   /**
-   * Đạo cụ "Kính lúp": Sử dụng 3 xu gợi ý ký tự đầu tiên
+   * Đạo cụ "Kính lúp": Sử dụng 3 xu / 1 lông shiba gợi ý ký tự đầu tiên
    */
-  const useKinhLup = useCallback(async () => {
+  const useKinhLup = useCallback(async (currency: "coins" | "goldenFur") => {
     if (!isBossMode || !currentBossCard) return false;
     if (isHintRevealed) return true;
-    const success = await deductCoins(3);
+
+    const isGold = currency === "goldenFur";
+    const cost = isGold ? 1 : 3;
+    const success = isGold ? await deductGoldenFur(cost) : await deductCoins(cost);
+
     if (success) {
       setIsHintRevealed(true);
       import("react-hot-toast").then(({ toast }) => {
-        toast.success("Đã sử dụng Kính Lúp! Gợi ý chữ cái đầu. 🔍", { icon: "🔍" });
+        toast.success(
+          isGold
+            ? "Đã sử dụng Kính Lúp! Gợi ý chữ cái đầu. 🔍"
+            : "Đã sử dụng Kính Lúp! Gợi ý chữ cái đầu. 🔍",
+          { icon: "🔍" }
+        );
       });
       return true;
     } else {
       import("react-hot-toast").then(({ toast }) => {
-        toast.error("Không đủ xu! Kính Lúp cần 3 xu. 🪙");
+        toast.error(
+          isGold
+            ? "Không đủ Lông Vàng! Kính Lúp cần 1 Lông Vàng. 🪙"
+            : "Không đủ xu! Kính Lúp cần 3 xu. 🪙"
+        );
       });
       return false;
     }
-  }, [isBossMode, currentBossCard, isHintRevealed, deductCoins]);
+  }, [isBossMode, currentBossCard, isHintRevealed, deductCoins, deductGoldenFur]);
 
   /**
    * Hủy ngang trận chiến Boss
@@ -359,16 +392,77 @@ export function useBossBattle(
     setIsBossMode(false);
   }, [deckId, submitBossResult]);
 
+  const startBossBattleTimer = useCallback(() => {
+    setIsTimerActive(true);
+  }, []);
+
   // Vận hành đếm ngược thời gian đấu Boss
   useEffect(() => {
-    if (!isBossMode || bossHp <= 0 || shibaHp <= 0 || !currentBossCard) return;
+    if (!isBossMode || !isTimerActive || bossHp <= 0 || shibaHp <= 0 || !currentBossCard) return;
 
     const timer = setInterval(() => {
       setBossTimeLeft((prev) => Math.max(0, prev - 0.1));
     }, 100);
 
     return () => clearInterval(timer);
-  }, [isBossMode, bossHp, shibaHp, currentBossCard]);
+  }, [isBossMode, isTimerActive, bossHp, shibaHp, currentBossCard]);
+
+  // Anti-cheat: Check if there was an active boss battle that was not cleanly finished on mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const active = localStorage.getItem("activeBossBattle");
+      if (active) {
+        submitBossResult(active, false);
+        localStorage.removeItem("activeBossBattle");
+        import("react-hot-toast").then(({ toast }) => {
+          toast.error("Bạn đã thoát trận đấu Boss trước đó nửa chừng, tính là 1 thất bại! 💔", {
+            duration: 5000,
+            icon: "💔",
+          });
+        });
+      }
+    }
+  }, [submitBossResult]);
+
+  // Anti-cheat: Warn user before tab close/reload
+  useEffect(() => {
+    if (!isBossMode) return;
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "Trận chiến Boss đang diễn ra! Nếu thoát, bạn sẽ bị tính là một thất bại. Bạn có chắc chắn muốn thoát?";
+      return e.returnValue;
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [isBossMode]);
+
+  // Anti-cheat: Intercept browser Back button (popstate)
+  useEffect(() => {
+    if (!isBossMode) return;
+
+    // Push a dummy state to block the immediate back action
+    window.history.pushState(null, "", window.location.href);
+
+    const handlePopState = () => {
+      submitBossResult(deckId, false);
+      setIsBossMode(false);
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("activeBossBattle");
+      }
+      // import("react-hot-toast").then(({ toast }) => {
+      //   toast.error("Đã thoát giữa chừng! Tính là 1 thất bại. 💔");
+      // });
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [isBossMode, deckId, submitBossResult]);
 
   return {
     isBossMode,
@@ -393,5 +487,7 @@ export function useBossBattle(
     usePhaoBoi,
     useKinhLup,
     handleBossCancel,
+    isTimerActive,
+    startBossBattleTimer,
   };
 }

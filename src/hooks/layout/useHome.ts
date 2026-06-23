@@ -8,6 +8,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { toast } from "react-hot-toast";
 import { FlashcardData } from "@/types/flashcard";
 import { selectAdaptiveCards } from "@/utils/wordSelector";
+import { getDeckFolder } from "@/utils/deckResolver";
 
 const defaultDecks = [] as any[];
 
@@ -148,13 +149,16 @@ export function useHome() {
 
         const folder = minigameDeck.level.toLowerCase(); // n5, n4, ...
 
-        // Nhánh 1: GAME ĐẶC THÙ (KANJI DOJO) -> Fetch danh sách kanji rời
-        if (minigameDeck.type === "minigame_kanji") {
+        // Nhánh 1: GAME ĐẶC THÙ (KANJI DOJO hoặc ĐIỀN CHỖ TRỐNG) -> Fetch danh sách câu hỏi/chữ rời
+        if (minigameDeck.type === "minigame_kanji" || minigameDeck.type === "minigame_fill") {
+          const folder = getDeckFolder(minigameDeck.type);
           const dataRes = await fetch(`/data/decks/${folder}/${minigameDeck.id}.json`).catch(() => null);
           if (dataRes && dataRes.ok) {
             const data = await dataRes.json();
-            // Đính kèm mảng kanjiList vào metadata để truyền sang component KanjiDojoGame
-            setMinigameDeckData({ ...minigameDeck, kanjiList: data });
+            setMinigameDeckData({
+              ...minigameDeck,
+              [minigameDeck.type === "minigame_kanji" ? "kanjiList" : "quizList"]: data
+            });
           } else {
             setMinigameDeckData(minigameDeck);
           }
@@ -167,11 +171,12 @@ export function useHome() {
 
         // Nhánh 2: GAME ÔN TẬP (MATCHING, TYPING RUSH) -> Lấy thẻ dựa vào các bài đã học trước đó
         let allCards: FlashcardData[] = [];
+        const vocFolder = "minna"; // Thẻ từ vựng học tập luôn nằm trong folder "minna"
 
         if (minigameDeck.targetDeckIds && minigameDeck.targetDeckIds.length > 0) {
           // Lấy từ vựng chính xác từ các deck chỉ định trong targetDeckIds
           const fetchPromises = minigameDeck.targetDeckIds.map((targetId: string) =>
-            fetch(`/data/decks/${folder}/${targetId}.json`).then((r) => (r.ok ? r.json() : []))
+            fetch(`/data/decks/${vocFolder}/${targetId}.json`).then((r) => (r.ok ? r.json() : []))
           );
           const results = await Promise.all(fetchPromises);
           results.forEach((cards) => {
@@ -186,7 +191,7 @@ export function useHome() {
             
           const fetchPromises = previousDecks
             .slice(-3)
-            .map((deck: any) => fetch(`/data/decks/${folder}/${deck.id}.json`).then((r) => (r.ok ? r.json() : [])));
+            .map((deck: any) => fetch(`/data/decks/${vocFolder}/${deck.id}.json`).then((r) => (r.ok ? r.json() : [])));
             
           const results = await Promise.all(fetchPromises);
           results.forEach((cards) => {

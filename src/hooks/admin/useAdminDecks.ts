@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { SystemDeck, CardData } from "@/types/flashcard";
 import toast from "react-hot-toast";
+import { getDeckFolder } from "@/utils/deckResolver";
 
 interface UseAdminDecksProps {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -105,7 +106,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
       });
       if (!saveDecksRes.ok) throw new Error("Cập nhật file cấu hình tổng thất bại");
 
-      const folder = deck.level.toLowerCase();
+      const folder = getDeckFolder(deck.type);
       const filePath = `public/data/decks/${folder}/${deck.id}.json`;
       await fetch(`/api/admin/save-json?filePath=${filePath}`, {
         method: "DELETE"
@@ -137,7 +138,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
 
     setIsLoading(true);
     try {
-      const folder = deckForm.level.toLowerCase();
+      const folder = getDeckFolder(deckForm.type);
       const cardsFilePath = `public/data/decks/${folder}/${cleanId}.json`;
 
       let updatedDecks: SystemDeck[] = [];
@@ -147,7 +148,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
         if (editingDeck.id !== cleanId || editingDeck.level !== deckForm.level) {
           let oldCards: any[] = [];
           try {
-            const oldFolder = editingDeck.level.toLowerCase();
+            const oldFolder = getDeckFolder(editingDeck.type);
             const oldRes = await fetch(`/api/admin/save-json?filePath=public/data/decks/${oldFolder}/${editingDeck.id}.json`);
             if (oldRes.ok) {
               oldCards = await oldRes.json();
@@ -160,7 +161,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
             body: JSON.stringify({ filePath: cardsFilePath, data: oldCards })
           });
 
-          const oldFolder = editingDeck.level.toLowerCase();
+          const oldFolder = getDeckFolder(editingDeck.type);
           await fetch(`/api/admin/save-json?filePath=public/data/decks/${oldFolder}/${editingDeck.id}.json`, {
             method: "DELETE"
           });
@@ -229,7 +230,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
   const loadDeckCards = useCallback(async (deck: SystemDeck) => {
     setIsLoading(true);
     try {
-      const folder = deck.level.toLowerCase();
+      const folder = getDeckFolder(deck.type);
       const res = await fetch(`/api/admin/save-json?filePath=public/data/decks/${folder}/${deck.id}.json`);
       if (!res.ok) throw new Error("Bộ bài này chưa có file dữ liệu riêng hoặc lỗi tải.");
       const data = await res.json();
@@ -253,7 +254,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
     if (!selectedDeck) return;
     setIsLoading(true);
     try {
-      const folder = selectedDeck.level.toLowerCase();
+      const folder = getDeckFolder(selectedDeck.type);
       const filePath = `public/data/decks/${folder}/${selectedDeck.id}.json`;
 
       const saveCardsRes = await fetch("/api/admin/save-json", {
@@ -399,7 +400,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
     if (typeFilter !== "all") {
       const isFlashcard = !deck.type || deck.type === "flashcard";
       const isKanji = deck.type === "minigame_kanji";
-      const isMinigame = deck.type === "minigame_matching" || deck.type === "minigame_rush";
+      const isMinigame = deck.type === "minigame_matching" || deck.type === "minigame_rush" || deck.type === "minigame_fill";
       const isOther = deck.type === "story" || deck.type === "chest";
 
       if (typeFilter === "flashcard" && !isFlashcard) return false;

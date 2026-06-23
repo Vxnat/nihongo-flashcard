@@ -17,6 +17,7 @@ import { MatchingPairsGame } from "@/components/games/matching-pairs/MatchingPai
 import { KanjiDojoGame } from "@/components/games/kanji-dojo/KanjiDojoGame";
 import { KanjiPractice } from "@/components/games/kanji-dojo/KanjiPractice";
 import { TypingRushGame } from "@/components/games/typing-rush/TypingRushGame";
+import { FillBlanksGame } from "@/components/games/fill-blanks/FillBlanksGame";
 import { SakuraEffect, LofiNightEffect, DivineShibaEffect } from "@/components/common/ThemeEffects";
 import { ProfileTab } from "@/components/layout/ProfileTab";
 
@@ -58,7 +59,7 @@ export default function Home() {
       );
     }
 
-    // 2. Trường hợp đặc biệt: Minigame Kanji không yêu cầu có thẻ học trước
+    // 2. Trường hợp đặc biệt: Các game không dùng thẻ từ vựng trực tiếp
     if (minigameDeckData?.type === "minigame_kanji") {
       return (
         <KanjiDojoGame
@@ -72,13 +73,26 @@ export default function Home() {
       );
     }
 
+    if (minigameDeckData?.type === "minigame_fill") {
+      return (
+        <FillBlanksGame
+          quizList={minigameDeckData?.quizList || []}
+          minigameDeck={minigameDeckData}
+          onWin={() => {
+            setActiveMinigameId(null);
+            saveProgress(activeMinigameId!, ["completed"]);
+          }}
+          onClose={() => setActiveMinigameId(null)}
+        />
+      );
+    }
+
     // 3. Trạng thái lỗi: Thiếu thẻ học từ các bài trước
     if (minigameCards.length === 0) {
       return (
         <div className="flex flex-col items-center justify-center text-center p-4">
-          <span className="text-6xl mb-4">😭</span>
           <p className="font-rounded font-bold text-zinc-500 text-lg">
-            Không tìm thấy thẻ bài nào từ các bài trước!
+            Không tìm thấy thẻ bài nào!
           </p>
           <button
             onClick={() => setActiveMinigameId(null)}
@@ -251,7 +265,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[999] bg-white/80 backdrop-blur-md flex items-center justify-center"
+            className="fixed inset-0 z-[999] p-2 bg-white/80 backdrop-blur-md flex items-center justify-center"
           >
             {renderMinigameContent()}
           </motion.div>

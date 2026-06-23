@@ -267,6 +267,9 @@ export const createProgressSlice: StateCreator<
   },
 
   submitBossResult: async (deckId: string, isWin: boolean) => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("activeBossBattle");
+    }
     const state = get();
     const uid = state.user?.uid;
     const currentAttempts = state.bossFailedAttempts[deckId] || 0;
