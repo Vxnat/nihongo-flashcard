@@ -200,7 +200,7 @@ export function useHome() {
         }
 
         // Lọc và phân bổ từ vựng thông minh dựa trên lịch sử học tập (wordStats) của người học
-        const limit = minigameDeck.type === "minigame_rush" ? 15 : 7;
+        const limit = (minigameDeck.type === "minigame_rush" || minigameDeck.type === "minigame_rhythm") ? 15 : 7;
         const adaptiveCards = selectAdaptiveCards(allCards, wordStats, limit);
         setMinigameCards(adaptiveCards);
       } catch (err) {

@@ -68,6 +68,10 @@ export interface SystemDeck {
   order: number;
   prerequisite: string | null;
   rewardCoins: number;
+  rewards?: {
+    coins: number;
+    exp: number;
+  };
   totalCards?: number;
   description?: string;
   type?: "flashcard" | "story" | "chest" | "minigame_matching" | "minigame_kanji" | "minigame_rush" | string;

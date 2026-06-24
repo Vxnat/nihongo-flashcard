@@ -118,12 +118,32 @@
     ]
   },
   {
+    "id": "mg_rhythm_n5_01",
+    "type": "minigame_rhythm",
+    "title": "Minigame: Cảm thụ âm nhạc 🎧",
+    "description": "Lắng nghe nhịp điệu và săn tìm từ vựng cùng Shiba!",
+    "level": "N5",
+    "chapter": 1,
+    "order": 3.8,
+    "prerequisite": "mg_match_n5_01",
+    "rewards": {
+      "coins": 20,
+      "exp": 50
+    },
+    "totalCards": 0,
+    "targetDeckIds": [
+      "sys_n5_kana_01",
+      "sys_n5_kana_02",
+      "sys_n5_minna_01"
+    ]
+  },
+  {
     "id": "sys_n5_minna_04",
     "title": "Bài 4: Thời gian & Ngày tháng",
     "level": "N5",
     "chapter": 1,
     "order": 4,
-    "prerequisite": "mg_match_n5_01",
+    "prerequisite": "mg_rhythm_n5_01",
     "rewardCoins": 5,
     "totalCards": 35,
     "type": "flashcard"
