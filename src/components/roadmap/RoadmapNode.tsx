@@ -132,39 +132,39 @@ export function RoadmapNode({
 
   return (
     <>
-          {/* 1. NÚT TRÒN SỐ (X = -70px hoặc 70px) */}
-          <div className={`absolute -translate-x-1/2 top-[35px] -translate-y-1/2 flex items-center justify-center z-20 ${isLeft ? "left-[calc(50%-70px)]" : "left-[calc(50%+70px)]"}`}
-            style={{ fontFamily: "var(--font-cherry)" }}
-          >
-            {isActive && (
-              <>
-                {/* Vòng quay dashed nhấp nháy cho bài active */}
-                <div className="absolute w-14 h-14 rounded-full border-2 border-[#FF9F1C] border-dashed animate-[spin_6s_linear_infinite] opacity-60" />
-                <div className="absolute w-14 h-14 rounded-full border-2 border-[#FFD166] animate-ping opacity-30" />
-              </>
-            )}
-            <motion.button
-              onClick={unlocked ? onClick : undefined}
-              whileHover={unlocked ? { scale: 1.1 } : {}}
-              whileTap={unlocked ? { scale: 0.95 } : {}}
-              className={`w-10 h-10 rounded-full border-4 flex items-center justify-center font-black text-sm select-none transition-all
+      {/* 1. NÚT TRÒN SỐ (X = -70px hoặc 70px) */}
+      <div className={`absolute -translate-x-1/2 top-[35px] -translate-y-1/2 flex items-center justify-center z-20 ${isLeft ? "left-[calc(50%-70px)]" : "left-[calc(50%+70px)]"}`}
+        style={{ fontFamily: "var(--font-cherry)" }}
+      >
+        {isActive && (
+          <>
+            {/* Vòng quay dashed nhấp nháy cho bài active */}
+            <div className="absolute w-14 h-14 rounded-full border-2 border-[#FF9F1C] border-dashed animate-[spin_6s_linear_infinite] opacity-60 pointer-events-none" />
+            <div className="absolute w-14 h-14 rounded-full border-2 border-[#FFD166] animate-ping opacity-30 pointer-events-none" />
+          </>
+        )}
+        <motion.button
+          onClick={unlocked ? onClick : undefined}
+          whileHover={unlocked ? { scale: 1.1 } : {}}
+          whileTap={unlocked ? { scale: 0.95 } : {}}
+          className={`w-10 h-10 rounded-full border-4 flex items-center justify-center font-black text-sm select-none transition-all
                 ${circleColor} ${unlocked ? "cursor-pointer" : "cursor-not-allowed"}
               `}
-              draggable={false}
-            >
-              {completed ? "✓" : index + 1}
-            </motion.button>
-          </div>
+          draggable={false}
+        >
+          {completed ? "✓" : index + 1}
+        </motion.button>
+      </div>
 
-          {/* 2. ĐƯỜNG NỐI NGANG (NỐI TỪ NÚT SỐ SANG THẺ) */}
-          <div
-            className={`absolute left-[calc(50%-50px)] top-[70px] w-24 h-1 border-t-2 border-dashed pointer-events-none z-10
+      {/* 2. ĐƯỜNG NỐI NGANG (NỐI TỪ NÚT SỐ SANG THẺ) */}
+      <div
+        className={`absolute left-[calc(50%-50px)] top-[70px] w-24 h-1 border-t-2 border-dashed pointer-events-none z-10
               ${completed ? "border-emerald-300" : isActive ? "border-amber-300" : "border-zinc-200"}
             `}
-          />
+      />
 
-          {/* 3. THẺ THÔNG TIN (X = 65px hoặc -65px) */}
-          <div className={`absolute -translate-x-1/2 top-[105px] -translate-y-1/2 z-20 w-[210px] sm:w-[230px] ${isLeft ? "left-[calc(50%+65px)]" : "left-[calc(50%-65px)]"}`}>
+      {/* 3. THẺ THÔNG TIN (X = 65px hoặc -65px) */}
+      <div className={`absolute -translate-x-1/2 top-[105px] -translate-y-1/2 z-20 w-[210px] sm:w-[230px] ${isLeft ? "left-[calc(50%+65px)]" : "left-[calc(50%-65px)]"}`}>
         <motion.div
           onClick={unlocked ? onClick : undefined}
           whileHover={unlocked ? { y: -2, scale: 1.02 } : {}}

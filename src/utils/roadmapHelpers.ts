@@ -35,21 +35,23 @@ export function generateSVGPath(
       d += `M ${xCircle} ${yCircle} `; // Điểm bắt đầu
     } else {
       const prevIsEven = (i - 1) % 2 === 0;
-      const prevXCard = prevIsEven ? 50 : -30;
+      const prevXCard = prevIsEven ? 65 : -65;
       const prevYCard = (i - 1) * rowHeight + 105 + startYOffset;
 
-      // Uốn từ Card hàng trước sang Circle hàng này
+      // Uốn từ Card hàng trước sang Circle hàng này (độ cao chênh lệch là 110px)
+      // Thiết lập điểm kiểm soát dọc để đường cong đi ra/vào theo phương thẳng đứng mượt mà
       const cp1X = prevXCard;
-      const cp1Y = prevYCard + 35;
+      const cp1Y = prevYCard + 55;
       const cp2X = xCircle;
-      const cp2Y = yCircle - 35;
+      const cp2Y = yCircle - 55;
       d += `C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${xCircle} ${yCircle} `;
     }
 
-    // --- 2. Nối từ Circle sang Card cùng hàng ---
-    const cp1X = isEven ? -70 : 70;
+    // --- 2. Nối từ Circle sang Card cùng hàng (độ cao chênh lệch là 70px) ---
+    // Thiết lập điểm kiểm soát dọc để tạo đường cong S hoàn hảo đối xứng
+    const cp1X = xCircle;
     const cp1Y = yCircle + 35;
-    const cp2X = isEven ? 100 : -100;
+    const cp2X = xCard;
     const cp2Y = yCard - 35;
     d += `C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${xCard} ${yCard} `;
   }

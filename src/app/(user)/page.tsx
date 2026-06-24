@@ -285,7 +285,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.2 }}
-              className="w-full flex flex-col items-center justify-center max-w-2xl"
+              className="w-full flex flex-col items-center justify-center"
             >
               <SystemRoadmap />
             </motion.div>
@@ -299,7 +299,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className="w-full flex flex-col items-center justify-center max-w-2xl px-1"
+              className="w-full flex flex-col items-center justify-center px-1"
             >
               <CustomDecksTab homeState={homeState} />
             </motion.div>
@@ -313,7 +313,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className="w-full flex flex-col items-center justify-center max-w-2xl px-1"
+              className="w-full flex flex-col items-center justify-center px-1"
             >
               <GachaShop />
             </motion.div>
@@ -327,7 +327,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className="w-full flex flex-col items-center justify-center max-w-2xl px-1"
+              className="w-full flex flex-col items-center justify-center px-1"
             >
               <ShibaRoom />
             </motion.div>
@@ -341,7 +341,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className="w-full flex flex-col items-center justify-center max-w-2xl px-1"
+              className="w-full flex flex-col items-center justify-center px-1"
             >
               <ProfileTab />
             </motion.div>

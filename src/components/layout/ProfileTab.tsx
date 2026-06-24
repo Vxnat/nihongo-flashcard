@@ -1,11 +1,21 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useAppStore } from "@/store/useAppStore";
-import { motion } from "framer-motion";
-import { Flame, Clock, Trophy, Check } from "lucide-react";
-import toast from "react-hot-toast";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Flame,
+  Trophy
+} from "lucide-react";
 import { ShibaLoginCard } from "@/components/common/ShibaLoginCard";
+import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
+import { CoinIcon } from "@/components/common/CoinIcon";
+
+// Import modular modals from the profile folder
+import { DailyQuestsModal } from "./profile/DailyQuestsModal";
+import { AchievementsModal } from "./profile/AchievementsModal";
+import { WeeklyLogModal } from "./profile/WeeklyLogModal";
+import { InventoryModal } from "./profile/InventoryModal";
 
 export function ProfileTab() {
   const user = useAppStore((state: any) => state.user);
@@ -15,6 +25,52 @@ export function ProfileTab() {
   const dailyLearningTimeRequired = useAppStore((state) => state.dailyLearningTimeRequired || 300);
   const systemAchievements = useAppStore((state) => state.systemAchievements || []);
   const isMetadataLoaded = useAppStore((state) => state.isMetadataLoaded);
+
+  const { allItems } = useSystemItems();
+
+  // State to manage active modal
+  const [activeModal, setActiveModal] = useState<"quests" | "achievements" | "weekly" | "inventory" | null>(null);
+
+  // Speech bubble states
+  const [showSpeechBubble, setShowSpeechBubble] = useState(false);
+  const [speechBubbleText, setSpeechBubbleText] = useState("");
+  const [speechTimeoutId, setSpeechTimeoutId] = useState<any>(null);
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (speechTimeoutId) clearTimeout(speechTimeoutId);
+    };
+  }, [speechTimeoutId]);
+
+  const handleShibaClick = () => {
+    const messages = [
+      "Woof! Hôm nay cậu đã làm rất tốt! 🐶",
+      "Ganbatte! Cố gắng học tập đều đặn nhé! ✨",
+      "Đừng quên làm nhiệm vụ hàng ngày để nhận xương nha! 🦴",
+      "Hãy tích lũy đủ gacha để trang trí phòng nhé! 🏠",
+      "Gâu! Học tiếng Nhật vui quá đi thôi! 🇯🇵",
+      "Cậu đã học được bao nhiêu phút rồi nhỉ? Giỏi quá! 🌟",
+      "Hôm nay tớ thấy cậu rất chăm chỉ đấy! 🔥"
+    ];
+    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+    setSpeechBubbleText(randomMsg);
+    setShowSpeechBubble(true);
+
+    if (speechTimeoutId) {
+      clearTimeout(speechTimeoutId);
+    }
+    const timer = setTimeout(() => {
+      setShowSpeechBubble(false);
+    }, 4000);
+    setSpeechTimeoutId(timer);
+  };
+
+  const handleShibaMouseEnter = () => {
+    if (!showSpeechBubble) {
+      handleShibaClick();
+    }
+  };
 
   // 1. Tính toán EXP & Level
   const maxExp = useMemo(() => {
@@ -29,10 +85,10 @@ export function ProfileTab() {
   // 2. Lấy Mascot Shiba theo Streak
   const mascotSrc = useMemo(() => {
     const streak = userStats.streak || 0;
-    if (streak === 0) return "/images/mascot/mascot-sleep.gif";
-    if (streak <= 3) return "/images/mascot/mascot-hi.gif";
-    if (streak <= 7) return "/images/mascot/mascot-idle.gif";
-    return "/images/mascot/mascot-success.gif";
+    if (streak === 0) return "/images/mascot/mascot-sleep.png";
+    if (streak <= 3) return "/images/mascot/mascot-hi.png";
+    if (streak <= 7) return "/images/mascot/mascot-idle.png";
+    return "/images/mascot/mascot-success.png";
   }, [userStats.streak]);
 
   // 3. Tính toán các ngày trong tuần (Thứ 2 đến Chủ nhật)
@@ -102,345 +158,401 @@ export function ProfileTab() {
         imageUrl: ach.imageUrl || "",
         condition,
         progressText,
+        userValue,
+        targetValue,
+        field
       };
     });
   }, [systemAchievements, userStats]);
 
-  // 5. Nhiệm vụ ngày hiện tại
-  const activeQuest = userStats.dailyQuests?.quests?.[0] || null;
+  // Chia danh hiệu thành các hàng của kệ sách gỗ (mỗi hàng 3 cái)
+  const shelfRows = useMemo(() => {
+    const rows = [];
+    for (let i = 0; i < achievements.length; i += 3) {
+      rows.push(achievements.slice(i, i + 3));
+    }
+    return rows;
+  }, [achievements]);
+
+  // 5. Danh sách vật phẩm của học viên từ shop/gacha
+  const userInventoryItems = useMemo(() => {
+    return (userStats.inventory || []).map((itemId: string) => {
+      const item = allItems.find((i: any) => i.id === itemId);
+      return item || { id: itemId, title: "Vật phẩm", imageUrl: "/images/ui/badges/default.png", desc: "Món quà từ Gacha" };
+    });
+  }, [userStats.inventory, allItems]);
+
+  // 6. Tính toán tiến độ học hàng ngày cho vòng tròn tiến trình
+  const studyPercentage = useMemo(() => {
+    return Math.min(100, ((userStats.learningTimeToday || 0) / dailyLearningTimeRequired) * 100);
+  }, [userStats.learningTimeToday, dailyLearningTimeRequired]);
+
+  // Kiểm tra xem có bất kỳ nhiệm vụ nào đã xong nhưng chưa nhận thưởng không
+  const hasUnclaimedQuest = useMemo(() => {
+    const quests = userStats.dailyQuests?.quests || [];
+    return quests.some((q: any) => q.isCompleted && !q.isClaimed);
+  }, [userStats.dailyQuests?.quests]);
+
+  // SVG Progress Ring config
+  const radius = 80;
+  const strokeWidth = 14;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (studyPercentage / 100) * circumference;
 
   return (
-    <div className="w-full flex flex-col items-center relative py-6">
+    <div className="w-full flex flex-col items-center relative py-10 select-none"
+      style={{ fontFamily: "var(--font-cherry)" }}
+    >
       <div
-        className={`w-full flex flex-col gap-6 max-w-2xl px-4 transition-all duration-700 ${!user
+        className={`w-full flex flex-col gap-8 max-w-xl px-4 transition-all duration-700 ${!user
           ? `blur-[7px] opacity-35 scale-[0.98] pointer-events-none select-none ${isCardHovered ? "blur-[4px] opacity-55 scale-[0.99]" : ""
           }`
           : ""
           }`}
       >
-
-        {/* KHỐI 1: SCHOLAR PASSPORT CARD (Bento lớn) */}
-        <div className="bg-white rounded-[2.5rem] p-6 border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFE2D1] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
-          {/* Họa tiết chìm phía sau */}
+        {/* KHỐI 1: THẺ HỌC GIẢ (Scholar Passport Card) */}
+        <div className="bg-[#FFFDF9] rounded-[2.5rem] p-5 border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFE2D1] flex flex-col sm:flex-row items-center justify-between gap-5 relative overflow-hidden w-full">
+          {/* Họa tiết chìm */}
           <div className="absolute right-0 bottom-0 opacity-5 pointer-events-none translate-x-12 translate-y-12 select-none">
-            <Trophy size={200} />
+            <Trophy size={160} />
           </div>
 
-          {/* Thông tin học giả */}
-          <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-4 w-full">
-            <div className="flex flex-col items-center md:items-start gap-1">
-              <span className="font-rounded font-black text-xs text-[#FF7096] uppercase tracking-wider bg-pink-50 border border-pink-100 px-3 py-1 rounded-full"
-                style={{ fontFamily: "var(--font-cherry)" }}
-              >
-                Thẻ Học Giả
+          {/* Left section: Info */}
+          <div className="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left gap-3 w-full">
+            <div className="flex flex-col items-center sm:items-start gap-1">
+              <span className="font-rounded font-black text-[9px] text-[#FF7096] uppercase tracking-wider bg-[#FFF2F5] border border-[#FFD9E2] px-3 py-0.5 rounded-full">
+                Học Giả Shiba Town
               </span>
-              <h2 className="text-3xl text-zinc-700 mt-2 font-black" style={{ fontFamily: "var(--font-cherry)" }}>
-                {useAppStore.getState().user?.displayName || "Bạn của Shiba"}
+              <h2 className="text-2xl text-zinc-700 font-black leading-tight mt-1">
+                {user?.displayName || "Bạn của Shiba"}
               </h2>
             </div>
 
+            {/* Shiba Currencies (Coins & Golden Fur) */}
+            <div className="flex items-center gap-3 bg-[#FFF9F2] border-2 border-[#FFE2D1] px-3 py-1 rounded-2xl shadow-inner">
+              <div className="flex items-center gap-1" title="Xương Vàng (Dùng quay Gacha)">
+                <span className="text-base">🦴</span>
+                <span className="font-rounded font-black text-[11px] text-[#8C5E43]">
+                  {userStats.coins || 0}
+                </span>
+              </div>
+              <div className="h-3 w-0.5 bg-[#FFE2D1]" />
+              <div className="flex items-center gap-1" title="Lông Vàng (Đơn vị hiếm)">
+                <CoinIcon size={16} />
+                <span className="font-rounded font-black text-[11px] text-[#FF9F1C]">
+                  {userStats.goldenFur || 0}
+                </span>
+              </div>
+            </div>
+
             {/* Level & EXP Progress Bar */}
-            <div className="w-full max-w-xs space-y-1.5">
+            <div className="w-full max-w-xs space-y-1">
               <div className="flex justify-between items-end font-rounded font-black">
-                <span className="text-[#B28DFF] text-xl" style={{ fontFamily: "var(--font-cherry)" }}>
+                <span className="text-[#B28DFF] text-base">
                   Lv. {userStats.level || 1}
                 </span>
-                <span className="text-zinc-400 text-xs"
-                  style={{ fontFamily: "var(--font-cherry)" }}
-                >
+                <span className="text-zinc-400 text-[10px]">
                   {userStats.exp || 0}/{maxExp} EXP
                 </span>
               </div>
-              <div className="h-4 w-full bg-zinc-100 rounded-full border-2 border-zinc-200 overflow-hidden relative p-0.5">
+              <div className="h-3.5 w-full bg-zinc-100/80 rounded-full border-2 border-zinc-200 overflow-hidden relative p-0.5">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${expPercentage}%` }}
-                  transition={{ type: "spring", stiffness: 100 }}
-                  className="h-full bg-gradient-to-r from-[#B28DFF] to-[#8A56D6] rounded-full"
+                  transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                  className="h-full bg-gradient-to-r from-[#B28DFF] via-[#FF7096] to-[#FFE2D1] rounded-full"
                 />
               </div>
             </div>
           </div>
 
-          {/* Mascot Shiba theo Streak */}
-          <div className="flex flex-col items-center gap-2 shrink-0 select-none">
-            <div className="w-28 h-28 bg-orange-50/50 rounded-full flex items-center justify-center border-4 border-[#FFE2D1] shadow-inner relative overflow-hidden">
-              <img src={mascotSrc} alt="Shiba Mascot" className="w-24 h-24 object-contain mt-1" />
-            </div>
-            <div className="flex items-center gap-1 bg-[#FFF4E6] px-3 py-1.5 rounded-full border-2 border-[#FFD166]">
-              <Flame className="w-4 h-4 text-[#FF9F1C] fill-[#FF9F1C]" />
-              <span className="font-rounded font-black text-xs text-[#FF9F1C]"
-                style={{ fontFamily: "var(--font-cherry)" }}
-              >
-                Chuỗi: {userStats.streak || 0} ngày
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* KHỐI 2: WEEKLY CALENDAR LINE (Thanh lịch tuần nằm ngang) */}
-        <div className="bg-[#FFFDF9] rounded-[2.5rem] p-6 border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFE2D1] flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xl text-zinc-700" style={{ fontFamily: "var(--font-cherry)" }}>
-              Nhật Ký Học Tập
-            </h3>
-          </div>
-
-          {/* Danh sách 7 ngày */}
-          <div className="flex md:grid md:grid-cols-7 gap-2 overflow-x-auto hide-scrollbar snap-x snap-mandatory py-3 px-2 w-full">
-            {weekDays.map((day) => {
-              let shibaGif = "/images/mascot/mascot-sleep.gif";
-              let bgClass = "bg-zinc-50 border-zinc-200 text-zinc-400";
-
-              if (day.isFuture) {
-                shibaGif = "/images/mascot/mascot-sleep.gif";
-                bgClass = "bg-zinc-50/40 border-zinc-100 text-zinc-300";
-              } else if (day.isCompleted) {
-                shibaGif = "/images/mascot/mascot-success.gif";
-                bgClass = "bg-[#F0FAF5] border-[#A0E8D5] text-emerald-700 shadow-[0_4px_0_0_#A0E8D5]";
-              } else {
-                // Quá khứ bỏ lỡ hoặc Hôm nay chưa đạt mốc
-                shibaGif = "/images/mascot/mascot-fail.gif";
-                bgClass = day.isToday
-                  ? "bg-zinc-100 border-[#FFE2D1] text-zinc-500 animate-pulse border-dashed border-4"
-                  : "bg-zinc-100 border-zinc-300 text-zinc-400";
-              }
-
-              return (
-                <div
-                  key={day.dateStr}
-                  className={`flex flex-col items-center py-2 px-1 rounded-2xl border-2 text-center transition-all ${bgClass} ${day.isToday ? "scale-105 relative z-10" : ""} flex-1 min-w-[58px] sm:min-w-[64px] md:min-w-0 snap-center`}
+          {/* Right section: Shiba Mascot Avatar + Overlay Streak */}
+          <div className="shrink-0 relative flex flex-col items-center justify-center">
+            
+            {/* Speech Bubble */}
+            <AnimatePresence>
+              {showSpeechBubble && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.85, y: 10, x: "-50%" }}
+                  animate={{ opacity: 1, scale: 1, y: 0, x: "-50%" }}
+                  exit={{ opacity: 0, scale: 0.85, y: 10, x: "-50%" }}
+                  className="absolute -top-16 left-1/2 bg-white border-2 border-amber-900 text-amber-900 px-3 py-1 rounded-2xl font-rounded font-black text-[9px] shadow-[0_4px_0_0_#FFE2D1] z-30 max-w-[150px] sm:max-w-[200px] whitespace-normal leading-tight text-center"
                 >
-                  <span className="font-rounded font-black text-[10px] sm:text-xs uppercase tracking-tight">
-                    {day.name}
-                  </span>
+                  {speechBubbleText}
+                  <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-r-2 border-b-2 border-amber-900 rotate-45" />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-                  {/* Chibi Mascot */}
-                  <div className="w-10 h-10 my-2 select-none pointer-events-none flex items-center justify-center">
-                    <img src={shibaGif} alt="Shiba Status" className="w-full h-full object-contain" />
-                  </div>
+            {/* Avatar container */}
+            <div className="relative">
+              <motion.div
+                whileHover={{ scale: 1.08, rotate: 2 }}
+                onMouseEnter={handleShibaMouseEnter}
+                className="w-24 h-24 bg-[#FFF9F2] rounded-full flex items-center justify-center border-4 border-[#FFE2D1] shadow-inner overflow-hidden cursor-pointer"
+                onClick={handleShibaClick}
+              >
+                <img src={mascotSrc} alt="Shiba Mascot" className="w-20 h-20 object-contain mt-0.5" />
+              </motion.div>
 
-                  <span className="font-rounded font-bold text-[9px] sm:text-[10px] truncate max-w-full">
-                    {day.isFuture ? "-" : `${Math.floor(day.timeStudied / 60)}m`}
-                  </span>
-
-                  {day.isToday && (
-                    <span className="absolute -bottom-2 bg-[#FF7096] text-white text-[8px] font-black uppercase px-1.5 py-0.5 rounded-full border border-white">
-                      Nay
-                    </span>
-                  )}
-                </div>
-              );
-            })}
+              {/* Overlaid Streak Badge */}
+              <div className="absolute -bottom-1 -right-1 flex items-center gap-0.5 bg-gradient-to-r from-[#FF9F1C] to-[#FF7096] text-white px-2.5 py-0.5 rounded-full border-2 border-white shadow-md text-[9px] font-black animate-pulse whitespace-nowrap">
+                <Flame className="w-3.5 h-3.5 fill-white text-white" />
+                <span>{userStats.streak || 0} NGÀY</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* KHỐI 3: DAILY QUEST & STATS (Nhiệm vụ ngẫu nhiên & Đồng hồ học) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* KHỐI 2: VÒNG TRÒN TIẾN ĐỘ NGÀY (Daily Progress Dial) */}
+        <div className="flex flex-col items-center w-full bg-[#FFFDF9] rounded-[2.5rem] p-6 border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFE2D1] relative">
+          <h3 className="text-xl text-zinc-700 mb-8">
+            Bản Đồ Tiến Độ Hôm Nay
+          </h3>
 
-          {/* Thẻ Nhiệm vụ Shiba Hôm Nay */}
-          <div className="bg-white rounded-[2.5rem] p-6 border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFE2D1] flex flex-col justify-between gap-4">
-            <div className="flex justify-between items-start">
-              <div className="space-y-1">
-                <span className="font-rounded font-black text-[10px] text-[#FF9F1C] uppercase tracking-wider bg-orange-50 border border-orange-100 px-2.5 py-0.5 rounded-full">
-                  Nhiệm vụ
+          {/* The dial container with Shiba ears */}
+          <div className="relative w-52 h-52 sm:w-60 sm:h-60 flex items-center justify-center select-none mb-4">
+
+            {/* CUTE SHIBA EARS */}
+            {/* Left Ear */}
+            <div className="absolute -top-2.5 sm:-top-3 left-[22px] sm:left-[30px] w-10 h-10 sm:w-12 sm:h-12 bg-[#FFB84D] border-4 border-amber-900 rounded-tr-[2.2rem] rounded-bl-[1.2rem] rotate-[-18deg] shadow-sm z-0">
+              <div className="absolute top-0.5 sm:top-1 left-1.5 sm:left-2 w-5 h-5 sm:w-6 sm:h-6 bg-[#FFCCD5] rounded-tr-[1.8rem] rounded-bl-[0.6rem]" />
+            </div>
+            {/* Right Ear */}
+            <div className="absolute -top-2.5 sm:-top-3 right-[22px] sm:right-[30px] w-10 h-10 sm:w-12 sm:h-12 bg-[#FFB84D] border-4 border-amber-900 rounded-tl-[2.2rem] rounded-br-[1.2rem] rotate-[18deg] shadow-sm z-0">
+              <div className="absolute top-0.5 sm:top-1 right-1.5 sm:right-2 w-5 h-5 sm:w-6 sm:h-6 bg-[#FFCCD5] rounded-tl-[1.8rem] rounded-br-[0.6rem]" />
+            </div>
+
+            {/* SVG Progress Circle Container */}
+            <div className="w-full h-full rounded-full border-4 border-amber-900 bg-white shadow-md relative z-10 flex items-center justify-center overflow-hidden">
+              <div className="absolute inset-2">
+                <svg viewBox="0 0 200 200" className="w-full h-full transform -rotate-90">
+                  <defs>
+                    <linearGradient id="dialGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFA62B" />
+                      <stop offset="60%" stopColor="#FF7096" />
+                      <stop offset="100%" stopColor="#B28DFF" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Outer circle line */}
+                  <circle
+                    cx="100"
+                    cy="100"
+                    r={radius}
+                    fill="none"
+                    stroke="#FFF2E6"
+                    strokeWidth={strokeWidth + 2}
+                  />
+
+                  {/* Progress filler line */}
+                  <motion.circle
+                    cx="100"
+                    cy="100"
+                    r={radius}
+                    fill="none"
+                    stroke="url(#dialGrad)"
+                    strokeWidth={strokeWidth}
+                    strokeDasharray={circumference}
+                    initial={{ strokeDashoffset: circumference }}
+                    animate={{ strokeDashoffset }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+
+              {/* Text inside Ring */}
+              <div className="relative z-20 flex flex-col items-center text-center">
+                <span className="font-rounded font-black text-[9px] text-zinc-400 uppercase tracking-widest">
+                  THỜI GIAN HỌC
                 </span>
-                <h3 className="text-xl text-zinc-700 font-bold" style={{ fontFamily: "var(--font-cherry)" }}>
-                  Yêu Cầu Từ Shiba
-                </h3>
-              </div>
-
-              {/* Rương báu hiển thị trạng thái */}
-              <div className="w-12 h-12 select-none pointer-events-none shrink-0">
-                <img
-                  src={activeQuest?.isClaimed
-                    ? "/images/ui/roadmap/chest_opened.png"
-                    : "/images/ui/roadmap/chest_closed.png"
-                  }
-                  alt="Chest"
-                  className={`w-full h-full object-contain ${activeQuest?.isCompleted && !activeQuest?.isClaimed ? "animate-bounce" : ""}`}
-                />
+                <span className="font-rounded font-black text-3xl sm:text-4xl text-amber-500 my-0.5">
+                  {Math.round(studyPercentage)}%
+                </span>
+                <span className="font-rounded font-black text-[10px] sm:text-[11px] text-zinc-500 bg-amber-50 border border-amber-100 px-2.5 py-0.5 rounded-full mt-1">
+                  {Math.floor(userStats.learningTimeToday / 60)}/{Math.floor(dailyLearningTimeRequired / 60)} phút
+                </span>
               </div>
             </div>
 
-            {activeQuest ? (
-              <div className="flex-1 flex flex-col justify-end gap-3">
-                <p className="font-rounded font-black text-sm text-zinc-600">
-                  {activeQuest.title}
-                </p>
-
-                {/* Progress Bar của Quest */}
-                <div className="space-y-1">
-                  <div className="flex justify-between font-rounded text-xs text-zinc-400 font-bold">
-                    <span>Tiến độ</span>
-                    <span>{activeQuest.progress}/{activeQuest.target}</span>
-                  </div>
-                  <div className="h-3 w-full bg-zinc-100 rounded-full border border-zinc-200 overflow-hidden relative">
-                    <div
-                      className="h-full bg-[#FF9F1C] rounded-full"
-                      style={{ width: `${Math.min(100, (activeQuest.progress / activeQuest.target) * 100)}%` }}
-                    />
-                  </div>
-                </div>
-
-                {/* Phần thưởng & Nút Nhận */}
-                <div className="flex items-center justify-between pt-2 border-t border-dashed border-zinc-100">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-rounded text-zinc-400 font-bold uppercase">Phần thưởng</span>
-                    <div className="flex items-center gap-3 font-rounded font-black text-xs">
-                      <span className="text-amber-700 flex items-center gap-1">
-                        🪙 +{activeQuest.rewards?.coins ?? activeQuest.reward ?? 0} xu
-                      </span>
-                      <span className="text-purple-600 flex items-center gap-1 font-rounded">
-                        ⭐ +{activeQuest.rewards?.exp ?? 50} EXP
-                      </span>
-                    </div>
-                  </div>
-
-                  {activeQuest.isClaimed ? (
-                    <div className="h-10 px-4 flex items-center justify-center gap-1 bg-zinc-100 border border-zinc-200 text-zinc-400 font-bold rounded-2xl text-xs">
-                      <Check size={14} strokeWidth={3} /> Đã nhận
-                    </div>
-                  ) : activeQuest.isCompleted ? (
-                    <button
-                      onClick={() => {
-                        claimQuestReward(activeQuest.id);
-                        toast.success("Đã mở khóa phần thưởng nhiệm vụ! 🎁", { icon: "🎉" });
-                      }}
-                      className="h-10 px-5 bg-[#06D6A0] hover:bg-[#05B586] text-white font-black font-rounded text-xs rounded-2xl border-b-4 border-[#048C68] active:border-b-0 active:translate-y-1 transition-all cursor-pointer shadow-sm"
-                    >
-                      Mở Rương!
-                    </button>
-                  ) : (
-                    <div className="h-10 px-4 flex items-center justify-center bg-zinc-100 text-zinc-400 font-black font-rounded text-xs rounded-2xl border border-dashed border-zinc-200">
-                      Chưa hoàn thành
-                    </div>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <p className="font-rounded font-bold text-sm text-zinc-400 text-center py-6">
-                Không có nhiệm vụ nào hôm nay!
-              </p>
-            )}
-          </div>
-
-          {/* Thẻ Thống kê Giờ học hôm nay */}
-          <div className="bg-white rounded-[2.5rem] p-6 border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFE2D1] flex flex-col justify-between gap-4">
-            <div className="space-y-1">
-              <span className="font-rounded font-black text-[10px] text-[#06D6A0] uppercase tracking-wider bg-green-50 border border-green-100 px-2.5 py-0.5 rounded-full">
-                Thống kê hôm nay
-              </span>
-              <h3 className="text-xl text-zinc-700 font-bold" style={{ fontFamily: "var(--font-cherry)" }}>
-                Thời Gian Học
-              </h3>
-            </div>
-
-            <div className="flex-1 flex flex-col justify-center items-center py-4">
-              <div className="flex items-center justify-center bg-[#F0FAF5] w-16 h-16 rounded-full border-4 border-[#A0E8D5] shadow-sm mb-3">
-                <Clock className="w-8 h-8 text-[#06D6A0]" />
-              </div>
-
-              {/* Đồng hồ số giây học */}
-              <span className="font-rounded font-black text-3xl text-zinc-700" style={{ fontFamily: "var(--font-cherry)" }}>
-                {Math.floor((userStats.learningTimeToday || 0) / 60)} <span className="text-base text-zinc-400">phút</span> {(userStats.learningTimeToday || 0) % 60} <span className="text-base text-zinc-400">giây</span>
-              </span>
-
-              <p className="font-rounded font-bold text-xs text-zinc-400 text-center mt-2 leading-relaxed max-w-[200px]">
-                {userStats.learningTimeToday >= dailyLearningTimeRequired
-                  ? "Shiba Town tự hào về sự kiên trì của bạn hôm nay! 🐾"
-                  : `Học thêm ${Math.ceil((dailyLearningTimeRequired - userStats.learningTimeToday) / 60)} phút nữa để giúp Shiba vui lên nhé!`
+            {/* FLOATING CATEGORIES AROUND DIAL - CLICK OPENS THE CORRESPONDING MODAL */}
+            {/* 1. Bản tin (Top-Left) - Opens Daily Quests */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{ y: [0, -4, 0] }}
+              transition={{
+                y: {
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0
                 }
-              </p>
-            </div>
+              }}
+              onClick={() => setActiveModal("quests")}
+              className="absolute -top-2 -left-8 sm:-left-[54px] flex flex-col items-center gap-1 cursor-pointer z-20 group"
+            >
+              <div className="relative w-12 h-12 bg-gradient-to-br from-[#FFF8F2] to-[#FFEAD4] border-2 border-[#5C3A21] rounded-full flex items-center justify-center shadow-[0_4px_0_0_#FF9F1C] group-hover:shadow-[0_2px_0_0_#FF9F1C] group-hover:translate-y-[2px] transition-all duration-200">
+                <img src="/images/ui/icons/menu-quests.png" alt="Quest Scroll" className="w-8 h-8 object-contain" />
+
+                {/* Red/Orange Notification Dot if quest is complete and ready to claim */}
+                {hasUnclaimedQuest && (
+                  <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#FF7096] rounded-full animate-ping z-30" />
+                )}
+                {hasUnclaimedQuest && (
+                  <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#FF7096] border border-white rounded-full z-30 flex items-center justify-center text-[8px] text-white font-black">🎁</span>
+                )}
+              </div>
+              <span className="font-rounded font-black text-[9px] text-[#5C3A21] bg-[#FFF2E6] border border-orange-200 px-2 py-0.5 rounded-full shadow-sm group-hover:bg-orange-100 transition-colors">Bản tin</span>
+            </motion.div>
+
+            {/* 2. Kệ trưng bày (Top-Right) - Opens Achievements */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{ y: [0, -4, 0] }}
+              transition={{
+                y: {
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.4
+                }
+              }}
+              onClick={() => setActiveModal("achievements")}
+              className="absolute -top-2 -right-8 sm:-right-[54px] flex flex-col items-center gap-1 cursor-pointer z-20 group"
+            >
+              <div className="relative w-12 h-12 bg-gradient-to-br from-[#FFFDF2] to-[#FFF3C4] border-2 border-[#5C3A21] rounded-full flex items-center justify-center shadow-[0_4px_0_0_#D4AF37] group-hover:shadow-[0_2px_0_0_#D4AF37] group-hover:translate-y-[2px] transition-all duration-200">
+                <img src="/images/ui/icons/menu-achievements.png" alt="Achievements Trophy" className="w-8 h-8 object-contain" />
+              </div>
+              <span className="font-rounded font-black text-[9px] text-[#5C3A21] bg-[#FFF9F2] border border-amber-200 px-2 py-0.5 rounded-full shadow-sm group-hover:bg-amber-100 transition-colors">Kệ trưng bày</span>
+            </motion.div>
+
+            {/* 3. Nhật ký tuần (Bottom-Left) - Opens WeeklyLog */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{ y: [0, -4, 0] }}
+              transition={{
+                y: {
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.8
+                }
+              }}
+              onClick={() => setActiveModal("weekly")}
+              className="absolute -bottom-2 -left-8 sm:-left-[54px] flex flex-col items-center gap-1 cursor-pointer z-20 group"
+            >
+              <div className="relative w-12 h-12 bg-gradient-to-br from-[#FFF2F5] to-[#FFE0E7] border-2 border-[#5C3A21] rounded-full flex items-center justify-center shadow-[0_4px_0_0_#FF7096] group-hover:shadow-[0_2px_0_0_#FF7096] group-hover:translate-y-[2px] transition-all duration-200">
+                <img src="/images/ui/icons/menu-weekly.png" alt="Weekly Planner" className="w-8 h-8 object-contain" />
+              </div>
+              <span className="font-rounded font-black text-[9px] text-[#5C3A21] bg-[#FFF2F5] border border-pink-200 px-2 py-0.5 rounded-full shadow-sm group-hover:bg-pink-100 transition-colors">Nhật ký tuần</span>
+            </motion.div>
+
+            {/* 4. Hành trang (Bottom-Right) - Opens User Inventory */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{ y: [0, -4, 0] }}
+              transition={{
+                y: {
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.2
+                }
+              }}
+              onClick={() => setActiveModal("inventory")}
+              className="absolute -bottom-2 -right-8 sm:-right-[54px] flex flex-col items-center gap-1 cursor-pointer z-20 group"
+            >
+              <div className="relative w-12 h-12 bg-gradient-to-br from-[#F2F7FF] to-[#D4E6FF] border-2 border-[#5C3A21] rounded-full flex items-center justify-center shadow-[0_4px_0_0_#3B82F6] group-hover:shadow-[0_2px_0_0_#3B82F6] group-hover:translate-y-[2px] transition-all duration-200">
+                <img src="/images/ui/icons/menu-inventory.png" alt="Inventory Backpack" className="w-8 h-8 object-contain" />
+              </div>
+              <span className="font-rounded font-black text-[9px] text-[#5C3A21] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full shadow-sm group-hover:bg-blue-100 transition-colors">Hành trang</span>
+            </motion.div>
           </div>
         </div>
 
-        {/* KHỐI 4: ACHIEVEMENTS CARD (Bảng vàng thành tích - Kệ gỗ) */}
-        <div className="bg-[#FAF6EF] rounded-[2.5rem] p-6 border-4 border-[#D97706]/40 shadow-[0_8px_0_0_rgba(217,119,6,0.2)] flex flex-col gap-4 relative">
-          <div className="flex justify-between items-center mb-2">
-            <h3 className="text-xl text-amber-900" style={{ fontFamily: "var(--font-cherry)" }}>
-              Danh Hiệu
-            </h3>
-            <span className="font-rounded font-black text-xs text-amber-700/80 bg-amber-100/50 border border-amber-200 px-3 py-1 rounded-full">
-              {!isMetadataLoaded ? "Đang tải..." : `Đã đạt: ${achievements.filter((a) => a.condition).length}/${achievements.length}`}
+        {/* KHỐI 3: BẢNG THỐNG KÊ HỌC TẬP (Stats Summary Grid) */}
+        <div className="grid grid-cols-3 gap-3 w-full">
+          {/* Card 1: Tổng số thẻ đã học */}
+          <div className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-0.5 transition-transform hover:scale-[1.03] duration-200">
+            <span className="text-xl sm:text-2xl">📚</span>
+            <span className="font-rounded font-black text-[8px] sm:text-[9px] text-zinc-400 uppercase tracking-wider leading-none">ĐÃ HỌC</span>
+            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-1">
+              {userStats.totalLearned || 0} từ
             </span>
           </div>
 
-          {/* Danh sách danh hiệu xếp kệ gỗ */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-4 pb-2 relative z-10">
-            {!isMetadataLoaded ? (
-              // Skeleton loader cho danh hiệu
-              Array.from({ length: 6 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center justify-between p-3 rounded-2xl bg-white border-2 border-zinc-100 shadow-sm animate-pulse"
-                >
-                  <div className="w-16 h-16 rounded-full bg-zinc-200 border-4 border-white shadow-md" />
-                  <div className="h-4 w-20 bg-zinc-200 rounded mt-2.5" />
-                  <div className="h-3 w-16 bg-zinc-200 rounded mt-1.5" />
-                </div>
-              ))
-            ) : systemAchievements.length === 0 ? (
-              <div className="col-span-full py-8 text-center text-zinc-400 font-rounded font-bold text-sm">
-                Không có danh hiệu nào được cấu hình từ server!
-              </div>
-            ) : (
-              achievements.map((ach) => (
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  onClick={() => {
-                    toast(
-                      `${ach.title}: ${ach.desc}\nTiến độ: ${ach.progressText}`,
-                      {
-                        icon: ach.condition ? "🏆" : "🔒",
-                        duration: 3000
-                      }
-                    );
-                  }}
-                  key={ach.id}
-                  className={`flex flex-col items-center justify-between p-3 rounded-2xl bg-white border-2 border-[#FFE2D1]/60 shadow-sm cursor-pointer ${ach.condition
-                    ? "shadow-amber-100"
-                    : "grayscale opacity-50 contrast-75 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                    }`}
-                >
-                  {/* Badge image tròn */}
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center shadow-md border-4 border-white bg-zinc-50 relative overflow-hidden">
-                    <img
-                      src={ach.imageUrl || "/images/ui/badges/default.png"}
-                      alt={ach.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {ach.condition && (
-                      <span className="absolute -top-1 -right-1 bg-yellow-400 text-white rounded-full p-0.5 border border-white z-10">
-                        <Check size={10} strokeWidth={4} />
-                      </span>
-                    )}
-                  </div>
+          {/* Card 2: Số thẻ hôm nay */}
+          <div className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-0.5 transition-transform hover:scale-[1.03] duration-200">
+            <span className="text-xl sm:text-2xl">⚡</span>
+            <span className="font-rounded font-black text-[8px] sm:text-[9px] text-zinc-400 uppercase tracking-wider leading-none">HÔM NAY</span>
+            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-1">
+              {userStats.cardsFlippedToday || 0} thẻ
+            </span>
+          </div>
 
-                  <h4 className="font-rounded font-black text-xs text-zinc-700 text-center mt-2.5">
-                    {ach.title}
-                  </h4>
-                  <span className="font-rounded font-bold text-[9px] text-zinc-400 mt-1 bg-zinc-50 border border-zinc-100 px-2 py-0.5 rounded-full">
-                    {ach.progressText}
-                  </span>
-                </motion.div>
-              ))
-            )}
+          {/* Card 3: Hành trang */}
+          <div
+            className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-0.5 cursor-pointer transition-transform hover:scale-[1.03] active:scale-[0.98] duration-200"
+            onClick={() => setActiveModal("inventory")}
+          >
+            <span className="text-xl sm:text-2xl">🎒</span>
+            <span className="font-rounded font-black text-[8px] sm:text-[9px] text-zinc-400 uppercase tracking-wider leading-none">HÀNH TRANG</span>
+            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-1">
+              {userStats.inventory?.length || 0} món
+            </span>
           </div>
         </div>
       </div>
+
+      {/* OVERLAY SƯƠNG MÙ KHI CHƯA ĐĂNG NHẬP */}
       {!user && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-start pt-16 px-4">
           <ShibaLoginCard
             title="Thẻ Học Giả"
-            description="Đăng nhập cùng Shiba để theo dõi thời gian học, lưu streak học tập và tích lũy huy hiệu vinh danh nhé! 🐾🏆"
+            description="Đăng nhập cùng Shiba để theo dõi thời gian học, tích lũy huy hiệu vinh danh và lưu streak học tập mỗi ngày nhé! 🐾🏆"
             variant="roadmap"
             onHoverChange={setIsCardHovered}
           />
         </div>
       )}
+
+      {/* MODULAR MODALS */}
+      {/* 1. Daily Quests Modal */}
+      <DailyQuestsModal
+        isOpen={activeModal === "quests"}
+        onClose={() => setActiveModal(null)}
+        quests={userStats.dailyQuests?.quests || []}
+        claimQuestReward={claimQuestReward}
+        user={user}
+      />
+
+      {/* 2. Achievements Shelf Cabinet Modal */}
+      <AchievementsModal
+        isOpen={activeModal === "achievements"}
+        onClose={() => setActiveModal(null)}
+        shelfRows={shelfRows}
+        isMetadataLoaded={isMetadataLoaded}
+      />
+
+      {/* 3. Weekly Study Log Modal */}
+      <WeeklyLogModal
+        isOpen={activeModal === "weekly"}
+        onClose={() => setActiveModal(null)}
+        weekDays={weekDays}
+      />
+
+      {/* 4. User Inventory Modal */}
+      <InventoryModal
+        isOpen={activeModal === "inventory"}
+        onClose={() => setActiveModal(null)}
+        userInventoryItems={userInventoryItems}
+        isMetadataLoaded={isMetadataLoaded}
+      />
     </div>
   );
 }
-
