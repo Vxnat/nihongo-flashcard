@@ -8,9 +8,10 @@ import { doc, setDoc } from "firebase/firestore";
 
 interface LoadDefaultDecksBtnProps {
   onLoaded: () => void;
+  trigger?: React.ReactNode;
 }
 
-export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
+export function LoadDefaultDecksBtn({ onLoaded, trigger }: LoadDefaultDecksBtnProps) {
   const [dialogInfo, setDialogInfo] = useState<{
     isOpen: boolean;
     type: "success" | "warning" | "error";
@@ -144,20 +145,29 @@ export function LoadDefaultDecksBtn({ onLoaded }: LoadDefaultDecksBtnProps) {
   return (
     <>
       {/* NÚT BẤM CHÍNH */}
-      <button
-        onClick={handleLoad}
-        disabled={isLoading}
-        className="h-12 px-6 rounded-full bg-[#B28DFF] hover:bg-[#9E6EE6] text-white font-rounded font-black text-base border-b-4 border-[#8A56D6] active:border-b-0 active:translate-y-1 disabled:opacity-50 disabled:active:border-b-4 disabled:active:translate-y-0 transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
-      >
-        <span>🪄</span>{" "}
-        <span
-          style={{
-            fontFamily: "var(--font-cherry)",
-          }}
+      {trigger ? (
+        <div 
+          onClick={handleLoad} 
+          className={isLoading ? "pointer-events-none opacity-50" : "cursor-pointer"}
         >
-          {isLoading ? "Đang làm phép..." : "Triệu hồi bộ bài mẫu!"}
-        </span>
-      </button>
+          {trigger}
+        </div>
+      ) : (
+        <button
+          onClick={handleLoad}
+          disabled={isLoading}
+          className="h-12 px-6 rounded-full bg-[#B28DFF] hover:bg-[#9E6EE6] text-white font-rounded font-black text-base border-b-4 border-[#8A56D6] active:border-b-0 active:translate-y-1 disabled:opacity-50 disabled:active:border-b-4 disabled:active:translate-y-0 transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+        >
+          <span>🪄</span>{" "}
+          <span
+            style={{
+              fontFamily: "var(--font-cherry)",
+            }}
+          >
+            {isLoading ? "Đang làm phép..." : "Triệu hồi bộ bài mẫu!"}
+          </span>
+        </button>
+      )}
 
       {/* POPUP THÔNG BÁO CUTE */}
       <AnimatePresence>

@@ -24,7 +24,12 @@ import { useImportDeck } from "@/hooks/roadmap/useImportDeck";
 // Danh sách các cấp độ để render thành dãy nút kẹo dẻo
 const LEVELS = ["N5", "N4", "N3", "N2", "N1", "Khác"];
 
-export function ImportDeck() {
+interface ImportDeckProps {
+  trigger?: React.ReactNode;
+  hideDefaultTrigger?: boolean;
+}
+
+export function ImportDeck({ trigger, hideDefaultTrigger }: ImportDeckProps) {
   const {
     isOpen,
     status,
@@ -53,22 +58,37 @@ export function ImportDeck() {
     isDragActive,
     deckType,
     setDeckType,
+    targetFolderId,
+    setTargetFolderId,
   } = useImportDeck();
+
+  const PRESET_FOLDERS = [
+    { id: "vocab", name: "Từ vựng", iconPath: "/images/ui/custom_decks/folder-vocab.png" },
+    { id: "kanji", name: "Hán tự", iconPath: "/images/ui/custom_decks/folder-kanji.png" },
+    { id: "grammar", name: "Ngữ pháp", iconPath: "/images/ui/custom_decks/folder-grammar.png" },
+    { id: "other", name: "Khác", iconPath: "/images/ui/custom_decks/folder-other.png" },
+  ];
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogTrigger asChild>
-        {/* NÚT THÊM BỘ BÀI: DÍNH CẠNH PHẢI */}
-        <Button className="group relative h-16 pl-3.5 pr-3 rounded-l-2xl rounded-r-none bg-[#FF7096] hover:bg-[#FF5C8A] text-white border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all shadow-[-4px_4px_10px_rgba(0,0,0,0.1)] hover:shadow-[-6px_6px_15px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col items-center justify-center">
-          {/* Vệt sáng lướt qua khi di chuột (Shine effect) */}
-          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 transition-transform duration-700 ease-in-out pointer-events-none" />
+      {!hideDefaultTrigger && (
+        <DialogTrigger asChild>
+          {trigger ? (
+            trigger
+          ) : (
+            /* NÚT THÊM BỘ BÀI: DÍNH CẠNH PHẢI */
+            <Button className="group relative h-16 pl-3.5 pr-3 rounded-l-2xl rounded-r-none bg-[#FF7096] hover:bg-[#FF5C8A] text-white border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all shadow-[-4px_4px_10px_rgba(0,0,0,0.1)] hover:shadow-[-6px_6px_15px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col items-center justify-center">
+              {/* Vệt sáng lướt qua khi di chuột (Shine effect) */}
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 transition-transform duration-700 ease-in-out pointer-events-none" />
 
-          <Sparkles
-            className="w-5 h-5 drop-shadow-sm text-[#FFD166]"
-            fill="currentColor"
-          />
-        </Button>
-      </DialogTrigger>
+              <Sparkles
+                className="w-5 h-5 drop-shadow-sm text-[#FFD166]"
+                fill="currentColor"
+              />
+            </Button>
+          )}
+        </DialogTrigger>
+      )}
 
       <DialogContent
         aria-describedby={undefined}
@@ -144,16 +164,24 @@ export function ImportDeck() {
                 {!isTextInput ? (
                   <div
                     {...getRootProps()}
-                    className={`w-full p-8 flex flex-col items-center justify-center rounded-[1.5rem] border-4 border-dashed cursor-pointer transition-colors shrink-0 ${isDragActive ? "bg-[#06D6A0]/10 border-[#06D6A0]" : "bg-white border-[#FFE2D1] hover:bg-orange-50"}`}
+                    className={`w-full p-8 flex flex-col items-center justify-center rounded-[2rem] border-4 border-dashed cursor-pointer transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shrink-0 
+                    ${isDragActive 
+                      ? "bg-[#FFE2D1]/40 border-[#FF9F1C] shadow-[0_0_20px_rgba(255,159,28,0.15)]" 
+                      : "bg-white border-[#FFE2D1] hover:bg-orange-50/50 hover:border-[#FF9F1C]/40"}`}
                   >
                     <input {...getInputProps()} />
-                    <FileJson
-                      className={`w-12 h-12 mb-3 ${isDragActive ? "text-[#06D6A0]" : "text-orange-300"}`}
-                    />
-                    <p className="text-amber-800 text-sm font-bold text-center">
+                    <div className="w-20 h-20 rounded-full bg-[#FFE2D1]/30 flex items-center justify-center mb-3 border-2 border-dashed border-[#FF9F1C]/30 animate-pulse">
+                      <FileJson
+                        className={`w-10 h-10 transition-colors duration-300 ${isDragActive ? "text-[#FF9F1C] scale-110" : "text-orange-400"}`}
+                      />
+                    </div>
+                    <p className="text-amber-900 text-sm font-black text-center font-rounded" style={{ fontFamily: "var(--font-cherry)" }}>
                       {isDragActive
-                        ? "Thả kẹo vào đây!"
-                        : "Chạm hoặc kéo thả file vào đây nhé"}
+                        ? "Thả file vào đây! 🫳"
+                        : "Kéo thả file JSON ma thuật vào đây"}
+                    </p>
+                    <p className="text-[10px] text-amber-700/60 font-bold mt-1 text-center font-rounded">
+                      Hoặc chạm để duyệt file trong máy 📱
                     </p>
                   </div>
                 ) : (
@@ -289,6 +317,7 @@ export function ImportDeck() {
                         return (
                           <button
                             key={level}
+                            type="button"
                             onClick={() => setDeckLevel(level)}
                             className={`shrink-0 px-4 py-2 font-bold text-sm rounded-xl transition-all duration-200 border-2 
                             ${
@@ -317,7 +346,40 @@ export function ImportDeck() {
                     )}
                   </div>
 
-                  {/* 4. Nút Lưu bóp mềm */}
+                  {/* 4. Chọn Thư mục phân loại (Preset Folders) */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-amber-800 ml-2">
+                      Thư mục phân loại
+                    </label>
+                    <div className="flex overflow-x-auto gap-2 pb-2 hide-scrollbar w-full px-1">
+                      {PRESET_FOLDERS.map((folder) => {
+                        const isActive = targetFolderId === folder.id;
+                        return (
+                          <button
+                            key={folder.id}
+                            type="button"
+                            onClick={() => setTargetFolderId(folder.id)}
+                            className={`shrink-0 px-4 py-2 font-bold text-sm rounded-xl transition-all duration-200 border-2 flex items-center gap-1.5
+                            ${
+                              isActive
+                                ? "bg-[#FFE2D1] border-[#FF9F1C] text-amber-900 shadow-[0_3px_0_0_#FF9F1C] translate-y-[2px]"
+                                : "bg-white border-zinc-200 text-zinc-500 hover:bg-zinc-50 shadow-[0_5px_0_0_#E4E4E7]"
+                            }
+                          `}
+                          >
+                            <img
+                              src={folder.iconPath}
+                              className="w-6 h-6 object-contain mix-blend-multiply"
+                              alt={folder.name}
+                            />
+                            <span>{folder.name}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* 5. Nút Lưu bóp mềm */}
                   <Button
                     disabled={isSaving}
                     onClick={handleSaveDeck}

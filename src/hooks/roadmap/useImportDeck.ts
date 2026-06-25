@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import { FlashcardData } from "@/types/flashcard";
 import { useAppStore } from "@/store/useAppStore";
@@ -25,9 +25,21 @@ export function useImportDeck() {
   const [customLevel, setCustomLevel] = useState("");
   const [showAiHint, setShowAiHint] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [targetFolderId, setTargetFolderId] = useState<string>("vocab");
 
   const addCustomDeck = useAppStore((state) => state.addCustomDeck);
   const user = useAppStore((state: any) => state.user);
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener("open_import_deck", handleOpen);
+    return () => window.removeEventListener("open_import_deck", handleOpen);
+  }, []);
+
+  const handleSetDeckType = useCallback((type: "flashcard" | "kanji") => {
+    setDeckType(type);
+    setTargetFolderId(type === "kanji" ? "kanji" : "vocab");
+  }, []);
 
   const resetState = () => {
     setStatus("idle");
@@ -40,6 +52,7 @@ export function useImportDeck() {
     setCustomLevel("");
     setIsTextInput(false);
     setDeckType("flashcard");
+    setTargetFolderId("vocab");
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -117,6 +130,7 @@ export function useImportDeck() {
       type: deckType,
       createdAt: new Date().toISOString(),
       isCustom: true,
+      folderId: targetFolderId,
     };
 
     if (deckType === "kanji") {
@@ -175,6 +189,6 @@ export function useImportDeck() {
     setDeckDescription, deckLevel, setDeckLevel, customLevel, setCustomLevel,
     showAiHint, isSaving, handleOpenChange, handleTextSubmit, handleSaveDeck,
     handleDownloadSample, getRootProps, getInputProps, isDragActive,
-    deckType, setDeckType
+    deckType, setDeckType: handleSetDeckType, targetFolderId, setTargetFolderId
   };
 }
