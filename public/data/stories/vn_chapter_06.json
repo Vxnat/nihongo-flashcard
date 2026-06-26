@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "id": "vn_chapter_06",
+    "title": "Mua quà lưu niệm ở Harajuku",
+    "level": "N5",
+    "rewardCoins": 20
+  },
+  "characters": {
+    "mascot": {
+      "name": "Shiba",
+      "color": "#FF9F1C",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/shiba_idle.png"
+      }
+    },
+    "stranger": {
+      "name": "Cỏ",
+      "color": "#06D6A0",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/stranger_idle.png"
+      }
+    },
+    "npc_you": {
+      "name": "Tú",
+      "color": "#0077B6",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/programmer_idle.png"
+      }
+    },
+    "npc_an": {
+      "name": "An",
+      "color": "#FFC2D1",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/an_happy.png"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "node_001",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "An ơi, hôm nay Harajuku đông vui ghê. Cậu có muốn mua gì ở đây không?",
+        "vi": "An ơi, hôm nay Harajuku đông vui ghê. Cậu có muốn mua gì ở đây không?"
+      },
+      "interactableWords": [],
+      "nextNode": "node_002"
+    },
+    {
+      "id": "node_002",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Ưm, mình muốn xem mấy món đồ lưu niệm xinh xinh. Nhưng trước hết, mình phải tìm ATM để rút tiền đã. お金をおろさなければなりません。",
+        "vi": "Ưm, mình muốn xem mấy món đồ lưu niệm xinh xinh. Nhưng trước hết, mình phải tìm ATM để rút tiền đã. Mình bắt buộc phải rút tiền mà."
+      },
+      "interactableWords": [
+        {
+          "word": "なければなりません",
+          "reading": "なければなりません",
+          "meaning": "Bắt buộc phải làm (Lesson 17)",
+          "id": "word_nakereba_01"
+        }
+      ],
+      "nextNode": "node_003"
+    },
+    {
+      "id": "node_003",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Kìa Shiba, anh Tú đang ga lăng dẫn chị An đi tìm ATM kìa. Trông họ hợp đôi ghê.",
+        "vi": "Kìa Shiba, anh Tú đang ga lăng dẫn chị An đi tìm ATM kìa. Trông họ hợp đôi ghê."
+      },
+      "interactableWords": [],
+      "nextNode": "node_004"
+    },
+    {
+      "id": "node_004",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Suỵt! Đi theo xem thôi. Mà đố Cỏ biết sở thích của chị An là gì đấy?",
+        "vi": "Suỵt! Đi theo xem thôi. Mà đố Cỏ biết sở thích của chị An là gì đấy?"
+      },
+      "interactableWords": [],
+      "nextNode": "node_005"
+    },
+    {
+      "id": "node_005",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "An này, sở thích của em là gì thế? Đố em dùng cấu trúc sở thích với động từ thể nguyên dạng (V-ru koto desu) để trả lời đấy!",
+        "vi": "An này, sở thích của em là gì thế? Đố em dùng cấu trúc sở thích với động từ thể nguyên dạng (V-ru koto desu) để trả lời đấy!"
+      },
+      "interactableWords": [
+        {
+          "word": "趣味",
+          "reading": "しゅみ",
+          "meaning": "Sở thích",
+          "id": "word_shumi_01"
+        }
+      ],
+      "nextNode": "node_006"
+    },
+    {
+      "id": "node_006",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Để em xem... Cấu trúc đúng để nói 'Sở thích của em là chụp ảnh' sẽ là gì nhỉ?",
+        "vi": "Để em xem... Cấu trúc đúng để nói 'Sở thích của em là chụp ảnh' sẽ là gì nhỉ?"
+      },
+      "interactableWords": [],
+      "choices": [
+        {
+          "text": "私の趣味は写真を撮るです。",
+          "isCorrect": false,
+          "nextNode": "node_007_wrong"
+        },
+        {
+          "text": "私の趣味は写真を撮ることです。",
+          "isCorrect": true,
+          "nextNode": "node_007_correct"
+        }
+      ]
+    },
+    {
+      "id": "node_007_wrong",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Sai rồi nha! Khi nói về sở thích bằng động từ, bắt buộc phải danh từ hóa động từ bằng cách thêm こと (koto) vào sau thể nguyên dạng nhé!",
+        "vi": "Sai rồi nha! Khi nói về sở thích bằng động từ, bắt buộc phải danh từ hóa động từ bằng cách thêm こと (koto) vào sau thể nguyên dạng nhé!"
+      },
+      "interactableWords": [],
+      "nextNode": "node_006"
+    },
+    {
+      "id": "node_007_correct",
+      "characterId": "npc_you",
+      "emotion": "happy",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Quá chuẩn luôn! 趣味は写真を撮ることですね。Thế thì anh sẽ tặng em chiếc máy ảnh polaroid mini này nhé!",
+        "vi": "Quá chuẩn luôn! Sở thích là chụp ảnh đúng không. Thế thì anh sẽ tặng em chiếc máy ảnh polaroid mini này nhé!"
+      },
+      "interactableWords": [
+        {
+          "word": "写真",
+          "reading": "しゃしん",
+          "meaning": "Bức ảnh",
+          "id": "word_shashin_01"
+        },
+        {
+          "word": "撮る",
+          "reading": "とる",
+          "meaning": "Chụp (ảnh)",
+          "id": "word_toru_01"
+        }
+      ],
+      "nextNode": "node_008"
+    },
+    {
+      "id": "node_008",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_airport.jpg",
+      "dialogue": {
+        "jp": "Oa, dễ thương quá! Cảm ơn anh Tú nhiều nha! Em thích lắm.",
+        "vi": "Oa, dễ thương quá! Cảm ơn anh Tú nhiều nha! Em thích lắm."
+      },
+      "interactableWords": [],
+      "nextNode": "END_STORY"
+    }
+  ]
+}

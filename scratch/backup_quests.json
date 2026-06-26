@@ -1,0 +1,29 @@
+[
+  {
+    "id": "q_combo",
+    "progress": 0,
+    "title": "Đạt Combo x5",
+    "target": 5,
+    "reward": 2,
+    "isCompleted": false,
+    "isClaimed": false
+  },
+  {
+    "id": "q_flip",
+    "progress": 0,
+    "title": "Lật 10 thẻ bài",
+    "isCompleted": false,
+    "target": 10,
+    "reward": 2,
+    "isClaimed": false
+  },
+  {
+    "id": "q_time",
+    "progress": 0,
+    "title": "Học 5 phút",
+    "isCompleted": false,
+    "reward": 1,
+    "target": 300,
+    "isClaimed": false
+  }
+]

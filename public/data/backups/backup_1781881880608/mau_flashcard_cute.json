@@ -1,0 +1,27 @@
+[
+  {
+    "id": "n5-001",
+    "word": "食べる",
+    "reading": "たべる",
+    "romaji": "taberu",
+    "meaning": "Ăn",
+    "pos": "verb_transitive",
+    "pitch_accent": "atamadaka",
+    "example_jp": "私はりんごを食べる。",
+    "example_jp_formatted": "[私]{わたし}はりんごを[食]{た}べる。",
+    "example_vi": "Tôi ăn táo.",
+    "level": "N5",
+    "tags": ["từ-vựng-cơ-bản", "động-từ"],
+    "notes": "Động từ nhóm 2.",
+    "synonyms": ["食事する"],
+    "antonyms": [],
+    "kanji_info": [
+      {
+        "kanji": "食",
+        "meaning": "thực (ăn)",
+        "onyomi": "ショク",
+        "kunyomi": "た.べる"
+      }
+    ]
+  }
+]

@@ -173,3 +173,167 @@
     @apply font-sans;
   }
 }
+
+/* ==========================================
+   THEME STYLES (Sakura, Lofi Night, Divine)
+   ========================================== */
+
+.app-bg {
+  background-color: var(--app-bg-color, #FFFDF5);
+  background-image: 
+    linear-gradient(var(--app-bg-grid, #F3E2C6) 2px, transparent 2px),
+    linear-gradient(90deg, var(--app-bg-grid, #F3E2C6) 2px, transparent 2px);
+  background-size: 36px 36px;
+  transition: background-color 0.5s ease, background-image 0.5s ease;
+}
+
+.theme-sakura {
+  --background: #FFF5F7;
+  --foreground: #4A1E27;
+  --card: #FFFFFF;
+  --card-foreground: #4A1E27;
+  --primary: #FF7096;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FFDEE7;
+  --secondary-foreground: #C7486B;
+  --border: #FFD6E0;
+  --input: #FFD6E0;
+  --ring: #FF7096;
+  --app-bg-color: #FFF5F7;
+  --app-bg-grid: #FFD6E0;
+}
+.theme-sakura .text-\[\#FF7096\] {
+  color: var(--primary) !important;
+}
+.theme-sakura .text-zinc-900,
+.theme-sakura .text-zinc-800,
+.theme-sakura .text-zinc-700 {
+  color: var(--foreground) !important;
+}
+.theme-sakura .text-zinc-600,
+.theme-sakura .text-zinc-500 {
+  color: #C7486B !important;
+}
+.theme-sakura .border-zinc-200,
+.theme-sakura .border-zinc-300,
+.theme-sakura .border-zinc-200\/60,
+.theme-sakura .border-zinc-100 {
+  border-color: var(--border) !important;
+}
+.theme-sakura .bg-\[\#FFFDF5\],
+.theme-sakura .bg-\[\#FAF7F2\] {
+  background-color: var(--background) !important;
+}
+.theme-sakura .fixed.bottom-4 > div,
+.theme-sakura .fixed.bottom-6 > div {
+  background-color: rgba(255, 245, 247, 0.95) !important;
+  border-color: #FFD6E0 !important;
+  box-shadow: 0 6px 0 0 #FFD6E0 !important;
+}
+
+
+.theme-divine {
+  --background: #FFFDF2;
+  --foreground: #4D3A1B;
+  --card: #FFFFFF;
+  --card-foreground: #4D3A1B;
+  --primary: #D4AF37;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FDF6D6;
+  --secondary-foreground: #9E7815;
+  --border: #F1E3B8;
+  --input: #F1E3B8;
+  --ring: #D4AF37;
+  --app-bg-color: #FFFDF2;
+  --app-bg-grid: #F1E3B8;
+}
+.theme-divine .text-\[\#FF7096\] {
+  color: var(--primary) !important;
+}
+.theme-divine .text-zinc-900,
+.theme-divine .text-zinc-800,
+.theme-divine .text-zinc-700 {
+  color: var(--foreground) !important;
+}
+.theme-divine .text-zinc-600,
+.theme-divine .text-zinc-500 {
+  color: #9E7815 !important;
+}
+.theme-divine .border-zinc-200,
+.theme-divine .border-zinc-300,
+.theme-divine .border-zinc-200\/60,
+.theme-divine .border-zinc-100 {
+  border-color: var(--border) !important;
+}
+.theme-divine .bg-\[\#FFFDF5\],
+.theme-divine .bg-\[\#FAF7F2\] {
+  background-color: var(--background) !important;
+}
+.theme-divine .fixed.bottom-4 > div,
+.theme-divine .fixed.bottom-6 > div {
+  background-color: rgba(255, 253, 242, 0.95) !important;
+  border-color: #F1E3B8 !important;
+  box-shadow: 0 6px 0 0 #F1E3B8 !important;
+}
+
+/* ==========================================================
+   RARE ITEM CARD ROTATING GLOW EFFECT
+   ========================================================== */
+@keyframes rotate-glow {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.rare-glow-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.rare-glow-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 35%,
+    var(--glow-color, #FBBF24) 50%,
+    transparent 65%,
+    transparent 100%
+  );
+  animation: rotate-glow 4s linear infinite;
+  z-index: -2;
+  transform: translate(-50%, -50%);
+}
+
+.rare-glow-card::after {
+  content: '';
+  position: absolute;
+  inset: 2.5px; /* border thickness */
+  background: var(--card, #FFFFFF);
+  border-radius: 14px; /* matches outer rounded-2xl (16px) */
+  z-index: -1;
+  transition: background-color 0.3s ease;
+}
+
+/* Fallbacks for themes if CSS variables are not parsed */
+.theme-sakura .rare-glow-card::after {
+  background: #FFFFFF !important;
+}
+.theme-divine .rare-glow-card::after {
+  background: #FFFFFF !important;
+}
+.rare-glow-card > * {
+  position: relative;
+  z-index: 1;
+}

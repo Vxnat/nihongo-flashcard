@@ -1,0 +1,1326 @@
+[
+{
+"id": "sys_n5_minna_23_001",
+"word": "時",
+"reading": "とき",
+"romaji": "toki",
+"meaning": "Khi, lúc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "暇な時、本を読みます。",
+"example_jp_formatted": "[暇]{ひま}な[時]{とき}、[本]{ほん}を[読]{よ}みます。",
+"example_vi": "Khi rảnh tôi đọc sách.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thời-gian", "bài-23"],
+"notes": "Dùng để chỉ thời điểm xảy ra hành động hoặc trạng thái.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "暇",
+"meaning": "rảnh rỗi",
+"onyomi": "カ",
+"kunyomi": "ひま"
+},
+{
+"kanji": "時",
+"meaning": "thời gian, lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "本",
+"meaning": "sách",
+"onyomi": "ホン",
+"kunyomi": "もと"
+},
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_002",
+"word": "～と",
+"reading": "と",
+"romaji": "to",
+"meaning": "Hễ... thì..., cứ... là...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "春になると暖かくなります。",
+"example_jp_formatted": "[春]{はる}になると[暖]{あたた}かくなります。",
+"example_vi": "Cứ đến mùa xuân thì trời trở nên ấm áp.",
+"level": "N5",
+"tags": ["ngữ-pháp", "điều-kiện", "bài-23"],
+"notes": "Dùng cho quy luật tự nhiên hoặc kết quả tất yếu.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "春",
+"meaning": "mùa xuân",
+"onyomi": "シュン",
+"kunyomi": "はる"
+},
+{
+"kanji": "暖",
+"meaning": "ấm áp",
+"onyomi": "ダン",
+"kunyomi": "あたた.かい"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_003",
+"word": "帰る時",
+"reading": "かえるとき",
+"romaji": "kaeru toki",
+"meaning": "Khi về nhà",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "家へ帰る時、駅で買い物をしました。",
+"example_jp_formatted": "[家]{いえ}へ[帰]{かえ}る[時]{とき}、[駅]{えき}で[買]{か}い[物]{もの}をしました。",
+"example_vi": "Khi về nhà, tôi đã mua sắm ở nhà ga.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thời-gian", "bài-23"],
+"notes": "Động từ thể từ điển + 時 (hành động chưa xảy ra tại thời điểm đó).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "家",
+"meaning": "nhà",
+"onyomi": "カ",
+"kunyomi": "いえ"
+},
+{
+"kanji": "帰",
+"meaning": "về",
+"onyomi": "キ",
+"kunyomi": "かえ.る"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "駅",
+"meaning": "nhà ga",
+"onyomi": "エキ",
+"kunyomi": ""
+},
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+},
+{
+"kanji": "物",
+"meaning": "vật",
+"onyomi": "ブツ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_004",
+"word": "来た時",
+"reading": "きたとき",
+"romaji": "kita toki",
+"meaning": "Khi đã đến",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "日本へ来た時、寿司を食べました。",
+"example_jp_formatted": "[日本]{にほん}へ[来]{き}た[時]{とき}、[寿司]{すし}を[食]{た}べました。",
+"example_vi": "Khi tôi đến Nhật Bản, tôi đã ăn sushi.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thời-gian", "bài-23"],
+"notes": "Động từ thể Ta + 時 (hành động đã xảy ra).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニホン",
+"kunyomi": ""
+},
+{
+"kanji": "来",
+"meaning": "đến",
+"onyomi": "ライ",
+"kunyomi": "く.る"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "寿司",
+"meaning": "sushi",
+"onyomi": "スシ",
+"kunyomi": ""
+},
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_005",
+"word": "寂しい時",
+"reading": "さびしいとき",
+"romaji": "sabishii toki",
+"meaning": "Khi buồn/cô đơn",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "寂しい時、友達に電話します。",
+"example_jp_formatted": "[寂]{さび}しい[時]{とき}、[友達]{ともだち}に[電話]{でんわ}します。",
+"example_vi": "Khi buồn tôi gọi điện cho bạn.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thời-gian", "bài-23"],
+"notes": "Tính từ đuôi い + 時.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "寂",
+"meaning": "buồn, cô đơn",
+"onyomi": "ジャク",
+"kunyomi": "さび.しい"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "友達",
+"meaning": "bạn",
+"onyomi": "トモダチ",
+"kunyomi": ""
+},
+{
+"kanji": "電話",
+"meaning": "điện thoại",
+"onyomi": "デンワ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_006",
+"word": "暇な時",
+"reading": "ひまなとき",
+"romaji": "hima na toki",
+"meaning": "Khi rảnh",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "暇な時、音楽を聞きます。",
+"example_jp_formatted": "[暇]{ひま}な[時]{とき}、[音楽]{おんがく}を[聞]{き}きます。",
+"example_vi": "Khi rảnh tôi nghe nhạc.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thời-gian", "bài-23"],
+"notes": "Tính từ đuôi な + 時.",
+"synonyms": [],
+"antonyms": ["忙しい時"],
+"kanji_info": [
+{
+"kanji": "暇",
+"meaning": "rảnh",
+"onyomi": "カ",
+"kunyomi": "ひま"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "音楽",
+"meaning": "âm nhạc",
+"onyomi": "オンガク",
+"kunyomi": ""
+},
+{
+"kanji": "聞",
+"meaning": "nghe",
+"onyomi": "ブン",
+"kunyomi": "き.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_007",
+"word": "子供の時",
+"reading": "こどものとき",
+"romaji": "kodomo no toki",
+"meaning": "Khi còn nhỏ",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "子供の時、よく公園で遊びました。",
+"example_jp_formatted": "[子供]{こども}の[時]{とき}、よく[公園]{こうえん}で[遊]{あそ}びました。",
+"example_vi": "Khi còn nhỏ, tôi thường chơi ở công viên.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thời-gian", "bài-23"],
+"notes": "Danh từ + の + 時.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "子供",
+"meaning": "trẻ con",
+"onyomi": "コドモ",
+"kunyomi": ""
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "公園",
+"meaning": "công viên",
+"onyomi": "コウエン",
+"kunyomi": ""
+},
+{
+"kanji": "遊",
+"meaning": "chơi",
+"onyomi": "ユウ",
+"kunyomi": "あそ.ぶ"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_008",
+"word": "押すと",
+"reading": "おすと",
+"romaji": "osu to",
+"meaning": "Hễ ấn thì...",
+"pos": "grammar",
+"pitch_accent": "nakadaka",
+"example_jp": "このボタンを押すと、ドアが開きます。",
+"example_jp_formatted": "このボタンを[押]{お}すと、ドアが[開]{あ}きます。",
+"example_vi": "Hễ ấn nút này thì cửa sẽ mở.",
+"level": "N5",
+"tags": ["ngữ-pháp", "điều-kiện", "bài-23"],
+"notes": "V-dict + と (kết quả tất yếu).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "押",
+"meaning": "ấn, đẩy",
+"onyomi": "オウ",
+"kunyomi": "お.す"
+},
+{
+"kanji": "開",
+"meaning": "mở",
+"onyomi": "カイ",
+"kunyomi": "あ.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_009",
+"word": "曲がると",
+"reading": "まがると",
+"romaji": "magaru to",
+"meaning": "Hễ rẽ thì...",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "右へ曲がると、郵便局があります。",
+"example_jp_formatted": "[右]{みぎ}へ[曲]{ま}がると、[郵便局]{ゆうびんきょく}があります。",
+"example_vi": "Hễ rẽ phải thì có bưu điện.",
+"level": "N5",
+"tags": ["ngữ-pháp", "điều-kiện", "bài-23"],
+"notes": "V-dict + と.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "右",
+"meaning": "phải",
+"onyomi": "ウ",
+"kunyomi": "みぎ"
+},
+{
+"kanji": "曲",
+"meaning": "rẽ",
+"onyomi": "キョク",
+"kunyomi": "ま.がる"
+},
+{
+"kanji": "郵便局",
+"meaning": "bưu điện",
+"onyomi": "ユウビンキョク",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_010",
+"word": "開けると",
+"reading": "あけると",
+"romaji": "akeru to",
+"meaning": "Hễ mở thì...",
+"pos": "grammar",
+"pitch_accent": "nakadaka",
+"example_jp": "窓を開けると、風が入ります。",
+"example_jp_formatted": "[窓]{まど}を[開]{あ}けると、[風]{かぜ}が[入]{はい}ります。",
+"example_vi": "Hễ mở cửa sổ thì gió sẽ vào.",
+"level": "N5",
+"tags": ["ngữ-pháp", "điều-kiện", "bài-23"],
+"notes": "V-dict + と.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "窓",
+"meaning": "cửa sổ",
+"onyomi": "ソウ",
+"kunyomi": "まど"
+},
+{
+"kanji": "開",
+"meaning": "mở",
+"onyomi": "カイ",
+"kunyomi": "あ.ける"
+},
+{
+"kanji": "風",
+"meaning": "gió",
+"onyomi": "フウ",
+"kunyomi": "かぜ"
+},
+{
+"kanji": "入",
+"meaning": "vào",
+"onyomi": "ニュウ",
+"kunyomi": "はい.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_011",
+"word": "春",
+"reading": "はる",
+"romaji": "haru",
+"meaning": "Mùa xuân",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "春になると、花が咲きます。",
+"example_jp_formatted": "[春]{はる}になると、[花]{はな}が[咲]{さ}きます。",
+"example_vi": "Cứ đến mùa xuân thì hoa nở.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "春",
+"meaning": "mùa xuân",
+"onyomi": "シュン",
+"kunyomi": "はる"
+},
+{
+"kanji": "花",
+"meaning": "hoa",
+"onyomi": "カ",
+"kunyomi": "はな"
+},
+{
+"kanji": "咲",
+"meaning": "nở",
+"onyomi": "ショウ",
+"kunyomi": "さ.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_012",
+"word": "夏",
+"reading": "なつ",
+"romaji": "natsu",
+"meaning": "Mùa hè",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "夏はとても暑いです。",
+"example_jp_formatted": "[夏]{なつ}はとても[暑]{あつ}いです。",
+"example_vi": "Mùa hè rất nóng.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "夏",
+"meaning": "mùa hè",
+"onyomi": "カ",
+"kunyomi": "なつ"
+},
+{
+"kanji": "暑",
+"meaning": "nóng",
+"onyomi": "ショ",
+"kunyomi": "あつ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_013",
+"word": "秋",
+"reading": "あき",
+"romaji": "aki",
+"meaning": "Mùa thu",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "秋になると、紅葉が綺麗です。",
+"example_jp_formatted": "[秋]{あき}になると、[紅葉]{こうよう}が[綺麗]{きれい}です。",
+"example_vi": "Cứ đến mùa thu thì lá đỏ rất đẹp.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "秋",
+"meaning": "mùa thu",
+"onyomi": "シュウ",
+"kunyomi": "あき"
+},
+{
+"kanji": "紅葉",
+"meaning": "lá đỏ",
+"onyomi": "コウヨウ",
+"kunyomi": ""
+},
+{
+"kanji": "綺麗",
+"meaning": "đẹp",
+"onyomi": "キレイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_014",
+"word": "冬",
+"reading": "ふゆ",
+"romaji": "fuyu",
+"meaning": "Mùa đông",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "冬は雪が降ります。",
+"example_jp_formatted": "[冬]{ふゆ}は[雪]{ゆき}が[降]{ふ}ります。",
+"example_vi": "Mùa đông thì tuyết rơi.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "冬",
+"meaning": "mùa đông",
+"onyomi": "トウ",
+"kunyomi": "ふゆ"
+},
+{
+"kanji": "雪",
+"meaning": "tuyết",
+"onyomi": "セツ",
+"kunyomi": "ゆき"
+},
+{
+"kanji": "降",
+"meaning": "rơi",
+"onyomi": "コウ",
+"kunyomi": "ふ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_015",
+"word": "天気",
+"reading": "てんき",
+"romaji": "tenki",
+"meaning": "Thời tiết",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "天気がいい時、散歩します。",
+"example_jp_formatted": "[天気]{てんき}がいい[時]{とき}、[散歩]{さんぽ}します。",
+"example_vi": "Khi thời tiết tốt tôi đi dạo.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "天気",
+"meaning": "thời tiết",
+"onyomi": "テンキ",
+"kunyomi": ""
+},
+{
+"kanji": "散歩",
+"meaning": "đi dạo",
+"onyomi": "サンポ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_016",
+"word": "雨",
+"reading": "あめ",
+"romaji": "ame",
+"meaning": "Mưa",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "雨が降る時、傘をさします。",
+"example_jp_formatted": "[雨]{あめ}が[降]{ふ}る[時]{とき}、[傘]{かさ}をさします。",
+"example_vi": "Khi mưa tôi che ô.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "雨",
+"meaning": "mưa",
+"onyomi": "ウ",
+"kunyomi": "あめ"
+},
+{
+"kanji": "降",
+"meaning": "rơi",
+"onyomi": "コウ",
+"kunyomi": "ふ.る"
+},
+{
+"kanji": "傘",
+"meaning": "ô",
+"onyomi": "サン",
+"kunyomi": "かさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_017",
+"word": "寂しい",
+"reading": "さびしい",
+"romaji": "sabishii",
+"meaning": "Buồn, cô đơn",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "寂しい時、猫と遊びます。",
+"example_jp_formatted": "[寂]{さび}しい[時]{とき}、[猫]{ねこ}と[遊]{あそ}びます。",
+"example_vi": "Khi buồn tôi chơi với mèo.",
+"level": "N5",
+"tags": ["tính-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "寂",
+"meaning": "buồn",
+"onyomi": "ジャク",
+"kunyomi": "さび.しい"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "猫",
+"meaning": "mèo",
+"onyomi": "ビョウ",
+"kunyomi": "ねこ"
+},
+{
+"kanji": "遊",
+"meaning": "chơi",
+"onyomi": "ユウ",
+"kunyomi": "あそ.ぶ"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_018",
+"word": "暇",
+"reading": "ひま",
+"romaji": "hima",
+"meaning": "Rảnh rỗi",
+"pos": "na_adjective",
+"pitch_accent": "heiban",
+"example_jp": "暇な時、映画を見ます。",
+"example_jp_formatted": "[暇]{ひま}な[時]{とき}、[映画]{えいが}を[見]{み}ます。",
+"example_vi": "Khi rảnh tôi xem phim.",
+"level": "N5",
+"tags": ["tính-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["忙しい"],
+"kanji_info": [
+{
+"kanji": "暇",
+"meaning": "rảnh",
+"onyomi": "カ",
+"kunyomi": "ひま"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "映画",
+"meaning": "phim",
+"onyomi": "エイガ",
+"kunyomi": ""
+},
+{
+"kanji": "見",
+"meaning": "xem",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_019",
+"word": "帰ります",
+"reading": "かえります",
+"romaji": "kaerimasu",
+"meaning": "Về",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "帰る時、電話します。",
+"example_jp_formatted": "[帰]{かえ}る[時]{とき}、[電話]{でんわ}します。",
+"example_vi": "Khi về, tôi sẽ gọi điện.",
+"level": "N5",
+"tags": ["động-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "帰",
+"meaning": "về",
+"onyomi": "キ",
+"kunyomi": "かえ.る"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "電話",
+"meaning": "điện thoại",
+"onyomi": "デンワ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_020",
+"word": "来ます",
+"reading": "きます",
+"romaji": "kimasu",
+"meaning": "Đến",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "日本へ来た時、嬉しかったです。",
+"example_jp_formatted": "[日本]{にほん}へ[来]{き}た[時]{とき}、[嬉]{うれ}しかったです。",
+"example_vi": "Khi đến Nhật Bản, tôi đã rất vui.",
+"level": "N5",
+"tags": ["động-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["帰ります"],
+"kanji_info": [
+{
+"kanji": "日本",
+"meaning": "Nhật Bản",
+"onyomi": "ニホン",
+"kunyomi": ""
+},
+{
+"kanji": "来",
+"meaning": "đến",
+"onyomi": "ライ",
+"kunyomi": "く.る"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "嬉",
+"meaning": "vui",
+"onyomi": "キ",
+"kunyomi": "うれ.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_021",
+"word": "押します",
+"reading": "おします",
+"romaji": "oshimasu",
+"meaning": "Ấn, đẩy",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "このボタンを押すと、電気がつきます。",
+"example_jp_formatted": "このボタンを[押]{お}すと、[電気]{でんき}がつきます。",
+"example_vi": "Hễ ấn nút này thì đèn sẽ bật.",
+"level": "N5",
+"tags": ["động-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["引きます"],
+"kanji_info": [
+{
+"kanji": "押",
+"meaning": "ấn",
+"onyomi": "オウ",
+"kunyomi": "お.す"
+},
+{
+"kanji": "電気",
+"meaning": "điện/đèn",
+"onyomi": "デンキ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_022",
+"word": "曲がります",
+"reading": "まがります",
+"romaji": "magarimasu",
+"meaning": "Rẽ",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "ここを曲がると、公園があります。",
+"example_jp_formatted": "ここを[曲]{ま}がると、[公園]{こうえん}があります。",
+"example_vi": "Hễ rẽ ở đây thì có công viên.",
+"level": "N5",
+"tags": ["động-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "曲",
+"meaning": "rẽ",
+"onyomi": "キョク",
+"kunyomi": "ま.がる"
+},
+{
+"kanji": "公園",
+"meaning": "công viên",
+"onyomi": "コウエン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_023",
+"word": "開けます",
+"reading": "あけます",
+"romaji": "akemasu",
+"meaning": "Mở",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "窓を開けると、涼しいです。",
+"example_jp_formatted": "[窓]{まど}を[開]{あ}けると、[涼]{すず}しいです。",
+"example_vi": "Hễ mở cửa sổ thì mát.",
+"level": "N5",
+"tags": ["động-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["閉めます"],
+"kanji_info": [
+{
+"kanji": "窓",
+"meaning": "cửa sổ",
+"onyomi": "ソウ",
+"kunyomi": "まど"
+},
+{
+"kanji": "開",
+"meaning": "mở",
+"onyomi": "カイ",
+"kunyomi": "あ.ける"
+},
+{
+"kanji": "涼",
+"meaning": "mát",
+"onyomi": "リョウ",
+"kunyomi": "すず.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_024",
+"word": "右",
+"reading": "みぎ",
+"romaji": "migi",
+"meaning": "Phải",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "右へ曲がってください。",
+"example_jp_formatted": "[右]{みぎ}へ[曲]{ま}がってください。",
+"example_vi": "Hãy rẽ phải.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["左"],
+"kanji_info": [
+{
+"kanji": "右",
+"meaning": "phải",
+"onyomi": "ウ",
+"kunyomi": "みぎ"
+},
+{
+"kanji": "曲",
+"meaning": "rẽ",
+"onyomi": "キョク",
+"kunyomi": "ま.がる"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_025",
+"word": "左",
+"reading": "ひだり",
+"romaji": "hidari",
+"meaning": "Trái",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "左へ行くと、図書館があります。",
+"example_jp_formatted": "[左]{ひだり}へ[行]{い}くと、[図書館]{としょかん}があります。",
+"example_vi": "Hễ đi về phía trái thì có thư viện.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["右"],
+"kanji_info": [
+{
+"kanji": "左",
+"meaning": "trái",
+"onyomi": "サ",
+"kunyomi": "ひだり"
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+},
+{
+"kanji": "図書館",
+"meaning": "thư viện",
+"onyomi": "トショカン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_026",
+"word": "窓",
+"reading": "まど",
+"romaji": "mado",
+"meaning": "Cửa sổ",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "窓を開けると、外が見えます。",
+"example_jp_formatted": "[窓]{まど}を[開]{あ}けると、[外]{そと}が[見]{み}えます。",
+"example_vi": "Hễ mở cửa sổ thì có thể nhìn thấy bên ngoài.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "窓",
+"meaning": "cửa sổ",
+"onyomi": "ソウ",
+"kunyomi": "まど"
+},
+{
+"kanji": "開",
+"meaning": "mở",
+"onyomi": "カイ",
+"kunyomi": "あ.ける"
+},
+{
+"kanji": "外",
+"meaning": "bên ngoài",
+"onyomi": "ガイ",
+"kunyomi": "そと"
+},
+{
+"kanji": "見",
+"meaning": "nhìn",
+"onyomi": "ケン",
+"kunyomi": "み.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_027",
+"word": "駅",
+"reading": "えき",
+"romaji": "eki",
+"meaning": "Nhà ga",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "駅に着くと、友達が待っていました。",
+"example_jp_formatted": "[駅]{えき}に[着]{つ}くと、[友達]{ともだち}が[待]{ま}っていました。",
+"example_vi": "Khi đến nhà ga thì bạn đã đợi sẵn.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "駅",
+"meaning": "nhà ga",
+"onyomi": "エキ",
+"kunyomi": ""
+},
+{
+"kanji": "着",
+"meaning": "đến",
+"onyomi": "チャク",
+"kunyomi": "つ.く"
+},
+{
+"kanji": "友達",
+"meaning": "bạn",
+"onyomi": "トモダチ",
+"kunyomi": ""
+},
+{
+"kanji": "待",
+"meaning": "đợi",
+"onyomi": "タイ",
+"kunyomi": "ま.つ"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_028",
+"word": "会社",
+"reading": "かいしゃ",
+"romaji": "kaisha",
+"meaning": "Công ty",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "会社へ行く時、電車に乗ります。",
+"example_jp_formatted": "[会社]{かいしゃ}へ[行]{い}く[時]{とき}、[電車]{でんしゃ}に[乗]{の}ります。",
+"example_vi": "Khi đi công ty tôi đi tàu điện.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会社",
+"meaning": "công ty",
+"onyomi": "カイシャ",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+},
+{
+"kanji": "電車",
+"meaning": "tàu điện",
+"onyomi": "デンシャ",
+"kunyomi": ""
+},
+{
+"kanji": "乗",
+"meaning": "lên xe",
+"onyomi": "ジョウ",
+"kunyomi": "の.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_029",
+"word": "学校",
+"reading": "がっこう",
+"romaji": "gakkou",
+"meaning": "Trường học",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "学校へ行く時、友達に会いました。",
+"example_jp_formatted": "[学校]{がっこう}へ[行]{い}く[時]{とき}、[友達]{ともだち}に[会]{あ}いました。",
+"example_vi": "Khi đi đến trường, tôi đã gặp bạn.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "学校",
+"meaning": "trường học",
+"onyomi": "ガッコウ",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ",
+"kunyomi": "い.く"
+},
+{
+"kanji": "友達",
+"meaning": "bạn",
+"onyomi": "トモダチ",
+"kunyomi": ""
+},
+{
+"kanji": "会",
+"meaning": "gặp",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_030",
+"word": "試験",
+"reading": "しけん",
+"romaji": "shiken",
+"meaning": "Kỳ thi",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "試験の時、緊張しました。",
+"example_jp_formatted": "[試験]{しけん}の[時]{とき}、[緊張]{きんちょう}しました。",
+"example_vi": "Khi thi tôi đã rất căng thẳng.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": ["テスト"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "試験",
+"meaning": "kỳ thi",
+"onyomi": "シケン",
+"kunyomi": ""
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "緊張",
+"meaning": "căng thẳng",
+"onyomi": "キンチョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_031",
+"word": "若い",
+"reading": "わかい",
+"romaji": "wakai",
+"meaning": "Trẻ",
+"pos": "i_adjective",
+"pitch_accent": "nakadaka",
+"example_jp": "若い時、よく旅行しました。",
+"example_jp_formatted": "[若い]{わかい}[時]{とき}、よく[旅行]{りょこう}しました。",
+"example_vi": "Khi còn trẻ tôi thường đi du lịch.",
+"level": "N5",
+"tags": ["tính-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["年をとっている"],
+"kanji_info": [
+{
+"kanji": "若い",
+"meaning": "trẻ",
+"onyomi": "ジャク",
+"kunyomi": "わか.い"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_23_032",
+"word": "幸せ",
+"reading": "しあわせ",
+"romaji": "shiawase",
+"meaning": "Hạnh phúc",
+"pos": "na_adjective",
+"pitch_accent": "heiban",
+"example_jp": "幸せな時、歌を歌います。",
+"example_jp_formatted": "[幸せ]{しあわせ}な[時]{とき}、[歌]{うた}を[歌]{うた}います。",
+"example_vi": "Khi hạnh phúc tôi hát bài hát.",
+"level": "N5",
+"tags": ["tính-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "幸せ",
+"meaning": "hạnh phúc",
+"onyomi": "コウ",
+"kunyomi": "しあわ.せ"
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "歌",
+"meaning": "bài hát/hát",
+"onyomi": "カ",
+"kunyomi": "うた.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_033",
+"word": "食事",
+"reading": "しょくじ",
+"romaji": "shokuji",
+"meaning": "Bữa ăn",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "食事をする時、手を洗います。",
+"example_jp_formatted": "[食事]{しょくじ}をする[時]{とき}、[手]{て}を[洗]{あら}います。",
+"example_vi": "Khi ăn, tôi rửa tay.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食事",
+"meaning": "bữa ăn",
+"onyomi": "ショクジ",
+"kunyomi": ""
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "手",
+"meaning": "tay",
+"onyomi": "シュ",
+"kunyomi": "て"
+},
+{
+"kanji": "洗",
+"meaning": "rửa",
+"onyomi": "セン",
+"kunyomi": "あら.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_23_034",
+"word": "準備",
+"reading": "じゅんび",
+"romaji": "junbi",
+"meaning": "Chuẩn bị",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "準備をする時、時間がかかります。",
+"example_jp_formatted": "[準備]{じゅんび}をする[時]{とき}、[時間]{じかん}がかかります。",
+"example_vi": "Khi chuẩn bị, tốn thời gian.",
+"level": "N5",
+"tags": ["danh-từ", "bài-23"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "準備",
+"meaning": "chuẩn bị",
+"onyomi": "ジュンビ",
+"kunyomi": ""
+},
+{
+"kanji": "時",
+"meaning": "lúc",
+"onyomi": "ジ",
+"kunyomi": "とき"
+},
+{
+"kanji": "時間",
+"meaning": "thời gian",
+"onyomi": "ジカン",
+"kunyomi": ""
+}
+]
+}
+]

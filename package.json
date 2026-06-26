@@ -14,6 +14,7 @@
     "clsx": "^2.1.1",
     "firebase": "^12.14.0",
     "framer-motion": "^12.40.0",
+    "hanzi-writer": "^3.7.3",
     "lucide-react": "^1.17.0",
     "matter-js": "^0.20.0",
     "next": "16.2.9",

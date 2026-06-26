@@ -1,0 +1,941 @@
+[
+{
+"id": "sys_n5_minna_12_001",
+"word": "一番",
+"reading": "いちばん",
+"romaji": "ichiban",
+"meaning": "Nhất",
+"pos": "adverb",
+"pitch_accent": "heiban",
+"example_jp": "春が一番好きです。",
+"example_jp_formatted": "[春]{はる}が[一番]{いちばん}[好]{す}きです。",
+"example_vi": "Tôi thích mùa xuân nhất.",
+"level": "N5",
+"tags": [
+"so-sánh",
+"mức-độ",
+"bài-12"
+],
+"notes": "Dùng để diễn tả mức độ cao nhất trong một nhóm.",
+"synonyms": [
+"最も"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "一",
+"meaning": "một",
+"onyomi": "イチ, イツ",
+"kunyomi": "ひと"
+},
+{
+"kanji": "番",
+"meaning": "lần, thứ nhất",
+"onyomi": "バン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_12_002",
+"word": "より",
+"reading": "より",
+"romaji": "yori",
+"meaning": "Hơn, so với",
+"pos": "particle",
+"pitch_accent": "heiban",
+"example_jp": "日本は中国より大きいです。",
+"example_jp_formatted": "[日本]{にほん}は[中国]{ちゅうごく}より[大]{おお}きいです。",
+"example_vi": "Nhật Bản lớn hơn Trung Quốc.",
+"level": "N5",
+"tags": [
+"so-sánh",
+"trợ-từ",
+"bài-12"
+],
+"notes": "Dùng trong câu so sánh hơn: A は B より〜です。",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_12_003",
+"word": "ほど",
+"reading": "ほど",
+"romaji": "hodo",
+"meaning": "Bằng, đến mức",
+"pos": "particle",
+"pitch_accent": "heiban",
+"example_jp": "日本は中国ほど大きくありません。",
+"example_jp_formatted": "[日本]{にほん}は[中国]{ちゅうごく}ほど[大]{おお}きくありません。",
+"example_vi": "Nhật Bản không lớn bằng Trung Quốc.",
+"level": "N5",
+"tags": [
+"so-sánh",
+"trợ-từ",
+"bài-12"
+],
+"notes": "Thường dùng trong cấu trúc phủ định: A は B ほど〜ません。",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_12_004",
+"word": "どちら",
+"reading": "どちら",
+"romaji": "dochira",
+"meaning": "Bên nào, cái nào, người nào",
+"pos": "pron",
+"pitch_accent": "heiban",
+"example_jp": "日本と中国とどちらが大きいですか。",
+"example_jp_formatted": "[日本]{にほん}と[中国]{ちゅうごく}とどちらが[大]{おお}きいですか。",
+"example_vi": "Nhật Bản và Trung Quốc, bên nào lớn hơn?",
+"level": "N5",
+"tags": [
+"so-sánh",
+"câu-hỏi",
+"bài-12"
+],
+"notes": "Dùng để hỏi so sánh giữa hai đối tượng.",
+"synonyms": [
+"どっち"
+],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_12_005",
+"word": "どちらの方",
+"reading": "どちらのほう",
+"romaji": "dochira no hou",
+"meaning": "Phía nào, bên nào",
+"pos": "phrase",
+"pitch_accent": "heiban",
+"example_jp": "日本と中国とどちらの方が大きいですか。",
+"example_jp_formatted": "[日本]{にほん}と[中国]{ちゅうごく}とどちらの[方]{ほう}が[大]{おお}きいですか。",
+"example_vi": "Nhật Bản và Trung Quốc, bên nào lớn hơn?",
+"level": "N5",
+"tags": [
+"so-sánh",
+"câu-hỏi",
+"bài-12"
+],
+"notes": "Cách nói lịch sự hơn của どちら.",
+"synonyms": [
+"どちら"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "方",
+"meaning": "phương, hướng",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_006",
+"word": "〜の中で",
+"reading": "〜のなかで",
+"romaji": "no naka de",
+"meaning": "Trong số, trong",
+"pos": "phrase",
+"pitch_accent": "heiban",
+"example_jp": "季節の中で春が一番好きです。",
+"example_jp_formatted": "[季節]{きせつ}の[中]{なか}で[春]{はる}が[一番]{いちばん}[好]{す}きです。",
+"example_vi": "Trong các mùa, tôi thích mùa xuân nhất.",
+"level": "N5",
+"tags": [
+"so-sánh",
+"trợ-từ",
+"bài-12"
+],
+"notes": "Dùng để chọn một đối tượng trong một nhóm.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "中",
+"meaning": "trong",
+"onyomi": "チュウ",
+"kunyomi": "なか, うち"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_007",
+"word": "同じ",
+"reading": "おなじ",
+"romaji": "onaji",
+"meaning": "Giống nhau",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "この二つは同じ大きさです。",
+"example_jp_formatted": "この[二]{ふた}つは[同]{おな}じ[大]{おお}きさです。",
+"example_vi": "Hai cái này có kích thước giống nhau.",
+"level": "N5",
+"tags": [
+"so-sánh",
+"tính-từ",
+"bài-12"
+],
+"notes": "Dùng để diễn tả sự giống nhau.",
+"synonyms": [],
+"antonyms": [
+"違う"
+],
+"kanji_info": [
+{
+"kanji": "同",
+"meaning": "đồng, giống",
+"onyomi": "ドウ",
+"kunyomi": "おな.じ"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_008",
+"word": "〜かったです",
+"reading": "〜かったです",
+"romaji": "kattadesu",
+"meaning": "Đã ... (quá khứ của tính từ đuôi i)",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "昨日は暑かったです。",
+"example_jp_formatted": "[昨日]{きのう}は[暑]{あつ}かったです。",
+"example_vi": "Hôm qua trời nóng.",
+"level": "N5",
+"tags": [
+"ngữ-pháp",
+"thì-quá-khứ",
+"bài-12"
+],
+"notes": "Dùng với tính từ đuôi i ở thì quá khứ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_12_009",
+"word": "〜でした",
+"reading": "〜でした",
+"romaji": "deshita",
+"meaning": "Đã là ... (quá khứ của danh từ/tính từ na)",
+"pos": "grammar",
+"pitch_accent": "heiban",
+"example_jp": "去年は元気でした。",
+"example_jp_formatted": "[去年]{きょねん}は[元気]{げんき}でした。",
+"example_vi": "Năm ngoái tôi đã khỏe.",
+"level": "N5",
+"tags": [
+"ngữ-pháp",
+"thì-quá-khứ",
+"bài-12"
+],
+"notes": "Dùng với danh từ và tính từ đuôi na ở thì quá khứ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_12_010",
+"word": "季節",
+"reading": "きせつ",
+"romaji": "kisetsu",
+"meaning": "Mùa",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "どの季節が一番好きですか。",
+"example_jp_formatted": "どの[季節]{きせつ}が[一番]{いちばん}[好]{す}きですか。",
+"example_vi": "Bạn thích mùa nào nhất?",
+"level": "N5",
+"tags": [
+"danh-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Thường dùng trong câu hỏi và so sánh về mùa.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "季",
+"meaning": "mùa",
+"onyomi": "キ",
+"kunyomi": ""
+},
+{
+"kanji": "節",
+"meaning": "tiết, mùa",
+"onyomi": "セツ",
+"kunyomi": "ふし"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_011",
+"word": "春",
+"reading": "はる",
+"romaji": "haru",
+"meaning": "Mùa xuân",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "春が一番好きです。",
+"example_jp_formatted": "[春]{はる}が[一番]{いちばん}[好]{す}きです。",
+"example_vi": "Tôi thích mùa xuân nhất.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"mùa",
+"bài-12"
+],
+"notes": "Một trong bốn mùa.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "春",
+"meaning": "xuân",
+"onyomi": "シュン",
+"kunyomi": "はる"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_012",
+"word": "夏",
+"reading": "なつ",
+"romaji": "natsu",
+"meaning": "Mùa hè",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "夏は暑いです。",
+"example_jp_formatted": "[夏]{なつ}は[暑]{あつ}いです。",
+"example_vi": "Mùa hè thì nóng.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"mùa",
+"bài-12"
+],
+"notes": "Một trong bốn mùa.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "夏",
+"meaning": "hạ",
+"onyomi": "カ",
+"kunyomi": "なつ"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_013",
+"word": "秋",
+"reading": "あき",
+"romaji": "aki",
+"meaning": "Mùa thu",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "秋は涼しいです。",
+"example_jp_formatted": "[秋]{あき}は[涼]{すず}しいです。",
+"example_vi": "Mùa thu mát mẻ.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"mùa",
+"bài-12"
+],
+"notes": "Một trong bốn mùa.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "秋",
+"meaning": "thu",
+"onyomi": "シュウ",
+"kunyomi": "あき"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_014",
+"word": "冬",
+"reading": "ふゆ",
+"romaji": "fuyu",
+"meaning": "Mùa đông",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "冬は寒いです。",
+"example_jp_formatted": "[冬]{ふゆ}は[寒]{さむ}いです。",
+"example_vi": "Mùa đông thì lạnh.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"mùa",
+"bài-12"
+],
+"notes": "Một trong bốn mùa.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "冬",
+"meaning": "đông",
+"onyomi": "トウ",
+"kunyomi": "ふゆ"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_015",
+"word": "食べ物",
+"reading": "たべもの",
+"romaji": "tabemono",
+"meaning": "Đồ ăn",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "この町の食べ物は美味しいです。",
+"example_jp_formatted": "この[町]{まち}の[食べ物]{たべもの}は[美味]{おい}しいです。",
+"example_vi": "Đồ ăn ở thị trấn này ngon.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"ẩm-thực",
+"bài-12"
+],
+"notes": "Danh từ rất hay dùng khi so sánh sở thích.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "thực, ăn",
+"onyomi": "ショク, ジキ",
+"kunyomi": "た.べる, く.う"
+},
+{
+"kanji": "物",
+"meaning": "vật",
+"onyomi": "ブツ, モツ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_016",
+"word": "飲み物",
+"reading": "のみもの",
+"romaji": "nomimono",
+"meaning": "Đồ uống",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "夏は冷たい飲み物が好きです。",
+"example_jp_formatted": "[夏]{なつ}は[冷]{つめ}たい[飲み物]{のみもの}が[好]{す}きです。",
+"example_vi": "Mùa hè tôi thích đồ uống lạnh.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"ẩm-thực",
+"bài-12"
+],
+"notes": "Danh từ rất hay dùng khi so sánh sở thích.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "ẩm, uống",
+"onyomi": "イン",
+"kunyomi": "の.む"
+},
+{
+"kanji": "物",
+"meaning": "vật",
+"onyomi": "ブツ, モツ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_017",
+"word": "スポーツ",
+"reading": "すぽーつ",
+"romaji": "supootsu",
+"meaning": "Thể thao",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "スポーツの中でサッカーが一番好きです。",
+"example_jp_formatted": "スポーツの[中]{なか}でサッカーが[一番]{いちばん}[好]{す}きです。",
+"example_vi": "Trong các môn thể thao, tôi thích bóng đá nhất.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"thể-thao",
+"bài-12"
+],
+"notes": "Từ khóa hay xuất hiện trong câu so sánh.",
+"synonyms": [
+"運動"
+],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_12_018",
+"word": "日本",
+"reading": "にほん",
+"romaji": "nihon",
+"meaning": "Nhật Bản",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "日本は中国より小さいです。",
+"example_jp_formatted": "[日本]{にほん}は[中国]{ちゅうごく}より[小]{ちい}さいです。",
+"example_vi": "Nhật Bản nhỏ hơn Trung Quốc.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"quốc-gia",
+"bài-12"
+],
+"notes": "Hay dùng trong câu so sánh quy mô, diện tích.",
+"synonyms": [
+"日本国"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日",
+"meaning": "nhật",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, か"
+},
+{
+"kanji": "本",
+"meaning": "bản",
+"onyomi": "ホン",
+"kunyomi": "もと"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_019",
+"word": "中国",
+"reading": "ちゅうごく",
+"romaji": "chuugoku",
+"meaning": "Trung Quốc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "中国は日本より大きいです。",
+"example_jp_formatted": "[中国]{ちゅうごく}は[日本]{にほん}より[大]{おお}きいです。",
+"example_vi": "Trung Quốc lớn hơn Nhật Bản.",
+"level": "N5",
+"tags": [
+"danh-từ",
+"quốc-gia",
+"bài-12"
+],
+"notes": "Hay dùng trong câu so sánh quy mô, diện tích.",
+"synonyms": [
+"中国国"
+],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "中",
+"meaning": "trung",
+"onyomi": "チュウ",
+"kunyomi": "なか"
+},
+{
+"kanji": "国",
+"meaning": "quốc",
+"onyomi": "コク",
+"kunyomi": "くに"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_020",
+"word": "大きい",
+"reading": "おおきい",
+"romaji": "ookii",
+"meaning": "To, lớn",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "中国は日本より大きいです。",
+"example_jp_formatted": "[中国]{ちゅうごく}は[日本]{にほん}より[大]{おお}きいです。",
+"example_vi": "Trung Quốc lớn hơn Nhật Bản.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Thường dùng trong so sánh kích thước, quy mô.",
+"synonyms": [],
+"antonyms": [
+"小さい"
+],
+"kanji_info": [
+{
+"kanji": "大",
+"meaning": "đại, to",
+"onyomi": "ダイ, タイ",
+"kunyomi": "おお.きい"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_021",
+"word": "小さい",
+"reading": "ちいさい",
+"romaji": "chiisai",
+"meaning": "Nhỏ",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "日本は中国より小さいです。",
+"example_jp_formatted": "[日本]{にほん}は[中国]{ちゅうごく}より[小]{ちい}さいです。",
+"example_vi": "Nhật Bản nhỏ hơn Trung Quốc.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Thường dùng trong so sánh kích thước, quy mô.",
+"synonyms": [],
+"antonyms": [
+"大きい"
+],
+"kanji_info": [
+{
+"kanji": "小",
+"meaning": "tiểu, nhỏ",
+"onyomi": "ショウ",
+"kunyomi": "ちい.さい"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_022",
+"word": "高い",
+"reading": "たかい",
+"romaji": "takai",
+"meaning": "Cao; đắt",
+"pos": "adj-i",
+"pitch_accent": "nakadaka",
+"example_jp": "この車は高いです。",
+"example_jp_formatted": "この[車]{くるま}は[高]{たか}いです。",
+"example_vi": "Chiếc xe này đắt.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Tùy ngữ cảnh có thể nghĩa là cao hoặc đắt.",
+"synonyms": [],
+"antonyms": [
+"安い"
+],
+"kanji_info": [
+{
+"kanji": "高",
+"meaning": "cao",
+"onyomi": "コウ",
+"kunyomi": "たか.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_023",
+"word": "安い",
+"reading": "やすい",
+"romaji": "yasui",
+"meaning": "Rẻ",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この店は安いです。",
+"example_jp_formatted": "この[店]{みせ}は[安]{やす}いです。",
+"example_vi": "Cửa hàng này rẻ.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Thường dùng khi so sánh giá cả.",
+"synonyms": [],
+"antonyms": [
+"高い"
+],
+"kanji_info": [
+{
+"kanji": "安",
+"meaning": "an, rẻ",
+"onyomi": "アン",
+"kunyomi": "やす.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_024",
+"word": "長い",
+"reading": "ながい",
+"romaji": "nagai",
+"meaning": "Dài",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この道は長いです。",
+"example_jp_formatted": "この[道]{みち}は[長]{なが}いです。",
+"example_vi": "Con đường này dài.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Mô tả độ dài.",
+"synonyms": [],
+"antonyms": [
+"短い"
+],
+"kanji_info": [
+{
+"kanji": "長",
+"meaning": "trường, dài",
+"onyomi": "チョウ",
+"kunyomi": "なが.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_025",
+"word": "短い",
+"reading": "みじかい",
+"romaji": "mijikai",
+"meaning": "Ngắn",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この映画は短いです。",
+"example_jp_formatted": "この[映画]{えいが}は[短]{みじか}いです。",
+"example_vi": "Bộ phim này ngắn.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Mô tả độ dài ngắn.",
+"synonyms": [],
+"antonyms": [
+"長い"
+],
+"kanji_info": [
+{
+"kanji": "短",
+"meaning": "đoản, ngắn",
+"onyomi": "タン",
+"kunyomi": "みじか.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_026",
+"word": "良い",
+"reading": "いい",
+"romaji": "ii",
+"meaning": "Tốt",
+"pos": "adj-i",
+"pitch_accent": "nakadaka",
+"example_jp": "この季節は良いです。",
+"example_jp_formatted": "この[季節]{きせつ}は[良]{よ}いです。",
+"example_vi": "Mùa này rất tốt/đẹp.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Cũng có thể đọc là いい.",
+"synonyms": [],
+"antonyms": [
+"悪い"
+],
+"kanji_info": [
+{
+"kanji": "良",
+"meaning": "lương, tốt",
+"onyomi": "リョウ",
+"kunyomi": "よ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_027",
+"word": "悪い",
+"reading": "わるい",
+"romaji": "warui",
+"meaning": "Xấu, tệ",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この天気は悪いです。",
+"example_jp_formatted": "この[天気]{てんき}は[悪]{わる}いです。",
+"example_vi": "Thời tiết này xấu.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"so-sánh",
+"bài-12"
+],
+"notes": "Trái nghĩa với 良い.",
+"synonyms": [],
+"antonyms": [
+"良い"
+],
+"kanji_info": [
+{
+"kanji": "悪",
+"meaning": "ác, xấu",
+"onyomi": "アク",
+"kunyomi": "わる.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_028",
+"word": "暑い",
+"reading": "あつい",
+"romaji": "atsui",
+"meaning": "Nóng",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "夏は暑いです。",
+"example_jp_formatted": "[夏]{なつ}は[暑]{あつ}いです。",
+"example_vi": "Mùa hè thì nóng.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"thời-tiết",
+"bài-12"
+],
+"notes": "Dùng cho thời tiết nóng.",
+"synonyms": [],
+"antonyms": [
+"寒い"
+],
+"kanji_info": [
+{
+"kanji": "暑",
+"meaning": "thử, nóng",
+"onyomi": "ショ",
+"kunyomi": "あつ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_029",
+"word": "寒い",
+"reading": "さむい",
+"romaji": "samui",
+"meaning": "Lạnh",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "冬は寒いです。",
+"example_jp_formatted": "[冬]{ふゆ}は[寒]{さむ}いです。",
+"example_vi": "Mùa đông thì lạnh.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"thời-tiết",
+"bài-12"
+],
+"notes": "Dùng cho thời tiết lạnh.",
+"synonyms": [],
+"antonyms": [
+"暑い"
+],
+"kanji_info": [
+{
+"kanji": "寒",
+"meaning": "hàn, lạnh",
+"onyomi": "カン",
+"kunyomi": "さむ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_030",
+"word": "静か",
+"reading": "しずか",
+"romaji": "shizuka",
+"meaning": "Yên tĩnh",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "去年は静かでした。",
+"example_jp_formatted": "[去年]{きょねん}は[静]{しず}かでした。",
+"example_vi": "Năm ngoái yên tĩnh.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"thì-quá-khứ",
+"bài-12"
+],
+"notes": "Tính từ đuôi na. Quá khứ: 静かでした。",
+"synonyms": [
+"落ち着いている"
+],
+"antonyms": [
+"うるさい"
+],
+"kanji_info": [
+{
+"kanji": "静",
+"meaning": "tĩnh, yên",
+"onyomi": "セイ, ジョウ",
+"kunyomi": "しず.か, しず.まる"
+}
+]
+},
+{
+"id": "sys_n5_minna_12_031",
+"word": "元気",
+"reading": "げんき",
+"romaji": "genki",
+"meaning": "Khỏe, có sức sống",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "去年は元気でした。",
+"example_jp_formatted": "[去年]{きょねん}は[元気]{げんき}でした。",
+"example_vi": "Năm ngoái tôi đã khỏe.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"thì-quá-khứ",
+"bài-12"
+],
+"notes": "Dùng để nói trạng thái khỏe mạnh, vui vẻ.",
+"synonyms": [],
+"antonyms": [
+"病気"
+],
+"kanji_info": [
+{
+"kanji": "元",
+"meaning": "nguyên, gốc",
+"onyomi": "ゲン, ガン",
+"kunyomi": "もと"
+},
+{
+"kanji": "気",
+"meaning": "khí, tinh thần",
+"onyomi": "キ, ケ",
+"kunyomi": "いき"
+}
+]
+}
+]

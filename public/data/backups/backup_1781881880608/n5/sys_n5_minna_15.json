@@ -1,0 +1,996 @@
+[
+{
+"id": "sys_n5_minna_15_001",
+"word": "ています",
+"reading": "ています",
+"romaji": "teimasu",
+"meaning": "Đang; trạng thái tiếp diễn",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "今、日本語を勉強しています。",
+"example_jp_formatted": "[今]{いま}、[日本語]{にほんご}を[勉強]{べんきょう}しています。",
+"example_vi": "Bây giờ tôi đang học tiếng Nhật.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-te", "ôn-tập", "bài-15"],
+"notes": "Dùng để diễn tả hành động đang diễn ra hoặc trạng thái duy trì.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "勉強",
+"meaning": "học tập",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_002",
+"word": "欲しい",
+"reading": "ほしい",
+"romaji": "hoshii",
+"meaning": "Muốn có",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "新しい辞書が欲しいです。",
+"example_jp_formatted": "[新]{あたら}しい[辞書]{じしょ}が[欲]{ほ}しいです。",
+"example_vi": "Tôi muốn có một cuốn từ điển mới.",
+"level": "N5",
+"tags": ["mong-muốn", "ôn-tập", "bài-15"],
+"notes": "Mẫu N が 欲しいです.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "欲",
+"meaning": "mong muốn",
+"onyomi": "ヨク",
+"kunyomi": "ほ.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_003",
+"word": "Vたいです",
+"reading": "たいです",
+"romaji": "tai desu",
+"meaning": "Muốn làm ...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "日本へ旅行したいです。",
+"example_jp_formatted": "[日本]{にほん}へ[旅行]{りょこう}したいです。",
+"example_vi": "Tôi muốn đi du lịch đến Nhật Bản.",
+"level": "N5",
+"tags": ["ngữ-pháp", "mong-muốn", "ôn-tập", "bài-15"],
+"notes": "Mẫu biểu thị mong muốn của người nói.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅行",
+"meaning": "du lịch",
+"onyomi": "リョコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_004",
+"word": "Vてもいいです",
+"reading": "てもいいです",
+"romaji": "temoiidesu",
+"meaning": "Được phép ... / Có thể ...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "ここで写真を撮ってもいいです。",
+"example_jp_formatted": "ここで[写真]{しゃしん}を[撮]{と}ってもいいです。",
+"example_vi": "Tôi có thể chụp ảnh ở đây.",
+"level": "N5",
+"tags": ["ngữ-pháp", "cho-phép", "ôn-tập", "bài-15"],
+"notes": "Mẫu xin phép / cho phép.",
+"synonyms": [],
+"antonyms": ["Vてはいけません"],
+"kanji_info": [
+{
+"kanji": "写真",
+"meaning": "ảnh chụp",
+"onyomi": "シャシン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_005",
+"word": "Vてはいけません",
+"reading": "てはいけません",
+"romaji": "tehaikemasen",
+"meaning": "Không được ...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "教室でたばこを吸ってはいけません。",
+"example_jp_formatted": "[教室]{きょうしつ}でたばこを[吸]{す}ってはいけません。",
+"example_vi": "Không được hút thuốc trong lớp học.",
+"level": "N5",
+"tags": ["ngữ-pháp", "cấm-đoán", "ôn-tập", "bài-15"],
+"notes": "Mẫu cấm đoán.",
+"synonyms": [],
+"antonyms": ["Vてもいいです"],
+"kanji_info": [
+{
+"kanji": "教室",
+"meaning": "lớp học",
+"onyomi": "キョウシツ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_006",
+"word": "Vてください",
+"reading": "てください",
+"romaji": "tekudasai",
+"meaning": "Xin hãy làm ...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "窓を開けてください。",
+"example_jp_formatted": "[窓]{まど}を[開]{あ}けてください。",
+"example_vi": "Xin hãy mở cửa sổ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "yêu-cầu", "ôn-tập", "bài-15"],
+"notes": "Mẫu yêu cầu lịch sự bằng thể て.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "窓",
+"meaning": "cửa sổ",
+"onyomi": "ソウ",
+"kunyomi": "まど"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_007",
+"word": "より",
+"reading": "より",
+"romaji": "yori",
+"meaning": "Hơn; so với",
+"pos": "grammar_particle",
+"pitch_accent": "heiban",
+"example_jp": "東京より京都のほうが静かです。",
+"example_jp_formatted": "[東京]{とうきょう}より[京都]{きょうと}のほうが[静]{しず}かです。",
+"example_vi": "Kyoto yên tĩnh hơn Tokyo.",
+"level": "N5",
+"tags": ["ngữ-pháp", "so-sánh", "ôn-tập", "bài-15"],
+"notes": "Dùng trong so sánh hơn.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_15_008",
+"word": "のほうが",
+"reading": "のほうが",
+"romaji": "no hou ga",
+"meaning": "Thì ... hơn",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "英語より日本語のほうが面白いです。",
+"example_jp_formatted": "[英語]{えいご}より[日本語]{にほんご}のほうが[面白]{おもしろ}いです。",
+"example_vi": "Tiếng Nhật thú vị hơn tiếng Anh.",
+"level": "N5",
+"tags": ["ngữ-pháp", "so-sánh", "ôn-tập", "bài-15"],
+"notes": "Dùng trong so sánh hơn.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_15_009",
+"word": "一番",
+"reading": "いちばん",
+"romaji": "ichiban",
+"meaning": "Nhất",
+"pos": "adverb",
+"pitch_accent": "heiban",
+"example_jp": "春が一番好きです。",
+"example_jp_formatted": "[春]{はる}が[一番]{いちばん}[好]{す}きです。",
+"example_vi": "Tôi thích mùa xuân nhất.",
+"level": "N5",
+"tags": ["so-sánh", "ôn-tập", "bài-15"],
+"notes": "Dùng để diễn tả mức độ cao nhất.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "一番",
+"meaning": "nhất, số một",
+"onyomi": "イチバン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_010",
+"word": "どちらが",
+"reading": "どちらが",
+"romaji": "dochira ga",
+"meaning": "Cái nào; bên nào",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "コーヒーと紅茶とどちらが好きですか。",
+"example_jp_formatted": "コーヒーと[紅茶]{こうちゃ}とどちらが[好]{す}きですか。",
+"example_vi": "Bạn thích cà phê hay trà hơn?",
+"level": "N5",
+"tags": ["ngữ-pháp", "so-sánh", "ôn-tập", "bài-15"],
+"notes": "Dùng để hỏi lựa chọn giữa hai đối tượng.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "紅茶",
+"meaning": "trà đen",
+"onyomi": "コウチャ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_011",
+"word": "～かったです",
+"reading": "かったです",
+"romaji": "katta desu",
+"meaning": "Đã ... (quá khứ của tính từ đuôi い)",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "昨日の映画は面白かったです。",
+"example_jp_formatted": "[昨日]{きのう}の[映画]{えいが}は[面白]{おもしろ}かったです。",
+"example_vi": "Bộ phim hôm qua đã rất thú vị.",
+"level": "N5",
+"tags": ["ngữ-pháp", "quá-khứ", "ôn-tập", "bài-15"],
+"notes": "Mẫu quá khứ của tính từ đuôi い.",
+"synonyms": [],
+"antonyms": ["～くなかったです"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_15_012",
+"word": "～くなかったです",
+"reading": "くなかったです",
+"romaji": "kunakatta desu",
+"meaning": "Đã không ... (quá khứ phủ định của tính từ đuôi い)",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "先週は忙しくなかったです。",
+"example_jp_formatted": "[先週]{せんしゅう}は[忙]{いそが}しくなかったです。",
+"example_vi": "Tuần trước không bận.",
+"level": "N5",
+"tags": ["ngữ-pháp", "quá-khứ", "ôn-tập", "bài-15"],
+"notes": "Mẫu phủ định quá khứ của tính từ đuôi い.",
+"synonyms": [],
+"antonyms": ["～かったです"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_15_013",
+"word": "でした",
+"reading": "でした",
+"romaji": "deshita",
+"meaning": "Đã là ... (quá khứ của danh từ / tính từ đuôi な)",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "昨日は雨でした。",
+"example_jp_formatted": "[昨日]{きのう}は[雨]{あめ}でした。",
+"example_vi": "Hôm qua trời đã mưa.",
+"level": "N5",
+"tags": ["ngữ-pháp", "quá-khứ", "ôn-tập", "bài-15"],
+"notes": "Mẫu quá khứ của danh từ và tính từ đuôi な.",
+"synonyms": [],
+"antonyms": ["じゃありませんでした"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_15_014",
+"word": "じゃありませんでした",
+"reading": "じゃありませんでした",
+"romaji": "ja arimasen deshita",
+"meaning": "Đã không phải là ...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "昨日は休みじゃありませんでした。",
+"example_jp_formatted": "[昨日]{きのう}は[休]{やす}みじゃありませんでした。",
+"example_vi": "Hôm qua không phải là ngày nghỉ.",
+"level": "N5",
+"tags": ["ngữ-pháp", "quá-khứ", "ôn-tập", "bài-15"],
+"notes": "Mẫu phủ định quá khứ của danh từ.",
+"synonyms": [],
+"antonyms": ["でした"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_15_015",
+"word": "～人",
+"reading": "にん",
+"romaji": "nin",
+"meaning": "Lượng từ người",
+"pos": "counter",
+"pitch_accent": "heiban",
+"example_jp": "学生が三人います。",
+"example_jp_formatted": "[学生]{がくせい}が[三人]{さんにん}います。",
+"example_vi": "Có ba học sinh.",
+"level": "N5",
+"tags": ["lượng-từ", "số-đếm", "ôn-tập", "bài-15"],
+"notes": "Lượng từ đếm người: 一人, 二人, 三人...",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "人",
+"meaning": "người",
+"onyomi": "ジン, ニン",
+"kunyomi": "ひと"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_016",
+"word": "～枚",
+"reading": "まい",
+"romaji": "mai",
+"meaning": "Lượng từ tờ/miếng/vật mỏng",
+"pos": "counter",
+"pitch_accent": "heiban",
+"example_jp": "写真を二枚撮りました。",
+"example_jp_formatted": "[写真]{しゃしん}を[二枚]{にまい}[撮]{と}りました。",
+"example_vi": "Tôi đã chụp hai tấm ảnh.",
+"level": "N5",
+"tags": ["lượng-từ", "số-đếm", "ôn-tập", "bài-15"],
+"notes": "Dùng để đếm vật phẳng, mỏng như giấy, ảnh, vé.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "枚",
+"meaning": "tờ, miếng, tấm",
+"onyomi": "マイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_017",
+"word": "～本",
+"reading": "ほん",
+"romaji": "hon",
+"meaning": "Lượng từ vật dài",
+"pos": "counter",
+"pitch_accent": "heiban",
+"example_jp": "鉛筆を三本ください。",
+"example_jp_formatted": "[鉛筆]{えんぴつ}を[三本]{さんぼん}ください。",
+"example_vi": "Xin cho tôi ba cây bút chì.",
+"level": "N5",
+"tags": ["lượng-từ", "số-đếm", "ôn-tập", "bài-15"],
+"notes": "Dùng để đếm vật dài, trụ: bút, chai, dù...",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "本",
+"meaning": "cuốn; vật dài; gốc",
+"onyomi": "ホン",
+"kunyomi": "もと"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_018",
+"word": "～冊",
+"reading": "さつ",
+"romaji": "satsu",
+"meaning": "Lượng từ sách/vở",
+"pos": "counter",
+"pitch_accent": "heiban",
+"example_jp": "本を五冊持っています。",
+"example_jp_formatted": "[本]{ほん}を[五冊]{ごさつ}[持]{も}っています。",
+"example_vi": "Tôi có năm quyển sách.",
+"level": "N5",
+"tags": ["lượng-từ", "số-đếm", "ôn-tập", "bài-15"],
+"notes": "Dùng để đếm sách, quyển vở, tạp chí.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "冊",
+"meaning": "quyển, cuốn",
+"onyomi": "サツ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_019",
+"word": "一人",
+"reading": "ひとり",
+"romaji": "hitori",
+"meaning": "Một người",
+"pos": "counter",
+"pitch_accent": "heiban",
+"example_jp": "一人で日本へ行きます。",
+"example_jp_formatted": "[一人]{ひとり}で[日本]{にほん}へ[行]{い}きます。",
+"example_vi": "Tôi đi đến Nhật một mình.",
+"level": "N5",
+"tags": ["lượng-từ", "số-đếm", "ôn-tập", "bài-15"],
+"notes": "Dùng riêng cho 1 người.",
+"synonyms": [],
+"antonyms": ["二人"],
+"kanji_info": [
+{
+"kanji": "一人",
+"meaning": "một người; một mình",
+"onyomi": "イチニン",
+"kunyomi": "ひとり"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_020",
+"word": "二人",
+"reading": "ふたり",
+"romaji": "futari",
+"meaning": "Hai người",
+"pos": "counter",
+"pitch_accent": "heiban",
+"example_jp": "二人は友達です。",
+"example_jp_formatted": "[二人]{ふたり}は[友達]{ともだち}です。",
+"example_vi": "Hai người là bạn.",
+"level": "N5",
+"tags": ["lượng-từ", "số-đếm", "ôn-tập", "bài-15"],
+"notes": "Dùng riêng cho 2 người.",
+"synonyms": [],
+"antonyms": ["一人"],
+"kanji_info": [
+{
+"kanji": "二人",
+"meaning": "hai người",
+"onyomi": "ニニン",
+"kunyomi": "ふたり"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_021",
+"word": "友達",
+"reading": "ともだち",
+"romaji": "tomodachi",
+"meaning": "Bạn bè",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "友達と公園へ行きます。",
+"example_jp_formatted": "[友達]{ともだち}と[公園]{こうえん}へ[行]{い}きます。",
+"example_vi": "Tôi đi đến công viên với bạn.",
+"level": "N5",
+"tags": ["danh-từ", "ôn-tập", "bài-15"],
+"notes": "Danh từ rất thường gặp trong N5.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "友",
+"meaning": "bạn",
+"onyomi": "ユウ",
+"kunyomi": "とも"
+},
+{
+"kanji": "達",
+"meaning": "đám, nhóm; ... và những người khác",
+"onyomi": "タツ",
+"kunyomi": "たち"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_022",
+"word": "旅行",
+"reading": "りょこう",
+"romaji": "ryokou",
+"meaning": "Du lịch, chuyến đi",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "夏に旅行したいです。",
+"example_jp_formatted": "[夏]{なつ}に[旅行]{りょこう}したいです。",
+"example_vi": "Tôi muốn đi du lịch vào mùa hè.",
+"level": "N5",
+"tags": ["danh-từ", "mong-muốn", "ôn-tập", "bài-15"],
+"notes": "Danh từ liên quan đến bài mong muốn.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "旅",
+"meaning": "đi xa, du lịch",
+"onyomi": "リョ",
+"kunyomi": "たび"
+},
+{
+"kanji": "行",
+"meaning": "đi, làm",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く, ゆ.く, おこな.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_023",
+"word": "写真",
+"reading": "しゃしん",
+"romaji": "shashin",
+"meaning": "Ảnh chụp",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "ここで写真を撮ってもいいですか。",
+"example_jp_formatted": "ここで[写真]{しゃしん}を[撮]{と}ってもいいですか。",
+"example_vi": "Tôi có thể chụp ảnh ở đây không?",
+"level": "N5",
+"tags": ["danh-từ", "ôn-tập", "bài-15"],
+"notes": "Từ vựng rất thường gặp trong hội thoại cho phép/cấm đoán.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "写",
+"meaning": "chụp, sao",
+"onyomi": "シャ",
+"kunyomi": "うつ.す, うつ.る"
+},
+{
+"kanji": "真",
+"meaning": "thật, chân",
+"onyomi": "シン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_024",
+"word": "公園",
+"reading": "こうえん",
+"romaji": "kouen",
+"meaning": "Công viên",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "公園で子供が遊んでいます。",
+"example_jp_formatted": "[公園]{こうえん}で[子供]{こども}が[遊]{あそ}んでいます。",
+"example_vi": "Trẻ con đang chơi ở công viên.",
+"level": "N5",
+"tags": ["danh-từ", "ôn-tập", "bài-15"],
+"notes": "Nơi chốn quen thuộc trong câu ví dụ với ています.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "公",
+"meaning": "công",
+"onyomi": "コウ, ク",
+"kunyomi": "おおやけ"
+},
+{
+"kanji": "園",
+"meaning": "vườn, công viên",
+"onyomi": "エン",
+"kunyomi": "その"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_025",
+"word": "図書館",
+"reading": "としょかん",
+"romaji": "toshokan",
+"meaning": "Thư viện",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "図書館で本を読みます。",
+"example_jp_formatted": "[図書館]{としょかん}で[本]{ほん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc sách ở thư viện.",
+"level": "N5",
+"tags": ["danh-từ", "ôn-tập", "bài-15"],
+"notes": "Địa điểm rất thường gặp trong N5.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "図",
+"meaning": "đồ, hình",
+"onyomi": "ズ, ト",
+"kunyomi": ""
+},
+{
+"kanji": "書",
+"meaning": "sách, viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+},
+{
+"kanji": "館",
+"meaning": "quán, tòa nhà",
+"onyomi": "カン",
+"kunyomi": "やかた"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_026",
+"word": "勉強します",
+"reading": "べんきょうします",
+"romaji": "benkyou shimasu",
+"meaning": "Học tập",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "毎日、日本語を勉強します。",
+"example_jp_formatted": "[毎日]{まいにち}、[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật mỗi ngày.",
+"level": "N5",
+"tags": ["động-từ", "ôn-tập", "bài-15"],
+"notes": "Động từ する rất phổ biến trong N5.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "勉強",
+"meaning": "học tập",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_15_027",
+"word": "行きます",
+"reading": "いきます",
+"romaji": "ikimasu",
+"meaning": "Đi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "明日、東京へ行きます。",
+"example_jp_formatted": "[明日]{あした}、[東京]{とうきょう}へ[行]{い}きます。",
+"example_vi": "Ngày mai tôi sẽ đi Tokyo.",
+"level": "N5",
+"tags": ["động-từ", "ôn-tập", "bài-15"],
+"notes": "Động từ rất cơ bản và xuất hiện nhiều trong hội thoại.",
+"synonyms": [],
+"antonyms": ["来ます"],
+"kanji_info": [
+{
+"kanji": "行",
+"meaning": "đi, làm",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く, ゆ.く, おこな.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_028",
+"word": "来ます",
+"reading": "きます",
+"romaji": "kimasu",
+"meaning": "Đến, tới",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "先生は九時に来ます。",
+"example_jp_formatted": "[先生]{せんせい}は[九時]{くじ}に[来]{き}ます。",
+"example_vi": "Thầy/cô giáo đến lúc 9 giờ.",
+"level": "N5",
+"tags": ["động-từ", "ôn-tập", "bài-15"],
+"notes": "Động từ くる rất cơ bản.",
+"synonyms": [],
+"antonyms": ["行きます"],
+"kanji_info": [
+{
+"kanji": "来",
+"meaning": "đến, tới",
+"onyomi": "ライ",
+"kunyomi": "く.る, き.たる, きた.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_029",
+"word": "帰ります",
+"reading": "かえります",
+"romaji": "kaerimasu",
+"meaning": "Trở về, về nhà",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "六時に家へ帰ります。",
+"example_jp_formatted": "[六時]{ろくじ}に[家]{いえ}へ[帰]{かえ}ります。",
+"example_vi": "Tôi về nhà lúc 6 giờ.",
+"level": "N5",
+"tags": ["động-từ", "ôn-tập", "bài-15"],
+"notes": "Động từ thường gặp trong đời sống hằng ngày.",
+"synonyms": [],
+"antonyms": ["行きます"],
+"kanji_info": [
+{
+"kanji": "帰",
+"meaning": "về, trở về",
+"onyomi": "キ",
+"kunyomi": "かえ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_030",
+"word": "食べます",
+"reading": "たべます",
+"romaji": "tabemasu",
+"meaning": "Ăn",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "昼ご飯を食べます。",
+"example_jp_formatted": "[昼]{ひる}ご[飯]{はん}を[食]{た}べます。",
+"example_vi": "Tôi ăn trưa.",
+"level": "N5",
+"tags": ["động-từ", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 2 rất cơ bản.",
+"synonyms": [],
+"antonyms": ["飲みます"],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる, く.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_031",
+"word": "飲みます",
+"reading": "のみます",
+"romaji": "nomimasu",
+"meaning": "Uống",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "水を飲みます。",
+"example_jp_formatted": "[水]{みず}を[飲]{の}みます。",
+"example_vi": "Tôi uống nước.",
+"level": "N5",
+"tags": ["động-từ", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 1 rất cơ bản.",
+"synonyms": [],
+"antonyms": ["食べます"],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "uống",
+"onyomi": "イン",
+"kunyomi": "の.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_032",
+"word": "買います",
+"reading": "かいます",
+"romaji": "kaimasu",
+"meaning": "Mua",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "本を二冊買います。",
+"example_jp_formatted": "[本]{ほん}を[二冊]{にさつ}[買]{か}います。",
+"example_vi": "Tôi mua hai quyển sách.",
+"level": "N5",
+"tags": ["động-từ", "ôn-tập", "bài-15"],
+"notes": "Động từ rất thường gặp trong mua sắm.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "買",
+"meaning": "mua",
+"onyomi": "バイ",
+"kunyomi": "か.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_033",
+"word": "読みます",
+"reading": "よみます",
+"romaji": "yomimasu",
+"meaning": "Đọc",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "図書館で本を読みます。",
+"example_jp_formatted": "[図書館]{としょかん}で[本]{ほん}を[読]{よ}みます。",
+"example_vi": "Tôi đọc sách ở thư viện.",
+"level": "N5",
+"tags": ["động-từ", "ôn-tập", "bài-15"],
+"notes": "Động từ rất cơ bản.",
+"synonyms": [],
+"antonyms": ["書きます"],
+"kanji_info": [
+{
+"kanji": "読",
+"meaning": "đọc",
+"onyomi": "ドク",
+"kunyomi": "よ.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_034",
+"word": "書きます",
+"reading": "かきます",
+"romaji": "kakimasu",
+"meaning": "Viết",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "名前を書いてください。",
+"example_jp_formatted": "[名前]{なまえ}を[書]{か}いてください。",
+"example_vi": "Xin hãy viết tên.",
+"level": "N5",
+"tags": ["động-từ", "yêu-cầu", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 1 thường dùng trong lớp học.",
+"synonyms": [],
+"antonyms": ["読みます"],
+"kanji_info": [
+{
+"kanji": "書",
+"meaning": "viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_035",
+"word": "開けます",
+"reading": "あけます",
+"romaji": "akemasu",
+"meaning": "Mở",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "ドアを開けてもいいですか。",
+"example_jp_formatted": "ドアを[開]{あ}けてもいいですか。",
+"example_vi": "Tôi có thể mở cửa không?",
+"level": "N5",
+"tags": ["động-từ", "cho-phép", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 2. Thể て: 開けて.",
+"synonyms": [],
+"antonyms": ["閉めます"],
+"kanji_info": [
+{
+"kanji": "開",
+"meaning": "mở",
+"onyomi": "カイ",
+"kunyomi": "あ.ける, ひら.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_036",
+"word": "閉めます",
+"reading": "しめます",
+"romaji": "shimemasu",
+"meaning": "Đóng",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "窓を閉めてください。",
+"example_jp_formatted": "[窓]{まど}を[閉]{し}めてください。",
+"example_vi": "Xin hãy đóng cửa sổ.",
+"level": "N5",
+"tags": ["động-từ", "yêu-cầu", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 2. Thể て: 閉めて.",
+"synonyms": [],
+"antonyms": ["開けます"],
+"kanji_info": [
+{
+"kanji": "閉",
+"meaning": "đóng",
+"onyomi": "ヘイ",
+"kunyomi": "し.める, と.じる"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_037",
+"word": "座ります",
+"reading": "すわります",
+"romaji": "suwarimasu",
+"meaning": "Ngồi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "ここに座ってください。",
+"example_jp_formatted": "ここに[座]{すわ}ってください。",
+"example_vi": "Xin hãy ngồi ở đây.",
+"level": "N5",
+"tags": ["động-từ", "yêu-cầu", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 1. Thể て: 座って.",
+"synonyms": [],
+"antonyms": ["立ちます"],
+"kanji_info": [
+{
+"kanji": "座",
+"meaning": "ngồi",
+"onyomi": "ザ",
+"kunyomi": "すわ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_038",
+"word": "立ちます",
+"reading": "たちます",
+"romaji": "tachimasu",
+"meaning": "Đứng",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "ここで立ってはいけません。",
+"example_jp_formatted": "ここで[立]{た}ってはいけません。",
+"example_vi": "Không được đứng ở đây.",
+"level": "N5",
+"tags": ["động-từ", "cấm-đoán", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 1. Thể て: 立って.",
+"synonyms": [],
+"antonyms": ["座ります"],
+"kanji_info": [
+{
+"kanji": "立",
+"meaning": "đứng",
+"onyomi": "リツ, リュウ",
+"kunyomi": "た.つ, た.てる"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_039",
+"word": "使います",
+"reading": "つかいます",
+"romaji": "tsukaimasu",
+"meaning": "Dùng, sử dụng",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "この辞書を使ってもいいです。",
+"example_jp_formatted": "この[辞書]{じしょ}を[使]{つか}ってもいいです。",
+"example_vi": "Tôi có thể dùng quyển từ điển này.",
+"level": "N5",
+"tags": ["động-từ", "cho-phép", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 1. Thể て: 使って.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "使",
+"meaning": "dùng",
+"onyomi": "シ",
+"kunyomi": "つか.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_15_040",
+"word": "持ちます",
+"reading": "もちます",
+"romaji": "mochimasu",
+"meaning": "Cầm, mang",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "荷物を持ってください。",
+"example_jp_formatted": "[荷物]{にもつ}を[持]{も}ってください。",
+"example_vi": "Xin hãy cầm/mang hành lý.",
+"level": "N5",
+"tags": ["động-từ", "yêu-cầu", "ôn-tập", "bài-15"],
+"notes": "Động từ nhóm 1. Thể て: 持って.",
+"synonyms": [],
+"antonyms": ["置きます"],
+"kanji_info": [
+{
+"kanji": "持",
+"meaning": "cầm, giữ, mang",
+"onyomi": "ジ",
+"kunyomi": "も.つ"
+}
+]
+}
+]

@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "id": "vn_chapter_09",
+    "title": "Chinh phục đỉnh núi Phú Sĩ",
+    "level": "N5",
+    "rewardCoins": 20
+  },
+  "characters": {
+    "mascot": {
+      "name": "Shiba",
+      "color": "#FF9F1C",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/shiba_idle.png"
+      }
+    },
+    "stranger": {
+      "name": "Cỏ",
+      "color": "#06D6A0",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/stranger_idle.png"
+      }
+    },
+    "npc_you": {
+      "name": "Tú",
+      "color": "#0077B6",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/programmer_happy.png"
+      }
+    },
+    "npc_an": {
+      "name": "An",
+      "color": "#FFC2D1",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/an_happy_blush.png"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "node_001",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Tụi mình lên tới đỉnh núi rồi An ơi! Gió lạnh ghê. Em có sao không?",
+        "vi": "Tụi mình lên tới đỉnh núi rồi An ơi! Gió lạnh ghê. Em có sao không?"
+      },
+      "interactableWords": [],
+      "nextNode": "node_002"
+    },
+    {
+      "id": "node_002",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Em hơi mệt một xíu... Nhưng đứng ở đây ngắm mặt trời mọc đẹp quá anh Tú ơi! 疲れても、とても嬉しいです。",
+        "vi": "Em hơi mệt một xíu... Nhưng đứng ở đây ngắm mặt trời mọc đẹp quá anh Tú ơi! Dù có mệt em cũng thấy vui lắm."
+      },
+      "interactableWords": [
+        {
+          "word": "ても",
+          "reading": "",
+          "meaning": "Dù... đi chăng nữa (Lesson 25)",
+          "id": "word_temo_01"
+        }
+      ],
+      "nextNode": "node_003"
+    },
+    {
+      "id": "node_003",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Đây là chiếc khăn len anh đan tặng em nè. 寒かったら, đeo vào cho ấm nhé!",
+        "vi": "Đây là chiếc khăn len anh đan tặng em nè. Nếu lạnh thì đeo vào cho ấm nhé!"
+      },
+      "interactableWords": [
+        {
+          "word": "たら",
+          "reading": "",
+          "meaning": "Nếu... thì (Lesson 25)",
+          "id": "word_tara_01"
+        }
+      ],
+      "nextNode": "node_004"
+    },
+    {
+      "id": "node_004",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Ôi lãng mạn ghê Shiba ơi! Trên đỉnh Phú Sĩ lạnh giá mà ấm áp quá chừng.",
+        "vi": "Ôi lãng mạn ghê Shiba ơi! Trên đỉnh Phú Sĩ lạnh giá mà ấm áp quá chừng."
+      },
+      "interactableWords": [],
+      "nextNode": "node_005"
+    },
+    {
+      "id": "node_005",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Ghen tị ghê nha! Để cảm ơn An đã đồng hành, anh Tú nên dùng cấu trúc cho/nhận hành động (V-te kuremasu) như thế nào nhỉ Cỏ?",
+        "vi": "Ghen tị ghê nha! Để cảm ơn An đã đồng hành, anh Tú nên dùng cấu trúc cho/nhận hành động (V-te kuremasu) như thế nào nhỉ Cỏ?"
+      },
+      "interactableWords": [],
+      "nextNode": "node_006"
+    },
+    {
+      "id": "node_006",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Để cảm ơn 'An đã leo núi cùng anh', câu nào diễn tả đúng lòng biết ơn kính trọng thân thiết nhất?",
+        "vi": "Để cảm ơn 'An đã leo núi cùng anh', câu nào diễn tả đúng lòng biết ơn kính trọng thân thiết nhất?"
+      },
+      "interactableWords": [],
+      "choices": [
+        {
+          "text": "一緒に山に登ってあげました。",
+          "isCorrect": false,
+          "nextNode": "node_007_wrong"
+        },
+        {
+          "text": "一緒に山に登ってくれました。",
+          "isCorrect": true,
+          "nextNode": "node_007_correct"
+        }
+      ]
+    },
+    {
+      "id": "node_007_wrong",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Chưa đúng rồi Cỏ ơi! Khi người khác làm gì cho mình với tấm lòng biết ơn, ta phải dùng V-te kuremasu (kureta) chứ không dùng V-te agemasu (đó là mình làm cho người khác) nha!",
+        "vi": "Chưa đúng rồi Cỏ ơi! Khi người khác làm gì cho mình với tấm lòng biết ơn, ta phải dùng V-te kuremasu (kureta) chứ không dùng V-te agemasu (đó là mình làm cho người khác) nha!"
+      },
+      "interactableWords": [],
+      "nextNode": "node_006"
+    },
+    {
+      "id": "node_007_correct",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Cảm ơn em đã đi cùng anh: 一緒に登ってくれてありがとう。Anh mong từ nay về sau tụi mình vẫn sẽ cùng thám hiểm tiếp nhé!",
+        "vi": "Cảm ơn em đã đi cùng anh. Anh mong từ nay về sau tụi mình vẫn sẽ cùng thám hiểm tiếp nhé!"
+      },
+      "interactableWords": [
+        {
+          "word": "くれて",
+          "reading": "",
+          "meaning": "Làm cho người nói (V-te kuremasu - Lesson 24)",
+          "id": "word_kurete_01"
+        }
+      ],
+      "nextNode": "node_008"
+    },
+    {
+      "id": "node_008",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_park_night.jpg",
+      "dialogue": {
+        "jp": "Dạ vâng! Nhất định rồi anh Tú. Em sẽ luôn đồng hành cùng anh và Shiba, cả Cỏ nữa!",
+        "vi": "Dạ vâng! Nhất định rồi anh Tú. Em sẽ luôn đồng hành cùng anh và Shiba, cả Cỏ nữa!"
+      },
+      "interactableWords": [],
+      "nextNode": "END_STORY"
+    }
+  ]
+}

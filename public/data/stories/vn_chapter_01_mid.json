@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "id": "vn_chapter_01_mid",
+    "title": "Mua sắm ở tiệm tiện lợi Kombini",
+    "level": "N5",
+    "rewardCoins": 20
+  },
+  "characters": {
+    "mascot": {
+      "name": "Shiba",
+      "color": "#FF9F1C",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/shiba_idle.png"
+      }
+    },
+    "stranger": {
+      "name": "Cỏ",
+      "color": "#06D6A0",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/stranger_idle.png"
+      }
+    },
+    "npc": {
+      "name": "Cheems",
+      "color": "#5390D9",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/npc_idle.png"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "node_001",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Bụng đói quá Cỏ ơi... Ở kia có một コンビニ (Kombini), mình vào đó mua gì ăn đi!",
+        "vi": "Bụng đói quá Cỏ ơi... Ở kia có một tiệm tiện lợi, mình vào đó mua gì ăn đi!"
+      },
+      "interactableWords": [
+        {
+          "word": "コンビニ",
+          "reading": "こんびに",
+          "meaning": "Cửa hàng tiện lợi",
+          "id": "word_kombini_01"
+        }
+      ],
+      "nextNode": "node_002"
+    },
+    {
+      "id": "node_002",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Ý kiến hay đó! Giờ chúng ta đi thôi. Ở đây có nhiều đồ ăn ngon ghê.",
+        "vi": "Ý kiến hay đó! Giờ chúng ta đi thôi. Ở đây có nhiều đồ ăn ngon ghê."
+      },
+      "interactableWords": [],
+      "nextNode": "node_003"
+    },
+    {
+      "id": "node_003",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Chào mừng đến với thiên đường Onigiri! Cỏ nhìn xem, cái này gần mình là: これはおにぎりです。",
+        "vi": "Chào mừng đến với thiên đường Onigiri! Cỏ nhìn xem, cái này gần mình là: Đây là cơm nắm."
+      },
+      "interactableWords": [
+        {
+          "word": "これ",
+          "reading": "",
+          "meaning": "Cái này (gần người nói)",
+          "id": "word_kore_01"
+        },
+        {
+          "word": "おにぎり",
+          "reading": "おにぎり",
+          "meaning": "Cơm nắm",
+          "id": "word_onigiri_01"
+        }
+      ],
+      "nextNode": "node_004"
+    },
+    {
+      "id": "node_004",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Ồ, thế còn cái cơm cuộn ở gần cậu kia thì sao? それは巻き寿司ですか？",
+        "vi": "Ồ, thế còn cái cơm cuộn ở gần cậu kia thì sao? Đó là Sushi cuộn hả?"
+      },
+      "interactableWords": [
+        {
+          "word": "それ",
+          "reading": "",
+          "meaning": "Cái đó (gần người nghe)",
+          "id": "word_sore_01"
+        }
+      ],
+      "nextNode": "node_005"
+    },
+    {
+      "id": "node_005",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Đúng rồi! Cầm lấy một cái đi. Còn cái bánh mì ở đằng kia xa cả hai chúng ta là: あれはパンです。",
+        "vi": "Đúng rồi! Cầm lấy một cái đi. Còn cái bánh mì ở đằng kia xa cả hai chúng ta là: Kia là bánh mì."
+      },
+      "interactableWords": [
+        {
+          "word": "あれ",
+          "reading": "",
+          "meaning": "Cái kia (xa cả hai người)",
+          "id": "word_are_01"
+        },
+        {
+          "word": "パン",
+          "reading": "ぱん",
+          "meaning": "Bánh mì",
+          "id": "word_pan_01"
+        }
+      ],
+      "nextNode": "node_006"
+    },
+    {
+      "id": "node_006",
+      "characterId": "npc",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "いらっしゃいませ！Hai cháu cần mua nước thì quầy thanh toán ở đây nhé.",
+        "vi": "Hoan nghênh quý khách! Hai cháu cần mua nước thì quầy thanh toán ở đây nhé."
+      },
+      "interactableWords": [
+        {
+          "word": "いらっしゃいませ",
+          "reading": "",
+          "meaning": "Xin chào mừng quý khách",
+          "id": "word_irasshaimase_01"
+        }
+      ],
+      "nextNode": "node_007"
+    },
+    {
+      "id": "node_007",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Bác ơi, quầy nước uống ở chỗ nào vậy ạ? Trợ từ hỏi chỉ địa điểm là gì nhỉ?",
+        "vi": "Bác ơi, quầy nước uống ở chỗ nào vậy ạ? Trợ từ hỏi chỉ địa điểm là gì nhỉ?"
+      },
+      "interactableWords": [],
+      "choices": [
+        {
+          "text": "飲み物はどれですか。 (Nước uống là cái nào?)",
+          "isCorrect": false,
+          "nextNode": "node_008_wrong"
+        },
+        {
+          "text": "飲み物はどこですか。 (Nước uống ở đâu vậy ạ?)",
+          "isCorrect": true,
+          "nextNode": "node_008_correct"
+        }
+      ]
+    },
+    {
+      "id": "node_008_wrong",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "Sai rồi Cỏ ơi! Bác ấy đang hỏi địa điểm của quầy nước, nên phải dùng どこ (ở đâu) chứ!",
+        "vi": "Sai rồi Cỏ ơi! Bác ấy đang hỏi địa điểm của quầy nước, nên phải dùng どこ (ở đâu) chứ!"
+      },
+      "interactableWords": [],
+      "nextNode": "node_007"
+    },
+    {
+      "id": "node_008_correct",
+      "characterId": "npc",
+      "emotion": "idle",
+      "background": "/images/bg_train_station.jpg",
+      "dialogue": {
+        "jp": "飲み物はあそこです。Góc đằng kia kìa cháu. Cứ lại lấy nhé!",
+        "vi": "Nước uống ở đằng kia kìa cháu. Cứ lại lấy nhé!"
+      },
+      "interactableWords": [
+        {
+          "word": "あそこ",
+          "reading": "",
+          "meaning": "Đằng kia (chỉ địa điểm xa cả hai)",
+          "id": "word_asoko_02"
+        }
+      ],
+      "nextNode": "END_STORY"
+    }
+  ]
+}

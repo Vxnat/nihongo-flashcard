@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "id": "vn_chapter_07",
+    "title": "Lễ hội mùa hè Nhật Bản",
+    "level": "N5",
+    "rewardCoins": 20
+  },
+  "characters": {
+    "mascot": {
+      "name": "Shiba",
+      "color": "#FF9F1C",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/shiba_idle.png"
+      }
+    },
+    "stranger": {
+      "name": "Cỏ",
+      "color": "#06D6A0",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/stranger_idle.png"
+      }
+    },
+    "npc_you": {
+      "name": "Tú",
+      "color": "#0077B6",
+      "position": "right",
+      "sprites": {
+        "idle": "/images/characters/programmer_happy.png"
+      }
+    },
+    "npc_an": {
+      "name": "An",
+      "color": "#FFC2D1",
+      "position": "left",
+      "sprites": {
+        "idle": "/images/characters/an_happy_blush.png"
+      }
+    }
+  },
+  "nodes": [
+    {
+      "id": "node_001",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "An mặc bộ 浴衣 (Yukata) này hợp lắm! Đẹp lắm em.",
+        "vi": "An mặc bộ Yukata này hợp lắm! Đẹp lắm em."
+      },
+      "interactableWords": [
+        {
+          "word": "浴衣",
+          "reading": "ゆかた",
+          "meaning": "Áo Kimono mùa hè",
+          "id": "word_yukata_01"
+        }
+      ],
+      "nextNode": "node_002"
+    },
+    {
+      "id": "node_002",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "Cảm ơn anh Tú... Đây là lần đầu tiên em mặc nó đó. 浴衣を着たことがありませんでした。",
+        "vi": "Cảm ơn anh Tú... Đây là lần đầu tiên em mặc nó đó. Em chưa từng mặc Yukata bao giờ cả."
+      },
+      "interactableWords": [
+        {
+          "word": "着たことがありません",
+          "reading": "きたことがありません",
+          "meaning": "Chưa từng mặc (Lesson 19)",
+          "id": "word_kitakoto_01"
+        }
+      ],
+      "nextNode": "node_003"
+    },
+    {
+      "id": "node_003",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "Đám đông lễ hội vui ghê Shiba ơi! Có cả たこ焼き (Takoyaki) kìa. Cậu đã từng ăn nó chưa?",
+        "vi": "Đám đông lễ hội vui ghê Shiba ơi! Có cả bánh bạch tuộc Takoyaki kìa. Cậu đã từng ăn nó chưa?"
+      },
+      "interactableWords": [
+        {
+          "word": "たこ焼き",
+          "reading": "たこやき",
+          "meaning": "Bánh bạch tuộc nướng",
+          "id": "word_takoyaki_01"
+        }
+      ],
+      "nextNode": "node_004"
+    },
+    {
+      "id": "node_004",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "Shiba thần khuyển thì món gì cũng ăn rồi! Mà Cỏ ơi, đố bạn hỏi bằng tiếng Nhật thân mật (Plain form) câu 'Bạn đã ăn Takoyaki chưa?' xem nào!",
+        "vi": "Shiba thần khuyển thì món gì cũng ăn rồi! Mà Cỏ ơi, đố bạn hỏi bằng tiếng Nhật thân mật (Plain form) câu 'Bạn đã ăn Takoyaki chưa?' xem nào!"
+      },
+      "interactableWords": [],
+      "nextNode": "node_005"
+    },
+    {
+      "id": "node_005",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "Ưm, để nói thân mật (Plain form) với bạn bè về kinh nghiệm đã từng ăn Takoyaki, câu nào đúng nhỉ?",
+        "vi": "Ưm, để nói thân mật (Plain form) với bạn bè về kinh nghiệm đã từng ăn Takoyaki, câu nào đúng nhỉ?"
+      },
+      "interactableWords": [],
+      "choices": [
+        {
+          "text": "たこ焼きを食べたことがありますか？",
+          "isCorrect": false,
+          "nextNode": "node_006_wrong"
+        },
+        {
+          "text": "たこ焼きを食べたことある？",
+          "isCorrect": true,
+          "nextNode": "node_006_correct"
+        }
+      ]
+    },
+    {
+      "id": "node_006_wrong",
+      "characterId": "mascot",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "Chưa đúng chuẩn thân mật rồi! Câu kia dùng です/ます và か là thể lịch sự. Ở thể thân mật (Plain form), ta lược bỏ Trợ từ và nghi vấn từ, chỉ cần lên giọng ở cuối câu thôi!",
+        "vi": "Chưa đúng chuẩn thân mật rồi! Câu kia dùng です/ます và か là thể lịch sự. Ở thể thân mật (Plain form), ta lược bỏ Trợ từ và nghi vấn từ, chỉ cần lên giọng ở cuối câu thôi!"
+      },
+      "interactableWords": [],
+      "nextNode": "node_005"
+    },
+    {
+      "id": "node_006_correct",
+      "characterId": "stranger",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "A! たこ焼きを食べたことある？ (Cậu ăn Takoyaki bao giờ chưa?) - Đúng rồi!",
+        "vi": "A! たこ焼きを食べたことある？ (Cậu ăn Takoyaki bao giờ chưa?) - Đúng rồi!"
+      },
+      "interactableWords": [],
+      "nextNode": "node_007"
+    },
+    {
+      "id": "node_007",
+      "characterId": "npc_you",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "Pháo hoa đẹp quá An nhỉ! Dưới ánh sáng này, trông em rực rỡ lắm.",
+        "vi": "Pháo hoa đẹp quá An nhỉ! Dưới ánh sáng này, trông em rực rỡ lắm."
+      },
+      "interactableWords": [
+        {
+          "word": "花火",
+          "reading": "はなび",
+          "meaning": "Pháo hoa",
+          "id": "word_hanabi_01"
+        }
+      ],
+      "nextNode": "node_008"
+    },
+    {
+      "id": "node_008",
+      "characterId": "npc_an",
+      "emotion": "idle",
+      "background": "/images/bg_tokyo_night_street.jpg",
+      "dialogue": {
+        "jp": "Vâng, em rất hạnh phúc... Cảm ơn anh vì ngày hôm nay.",
+        "vi": "Vâng, em rất hạnh phúc... Cảm ơn anh vì ngày hôm nay."
+      },
+      "interactableWords": [],
+      "nextNode": "END_STORY"
+    }
+  ]
+}

@@ -1,0 +1,862 @@
+[
+{
+"id": "sys_n5_minna_03_001",
+"word": "此所",
+"reading": "ここ",
+"romaji": "koko",
+"meaning": "Chỗ này, đây",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "此所は教室です。",
+"example_jp_formatted": "[此所]{ここ}は[教室]{きょうしつ}です。",
+"example_vi": "Chỗ này là phòng học.",
+"level": "N5",
+"tags": ["đại-từ", "chỉ-định", "địa-điểm", "bài-3"],
+"notes": "Chỉ vị trí ở gần người nói.",
+"synonyms": ["此方"],
+"antonyms": ["其所", "彼所"],
+"kanji_info": [
+{
+"kanji": "此",
+"meaning": "thử (này)",
+"onyomi": "シ",
+"kunyomi": "これ, この, ここ"
+},
+{
+"kanji": "所",
+"meaning": "sở (nơi chốn)",
+"onyomi": "ショ",
+"kunyomi": "ところ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_002",
+"word": "其所",
+"reading": "そこ",
+"romaji": "soko",
+"meaning": "Chỗ đó, đó",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "其所は食堂です。",
+"example_jp_formatted": "[其所]{そこ}は[食堂]{しょくどう}です。",
+"example_vi": "Chỗ đó là nhà ăn.",
+"level": "N5",
+"tags": ["đại-từ", "chỉ-định", "địa-điểm", "bài-3"],
+"notes": "Chỉ vị trí ở gần người nghe.",
+"synonyms": ["其方"],
+"antonyms": ["此所", "彼所"],
+"kanji_info": [
+{
+"kanji": "其",
+"meaning": "kì (đó)",
+"onyomi": "キ",
+"kunyomi": "それ, その, そこ"
+},
+{
+"kanji": "所",
+"meaning": "sở (nơi chốn)",
+"onyomi": "ショ",
+"kunyomi": "ところ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_003",
+"word": "彼所",
+"reading": "あそこ",
+"romaji": "asoko",
+"meaning": "Chỗ kia, kia",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "彼所は事務所です。",
+"example_jp_formatted": "[彼所]{あそこ}は[事務所]{じむしょ}です。",
+"example_vi": "Chỗ kia là văn phòng.",
+"level": "N5",
+"tags": ["đại-từ", "chỉ-định", "địa-điểm", "bài-3"],
+"notes": "Chỉ vị trí ở xa cả người nói và người nghe.",
+"synonyms": ["彼方"],
+"antonyms": ["此所", "其所"],
+"kanji_info": [
+{
+"kanji": "彼",
+"meaning": "bỉ (kia)",
+"onyomi": "ヒ",
+"kunyomi": "かれ, かの, あれ"
+},
+{
+"kanji": "所",
+"meaning": "sở (nơi chốn)",
+"onyomi": "ショ",
+"kunyomi": "ところ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_004",
+"word": "何処",
+"reading": "どこ",
+"romaji": "doko",
+"meaning": "Chỗ nào, đâu",
+"pos": "pronoun",
+"pitch_accent": "atamadaka",
+"example_jp": "御手洗いは何処ですか。",
+"example_jp_formatted": "[御手洗]{おてあら}いは[何処]{どこ}ですか。",
+"example_vi": "Nhà vệ sinh ở đâu vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "địa-điểm", "bài-3"],
+"notes": "Từ để hỏi về địa điểm.",
+"synonyms": ["何方"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "処",
+"meaning": "xứ (nơi chốn)",
+"onyomi": "ショ",
+"kunyomi": "ところ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_005",
+"word": "此方",
+"reading": "こちら",
+"romaji": "kochira",
+"meaning": "Phía này, đằng này",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "エレベーターは此方です。",
+"example_jp_formatted": "エレベーターは[此方]{こちら}です。",
+"example_vi": "Thang máy ở phía này.",
+"level": "N5",
+"tags": ["đại-từ", "phương-hướng", "bài-3"],
+"notes": "Lịch sự hơn 此所 (ここ). Cũng dùng để giới thiệu người.",
+"synonyms": ["此所"],
+"antonyms": ["其方", "彼方"],
+"kanji_info": [
+{
+"kanji": "此",
+"meaning": "thử (này)",
+"onyomi": "シ",
+"kunyomi": "これ, この, ここ"
+},
+{
+"kanji": "方",
+"meaning": "phương (phương hướng)",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_006",
+"word": "其方",
+"reading": "そちら",
+"romaji": "sochira",
+"meaning": "Phía đó, đằng đó",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "其方は会議室です。",
+"example_jp_formatted": "[其方]{そちら}は[会議室]{かいぎしつ}です。",
+"example_vi": "Phía đó là phòng họp.",
+"level": "N5",
+"tags": ["đại-từ", "phương-hướng", "bài-3"],
+"notes": "Lịch sự hơn 其所 (そこ).",
+"synonyms": ["其所"],
+"antonyms": ["此方", "彼方"],
+"kanji_info": [
+{
+"kanji": "其",
+"meaning": "kì (đó)",
+"onyomi": "キ",
+"kunyomi": "それ, その, そこ"
+},
+{
+"kanji": "方",
+"meaning": "phương (phương hướng)",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_007",
+"word": "彼方",
+"reading": "あちら",
+"romaji": "achira",
+"meaning": "Phía kia, đằng kia",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "電話は彼方です。",
+"example_jp_formatted": "[電話]{でんわ}は[彼方]{あちら}です。",
+"example_vi": "Điện thoại ở phía kia.",
+"level": "N5",
+"tags": ["đại-từ", "phương-hướng", "bài-3"],
+"notes": "Lịch sự hơn 彼所 (あそこ).",
+"synonyms": ["彼所"],
+"antonyms": ["此方", "其方"],
+"kanji_info": [
+{
+"kanji": "彼",
+"meaning": "bỉ (kia)",
+"onyomi": "ヒ",
+"kunyomi": "かれ, かの, あれ"
+},
+{
+"kanji": "方",
+"meaning": "phương (phương hướng)",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_008",
+"word": "何方",
+"reading": "どちら",
+"romaji": "dochira",
+"meaning": "Phía nào, đằng nào",
+"pos": "pronoun",
+"pitch_accent": "atamadaka",
+"example_jp": "階段は何方ですか。",
+"example_jp_formatted": "[階段]{かいだん}は[何方]{どちら}ですか。",
+"example_vi": "Cầu thang ở phía nào vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "phương-hướng", "bài-3"],
+"notes": "Lịch sự hơn 何処 (どこ).",
+"synonyms": ["何処"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "方",
+"meaning": "phương (phương hướng)",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_009",
+"word": "教室",
+"reading": "きょうしつ",
+"romaji": "kyoushitsu",
+"meaning": "Phòng học",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "教室に学生が居ます。",
+"example_jp_formatted": "[教室]{きょうしつ}に[学生]{がくせい}が[居]{い}ます。",
+"example_vi": "Trong phòng học có học sinh.",
+"level": "N5",
+"tags": ["địa-điểm", "trường-học", "bài-3"],
+"notes": "Nơi diễn ra các tiết học.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "giáo (dạy học)",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+},
+{
+"kanji": "室",
+"meaning": "thất (phòng)",
+"onyomi": "シツ",
+"kunyomi": "むろ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_010",
+"word": "食堂",
+"reading": "しょくどう",
+"romaji": "shokudou",
+"meaning": "Nhà ăn, phòng ăn",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "食堂で御飯を食べます。",
+"example_jp_formatted": "[食堂]{しょくどう}で[御飯]{ごはん}を[食]{た}べます。",
+"example_vi": "Tôi ăn cơm ở nhà ăn.",
+"level": "N5",
+"tags": ["địa-điểm", "ăn-uống", "bài-3"],
+"notes": "Khu vực ăn uống tập thể ở trường học, công ty.",
+"synonyms": ["レストラン"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "thực (ăn)",
+"onyomi": "ショク, ジキ",
+"kunyomi": "た.べる, く.う"
+},
+{
+"kanji": "堂",
+"meaning": "đường (phòng lớn)",
+"onyomi": "ドウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_03_011",
+"word": "事務所",
+"reading": "じむしょ",
+"romaji": "jimusho",
+"meaning": "Văn phòng",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "事務所は二階です。",
+"example_jp_formatted": "[事務所]{じむしょ}は[二階]{にかい}です。",
+"example_vi": "Văn phòng ở tầng 2.",
+"level": "N5",
+"tags": ["địa-điểm", "công-sở", "bài-3"],
+"notes": "Phòng làm việc chung của nhân viên.",
+"synonyms": ["オフィス"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "事",
+"meaning": "sự (sự việc)",
+"onyomi": "ジ",
+"kunyomi": "こと"
+},
+{
+"kanji": "務",
+"meaning": "vụ (nhiệm vụ)",
+"onyomi": "ム",
+"kunyomi": "つと.める"
+},
+{
+"kanji": "所",
+"meaning": "sở (nơi chốn)",
+"onyomi": "ショ",
+"kunyomi": "ところ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_012",
+"word": "会議室",
+"reading": "かいぎしつ",
+"romaji": "kaigishitsu",
+"meaning": "Phòng họp",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "会議室で会議をします。",
+"example_jp_formatted": "[会議室]{かいぎしつ}で[会議]{かいぎ}をします。",
+"example_vi": "Chúng tôi họp ở phòng họp.",
+"level": "N5",
+"tags": ["địa-điểm", "công-sở", "bài-3"],
+"notes": "Phòng dùng để tổ chức các cuộc họp.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "hội (hội họp)",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+},
+{
+"kanji": "議",
+"meaning": "nghị (thảo luận)",
+"onyomi": "ギ",
+"kunyomi": ""
+},
+{
+"kanji": "室",
+"meaning": "thất (phòng)",
+"onyomi": "シツ",
+"kunyomi": "むろ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_013",
+"word": "受付",
+"reading": "うけつけ",
+"romaji": "uketsuke",
+"meaning": "Quầy lễ tân",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "受付は何処ですか。",
+"example_jp_formatted": "[受付]{うけつけ}は[何処]{どこ}ですか。",
+"example_vi": "Quầy lễ tân ở đâu vậy?",
+"level": "N5",
+"tags": ["địa-điểm", "công-sở", "bài-3"],
+"notes": "Nơi tiếp đón khách.",
+"synonyms": ["フロント"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "受",
+"meaning": "thụ (nhận)",
+"onyomi": "ジュ",
+"kunyomi": "う.ける"
+},
+{
+"kanji": "付",
+"meaning": "phó (gắn vào)",
+"onyomi": "フ",
+"kunyomi": "つ.く, つ.ける"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_014",
+"word": "御手洗い",
+"reading": "おてあらい",
+"romaji": "otearai",
+"meaning": "Nhà vệ sinh",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "御手洗いは彼所です。",
+"example_jp_formatted": "[御手洗]{おてあら}いは[彼所]{あそこ}です。",
+"example_vi": "Nhà vệ sinh ở đằng kia.",
+"level": "N5",
+"tags": ["địa-điểm", "bài-3"],
+"notes": "Cách gọi lịch sự của nhà vệ sinh.",
+"synonyms": ["トイレ", "便所", "化粧室"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "御",
+"meaning": "ngự (kính ngữ)",
+"onyomi": "ギョ, ゴ",
+"kunyomi": "おん, お, み"
+},
+{
+"kanji": "手",
+"meaning": "thủ (tay)",
+"onyomi": "シュ",
+"kunyomi": "て"
+},
+{
+"kanji": "洗",
+"meaning": "tẩy (rửa)",
+"onyomi": "セン",
+"kunyomi": "あら.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_015",
+"word": "階段",
+"reading": "かいだん",
+"romaji": "kaidan",
+"meaning": "Cầu thang bộ",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "階段を上ります。",
+"example_jp_formatted": "[階段]{かいだん}を[上]{のぼ}ります。",
+"example_vi": "Đi lên cầu thang.",
+"level": "N5",
+"tags": ["địa-điểm", "kiến-trúc", "bài-3"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "階",
+"meaning": "giai (bậc thang, tầng)",
+"onyomi": "カイ",
+"kunyomi": ""
+},
+{
+"kanji": "段",
+"meaning": "đoạn (bậc, bước)",
+"onyomi": "ダン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_03_016",
+"word": "エレベーター",
+"reading": "えれべーたー",
+"romaji": "erebeetaa",
+"meaning": "Thang máy",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "彼のエレベーターに乗ります。",
+"example_jp_formatted": "[彼]{あ}のエレベーターに[乗]{の}ります。",
+"example_vi": "Tôi lên cái thang máy kia.",
+"level": "N5",
+"tags": ["địa-điểm", "phương-tiện", "bài-3"],
+"notes": "Từ mượn tiếng Anh 'elevator'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_03_017",
+"word": "エスカレーター",
+"reading": "えすかれーたー",
+"romaji": "esukareetaa",
+"meaning": "Thang cuốn",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "エスカレーターで二階へ行きます。",
+"example_jp_formatted": "エスカレーターで[二階]{にかい}へ[行]{い}きます。",
+"example_vi": "Tôi lên tầng hai bằng thang cuốn.",
+"level": "N5",
+"tags": ["địa-điểm", "phương-tiện", "bài-3"],
+"notes": "Từ mượn tiếng Anh 'escalator'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_03_018",
+"word": "国",
+"reading": "くに",
+"romaji": "kuni",
+"meaning": "Đất nước",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "御国は何処ですか。",
+"example_jp_formatted": "[御国]{おくに}は[何処]{どこ}ですか。",
+"example_vi": "Đất nước của bạn ở đâu?",
+"level": "N5",
+"tags": ["địa-điểm", "quốc-gia", "bài-3"],
+"notes": "Thêm '御' (お) phía trước thành '御国' để hỏi lịch sự về đất nước của người đối diện.",
+"synonyms": ["国家"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "国",
+"meaning": "quốc (quốc gia)",
+"onyomi": "コク",
+"kunyomi": "くに"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_019",
+"word": "会社",
+"reading": "かいしゃ",
+"romaji": "kaisha",
+"meaning": "Công ty",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "会社は何方ですか。",
+"example_jp_formatted": "[会社]{かいしゃ}は[何方]{どちら}ですか。",
+"example_vi": "Công ty của bạn ở đâu vậy?",
+"level": "N5",
+"tags": ["địa-điểm", "công-sở", "bài-3"],
+"notes": "Khi dùng '何方' (dochira) để hỏi về công ty, nghĩa là hỏi về tên hoặc địa điểm công ty.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "hội (hội họp)",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+},
+{
+"kanji": "社",
+"meaning": "xã (công ty)",
+"onyomi": "シャ",
+"kunyomi": "やしろ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_020",
+"word": "家",
+"reading": "うち",
+"romaji": "uchi",
+"meaning": "Nhà (của mình)",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "先生の家は彼所です。",
+"example_jp_formatted": "[先生]{せんせい}の[家]{うち}は[彼所]{あそこ}です。",
+"example_vi": "Nhà của thầy giáo ở đằng kia.",
+"level": "N5",
+"tags": ["địa-điểm", "bài-3"],
+"notes": "Đọc là 'uchi' khi nói về nhà như một mái ấm, tổ ấm. Đọc là 'ie' khi chỉ công trình kiến trúc.",
+"synonyms": ["家 (いえ)"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "家",
+"meaning": "gia (nhà)",
+"onyomi": "カ, ケ",
+"kunyomi": "いえ, や, うち"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_021",
+"word": "電話",
+"reading": "でんわ",
+"romaji": "denwa",
+"meaning": "Điện thoại",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "此れは会社の電話です。",
+"example_jp_formatted": "[此]{こ}れは[会社]{かいしゃ}の[電話]{でんわ}です。",
+"example_vi": "Đây là điện thoại của công ty.",
+"level": "N5",
+"tags": ["đồ-vật", "công-nghệ", "bài-3"],
+"notes": "",
+"synonyms": ["携帯電話", "スマホ"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "電",
+"meaning": "điện (điện lực)",
+"onyomi": "デン",
+"kunyomi": ""
+},
+{
+"kanji": "話",
+"meaning": "thoại (nói chuyện)",
+"onyomi": "ワ",
+"kunyomi": "はな.す, はなし"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_022",
+"word": "靴",
+"reading": "くつ",
+"romaji": "kutsu",
+"meaning": "Giày",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "其の靴は幾らですか。",
+"example_jp_formatted": "[其]{そ}の[靴]{くつ}は[幾]{いく}らですか。",
+"example_vi": "Đôi giày đó giá bao nhiêu vậy?",
+"level": "N5",
+"tags": ["đồ-vật", "thời-trang", "bài-3"],
+"notes": "Chỉ các loại giày dép mang ở chân.",
+"synonyms": ["シューズ"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "靴",
+"meaning": "ngoạn (đôi giày)",
+"onyomi": "カ",
+"kunyomi": "くつ"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_023",
+"word": "ネクタイ",
+"reading": "ねくたい",
+"romaji": "nekutai",
+"meaning": "Cà vạt",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "此れはイタリアのネクタイです。",
+"example_jp_formatted": "[此]{こ}れはイタリアのネクタイです。",
+"example_vi": "Đây là cà vạt của Ý.",
+"level": "N5",
+"tags": ["đồ-vật", "thời-trang", "bài-3"],
+"notes": "Từ mượn tiếng Anh 'necktie'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_03_024",
+"word": "ワイン",
+"reading": "わいん",
+"romaji": "wain",
+"meaning": "Rượu vang",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "此れはフランスのワインです。",
+"example_jp_formatted": "[此]{こ}れはフランスのワインです。",
+"example_vi": "Đây là rượu vang của Pháp.",
+"level": "N5",
+"tags": ["đồ-vật", "ăn-uống", "bài-3"],
+"notes": "Từ mượn tiếng Anh 'wine'.",
+"synonyms": ["葡萄酒"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_03_025",
+"word": "売り場",
+"reading": "うりば",
+"romaji": "uriba",
+"meaning": "Quầy bán hàng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "時計の売り場は一階です。",
+"example_jp_formatted": "[時計]{とけい}の[売]{う}り[場]{ば}は[一階]{いっかい}です。",
+"example_vi": "Quầy bán đồng hồ nằm ở tầng một.",
+"level": "N5",
+"tags": ["địa-điểm", "mua-sắm", "bài-3"],
+"notes": "Khu vực bán một mặt hàng cụ thể trong trung tâm thương mại.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "売",
+"meaning": "mại (bán)",
+"onyomi": "バイ",
+"kunyomi": "う.る"
+},
+{
+"kanji": "場",
+"meaning": "trường (địa điểm)",
+"onyomi": "ジョウ",
+"kunyomi": "ば"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_026",
+"word": "地下",
+"reading": "ちか",
+"romaji": "chika",
+"meaning": "Tầng hầm, dưới lòng đất",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "食堂は地下に有ります。",
+"example_jp_formatted": "[食堂]{しょくどう}は[地下]{ちか}に[有]{あ}ります。",
+"example_vi": "Nhà ăn nằm ở tầng hầm.",
+"level": "N5",
+"tags": ["địa-điểm", "kiến-trúc", "bài-3"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["地上"],
+"kanji_info": [
+{
+"kanji": "地",
+"meaning": "địa (đất)",
+"onyomi": "チ, ジ",
+"kunyomi": ""
+},
+{
+"kanji": "下",
+"meaning": "hạ (dưới)",
+"onyomi": "カ, ゲ",
+"kunyomi": "した, さ.がる"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_027",
+"word": "階",
+"reading": "かい",
+"romaji": "kai",
+"meaning": "Tầng ~",
+"pos": "suffix",
+"pitch_accent": "heiban",
+"example_jp": "私の部屋は三階です。",
+"example_jp_formatted": "[私]{わたし}の[部屋]{へや}は[三階]{さんがい}です。",
+"example_vi": "Phòng của tôi ở tầng 3.",
+"level": "N5",
+"tags": ["hậu-tố", "đếm-số", "bài-3"],
+"notes": "Hậu tố dùng để đếm tầng của tòa nhà.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "階",
+"meaning": "giai (bậc thang, tầng)",
+"onyomi": "カイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_03_028",
+"word": "何階",
+"reading": "なんがい",
+"romaji": "nangai",
+"meaning": "Tầng mấy",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "ワイン売り場は何階ですか。",
+"example_jp_formatted": "ワイン[売]{う}り[場]{ば}は[何階]{なんがい}ですか。",
+"example_vi": "Quầy bán rượu vang ở tầng mấy vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "bài-3"],
+"notes": "Chú ý biến âm, đọc là 'nangai' thay vì 'nankai'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "階",
+"meaning": "giai (bậc thang, tầng)",
+"onyomi": "カイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_03_029",
+"word": "円",
+"reading": "えん",
+"romaji": "en",
+"meaning": "Yên (tiền Nhật)",
+"pos": "suffix",
+"pitch_accent": "heiban",
+"example_jp": "此の靴は三千円です。",
+"example_jp_formatted": "[此]{こ}の[靴]{くつ}は[三千円]{さんぜんえん}です。",
+"example_vi": "Đôi giày này giá 3000 yên.",
+"level": "N5",
+"tags": ["hậu-tố", "tiền-tệ", "bài-3"],
+"notes": "Đơn vị tiền tệ của Nhật Bản.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "円",
+"meaning": "viên (tròn, đồng yên)",
+"onyomi": "エン",
+"kunyomi": "まる.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_03_030",
+"word": "幾ら",
+"reading": "いくら",
+"romaji": "ikura",
+"meaning": "Bao nhiêu tiền",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "此の時計は幾らですか。",
+"example_jp_formatted": "[此]{こ}の[時計]{とけい}は[幾]{いく}らですか。",
+"example_vi": "Cái đồng hồ này giá bao nhiêu tiền?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "mua-sắm", "bài-3"],
+"notes": "Từ để hỏi giá cả.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "幾",
+"meaning": "kỉ (bao nhiêu)",
+"onyomi": "キ",
+"kunyomi": "いく.つ, いく.ら"
+}
+]
+}
+]

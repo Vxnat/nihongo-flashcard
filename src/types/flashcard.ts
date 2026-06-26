@@ -34,6 +34,7 @@ export type JLPTLevel = "N5" | "N4" | "N3" | "N2" | "N1";
 export interface FlashcardData {
   id: string;
   word: string; // Từ vựng gốc (thường chứa Kanji)
+  char?: string;
   reading: string; // Cách đọc bằng Hiragana/Katakana
   romaji: string; // Phiên âm Romaji
   meaning: string; // Ý nghĩa tiếng Việt
@@ -54,4 +55,45 @@ export interface FlashcardData {
   
   kanji_info: KanjiInfo[]; // Danh sách các chữ Hán trong từ
   audio_url?: string; // (Tùy chọn) Link file âm thanh
+}
+
+/**
+ * Cấu trúc thông tin của một bộ thẻ từ vựng hệ thống (System Deck)
+ */
+export interface SystemDeck {
+  id: string;
+  title: string;
+  level: string;
+  chapter: number;
+  order: number;
+  prerequisite: string | null;
+  rewardCoins: number;
+  rewards?: {
+    coins: number;
+    exp: number;
+  };
+  totalCards?: number;
+  description?: string;
+  type?: "flashcard" | "story" | "chest" | "minigame_matching" | "minigame_kanji" | "minigame_rush" | string;
+  targetDeckIds?: string[];
+  kanjiList?: { char: string; meaning: string }[];
+}
+
+/**
+ * Dữ liệu thẻ từ rút gọn/đơn giản hóa dùng cho các chức năng Import/Admin
+ */
+export interface CardData {
+  id: string;
+  word: string;
+  reading: string;
+  romaji: string;
+  meaning: string;
+  pos?: string;
+  notes?: string;
+  example_jp?: string;
+  example_jp_formatted?: string;
+  example_vi?: string;
+  tags?: string[];
+  synonyms?: string[];
+  antonyms?: string[];
 }

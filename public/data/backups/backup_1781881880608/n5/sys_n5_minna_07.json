@@ -1,0 +1,848 @@
+[
+{
+"id": "sys_n5_minna_07_001",
+"word": "切ります",
+"reading": "きります",
+"romaji": "kirimasu",
+"meaning": "Cắt",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "鋏で紙を切ります。",
+"example_jp_formatted": "[鋏]{はさみ}で[紙]{かみ}uを[切]{き}ります。",
+"example_vi": "Tôi cắt giấy bằng cái kéo.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 1. Thường đi với trợ từ で để chỉ công cụ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "切",
+"meaning": "thiết (cắt)",
+"onyomi": "セツ, サイ",
+"kunyomi": "き.る, -き.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_002",
+"word": "送ります",
+"reading": "おくります",
+"romaji": "okurimasu",
+"meaning": "Gửi",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "荷物を送ります。",
+"example_jp_formatted": "[荷物]{にもつ}を[送]{おく}ります。",
+"example_vi": "Tôi gửi hành lý.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 1. Dùng cho việc gửi đồ vật, bưu kiện, thư từ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "送",
+"meaning": "tống (tiễn, gửi đi)",
+"onyomi": "ソウ",
+"kunyomi": "おく.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_003",
+"word": "上げます",
+"reading": "あげます",
+"romaji": "agemasu",
+"meaning": "Cho, tặng",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "友達に花を上げます。",
+"example_jp_formatted": "[友達]{ともだち}に[花]{はな}を[上]{あ}げます。",
+"example_vi": "Tôi tặng hoa cho bạn bè.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 2. Người cho tặng vật cho đối tượng khác (không dùng khi đối tượng nhận là người nói).",
+"synonyms": [],
+"antonyms": ["貰います"],
+"kanji_info": [
+{
+"kanji": "上",
+"meaning": "thượng (trên, nâng lên)",
+"onyomi": "ジョウ, ショウ",
+"kunyomi": "うえ, あ.げる"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_004",
+"word": "貰います",
+"reading": "もらいます",
+"romaji": "moraimasu",
+"meaning": "Nhận",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "先生に本sを貰いました。",
+"example_jp_formatted": "[先生]{せんせい}に[本]{ほん}を[貰]{もら}いました。",
+"example_vi": "Tôi đã nhận được một cuốn sách từ thầy giáo.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 1. Đi kèm trợ từ に hoặc から để chỉ người cho mình đồ vật.",
+"synonyms": [],
+"antonyms": ["上げます"],
+"kanji_info": [
+{
+"kanji": "貰",
+"meaning": "thế / sế (nhận, lấy)",
+"onyomi": "セイ, シャ",
+"kunyomi": "もら.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_005",
+"word": "貸します",
+"reading": "かします",
+"romaji": "kashimasu",
+"meaning": "Cho mượn, cho vay",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "友達に本を貸します。",
+"example_jp_formatted": "[友達]{ともだち}に[本]{ほん}を[貸]{か}します。",
+"example_vi": "Tôi cho bạn mượn sách.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 1. Hành động cho ai đó mượn vật gì.",
+"synonyms": [],
+"antonyms": ["借ります"],
+"kanji_info": [
+{
+"kanji": "貸",
+"meaning": "thải (cho mượn)",
+"onyomi": "タイ",
+"kunyomi": "か.す, か.し-"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_006",
+"word": "借ります",
+"reading": "かります",
+"romaji": "karimasu",
+"meaning": "Mượn, vay",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "友達から本を借ります。",
+"example_jp_formatted": "[友達]{ともだち}から[本]{ほん}を[借]{か}ります。",
+"example_vi": "Tôi mượn sách từ bạn bè.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 2. Hành động mượn đồ từ ai đó.",
+"synonyms": [],
+"antonyms": ["貸します"],
+"kanji_info": [
+{
+"kanji": "借",
+"meaning": "tá (vay mượn)",
+"onyomi": "シャク",
+"kunyomi": "か.りる"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_007",
+"word": "教えます",
+"reading": "おしえます",
+"romaji": "oshiemasu",
+"meaning": "Dạy, hướng dẫn, cho biết",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "日本語を教えます。",
+"example_jp_formatted": "[日本語]{にほんご}を[教]{お}しえます。",
+"example_vi": "Tôi dạy tiếng Nhật.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 2. Truyền đạt kiến thức hoặc thông tin cho người khác.",
+"synonyms": [],
+"antonyms": ["習います"],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "giáo (dạy bảo, giáo dục)",
+"onyomi": "キョウ",
+"kunyomi": "おし.える, おそわ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_008",
+"word": "習います",
+"reading": "naraimasu",
+"romaji": "naraimasu",
+"meaning": "Học, tập luyện",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "先生から日本語を習います。",
+"example_jp_formatted": "[先生]{せんせい}から[日本語]{にほんご}を[習]{なら}います。",
+"example_vi": "Tôi học tiếng Nhật từ thầy giáo.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 1. Tiếp nhận kiến thức từ một người hướng dẫn cụ thể.",
+"synonyms": ["勉強します"],
+"antonyms": ["教えます"],
+"kanji_info": [
+{
+"kanji": "習",
+"meaning": "tập (học tập, thực hành)",
+"onyomi": "シュウ",
+"kunyomi": "なら.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_009",
+"word": "掛けます",
+"reading": "かけます",
+"romaji": "kakemasu",
+"meaning": "Gọi (điện thoại)",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "友達に電話を掛けます。",
+"example_jp_formatted": "[友達]{ともだち}に[電話]{деnwa}を[掛]{か}けます。",
+"example_vi": "Tôi gọi điện thoại cho bạn.",
+"level": "N5",
+"tags": ["động-từ", "hành-động", "bài-7"],
+"notes": "Động từ nhóm 2. Đi kèm cụm danh từ 「電話を」.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "掛",
+"meaning": "quải (treo, treo lên, gọi điện)",
+"onyomi": "カイ",
+"kunyomi": "か.ける, か.かる"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_010",
+"word": "手",
+"reading": "て",
+"romaji": "te",
+"meaning": "Tay, bàn tay",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "手で御飯を食べます。",
+"example_jp_formatted": "[手]{て}で[御飯]{ごはん}を[食]{た}べます。",
+"example_vi": "Tôi ăn cơm bằng tay.",
+"level": "N5",
+"tags": ["danh-từ", "bộ-phận-cơ-thể", "bài-7"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "手",
+"meaning": "thủ (bàn tay)",
+"onyomi": "シュ",
+"kunyomi": "て"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_011",
+"word": "箸",
+"reading": "はし",
+"romaji": "hashi",
+"meaning": "Đũa",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "箸で御飯を食べます。",
+"example_jp_formatted": "[箸]{はし}で[御飯]{ごはん}を[食]{た}べます。",
+"example_vi": "Tôi ăn cơm bằng đũa.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "bài-7"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "箸",
+"meaning": "trợ (cái đũa)",
+"onyomi": "チョ",
+"kunyomi": "はし"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_012",
+"word": "スプーン",
+"reading": "すぷーん",
+"romaji": "supuun",
+"meaning": "Thìa, muỗng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "スプーンでカレーを食べます。",
+"example_jp_formatted": "スプーンでカレーを[食]{た}べます。",
+"example_vi": "Tôi ăn cà ri bằng thìa.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "bài-7"],
+"notes": "Từ mượn tiếng Anh 'spoon'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_013",
+"word": "ナイフ",
+"reading": "ないふ",
+"romaji": "naifu",
+"meaning": "Dao (ăn)",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "ナイフで肉を切ります。",
+"example_jp_formatted": "ナイフで[肉]{にく}を[切]{き}ります。",
+"example_vi": "Tôi cắt thịt bằng dao.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "bài-7"],
+"notes": "Từ mượn tiếng Anh 'knife'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_014",
+"word": "フォーク",
+"reading": "ふぉーく",
+"romaji": "fooku",
+"meaning": "Nĩa, dĩa",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "フォークで料理を食べます。",
+"example_jp_formatted": "フォークで[料理]{りょうり}を[食]{た}べます。",
+"example_vi": "Tôi ăn thức ăn bằng dĩa.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "bài-7"],
+"notes": "Từ mượn tiếng Anh 'fork'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_015",
+"word": "鋏",
+"reading": "はさみ",
+"romaji": "hasami",
+"meaning": "Cái kéo",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "鋏で紙を切ります。",
+"example_jp_formatted": "[鋏]{はさみ}で[紙]{かみ}を[切]{き}ります。",
+"example_vi": "Tôi cắt giấy bằng kéo.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "bài-7"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "鋏",
+"meaning": "kiếm / kiếp (cái kéo)",
+"onyomi": "キョウ",
+"kunyomi": "はさみ"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_016",
+"word": "パソコン",
+"reading": "ぱそこん",
+"romaji": "pasokon",
+"meaning": "Máy tính cá nhân",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "パソコンで手紙を書きます。",
+"example_jp_formatted": "パソコンで[手紙]{てがみ}を[書]{か}kimasu",
+"example_vi": "Tôi viết thư bằng máy tính.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "bài-7"],
+"notes": "Từ viết tắt của 'personal computer'.",
+"synonyms": ["コンピュータ"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_017",
+"word": "携帯",
+"reading": "けいたい",
+"romaji": "keitai",
+"meaning": "Điện thoại di động",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "携帯で話します。",
+"example_jp_formatted": "[携帯]{けいたい}で[話]{はな}します。",
+"example_vi": "Tôi nói chuyện bằng điện thoại di động.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "bài-7"],
+"notes": "Cách gọi tắt của 「携帯電話」.",
+"synonyms": ["スマホ"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "携",
+"meaning": "huề (mang theo, xách tay)",
+"onyomi": "ケイ",
+"kunyomi": "たずさ.える"
+},
+{
+"kanji": "帯",
+"meaning": "đới (đeo, dây đai)",
+"onyomi": "タイ",
+"kunyomi": "おび"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_018",
+"word": "メール",
+"reading": "めーる",
+"romaji": "meeru",
+"meaning": "Thư điện tử, email",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "友達にメールを送ります。",
+"example_jp_formatted": "[友達]{ともだち}にメールを[送]{おく}ります。",
+"example_vi": "Tôi gửi email cho bạn.",
+"level": "N5",
+"tags": ["danh-từ", "bài-7"],
+"notes": "Từ mượn tiếng Anh 'mail'.",
+"synonyms": ["電子メール"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_019",
+"word": "年賀状",
+"reading": "ねんがじょう",
+"romaji": "nengajou",
+"meaning": "Bưu thiếp chúc Tết",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "年賀状を書きます。",
+"example_jp_formatted": "[年賀状]{ねんがじょう}を[書]{か}きます。",
+"example_vi": "Tôi viết thiệp chúc Tết.",
+"level": "N5",
+"tags": ["danh-từ", "văn-hóa", "bài-7"],
+"notes": "Thiệp chúc mừng năm mới truyền thống ở Nhật.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "年",
+"meaning": "niên (năm)",
+"onyomi": "ネン",
+"kunyomi": "とし"
+},
+{
+"kanji": "賀",
+"meaning": "hạ (chúc mừng)",
+"onyomi": "ガ",
+"kunyomi": ""
+},
+{
+"kanji": "状",
+"meaning": "trạng (bức thư, hình trạng)",
+"onyomi": "ジョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_07_020",
+"word": "パンチ",
+"reading": "ぱんち",
+"romaji": "panchi",
+"meaning": "Cái đục lỗ",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "パンチで紙に穴を開けます。",
+"example_jp_formatted": "パンチで[紙]{かみ}に[穴]{あな}を[開]{あ}けます。",
+"example_vi": "Tôi đục lỗ trên giấy bằng cái đục lỗ.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "văn-phòng", "bài-7"],
+"notes": "Từ mượn tiếng Anh 'punch'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_021",
+"word": "ホッチキス",
+"reading": "ほっちきす",
+"romaji": "hotchikisu",
+"meaning": "Cái dập ghim",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "ホッチキスで紙を留めます。",
+"example_jp_formatted": "ホッチキスで[紙]{かみ}を[留]{と}めます。",
+"example_vi": "Tôi dập ghim giấy lại bằng cái dập ghim.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "văn-phòng", "bài-7"],
+"notes": "Tên thương hiệu đặt theo người phát minh, dùng rộng rãi làm danh từ chung tại Nhật.",
+"synonyms": ["ステープラー"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_022",
+"word": "セロテープ",
+"reading": "せろてーぷ",
+"romaji": "seroteepu",
+"meaning": "Băng dính",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "セロテープで紙を貼ります。",
+"example_jp_formatted": "セロテープで[紙]{かみ}を[貼]{は}ります。",
+"example_vi": "Tôi dán giấy lại bằng băng dính.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "văn-phòng", "bài-7"],
+"notes": "Mượn từ 'Cellotape'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_023",
+"word": "消しゴム",
+"reading": "けしごむ",
+"romaji": "keshigomu",
+"meaning": "Cục tẩy",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "消しゴムで字を消します。",
+"example_jp_formatted": "[消]{け}しゴムで[字]{じ}を[消]{け}します。",
+"example_vi": "Tôi xóa chữ bằng cục tẩy.",
+"level": "N5",
+"tags": ["danh-từ", "công-cụ", "văn-phòng", "bài-7"],
+"notes": "Kết hợp giữa động từ 消す (xóa) và danh từ ゴム (cao su).",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "消",
+"meaning": "tiêu (xóa bỏ, biến mất)",
+"onyomi": "ショウ",
+"kunyomi": "き.える, け.s"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_024",
+"word": "紙",
+"reading": "かみ",
+"romaji": "kami",
+"meaning": "Giấy",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "紙に名前を書きます。",
+"example_jp_formatted": "[紙]{かみ}に[名前]{なまえ}を[書]{か}きます。",
+"example_vi": "Tôi viết tên lên giấy.",
+"level": "N5",
+"tags": ["danh-từ", "văn-phòng", "bài-7"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "紙",
+"meaning": "chỉ (tờ giấy)",
+"onyomi": "シ",
+"kunyomi": "かみ"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_025",
+"word": "花",
+"reading": "はな",
+"romaji": "hana",
+"meaning": "Hoa, bông hoa",
+"pos": "noun",
+"pitch_accent": "odaka",
+"example_jp": "友達に花を上げます。",
+"example_jp_formatted": "[友達]{ともだch}に[花]{はな}uを[上]{あ}げます。",
+"example_vi": "Tôi tặng hoa cho bạn.",
+"level": "N5",
+"tags": ["danh-từ", "đồ-vật", "bài-7"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "花",
+"meaning": "hoa (bông hoa)",
+"onyomi": "カ",
+"kunyomi": "はな"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_026",
+"word": "シャツ",
+"reading": "しゃつ",
+"romaji": "shatsu",
+"meaning": "Áo sơ mi",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "新しいシャツを買いました。",
+"example_jp_formatted": "[新]{あたら}しいシャツを[買]{か}いました。",
+"example_vi": "Tôi đã mua một chiếc áo sơ mi mới.",
+"level": "N5",
+"tags": ["danh-từ", "thời-trang", "bài-7"],
+"notes": "Mượn từ 'shirt'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_027",
+"word": "プレゼント",
+"reading": "ぷれぜんと",
+"romaji": "purezento",
+"meaning": "Quà tặng",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "誕生日のプレゼントを貰いました。",
+"example_jp_formatted": "[誕生日]{たんじょうび}のプレゼントを[貰]{もら}いました。",
+"example_vi": "Tôi đã nhận được quà sinh nhật.",
+"level": "N5",
+"tags": ["danh-từ", "đồ-vật", "bài-7"],
+"notes": "Mượn từ 'present'.",
+"synonyms": ["贈り物"],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_028",
+"word": "荷物",
+"reading": "にもつ",
+"romaji": "nimotsu",
+"meaning": "Hành lý, bưu kiện",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "荷物を送ります。",
+"example_jp_formatted": "[荷物]{にもつ}を[送]{おく}ります。",
+"example_vi": "Tôi gửi bưu kiện.",
+"level": "N5",
+"tags": ["danh-từ", "đồ-vật", "bài-7"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "荷",
+"meaning": "hà (hành lý, vác lên vai)",
+"onyomi": "カ",
+"kunyomi": "に"
+},
+{
+"kanji": "物",
+"meaning": "vật (đồ vật)",
+"onyomi": "ブツ, モツ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_029",
+"word": "切符",
+"reading": "きっぷ",
+"romaji": "kippu",
+"meaning": "Vé (tàu, xe)",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "電車의切符を買いました。",
+"example_jp_formatted": "[電車]{でんしゃ}の[切符]{きっぷ}を[買]{か}いました。",
+"example_vi": "Tôi đã mua vé tàu điện.",
+"level": "N5",
+"tags": ["danh-từ", "đồ-vật", "bài-7"],
+"notes": "",
+"synonyms": ["チケット"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "切",
+"meaning": "thiết (cắt)",
+"onyomi": "セツ",
+"kunyomi": "き.る"
+},
+{
+"kanji": "符",
+"meaning": "phù (phù hiệu, tấm vé)",
+"onyomi": "フ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_07_030",
+"word": "クリスマス",
+"reading": "くりすます",
+"romaji": "kurisumasu",
+"meaning": "Giáng sinh, Noel",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "クリスマスに何を聞きますか。",
+"example_jp_formatted": "クリスマスに[何]{なに}を[聞]{き}きますか。",
+"example_vi": "Bạn nghe gì vào dịp Giáng sinh?",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-7"],
+"notes": "Mượn từ 'Christmas'.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_031",
+"word": "父",
+"reading": "ちち",
+"romaji": "chichi",
+"meaning": "Bố, cha (của mình)",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "父は会社員です。",
+"example_jp_formatted": "[父]{ちち}は[会社員]{かいしゃいん}です。",
+"example_vi": "Bố tôi là nhân viên công ty.",
+"level": "N5",
+"tags": ["danh-từ", "gia-đình", "bài-7"],
+"notes": "Dùng khi nói về bố của bản thân với người khác.",
+"synonyms": [],
+"antonyms": ["母"],
+"kanji_info": [
+{
+"kanji": "父",
+"meaning": "phụ (thân phụ, bố)",
+"onyomi": "フ",
+"kunyomi": "ちち"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_032",
+"word": "母",
+"reading": "はは",
+"romaji": "haha",
+"meaning": "Mẹ (của mình)",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "母に花を上げます。",
+"example_jp_formatted": "[母]{はは}に[花]{はな}を[上]{あ}げます。",
+"example_vi": "Tôi tặng hoa cho mẹ tôi.",
+"level": "N5",
+"tags": ["danh-từ", "gia-đình", "bài-7"],
+"notes": "Dùng khi nói về mẹ của bản thân với người khác.",
+"synonyms": [],
+"antonyms": ["父"],
+"kanji_info": [
+{
+"kanji": "母",
+"meaning": "mẫu (thân mẫu, mẹ)",
+"onyomi": "ボ",
+"kunyomi": "はは"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_033",
+"word": "お父さん",
+"reading": "おとうさん",
+"romaji": "otousan",
+"meaning": "Bố, cha (người khác / cách gọi thân mật)",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "お父さんはお元気ですか。",
+"example_jp_formatted": "お[父]{とう}さんはお[元気]{げんき}ですか。",
+"example_vi": "Bố của bạn có khỏe không?",
+"level": "N5",
+"tags": ["danh-từ", "gia-đình", "bài-7"],
+"notes": "Dùng để gọi hoặc nói về bố của người khác, hoặc dùng gọi bố mình một cách thân mật trong gia đình.",
+"synonyms": [],
+"antonyms": ["お母さん"],
+"kanji_info": [
+{
+"kanji": "父",
+"meaning": "phụ (bố)",
+"onyomi": "フ",
+"kunyomi": "ちち"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_034",
+"word": "お母さん",
+"reading": "おかあさん",
+"romaji": "okaasan",
+"meaning": "Mẹ (người khác / cách gọi thân mật)",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "お母さんに会いました。",
+"example_jp_formatted": "お[母]{かあ}さんに[会]{あ}いました。",
+"example_vi": "Tôi đã gặp mẹ của bạn.",
+"level": "N5",
+"tags": ["danh-từ", "gia-đình", "bài-7"],
+"notes": "Dùng để nói về mẹ của người khác, hoặc dùng gọi mẹ mình một cách thân mật trong gia đình.",
+"synonyms": [],
+"antonyms": ["お父さん"],
+"kanji_info": [
+{
+"kanji": "母",
+"meaning": "mẫu (mẹ)",
+"onyomi": "ボ",
+"kunyomi": "はは"
+}
+]
+},
+{
+"id": "sys_n5_minna_07_035",
+"word": "もう",
+"reading": "もう",
+"romaji": "mou",
+"meaning": "Đã, rồi",
+"pos": "adverb",
+"pitch_accent": "heiban",
+"example_jp": "御飯をもう食べました。",
+"example_jp_formatted": "[御飯]{ごはん}をもう[食]{た}べました。",
+"example_vi": "Tôi đã ăn cơm rồi.",
+"level": "N5",
+"tags": ["trạng-từ", "bài-7"],
+"notes": "Biểu thị hành động đã hoàn thành tại một thời điểm.",
+"synonyms": ["既に"],
+"antonyms": ["未だ"],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_07_036",
+"word": "未だ",
+"reading": "まだ",
+"romaji": "mada",
+"meaning": "Chưa, vẫn chưa",
+"pos": "adverb",
+"pitch_accent": "atamadaka",
+"example_jp": "いいえ、未だです。",
+"example_jp_formatted": "いいえ、[未]{ま}だです。",
+"example_vi": "Không, tôi vẫn chưa làm / Chưa xong.",
+"level": "N5",
+"tags": ["trạng-từ", "bài-7"],
+"notes": "Biểu thị hành động chưa xảy ra tính đến thời điểm hiện tại.",
+"synonyms": [],
+"antonyms": ["もう"],
+"kanji_info": [
+{
+"kanji": "未",
+"meaning": "vị (chưa, vị lai)",
+"onyomi": "ミ",
+"kunyomi": "まだ"
+}
+]
+}
+]

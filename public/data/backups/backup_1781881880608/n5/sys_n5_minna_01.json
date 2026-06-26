@@ -1,0 +1,759 @@
+[
+{
+"id": "sys_n5_minna_01_001",
+"word": "私",
+"reading": "わたし",
+"romaji": "watashi",
+"meaning": "Tôi",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "私は学生です。",
+"example_jp_formatted": "[私]{わたし}は[学生]{がくせい}です。",
+"example_vi": "Tôi là học sinh.",
+"level": "N5",
+"tags": ["đại-từ", "bài-1"],
+"notes": "Đại từ nhân xưng ngôi thứ nhất, dùng lịch sự cho cả nam và nữ.",
+"synonyms": ["僕", "俺"],
+"antonyms": ["貴方"],
+"kanji_info": [
+{
+"kanji": "私",
+"meaning": "tư (tôi)",
+"onyomi": "シ",
+"kunyomi": "わたし, わたくし"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_002",
+"word": "お早う御座います",
+"reading": "おはようございます",
+"romaji": "ohayou gozaimasu",
+"meaning": "Chào buổi sáng",
+"pos": "phrase",
+"pitch_accent": "",
+"example_jp": "先生、お早う御座います。",
+"example_jp_formatted": "[先生]{せんせい}、お[早]{はや}う[御座]{ござ}います。",
+"example_vi": "Chào buổi sáng thầy/cô.",
+"level": "N5",
+"tags": ["giao-tiếp", "chào-hỏi", "bài-1"],
+"notes": "Lời chào lịch sự vào buổi sáng (thường trước 10h sáng).",
+"synonyms": [],
+"antonyms": ["今晩は"],
+"kanji_info": [
+{
+"kanji": "早",
+"meaning": "tảo (sớm)",
+"onyomi": "ソウ",
+"kunyomi": "はや.い"
+},
+{
+"kanji": "御",
+"meaning": "ngự (kính ngữ)",
+"onyomi": "ギョ, ゴ",
+"kunyomi": "おん, お, み"
+},
+{
+"kanji": "座",
+"meaning": "tọa (chỗ ngồi)",
+"onyomi": "ザ",
+"kunyomi": "すわ.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_003",
+"word": "貴方",
+"reading": "あなた",
+"romaji": "anata",
+"meaning": "Bạn, anh/chị",
+"pos": "pronoun",
+"pitch_accent": "atamadaka",
+"example_jp": "貴方は会社員ですか。",
+"example_jp_formatted": "[貴方]{あなた}は[会社員]{かいしゃいん}ですか。",
+"example_vi": "Bạn là nhân viên công ty phải không?",
+"level": "N5",
+"tags": ["đại-từ", "bài-1"],
+"notes": "Dùng để gọi người đối diện (hạn chế dùng với người lớn tuổi hoặc cấp trên).",
+"synonyms": ["君", "お前"],
+"antonyms": ["私"],
+"kanji_info": [
+{
+"kanji": "貴",
+"meaning": "quý (cao quý)",
+"onyomi": "キ",
+"kunyomi": "たっと.い"
+},
+{
+"kanji": "方",
+"meaning": "phương (phương hướng, vị)",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_004",
+"word": "あの人",
+"reading": "あのひと",
+"romaji": "ano hito",
+"meaning": "Người kia, người đó",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "あの人は誰ですか。",
+"example_jp_formatted": "あの[人]{ひと}は[誰]{だれ}ですか。",
+"example_vi": "Người kia là ai vậy?",
+"level": "N5",
+"tags": ["đại-từ", "bài-1"],
+"notes": "Chỉ người ở xa cả người nói và người nghe.",
+"synonyms": ["あの方"],
+"antonyms": ["この人"],
+"kanji_info": [
+{
+"kanji": "人",
+"meaning": "nhân (người)",
+"onyomi": "ジン, ニン",
+"kunyomi": "ひと"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_005",
+"word": "あの方",
+"reading": "あのかた",
+"romaji": "ano kata",
+"meaning": "Vị kia, ngài kia",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "あの方は何方ですか。",
+"example_jp_formatted": "あの[方]{かた}は[何方]{どなた}ですか。",
+"example_vi": "Vị kia là ai vậy?",
+"level": "N5",
+"tags": ["đại-từ", "tôn-kính-ngữ", "bài-1"],
+"notes": "Cách nói lịch sự, tôn kính của あの人.",
+"synonyms": ["あの人"],
+"antonyms": ["この方"],
+"kanji_info": [
+{
+"kanji": "方",
+"meaning": "phương (vị, người)",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_006",
+"word": "皆さん",
+"reading": "みなさん",
+"romaji": "mina san",
+"meaning": "Mọi người, các bạn",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "皆さん、今日は。",
+"example_jp_formatted": "[皆]{みな}さん、[今日]{こんにち}は。",
+"example_vi": "Chào tất cả mọi người.",
+"level": "N5",
+"tags": ["danh-từ", "bài-1"],
+"notes": "Dùng để gọi số đông người một cách lịch sự.",
+"synonyms": ["みんな"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "皆",
+"meaning": "giai (tất cả)",
+"onyomi": "カイ",
+"kunyomi": "みな"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_007",
+"word": "先生",
+"reading": "せんせい",
+"romaji": "sensei",
+"meaning": "Giáo viên, thầy/cô",
+"pos": "noun",
+"pitch_accent": "odaka",
+"example_jp": "私は先生じゃありません。",
+"example_jp_formatted": "[私]{わたし}は[先生]{せんせい}じゃありません。",
+"example_vi": "Tôi không phải là giáo viên.",
+"level": "N5",
+"tags": ["nghề-nghiệp", "bài-1"],
+"notes": "Dùng để gọi người dạy mình, hoặc gọi bác sĩ. Không dùng để chỉ nghề nghiệp của chính bản thân.",
+"synonyms": ["教師"],
+"antonyms": ["学生"],
+"kanji_info": [
+{
+"kanji": "先",
+"meaning": "tiên (trước)",
+"onyomi": "セン",
+"kunyomi": "さき"
+},
+{
+"kanji": "生",
+"meaning": "sinh (sống, sinh ra)",
+"onyomi": "セイ, ショウ",
+"kunyomi": "い.きる, う.まれる"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_008",
+"word": "教師",
+"reading": "きょうし",
+"romaji": "kyoushi",
+"meaning": "Giáo viên (nghề nghiệp)",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "彼は教師です。",
+"example_jp_formatted": "[彼]{かれ}は[教師]{きょうし}です。",
+"example_vi": "Anh ấy là giáo viên.",
+"level": "N5",
+"tags": ["nghề-nghiệp", "bài-1"],
+"notes": "Dùng khi xưng hô về nghề nghiệp của bản thân (hoặc miêu tả nghề nghiệp một cách khách quan).",
+"synonyms": ["先生"],
+"antonyms": ["学生"],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "giáo (dạy bảo)",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+},
+{
+"kanji": "師",
+"meaning": "sư (thầy)",
+"onyomi": "シ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_01_009",
+"word": "学生",
+"reading": "がくせい",
+"romaji": "gakusei",
+"meaning": "Học sinh, sinh viên",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "貴方は大学の学生ですか。",
+"example_jp_formatted": "[貴方]{あなた}は[大学]{だいがく}の[学生]{がくせい}ですか。",
+"example_vi": "Bạn là sinh viên đại học phải không?",
+"level": "N5",
+"tags": ["nghề-nghiệp", "bài-1"],
+"notes": "Chỉ người học nói chung, đặc biệt là sinh viên bậc đại học/cao đẳng.",
+"synonyms": ["生徒"],
+"antonyms": ["先生", "教師"],
+"kanji_info": [
+{
+"kanji": "学",
+"meaning": "học (học tập)",
+"onyomi": "ガク",
+"kunyomi": "まな.ぶ"
+},
+{
+"kanji": "生",
+"meaning": "sinh (sống, sinh viên)",
+"onyomi": "セイ, ショウ",
+"kunyomi": "い.きる"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_010",
+"word": "会社員",
+"reading": "かいしゃいん",
+"romaji": "kaishain",
+"meaning": "Nhân viên công ty",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "父は会社員です。",
+"example_jp_formatted": "[父]{ちち}は[会社員]{かいしゃいん}です。",
+"example_vi": "Bố tôi là nhân viên công ty.",
+"level": "N5",
+"tags": ["nghề-nghiệp", "bài-1"],
+"notes": "Chỉ nghề nghiệp nói chung.",
+"synonyms": ["サラリーマン"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "hội (hội họp)",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+},
+{
+"kanji": "社",
+"meaning": "xã (công ty)",
+"onyomi": "シャ",
+"kunyomi": "やしろ"
+},
+{
+"kanji": "員",
+"meaning": "viên (thành viên)",
+"onyomi": "イン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_01_011",
+"word": "銀行員",
+"reading": "ぎんこういん",
+"romaji": "ginkouin",
+"meaning": "Nhân viên ngân hàng",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "母は銀行員です。",
+"example_jp_formatted": "[母]{はは}は[銀行員]{ぎんこういん}です。",
+"example_vi": "Mẹ tôi là nhân viên ngân hàng.",
+"level": "N5",
+"tags": ["nghề-nghiệp", "bài-1"],
+"notes": "Người làm việc tại ngân hàng.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "銀",
+"meaning": "ngân (bạc)",
+"onyomi": "ギン",
+"kunyomi": ""
+},
+{
+"kanji": "行",
+"meaning": "hành (ngân hàng, đi)",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く, ゆ.く"
+},
+{
+"kanji": "員",
+"meaning": "viên (thành viên)",
+"onyomi": "イン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_01_012",
+"word": "医者",
+"reading": "いしゃ",
+"romaji": "isha",
+"meaning": "Bác sĩ",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "あの人は医者です。",
+"example_jp_formatted":"あの[人]{ひと}は[医者]{いしゃ}です。",
+"example_vi": "Người kia là bác sĩ.",
+"level": "N5",
+"tags": ["nghề-nghiệp", "bài-1"],
+"notes": "Chỉ nghề bác sĩ. Khi gọi mặt đối mặt thì dùng 先生.",
+"synonyms": ["医師"],
+"antonyms": ["患者"],
+"kanji_info": [
+{
+"kanji": "医",
+"meaning": "y (y học)",
+"onyomi": "イ",
+"kunyomi": ""
+},
+{
+"kanji": "者",
+"meaning": "giả (người)",
+"onyomi": "シャ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_013",
+"word": "研究者",
+"reading": "けんきゅうしゃ",
+"romaji": "kenkyuusha",
+"meaning": "Nhà nghiên cứu",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "シュミットさんは研究者です。",
+"example_jp_formatted": "シュミットさんは[研究者]{けんきゅうしゃ}です。",
+"example_vi": "Anh Schmidt là nhà nghiên cứu.",
+"level": "N5",
+"tags": ["nghề-nghiệp", "bài-1"],
+"notes": "Người làm công tác nghiên cứu khoa học, học thuật.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "研",
+"meaning": "nghiên (mài)",
+"onyomi": "ケン",
+"kunyomi": "と.ぐ"
+},
+{
+"kanji": "究",
+"meaning": "cứu (nghiên cứu)",
+"onyomi": "キュウ",
+"kunyomi": "きわ.める"
+},
+{
+"kanji": "者",
+"meaning": "giả (người)",
+"onyomi": "シャ",
+"kunyomi": "もの"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_014",
+"word": "大学",
+"reading": "だいがく",
+"romaji": "daigaku",
+"meaning": "Trường đại học",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "私は富士大学の学生です。",
+"example_jp_formatted": "[私]{わたし}は[富士大学]{ふじだいがく}の[学生]{がくせい}です。",
+"example_vi": "Tôi là sinh viên trường Đại học Fuji.",
+"level": "N5",
+"tags": ["địa-điểm", "giáo-dục", "bài-1"],
+"notes": "Cơ sở giáo dục bậc cao.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "大",
+"meaning": "đại (to lớn)",
+"onyomi": "ダイ, タイ",
+"kunyomi": "おお.きい"
+},
+{
+"kanji": "学",
+"meaning": "học (học thuật)",
+"onyomi": "ガク",
+"kunyomi": "まな.ぶ"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_015",
+"word": "病院",
+"reading": "びょういん",
+"romaji": "byouin",
+"meaning": "Bệnh viện",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "神戸病院の医者です。",
+"example_jp_formatted": "[神戸病院]{こうべびょういん}の[医者]{いしゃ}です。",
+"example_vi": "Là bác sĩ của Bệnh viện Kobe.",
+"level": "N5",
+"tags": ["địa-điểm", "y-tế", "bài-1"],
+"notes": "Cơ sở khám chữa bệnh.",
+"synonyms": ["医院"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "病",
+"meaning": "bệnh (ốm đau)",
+"onyomi": "ビョウ",
+"kunyomi": "やまい"
+},
+{
+"kanji": "院",
+"meaning": "viện (viện, cơ sở)",
+"onyomi": "イン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_01_016",
+"word": "誰",
+"reading": "だれ",
+"romaji": "dare",
+"meaning": "Ai",
+"pos": "pronoun",
+"pitch_accent": "atamadaka",
+"example_jp": "あの人は誰ですか。",
+"example_jp_formatted": "あの[人]{ひと}は[誰]{だれ}ですか。",
+"example_vi": "Người kia là ai vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "bài-1"],
+"notes": "Từ để hỏi người, dùng trong câu hỏi thông thường.",
+"synonyms": ["何方"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "誰",
+"meaning": "thùy (ai)",
+"onyomi": "スイ",
+"kunyomi": "だれ"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_017",
+"word": "何方",
+"reading": "どなた",
+"romaji": "donata",
+"meaning": "Vị nào, ai (lịch sự)",
+"pos": "pronoun",
+"pitch_accent": "atamadaka",
+"example_jp": "あの方は何方ですか。",
+"example_jp_formatted": "あの[方]{かた}は[何方]{どなた}ですか。",
+"example_vi": "Vị kia là ai vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "tôn-kính-ngữ", "bài-1"],
+"notes": "Cách nói lịch sự của 誰 (ai).",
+"synonyms": ["誰"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "方",
+"meaning": "phương (người, vị)",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_018",
+"word": "歳",
+"reading": "さい",
+"romaji": "sai",
+"meaning": "Tuổi",
+"pos": "suffix",
+"pitch_accent": "heiban",
+"example_jp": "太郎君は九歳です。",
+"example_jp_formatted": "[太郎君]{たろうくん}は[九歳]{きゅうさい}です。",
+"example_vi": "Bé Taro 9 tuổi.",
+"level": "N5",
+"tags": ["hậu-tố", "đếm-tuổi", "bài-1"],
+"notes": "Hậu tố dùng đằng sau số đếm để chỉ tuổi tác.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "歳",
+"meaning": "tuế (năm, tuổi)",
+"onyomi": "サイ, セイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_01_019",
+"word": "何歳",
+"reading": "なんさい",
+"romaji": "nansai",
+"meaning": "Mấy tuổi",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "テレサちゃんは何歳ですか。",
+"example_jp_formatted": "テレサちゃんは[何歳]{なんさい}ですか。",
+"example_vi": "Bé Teresa mấy tuổi vậy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "bài-1"],
+"notes": "Từ để hỏi tuổi thông thường.",
+"synonyms": ["お幾つ"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "歳",
+"meaning": "tuế (năm, tuổi)",
+"onyomi": "サイ, セイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_01_020",
+"word": "お幾つ",
+"reading": "おいくつ",
+"romaji": "oikutsu",
+"meaning": "Bao nhiêu tuổi (lịch sự)",
+"pos": "interrogative",
+"pitch_accent": "nakadaka",
+"example_jp": "先生はお幾つですか。",
+"example_jp_formatted": "[先生]{せんせい}はお[幾]{いく}つですか。",
+"example_vi": "Thầy/Cô bao nhiêu tuổi ạ?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "tôn-kính-ngữ", "bài-1"],
+"notes": "Cách hỏi tuổi lịch sự, tôn trọng hơn 何歳.",
+"synonyms": ["何歳"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "幾",
+"meaning": "kỉ (bao nhiêu)",
+"onyomi": "キ",
+"kunyomi": "いく.つ, いく.ら"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_021",
+"word": "初めまして",
+"reading": "はじめまして",
+"romaji": "hajimemashite",
+"meaning": "Rất hân hạnh được gặp mặt",
+"pos": "phrase",
+"pitch_accent": "",
+"example_jp": "初めまして。私はマイクです。",
+"example_jp_formatted": "[初]{はじ}めまして。[私]{わたし}はマイクです。",
+"example_vi": "Lần đầu gặp mặt. Tôi là Mike.",
+"level": "N5",
+"tags": ["giao-tiếp", "chào-hỏi", "bài-1"],
+"notes": "Câu chào dùng duy nhất khi lần đầu tiên gặp một ai đó.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "初",
+"meaning": "sơ (bắt đầu, đầu tiên)",
+"onyomi": "ショ",
+"kunyomi": "はじ.め, はじ.めて, はつ"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_022",
+"word": "今日は",
+"reading": "こんにちは",
+"romaji": "konnichiwa",
+"meaning": "Xin chào (buổi chiều)",
+"pos": "phrase",
+"pitch_accent": "",
+"example_jp": "皆さん、今日は。",
+"example_jp_formatted": "[皆]{みな}さん、[今日]{こんにち}は。",
+"example_vi": "Xin chào tất cả mọi người.",
+"level": "N5",
+"tags": ["giao-tiếp", "chào-hỏi", "bài-1"],
+"notes": "Lời chào thông dụng dùng vào ban ngày (từ khoảng 10h sáng đến khi trời tối). Viết là は nhưng đọc là わ.",
+"synonyms": [],
+"antonyms": ["今晩は", "お早う御座います"],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (bây giờ)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, か"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_023",
+"word": "今晩は",
+"reading": "こんばんは",
+"romaji": "konbanwa",
+"meaning": "Chào buổi tối",
+"pos": "phrase",
+"pitch_accent": "",
+"example_jp": "先生、今晩は。",
+"example_jp_formatted": "[先生]{せんせい}、[今晩]{こんばん}は。",
+"example_vi": "Chào buổi tối thầy/cô.",
+"level": "N5",
+"tags": ["giao-tiếp", "chào-hỏi", "bài-1"],
+"notes": "Lời chào dùng vào buổi tối. Viết là は nhưng đọc là わ.",
+"synonyms": [],
+"antonyms": ["今日は", "お早う御座います"],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (bây giờ)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+},
+{
+"kanji": "晩",
+"meaning": "vãn (buổi tối)",
+"onyomi": "バン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_01_024",
+"word": "御名前",
+"reading": "おなまえ",
+"romaji": "onamae",
+"meaning": "Tên (của bạn)",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "失礼ですが、御名前は。",
+"example_jp_formatted": "[失礼]{しつれい}ですが、[御名前]{おなまえ}は。",
+"example_vi": "Xin lỗi, tên của bạn là gì vậy?",
+"level": "N5",
+"tags": ["danh-từ", "giao-tiếp", "bài-1"],
+"notes": "Từ lịch sự dùng khi hỏi tên người khác. Thường đi kèm với cụm '失礼ですが'.",
+"synonyms": ["名前"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "御",
+"meaning": "ngự (kính ngữ)",
+"onyomi": "ギョ, ゴ",
+"kunyomi": "おん, お, み"
+},
+{
+"kanji": "名",
+"meaning": "danh (tên)",
+"onyomi": "メイ, ミョウ",
+"kunyomi": "な"
+},
+{
+"kanji": "前",
+"meaning": "tiền (phía trước)",
+"onyomi": "ゼン",
+"kunyomi": "まえ"
+}
+]
+},
+{
+"id": "sys_n5_minna_01_025",
+"word": "此方",
+"reading": "こちら",
+"romaji": "kochira",
+"meaning": "Phía này, người này (lịch sự)",
+"pos": "pronoun",
+"pitch_accent": "heiban",
+"example_jp": "此方はサントスさんです。",
+"example_jp_formatted": "[此方]{こちら}はサントスさんです。",
+"example_vi": "Đây là anh Santos.",
+"level": "N5",
+"tags": ["đại-từ", "giao-tiếp", "bài-1"],
+"notes": "Dùng để giới thiệu một người khác với tư thế lịch sự.",
+"synonyms": ["この人"],
+"antonyms": ["あちら", "そちら"],
+"kanji_info": [
+{
+"kanji": "此",
+"meaning": "thử (cái này, việc này)",
+"onyomi": "シ",
+"kunyomi": "これ, この, ここ"
+},
+{
+"kanji": "方",
+"meaning": "phương (phía, người)",
+"onyomi": "ホウ",
+"kunyomi": "かた"
+}
+]
+}
+]

@@ -1,0 +1,1069 @@
+[
+{
+"id": "sys_n5_minna_04_001",
+"word": "今",
+"reading": "いま",
+"romaji": "ima",
+"meaning": "Bây giờ",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "今は何時ですか。",
+"example_jp_formatted": "[今]{いま}は[何時]{なんじ}ですか。",
+"example_vi": "Bây giờ là mấy giờ?",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["現在"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (hiện tại)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_002",
+"word": "時",
+"reading": "じ",
+"romaji": "ji",
+"meaning": "Giờ",
+"pos": "suffix",
+"pitch_accent": "heiban",
+"example_jp": "今、９時です。",
+"example_jp_formatted": "[今]{いま}、９[時]{じ}です。",
+"example_vi": "Bây giờ là 9 giờ.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "Dùng để đếm giờ.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "時",
+"meaning": "thời (thời gian)",
+"onyomi": "ジ",
+"kunyomi": "とき"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_003",
+"word": "分",
+"reading": "ふん / ぷん",
+"romaji": "fun / pun",
+"meaning": "Phút",
+"pos": "suffix",
+"pitch_accent": "heiban",
+"example_jp": "今、８時２０分です。",
+"example_jp_formatted": "[今]{いま}、８[時]{じ}２０[分]{ぷん}です。",
+"example_vi": "Bây giờ là 8 giờ 20 phút.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "Cách đọc thay đổi (ふん/ぷん) tùy thuộc vào số đứng trước.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "分",
+"meaning": "phân (phút, phần)",
+"onyomi": "ブン, フン, ブ",
+"kunyomi": "わ.ける, わ.かる"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_004",
+"word": "半",
+"reading": "はん",
+"romaji": "han",
+"meaning": "Rưỡi, một nửa",
+"pos": "noun",
+"pitch_accent": "odaka",
+"example_jp": "９時半に寝ます。",
+"example_jp_formatted": "９[時半]{じはん}に[寝]{ね}ます。",
+"example_vi": "Tôi ngủ lúc 9 giờ rưỡi.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["半分"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "半",
+"meaning": "bán (một nửa)",
+"onyomi": "ハン",
+"kunyomi": "なか.ば"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_005",
+"word": "何時",
+"reading": "なんじ",
+"romaji": "nanji",
+"meaning": "Mấy giờ",
+"pos": "interrogative",
+"pitch_accent": "atamadaka",
+"example_jp": "毎朝何時に起きますか。",
+"example_jp_formatted": "[毎朝]{まいあさ}[何時]{なんじ}に[起]{お}きますか。",
+"example_vi": "Mỗi sáng bạn thức dậy lúc mấy giờ?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "thời-gian", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "時",
+"meaning": "thời (thời gian)",
+"onyomi": "ジ",
+"kunyomi": "とき"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_006",
+"word": "午前",
+"reading": "ごぜん",
+"romaji": "gozen",
+"meaning": "Buổi sáng (A.M.)",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "会議は午前１０時に終わります。",
+"example_jp_formatted": "[会議]{かいぎ}は[午前]{ごぜん}１０[時]{じ}に[終]{お}わります。",
+"example_vi": "Cuộc họp kết thúc lúc 10 giờ sáng.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "Dùng trước giờ để chỉ A.M.",
+"synonyms": [],
+"antonyms": ["午後"],
+"kanji_info": [
+{
+"kanji": "午",
+"meaning": "ngọ (giữa trưa)",
+"onyomi": "ゴ",
+"kunyomi": "うま"
+},
+{
+"kanji": "前",
+"meaning": "tiền (trước)",
+"onyomi": "ゼン",
+"kunyomi": "まえ"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_007",
+"word": "午後",
+"reading": "ごご",
+"romaji": "gogo",
+"meaning": "Buổi chiều (P.M.)",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "午後から勉強します。",
+"example_jp_formatted": "[午後]{ごご}から[勉強]{べんきょう}します。",
+"example_vi": "Tôi sẽ học từ buổi chiều.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "Dùng trước giờ để chỉ P.M.",
+"synonyms": [],
+"antonyms": ["午前"],
+"kanji_info": [
+{
+"kanji": "午",
+"meaning": "ngọ (giữa trưa)",
+"onyomi": "ゴ",
+"kunyomi": "うま"
+},
+{
+"kanji": "後",
+"meaning": "hậu (sau)",
+"onyomi": "ゴ, コウ",
+"kunyomi": "のち, うし.ろ, あと"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_008",
+"word": "朝",
+"reading": "あさ",
+"romaji": "asa",
+"meaning": "Buổi sáng",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "朝、６時に起きます。",
+"example_jp_formatted": "[朝]{あさ}、６[時]{じ}に[起]{お}きます。",
+"example_vi": "Buổi sáng, tôi thức dậy lúc 6 giờ.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["モーニング"],
+"antonyms": ["夜", "晩"],
+"kanji_info": [
+{
+"kanji": "朝",
+"meaning": "triêu (buổi sáng)",
+"onyomi": "チョウ",
+"kunyomi": "あさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_009",
+"word": "昼",
+"reading": "ひる",
+"romaji": "hiru",
+"meaning": "Buổi trưa",
+"pos": "noun",
+"pitch_accent": "odaka",
+"example_jp": "昼に１時間休みます。",
+"example_jp_formatted": "[昼]{ひる}に１[時間]{じかん}[休]{やす}みます。",
+"example_vi": "Buổi trưa tôi nghỉ 1 tiếng.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["昼間"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昼",
+"meaning": "trú (buổi trưa)",
+"onyomi": "チュウ",
+"kunyomi": "ひる"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_010",
+"word": "晩",
+"reading": "ばん",
+"romaji": "ban",
+"meaning": "Buổi tối",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "晩、勉強します。",
+"example_jp_formatted": "[晩]{ばん}、[勉強]{べんきょう}します。",
+"example_vi": "Buổi tối, tôi học bài.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["夜"],
+"antonyms": ["朝"],
+"kanji_info": [
+{
+"kanji": "晩",
+"meaning": "vãn (buổi tối)",
+"onyomi": "バン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_04_011",
+"word": "毎日",
+"reading": "まいにち",
+"romaji": "mainichi",
+"meaning": "Mỗi ngày",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "毎日働きます。",
+"example_jp_formatted": "[毎日]{まいにち}[働]{はたら}きます。",
+"example_vi": "Tôi làm việc mỗi ngày.",
+"level": "N5",
+"tags": ["tần-suất", "bài-4"],
+"notes": "",
+"synonyms": ["日々"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "毎",
+"meaning": "mỗi (mỗi ngày, mỗi khi)",
+"onyomi": "マイ",
+"kunyomi": "ごと"
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_012",
+"word": "毎朝",
+"reading": "まいあさ",
+"romaji": "maiasa",
+"meaning": "Mỗi sáng",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "毎朝６時に起きます。",
+"example_jp_formatted": "[毎朝]{まいあさ}６[時]{じ}に[起]{お}きます。",
+"example_vi": "Mỗi sáng tôi thức dậy lúc 6 giờ.",
+"level": "N5",
+"tags": ["tần-suất", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "毎",
+"meaning": "mỗi (mỗi ngày, mỗi khi)",
+"onyomi": "マイ",
+"kunyomi": "ごと"
+},
+{
+"kanji": "朝",
+"meaning": "triêu (buổi sáng)",
+"onyomi": "チョウ",
+"kunyomi": "あさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_013",
+"word": "毎晩",
+"reading": "まいばん",
+"romaji": "maiban",
+"meaning": "Mỗi tối",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "毎晩１０時に寝ます。",
+"example_jp_formatted": "[毎晩]{まいばん}１０[時]{じ}に[寝]{ね}ます。",
+"example_vi": "Mỗi tối tôi đi ngủ lúc 10 giờ.",
+"level": "N5",
+"tags": ["tần-suất", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "毎",
+"meaning": "mỗi (mỗi ngày, mỗi khi)",
+"onyomi": "マイ",
+"kunyomi": "ごと"
+},
+{
+"kanji": "晩",
+"meaning": "vãn (buổi tối)",
+"onyomi": "バン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_04_014",
+"word": "昨日",
+"reading": "きのう",
+"romaji": "kinou",
+"meaning": "Hôm qua",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "昨日、勉強しました。",
+"example_jp_formatted": "[昨日]{きのう}、[勉強]{べんきょう}しました。",
+"example_vi": "Hôm qua, tôi đã học bài.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["明日"],
+"kanji_info": [
+{
+"kanji": "昨",
+"meaning": "tạc (hôm qua)",
+"onyomi": "サク",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_015",
+"word": "今日",
+"reading": "きょう",
+"romaji": "kyou",
+"meaning": "Hôm nay",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "今日は休みです。",
+"example_jp_formatted": "[今日]{きょう}は[休]{やす}みです。",
+"example_vi": "Hôm nay là ngày nghỉ.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["本日"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (hiện tại)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_016",
+"word": "明日",
+"reading": "あした",
+"romaji": "ashita",
+"meaning": "Ngày mai",
+"pos": "noun",
+"pitch_accent": "odaka",
+"example_jp": "明日働きますか。",
+"example_jp_formatted": "[明日]{あした}[働]{はたら}きますか。",
+"example_vi": "Ngày mai bạn có làm việc không?",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["あす", "みょうにち"],
+"antonyms": ["昨日"],
+"kanji_info": [
+{
+"kanji": "明",
+"meaning": "minh (sáng, ngày mai)",
+"onyomi": "メイ, ミョウ",
+"kunyomi": "あか.るい, あ.ける"
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_017",
+"word": "一昨日",
+"reading": "おととい",
+"romaji": "ototoi",
+"meaning": "Hôm kia",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "一昨日、休みました。",
+"example_jp_formatted": "[一昨日]{おととい}、[休]{やす}みました。",
+"example_vi": "Hôm kia, tôi đã nghỉ ngơi.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["明後日"],
+"kanji_info": [
+{
+"kanji": "一",
+"meaning": "nhất (một)",
+"onyomi": "イチ, イツ",
+"kunyomi": "ひと.つ"
+},
+{
+"kanji": "昨",
+"meaning": "tạc (hôm qua)",
+"onyomi": "サク",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_018",
+"word": "明後日",
+"reading": "あさって",
+"romaji": "asatte",
+"meaning": "Ngày kia",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "明後日、会議が終わります。",
+"example_jp_formatted": "[明後日]{あさって}、[会議]{かいぎ}が[終]{お}わります。",
+"example_vi": "Ngày kia, cuộc họp sẽ kết thúc.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["一昨日"],
+"kanji_info": [
+{
+"kanji": "明",
+"meaning": "minh (sáng, ngày mai)",
+"onyomi": "メイ, ミョウ",
+"kunyomi": "あか.るい, あ.ける"
+},
+{
+"kanji": "後",
+"meaning": "hậu (sau)",
+"onyomi": "ゴ, コウ",
+"kunyomi": "のち, うし.ろ, あと"
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_019",
+"word": "今朝",
+"reading": "けさ",
+"romaji": "kesa",
+"meaning": "Sáng nay",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "今朝６時に起きました。",
+"example_jp_formatted": "[今朝]{けさ}６[時]{じ}に[起]{お}きました。",
+"example_vi": "Sáng nay tôi đã thức dậy lúc 6 giờ.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": ["今晩"],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (hiện tại)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+},
+{
+"kanji": "朝",
+"meaning": "triêu (buổi sáng)",
+"onyomi": "チョウ",
+"kunyomi": "あさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_020",
+"word": "今晩",
+"reading": "こんばん",
+"romaji": "konban",
+"meaning": "Tối nay",
+"pos": "noun",
+"pitch_accent": "atamadaka",
+"example_jp": "今晩、勉強しません。",
+"example_jp_formatted": "[今晩]{こんばん}、[勉強]{べんきょう}しません。",
+"example_vi": "Tối nay, tôi sẽ không học bài.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["今夜"],
+"antonyms": ["今朝"],
+"kanji_info": [
+{
+"kanji": "今",
+"meaning": "kim (hiện tại)",
+"onyomi": "コン, キン",
+"kunyomi": "いま"
+},
+{
+"kanji": "晩",
+"meaning": "vãn (buổi tối)",
+"onyomi": "バン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_04_021",
+"word": "月曜日",
+"reading": "げつようび",
+"romaji": "getsuyoubi",
+"meaning": "Thứ hai",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "月曜日から金曜日まで働きます。",
+"example_jp_formatted": "[月曜日]{げつようび}から[金曜日]{きんようび}まで[働]{はたら}きます。",
+"example_vi": "Tôi làm việc từ thứ hai đến thứ sáu.",
+"level": "N5",
+"tags": ["ngày-trong-tuần", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "月",
+"meaning": "nguyệt (mặt trăng, tháng)",
+"onyomi": "ゲツ, ガツ",
+"kunyomi": "つき"
+},
+{
+"kanji": "曜",
+"meaning": "diệu (ngày trong tuần)",
+"onyomi": "ヨウ",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_022",
+"word": "火曜日",
+"reading": "かようび",
+"romaji": "kayoubi",
+"meaning": "Thứ ba",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "火曜日は休みです。",
+"example_jp_formatted": "[火曜日]{かようび}は[休]{やす}みです。",
+"example_vi": "Thứ ba là ngày nghỉ.",
+"level": "N5",
+"tags": ["ngày-trong-tuần", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "火",
+"meaning": "hỏa (lửa)",
+"onyomi": "カ",
+"kunyomi": "ひ, -び, ほ-"
+},
+{
+"kanji": "曜",
+"meaning": "diệu (ngày trong tuần)",
+"onyomi": "ヨウ",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_023",
+"word": "水曜日",
+"reading": "すいようび",
+"romaji": "suiyoubi",
+"meaning": "Thứ tư",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "水曜日に勉強します。",
+"example_jp_formatted": "[水曜日]{すいようび}に[勉強]{べんきょう}します。",
+"example_vi": "Tôi học bài vào thứ tư.",
+"level": "N5",
+"tags": ["ngày-trong-tuần", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "水",
+"meaning": "thủy (nước)",
+"onyomi": "スイ",
+"kunyomi": "みず"
+},
+{
+"kanji": "曜",
+"meaning": "diệu (ngày trong tuần)",
+"onyomi": "ヨウ",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_024",
+"word": "木曜日",
+"reading": "もくようび",
+"romaji": "mokuyoubi",
+"meaning": "Thứ năm",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "木曜日も働きます。",
+"example_jp_formatted": "[木曜日]{もくようび}も[働]{はたら}きます。",
+"example_vi": "Thứ năm tôi cũng làm việc.",
+"level": "N5",
+"tags": ["ngày-trong-tuần", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "木",
+"meaning": "mộc (cây)",
+"onyomi": "ボク, モク",
+"kunyomi": "き, こ-"
+},
+{
+"kanji": "曜",
+"meaning": "diệu (ngày trong tuần)",
+"onyomi": "ヨウ",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_025",
+"word": "金曜日",
+"reading": "きんようび",
+"romaji": "kinyoubi",
+"meaning": "Thứ sáu",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "金曜日の晩、休みます。",
+"example_jp_formatted": "[金曜日]{きんようび}の[晩]{ばん}、[休]{やす}みます。",
+"example_vi": "Tối thứ sáu, tôi nghỉ ngơi.",
+"level": "N5",
+"tags": ["ngày-trong-tuần", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "金",
+"meaning": "kim (vàng, tiền)",
+"onyomi": "キン, コン, ゴン",
+"kunyomi": "かね, かな-, -がね"
+},
+{
+"kanji": "曜",
+"meaning": "diệu (ngày trong tuần)",
+"onyomi": "ヨウ",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_026",
+"word": "土曜日",
+"reading": "どようび",
+"romaji": "doyoubi",
+"meaning": "Thứ bảy",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "土曜日は働きません。",
+"example_jp_formatted": "[土曜日]{どようび}は[働]{はたら}きません。",
+"example_vi": "Thứ bảy tôi không làm việc.",
+"level": "N5",
+"tags": ["ngày-trong-tuần", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "土",
+"meaning": "thổ (đất)",
+"onyomi": "ド, ト",
+"kunyomi": "つち"
+},
+{
+"kanji": "曜",
+"meaning": "diệu (ngày trong tuần)",
+"onyomi": "ヨウ",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_027",
+"word": "日曜日",
+"reading": "にちようび",
+"romaji": "nichiyoubi",
+"meaning": "Chủ nhật",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "日曜日は何時に起きますか。",
+"example_jp_formatted": "[日曜日]{にちようび}は[何時]{なんじ}に[起]{お}きますか。",
+"example_vi": "Chủ nhật bạn thức dậy lúc mấy giờ?",
+"level": "N5",
+"tags": ["ngày-trong-tuần", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "日",
+"meaning": "nhật (ngày, mặt trời)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -び, -か"
+},
+{
+"kanji": "曜",
+"meaning": "diệu (ngày trong tuần)",
+"onyomi": "ヨウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_04_028",
+"word": "何曜日",
+"reading": "なんようび",
+"romaji": "nanyoubi",
+"meaning": "Thứ mấy",
+"pos": "interrogative",
+"pitch_accent": "nakadaka",
+"example_jp": "今日は何曜日ですか。",
+"example_jp_formatted": "[今日]{きょう}は[何曜日]{なんようび}ですか。",
+"example_vi": "Hôm nay là thứ mấy?",
+"level": "N5",
+"tags": ["từ-để-hỏi", "ngày-trong-tuần", "bài-4"],
+"notes": "",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "何",
+"meaning": "hà (cái gì)",
+"onyomi": "カ",
+"kunyomi": "なに, なん"
+},
+{
+"kanji": "曜",
+"meaning": "diệu (ngày trong tuần)",
+"onyomi": "ヨウ",
+"kunyomi": ""
+},
+{
+"kanji": "日",
+"meaning": "nhật (ngày)",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, -か"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_029",
+"word": "起きます",
+"reading": "おきます",
+"romaji": "okimasu",
+"meaning": "Thức dậy",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "毎朝６時に起きます。",
+"example_jp_formatted": "[毎朝]{まいあさ}６[時]{じ}に[起]{お}きます。",
+"example_vi": "Mỗi sáng tôi thức dậy lúc 6 giờ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-4"],
+"notes": "Động từ nhóm 2.",
+"synonyms": ["目覚める"],
+"antonyms": ["寝ます"],
+"kanji_info": [
+{
+"kanji": "起",
+"meaning": "khởi (thức dậy)",
+"onyomi": "キ",
+"kunyomi": "お.きる, お.こす"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_030",
+"word": "寝ます",
+"reading": "ねます",
+"romaji": "nemasu",
+"meaning": "Ngủ, đi ngủ",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "１１時に寝ます。",
+"example_jp_formatted": "１１[時]{じ}に[寝]{ね}ます。",
+"example_vi": "Tôi đi ngủ lúc 11 giờ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-4"],
+"notes": "Động từ nhóm 2.",
+"synonyms": ["眠る"],
+"antonyms": ["起きます"],
+"kanji_info": [
+{
+"kanji": "寝",
+"meaning": "tẩm (ngủ)",
+"onyomi": "シン",
+"kunyomi": "ね.る, ね.かす"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_031",
+"word": "働きます",
+"reading": "はたらきます",
+"romaji": "hatarakimasu",
+"meaning": "Làm việc",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "毎日９時から５時まで働きます。",
+"example_jp_formatted": "[毎日]{まいにち}９[時]{じ}から５[時]{じ}まで[働]{はたら}きます。",
+"example_vi": "Mỗi ngày tôi làm việc từ 9 giờ đến 5 giờ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-4"],
+"notes": "Động từ nhóm 1.",
+"synonyms": ["仕事する"],
+"antonyms": ["休みます"],
+"kanji_info": [
+{
+"kanji": "働",
+"meaning": "động (làm việc)",
+"onyomi": "ドウ",
+"kunyomi": "はたら.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_032",
+"word": "休みます",
+"reading": "やすみます",
+"romaji": "yasumimasu",
+"meaning": "Nghỉ ngơi",
+"pos": "verb",
+"pitch_accent": "nakadaka",
+"example_jp": "明日休みます。",
+"example_jp_formatted": "[明日]{あした}[休]{やす}みます。",
+"example_vi": "Ngày mai tôi sẽ nghỉ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-4"],
+"notes": "Động từ nhóm 1.",
+"synonyms": ["休憩する"],
+"antonyms": ["働きます"],
+"kanji_info": [
+{
+"kanji": "休",
+"meaning": "hưu (nghỉ ngơi)",
+"onyomi": "キュウ",
+"kunyomi": "やす.む, やす.まる"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_033",
+"word": "勉強します",
+"reading": "べんきょうします",
+"romaji": "benkyoushimasu",
+"meaning": "Học tập",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "毎晩勉強します。",
+"example_jp_formatted": "[毎晩]{まいばん}[勉強]{べんきょう}します。",
+"example_vi": "Tôi học bài mỗi tối.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-4"],
+"notes": "Động từ nhóm 3 (Danh động từ + します).",
+"synonyms": ["学ぶ"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "勉",
+"meaning": "miễn (cố gắng)",
+"onyomi": "ベン",
+"kunyomi": "つと.める"
+},
+{
+"kanji": "強",
+"meaning": "cường (mạnh)",
+"onyomi": "キョウ, ゴウ",
+"kunyomi": "つよ.い, つよ.まる, し.いる"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_034",
+"word": "終わります",
+"reading": "おわります",
+"romaji": "owarimasu",
+"meaning": "Kết thúc",
+"pos": "verb",
+"pitch_accent": "heiban",
+"example_jp": "会議は４時に終わります。",
+"example_jp_formatted": "[会議]{かいぎ}は４[時]{じ}に[終]{お}わります。",
+"example_vi": "Cuộc họp kết thúc lúc 4 giờ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-4"],
+"notes": "Động từ nhóm 1.",
+"synonyms": ["済む"],
+"antonyms": ["始まります"],
+"kanji_info": [
+{
+"kanji": "終",
+"meaning": "chung (kết thúc)",
+"onyomi": "シュウ",
+"kunyomi": "お.わる, -お.わる, おわ.る, お.える"
+}
+]
+},
+{
+"id": "sys_n5_minna_04_035",
+"word": "昼休み",
+"reading": "ひるやすみ",
+"romaji": "hiruyasumi",
+"meaning": "Nghỉ trưa",
+"pos": "noun",
+"pitch_accent": "nakadaka",
+"example_jp": "昼休みは１２からです。",
+"example_jp_formatted": "[昼休]{ひるやす}みは１２[時]{じ}からです。",
+"example_vi": "Giờ nghỉ trưa bắt đầu từ 12 giờ.",
+"level": "N5",
+"tags": ["thời-gian", "bài-4"],
+"notes": "",
+"synonyms": ["昼休憩"],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "昼",
+"meaning": "trú (buổi trưa)",
+"onyomi": "チュウ",
+"kunyomi": "ひる"
+},
+{
+"kanji": "休",
+"meaning": "hưu (nghỉ ngơi)",
+"onyomi": "キュウ",
+"kunyomi": "やす.む, やす.まる"
+}
+]
+}
+]

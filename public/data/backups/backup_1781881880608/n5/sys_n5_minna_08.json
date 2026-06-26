@@ -1,0 +1,1219 @@
+[
+{
+"id": "sys_n5_minna_08_001",
+"word": "高い",
+"reading": "たかい",
+"romaji": "takai",
+"meaning": "Cao; đắt",
+"pos": "adj-i",
+"pitch_accent": "nakadaka",
+"example_jp": "この車は高いです。",
+"example_jp_formatted": "この[車]{くるま}は[高]{たか}いです。",
+"example_vi": "Chiếc xe này đắt.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-i",
+"bài-8"
+],
+"notes": "Tính từ đuôi i. Có nghĩa là cao hoặc đắt tùy ngữ cảnh.",
+"synonyms": [],
+"antonyms": [
+"低い"
+],
+"kanji_info": [
+{
+"kanji": "高",
+"meaning": "cao",
+"onyomi": "コウ",
+"kunyomi": "たか.い, たか, たか.まる"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_002",
+"word": "低い",
+"reading": "ひくい",
+"romaji": "hikui",
+"meaning": "Thấp",
+"pos": "adj-i",
+"pitch_accent": "nakadaka",
+"example_jp": "この机は低いです。",
+"example_jp_formatted": "この[机]{つくえ}は[低]{ひく}いです。",
+"example_vi": "Cái bàn này thấp.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-i",
+"bài-8"
+],
+"notes": "Mô tả độ cao thấp.",
+"synonyms": [],
+"antonyms": [
+"高い"
+],
+"kanji_info": [
+{
+"kanji": "低",
+"meaning": "thấp",
+"onyomi": "テイ",
+"kunyomi": "ひく.い, ひく.める, ひく.まる"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_003",
+"word": "安い",
+"reading": "やすい",
+"romaji": "yasui",
+"meaning": "Rẻ",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この本は安いです。",
+"example_jp_formatted": "この[本]{ほん}は[安]{やす}いです。",
+"example_vi": "Cuốn sách này rẻ.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-i",
+"bài-8"
+],
+"notes": "Thường dùng để nói giá rẻ.",
+"synonyms": [],
+"antonyms": [
+"高い"
+],
+"kanji_info": [
+{
+"kanji": "安",
+"meaning": "an, yên, rẻ",
+"onyomi": "アン",
+"kunyomi": "やす.い, やす.らか, やす.んじる"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_004",
+"word": "速い",
+"reading": "はやい",
+"romaji": "hayai",
+"meaning": "Nhanh",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この電車は速いです。",
+"example_jp_formatted": "この[電車]{でんしゃ}は[速]{はや}いです。",
+"example_vi": "Chuyến tàu này nhanh.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-i",
+"bài-8"
+],
+"notes": "Mô tả tốc độ.",
+"synonyms": [],
+"antonyms": [
+"遅い"
+],
+"kanji_info": [
+{
+"kanji": "速",
+"meaning": "tốc (nhanh)",
+"onyomi": "ソク",
+"kunyomi": "はや.い, はや.める, はや.まる"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_005",
+"word": "遅い",
+"reading": "おそい",
+"romaji": "osoi",
+"meaning": "Chậm",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "バスは遅いです。",
+"example_jp_formatted": "バスは[遅]{おそ}いです。",
+"example_vi": "Xe buýt thì chậm.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-i",
+"bài-8"
+],
+"notes": "Mô tả tốc độ chậm hoặc muộn.",
+"synonyms": [],
+"antonyms": [
+"速い"
+],
+"kanji_info": [
+{
+"kanji": "遅",
+"meaning": "trì (chậm)",
+"onyomi": "チ",
+"kunyomi": "おく.れる, おそ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_006",
+"word": "白い",
+"reading": "しろい",
+"romaji": "shiroi",
+"meaning": "Trắng",
+"pos": "adj-i",
+"pitch_accent": "nakadaka",
+"example_jp": "この猫は白いです。",
+"example_jp_formatted": "この[猫]{ねこ}は[白]{しろ}いです。",
+"example_vi": "Con mèo này trắng.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"màu-sắc",
+"bài-8"
+],
+"notes": "Màu trắng.",
+"synonyms": [],
+"antonyms": [
+"黒い"
+],
+"kanji_info": [
+{
+"kanji": "白",
+"meaning": "bạch (trắng)",
+"onyomi": "ハク, ビャク",
+"kunyomi": "しろ.い, しろ, しら"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_007",
+"word": "黒い",
+"reading": "くろい",
+"romaji": "kuroi",
+"meaning": "Đen",
+"pos": "adj-i",
+"pitch_accent": "nakadaka",
+"example_jp": "その車は黒いです。",
+"example_jp_formatted": "その[車]{くるま}は[黒]{くろ}いです。",
+"example_vi": "Chiếc xe đó màu đen.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"màu-sắc",
+"bài-8"
+],
+"notes": "Màu đen.",
+"synonyms": [],
+"antonyms": [
+"白い"
+],
+"kanji_info": [
+{
+"kanji": "黒",
+"meaning": "hắc (đen)",
+"onyomi": "コク",
+"kunyomi": "くろ.い, くろ, くろ.ずむ"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_008",
+"word": "赤い",
+"reading": "あかい",
+"romaji": "akai",
+"meaning": "Đỏ",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この花は赤いです。",
+"example_jp_formatted": "この[花]{はな}は[赤]{あか}いです。",
+"example_vi": "Bông hoa này màu đỏ.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"màu-sắc",
+"bài-8"
+],
+"notes": "Màu đỏ.",
+"synonyms": [],
+"antonyms": [
+"青い"
+],
+"kanji_info": [
+{
+"kanji": "赤",
+"meaning": "xích (đỏ)",
+"onyomi": "セキ, シャク",
+"kunyomi": "あか.い, あか, あか.らむ"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_009",
+"word": "青い",
+"reading": "あおい",
+"romaji": "aoi",
+"meaning": "Xanh",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "青い空です。",
+"example_jp_formatted": "[青]{あお}い[空]{そら}です。",
+"example_vi": "Bầu trời xanh.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"màu-sắc",
+"bài-8"
+],
+"notes": "Màu xanh lam hoặc xanh nói chung tùy ngữ cảnh.",
+"synonyms": [],
+"antonyms": [
+"赤い"
+],
+"kanji_info": [
+{
+"kanji": "青",
+"meaning": "thanh (xanh)",
+"onyomi": "セイ, ショウ",
+"kunyomi": "あお.い, あお, あお.じろい"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_010",
+"word": "新しい",
+"reading": "あたらしい",
+"romaji": "atarashii",
+"meaning": "Mới",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "新しい携帯電話です。",
+"example_jp_formatted": "[新]{あたら}しい[携帯電話]{けいたいでんわ}です。",
+"example_vi": "Đây là điện thoại mới.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-i",
+"bài-8"
+],
+"notes": "Dùng để chỉ thứ mới.",
+"synonyms": [],
+"antonyms": [
+"古い"
+],
+"kanji_info": [
+{
+"kanji": "新",
+"meaning": "tân (mới)",
+"onyomi": "シン",
+"kunyomi": "あたら.しい, あら.た, あら.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_011",
+"word": "古い",
+"reading": "ふるい",
+"romaji": "furui",
+"meaning": "Cũ",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "古い家です。",
+"example_jp_formatted": "[古]{ふる}い[家]{いえ}です。",
+"example_vi": "Đó là một ngôi nhà cũ.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-i",
+"bài-8"
+],
+"notes": "Dùng để chỉ thứ cũ.",
+"synonyms": [],
+"antonyms": [
+"新しい"
+],
+"kanji_info": [
+{
+"kanji": "古",
+"meaning": "cổ (cũ)",
+"onyomi": "コ",
+"kunyomi": "ふる.い, ふる.す, ふる.めく"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_012",
+"word": "大きい",
+"reading": "おおきい",
+"romaji": "ookii",
+"meaning": "To; lớn",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "大きい犬です。",
+"example_jp_formatted": "[大]{おお}きい[犬]{いぬ}です。",
+"example_vi": "Đó là con chó lớn.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"kích-thước",
+"bài-8"
+],
+"notes": "Mô tả kích thước lớn.",
+"synonyms": [],
+"antonyms": [
+"小さい"
+],
+"kanji_info": [
+{
+"kanji": "大",
+"meaning": "đại (to, lớn)",
+"onyomi": "ダイ, タイ",
+"kunyomi": "おお.きい, おお.いに"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_013",
+"word": "小さい",
+"reading": "ちいさい",
+"romaji": "chiisai",
+"meaning": "Nhỏ",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "小さい子供です。",
+"example_jp_formatted": "[小]{ちい}さい[子供]{こども}です。",
+"example_vi": "Đó là đứa trẻ nhỏ.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"kích-thước",
+"bài-8"
+],
+"notes": "Mô tả kích thước nhỏ.",
+"synonyms": [],
+"antonyms": [
+"大きい"
+],
+"kanji_info": [
+{
+"kanji": "小",
+"meaning": "tiểu (nhỏ)",
+"onyomi": "ショウ",
+"kunyomi": "ちい.さい, こ, お"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_014",
+"word": "良い",
+"reading": "いい",
+"romaji": "ii",
+"meaning": "Tốt",
+"pos": "adj-i",
+"pitch_accent": "nakadaka",
+"example_jp": "今日は良い天気です。",
+"example_jp_formatted": "[今日]{きょう}は[良]{よ}い[天気]{てんき}です。",
+"example_vi": "Hôm nay thời tiết tốt.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đánh-giá",
+"bài-8"
+],
+"notes": "Cũng có thể đọc là いい. Nghĩa là tốt.",
+"synonyms": [],
+"antonyms": [
+"悪い"
+],
+"kanji_info": [
+{
+"kanji": "良",
+"meaning": "lương (tốt)",
+"onyomi": "リョウ",
+"kunyomi": "よ.い, よ.く, よし"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_015",
+"word": "暑い",
+"reading": "あつい",
+"romaji": "atsui",
+"meaning": "Nóng",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "今日は暑いです。",
+"example_jp_formatted": "[今日]{きょう}は[暑]{あつ}いです。",
+"example_vi": "Hôm nay trời nóng.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"thời-tiết",
+"bài-8"
+],
+"notes": "Dùng cho thời tiết nóng.",
+"synonyms": [],
+"antonyms": [
+"寒い"
+],
+"kanji_info": [
+{
+"kanji": "暑",
+"meaning": "thử (nóng)",
+"onyomi": "ショ",
+"kunyomi": "あつ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_016",
+"word": "寒い",
+"reading": "さむい",
+"romaji": "samui",
+"meaning": "Lạnh",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "冬は寒いです。",
+"example_jp_formatted": "[冬]{ふゆ}は[寒]{さむ}いです。",
+"example_vi": "Mùa đông thì lạnh.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"thời-tiết",
+"bài-8"
+],
+"notes": "Dùng cho thời tiết lạnh.",
+"synonyms": [],
+"antonyms": [
+"暑い"
+],
+"kanji_info": [
+{
+"kanji": "寒",
+"meaning": "hàn (lạnh)",
+"onyomi": "カン",
+"kunyomi": "さむ.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_017",
+"word": "易しい",
+"reading": "やさしい",
+"romaji": "yasashii",
+"meaning": "Dễ",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この問題は易しいです。",
+"example_jp_formatted": "この[問題]{もんだい}は[易]{やさ}しいです。",
+"example_vi": "Bài này dễ.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"mức-độ",
+"bài-8"
+],
+"notes": "Dùng để nói điều gì đó dễ.",
+"synonyms": [],
+"antonyms": [
+"難しい"
+],
+"kanji_info": [
+{
+"kanji": "易",
+"meaning": "dịch / dễ",
+"onyomi": "エキ, イ",
+"kunyomi": "やさ.しい, やす.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_018",
+"word": "難しい",
+"reading": "むずかしい",
+"romaji": "muzukashii",
+"meaning": "Khó",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この漢字は難しいです。",
+"example_jp_formatted": "この[漢字]{かんじ}は[難]{むずか}しいです。",
+"example_vi": "Chữ Hán này khó.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"mức-độ",
+"bài-8"
+],
+"notes": "Dùng để nói điều gì đó khó.",
+"synonyms": [],
+"antonyms": [
+"易しい"
+],
+"kanji_info": [
+{
+"kanji": "難",
+"meaning": "nan (khó)",
+"onyomi": "ナン",
+"kunyomi": "むずか.しい, かた.い, なん"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_019",
+"word": "楽しい",
+"reading": "たのしい",
+"romaji": "tanoshii",
+"meaning": "Vui, thú vị",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この映画は楽しいです。",
+"example_jp_formatted": "この[映画]{えいが}は[楽]{たの}しいです。",
+"example_vi": "Bộ phim này vui.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"cảm-xúc",
+"bài-8"
+],
+"notes": "Mô tả cảm giác vui vẻ, thú vị.",
+"synonyms": [],
+"antonyms": [
+"つまらない"
+],
+"kanji_info": [
+{
+"kanji": "楽",
+"meaning": "lạc (vui, dễ chịu)",
+"onyomi": "ガク, ラク",
+"kunyomi": "たの.しい, たの.しむ, らく"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_020",
+"word": "美味しい",
+"reading": "おいしい",
+"romaji": "oishii",
+"meaning": "Ngon",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この料理は美味しいです。",
+"example_jp_formatted": "この[料理]{りょうり}は[美味]{おい}しいです。",
+"example_vi": "Món ăn này ngon.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"vị-giác",
+"bài-8"
+],
+"notes": "Dùng để khen đồ ăn thức uống ngon.",
+"synonyms": [],
+"antonyms": [
+"まずい"
+],
+"kanji_info": [
+{
+"kanji": "美",
+"meaning": "mỹ (đẹp, ngon)",
+"onyomi": "ビ",
+"kunyomi": "うつく.しい"
+},
+{
+"kanji": "味",
+"meaning": "vị",
+"onyomi": "ミ",
+"kunyomi": "あじ, あじ.わう"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_021",
+"word": "忙しい",
+"reading": "いそがしい",
+"romaji": "isogashii",
+"meaning": "Bận",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "今日は忙しいです。",
+"example_jp_formatted": "[今日]{きょう}は[忙]{いそが}しいです。",
+"example_vi": "Hôm nay tôi bận.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"trạng-thái",
+"bài-8"
+],
+"notes": "Mô tả trạng thái bận rộn.",
+"synonyms": [],
+"antonyms": [
+"暇"
+],
+"kanji_info": [
+{
+"kanji": "忙",
+"meaning": "vong (bận)",
+"onyomi": "ボウ",
+"kunyomi": "いそが.しい, せわ.しい"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_022",
+"word": "広い",
+"reading": "ひろい",
+"romaji": "hiroi",
+"meaning": "Rộng",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この部屋は広いです。",
+"example_jp_formatted": "この[部屋]{へや}は[広]{ひろ}いです。",
+"example_vi": "Căn phòng này rộng.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"kích-thước",
+"bài-8"
+],
+"notes": "Mô tả không gian rộng.",
+"synonyms": [],
+"antonyms": [
+"狭い"
+],
+"kanji_info": [
+{
+"kanji": "広",
+"meaning": "quảng (rộng)",
+"onyomi": "コウ",
+"kunyomi": "ひろ.い, ひろ.まる, ひろ.める"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_023",
+"word": "狭い",
+"reading": "せまい",
+"romaji": "semai",
+"meaning": "Hẹp",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "この道は狭いです。",
+"example_jp_formatted": "この[道]{みち}は[狭]{せま}いです。",
+"example_vi": "Con đường này hẹp.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"kích-thước",
+"bài-8"
+],
+"notes": "Mô tả không gian hẹp.",
+"synonyms": [],
+"antonyms": [
+"広い"
+],
+"kanji_info": [
+{
+"kanji": "狭",
+"meaning": "hiệp (hẹp)",
+"onyomi": "キョウ, コウ",
+"kunyomi": "せま.い, せば.める, せば.まる"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_024",
+"word": "長い",
+"reading": "ながい",
+"romaji": "nagai",
+"meaning": "Dài",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "長い道です。",
+"example_jp_formatted": "[長]{なが}い[道]{みち}です。",
+"example_vi": "Đó là con đường dài.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"kích-thước",
+"bài-8"
+],
+"notes": "Mô tả độ dài.",
+"synonyms": [],
+"antonyms": [
+"短い"
+],
+"kanji_info": [
+{
+"kanji": "長",
+"meaning": "trưởng (dài, trưởng thành)",
+"onyomi": "チョウ",
+"kunyomi": "なが.い, おさ"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_025",
+"word": "短い",
+"reading": "みじかい",
+"romaji": "mijikai",
+"meaning": "Ngắn",
+"pos": "adj-i",
+"pitch_accent": "atamadaka",
+"example_jp": "短い時間です。",
+"example_jp_formatted": "[短]{みじか}い[時間]{じかん}です。",
+"example_vi": "Đó là khoảng thời gian ngắn.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"kích-thước",
+"bài-8"
+],
+"notes": "Mô tả độ dài ngắn.",
+"synonyms": [],
+"antonyms": [
+"長い"
+],
+"kanji_info": [
+{
+"kanji": "短",
+"meaning": "đoản (ngắn)",
+"onyomi": "タン",
+"kunyomi": "みじか.い"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_026",
+"word": "静か",
+"reading": "しずか",
+"romaji": "shizuka",
+"meaning": "Yên tĩnh",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "この図書館は静かです。",
+"example_jp_formatted": "この[図書館]{としょかん}は[静]{しず}かです。",
+"example_vi": "Thư viện này yên tĩnh.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-na",
+"bài-8"
+],
+"notes": "Khi bổ nghĩa danh từ: 静かな図書館。",
+"synonyms": [],
+"antonyms": [
+"うるさい"
+],
+"kanji_info": [
+{
+"kanji": "静",
+"meaning": "tĩnh, yên",
+"onyomi": "セイ, ジョウ",
+"kunyomi": "しず.か, しず.まる, しず.める"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_027",
+"word": "賑やか",
+"reading": "にぎやか",
+"romaji": "nigiyaka",
+"meaning": "Nhộn nhịp",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "この町は賑やかです。",
+"example_jp_formatted": "この[町]{まち}は[賑]{にぎ}やかです。",
+"example_vi": "Thị trấn này nhộn nhịp.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-na",
+"bài-8"
+],
+"notes": "Mô tả nơi đông vui, nhộn nhịp.",
+"synonyms": [],
+"antonyms": [
+"静か"
+],
+"kanji_info": [
+{
+"kanji": "賑",
+"meaning": "sính, phồn thịnh",
+"onyomi": "シン",
+"kunyomi": "にぎ.わう, にぎ.やか"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_028",
+"word": "きれい",
+"reading": "きれい",
+"romaji": "kirei",
+"meaning": "Đẹp; sạch",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "この部屋はきれいです。",
+"example_jp_formatted": "この[部屋]{へや}はきれいです。",
+"example_vi": "Căn phòng này sạch đẹp.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-na",
+"bài-8"
+],
+"notes": "Thường dùng với nghĩa đẹp hoặc sạch.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_08_029",
+"word": "有名",
+"reading": "ゆうめい",
+"romaji": "yuumei",
+"meaning": "Nổi tiếng",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "この寺は有名です。",
+"example_jp_formatted": "この[寺]{てら}は[有名]{ゆうめい}です。",
+"example_vi": "Ngôi chùa này nổi tiếng.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-na",
+"bài-8"
+],
+"notes": "Dùng để nói điều gì đó nổi tiếng.",
+"synonyms": [],
+"antonyms": [
+"無名"
+],
+"kanji_info": [
+{
+"kanji": "有",
+"meaning": "hữu (có)",
+"onyomi": "ユウ, ウ",
+"kunyomi": "あ.る"
+},
+{
+"kanji": "名",
+"meaning": "danh (tên, nổi tiếng)",
+"onyomi": "メイ, ミョウ",
+"kunyomi": "な"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_030",
+"word": "親切",
+"reading": "しんせつ",
+"romaji": "shinsetsu",
+"meaning": "Tử tế, thân thiện",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "先生は親切です。",
+"example_jp_formatted": "[先生]{せんせい}は[親切]{しんせつ}です。",
+"example_vi": "Thầy/cô giáo rất tử tế.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"đuôi-na",
+"bài-8"
+],
+"notes": "Mô tả tính cách tốt bụng.",
+"synonyms": [],
+"antonyms": [
+"不親切"
+],
+"kanji_info": [
+{
+"kanji": "親",
+"meaning": "thân, cha mẹ",
+"onyomi": "シン",
+"kunyomi": "おや, した.しい, した.しむ"
+},
+{
+"kanji": "切",
+"meaning": "thiết (cắt, thiết thực)",
+"onyomi": "セツ, サイ",
+"kunyomi": "き.る, き.れる"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_031",
+"word": "元気",
+"reading": "げんき",
+"romaji": "genki",
+"meaning": "Khỏe, có sức sống",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "母は元気です。",
+"example_jp_formatted": "[母]{はは}は[元気]{げんき}です。",
+"example_vi": "Mẹ tôi khỏe.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"trạng-thái",
+"bài-8"
+],
+"notes": "Dùng để nói ai đó khỏe mạnh, vui vẻ.",
+"synonyms": [],
+"antonyms": [
+"病気"
+],
+"kanji_info": [
+{
+"kanji": "元",
+"meaning": "nguyên, gốc",
+"onyomi": "ゲン, ガン",
+"kunyomi": "もと"
+},
+{
+"kanji": "気",
+"meaning": "khí, tinh thần",
+"onyomi": "キ, ケ",
+"kunyomi": "いき"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_032",
+"word": "暇",
+"reading": "ひま",
+"romaji": "hima",
+"meaning": "Rảnh",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は暇です。",
+"example_jp_formatted": "[私]{わたし}は[暇]{ひま}です。",
+"example_vi": "Tôi rảnh.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"trạng-thái",
+"bài-8"
+],
+"notes": "Dùng để nói có thời gian rảnh.",
+"synonyms": [],
+"antonyms": [
+"忙しい"
+],
+"kanji_info": [
+{
+"kanji": "暇",
+"meaning": "hạ (rảnh)",
+"onyomi": "カ",
+"kunyomi": "ひま, いとま"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_033",
+"word": "簡単",
+"reading": "かんたん",
+"romaji": "kantan",
+"meaning": "Đơn giản",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "この宿題は簡単です。",
+"example_jp_formatted": "この[宿題]{しゅくだい}は[簡単]{かんたん}です。",
+"example_vi": "Bài tập này đơn giản.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"mức-độ",
+"bài-8"
+],
+"notes": "Dùng để nói điều gì đó dễ, đơn giản.",
+"synonyms": [],
+"antonyms": [
+"難しい"
+],
+"kanji_info": [
+{
+"kanji": "簡",
+"meaning": "giản (đơn giản)",
+"onyomi": "カン",
+"kunyomi": "ふだ"
+},
+{
+"kanji": "単",
+"meaning": "đơn",
+"onyomi": "タン",
+"kunyomi": "ひとえ"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_034",
+"word": "便利",
+"reading": "べんり",
+"romaji": "benri",
+"meaning": "Tiện lợi",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "この駅は便利です。",
+"example_jp_formatted": "この[駅]{えき}は[便利]{べんり}です。",
+"example_vi": "Nhà ga này tiện lợi.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"trạng-thái",
+"bài-8"
+],
+"notes": "Dùng để nói thứ gì đó tiện.",
+"synonyms": [],
+"antonyms": [
+"不便"
+],
+"kanji_info": [
+{
+"kanji": "便",
+"meaning": "tiện",
+"onyomi": "ベン, ビン",
+"kunyomi": "たよ.り"
+},
+{
+"kanji": "利",
+"meaning": "lợi",
+"onyomi": "リ",
+"kunyomi": "き.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_035",
+"word": "好き",
+"reading": "すき",
+"romaji": "suki",
+"meaning": "Thích",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は猫が好きです。",
+"example_jp_formatted": "[私]{わたし}は[猫]{ねこ}が[好]{す}きです。",
+"example_vi": "Tôi thích mèo.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"cảm-xúc",
+"bài-8"
+],
+"notes": "Dùng với が để nói sở thích.",
+"synonyms": [],
+"antonyms": [
+"嫌い"
+],
+"kanji_info": [
+{
+"kanji": "好",
+"meaning": "hảo (thích)",
+"onyomi": "コウ",
+"kunyomi": "す.き, この.む, す.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_036",
+"word": "嫌い",
+"reading": "きらい",
+"romaji": "kirai",
+"meaning": "Ghét, không thích",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は虫が嫌いです。",
+"example_jp_formatted": "[私]{わたし}は[虫]{むし}が[嫌]{きら}いです。",
+"example_vi": "Tôi ghét côn trùng.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"cảm-xúc",
+"bài-8"
+],
+"notes": "Dùng với が để nói điều mình ghét.",
+"synonyms": [],
+"antonyms": [
+"好き"
+],
+"kanji_info": [
+{
+"kanji": "嫌",
+"meaning": "hiềm, ghét",
+"onyomi": "ケン, ゲン",
+"kunyomi": "きら.う, きら.い, いや"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_037",
+"word": "上手",
+"reading": "じょうず",
+"romaji": "jouzu",
+"meaning": "Giỏi, khéo",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "彼は日本語が上手です。",
+"example_jp_formatted": "[彼]{かれ}は[日本語]{にほんご}が[上手]{じょうず}です。",
+"example_vi": "Anh ấy giỏi tiếng Nhật.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"năng-lực",
+"bài-8"
+],
+"notes": "Dùng để khen kỹ năng tốt.",
+"synonyms": [],
+"antonyms": [
+"下手"
+],
+"kanji_info": [
+{
+"kanji": "上",
+"meaning": "thượng, trên",
+"onyomi": "ジョウ, ショウ, シャン",
+"kunyomi": "うえ, うわ, かみ, あ.げる, あ.がる"
+},
+{
+"kanji": "手",
+"meaning": "thủ, tay",
+"onyomi": "シュ, ズ",
+"kunyomi": "て, た"
+}
+]
+},
+{
+"id": "sys_n5_minna_08_038",
+"word": "下手",
+"reading": "へた",
+"romaji": "heta",
+"meaning": "Kém, dở",
+"pos": "adj-na",
+"pitch_accent": "heiban",
+"example_jp": "私は歌が下手です。",
+"example_jp_formatted": "[私]{わたし}は[歌]{うた}が[下手]{へた}です。",
+"example_vi": "Tôi hát dở.",
+"level": "N5",
+"tags": [
+"tính-từ",
+"năng-lực",
+"bài-8"
+],
+"notes": "Dùng để nói kỹ năng chưa tốt.",
+"synonyms": [],
+"antonyms": [
+"上手"
+],
+"kanji_info": [
+{
+"kanji": "下",
+"meaning": "hạ, dưới",
+"onyomi": "カ, ゲ",
+"kunyomi": "した, しも, もと, さ.げる, くだ.る"
+},
+{
+"kanji": "手",
+"meaning": "thủ, tay",
+"onyomi": "シュ, ズ",
+"kunyomi": "て, た"
+}
+]
+}
+]

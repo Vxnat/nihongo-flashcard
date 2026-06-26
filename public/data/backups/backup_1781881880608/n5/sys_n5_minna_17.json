@@ -1,0 +1,977 @@
+[
+{
+"id": "sys_n5_minna_17_001",
+"word": "ない形",
+"reading": "ないかたち",
+"romaji": "naikei",
+"meaning": "Thể nai / dạng phủ định của động từ",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "今日は会社へ行かない。",
+"example_jp_formatted": "[今日]{きょう}は[会社]{かいしゃ}へ[行]{い}かない。",
+"example_vi": "Hôm nay tôi không đi công ty.",
+"level": "N5",
+"tags": ["ngữ-pháp", "thể-nai", "bài-17"],
+"notes": "Dạng gốc dùng để tạo ないでください, なければなりません, なくてもいいです.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_17_002",
+"word": "ないでください",
+"reading": "ないでください",
+"romaji": "naide kudasai",
+"meaning": "Xin đừng...",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "ここで写真を撮らないでください。",
+"example_jp_formatted": "ここで[写真]{しゃしん}を[撮]{と}らないでください。",
+"example_vi": "Xin đừng chụp ảnh ở đây.",
+"level": "N5",
+"tags": ["ngữ-pháp", "cấm-đoán", "bài-17"],
+"notes": "Dùng để yêu cầu ai đó không làm một hành động.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "撮",
+"meaning": "chụp",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_003",
+"word": "なければなりません",
+"reading": "なければなりません",
+"romaji": "nakereba narimasen",
+"meaning": "Phải, bắt buộc phải",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "毎日日本語を勉強しなければなりません。",
+"example_jp_formatted": "[毎日]{まいにち}[日本語]{にほんご}を[勉強]{べんきょう}しなければなりません。",
+"example_vi": "Tôi phải học tiếng Nhật mỗi ngày.",
+"level": "N5",
+"tags": ["ngữ-pháp", "bắt-buộc", "bài-17"],
+"notes": "Diễn tả nghĩa vụ hoặc trách nhiệm.",
+"synonyms": ["なければいけません"],
+"antonyms": ["なくてもいいです"],
+"kanji_info": [
+{
+"kanji": "毎日",
+"meaning": "mỗi ngày",
+"onyomi": "マイニチ",
+"kunyomi": ""
+},
+{
+"kanji": "日本語",
+"meaning": "tiếng Nhật",
+"onyomi": "ニホンゴ",
+"kunyomi": ""
+},
+{
+"kanji": "勉強",
+"meaning": "học tập",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_17_004",
+"word": "なくてもいいです",
+"reading": "なくてもいいです",
+"romaji": "nakutemo ii desu",
+"meaning": "Không cần làm cũng được",
+"pos": "grammar_pattern",
+"pitch_accent": "heiban",
+"example_jp": "今日は学校へ行かなくてもいいです。",
+"example_jp_formatted": "[今日]{きょう}は[学校]{がっこう}へ[行]{い}かなくてもいいです。",
+"example_vi": "Hôm nay không đi học cũng được.",
+"level": "N5",
+"tags": ["ngữ-pháp", "không-cần", "bài-17"],
+"notes": "Diễn tả điều không bắt buộc.",
+"synonyms": [],
+"antonyms": ["なければなりません"],
+"kanji_info": [
+{
+"kanji": "今日",
+"meaning": "hôm nay",
+"onyomi": "キョウ",
+"kunyomi": "きょう, こんにち"
+},
+{
+"kanji": "学校",
+"meaning": "trường học",
+"onyomi": "ガッコウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_17_005",
+"word": "行きます",
+"reading": "いきます",
+"romaji": "ikimasu",
+"meaning": "Đi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "明日、学校へ行きます。",
+"example_jp_formatted": "[明日]{あした}、[学校]{がっこう}へ[行]{い}きます。",
+"example_vi": "Ngày mai tôi đi học.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 行かない.",
+"synonyms": [],
+"antonyms": ["来ます"],
+"kanji_info": [
+{
+"kanji": "行",
+"meaning": "đi",
+"onyomi": "コウ, ギョウ",
+"kunyomi": "い.く, ゆ.く, おこな.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_006",
+"word": "食べます",
+"reading": "たべます",
+"romaji": "tabemasu",
+"meaning": "Ăn",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "昼ごはんを食べます。",
+"example_jp_formatted": "[昼]{ひる}ごはんを[食]{た}べます。",
+"example_vi": "Tôi ăn trưa.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ nhóm 2. Thể nai: 食べない.",
+"synonyms": [],
+"antonyms": ["飲みます"],
+"kanji_info": [
+{
+"kanji": "食",
+"meaning": "ăn",
+"onyomi": "ショク",
+"kunyomi": "た.べる, く.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_007",
+"word": "飲みます",
+"reading": "のみます",
+"romaji": "nomimasu",
+"meaning": "Uống",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "水を飲みます。",
+"example_jp_formatted": "[水]{みず}を[飲]{の}みます。",
+"example_vi": "Tôi uống nước.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 飲まない.",
+"synonyms": [],
+"antonyms": ["食べます"],
+"kanji_info": [
+{
+"kanji": "飲",
+"meaning": "uống",
+"onyomi": "イン",
+"kunyomi": "の.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_008",
+"word": "吸います",
+"reading": "すいます",
+"romaji": "suimasu",
+"meaning": "Hút",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "教室でたばこを吸ってはいけません。",
+"example_jp_formatted": "[教室]{きょうしつ}でたばこを[吸]{す}ってはいけません。",
+"example_vi": "Không được hút thuốc trong lớp học.",
+"level": "N5",
+"tags": ["động-từ", "cấm-đoán", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 吸わない.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "吸",
+"meaning": "hút, hít",
+"onyomi": "キュウ",
+"kunyomi": "す.う"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_009",
+"word": "入ります",
+"reading": "はいります",
+"romaji": "hairimasu",
+"meaning": "Vào, đi vào",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "病院に入ります。",
+"example_jp_formatted": "[病院]{びょういん}に[入]{はい}ります。",
+"example_vi": "Tôi vào bệnh viện.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 入らない.",
+"synonyms": [],
+"antonyms": ["出ます"],
+"kanji_info": [
+{
+"kanji": "入",
+"meaning": "vào",
+"onyomi": "ニュウ",
+"kunyomi": "い.る, はい.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_010",
+"word": "出ます",
+"reading": "でます",
+"romaji": "demasu",
+"meaning": "Ra, rời khỏi",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "部屋を出ます。",
+"example_jp_formatted": "[部屋]{へや}を[出]{で}ます。",
+"example_vi": "Tôi ra khỏi phòng.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ nhóm 2. Thể nai: 出ない.",
+"synonyms": [],
+"antonyms": ["入ります"],
+"kanji_info": [
+{
+"kanji": "出",
+"meaning": "ra, xuất",
+"onyomi": "シュツ",
+"kunyomi": "で.る, だ.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_011",
+"word": "撮ります",
+"reading": "とります",
+"romaji": "torimasu",
+"meaning": "Chụp (ảnh)",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "ここで写真を撮らないでください。",
+"example_jp_formatted": "ここで[写真]{しゃしん}を[撮]{と}らないでください。",
+"example_vi": "Xin đừng chụp ảnh ở đây.",
+"level": "N5",
+"tags": ["động-từ", "cấm-đoán", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 撮らない.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "撮",
+"meaning": "chụp",
+"onyomi": "サツ",
+"kunyomi": "と.る"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_012",
+"word": "話します",
+"reading": "はなします",
+"romaji": "hanashimasu",
+"meaning": "Nói, trò chuyện",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "先生と話します。",
+"example_jp_formatted": "[先生]{せんせい}と[話]{はな}します。",
+"example_vi": "Tôi nói chuyện với thầy/cô giáo.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 話さない.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "話",
+"meaning": "nói, chuyện",
+"onyomi": "ワ",
+"kunyomi": "はな.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_013",
+"word": "勉強します",
+"reading": "べんきょうします",
+"romaji": "benkyou shimasu",
+"meaning": "Học tập",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "毎日日本語を勉強します。",
+"example_jp_formatted": "[毎日]{まいにち}[日本語]{にほんご}を[勉強]{べんきょう}します。",
+"example_vi": "Tôi học tiếng Nhật mỗi ngày.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ する. Thể nai: 勉強しない.",
+"synonyms": [],
+"antonyms": ["休みます"],
+"kanji_info": [
+{
+"kanji": "勉強",
+"meaning": "học tập",
+"onyomi": "ベンキョウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_17_014",
+"word": "働きます",
+"reading": "はたらきます",
+"romaji": "hatarakimasu",
+"meaning": "Làm việc",
+"pos": "verb_group1",
+"pitch_accent": "nakadaka",
+"example_jp": "会社で働きます。",
+"example_jp_formatted": "[会社]{かいしゃ}で[働]{はたら}きます。",
+"example_vi": "Tôi làm việc ở công ty.",
+"level": "N5",
+"tags": ["động-từ", "công-việc", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 働かない.",
+"synonyms": [],
+"antonyms": ["休みます"],
+"kanji_info": [
+{
+"kanji": "働",
+"meaning": "làm việc",
+"onyomi": "ドウ",
+"kunyomi": "はたら.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_015",
+"word": "休みます",
+"reading": "やすみます",
+"romaji": "yasumimasu",
+"meaning": "Nghỉ, nghỉ ngơi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "今日は休みます。",
+"example_jp_formatted": "[今日]{きょう}は[休]{やす}みます。",
+"example_vi": "Hôm nay tôi nghỉ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 休まない.",
+"synonyms": [],
+"antonyms": ["働きます"],
+"kanji_info": [
+{
+"kanji": "休",
+"meaning": "nghỉ",
+"onyomi": "キュウ",
+"kunyomi": "やす.む"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_016",
+"word": "寝ます",
+"reading": "ねます",
+"romaji": "nemasu",
+"meaning": "Ngủ",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "十時に寝ます。",
+"example_jp_formatted": "[十時]{じゅうじ}に[寝]{ね}ます。",
+"example_vi": "Tôi đi ngủ lúc 10 giờ.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-17"],
+"notes": "Động từ nhóm 2. Thể nai: 寝ない.",
+"synonyms": [],
+"antonyms": ["起きます"],
+"kanji_info": [
+{
+"kanji": "寝",
+"meaning": "ngủ, nằm",
+"onyomi": "シン",
+"kunyomi": "ね.る, ね.かす"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_017",
+"word": "遊びます",
+"reading": "あそびます",
+"romaji": "asobimasu",
+"meaning": "Chơi, vui chơi",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "日曜日に友達と遊びます。",
+"example_jp_formatted": "[日曜日]{にちようび}に[友達]{ともだち}と[遊]{あそ}びます。",
+"example_vi": "Tôi chơi với bạn vào chủ nhật.",
+"level": "N5",
+"tags": ["động-từ", "sinh-hoạt", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 遊ばない.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "遊",
+"meaning": "chơi, vui chơi",
+"onyomi": "ユウ",
+"kunyomi": "あそ.ぶ"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_018",
+"word": "開けます",
+"reading": "あけます",
+"romaji": "akemasu",
+"meaning": "Mở",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "窓を開けないでください。",
+"example_jp_formatted": "[窓]{まど}を[開]{あ}けないでください。",
+"example_vi": "Xin đừng mở cửa sổ.",
+"level": "N5",
+"tags": ["động-từ", "cấm-đoán", "bài-17"],
+"notes": "Động từ nhóm 2. Thể nai: 開けない.",
+"synonyms": [],
+"antonyms": ["閉めます"],
+"kanji_info": [
+{
+"kanji": "開",
+"meaning": "mở",
+"onyomi": "カイ",
+"kunyomi": "あ.ける, ひら.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_019",
+"word": "閉めます",
+"reading": "しめます",
+"romaji": "shimemasu",
+"meaning": "Đóng",
+"pos": "verb_group2",
+"pitch_accent": "heiban",
+"example_jp": "ドアを閉めなければなりません。",
+"example_jp_formatted": "ドアを[閉]{し}めなければなりません。",
+"example_vi": "Phải đóng cửa.",
+"level": "N5",
+"tags": ["động-từ", "bắt-buộc", "bài-17"],
+"notes": "Động từ nhóm 2. Thể nai: 閉めない.",
+"synonyms": [],
+"antonyms": ["開けます"],
+"kanji_info": [
+{
+"kanji": "閉",
+"meaning": "đóng",
+"onyomi": "ヘイ",
+"kunyomi": "し.める, と.じる"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_020",
+"word": "書きます",
+"reading": "かきます",
+"romaji": "kakimasu",
+"meaning": "Viết",
+"pos": "verb_group1",
+"pitch_accent": "heiban",
+"example_jp": "宿題を書かなければなりません。",
+"example_jp_formatted": "[宿題]{しゅくだい}を[書]{か}かなければなりません。",
+"example_vi": "Phải làm bài tập.",
+"level": "N5",
+"tags": ["động-từ", "bắt-buộc", "bài-17"],
+"notes": "Động từ nhóm 1. Thể nai: 書かない.",
+"synonyms": [],
+"antonyms": ["読みます"],
+"kanji_info": [
+{
+"kanji": "書",
+"meaning": "viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_021",
+"word": "来ます",
+"reading": "きます",
+"romaji": "kimasu",
+"meaning": "Đến, tới",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "友達が来ます。",
+"example_jp_formatted": "[友達]{ともだち}が[来]{き}ます。",
+"example_vi": "Bạn tôi đến.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ bất quy tắc くる. Thể nai: 来ない.",
+"synonyms": [],
+"antonyms": ["行きます"],
+"kanji_info": [
+{
+"kanji": "来",
+"meaning": "đến, tới",
+"onyomi": "ライ",
+"kunyomi": "く.る, き.たる, きた.す"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_022",
+"word": "します",
+"reading": "します",
+"romaji": "shimasu",
+"meaning": "Làm",
+"pos": "verb_group3",
+"pitch_accent": "heiban",
+"example_jp": "宿題をします。",
+"example_jp_formatted": "[宿題]{しゅくだい}をします。",
+"example_vi": "Tôi làm bài tập.",
+"level": "N5",
+"tags": ["động-từ", "thể-nai", "bài-17"],
+"notes": "Động từ bất quy tắc する. Thể nai: しない.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_17_023",
+"word": "学校",
+"reading": "がっこう",
+"romaji": "gakkou",
+"meaning": "Trường học",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "学校で勉強しなければなりません。",
+"example_jp_formatted": "[学校]{がっこう}で[勉強]{べんきょう}しなければなりません。",
+"example_vi": "Tôi phải học ở trường.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-17"],
+"notes": "Địa điểm rất thường gặp trong quy định và sinh hoạt.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "学",
+"meaning": "học",
+"onyomi": "ガク",
+"kunyomi": "まな.ぶ"
+},
+{
+"kanji": "校",
+"meaning": "trường",
+"onyomi": "コウ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_17_024",
+"word": "会社",
+"reading": "かいしゃ",
+"romaji": "kaisha",
+"meaning": "Công ty",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "会社で働きます。",
+"example_jp_formatted": "[会社]{かいしゃ}で[働]{はたら}きます。",
+"example_vi": "Tôi làm việc ở công ty.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-17"],
+"notes": "Địa điểm thường gặp trong bài về nghĩa vụ và sinh hoạt.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "会",
+"meaning": "gặp, hội",
+"onyomi": "カイ",
+"kunyomi": "あ.う"
+},
+{
+"kanji": "社",
+"meaning": "xã, công ty",
+"onyomi": "シャ",
+"kunyomi": "やしろ"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_025",
+"word": "病院",
+"reading": "びょういん",
+"romaji": "byouin",
+"meaning": "Bệnh viện",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "病院で薬を飲まなければなりません。",
+"example_jp_formatted": "[病院]{びょういん}で[薬]{くすり}を[飲]{の}まなければなりません。",
+"example_vi": "Ở bệnh viện phải uống thuốc.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-17"],
+"notes": "Địa điểm thường đi kèm quy định sức khỏe.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "病",
+"meaning": "bệnh",
+"onyomi": "ビョウ",
+"kunyomi": "や.む, やまい"
+},
+{
+"kanji": "院",
+"meaning": "viện, cơ sở",
+"onyomi": "イン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_17_026",
+"word": "図書館",
+"reading": "としょかん",
+"romaji": "toshokan",
+"meaning": "Thư viện",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "図書館で話してはいけません。",
+"example_jp_formatted": "[図書館]{としょかん}で[話]{はな}してはいけません。",
+"example_vi": "Không được nói chuyện trong thư viện.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-17"],
+"notes": "Địa điểm thường có quy định giữ yên lặng.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "図",
+"meaning": "đồ, hình",
+"onyomi": "ズ, ト",
+"kunyomi": ""
+},
+{
+"kanji": "書",
+"meaning": "sách, viết",
+"onyomi": "ショ",
+"kunyomi": "か.く"
+},
+{
+"kanji": "館",
+"meaning": "quán, tòa nhà",
+"onyomi": "カン",
+"kunyomi": "やかた"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_027",
+"word": "教室",
+"reading": "きょうしつ",
+"romaji": "kyoushitsu",
+"meaning": "Lớp học, phòng học",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "教室でたばこを吸ってはいけません。",
+"example_jp_formatted": "[教室]{きょうしつ}でたばこを[吸]{す}ってはいけません。",
+"example_vi": "Không được hút thuốc trong lớp học.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-17"],
+"notes": "Rất thường dùng trong các quy định của trường học.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "教",
+"meaning": "dạy",
+"onyomi": "キョウ",
+"kunyomi": "おし.える"
+},
+{
+"kanji": "室",
+"meaning": "phòng",
+"onyomi": "シツ",
+"kunyomi": "むろ"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_028",
+"word": "入口",
+"reading": "いりぐち",
+"romaji": "iriguchi",
+"meaning": "Lối vào, cửa vào",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "入口で待たないでください。",
+"example_jp_formatted": "[入口]{いりぐち}で[待]{ま}たないでください。",
+"example_vi": "Xin đừng đợi ở lối vào.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-17"],
+"notes": "Từ rất hay gặp trong biển báo và quy định nơi công cộng.",
+"synonyms": [],
+"antonyms": ["出口"],
+"kanji_info": [
+{
+"kanji": "入",
+"meaning": "vào",
+"onyomi": "ニュウ",
+"kunyomi": "い.る, はい.る"
+},
+{
+"kanji": "口",
+"meaning": "miệng, cửa, lối",
+"onyomi": "コウ, ク",
+"kunyomi": "くち"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_029",
+"word": "出口",
+"reading": "でぐち",
+"romaji": "deguchi",
+"meaning": "Lối ra, cửa ra",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "出口から出ます。",
+"example_jp_formatted": "[出口]{でぐち}から[出]{で}ます。",
+"example_vi": "Tôi ra từ lối ra.",
+"level": "N5",
+"tags": ["danh-từ", "địa-điểm", "bài-17"],
+"notes": "Từ đối lập với 入口.",
+"synonyms": [],
+"antonyms": ["入口"],
+"kanji_info": [
+{
+"kanji": "出",
+"meaning": "ra, xuất",
+"onyomi": "シュツ",
+"kunyomi": "で.る, だ.す"
+},
+{
+"kanji": "口",
+"meaning": "miệng, cửa, lối",
+"onyomi": "コウ, ク",
+"kunyomi": "くち"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_030",
+"word": "薬",
+"reading": "くすり",
+"romaji": "kusuri",
+"meaning": "Thuốc",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "病院で薬を飲まなければなりません。",
+"example_jp_formatted": "[病院]{びょういん}で[薬]{くすり}を[飲]{の}まなければなりません。",
+"example_vi": "Ở bệnh viện phải uống thuốc.",
+"level": "N5",
+"tags": ["danh-từ", "sức-khỏe", "bài-17"],
+"notes": "Từ rất quan trọng trong ngữ cảnh bệnh viện và quy tắc sức khỏe.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "薬",
+"meaning": "thuốc",
+"onyomi": "ヤク",
+"kunyomi": "くすり"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_031",
+"word": "たばこ",
+"reading": "たばこ",
+"romaji": "tabako",
+"meaning": "Thuốc lá",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "ここでたばこを吸ってはいけません。",
+"example_jp_formatted": "ここでたばこを[吸]{す}ってはいけません。",
+"example_vi": "Không được hút thuốc ở đây.",
+"level": "N5",
+"tags": ["danh-từ", "quy-định", "bài-17"],
+"notes": "Từ thường xuất hiện trong bảng cấm đoán.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": []
+},
+{
+"id": "sys_n5_minna_17_032",
+"word": "写真",
+"reading": "しゃしん",
+"romaji": "shashin",
+"meaning": "Ảnh chụp",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "ここで写真を撮らないでください。",
+"example_jp_formatted": "ここで[写真]{しゃしん}を[撮]{と}らないでください。",
+"example_vi": "Xin đừng chụp ảnh ở đây.",
+"level": "N5",
+"tags": ["danh-từ", "quy-định", "bài-17"],
+"notes": "Từ xuất hiện nhiều trong mẫu cấm đoán và xin phép.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "写",
+"meaning": "chụp, sao",
+"onyomi": "シャ",
+"kunyomi": "うつ.す, うつ.る"
+},
+{
+"kanji": "真",
+"meaning": "thật, chân",
+"onyomi": "シン",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_17_033",
+"word": "宿題",
+"reading": "しゅくだい",
+"romaji": "shukudai",
+"meaning": "Bài tập về nhà",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "毎日宿題をしなければなりません。",
+"example_jp_formatted": "[毎日]{まいにち}[宿題]{しゅくだい}をしなければなりません。",
+"example_vi": "Mỗi ngày phải làm bài tập về nhà.",
+"level": "N5",
+"tags": ["danh-từ", "nghĩa-vụ", "bài-17"],
+"notes": "Từ rất quan trọng trong bối cảnh học tập.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "宿",
+"meaning": "ở trọ, nhà nghỉ",
+"onyomi": "シュク",
+"kunyomi": "やど"
+},
+{
+"kanji": "題",
+"meaning": "đề, chủ đề",
+"onyomi": "ダイ",
+"kunyomi": ""
+}
+]
+},
+{
+"id": "sys_n5_minna_17_034",
+"word": "先生",
+"reading": "せんせい",
+"romaji": "sensei",
+"meaning": "Thầy, cô giáo",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "先生に聞かなければなりません。",
+"example_jp_formatted": "[先生]{せんせい}に[聞]{き}かなければなりません。",
+"example_vi": "Phải hỏi thầy/cô giáo.",
+"level": "N5",
+"tags": ["danh-từ", "con-người", "bài-17"],
+"notes": "Từ thường dùng trong lớp học và quy định học tập.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "先",
+"meaning": "trước, tiên",
+"onyomi": "セン",
+"kunyomi": "さき"
+},
+{
+"kanji": "生",
+"meaning": "sinh, sống",
+"onyomi": "セイ, ショウ",
+"kunyomi": "い.きる, う.まれる"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_035",
+"word": "友達",
+"reading": "ともだち",
+"romaji": "tomodachi",
+"meaning": "Bạn bè",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "友達と遊びます。",
+"example_jp_formatted": "[友達]{ともだち}と[遊]{あそ}びます。",
+"example_vi": "Tôi chơi với bạn.",
+"level": "N5",
+"tags": ["danh-từ", "con-người", "bài-17"],
+"notes": "Danh từ rất thường gặp trong sinh hoạt hằng ngày.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "友",
+"meaning": "bạn",
+"onyomi": "ユウ",
+"kunyomi": "とも"
+},
+{
+"kanji": "達",
+"meaning": "đám, nhóm; ... và những người khác",
+"onyomi": "タツ",
+"kunyomi": "たち"
+}
+]
+},
+{
+"id": "sys_n5_minna_17_036",
+"word": "毎日",
+"reading": "まいにち",
+"romaji": "mainichi",
+"meaning": "Mỗi ngày",
+"pos": "noun",
+"pitch_accent": "heiban",
+"example_jp": "毎日日本語を勉強しなければなりません。",
+"example_jp_formatted": "[毎日]{まいにち}[日本語]{にほんご}を[勉強]{べんきょう}しなければなりません。",
+"example_vi": "Mỗi ngày phải học tiếng Nhật.",
+"level": "N5",
+"tags": ["danh-từ", "thời-gian", "bài-17"],
+"notes": "Từ chỉ tần suất rất quan trọng trong quy tắc và thói quen hằng ngày.",
+"synonyms": [],
+"antonyms": [],
+"kanji_info": [
+{
+"kanji": "毎",
+"meaning": "mỗi",
+"onyomi": "マイ",
+"kunyomi": "ごと"
+},
+{
+"kanji": "日",
+"meaning": "ngày",
+"onyomi": "ニチ, ジツ",
+"kunyomi": "ひ, か"
+}
+]
+}
+]
