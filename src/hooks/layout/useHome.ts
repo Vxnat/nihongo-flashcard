@@ -118,15 +118,14 @@ export function useHome() {
   useEffect(() => {
     let themeClass = "";
     if (equippedTheme === "thm_sakura") themeClass = "theme-sakura";
-    else if (equippedTheme === "thm_night") themeClass = "theme-night";
     else if (equippedTheme === "thm_divine_shiba") themeClass = "theme-divine";
 
-    document.body.classList.remove("theme-sakura", "theme-night", "theme-divine");
+    document.body.classList.remove("theme-sakura", "theme-divine");
     if (themeClass) {
       document.body.classList.add(themeClass);
     }
     return () => {
-      document.body.classList.remove("theme-sakura", "theme-night", "theme-divine");
+      document.body.classList.remove("theme-sakura", "theme-divine");
     };
   }, [equippedTheme]);
 

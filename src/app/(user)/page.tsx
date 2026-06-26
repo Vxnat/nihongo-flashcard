@@ -7,7 +7,6 @@ import { GachaShop } from "@/components/shiba-room/GachaShop";
 import { ShibaRoom } from "@/components/shiba-room/ShibaRoom";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthButton } from "@/components/layout/AuthButton";
-import { usePwaInstall } from "@/hooks/common/usePwaInstall";
 import { useHome } from "@/hooks/layout/useHome";
 import { CustomDecksTab } from "@/components/roadmap/CustomDecksTab";
 import { BottomNav } from "@/components/layout/BottomNav";
@@ -18,7 +17,7 @@ import { KanjiPractice } from "@/components/games/kanji-dojo/KanjiPractice";
 import { TypingRushGame } from "@/components/games/typing-rush/TypingRushGame";
 import { FillBlanksGame } from "@/components/games/fill-blanks/FillBlanksGame";
 import { RhythmGame } from "@/components/games/rhythm/RhythmGame";
-import { SakuraEffect, LofiNightEffect, DivineShibaEffect } from "@/components/common/ThemeEffects";
+import { SakuraEffect, DivineShibaEffect } from "@/components/common/ThemeEffects";
 import { ProfileTab } from "@/components/layout/ProfileTab";
 import { useAppStore } from "@/store/useAppStore";
 
@@ -172,7 +171,6 @@ export default function Home() {
     <div className="w-full flex flex-col items-center pb-20 relative">
       {/* HIỆU ỨNG THEME DYNAMIC */}
       {equippedTheme === "thm_sakura" && <SakuraEffect />}
-      {equippedTheme === "thm_night" && <LofiNightEffect />}
       {equippedTheme === "thm_divine_shiba" && <DivineShibaEffect />}
 
       {/* TOP APP BAR */}
@@ -221,11 +219,7 @@ export default function Home() {
                 className="flex items-center gap-1 bg-[#FFFDF5] border-2 border-[#FFE2D1] px-2 py-0.5 rounded-full shadow-sm hover:scale-105 active:scale-95 transition-transform cursor-pointer"
                 title="Đến Cửa hàng Gacha! 🪙"
               >
-                <img
-                  src="/images/ui/shiba-room/golden_shiba_coin.png"
-                  alt="Coins"
-                  className="w-3.5 h-3.5 object-contain"
-                />
+                <span className="text-[12px]">🦴</span>
                 <span className="text-[11px] font-black text-amber-700/90 font-rounded">
                   {userStats?.coins || 0}
                 </span>

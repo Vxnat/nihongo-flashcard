@@ -17,7 +17,7 @@ export function AdminSidebar({
   user
 }: AdminSidebarProps) {
   return (
-    <div className="w-64 bg-[#8C6D58] text-white flex flex-col p-4 shrink-0 shadow-lg select-none border-r-4 border-[#735642]" style={{ fontFamily: "var(--font-rounded)" }}>
+    <div className="w-64 h-full bg-[#8C6D58] text-white flex flex-col p-4 shrink-0 shadow-lg select-none border-r-4 border-[#735642] overflow-y-auto" style={{ fontFamily: "var(--font-rounded)" }}>
       <div className="flex items-center gap-2 mb-8 mt-2 px-2">
         <span className="text-3xl">🏮</span>
         <div>

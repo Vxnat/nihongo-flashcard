@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Search, Plus, Edit3, Trash2 } from "lucide-react";
+import Image from "next/image";
 
 interface QuestsTabProps {
   filteredQuests: any[];
@@ -58,7 +59,7 @@ export function QuestsTab({
             </div>
             <div className="flex items-center gap-3">
               <span className="text-xs font-black text-amber-500 bg-amber-50 px-3 py-1 rounded-full border border-amber-200 shrink-0 flex items-center gap-1">
-                <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> +{quest.reward}
+                <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> +{quest.reward}
               </span>
               <div className="flex gap-1">
                 <button

@@ -38,7 +38,9 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
   ];
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 z-40 w-full max-w-2xl bg-white rounded-t-[2rem] border-t-4 border-[#FFE2D1] shadow-[0_-8px_30px_rgba(0,0,0,0.05)] px-4 pt-2.5 pb-3 sm:pb-5 flex justify-around items-center select-none">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 z-40 w-full max-w-2xl bg-white rounded-t-[2rem] border-t-4 border-[#FFE2D1] shadow-[0_-8px_30px_rgba(0,0,0,0.05)] px-4 pt-2.5 pb-3 sm:pb-5 flex justify-around items-center select-none"
+
+    >
       {tabs.map((tab) => {
         const isActive = activeTab === tab.id;
         return (
@@ -66,15 +68,14 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              
+
               {/* Icon */}
               <div className="relative z-10 flex items-center justify-center">
                 <img
                   src={tab.iconSrc}
                   alt={tab.label}
-                  className={`w-7 h-7 sm:w-8 sm:h-8 object-contain select-none transition-all duration-200 ${
-                    isActive ? "scale-105" : "opacity-75 hover:opacity-100"
-                  }`}
+                  className={`w-7 h-7 sm:w-8 sm:h-8 object-contain select-none transition-all duration-200 ${isActive ? "scale-105" : "opacity-75 hover:opacity-100"
+                    }`}
                   draggable={false}
                 />
               </div>
@@ -82,10 +83,9 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
 
             {/* Chữ hiển thị dưới Icon */}
             <span
-              className={`text-[10px] sm:text-xs transition-colors duration-200 whitespace-nowrap font-black uppercase tracking-wider ${
-                isActive ? "text-zinc-800 font-extrabold" : "text-zinc-400 font-medium"
-              }`}
-              style={{ fontFamily: "var(--font-rounded)" }}
+              className={`text-[10px] sm:text-xs transition-colors duration-200 whitespace-nowrap font-black uppercase tracking-wider ${isActive ? "text-zinc-800 font-extrabold" : "text-zinc-400 font-medium"
+                }`}
+              style={{ fontFamily: "var(--font-cherry)" }}
             >
               {tab.label}
             </span>

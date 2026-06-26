@@ -1,9 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
-import { Moon, Volume2, VolumeX } from "lucide-react";
-import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 // ==========================================
 // 1. SAKURA EFFECT (Falling Petals)
@@ -55,103 +53,6 @@ export function SakuraEffect() {
   );
 }
 
-// ==========================================
-// 2. LOFI NIGHT EFFECT (Stars & Music)
-// ==========================================
-export function LofiNightEffect() {
-  const [stars, setStars] = useState<any[]>([]);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    // Generate 35 twinkling stars
-    const newStars = Array.from({ length: 35 }).map((_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 80}%`,
-      size: 2 + Math.random() * 4,
-      delay: Math.random() * 5,
-      duration: 1.5 + Math.random() * 2,
-    }));
-    setStars(newStars);
-
-    // Audio stream (Royalty-free chill lofi song loop)
-    audioRef.current = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.45;
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
-
-  const togglePlay = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-      toast("Đã tắt nhạc lofi. Chúc học tập tập trung! 🌌", { icon: "💤" });
-    } else {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-        toast("Đang phát nhạc Lofi du dương thư giãn... 🌙🎧", { icon: "🎶" });
-      }).catch((err) => {
-        console.warn("Failed to play audio:", err);
-        toast.error("Không thể phát nhạc, thử click lại nhé!");
-      });
-    }
-  };
-
-  return (
-    <>
-      {/* Stars Background Overlay */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {stars.map((star) => (
-          <motion.div
-            key={star.id}
-            className="absolute rounded-full bg-white"
-            style={{
-              left: star.left,
-              top: star.top,
-              width: star.size,
-              height: star.size,
-              boxShadow: "0 0 8px #fff",
-            }}
-            animate={{
-              opacity: [0.2, 1, 0.2],
-            }}
-            transition={{
-              duration: star.duration,
-              repeat: Infinity,
-              delay: star.delay,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Floating Lofi Music Controller */}
-      <div className="fixed top-20 right-4 z-40">
-        <button
-          onClick={togglePlay}
-          className={`flex items-center gap-2 px-3 py-2 rounded-full border-2 text-xs font-black shadow-lg transition-all duration-300 active:scale-95 cursor-pointer ${
-            isPlaying
-              ? "bg-[#8A2BE2] border-[#7313cc] text-white animate-pulse"
-              : "bg-[#1D1B2E] border-[#312C51] text-[#A99DF2] hover:text-white"
-          }`}
-          style={{ fontFamily: "var(--font-cherry)" }}
-        >
-          {isPlaying ? <Volume2 size={14} className="animate-bounce" /> : <VolumeX size={14} />}
-          <span>LOFI NIGHT {isPlaying ? "ON" : "OFF"}</span>
-          <Moon size={12} className={isPlaying ? "animate-spin" : ""} style={{ animationDuration: "10s" }} />
-        </button>
-      </div>
-    </>
-  );
-}
 
 // ==========================================
 // 3. DIVINE SHIBA EFFECT (Click Sparkles)

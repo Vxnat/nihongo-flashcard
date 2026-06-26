@@ -231,7 +231,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
               onClick={() => setSelectedFolderId(folder.id)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl border-b-4 font-rounded font-black text-sm transition-all shrink-0 active:translate-y-1 active:border-b-0
                 ${isActive
-                  ? "bg-white text-zinc-700 shadow-[0_3px_0_0_currentcolor] translate-y-[2px]"
+                  ? "bg-white text-zinc-700 translate-y-[2px]"
                   : "bg-white border-zinc-200 text-zinc-500 hover:bg-zinc-50 shadow-[0_4px_0_0_#E4E4E7]"
                 }
               `}
@@ -475,7 +475,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
                               animate={{ opacity: 1, scale: 1 }}
                               exit={{ opacity: 0, scale: 0.9 }}
                               transition={{ duration: 0.15 }}
-                              className="absolute top-11 right-0 bg-white rounded-2xl shadow-xl border-2 border-zinc-100 overflow-hidden flex flex-col py-2 z-40"
+                              className="absolute top-11 right-0 bg-white rounded-2xl shadow-xl border-2 border-zinc-100 overflow-hidden flex flex-col py-2 z-[20]"
                             >
                               <button
                                 onClick={(e) => { e.stopPropagation(); setOpenMenuId(null); handleExportDeck(deck); }}
@@ -666,7 +666,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
       </AnimatePresence>
 
       {/* MASCOT FAB VỚI HỘP THOẠI & MENU BONG BÓNG */}
-      <div className="fixed bottom-28 right-6 z-[60] flex flex-col items-end gap-3 select-none">
+      <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end gap-3 select-none">
         <AnimatePresence>
           {isFabOpen && (
             <motion.div
@@ -714,13 +714,13 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
         {/* Linh vật Mascot */}
         <div className="relative group cursor-pointer">
           {/* Bong bóng thoại mini */}
-          <div className="absolute bottom-16 right-0 bg-white/95 border-2 border-[#FFE2D1] rounded-2xl py-1.5 px-3 shadow-md w-max pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute bottom-22 right-0 bg-white/95 border-2 border-[#FFE2D1] rounded-2xl py-1.5 px-3 shadow-md w-max pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <p className="text-[10px] font-black text-amber-900 font-rounded">Tạo bài mới nhé? ✨</p>
           </div>
 
           <motion.div
             onClick={() => setIsFabOpen(!isFabOpen)}
-            className="w-16 h-16 rounded-full overflow-hidden border-4 border-[#FFE2D1] bg-white shadow-lg active:scale-95 transition-transform flex items-center justify-center"
+            className="relative w-18 h-18 rounded-full bg-[#FFAE64] shadow-[0_6px_0_0_#D9863B] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
             animate={{
               y: [0, -6, 0],
             }}
@@ -730,18 +730,31 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
               ease: "easeInOut",
             }}
           >
-            <img
-              src="/images/mascot/mascot-hi.png"
-              alt="Mascot Assistant"
-              className="w-full h-full object-cover scale-110 translate-y-0.5"
-            />
+
+            {/* Mascot Image */}
+            <div className="w-[85%] h-[85%] rounded-full overflow-hidden flex items-center justify-center relative z-0">
+              <img
+                src="/images/mascot/mascot-hi.png"
+                alt="Mascot Assistant"
+                className="w-full h-full object-cover scale-110 translate-y-0.5"
+              />
+            </div>
+
+            {/* Pink Plus Button at the bottom-right corner with solid 3D shadow */}
+            <motion.div
+              animate={{ rotate: isFabOpen ? 135 : 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#FF7096] shadow-[0_3px_0_0_#C7486B] flex items-center justify-center text-white font-black text-lg select-none z-20"
+            >
+              +
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
       {/* OVERLAY ĐÓNG FAB MENU */}
       {isFabOpen && (
-        <div className="fixed inset-0 z-50 bg-black/5" onClick={() => setIsFabOpen(false)} />
+        <div className="fixed inset-0 z-40 bg-black/5" onClick={() => setIsFabOpen(false)} />
       )}
 
       {/* Import dialog được đặt ở ngoài cùng để tránh bị unmount khi FAB menu đóng */}

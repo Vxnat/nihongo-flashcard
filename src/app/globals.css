@@ -231,58 +231,6 @@
   box-shadow: 0 6px 0 0 #FFD6E0 !important;
 }
 
-.theme-night {
-  color-scheme: dark;
-  --background: #0F0C1B;
-  --foreground: #E2E0F4;
-  --card: #1D1B2E;
-  --card-foreground: #E2E0F4;
-  --primary: #8A2BE2;
-  --primary-foreground: #FFFFFF;
-  --secondary: #2A2640;
-  --secondary-foreground: #A99DF2;
-  --border: #312C51;
-  --input: #312C51;
-  --ring: #8A2BE2;
-  --app-bg-color: #0F0C1B;
-  --app-bg-grid: #1D1B2E;
-}
-.theme-night .bg-white,
-.theme-night .bg-white\/50,
-.theme-night .bg-white\/85,
-.theme-night .bg-white\/90,
-.theme-night .bg-white\/95,
-.theme-night .bg-white\/80 {
-  background-color: var(--card) !important;
-}
-.theme-night .text-zinc-900,
-.theme-night .text-zinc-800,
-.theme-night .text-zinc-700 {
-  color: var(--foreground) !important;
-}
-.theme-night .text-zinc-600,
-.theme-night .text-zinc-500 {
-  color: #A99DF2 !important;
-}
-.theme-night .border-zinc-200,
-.theme-night .border-zinc-300,
-.theme-night .border-zinc-200\/60,
-.theme-night .border-zinc-100 {
-  border-color: var(--border) !important;
-}
-.theme-night .text-\[\#FF7096\] {
-  color: #8A2BE2 !important;
-}
-.theme-night .bg-\[\#FFFDF5\],
-.theme-night .bg-\[\#FAF7F2\] {
-  background-color: var(--background) !important;
-}
-.theme-night .fixed.bottom-4 > div,
-.theme-night .fixed.bottom-6 > div {
-  background-color: rgba(29, 27, 46, 0.95) !important;
-  border-color: #312C51 !important;
-  box-shadow: 0 6px 0 0 #312C51 !important;
-}
 
 .theme-divine {
   --background: #FFFDF2;
@@ -379,9 +327,6 @@
 }
 
 /* Fallbacks for themes if CSS variables are not parsed */
-.theme-night .rare-glow-card::after {
-  background: #1D1B2E !important;
-}
 .theme-sakura .rare-glow-card::after {
   background: #FFFFFF !important;
 }

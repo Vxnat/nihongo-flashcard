@@ -26,7 +26,7 @@ function AdminPage() {
   const admin = useAdmin();
 
   return (
-    <div className="min-h-screen w-full bg-[#FAF6EE] text-zinc-800 flex" style={{ fontFamily: "var(--font-rounded)" }}>
+    <div className="h-screen w-full bg-[#FAF6EE] text-zinc-800 flex overflow-hidden" style={{ fontFamily: "var(--font-rounded)" }}>
       {/* Sidebar */}
       <AdminSidebar
         activeTab={admin.activeTab}
@@ -120,6 +120,8 @@ function AdminPage() {
               filteredShopConsumables={admin.filteredShopConsumables}
               typeWeights={admin.typeWeights}
               handleSaveTypeWeights={admin.handleSaveTypeWeights}
+              handleClearAllItems={admin.handleClearAllItems}
+              handleSeedGachaAndShop={admin.handleSeedGachaAndShop}
             />
           )}
 

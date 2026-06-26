@@ -61,7 +61,7 @@ export function KanjiDojoGame({
   const playSound = useCallback((src: string, volume: number = 0.5) => {
     const audio = new Audio(src);
     audio.volume = volume;
-    audio.play().catch(() => {});
+    audio.play().catch(() => { });
   }, []);
 
   const handleCorrectStroke = useCallback(() => {
@@ -140,17 +140,17 @@ export function KanjiDojoGame({
         if (canvasRef.current) canvasRef.current.animateCharacter();
       }
     },
-    {
-      id: "force",
-      icon: <Wand2 className="w-5 h-5" />,
-      label: "Vượt ải",
-      cost: 5,
-      colorClass: "bg-[#FF7096] text-white border-[#C7486B] hover:bg-[#FF5C8A]",
-      onConfirm: () => {
-        if (canvasRef.current) canvasRef.current.forceComplete();
-        setHp(MAX_HP); // Đặc quyền: Phục hồi lại đầy máu
-      }
-    }
+    // {
+    //   id: "force",
+    //   icon: <Wand2 className="w-5 h-5" />,
+    //   label: "Vượt ải",
+    //   cost: 5,
+    //   colorClass: "bg-[#FF7096] text-white border-[#C7486B] hover:bg-[#FF5C8A]",
+    //   onConfirm: () => {
+    //     if (canvasRef.current) canvasRef.current.forceComplete();
+    //     setHp(MAX_HP); // Đặc quyền: Phục hồi lại đầy máu
+    //   }
+    // }
   ];
 
   if (status === "win" || status === "lose") {
@@ -188,9 +188,8 @@ export function KanjiDojoGame({
               key={index}
               src="/images/mascot/shiba_heart.png"
               alt="HP"
-              className={`w-8 h-8 sm:w-10 sm:h-10 transition-all duration-300 ${
-                index < hp ? "opacity-100" : "opacity-30 grayscale"
-              }`}
+              className={`w-8 h-8 sm:w-10 sm:h-10 transition-all duration-300 ${index < hp ? "opacity-100" : "opacity-30 grayscale"
+                }`}
               initial={{ scale: 0.8 }}
               animate={{ scale: index < hp ? 1 : 0.8 }}
             />

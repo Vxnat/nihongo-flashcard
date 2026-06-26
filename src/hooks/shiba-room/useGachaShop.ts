@@ -343,7 +343,12 @@ export function useGachaShop() {
 
   const handleMultiRoll = async (count: number) => {
     const cost = 90; // Hardcoded for 10 rolls
-    if (gachaState !== "idle" || !user || userStats.coins < cost) {
+    if (
+      (gachaState !== "idle" && gachaState !== "multi_opened") ||
+      !user ||
+      !userStats ||
+      userStats.coins < cost
+    ) {
       return;
     }
 
@@ -370,6 +375,9 @@ export function useGachaShop() {
       toast.error("Không đủ Xương! Hãy làm Nhiệm vụ nhé 🥺", { icon: "🦴" });
       return;
     }
+
+    // Clear old reward data so modal is reset and closed immediately
+    setMultiRewardData(null);
 
     // Trigger animation
     setTwistType('multi');

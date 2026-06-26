@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Search } from "lucide-react";
+import Image from "next/image";
 
 interface UsersTabProps {
   usersStatsList: any[];
@@ -56,9 +57,8 @@ export function UsersTab({
               <div
                 key={u.id}
                 onClick={() => setSelectedUser(u)}
-                className={`p-4 flex items-center justify-between cursor-pointer hover:bg-zinc-50 transition-colors ${
-                  selectedUser?.id === u.id ? "bg-amber-50/50 border-l-4 border-[#8C6D58]" : ""
-                }`}
+                className={`p-4 flex items-center justify-between cursor-pointer hover:bg-zinc-50 transition-colors ${selectedUser?.id === u.id ? "bg-amber-50/50 border-l-4 border-[#8C6D58]" : ""
+                  }`}
               >
                 <div className="min-w-0 flex-1">
                   <h4 className="text-xs font-black text-zinc-700 truncate">{u.displayName || "Học viên ẩn danh"}</h4>
@@ -67,7 +67,7 @@ export function UsersTab({
                 <div className="flex items-center gap-3 text-right">
                   <div>
                     <p className="text-xs font-black text-[#8C6D58] flex items-center justify-end gap-1">
-                      <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {u.goldenFur || 0}
+                      <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {u.goldenFur || 0}
                     </p>
                     <p className="text-[10px] font-bold text-zinc-400">Coins: {u.coins || 0}</p>
                   </div>

@@ -14,7 +14,7 @@ import { playAudio, playAudioUrl } from "@/utils/tts";
  */
 export function useShibaRoom() {
   const { allItems } = useSystemItems();
-  const { userStats, equipFurniture, harvestBones, equipItem, equipTheme, user } = useAppStore((state: any) => state);
+  const { userStats, equipFurniture, harvestBones, equipItem, equipTheme, user, deductCoins } = useAppStore((state: any) => state);
 
   // --- Trạng thái giao diện và cửa sổ Modal ---
   const [isInventoryOpen, setIsInventoryOpen] = useState(false);
@@ -26,6 +26,214 @@ export function useShibaRoom() {
   const [dragConstraints, setDragConstraints] = useState({ top: -200, bottom: 200 });
   const [showStatsBreakdown, setShowStatsBreakdown] = useState(false);
   const [modalSubTab, setModalSubTab] = useState<"character" | "inventory">("character");
+
+  // --- Tamagotchi States ---
+  const [roomTab, setRoomTab] = useState<"indoor" | "outdoor">("indoor");
+  const [petMood, setPetMood] = useState<number>(80);
+  const [petHunger, setPetHunger] = useState<number>(60);
+  const [petEnergy, setPetEnergy] = useState<number>(75);
+  const [isSleeping, setIsSleeping] = useState<boolean>(false);
+  const [speechBubble, setSpeechBubble] = useState<string>("");
+  const [heartsEffect, setHeartsEffect] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [bonesEffect, setBonesEffect] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [shibaActionState, setShibaActionState] = useState<"idle" | "chewing" | "happy">("idle");
+  const [speechTimeoutId, setSpeechTimeoutId] = useState<NodeJS.Timeout | null>(null);
+  const [petCooldown, setPetCooldown] = useState(false);
+
+  // Load stats from localStorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedMood = localStorage.getItem("shiba_pet_mood");
+      const savedHunger = localStorage.getItem("shiba_pet_hunger");
+      const savedEnergy = localStorage.getItem("shiba_pet_energy");
+      const savedSleep = localStorage.getItem("shiba_pet_sleep");
+      if (savedMood) setPetMood(Number(savedMood));
+      if (savedHunger) setPetHunger(Number(savedHunger));
+      if (savedEnergy) setPetEnergy(Number(savedEnergy));
+      if (savedSleep) setIsSleeping(savedSleep === "true");
+    }
+  }, []);
+
+  // Slowly decrease stats or restore energy when sleeping (every 10s)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPetEnergy((prev) => {
+        let newEnergy = prev;
+        if (isSleeping) {
+          newEnergy = Math.min(100, prev + 5);
+        } else {
+          newEnergy = Math.max(0, prev - 1);
+        }
+        localStorage.setItem("shiba_pet_energy", String(newEnergy));
+        return newEnergy;
+      });
+
+      if (!isSleeping) {
+        setPetHunger((prev) => {
+          const newHunger = Math.max(0, prev - 1);
+          localStorage.setItem("shiba_pet_hunger", String(newHunger));
+          return newHunger;
+        });
+        setPetMood((prev) => {
+          const newMood = Math.max(0, prev - 1);
+          localStorage.setItem("shiba_pet_mood", String(newMood));
+          return newMood;
+        });
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [isSleeping]);
+
+  // Autoclear speech bubbles
+  useEffect(() => {
+    if (speechBubble) {
+      if (speechTimeoutId) clearTimeout(speechTimeoutId);
+      const id = setTimeout(() => {
+        setSpeechBubble("");
+      }, 5000);
+      setSpeechTimeoutId(id);
+    }
+  }, [speechBubble]);
+
+  const handleFeed = useCallback(async () => {
+    if (!user) {
+      setIsLoginModalOpen(true);
+      return;
+    }
+    if (isSleeping) {
+      toast.error("Shiba đang ngủ say sưa rồi, đừng đánh thức bé nhé! 💤");
+      return;
+    }
+    if (userStats.coins < 2) {
+      toast.error("Cậu không đủ Xương rồi 🥺", {
+        style: {
+          background: "#FF8EAA",
+          color: "#fff",
+          fontWeight: "bold",
+          borderRadius: "1rem",
+        }
+      });
+      return;
+    }
+
+    const success = await deductCoins(2);
+    if (success) {
+      const boneId = Date.now();
+      setBonesEffect((prev) => [...prev, { id: boneId, x: 0, y: 0 }]);
+      setSpeechBubble("Măm măm... 😋");
+      playAudioUrl("/sounds/brush.mp3");
+
+      setTimeout(() => {
+        setBonesEffect((prev) => prev.filter((b) => b.id !== boneId));
+        setShibaActionState("chewing");
+
+        setTimeout(() => {
+          setShibaActionState("idle");
+          setPetHunger((h) => {
+            const newHunger = Math.min(100, h + 15);
+            localStorage.setItem("shiba_pet_hunger", String(newHunger));
+            return newHunger;
+          });
+          setPetMood((m) => {
+            const newMood = Math.min(100, m + 5);
+            localStorage.setItem("shiba_pet_mood", String(newMood));
+            return newMood;
+          });
+
+          const heartId = Date.now();
+          setHeartsEffect((prev) => [
+            ...prev,
+            { id: heartId + 1, x: -15, y: -20 },
+            { id: heartId + 2, x: 0, y: -30 },
+            { id: heartId + 3, x: 15, y: -15 },
+          ]);
+
+          setTimeout(() => {
+            setHeartsEffect((prev) => prev.filter((h) => h.id < heartId || h.id > heartId + 3));
+          }, 1200);
+
+          setSpeechBubble("Gâu! Thức ăn ngon quá cậu ơi! ❤️");
+          playAudioUrl("/sounds/success.mp3");
+        }, 1500);
+
+      }, 800);
+    }
+  }, [user, userStats.coins, isSleeping, deductCoins]);
+
+  const handlePet = useCallback(() => {
+    if (isSleeping) {
+      toast.error("Shiba đang ngủ, vuốt ve nhẹ nhàng thôi kẻo bé thức giấc! 💤");
+      return;
+    }
+    if (petCooldown) return;
+
+    setPetCooldown(true);
+    setTimeout(() => setPetCooldown(false), 3000);
+
+    setShibaActionState("happy");
+    setSpeechBubble("Hì hì, thích quá... Cậu gãi đúng chỗ ngứa rồi! 🥰");
+    playAudioUrl("/sounds/bonk.mp3");
+
+    setPetMood((m) => {
+      const newMood = Math.min(100, m + 10);
+      localStorage.setItem("shiba_pet_mood", String(newMood));
+      return newMood;
+    });
+
+    const heartId = Date.now();
+    setHeartsEffect((prev) => [
+      ...prev,
+      { id: heartId + 1, x: -20, y: -25 },
+      { id: heartId + 2, x: 10, y: -35 },
+      { id: heartId + 3, x: 20, y: -15 },
+    ]);
+
+    setTimeout(() => {
+      setShibaActionState("idle");
+      setHeartsEffect((prev) => prev.filter((h) => h.id < heartId || h.id > heartId + 3));
+    }, 1200);
+
+  }, [isSleeping, petCooldown]);
+
+  const handleToggleSleep = useCallback(() => {
+    setIsSleeping((prev) => {
+      const nextSleep = !prev;
+      localStorage.setItem("shiba_pet_sleep", String(nextSleep));
+      if (nextSleep) {
+        setSpeechBubble("Khò khò... Chúc cậu ngủ ngon nhé... 💤");
+      } else {
+        setSpeechBubble("Gâu! Tớ tỉnh dậy rồi đây! Sẵn sàng học tiếng Nhật cùng cậu! ☀️");
+        playAudioUrl("/sounds/success.mp3");
+      }
+      return nextSleep;
+    });
+  }, []);
+
+  const handleShibaClick = useCallback(() => {
+    if (isSleeping) {
+      setIsSleeping(false);
+      localStorage.setItem("shiba_pet_sleep", "false");
+      setSpeechBubble("Chào buổi sáng! Tớ đã nạp đầy năng lượng rồi! ⚡");
+      playAudioUrl("/sounds/success.mp3");
+      return;
+    }
+
+    const quotes = [
+      "Cậu đã học từ vựng mới hôm nay chưa thế? 📚",
+      "Tớ rất thích ở cạnh cậu đấy! 🥰",
+      "Xoa đầu tớ đi, tớ sẽ tìm thêm xương cho cậu! 🐕",
+      "Căn phòng này ấm áp ghê cậu nhỉ? 🏠",
+      "Hôm nay là một ngày tuyệt vời để luyện Kanji đó! 🌸",
+      "Gâu gâu! Có đồ ăn ngon gì cho tớ không? 🍖"
+    ];
+    const randQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    setSpeechBubble(randQuote);
+    playAudioUrl("/sounds/bonk.mp3");
+
+    setShibaActionState("happy");
+    setTimeout(() => setShibaActionState("idle"), 1000);
+  }, [isSleeping]);
 
   // --- Trạng thái Thu hoạch Xương (Bones Harvest) ---
   const [storePendingBones, setStorePendingBones] = useState(0);
@@ -142,22 +350,28 @@ export function useShibaRoom() {
     if (!user) {
       return {
         gif: "/images/mascot/shiba_room.gif",
-        style: { bottom: "32%", left: "54%", width: "24%" },
+        style: { bottom: "20%", left: "60%", width: "22%" },
       };
     }
-    const equippedFloor = userStats.equippedFurniture?.floor;
-    const floorItem = equippedFloor ? allItems.find((i) => i.id === equippedFloor) : null;
-    if (floorItem && floorItem.shibaMascotStyle) {
+    // const equippedFloor = userStats.equippedFurniture?.floor;
+    // const floorItem = equippedFloor ? allItems.find((i) => i.id === equippedFloor) : null;
+    // if (floorItem && floorItem.shibaMascotStyle) {
+    //   return {
+    //     gif: "/images/mascot/shiba_room.gif",
+    //     style: floorItem.shibaMascotStyle,
+    //   };
+    // }
+    if (roomTab === "indoor") {
       return {
         gif: "/images/mascot/shiba_room.gif",
-        style: floorItem.shibaMascotStyle,
+        style: { bottom: "15%", left: "63%", width: "22%" },
       };
     }
     return {
       gif: "/images/mascot/shiba_room.gif",
-      style: { bottom: "32%", left: "47%", width: "28%" },
+      style: { bottom: "34%", right: "70%", width: "22%" },
     };
-  }, [user, userStats.equippedFurniture, allItems]);
+  }, [user, userStats.equippedFurniture, allItems, roomTab]);
 
   // --- Tính chỉ số và chỉ số cộng thêm (RPG Stats) ---
   const baseStats = userStats.baseStats || {
@@ -319,5 +533,23 @@ export function useShibaRoom() {
     isLoginModalOpen,
     setIsLoginModalOpen,
     filteredGridItems,
+
+    // Tamagotchi UI exports
+    roomTab,
+    setRoomTab,
+    petMood,
+    petHunger,
+    petEnergy,
+    isSleeping,
+    setIsSleeping,
+    speechBubble,
+    setSpeechBubble,
+    heartsEffect,
+    bonesEffect,
+    shibaActionState,
+    handleFeed,
+    handlePet,
+    handleToggleSleep,
+    handleShibaClick,
   };
 }

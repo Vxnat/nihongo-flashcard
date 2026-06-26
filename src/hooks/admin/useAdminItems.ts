@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { collection, getDocs, doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import toast from "react-hot-toast";
+import { uploadToCloudinary } from "@/utils/cloudinary";
 
 interface UseAdminItemsProps {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -288,6 +289,227 @@ export function useAdminItems({ setIsLoading }: UseAdminItemsProps) {
     }
   }, [setIsLoading]);
 
+  const handleClearAllItems = useCallback(async () => {
+    if (!confirm("⚠️ CẢNH BÁO CỰC KỲ QUAN TRỌNG:\nBạn có chắc chắn muốn XÓA SẠCH TOÀN BỘ vật phẩm (bao gồm cả Gacha Pool và Cửa hàng) khỏi Firestore không?\nHành động này sẽ xóa sạch dữ liệu vĩnh viễn và không thể khôi phục!")) return;
+    setIsLoading(true);
+    try {
+      const querySnapshot = await getDocs(collection(db, "system_items"));
+      const deletePromises: Promise<void>[] = [];
+      querySnapshot.forEach((docSnap) => {
+        deletePromises.push(deleteDoc(doc(db, "system_items", docSnap.id)));
+      });
+      await Promise.all(deletePromises);
+      setGachaPool([]);
+      setShopExclusives([]);
+      setShopConsumables([]);
+      toast.success("Đã dọn dẹp sạch sẽ toàn bộ vật phẩm trên Firestore! 🧹");
+    } catch (err: any) {
+      toast.error("Lỗi khi dọn dẹp vật phẩm: " + err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [setIsLoading]);
+
+  const handleSeedGachaAndShop = useCallback(async () => {
+    if (!confirm("Bạn có muốn thực hiện Seeding 10 vật phẩm mẫu dễ thương lên Cloudinary và Firebase không?")) return;
+    setIsLoading(true);
+    
+    const items = [
+      {
+        id: "golden_bell_collar",
+        name: "Golden Bell Collar",
+        description: "Vòng cổ đỏ thắm đeo chuông vàng xinh xắn.",
+        type: "accessory",
+        rarity: "common",
+        imageFileName: "golden_bell_collar.png",
+        shardTarget: 2,
+        cost: 15,
+        isGacha: true,
+        isShop: false,
+        bonesPerHour: 1,
+        rpgSlot: "neck",
+      },
+      {
+        id: "shiba_aviators",
+        name: "Shiba Aviators",
+        description: "Kính mát phi công đen sành điệu cho Shiba.",
+        type: "accessory",
+        rarity: "rare",
+        imageFileName: "shiba_aviators.png",
+        shardTarget: 3,
+        cost: 30,
+        isGacha: true,
+        isShop: false,
+        bonesPerHour: 2,
+        rpgSlot: "head",
+      },
+      {
+        id: "baby_dino_hood",
+        name: "Baby Dino Hood",
+        description: "Mũ hóa trang khủng long xanh mint sừng mềm.",
+        type: "costume",
+        rarity: "epic",
+        imageFileName: "baby_dino_hood.png",
+        shardTarget: 5,
+        cost: 50,
+        isGacha: true,
+        isShop: false,
+        bonesPerHour: 3,
+        rpgSlot: "costume",
+      },
+      {
+        id: "buzzy_bee_outfit",
+        name: "Buzzy Bee Outfit",
+        description: "Trang phục sọc ong vàng có cánh ong nhỏ ở lưng.",
+        type: "outfit",
+        rarity: "epic",
+        imageFileName: "buzzy_bee_outfit.png",
+        shardTarget: 5,
+        cost: 50,
+        isGacha: true,
+        isShop: false,
+        bonesPerHour: 3,
+        rpgSlot: "costume",
+      },
+      {
+        id: "sakura_kimono",
+        name: "Sakura Kimono",
+        description: "Kimono thêu hoa anh đào lộng lẫy lễ hội.",
+        type: "outfit",
+        rarity: "legendary",
+        imageFileName: "sakura_kimono.png",
+        shardTarget: 10,
+        cost: 100,
+        isGacha: true,
+        isShop: false,
+        bonesPerHour: 5,
+        rpgSlot: "costume",
+      },
+      {
+        id: "glowing_bone_lamp",
+        name: "Glowing Bone Lamp",
+        description: "Đèn ngủ hình khúc xương phát ánh sáng vàng ấm áp.",
+        type: "furniture",
+        rarity: "rare",
+        imageFileName: "glowing_bone_lamp.png",
+        shardTarget: 3,
+        cost: 25,
+        isGacha: true,
+        isShop: true,
+        bonesPerHour: 2,
+        rpgSlot: "furniture",
+      },
+      {
+        id: "fluffy_cloud_bed",
+        name: "Fluffy Cloud Bed",
+        description: "Đệm nằm êm ái hình đám mây trắng bồng bềnh.",
+        type: "furniture",
+        rarity: "epic",
+        imageFileName: "fluffy_cloud_bed.png",
+        shardTarget: 5,
+        cost: 45,
+        isGacha: true,
+        isShop: true,
+        bonesPerHour: 4,
+        rpgSlot: "furniture",
+      },
+      {
+        id: "strawberry_waffle_table",
+        name: "Strawberry Waffle Table",
+        description: "Bàn trà dâu tây ngọt ngào kèm tách trà bốc khói.",
+        type: "furniture",
+        rarity: "rare",
+        imageFileName: "strawberry_waffle_table.png",
+        shardTarget: 3,
+        cost: 30,
+        isGacha: true,
+        isShop: true,
+        bonesPerHour: 2,
+        rpgSlot: "furniture",
+      },
+      {
+        id: "sakura_blossom_theme",
+        name: "Sakura Blossom Theme",
+        description: "Nền phòng tràn ngập cánh anh đào bay lãng mạn.",
+        type: "theme",
+        rarity: "legendary",
+        imageFileName: "sakura_blossom_theme.png",
+        shardTarget: 8,
+        cost: 80,
+        isGacha: true,
+        isShop: true,
+        bonesPerHour: 5,
+        rpgSlot: "theme",
+      },
+      {
+        id: "dreamy_galaxy_room",
+        name: "Dreamy Galaxy Room",
+        description: "Nền phòng tinh vân tím hồng lấp lánh chòm sao.",
+        type: "theme",
+        rarity: "divine",
+        imageFileName: "dreamy_galaxy_room.png",
+        shardTarget: 15,
+        cost: 150,
+        isGacha: true,
+        isShop: true,
+        bonesPerHour: 10,
+        rpgSlot: "theme",
+      }
+    ];
+
+    try {
+      const seededGachaPool: any[] = [];
+      const seededShopExpos: any[] = [];
+      const seededShopConsumables: any[] = [];
+
+      for (const item of items) {
+        // Fetch local image
+        const imgRes = await fetch(`/images/ui/gacha/items/${item.imageFileName}`);
+        if (!imgRes.ok) {
+          throw new Error(`Không thể tìm thấy ảnh mẫu cục bộ tại: /images/ui/gacha/items/${item.imageFileName}`);
+        }
+        const blob = await imgRes.blob();
+        const file = new File([blob], item.imageFileName, { type: "image/png" });
+
+        // Upload to Cloudinary
+        const secureUrl = await uploadToCloudinary(file, item.type, "icon");
+        if (!secureUrl) {
+          throw new Error(`Upload ảnh lên Cloudinary thất bại cho vật phẩm: ${item.name}`);
+        }
+
+        // Save to Firebase
+        const cleanItem = {
+          ...item,
+          imageUrl: secureUrl,
+          avatarUrl: secureUrl,
+          lore: item.description,
+          japanesePoint: { word: "", meaning: "", grammarNote: "" },
+          booster: "",
+          animation: "none",
+        };
+        // @ts-ignore
+        delete cleanItem.imageFileName;
+
+        await setDoc(doc(db, "system_items", cleanItem.id), cleanItem);
+        
+        seededGachaPool.push(cleanItem);
+        if (cleanItem.isShop) {
+          seededShopExpos.push(cleanItem);
+        }
+      }
+
+      setGachaPool(seededGachaPool);
+      setShopExclusives(seededShopExpos);
+      setShopConsumables(seededShopConsumables);
+      toast.success("Seeding 10 vật phẩm dễ thương thành công! 🌱");
+    } catch (err: any) {
+      console.error(err);
+      toast.error("Lỗi Seeding: " + err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [setIsLoading]);
+
   // Derived filtered lists
   const filteredGachaPool = gachaPool.filter(item => {
     if (gachaRarityFilter !== "all" && item.rarity !== gachaRarityFilter) return false;
@@ -359,6 +581,8 @@ export function useAdminItems({ setIsLoading }: UseAdminItemsProps) {
     handleCreateShopItem,
     handleEditShopItem,
     handleSaveShopItem,
-    handleDeleteShopItem
+    handleDeleteShopItem,
+    handleClearAllItems,
+    handleSeedGachaAndShop
   };
 }

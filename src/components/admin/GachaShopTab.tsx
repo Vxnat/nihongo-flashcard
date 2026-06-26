@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Search, Plus, Edit3, Trash2, Save, RotateCcw } from "lucide-react";
+import Image from "next/image";
 
 const TYPE_WEIGHT_LABELS: Record<string, { label: string; emoji: string; color: string }> = {
   theme: { label: "Theme", emoji: "🎨", color: "#8B5CF6" },
@@ -31,6 +32,8 @@ interface GachaShopTabProps {
   filteredShopConsumables: any[];
   typeWeights: Record<string, number>;
   handleSaveTypeWeights: (weights: Record<string, number>) => void;
+  handleClearAllItems: () => Promise<void>;
+  handleSeedGachaAndShop?: () => Promise<void>;
 }
 
 export function GachaShopTab({
@@ -51,6 +54,8 @@ export function GachaShopTab({
   filteredShopConsumables,
   typeWeights,
   handleSaveTypeWeights,
+  handleClearAllItems,
+  handleSeedGachaAndShop,
 }: GachaShopTabProps) {
   const [localWeights, setLocalWeights] = useState<Record<string, number>>(typeWeights);
   const [hasChanges, setHasChanges] = useState(false);
@@ -96,22 +101,20 @@ export function GachaShopTab({
             <button
               onClick={handleReset}
               disabled={!hasChanges}
-              className={`px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 cursor-pointer border transition-all ${
-                hasChanges
-                  ? "bg-zinc-100 border-zinc-300 text-zinc-600 hover:bg-zinc-200"
-                  : "bg-zinc-50 border-zinc-100 text-zinc-300 cursor-not-allowed"
-              }`}
+              className={`px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 cursor-pointer border transition-all ${hasChanges
+                ? "bg-zinc-100 border-zinc-300 text-zinc-600 hover:bg-zinc-200"
+                : "bg-zinc-50 border-zinc-100 text-zinc-300 cursor-not-allowed"
+                }`}
             >
               <RotateCcw size={12} /> Hoàn tác
             </button>
             <button
               onClick={handleSave}
               disabled={!hasChanges}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 cursor-pointer border transition-all ${
-                hasChanges
-                  ? "bg-emerald-500 border-emerald-500 text-white hover:bg-emerald-600 shadow-sm"
-                  : "bg-zinc-50 border-zinc-100 text-zinc-300 cursor-not-allowed"
-              }`}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-black flex items-center gap-1.5 cursor-pointer border transition-all ${hasChanges
+                ? "bg-emerald-500 border-emerald-500 text-white hover:bg-emerald-600 shadow-sm"
+                : "bg-zinc-50 border-zinc-100 text-zinc-300 cursor-not-allowed"
+                }`}
             >
               <Save size={12} /> Lưu Weights
             </button>
@@ -202,11 +205,10 @@ export function GachaShopTab({
                 <button
                   key={r.key}
                   onClick={() => setGachaRarityFilter(r.key)}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-black transition-all cursor-pointer border ${
-                    gachaRarityFilter === r.key
-                      ? "bg-[#8C6D58] border-[#8C6D58] text-white shadow-xs"
-                      : "bg-[#FAF6EE] border-zinc-200 text-zinc-600 hover:bg-zinc-100"
-                  }`}
+                  className={`px-2.5 py-1 rounded-lg text-[10px] font-black transition-all cursor-pointer border ${gachaRarityFilter === r.key
+                    ? "bg-[#8C6D58] border-[#8C6D58] text-white shadow-xs"
+                    : "bg-[#FAF6EE] border-zinc-200 text-zinc-600 hover:bg-zinc-100"
+                    }`}
                 >
                   {r.label}
                 </button>
@@ -230,11 +232,10 @@ export function GachaShopTab({
                 <button
                   key={t.key}
                   onClick={() => setGachaTypeFilter(t.key)}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-black transition-all cursor-pointer border ${
-                    gachaTypeFilter === t.key
-                      ? "bg-[#8C6D58] border-[#8C6D58] text-white shadow-xs"
-                      : "bg-[#FAF6EE] border-zinc-200 text-zinc-600 hover:bg-zinc-100"
-                  }`}
+                  className={`px-2.5 py-1 rounded-lg text-[10px] font-black transition-all cursor-pointer border ${gachaTypeFilter === t.key
+                    ? "bg-[#8C6D58] border-[#8C6D58] text-white shadow-xs"
+                    : "bg-[#FAF6EE] border-zinc-200 text-zinc-600 hover:bg-zinc-100"
+                    }`}
                 >
                   {t.label}
                 </button>
@@ -248,12 +249,28 @@ export function GachaShopTab({
       <div className="bg-white p-6 rounded-3xl border border-zinc-200 shadow-sm">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-sm font-black text-[#8C6D58] uppercase">Danh Sách Vật Phẩm Gacha Pool ({filteredGachaPool.length})</h3>
-          <button
-            onClick={handleCreateGachaItem}
-            className="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs rounded-xl flex items-center gap-1.5 cursor-pointer"
-          >
-            <Plus size={12} /> Thêm vật phẩm
-          </button>
+          <div className="flex gap-2">
+            {/* {handleSeedGachaAndShop && (
+              <button
+                onClick={handleSeedGachaAndShop}
+                className="px-3.5 py-1.5 bg-[#14b8a6] hover:bg-[#0d9488] text-white font-black text-xs rounded-xl flex items-center gap-1.5 cursor-pointer shadow-xs transition-all hover:scale-105"
+              >
+                🌱 Seed Mẫu Vật Phẩm
+              </button>
+            )} */}
+            <button
+              onClick={handleClearAllItems}
+              className="px-3.5 py-1.5 bg-rose-500 hover:bg-rose-600 text-white font-black text-xs rounded-xl flex items-center gap-1.5 cursor-pointer shadow-xs transition-all hover:scale-105"
+            >
+              🧹 Xóa sạch vật phẩm
+            </button>
+            <button
+              onClick={handleCreateGachaItem}
+              className="px-3.5 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs rounded-xl flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105"
+            >
+              <Plus size={12} /> Thêm vật phẩm
+            </button>
+          </div>
         </div>
         {filteredGachaPool.length === 0 ? (
           <p className="p-8 text-center text-zinc-400 italic text-xs border border-dashed border-zinc-200 rounded-2xl bg-zinc-50/50">Không tìm thấy vật phẩm Gacha nào phù hợp.</p>
@@ -319,7 +336,7 @@ export function GachaShopTab({
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-xs font-black text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg flex items-center gap-1">
-                    <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                    <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
                   </span>
                   <button
                     onClick={() => handleEditShopItem(item, "exclusive")}
@@ -365,7 +382,7 @@ export function GachaShopTab({
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-xs font-black text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg flex items-center gap-1">
-                    <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                    <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
                   </span>
                   <button
                     onClick={() => handleEditShopItem(item, "consumable")}

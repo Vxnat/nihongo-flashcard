@@ -62,14 +62,14 @@ Themes thay đổi hoàn toàn phong cách màu sắc, không khí của toàn b
   --card-bg: #FFFFFF;
 }
 
-/* Theme Lofi Night */
-.theme-lofi {
-  --background: #0F0C1B;
-  --primary: #8A2BE2;
-  --primary-hover: #9932CC;
-  --primary-border: #4B0082;
-  --card-bg: #1A162B;
-  --foreground: #F3F1FA;
+/* Theme Divine Shiba */
+.theme-divine {
+  --background: #FFFDF2;
+  --primary: #D4AF37;
+  --primary-hover: #E5C258;
+  --primary-border: #9E7815;
+  --card-bg: #FFFFFF;
+  --foreground: #4D3A1B;
 }
 ```
 
@@ -77,11 +77,7 @@ Themes thay đổi hoàn toàn phong cách màu sắc, không khí của toàn b
 1. **🌸 Chủ đề Sakura (`thm_sakura`)**:
    * Tông màu hồng phấn lãng mạn.
    * Thêm một thành phần hiệu ứng cánh hoa rơi chậm phủ mờ ở hình nền của toàn app (tương tự như hiệu ứng Sakura trong Shiba Room).
-2. **🌙 Chủ đề Lofi Night (`thm_night`)**:
-   * Giao diện tối (Dark mode) thư giãn.
-   * Hiệu ứng các hạt sao đêm lung linh chuyển động chậm ở background.
-   * Tích hợp một trình phát nhạc Lofi mini ẩn (có thể click vào biểu tượng trăng khuyết ở góc màn hình để Bật/Tắt nhạc nền lo-fi du dương khi học bài).
-3. **✨ Thần Khuyển Tôn Cực (`thm_divine_shiba`)**:
+2. **✨ Thần Khuyển Tôn Cực (`thm_divine_shiba`)**:
    * Tông màu vàng kim hoàng gia và trắng sữa sang xịn.
    * Các nút bấm chính sẽ có hoạt họa viền phát sáng chạy vòng quanh (Animated Border Glow).
    * Khi người dùng nhấp chuột hoặc chạm vào màn hình, sẽ xuất hiện các hạt lấp lánh (Sparkle Particles) tỏa ra tại tọa độ click.

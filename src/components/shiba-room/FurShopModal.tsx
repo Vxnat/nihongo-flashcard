@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence } from "framer-motion";
 import { X, Sparkles, Clock } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
@@ -9,6 +10,7 @@ import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
 import { SHARD_PRICES } from "@/constants/shopItems";
 import { playAudioUrl } from "@/utils/tts";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 interface FurShopModalProps {
   isOpen: boolean;
@@ -24,6 +26,11 @@ const SHIBA_DIALOGS = [
 ];
 
 export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const { gachaPool, shopExclusives, shopConsumables } = useSystemItems();
   const { userStats, buyShopItem, user } = useAppStore((state: any) => state);
   const [activeTab, setActiveTab] = useState<"shard" | "exclusive" | "consumable">("shard");
@@ -64,7 +71,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
     return () => clearInterval(interval);
   }, [isOpen, userStats.buffDoubleBonesUntil]);
 
-  if (!isOpen || !user) return null;
+  if (!isOpen || !user || !mounted) return null;
 
   // Audio coin drop sound
   const playCoinSound = () => {
@@ -142,14 +149,14 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
     }
   };
 
-  return (
-    <div className="fixed inset-0 z-[95] flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-[99] flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
       {/* Backdrop click closes modal */}
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* Main Container */}
       <div
-        className="relative bg-[#FAF6EE] border-4 border-[#8C6D58] rounded-[2rem] shadow-[0_12px_0_0_#8C6D58] w-full max-w-lg md:max-w-xl h-[85vh] flex flex-col overflow-hidden max-h-[700px] z-10"
+        className="relative bg-[#FAF6EE] border-4 border-[#8C6D58] rounded-[2rem] shadow-[0_5px_0_0_#8C6D58] w-full max-w-lg md:max-w-xl h-[85vh] flex flex-col overflow-hidden max-h-[700px] z-10"
         style={{ fontFamily: "var(--font-rounded)" }}
       >
         {/* Header */}
@@ -167,7 +174,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
           {/* Golden Fur Wallet */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 bg-amber-100/80 border-2 border-[#D4AF37] px-3 py-1 rounded-full text-xs font-black text-amber-900 shadow-xs">
-              <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" />
+              <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" />
               <span>{userStats.goldenFur || 0}</span>
             </div>
 
@@ -184,7 +191,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
         <div className="flex items-center gap-4 bg-white/40 border-b border-[#8C6D58]/10 p-3 mx-4 mt-3 rounded-2xl relative">
           <div className="relative flex-shrink-0">
             <div className="w-17 h-17 bg-amber-100 rounded-full border border-[#8C6D58]/20 overflow-hidden">
-              <img
+              <Image
                 src="/images/mascot/shiba_shop.gif"
                 alt="Merchant Shiba"
                 className="w-full h-full object-cover scale-120 translate-y-1.5"
@@ -242,7 +249,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-10 h-10 flex items-center justify-center bg-zinc-50 rounded-lg overflow-hidden border border-zinc-100">
-                        <img src={item.imageUrl} alt={item.name} className="w-8 h-8 object-contain" />
+                        <Image src={item.imageUrl} alt={item.name} className="w-8 h-8 object-contain" />
                       </div>
                       <h4 className="text-[9px] font-black text-zinc-700 text-center truncate w-full mt-1">
                         Mảnh {item.name}
@@ -254,7 +261,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                         Mảnh: {ownedShards}/{item.shardTarget}
                       </span>
                       <span className="text-[9px] font-black text-amber-600 flex items-center gap-0.5">
-                        <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {price}
+                        <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {price}
                       </span>
                     </div>
                   </div>
@@ -280,7 +287,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-10 h-10 flex items-center justify-center bg-amber-50 rounded-lg overflow-hidden border border-amber-100">
-                        <img src={item.imageUrl} alt={item.name} className="w-8 h-8 object-contain" />
+                        <Image src={item.imageUrl} alt={item.name} className="w-8 h-8 object-contain" />
                       </div>
                       <h4 className="text-[9px] font-black text-zinc-700 text-center truncate w-full mt-1">
                         {item.name}
@@ -294,7 +301,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                         </span>
                       ) : (
                         <span className="text-[9px] font-black text-amber-600 flex items-center gap-0.5">
-                          <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {item.cost}
+                          <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {item.cost}
                         </span>
                       )}
                     </div>
@@ -324,7 +331,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-12 h-12 flex items-center justify-center bg-purple-50 rounded-2xl border border-purple-100 flex-shrink-0 overflow-hidden p-1">
-                        <img src={item.imageUrl} alt={item.name} className="w-10 h-10 object-contain" />
+                        <Image src={item.imageUrl} alt={item.name} className="w-10 h-10 object-contain" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="text-xs font-black text-zinc-700 truncate">{item.name}</h4>
@@ -353,7 +360,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                       </div>
 
                       <span className="text-xs font-black text-amber-600 flex items-center gap-0.5">
-                        <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                        <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
                       </span>
                     </div>
                   </div>
@@ -369,7 +376,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
             <div className="absolute inset-x-0 bottom-0 bg-white border-t-4 border-[#8C6D58] p-4 flex flex-col gap-3 rounded-t-[1.5rem] shadow-[0_-8px_20px_rgba(0,0,0,0.15)] z-20">
               <div className="flex items-start gap-4">
                 <div className="w-16 h-16 flex items-center justify-center bg-zinc-50 border-2 border-[#8C6D58]/10 rounded-2xl overflow-hidden flex-shrink-0">
-                  <img src={selectedItem.imageUrl} alt={selectedItem.name} className="w-12 h-12 object-contain" />
+                  <Image src={selectedItem.imageUrl} alt={selectedItem.name} className="w-12 h-12 object-contain" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
@@ -423,7 +430,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                     className="flex-[1.5] py-2 bg-[#D4AF37] border-b-2 border-[#9E7815] text-white font-black rounded-xl text-xs active:translate-y-0.5 cursor-pointer shadow-xs flex items-center justify-center gap-1 hover:brightness-105"
                   >
                     <span className="flex items-center gap-1">
-                      <img src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-4 h-4 object-contain" /> {selectedType === "shard" ? (selectedItem.shardPrice !== undefined ? selectedItem.shardPrice : SHARD_PRICES[selectedItem.rarity]) : selectedItem.cost}
+                      <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-4 h-4 object-contain" /> {selectedType === "shard" ? (selectedItem.shardPrice !== undefined ? selectedItem.shardPrice : SHARD_PRICES[selectedItem.rarity]) : selectedItem.cost}
                     </span>
                   </button>
                 )}
@@ -432,6 +439,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

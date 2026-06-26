@@ -123,4 +123,24 @@ export const DUPLICATE_FUR_VALUES: Record<GachaRarity, number> = {
   divine: 2000,
 };
 
+// Helper để sort items by rarity
+export const rarityOrder: Record<GachaRarity, number> = {
+  common: 0,
+  rare: 1,
+  epic: 2,
+  legendary: 3,
+  mythic: 4,
+  divine: 5,
+};
+
+// Cấu hình màu nền pastel dễ thương cho mặt trước thẻ bài
+export const PASTEL_RARITY_BG: Record<GachaRarity, string> = {
+  common: "#FFF0ED",     // Hồng đào sữa
+  rare: "#E8F7F3",       // Xanh dưa lưới nhạt
+  epic: "#E1F5FE",       // Xanh dương mây trời
+  legendary: "#FFF8E1",  // Vàng chuối sữa
+  mythic: "#F3E5F5",     // Tím tinh tú sữa
+  divine: "linear-gradient(135deg, #FFE5EC 0%, #E1F5FE 50%, #FFF8E1 100%)", // Cầu vồng nhạt
+};
+
 
