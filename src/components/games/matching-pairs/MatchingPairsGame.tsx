@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Search, LifeBuoy, X } from "lucide-react";
+import { Sparkles, Search, LifeBuoy, X, Heart } from "lucide-react";
 
 import { FlashcardData } from "@/types/flashcard";
 import { parseFurigana } from "@/utils/textParser";
@@ -108,18 +108,18 @@ export function MatchingPairsGame({
       <div className="w-full flex items-center justify-between gap-2 sm:gap-4 mb-2 sm:mb-6">
         <TimerBar timeLeft={timeLeft} progressPercent={progressPercent} />
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-          <div className="flex items-center gap-1 sm:gap-2">
-            {Array.from({ length: maxHp }).map((_, index) => (
-              <motion.img
-                key={index}
-                src="/images/mascot/shiba_heart.png"
-                alt="HP"
-                className={`w-6 h-6 min-[400px]:w-8 min-[400px]:h-8 sm:w-10 sm:h-10 transition-all duration-300 ${index < hp ? "opacity-100" : "opacity-30 grayscale"
-                  }`}
-                initial={{ scale: 0.8 }}
-                animate={{ scale: index < hp ? 1 : 0.8 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              />
+          <div className="flex gap-1.5 bg-white/90 border-2 border-[#FFE2D1] px-3 py-1.5 rounded-[1rem] shadow-[0_3px_0_0_#FFD6C0]">
+            {[...Array(maxHp)].map((_, i) => (
+              <motion.div
+                key={i}
+                animate={i < hp ? { scale: [1, 1.15, 1] } : { scale: 0.7 }}
+                transition={{ repeat: i < hp ? Infinity : 0, duration: 2, repeatType: "reverse" }}
+              >
+                <Heart
+                  size={18}
+                  className={i < hp ? "text-[#FF7096] fill-[#FF7096]" : "text-zinc-300"}
+                />
+              </motion.div>
             ))}
           </div>
           <button

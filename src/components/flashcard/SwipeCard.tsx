@@ -102,6 +102,11 @@ export function SwipeCard({ card, isFlipped, onFlip, onSwipe, exitDir, showFurig
         </div>
       )}
 
+      {/* Background Gradient behind the glass card */}
+      {!isPodcastMode && (
+        <div className="absolute inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-teal-200/40 via-amber-100/30 to-pink-200/40 blur-xl opacity-80 pointer-events-none animate-pulse duration-[4000ms]" />
+      )}
+
       <motion.div
         className="w-full h-full relative pointer-events-none bg-transparent"
         style={{ transformStyle: "preserve-3d" }}
@@ -109,10 +114,10 @@ export function SwipeCard({ card, isFlipped, onFlip, onSwipe, exitDir, showFurig
         transition={{ duration: 0.5, type: "spring", stiffness: 260, damping: 25 }}
       >
         <div className="absolute inset-0 w-full h-full" style={{ backfaceVisibility: "hidden" }}>
-          <FlashcardFront card={card} />
+          <FlashcardFront card={card} isZen={isPodcastMode} />
         </div>
         <div className="absolute inset-0 w-full h-full" style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}>
-          <FlashcardBack card={card} showFurigana={showFurigana} />
+          <FlashcardBack card={card} showFurigana={showFurigana} isZen={isPodcastMode} />
         </div>
       </motion.div>
     </motion.div>

@@ -3,18 +3,8 @@ import {
   ArrowLeft,
   ArrowRight,
   RotateCw,
-  Shuffle,
   Volume2,
-  BookMarked,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { FlashcardData } from "@/types/flashcard";
 
 interface ControlPanelProps {
@@ -26,173 +16,86 @@ interface ControlPanelProps {
   currentIndex: number;
   totalCards: number;
   isFlipped: boolean;
-  showFurigana: boolean;
-  onToggleFurigana: () => void; // Dòng mới: Cho phép toggle Furigana
   card: FlashcardData;
+  isZen?: boolean;
 }
 
 export function ControlPanel({
   onPrev,
   onNext,
   onFlip,
-  onShuffle,
   onPlayAudio,
   currentIndex,
   totalCards,
   isFlipped,
-  showFurigana,
-  onToggleFurigana, // Dòng mới: Cho phép toggle Furigana
   card,
+  isZen = false,
 }: ControlPanelProps) {
-  // Animation Variant chuẩn phong cách "Squishy"
-  const panelVariants: any = {
-    hidden: { opacity: 0, y: 30, scale: 0.85 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: "spring", stiffness: 350, damping: 25 },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      scale: 0.85,
-      transition: { duration: 0.2 },
-    },
-  };
-
   return (
-    <div className="w-full max-w-md mx-auto mt-5 h-24 flex items-center justify-center relative px-2">
-      <AnimatePresence mode="popLayout">
-        {isFlipped ? (
-          /* THANH CÔNG CỤ TIỆN ÍCH (Khi đã lật thẻ) */
-          <motion.div
-            key="flipped-panel"
-            variants={panelVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="flex items-center justify-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-md p-2 border-2 border-zinc-100 rounded-full shadow-lg"
-          >
-            <button onClick={onPlayAudio} className="w-10 h-10 bg-[#E0F7FA] border-2 border-[#80DEEA] rounded-full shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:bg-[#B2EBF2]" title="Phát âm">
-              <Volume2 size={18} strokeWidth={2.5} />
-            </button>
-            <button onClick={onToggleFurigana} className={`w-10 h-10 rounded-full border-2 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center font-bold font-rounded text-[17px] ${showFurigana ? "bg-[#E0F7FA] border-[#80DEEA] shadow-[0_4px_0_0_#80DEEA] text-[#00ACC1]" : "bg-white border-zinc-200 shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 opacity-60"}`} title="Bật/tắt Furigana">
-              あ
-            </button>
-            {card.kanji_info && card.kanji_info.length > 0 && (
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="w-10 h-10 bg-indigo-50 border-2 border-indigo-200 rounded-full shadow-[0_4px_0_0_#C7D2FE] text-indigo-400 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:bg-indigo-100" title="Xem chi tiết Hán tự">
-                    <BookMarked size={18} strokeWidth={2.5} />
-                  </button>
-                </DialogTrigger>
-                <DialogContent aria-describedby={undefined} className="sm:max-w-[420px] w-[95vw] p-0 bg-transparent border-none shadow-none">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    className="flex flex-col w-full h-full max-h-[85vh] rounded-xl overflow-hidden border-4 border-[#A0E8D5] shadow-2xl bg-[#FDFBF7]"
-                  >
-                    <DialogHeader className="bg-[#06D6A0] p-5 pb-6 border-b-4 border-[#A0E8D5] shrink-0 text-center">
-                      <DialogTitle className="text-2xl text-white tracking-wider" style={{ fontFamily: "var(--font-cherry)" }}>
-                        Chi tiết Hán tự
-                      </DialogTitle>
-                    </DialogHeader>
-                    <div className="p-5 overflow-y-auto hide-scrollbar">
-                      <div className="grid grid-cols-1 gap-3">
-                        {card.kanji_info.map((kanjiItem, index) => (
-                          <div key={index} className="flex items-center gap-3 bg-white p-3 rounded-2xl border-2 border-[#A0E8D5] shadow-[0_4px_0_0_#A0E8D5]">
-                            <span className="text-4xl text-[#FF9F1C]" style={{ fontFamily: "var(--font-cherry)" }}>
-                              {kanjiItem.kanji}
-                            </span>
-                            <div className="flex flex-col font-rounded text-xs font-bold space-y-1 w-full overflow-hidden">
-                              <div className="bg-orange-50 px-2 py-1 rounded-lg text-orange-800 border border-orange-100 flex justify-between gap-2">
-                                <span>ON:</span>
-                                <span className="text-[#FF9F1C] truncate text-right" title={kanjiItem.onyomi}>{kanjiItem.onyomi || "---"}</span>
-                              </div>
-                              <div className="bg-pink-50 px-2 py-1 rounded-lg text-pink-800 border border-pink-100 flex justify-between gap-2">
-                                <span>KUN:</span>
-                                <span className="text-[#FF7096] truncate text-right" title={kanjiItem.kunyomi}>{kanjiItem.kunyomi || "---"}</span>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                </DialogContent>
-              </Dialog>
-            )}
-            <button onClick={onShuffle} className="w-10 h-10 bg-white border-2 border-zinc-200 rounded-full shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center hover:text-zinc-600" title="Xáo bài">
-              <Shuffle size={16} strokeWidth={3} />
-            </button>
-          </motion.div>
-        ) : (
-          /* ==========================================
-             TRẠNG THÁI 1: TRƯỚC KHI LẬT (ĐIỀU HƯỚNG)
-             ========================================== */
-          <motion.div
-            key="unflipped-panel"
-            variants={panelVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="grid grid-cols-[50px_1fr_50px] sm:grid-cols-[80px_1fr_80px] items-center w-full"
-          >
-            {/* Nút Shuffle bên trái */}
-            <motion.button
-              layoutId="shuffle-btn"
-              transition={{ type: "spring", stiffness: 350, damping: 25 }}
-              onClick={onShuffle}
-              className="w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-zinc-200 rounded-full shadow-[0_4px_0_0_#E4E4E7] text-zinc-400 active:translate-y-1 active:shadow-[0_0_0_0_#E4E4E7] transition-all flex items-center justify-center hover:text-zinc-600"
-            >
-              <Shuffle
-                className="w-[18px] h-[18px] sm:w-5 sm:h-5"
-                strokeWidth={2.5}
-              />
-            </motion.button>
+    <div className="w-full max-w-md mx-auto mt-6 px-4 select-none">
+      <div className="grid grid-cols-4 gap-2 sm:gap-3">
+        {/* 1. NÚT BACK (Quay lại) */}
+        <button
+          onClick={onPrev}
+          disabled={currentIndex === 0}
+          className={`flex flex-col items-center justify-center py-3 sm:py-3.5 border-2 rounded-[1.25rem] backdrop-blur-md transition-all duration-300 active:scale-95 active:translate-y-[2px] disabled:opacity-30 disabled:active:scale-100 disabled:active:translate-y-0 cursor-pointer ${
+            isZen
+              ? "bg-gradient-to-br from-orange-500/20 to-amber-600/10 border-orange-500/30 text-orange-400 hover:from-orange-500/30 hover:to-amber-600/20 hover:text-orange-300 shadow-[0_0_15px_rgba(249,115,22,0.15)]"
+              : "bg-gradient-to-br from-amber-100/70 via-amber-50/40 to-orange-100/70 border-orange-200 text-orange-600 hover:from-amber-200/70 hover:to-orange-200/70 shadow-[0_4px_10px_rgba(255,160,122,0.12)]"
+          }`}
+        >
+          <ArrowLeft size={20} strokeWidth={3} className="mb-1" />
+          <span className="font-rounded font-extrabold text-[10px] sm:text-xs tracking-wider uppercase">
+            Back
+          </span>
+        </button>
 
-            {/* Cụm Điều hướng ở giữa */}
-            <div className="flex items-center justify-center gap-1.5 sm:gap-3">
-              <button
-                onClick={onPrev}
-                disabled={currentIndex === 0}
-                className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 bg-white border-2 border-[#FFE2D1] rounded-full shadow-[0_4px_0_0_#FFE2D1] text-orange-400 active:translate-y-1 active:shadow-[0_0_0_0_#FFE2D1] disabled:opacity-40 disabled:active:translate-y-0 disabled:active:shadow-[0_4px_0_0_#FFE2D1] transition-all flex items-center justify-center"
-              >
-                <ArrowLeft
-                  className="w-5 h-5 sm:w-[22px] sm:h-[22px]"
-                  strokeWidth={3}
-                />
-              </button>
+        {/* 2. NÚT SOUND (Audio / Romaji) */}
+        <button
+          onClick={onPlayAudio}
+          className={`flex flex-col items-center justify-center py-3 sm:py-3.5 border-2 rounded-[1.25rem] backdrop-blur-md transition-all duration-300 active:scale-95 active:translate-y-[2px] cursor-pointer w-full overflow-hidden ${
+            isZen
+              ? "bg-gradient-to-br from-pink-500/20 to-rose-600/10 border-pink-500/30 text-pink-400 hover:from-pink-500/30 hover:to-rose-600/20 hover:text-pink-300 shadow-[0_0_15px_rgba(236,72,153,0.15)]"
+              : "bg-gradient-to-br from-pink-100/70 via-pink-50/40 to-rose-100/70 border-pink-200 text-pink-500 hover:from-pink-200/70 hover:to-rose-200/70 shadow-[0_4px_10px_rgba(255,112,150,0.12)]"
+          }`}
+        >
+          <Volume2 size={20} strokeWidth={3} className="mb-1" />
+          <span className="font-rounded font-extrabold text-[10px] sm:text-xs tracking-wider uppercase truncate px-1 max-w-full">
+            {card.romaji || "Sound"}
+          </span>
+        </button>
 
-              <button
-                onClick={onFlip}
-                className="px-4 sm:px-8 h-12 sm:h-14 shrink-0 bg-[#FFD166] border-b-4 border-[#FF9F1C] rounded-[1.25rem] text-amber-900 font-black text-base sm:text-lg active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center shadow-sm"
-              >
-                <RotateCw
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  strokeWidth={3}
-                />
-              </button>
+        {/* 3. NÚT LẬT THẺ / THỬ LẠI */}
+        <button
+          onClick={onFlip}
+          className={`flex flex-col items-center justify-center py-3 sm:py-3.5 border-2 rounded-[1.25rem] backdrop-blur-md transition-all duration-300 active:scale-95 active:translate-y-[2px] cursor-pointer ${
+            isZen
+              ? "bg-gradient-to-br from-yellow-500/20 to-amber-600/10 border-yellow-500/30 text-yellow-400 hover:from-yellow-500/30 hover:to-amber-600/20 hover:text-yellow-300 shadow-[0_0_15px_rgba(234,179,8,0.15)]"
+              : "bg-gradient-to-br from-yellow-100/70 via-yellow-50/40 to-amber-100/70 border-amber-200 text-amber-700 hover:from-yellow-200/70 hover:to-amber-200/70 shadow-[0_4px_10px_rgba(255,209,102,0.12)]"
+          }`}
+        >
+          <RotateCw size={20} strokeWidth={3} className="mb-1 text-inherit" />
+          <span className="font-rounded font-extrabold text-[10px] sm:text-xs tracking-wider uppercase">
+            {isFlipped ? "Again" : "Flip"}
+          </span>
+        </button>
 
-              <button
-                onClick={onNext}
-                disabled={currentIndex === totalCards - 1}
-                className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 bg-white border-2 border-[#FFE2D1] rounded-full shadow-[0_4px_0_0_#FFE2D1] text-orange-400 active:translate-y-1 active:shadow-[0_0_0_0_#FFE2D1] disabled:opacity-40 disabled:active:translate-y-0 disabled:active:shadow-[0_4px_0_0_#FFE2D1] transition-all flex items-center justify-center"
-              >
-                <ArrowRight
-                  className="w-5 h-5 sm:w-[22px] sm:h-[22px]"
-                  strokeWidth={3}
-                />
-              </button>
-            </div>
-
-            {/* Cột phải trống */}
-            <div className="w-[50px] sm:w-[80px]" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* 4. NÚT GOT IT! / TIẾP THEO */}
+        <button
+          onClick={onNext}
+          disabled={currentIndex === totalCards - 1}
+          className={`flex flex-col items-center justify-center py-3 sm:py-3.5 border-2 rounded-[1.25rem] backdrop-blur-md transition-all duration-300 active:scale-95 active:translate-y-[2px] disabled:opacity-30 disabled:active:scale-100 disabled:active:translate-y-0 cursor-pointer ${
+            isZen
+              ? "bg-gradient-to-br from-emerald-500/20 to-teal-600/10 border-emerald-500/30 text-emerald-400 hover:from-emerald-500/30 hover:to-teal-600/20 hover:text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+              : "bg-gradient-to-br from-emerald-100/70 via-emerald-50/40 to-teal-100/70 border-teal-200 text-teal-600 hover:from-emerald-200/70 hover:to-teal-200/70 shadow-[0_4px_10px_rgba(6,214,160,0.12)]"
+          }`}
+        >
+          <ArrowRight size={20} strokeWidth={3} className="mb-1" />
+          <span className="font-rounded font-extrabold text-[10px] sm:text-xs tracking-wider uppercase">
+            Got it!
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

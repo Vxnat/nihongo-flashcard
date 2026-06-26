@@ -3,74 +3,127 @@ import { parseFurigana } from "@/utils/textParser";
 
 interface FlashcardBackProps {
   card: FlashcardData;
-  showFurigana: boolean; // Dòng mới: Cho phép hiển thị Furigana hay không
+  showFurigana: boolean;
+  isZen?: boolean;
 }
 
 export function FlashcardBack({
   card,
   showFurigana = true,
+  isZen = false,
 }: FlashcardBackProps) {
+  if (isZen) {
+    return (
+      <div className="w-full max-w-md h-[400px] bg-white/10 backdrop-blur-md rounded-2xl border-2 border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] relative flex flex-col p-6 transition-all duration-500">
+        {/* KHỐI 1: HEADER (Cách đọc & Ý nghĩa) */}
+        <div className="text-center space-y-3 flex-shrink-0 flex flex-col items-center">
+          {/* Chữ Kana siêu bự phát sáng nhẹ */}
+          <h3
+            className="text-4xl text-pink-300 tracking-wide"
+            style={{
+              fontFamily: "var(--font-cherry)",
+              filter: "drop-shadow(0px 0px 8px rgba(244, 143, 177, 0.8))",
+            }}
+          >
+            {card.reading}
+          </h3>
+
+          {/* Romaji trong viên kẹo kính mờ */}
+          <span
+            className="px-4 py-1.5 bg-white/5 border border-white/10 text-pink-200 rounded-xl font-rounded font-bold text-md tracking-widest uppercase shadow-none"
+            style={{
+              fontFamily: "var(--font-cute)",
+            }}
+          >
+            {card.romaji}
+          </span>
+
+          {/* Ý nghĩa tiếng Việt */}
+          <p className="text-2xl font-rounded font-black text-white mt-2 leading-snug">
+            {card.meaning}
+          </p>
+        </div>
+
+        <hr className="border border-dashed border-white/20 my-4 flex-shrink-0" />
+
+        {/* KHỐI 2: CÂU VÍ DỤ (Tích hợp Furigana) */}
+        <div className="bg-white/5 rounded-2xl p-4 border border-white/10 text-center flex-1 flex flex-col justify-center [&_rt]:text-pink-300/80">
+          <div className="text-lg font-bold text-white mb-2 leading-loose">
+            {/* Render Furigana có truyền cờ showFurigana */}
+            {card.example_jp_formatted
+              ? parseFurigana(card.example_jp_formatted, showFurigana)
+              : card.example_jp}
+          </div>
+          <p className="text-sm font-rounded font-bold text-pink-200/70 pb-3 leading-relaxed">
+            {card.example_vi}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    /* 
-      CONTAINER KẸO DẺO MẶT SAU:
-      - Chiều cao cố định h-[400px] để chống giật UI khi lật.
-      - overflow-y-auto: Cho phép cuộn nếu ví dụ/kanji_info quá dài.
-      - hide-scrollbar: Ẩn thanh cuộn cho UI sạch sẽ (cần class trong globals.css).
-    */
-    <div className="w-full max-w-md h-[400px] bg-[#F0FAF5] rounded-xl border-4 border-[#A0E8D5] shadow-[0_10px_0_0_#A0E8D5] relative flex flex-col p-6">
-      {/* KHỐI 1: HEADER (Cách đọc & Ý nghĩa) */}
-      <div className="text-center space-y-3 flex-shrink-0 flex flex-col items-center">
-        {/* Chữ Kana siêu bự */}
-        <h3
-          className="text-4xl text-[#06D6A0] tracking-wide"
+    <div className="w-full max-w-md h-[400px] flex flex-row items-center justify-between p-5 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-white/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] relative overflow-hidden group transition-all duration-300">
+      {/* Trang trí góc lấp lánh như hình ảnh */}
+      <span className="absolute top-8 left-4 text-2xl select-none opacity-80 animate-bounce">🌸</span>
+      <span className="absolute top-4 right-1/2 text-lg select-none opacity-40 text-amber-400">⭐</span>
+      <span className="absolute bottom-8 left-6 text-xl select-none opacity-60">🍃</span>
+      <span className="absolute bottom-4 right-1/2 text-2xl select-none opacity-70">✨</span>
+      <span className="absolute top-10 right-4 text-xl select-none opacity-80">🌸</span>
+
+      {/* Left Column: Kanji, Reading, Romaji, Meaning, and mini Example */}
+      <div className="w-[53%] flex flex-col justify-center items-start pl-2 h-full overflow-y-auto hide-scrollbar py-2">
+        {/* Furigana / Reading */}
+        <span className="text-[#06D6A0] font-rounded font-black text-xs tracking-widest uppercase mb-1">
+          {card.reading}
+        </span>
+
+        {/* Kanji word */}
+        <h2
+          className="text-4xl sm:text-5xl text-teal-800 tracking-wide text-left mb-1 break-all leading-normal"
           style={{
             fontFamily: "var(--font-cherry)",
-            filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))",
+            WebkitTextStroke: "1px #FFF",
+            filter: "drop-shadow(0px 2px 0px rgba(255, 226, 209, 1))"
           }}
         >
-          {card.reading}
-        </h3>
+          {card.word}
+        </h2>
 
-        {/* Romaji trong viên kẹo */}
-        <span
-          className="px-4 py-1.5 bg-white border-2 border-[#A0E8D5] text-[#05b889] rounded-xl font-rounded font-bold text-md tracking-widest uppercase shadow-[0_3px_0_0_#A0E8D5]"
-          style={{
-            fontFamily: "var(--font-cute)",
-            filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))",
-          }}
-        >
+        {/* Romaji Badge */}
+        <span className="px-3 py-0.5 bg-white/60 border border-teal-200 text-teal-700 rounded-lg font-rounded font-bold text-[10px] tracking-wider uppercase mb-2">
           {card.romaji}
         </span>
 
-        {/* Ý nghĩa tiếng Việt */}
-        <p
-          className="text-2xl font-rounded font-black text-teal-800 mt-2 leading-snug"
-          style={{
-            filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))",
-          }}
-        >
+        {/* Meaning */}
+        <p className="text-lg font-rounded font-black text-zinc-700 leading-snug mb-2">
           {card.meaning}
         </p>
+
+        {/* Example inline */}
+        {card.example_jp && (
+          <div className="bg-white/50 border border-teal-100/50 rounded-xl p-2.5 w-full text-left">
+            <p className="text-[11px] font-bold text-teal-900 leading-normal">
+              {card.example_jp_formatted
+                ? parseFurigana(card.example_jp_formatted, showFurigana)
+                : card.example_jp}
+            </p>
+            <p className="text-[9px] font-rounded font-bold text-[#FF7096] leading-tight mt-1">
+              {card.example_vi}
+            </p>
+          </div>
+        )}
       </div>
 
-      <hr className="border-2 border-dashed border-[#A0E8D5] my-4 flex-shrink-0 opacity-60" />
-
-      {/* KHỐI 2: CÂU VÍ DỤ (Tích hợp Furigana) */}
-      <div className="bg-white/60 rounded-2xl p-4 border-2 border-dashed border-[#A0E8D5] text-center flex-1 flex flex-col justify-center">
-        <div className="text-lg font-bold text-teal-900 mb-2 leading-loose">
-          {/* Render Furigana có truyền cờ showFurigana */}
-          {card.example_jp_formatted
-            ? parseFurigana(card.example_jp_formatted, showFurigana)
-            : card.example_jp}
+      {/* Right Column: Shiba Room illustration */}
+      <div className="w-[44%] flex items-center justify-center h-full py-4">
+        <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden border-4 border-white/80 shadow-md bg-amber-50/10">
+          <img
+            src="/images/mascot/shiba_study.png"
+            alt="Shiba Room"
+            className="w-full h-full object-cover"
+          />
         </div>
-        <p
-          className="text-sm font-rounded font-bold text-teal-600/80 pb-3 leading-relaxed"
-          style={{
-            filter: "drop-shadow(0px 3px 0px rgba(160, 232, 213, 0.8))",
-          }}
-        >
-          {card.example_vi}
-        </p>
       </div>
     </div>
   );

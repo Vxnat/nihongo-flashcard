@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { X, Sparkles, Eye, Brush, Wand2 } from "lucide-react";
+import { X, Sparkles, Eye, Brush, Wand2, Heart } from "lucide-react";
 import confetti from "canvas-confetti";
 
 import { KanjiCanvas, KanjiCanvasRef } from "@/components/games/kanji-dojo/KanjiCanvas";
@@ -121,7 +121,7 @@ export function KanjiDojoGame({
   const masterOptions: ShibaMasterOption[] = [
     {
       id: "peek",
-      icon: <Eye className="w-5 h-5" />,
+      icon: "",
       label: "Nhìn lén 1 nét",
       cost: 1,
       colorClass: "bg-blue-50 text-[#5390D9] border-[#A0C4FF] hover:bg-blue-100",
@@ -131,7 +131,7 @@ export function KanjiDojoGame({
     },
     {
       id: "animate",
-      icon: <Brush className="w-5 h-5" />,
+      icon: "",
       label: "Xem múa cọ",
       cost: 3,
       allowFreeHint: true,
@@ -182,17 +182,18 @@ export function KanjiDojoGame({
         </div>
 
         {/* Máu (HP Shiba Hearts) */}
-        <div className="flex items-center gap-1 sm:gap-2">
-          {Array.from({ length: MAX_HP }).map((_, index) => (
-            <motion.img
-              key={index}
-              src="/images/mascot/shiba_heart.png"
-              alt="HP"
-              className={`w-8 h-8 sm:w-10 sm:h-10 transition-all duration-300 ${index < hp ? "opacity-100" : "opacity-30 grayscale"
-                }`}
-              initial={{ scale: 0.8 }}
-              animate={{ scale: index < hp ? 1 : 0.8 }}
-            />
+        <div className="flex gap-1.5 bg-white/90 border-2 border-[#FFE2D1] px-3 py-1.5 rounded-[1rem] shadow-[0_3px_0_0_#FFD6C0]">
+          {[...Array(MAX_HP)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={i < hp ? { scale: [1, 1.15, 1] } : { scale: 0.7 }}
+              transition={{ repeat: i < hp ? Infinity : 0, duration: 2, repeatType: "reverse" }}
+            >
+              <Heart
+                size={18}
+                className={i < hp ? "text-[#FF7096] fill-[#FF7096]" : "text-zinc-300"}
+              />
+            </motion.div>
           ))}
         </div>
 
