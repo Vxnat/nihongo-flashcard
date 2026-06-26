@@ -11,6 +11,7 @@ import { SHARD_PRICES } from "@/constants/shopItems";
 import { playAudioUrl } from "@/utils/tts";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { CoinIcon } from "../common/CoinIcon";
 
 interface FurShopModalProps {
   isOpen: boolean;
@@ -156,59 +157,61 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
 
       {/* Main Container */}
       <div
-        className="relative bg-[#FAF6EE] border-4 border-[#8C6D58] rounded-[2rem] shadow-[0_5px_0_0_#8C6D58] w-full max-w-lg md:max-w-xl h-[85vh] flex flex-col overflow-hidden max-h-[700px] z-10"
-        style={{ fontFamily: "var(--font-rounded)" }}
+        className="relative bg-[#FFFDF6] border-[6px] border-[#FFD2CC] rounded-[3.5rem] shadow-2xl w-full max-w-lg md:max-w-xl h-[85vh] flex flex-col overflow-hidden max-h-[700px] z-10"
+        style={{ fontFamily: "var(--font-cherry)" }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 bg-[#8C6D58]/10 border-b-2 border-[#8C6D58]/20">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🏮</span>
+        <div className="flex items-center justify-between p-5 bg-gradient-to-r from-[#FFF0F2] to-[#FFF9E6] border-b-4 border-[#FFD2CC] rounded-t-[3rem]">
+          <div className="flex items-center gap-2.5">
+            <span className="text-3xl animate-bounce" style={{ animationDuration: "3s" }}>🏮</span>
             <div>
-              <h2 className="text-sm font-black text-[#8C6D58]" style={{ fontFamily: "var(--font-cherry)" }}>
+              <h2 className="text-sm md:text-base font-black text-[#E05375] tracking-wide" style={{ textShadow: "0 2px 0 #fff" }}>
                 TIỆM KỲ TRÂN SHIBA
               </h2>
-              <p className="text-[10px] text-[#8C6D58]/70 font-bold">Thương nhân Shiba & Hàng bảo vật</p>
+              <p className="text-[9px] text-[#FF8A5B] font-black uppercase tracking-wider">Thương nhân Shiba & Bảo vật</p>
             </div>
           </div>
 
           {/* Golden Fur Wallet */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 bg-amber-100/80 border-2 border-[#D4AF37] px-3 py-1 rounded-full text-xs font-black text-amber-900 shadow-xs">
-              <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" />
+            <div className="flex items-center gap-1.5 bg-gradient-to-br from-[#FFFDF2] to-[#FFF9D0] border-2 border-[#FFD2CC] px-3.5 py-1.5 rounded-full text-xs font-black text-amber-700 shadow-sm">
+              <CoinIcon />
               <span>{userStats.goldenFur || 0}</span>
             </div>
 
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-[#FF7096] border-b-2 border-[#C7486B] text-white flex items-center justify-center font-black active:translate-y-0.5 cursor-pointer shadow-xs"
+              className="w-9 h-9 rounded-full bg-[#FF85A1] border-b-4 border-[#D84A70] hover:bg-[#FF9FB6] text-white flex items-center justify-center font-black active:border-b-0 active:translate-y-1 transition-all cursor-pointer shadow-sm"
             >
-              <X size={16} />
+              <X size={18} strokeWidth={3} />
             </button>
           </div>
         </div>
 
         {/* Shopkeeper Area */}
-        <div className="flex items-center gap-4 bg-white/40 border-b border-[#8C6D58]/10 p-3 mx-4 mt-3 rounded-2xl relative">
+        <div className="flex items-center gap-4 bg-[#FFF0F2] border-2 border-[#FFD2CC] p-3 mx-5 mt-4 rounded-2xl relative shadow-sm">
           <div className="relative flex-shrink-0">
-            <div className="w-17 h-17 bg-amber-100 rounded-full border border-[#8C6D58]/20 overflow-hidden">
+            <div className="w-16 h-16 bg-[#FFE5EC] rounded-full border-2 border-[#FFD2CC] overflow-hidden relative">
               <Image
                 src="/images/mascot/shiba_shop.gif"
                 alt="Merchant Shiba"
-                className="w-full h-full object-cover scale-120 translate-y-1.5"
+                className="object-cover scale-120 translate-y-1.5"
+                fill
               />
             </div>
             {/* Merchant Hat/Badge overlay */}
-            <div className="absolute -top-1 -left-1 bg-red-500 text-[6px] px-1 py-0.5 text-white font-bold rounded-lg border border-white z-10 shadow-sm">SHOP</div>
+            <div className="absolute -top-1 -left-1 bg-[#FF85A1] text-[6px] px-1.5 py-0.5 text-white font-black rounded-lg border border-white z-10 shadow-sm uppercase">SHOP</div>
           </div>
           {/* Chat Bubble */}
-          <div className="flex-1 bg-white border border-[#8C6D58]/10 px-3 py-2 rounded-2xl text-[10px] md:text-xs font-bold text-[#8C6D58] relative shadow-xs">
-            <div className="absolute left-0 top-1/2 -translate-x-2 -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-r-8 border-r-white border-b-4 border-b-transparent" />
-            <p>{shibaBubble}</p>
+          <div className="flex-1 bg-white border-2 border-[#FFD2CC] px-3.5 py-2.5 rounded-[1.5rem] text-[10px] md:text-xs font-bold text-[#E05375] relative shadow-xs">
+            <div className="absolute left-0 top-1/2 -translate-x-2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-r-[8px] border-r-white border-b-[6px] border-b-transparent z-10" />
+            <div className="absolute left-[-2px] top-1/2 -translate-x-2 -translate-y-1/2 w-0 h-0 border-t-[7px] border-t-transparent border-r-[9px] border-r-[#FFD2CC] border-b-[7px] border-b-transparent" />
+            <p className="leading-snug">{shibaBubble}</p>
           </div>
         </div>
 
         {/* Tab Selector */}
-        <div className="grid grid-cols-3 gap-1 bg-[#8C6D58]/10 p-1 rounded-2xl mx-4 mt-3 border border-[#8C6D58]/20">
+        <div className="grid grid-cols-3 gap-1.5 bg-[#FFF0F2] p-1.5 rounded-2xl mx-5 mt-4 border-2 border-[#FFD2CC]">
           {(["shard", "exclusive", "consumable"] as const).map((tab) => (
             <button
               key={tab}
@@ -217,9 +220,9 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                 setSelectedItem(null);
                 setSelectedType(null);
               }}
-              className={`py-1.5 text-[10px] md:text-xs font-black rounded-xl transition-all cursor-pointer ${activeTab === tab
-                ? "bg-[#8C6D58] text-white shadow-sm"
-                : "text-[#8C6D58]/60 hover:text-[#8C6D58]"
+              className={`py-2 text-[10px] md:text-xs font-black rounded-xl transition-all cursor-pointer ${activeTab === tab
+                ? "bg-[#FF85A1] text-white shadow-sm border-b-2 border-[#D84A70] scale-102"
+                : "text-[#C7486B]/60 hover:text-[#C7486B] hover:bg-white/40"
                 }`}
               style={{ fontFamily: "var(--font-cherry)" }}
             >
@@ -229,7 +232,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
         </div>
 
         {/* Shop Grid Content (Scrollable) */}
-        <div className="flex-1 overflow-y-auto p-4 content-start">
+        <div className="flex-1 overflow-y-auto p-5 content-start">
 
           {/* TAB 1: SHARDS */}
           {activeTab === "shard" && (
@@ -243,25 +246,25 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                   <div
                     key={item.id}
                     onClick={() => handleItemClick(item, "shard")}
-                    className={`bg-white border-2 hover:border-[#8C6D58] p-2 rounded-2xl flex flex-col justify-between h-[100px] cursor-pointer transition-all active:scale-95 shadow-xs relative rare-glow-card ${selectedItem?.id === item.id ? "border-[#8C6D58] ring-2 ring-[#8C6D58]/20" : "border-zinc-200/60"
+                    className={`bg-white border-2 p-2.5 rounded-2xl flex flex-col justify-between h-[110px] cursor-pointer transition-all active:scale-95 shadow-xs relative rare-glow-card ${selectedItem?.id === item.id ? "border-[#FF85A1] ring-4 ring-[#FF85A1]/20 scale-102 shadow-md" : "border-[#FFD2CC]/60 hover:border-[#FF85A1]"
                       }`}
                     style={{ '--glow-color': rarityColor } as React.CSSProperties}
                   >
                     <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 flex items-center justify-center bg-zinc-50 rounded-lg overflow-hidden border border-zinc-100">
-                        <Image src={item.imageUrl} alt={item.name} className="w-8 h-8 object-contain" />
+                      <div className="w-10 h-10 flex items-center justify-center bg-[#FFF9FA] rounded-xl overflow-hidden border border-[#FFD2CC]/30 relative">
+                        <Image src={item.imageUrl} alt={item.name} className="object-contain" width={32} height={32} />
                       </div>
-                      <h4 className="text-[9px] font-black text-zinc-700 text-center truncate w-full mt-1">
+                      <h4 className="text-[9px] font-black text-zinc-700 text-center truncate w-full mt-1.5">
                         Mảnh {item.name}
                       </h4>
                     </div>
 
-                    <div className="flex items-center justify-between mt-1 pt-1 border-t border-zinc-100">
-                      <span className="text-[8px] font-bold text-zinc-400">
+                    <div className="flex items-center justify-between mt-1 pt-1.5 border-t border-[#FFD2CC]/30">
+                      <span className="text-[8px] font-black text-[#FF8A5B]">
                         Mảnh: {ownedShards}/{item.shardTarget}
                       </span>
-                      <span className="text-[9px] font-black text-amber-600 flex items-center gap-0.5">
-                        <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {price}
+                      <span className="text-[9px] font-black text-[#E05375] flex items-center gap-0.5 bg-[#FFF0F2] px-1.5 py-0.5 rounded-full border border-[#FFD2CC]/50">
+                        <CoinIcon /> {price}
                       </span>
                     </div>
                   </div>
@@ -281,27 +284,27 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                   <div
                     key={item.id}
                     onClick={() => handleItemClick(item, "exclusive")}
-                    className={`bg-white border-2 hover:border-[#8C6D58] p-2 rounded-2xl flex flex-col justify-between h-[100px] cursor-pointer transition-all active:scale-95 shadow-xs relative ${rarityColor ? "rare-glow-card" : ""
-                      } ${owned ? "opacity-75" : ""} ${selectedItem?.id === item.id ? "border-[#8C6D58] ring-2 ring-[#8C6D58]/20" : "border-zinc-200/60"}`}
+                    className={`bg-white border-2 p-2.5 rounded-2xl flex flex-col justify-between h-[110px] cursor-pointer transition-all active:scale-95 shadow-xs relative ${rarityColor ? "rare-glow-card" : ""
+                      } ${owned ? "opacity-75" : ""} ${selectedItem?.id === item.id ? "border-[#FF85A1] ring-4 ring-[#FF85A1]/20 scale-102 shadow-md" : "border-[#FFD2CC]/60 hover:border-[#FF85A1]"}`}
                     style={rarityColor ? ({ '--glow-color': rarityColor } as React.CSSProperties) : undefined}
                   >
                     <div className="flex flex-col items-center">
-                      <div className="w-10 h-10 flex items-center justify-center bg-amber-50 rounded-lg overflow-hidden border border-amber-100">
-                        <Image src={item.imageUrl} alt={item.name} className="w-8 h-8 object-contain" />
+                      <div className="w-10 h-10 flex items-center justify-center bg-[#FFF9FA] rounded-xl overflow-hidden border border-[#FFD2CC]/30">
+                        <Image src={item.imageUrl} alt={item.name} className="object-contain" width={32} height={32} />
                       </div>
-                      <h4 className="text-[9px] font-black text-zinc-700 text-center truncate w-full mt-1">
+                      <h4 className="text-[9px] font-black text-zinc-700 text-center truncate w-full mt-1.5">
                         {item.name}
                       </h4>
                     </div>
 
-                    <div className="flex items-center justify-center mt-1 pt-1 border-t border-zinc-100 w-full">
+                    <div className="flex items-center justify-center mt-1 pt-1.5 border-t border-[#FFD2CC]/30 w-full">
                       {owned ? (
-                        <span className="text-[8px] font-black text-[#06D6A0] bg-[#06D6A0]/10 px-1.5 py-0.5 rounded-md">
+                        <span className="text-[8px] font-black text-[#06D6A0] bg-[#06D6A0]/10 px-2 py-0.5 rounded-lg border border-[#06D6A0]/25">
                           ĐÃ SỞ HỮU
                         </span>
                       ) : (
-                        <span className="text-[9px] font-black text-amber-600 flex items-center gap-0.5">
-                          <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3 h-3 object-contain" /> {item.cost}
+                        <span className="text-[9px] font-black text-[#E05375] flex items-center gap-0.5 bg-[#FFF0F2] px-2 py-0.5 rounded-full border border-[#FFD2CC]/50">
+                          <CoinIcon /> {item.cost}
                         </span>
                       )}
                     </div>
@@ -326,41 +329,41 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                   <div
                     key={item.id}
                     onClick={() => handleItemClick(item, "consumable")}
-                    className={`bg-white border-2 hover:border-[#8C6D58] p-3 rounded-2xl flex flex-col justify-between h-[120px] cursor-pointer transition-all active:scale-95 shadow-xs relative ${selectedItem?.id === item.id ? "border-[#8C6D58] ring-2 ring-[#8C6D58]/20" : "border-zinc-200/60"
+                    className={`bg-white border-2 p-3.5 rounded-2xl flex flex-col justify-between h-[130px] cursor-pointer transition-all active:scale-95 shadow-xs relative ${selectedItem?.id === item.id ? "border-[#FF85A1] ring-4 ring-[#FF85A1]/20 scale-102 shadow-md" : "border-[#FFD2CC]/60 hover:border-[#FF85A1]"
                       }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-12 h-12 flex items-center justify-center bg-purple-50 rounded-2xl border border-purple-100 flex-shrink-0 overflow-hidden p-1">
-                        <Image src={item.imageUrl} alt={item.name} className="w-10 h-10 object-contain" />
+                      <div className="w-12 h-12 flex items-center justify-center bg-[#FFF2E6] rounded-2xl border border-[#FFD2CC]/30 flex-shrink-0 overflow-hidden p-1">
+                        <Image src={item.imageUrl} alt={item.name} className="object-contain" width={40} height={40} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h4 className="text-xs font-black text-zinc-700 truncate">{item.name}</h4>
-                        <p className="text-[9px] text-zinc-400 font-bold mt-0.5 line-clamp-2 leading-tight">
+                        <p className="text-[9px] text-zinc-400 font-black mt-1 leading-tight line-clamp-2">
                           {item.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between border-t border-zinc-100 pt-2 mt-1">
+                    <div className="flex items-center justify-between border-t border-[#FFD2CC]/30 pt-2 mt-1">
                       {/* Active Status Display */}
                       <div>
                         {isDoubleActive && (
-                          <span className="text-[8px] font-black text-[#FF7096] bg-[#FF7096]/10 px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
+                          <span className="text-[8px] font-black text-[#FF7096] bg-[#FF7096]/10 px-2 py-0.5 rounded-lg flex items-center gap-0.5 border border-[#FF7096]/20">
                             <Clock size={8} /> {doubleBonesTimeLeft}
                           </span>
                         )}
                         {isLuckyActive && (
-                          <span className="text-[8px] font-black text-[#8A2BE2] bg-[#8A2BE2]/10 px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
+                          <span className="text-[8px] font-black text-[#8A2BE2] bg-[#8A2BE2]/10 px-2 py-0.5 rounded-lg flex items-center gap-0.5 border border-[#8A2BE2]/20">
                             Còn {userStats.buffLuckyGachaRolls} lượt
                           </span>
                         )}
                         {!isDoubleActive && !isLuckyActive && (
-                          <span className="text-[8px] font-bold text-zinc-400">Chưa kích hoạt</span>
+                          <span className="text-[8px] font-black text-zinc-400 bg-zinc-50 px-2 py-0.5 rounded-lg border border-zinc-200/50">Chưa kích hoạt</span>
                         )}
                       </div>
 
-                      <span className="text-xs font-black text-amber-600 flex items-center gap-0.5">
-                        <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                      <span className="text-xs font-black text-[#E05375] flex items-center gap-0.5 bg-[#FFF0F2] px-2 py-0.5 rounded-full border border-[#FFD2CC]/50">
+                        <CoinIcon /> {item.cost}
                       </span>
                     </div>
                   </div>
@@ -373,10 +376,10 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
         {/* Selected Item Drawer Details Overlay */}
         <AnimatePresence>
           {selectedItem && (
-            <div className="absolute inset-x-0 bottom-0 bg-white border-t-4 border-[#8C6D58] p-4 flex flex-col gap-3 rounded-t-[1.5rem] shadow-[0_-8px_20px_rgba(0,0,0,0.15)] z-20">
+            <div className="absolute inset-x-0 bottom-0 bg-[#FFFDF6] border-t-4 border-[#FFD2CC] p-5 flex flex-col gap-3.5 rounded-t-[2.5rem] shadow-[0_-10px_25px_rgba(255,210,204,0.35)] z-20">
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 flex items-center justify-center bg-zinc-50 border-2 border-[#8C6D58]/10 rounded-2xl overflow-hidden flex-shrink-0">
-                  <Image src={selectedItem.imageUrl} alt={selectedItem.name} className="w-12 h-12 object-contain" />
+                <div className="w-16 h-16 flex items-center justify-center bg-[#FFF9FA] border-2 border-[#FFD2CC] rounded-2xl overflow-hidden flex-shrink-0">
+                  <Image src={selectedItem.imageUrl} alt={selectedItem.name} className="object-contain" width={48} height={48} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
@@ -385,10 +388,11 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                     </h3>
                     {selectedItem.rarity && (
                       <span
-                        className="text-[8px] font-black uppercase px-1.5 py-0.5 rounded-md"
+                        className="text-[8px] font-black uppercase px-2 py-0.5 rounded-lg border shadow-xs"
                         style={{
                           backgroundColor: RARITY_CONFIG[selectedItem.rarity as GachaRarity].bgColor,
                           color: RARITY_CONFIG[selectedItem.rarity as GachaRarity].textColor,
+                          borderColor: RARITY_CONFIG[selectedItem.rarity as GachaRarity].color + '40',
                         }}
                       >
                         {selectedItem.rarity}
@@ -403,8 +407,8 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
               </div>
 
               {/* Effects details */}
-              <div className="bg-[#FAF6EE] border border-[#8C6D58]/20 p-2.5 rounded-xl text-[10px] md:text-xs font-bold text-[#8C6D58] flex items-center gap-1.5">
-                <Sparkles size={12} className="text-[#D4AF37] flex-shrink-0" />
+              <div className="bg-[#FFF5F7] border border-[#FFD2CC] p-2.5 rounded-xl text-[10px] md:text-xs font-bold text-[#E05375] flex items-center gap-2 shadow-inner">
+                <Sparkles size={13} className="text-[#FFA8B6] flex-shrink-0 animate-pulse" />
                 <span>{selectedType === "shard" ? `Nhận 1 mảnh ghép. Thu thập đủ ${selectedItem.shardTarget} mảnh để mở khóa vật phẩm này.` : "Cấp vĩnh viễn vật phẩm."}</span>
               </div>
 
@@ -415,22 +419,22 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
                     setSelectedItem(null);
                     setSelectedType(null);
                   }}
-                  className="flex-1 py-2 text-zinc-500 bg-zinc-100 hover:bg-zinc-200 border-b-2 border-zinc-300 font-black rounded-xl text-xs active:translate-y-0.5 cursor-pointer shadow-xs text-center"
+                  className="flex-1 py-2.5 text-zinc-500 bg-zinc-100 hover:bg-zinc-200 border-b-4 border-zinc-300 font-black rounded-xl text-xs active:border-b-0 active:translate-y-1 transition-all cursor-pointer shadow-xs text-center"
                 >
                   HUỶ
                 </button>
 
                 {selectedType === "exclusive" && isItemOwned(selectedItem.id) ? (
-                  <div className="flex-[1.5] py-2 text-center text-xs font-black text-[#06D6A0] bg-[#06D6A0]/10 rounded-xl border border-[#06D6A0]">
+                  <div className="flex-[1.5] py-2.5 text-center text-xs font-black text-[#06D6A0] bg-[#06D6A0]/10 rounded-xl border-b-4 border-[#05b084] border">
                     ĐÃ SỞ HỮU VẬT PHẨM
                   </div>
                 ) : (
                   <button
                     onClick={handleBuy}
-                    className="flex-[1.5] py-2 bg-[#D4AF37] border-b-2 border-[#9E7815] text-white font-black rounded-xl text-xs active:translate-y-0.5 cursor-pointer shadow-xs flex items-center justify-center gap-1 hover:brightness-105"
+                    className="flex-[1.5] py-2.5 bg-[#FF85A1] hover:bg-[#FF9FB6] border-b-4 border-[#D84A70] text-white font-black rounded-xl text-xs active:border-b-0 active:translate-y-1 transition-all cursor-pointer shadow-sm flex items-center justify-center gap-1.5 hover:brightness-105"
                   >
                     <span className="flex items-center gap-1">
-                      <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-4 h-4 object-contain" /> {selectedType === "shard" ? (selectedItem.shardPrice !== undefined ? selectedItem.shardPrice : SHARD_PRICES[selectedItem.rarity]) : selectedItem.cost}
+                      <CoinIcon /> {selectedType === "shard" ? (selectedItem.shardPrice !== undefined ? selectedItem.shardPrice : SHARD_PRICES[selectedItem.rarity]) : selectedItem.cost}
                     </span>
                   </button>
                 )}

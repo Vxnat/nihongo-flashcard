@@ -7,6 +7,7 @@ export function CoinIcon({ size = 14 }: { size?: number }) {
       alt="xu"
       width={size}
       height={size}
+      style={{ height: "auto" }}
       className="inline-block align-middle"
     />
   );

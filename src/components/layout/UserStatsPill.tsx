@@ -4,6 +4,7 @@ import React from "react";
 import { useUserStats } from "@/hooks/common/useUserStats";
 import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
+import { CoinIcon } from "../common/CoinIcon";
 
 interface UserStatsPillProps {
   onTabChange: (tab: "journey" | "custom" | "shop" | "room" | "profile") => void;
@@ -37,15 +38,7 @@ export function UserStatsPill({ onTabChange }: UserStatsPillProps) {
 
       {/* 2. Coins */}
       <div className="flex items-center gap-1.5">
-        <img
-          src="/images/ui/shiba-room/golden_shiba_coin.png"
-          alt="Coins"
-          className="w-5 h-5 object-contain"
-          onError={(e) => {
-            // Fallback to lucide icon if image fails
-            e.currentTarget.style.display = "none";
-          }}
-        />
+        <CoinIcon />
         <span className="font-rounded font-black text-sm text-amber-700/80">
           {stats.coins || 0}
         </span>

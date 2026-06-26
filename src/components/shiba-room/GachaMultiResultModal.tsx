@@ -7,6 +7,7 @@ import { Star, Volume2 } from "lucide-react";
 import { RARITY_CONFIG, GachaRarity, GachaItem, rarityOrder, PASTEL_RARITY_BG } from "@/constants/gachaPool";
 import { playAudioUrl } from "@/utils/tts";
 import Image from "next/image";
+import { CoinIcon } from "../common/CoinIcon";
 
 export interface GachaResultItem {
   item: GachaItem;
@@ -325,11 +326,7 @@ function ResultCard({
                     style={{ fontFamily: "var(--font-cherry)" }}
                   >
                     +{item.duplicateFur}{" "}
-                    <Image
-                      src="/images/ui/shiba-room/golden_shiba_coin.png"
-                      alt="Shiba Coin"
-                      className="w-3 h-3 object-contain"
-                    />
+                    <CoinIcon />
                   </p>
                 )}
               </div>

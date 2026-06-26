@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Search, Plus, Edit3, Trash2, Save, RotateCcw } from "lucide-react";
 import Image from "next/image";
+import { CoinIcon } from "../common/CoinIcon";
 
 const TYPE_WEIGHT_LABELS: Record<string, { label: string; emoji: string; color: string }> = {
   theme: { label: "Theme", emoji: "🎨", color: "#8B5CF6" },
@@ -336,7 +337,7 @@ export function GachaShopTab({
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-xs font-black text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg flex items-center gap-1">
-                    <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                    <CoinIcon /> {item.cost}
                   </span>
                   <button
                     onClick={() => handleEditShopItem(item, "exclusive")}
@@ -382,7 +383,7 @@ export function GachaShopTab({
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-xs font-black text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg flex items-center gap-1">
-                    <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-3.5 h-3.5 object-contain" /> {item.cost}
+                    <CoinIcon /> {item.cost}
                   </span>
                   <button
                     onClick={() => handleEditShopItem(item, "consumable")}

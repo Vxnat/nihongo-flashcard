@@ -12,6 +12,7 @@ import { FurShopModal } from "./FurShopModal";
 import { ShibaLoginCard } from "@/components/common/ShibaLoginCard";
 import { playAudioUrl } from "@/utils/tts";
 import Image from "next/image";
+import { CoinIcon } from "../common/CoinIcon";
 
 // Capsule nhựa 2 màu kiểu gachapon thật: pastel mềm mại ngọt ngào
 const EGG_COLORS = [
@@ -104,7 +105,7 @@ export function GachaShop() {
           {/* Hộp hiển thị Shiba Coin */}
           <div className="flex-1 bg-gradient-to-r from-white to-[#FFFDF5] border border-amber-100/90 pl-2.5 pr-4 py-2 rounded-2xl shadow-[0_4px_16px_rgba(245,158,11,0.06)] flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center shadow-inner shrink-0">
-              <Image src="/images/ui/shiba-room/golden_shiba_coin.png" alt="Shiba Coin" className="w-6 h-6 object-contain" />
+              <CoinIcon />
             </div>
             <div className="flex flex-col min-w-0">
               <span className="font-black text-amber-500 text-[9px] uppercase tracking-wider leading-none mb-1"

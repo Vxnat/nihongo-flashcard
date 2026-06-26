@@ -7,6 +7,7 @@ import { FlashcardData } from "@/types/flashcard";
 import { SystemDeck } from "@/types/flashcard";
 import { useRhythmGame, RhythmNote } from "@/hooks/games/rhythm/useRhythmGame";
 import Image from "next/image";
+import { CoinIcon } from "@/components/common/CoinIcon";
 
 interface RhythmGameProps {
   cards: FlashcardData[];
@@ -121,7 +122,7 @@ export function RhythmGame({
 
   return (
     <div className="w-full max-w-lg mx-auto h-[95vh] min-h-[600px] bg-gradient-to-b from-[#FFF8F0] via-[#FFE8D6] to-[#FFDAB9] rounded-[3rem] border-4 border-[#FFE2D1] shadow-[0_12px_40px_rgba(255,159,28,0.15)] overflow-hidden relative flex flex-col justify-between p-4 select-none">
-      
+
       {/* CSS Styles injection for Spotlights & Club visual effects */}
       <style jsx global>{`
         @keyframes sweep-left {
@@ -324,11 +325,10 @@ export function RhythmGame({
 
           {/* PLAYFIELD (4 LANES) */}
           <div
-            className={`flex-1 w-full border-4 rounded-[2.5rem] relative overflow-hidden flex shadow-inner transition-colors duration-500 ${
-              isFeverMode
+            className={`flex-1 w-full border-4 rounded-[2.5rem] relative overflow-hidden flex shadow-inner transition-colors duration-500 ${isFeverMode
                 ? "bg-[#0B0813] border-yellow-400 shadow-[0_0_20px_rgba(255,209,102,0.2)]"
                 : "bg-white/70 border-[#FFE2D1]"
-            }`}
+              }`}
           >
             {/* Spotlights (Only visible in Fever Mode) */}
             {isFeverMode && (
@@ -357,15 +357,13 @@ export function RhythmGame({
               <div
                 key={laneIdx}
                 onClick={() => handleTapLane(laneIdx)}
-                className={`flex-1 h-full border-r-2 border-dashed last:border-r-0 relative flex flex-col justify-end items-center cursor-pointer active:bg-[#FFE2D1]/20 transition-colors ${
-                  isFeverMode ? "border-[#FFCC80]/15" : "border-[#FFE2D1]"
-                }`}
+                className={`flex-1 h-full border-r-2 border-dashed last:border-r-0 relative flex flex-col justify-end items-center cursor-pointer active:bg-[#FFE2D1]/20 transition-colors ${isFeverMode ? "border-[#FFCC80]/15" : "border-[#FFE2D1]"
+                  }`}
               >
                 {/* Lane ID Key Helper */}
                 <div
-                  className={`absolute bottom-4 font-black font-rounded text-xs ${
-                    isFeverMode ? "text-yellow-400/20" : "text-amber-700/30"
-                  }`}
+                  className={`absolute bottom-4 font-black font-rounded text-xs ${isFeverMode ? "text-yellow-400/20" : "text-amber-700/30"
+                    }`}
                 >
                   {["A", "S", "D", "F"][laneIdx]}
                 </div>
@@ -402,23 +400,22 @@ export function RhythmGame({
                     <motion.div
                       key={note.id}
                       style={{ top: `${note.y}%` }}
-                      className={`absolute w-12 h-12 rounded-full border-2 flex items-center justify-center z-10 transition-transform ${
-                        note.hit
+                      className={`absolute w-12 h-12 rounded-full border-2 flex items-center justify-center z-10 transition-transform ${note.hit
                           ? "scale-155 opacity-0 duration-300"
                           : note.missed
-                          ? "border-red-300 bg-red-50 text-red-400"
-                          : isFeverMode
-                          ? "border-yellow-400 bg-yellow-100 shadow-[0_0_15px_#f59e0b] text-yellow-600 scale-110"
-                          : note.type === "meat"
-                          ? "border-red-400 bg-red-100 text-red-700 shadow-[0_0_8px_rgba(239,68,68,0.4)]"
-                          : note.type === "shield"
-                          ? "border-cyan-400 bg-cyan-100 text-cyan-700 shadow-[0_0_8px_rgba(6,182,212,0.4)]"
-                          : note.type === "coin"
-                          ? "border-amber-400 bg-amber-100 text-amber-700 shadow-[0_0_8px_rgba(245,158,11,0.4)]"
-                          : note.type === "oni"
-                          ? "border-purple-400 bg-purple-100 text-purple-700"
-                          : "border-[#FF9F1C] bg-[#FFF8F0] text-amber-900 shadow-sm"
-                      }`}
+                            ? "border-red-300 bg-red-50 text-red-400"
+                            : isFeverMode
+                              ? "border-yellow-400 bg-yellow-100 shadow-[0_0_15px_#f59e0b] text-yellow-600 scale-110"
+                              : note.type === "meat"
+                                ? "border-red-400 bg-red-100 text-red-700 shadow-[0_0_8px_rgba(239,68,68,0.4)]"
+                                : note.type === "shield"
+                                  ? "border-cyan-400 bg-cyan-100 text-cyan-700 shadow-[0_0_8px_rgba(6,182,212,0.4)]"
+                                  : note.type === "coin"
+                                    ? "border-amber-400 bg-amber-100 text-amber-700 shadow-[0_0_8px_rgba(245,158,11,0.4)]"
+                                    : note.type === "oni"
+                                      ? "border-purple-400 bg-purple-100 text-purple-700"
+                                      : "border-[#FF9F1C] bg-[#FFF8F0] text-amber-900 shadow-sm"
+                        }`}
                     >
                       <span className="font-rounded font-black text-base select-none">
                         {isFeverMode && note.type === "normal" ? "🌟" : note.char}
@@ -430,16 +427,14 @@ export function RhythmGame({
 
             {/* Hit Line (Marshmallow style) */}
             <div
-              className={`absolute bottom-[10%] left-0 right-0 h-6 border-y-2 pointer-events-none z-10 flex items-center justify-center transition-colors duration-500 ${
-                isFeverMode
+              className={`absolute bottom-[10%] left-0 right-0 h-6 border-y-2 pointer-events-none z-10 flex items-center justify-center transition-colors duration-500 ${isFeverMode
                   ? "bg-yellow-400/20 border-yellow-400 shadow-[0_0_12px_#f59e0b]"
                   : "bg-[#FF9F1C]/25 border-[#FF9F1C]"
-              }`}
+                }`}
             >
               <span
-                className={`text-[9px] font-black uppercase tracking-wider ${
-                  isFeverMode ? "text-yellow-400" : "text-[#FF9F1C]"
-                }`}
+                className={`text-[9px] font-black uppercase tracking-wider ${isFeverMode ? "text-yellow-400" : "text-[#FF9F1C]"
+                  }`}
               >
                 Vạch Nhịp
               </span>
@@ -506,12 +501,7 @@ export function RhythmGame({
               <span>Xu kiếm được:</span>
               <span className="text-lg font-black text-[#FF9F1C] flex items-center gap-1">
                 +{rewards.coins + earnedCoins}
-                <Image
-                  src="/images/ui/shiba-room/golden_shiba_coin.png"
-                  alt="xu"
-                  width={14}
-                  height={14}
-                />
+                <CoinIcon />
               </span>
             </div>
           </div>
@@ -621,7 +611,7 @@ export function RhythmGame({
           </motion.div>
         )}
       </AnimatePresence>
-      
+
     </div>
   );
 }
