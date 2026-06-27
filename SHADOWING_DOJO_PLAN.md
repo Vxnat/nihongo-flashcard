@@ -22,11 +22,13 @@ Mở rộng hệ thống Gamification với tính năng luyện phát âm (Shado
 ### 2. Helper Chấm Điểm: `calculateSimilarity`
 - **Vị trí:** `src/utils/stringUtils.ts`
 - **Mục đích:** So sánh chuỗi người dùng đọc (`transcript`) với câu mẫu gốc.
-- **Thuật toán đề xuất:** Khoảng cách Levenshtein (Levenshtein Distance).
-- **Logic:** 
-  - Cần loại bỏ dấu câu (chấm, phẩy, hỏi chấm) và khoảng trắng trước khi so sánh.
-  - Tính toán số bước biến đổi chuỗi A thành chuỗi B -> Trả về tỷ lệ phần trăm (0 - 100%).
-  - Cài đặt thư viện: `npm install fast-levenshtein` hoặc tự viết hàm thuần.
+- **Thuật toán tối ưu hóa cho Tiếng Nhật**: Chuyển đổi cả hai chuỗi về dạng Romaji không dấu để tránh lỗi Kanji/Kana bất đồng nhất, sau đó dùng khoảng cách Levenshtein (Levenshtein Distance).
+- **Thư viện cài đặt**: `npm install wanakana fast-levenshtein` và `npm install --save-dev @types/fast-levenshtein` (nếu dùng TypeScript).
+- **Logic thực hiện**: 
+  - Bước 1: Sử dụng `wanakana.toRomaji(text)` để chuyển cả câu mẫu gốc và chuỗi nhận diện `transcript` sang Romaji.
+  - Bước 2: Loại bỏ tất cả dấu câu (chấm, phẩy, hỏi chấm, ngoặc kép...) và khoảng trắng trên chuỗi Romaji mới.
+  - Bước 3: Tính toán khoảng cách Levenshtein giữa 2 chuỗi Romaji đã làm sạch.
+  - Bước 4: Quy đổi ra tỷ lệ phần trăm khớp: `Similarity = (1 - distance / Math.max(lenA, lenB)) * 100`.
 
 ---
 
@@ -34,7 +36,7 @@ Mở rộng hệ thống Gamification với tính năng luyện phát âm (Shado
 
 ### 1. File dữ liệu Shadowing
 - **Vị trí:** `public/data/shadowing/sh_n5_01.json` (Ví dụ)
-- **Cấu trúc:**
+- **Cấu trúc (Bổ sung trường text_romaji để so khớp):**
   ```json
   {
     "meta": { "id": "sh_n5_01", "title": "Luyện âm N5 - Bài 1" },
@@ -42,6 +44,8 @@ Mở rộng hệ thống Gamification với tính năng luyện phát âm (Shado
       {
         "id": "s_01",
         "text_jp": "これはペンです。",
+        "text_kana": "これはぺんです。",
+        "text_romaji": "kore wa pen desu",
         "text_vi": "Đây là cây bút.",
         "audio_url": "/audio/shadowing/kore_wa_pen_desu.mp3"
       }
@@ -50,55 +54,112 @@ Mở rộng hệ thống Gamification với tính năng luyện phát âm (Shado
   ```
 
 ### 2. Tích hợp vào Lộ trình (`system_decks.json`)
-- Thêm Node với `type: "shadowing"` để hiển thị trên bản đồ (icon Micro).
-- Thêm Node với `type: "boss_voice"` (hoặc kết hợp vào type "boss" hiện tại).
+
+Chúng ta sẽ định nghĩa hai loại nút (Node) mới trên bản đồ hành trình:
+
+#### A. Node Luyện âm thường (`minigame_shadowing`):
+```json
+{
+  "id": "mg_shadowing_n5_01",
+  "type": "minigame_shadowing",
+  "title": "Luyện Phát Âm: Chào Hỏi",
+  "description": "Bật micro và đọc to câu tiếng Nhật cùng Shiba!",
+  "level": "N5",
+  "chapter": 1,
+  "order": 2.8,
+  "prerequisite": "sys_n5_minna_02",
+  "rewards": {
+    "coins": 20,
+    "exp": 50
+  },
+  "totalCards": 0,
+  "shadowingDataPath": "/data/shadowing/sh_n5_01.json"
+}
+```
+
+#### B. Node Đánh Boss Giọng Nói (`boss_voice`):
+```json
+{
+  "id": "sys_n5_boss_voice_01",
+  "type": "boss_voice",
+  "title": "[Ải Giọng Nói]: Hộ Vệ Tengu",
+  "description": "Đọc to thần chú tiếng Nhật chuẩn xác để phá giáp Tengu!",
+  "level": "N5",
+  "chapter": 1,
+  "order": 5.58,
+  "prerequisite": "sys_n5_boss_rpg_01",
+  "rewards": {
+    "coins": 150,
+    "exp": 120
+  },
+  "totalCards": 0,
+  "targetDeckIds": [
+    "sys_n5_minna_01",
+    "sys_n5_minna_02",
+    "sys_n5_minna_03"
+  ]
+}
+```
 
 ---
 
-## 🎨 PHẦN 3: KIẾN TRÚC UI COMPONENTS
+## 🎨 PHẦN 3: KIẾN TRÚC UI COMPONENTS (PHONG CÁCH GLASSMORPHISM & PASTEL GRADIENTS)
 
-### 1. `MicrophoneButton.tsx`
-- Nút bấm trung tâm cho mọi tương tác giọng nói.
-- **Trạng thái UI (Dùng framer-motion):**
-  - *Idle:* Nút xám/xanh bình thường.
-  - *Listening:* Nút đỏ, có vòng tròn (ring) nhấp nháy tỏa ra xung quanh báo hiệu đang thu âm.
-  - *Processing:* Icon xoay (spinner) chờ API phân tích.
+Toàn bộ phân hệ sẽ được thiết kế theo trường phái **Bóng kính (Glassmorphism)** kết hợp ánh sáng **Pastel Gradient** chuyển động huyền ảo để mang lại vẻ ngoài cao cấp và thu hút.
 
-### 2. `ShadowingChallenge.tsx` (Màn chơi luyện âm thường)
-- Hiển thị thẻ chứa: `text_jp` (chữ lớn), `text_vi` (nghĩa).
-- Nút loa (🔊) để phát `audio_url`.
-- Khu vực chứa `MicrophoneButton`.
-- **Hệ thống Mạng (HP):** Có 3 Mạng hiển thị bằng hình bé Shiba (`<img src="/images/shiba_heart_placeholder.png" />`). 
-- **Luồng:** Nghe mẫu -> Bấm giữ/Click Mic -> Đọc -> Chấm điểm -> Hiện popup `PronunciationResultModal` (Perfect/Great/Miss). Nếu Miss (<80%) trừ 1 Mạng Shiba. Hết 3 mạng -> Game Over. Qua ải -> Cộng xu.
-
-### 3. `PronunciationResultModal.tsx`
-- Pop-up hiện kết quả chấm điểm.
-- Hiển thị: % chính xác, Câu gốc, Câu bạn đọc (Highlight màu đỏ các từ sai nếu có thể làm advanced).
-- Hiệu ứng `canvas-confetti` nếu Perfect.
+### 🌟 Hệ thống CSS Utility đề xuất:
+- **Lớp kính nền (Glass container)**: `bg-white/20 backdrop-blur-lg border border-white/40 shadow-[0_8px_32px_0_rgba(255,182,193,0.15)]`
+- **Pastel Gradient Aurora (Dành cho nền)**: `bg-gradient-to-tr from-[#E8D7FF]/30 to-[#C4D9FF]/30`
+- **Pastel Gradient Success (Perfect)**: `bg-gradient-to-tr from-[#BFFCC6] to-[#DBFFD6]`
+- **Pastel Gradient Warning (Good/Great)**: `bg-gradient-to-tr from-[#FFB7B2] to-[#FFDAC1]`
 
 ---
 
-## 🐉 PHẦN 4: BOSS FIGHT BẰNG GIỌNG NÓI ("HÉT VÀO MẶT BOSS")
+### 1. Nút Micro Pha Lê (`MicrophoneButton.tsx`)
+Nút tròn được thiết kế như một viên ngọc pha lê 3D bóng bẩy.
+*   **Trạng thái UI (Dùng framer-motion):**
+    *   *Mặt kính phản chiếu*: Sử dụng phần tử giả (`before:absolute before:inset-x-2 before:top-1 before:h-4 before:bg-gradient-to-b before:from-white/40 before:to-transparent before:rounded-full`) tạo vệt sáng cong của thủy tinh.
+    *   *Idle (Chờ)*: Chứa gradient tĩnh hồng-tím oải hương nhạt (`from-[#FFA6C9]/40 to-[#C4D9FF]/40`).
+    *   *Listening (Thu âm)*: Gradient bên trong rực sáng và chạy hoạt ảnh xoay nhẹ (`from-[#FF85A1] via-[#FFCCD5] to-[#B5FFFC]`). Đồng thời xuất hiện các vòng tròn lan tỏa dạng **vòng thủy tinh mờ** (`border border-white/20 backdrop-blur-xs`) nở to dần và tan biến bằng `framer-motion`.
+    *   *Processing (Xử lý)*: Kích hoạt hiệu ứng quét sáng (Shimmer) chạy lướt ngang qua mặt kính.
 
-Thay vì sử dụng input gõ phím (`Typing Boss`), nâng cấp component `BossFight.tsx` hiện tại.
+### 2. Thẻ Luyện Âm Thủy Tinh (`ShadowingChallenge.tsx`)
+*   **Aesthetic**:
+    *   Khung hộp bento bằng kính mờ: `bg-white/25 backdrop-blur-md border border-white/30 rounded-[2.5rem] p-6 shadow-lg`.
+    *   Chữ Kanji lớn màu xám mực đậm tương phản (`text-[#1E293B]`) kết hợp Furigana nhỏ phía trên.
+    *   **Thanh Sóng Âm (Sound Wave)**: 5-7 vạch sóng âm đứng bằng kính màu pastel phát sáng nhấp nhô ngẫu nhiên biểu thị giọng nói đang được ghi nhận.
+    *   **Hệ thống Mạng (HP)**: 3 chiếc bong bóng hình đầu Shiba thủy tinh màu hồng phấn. Khi mất mạng, bong bóng sẽ lắc lư mạnh, phình to ra và "bể" thành các đốm hạt nhỏ li ti rồi mờ dần về `opacity: 0`.
+*   **Luồng hoạt động**: Nghe mẫu -> Giữ/Bấm nút Micro Pha Lê -> Đọc -> Chấm điểm bằng Romaji -> Hiện modal kết quả.
 
-### 1. Giao diện (UI)
-- Vẫn giữ thanh máu Boss, Avatar Boss (có animation nhún nhảy/thở).
-- **Khu vực vũ khí:** Thay ô nhập text bằng `MicrophoneButton` siêu to khổng lồ.
-- **Câu thần chú:** Hiển thị rõ ràng câu tiếng Nhật cần đọc. Kèm thanh tiến trình (thời gian đếm ngược để tung chiêu).
+### 3. Hộp Thoại Kết Quả Kính Mờ (`PronunciationResultModal.tsx`)
+Khi hiển thị, toàn bộ màn hình phía sau sẽ bị làm mờ sâu (`backdrop-blur-2xl`).
+*   **Giao diện**:
+    *   Hộp thoại kính mờ lớn, bo góc tròn 30px.
+    *   Phía sau hộp thoại tỏa ra một vầng hào quang (Glow) mềm màu pastel tùy theo kết quả:
+        *   *Perfect (90-100%)*: Hào quang xanh ngọc rực rỡ + Pháo hoa giấy cầu vồng rơi đầy màn hình.
+        *   *Great/Good (70-89%)*: Hào quang vàng cam ấm áp.
+        *   *Miss (<70%)*: Hào quang xanh băng tuyết (Ice Blue) buồn nhẹ nhưng không gây căng thẳng.
+    *   **Highlight Từ Vựng**:
+        *   Những từ phát âm đúng được bọc trong các **viên nang thủy tinh xanh lá** (`bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 rounded-full px-2.5 py-0.5`).
+        *   Những từ phát âm sai hoặc bị sót được bọc trong các **viên nang thủy tinh đỏ/hồng** (`bg-rose-500/10 border border-rose-500/25 text-rose-500 rounded-full px-2.5 py-0.5`).
 
-### 2. Gameplay Logic
-- Boss chuẩn bị tấn công (hiện thanh đếm ngược 10s).
-- User phải bấm Mic và đọc đúng câu thần chú.
-- Khi có `transcript`:
-  - Tính `similarity = calculateSimilarity(transcript, spell)`.
-  - **Nếu > 80%:** 
-    - Gửi event Tấn Công.
-    - Kích hoạt animation chớp sáng, chém/bắn chưởng vào Boss (`framer-motion` x/y translation).
-    - Trừ máu Boss. Đổi câu thần chú mới.
-  - **Nếu < 80%:** 
-    - Báo "Miss!" (Trượt). Boss hiện icon cười nhạo. User mất thời gian đọc lại.
-  - **Nếu Hết giờ:** Boss tấn công, User trừ máu/mất lượt.
+---
+
+## 🐉 PHẦN 4: BOSS FIGHT BẰNG GIỌNG NÓI (PHÁP TRẬN BÓNG KÍNH)
+
+Chuyển đổi giao diện Đánh Boss bằng Giọng Nói thành một trận chiến ma pháp giả tưởng.
+
+### 1. Giao diện Đấu Trường
+*   Phông nền đền cổ ban đêm nhuốm màu tím Indigo huyền bí (`bg-indigo-950/90`) với các chấm đom đóm phát sáng bay lơ lửng.
+*   **Thanh máu của Boss**: Được thiết kế là một **ống nghiệm thủy tinh nằm ngang** chứa chất lỏng ma thuật màu hồng đỏ gradient chuyển động gợn sóng (sử dụng SVG wave). Khi mất máu, chất lỏng sẽ tụt dần kèm bọt khí sủi lên.
+*   **Vòng Tròn Pháp Trận (Incantation Circle)**: 2 vòng tròn hoa văn cổ trang Nhật Bản mảnh phát sáng vàng neon xoay ngược chiều nhau đằng sau nút Micro Pha Lê, tự động khép kín vòng tròn viền (stroke-dashoffset) biểu thị thời gian thu âm.
+
+### 2. Logic Gameplay
+*   Boss chuẩn bị chiêu thức (hiện đếm ngược 10s tại thanh thời gian kính mờ).
+*   Người chơi nhấn Micro và đọc to câu thần chú hiển thị trên màn hình cuộn thư pháp.
+*   **Kết quả**:
+    *   *Đọc đúng*: Một dòng chữ Kanji neon sáng rực bay vút từ Micro người chơi đập thẳng vào Boss, trừ HP Boss kèm rung lắc màn hình.
+    *   *Đọc sai/Hết giờ*: Pháp trận vỡ vụn, Boss tung chém chớp sáng đỏ vào Shiba khiến Shiba bị trừ máu/giáp.
 
 ---
 
