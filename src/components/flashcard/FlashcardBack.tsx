@@ -14,7 +14,7 @@ export function FlashcardBack({
 }: FlashcardBackProps) {
   if (isZen) {
     return (
-      <div className="w-full max-w-md h-[400px] bg-white/10 backdrop-blur-md rounded-2xl border-2 border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] relative flex flex-col p-6 transition-all duration-500">
+      <div className="w-full max-w-md h-[400px] bg-gradient-to-br from-indigo-950/40 via-purple-950/35 to-pink-950/40 backdrop-blur-md rounded-2xl border-2 border-pink-500/20 shadow-[0_8px_32px_0_rgba(236,72,153,0.15)] relative flex flex-col p-6 transition-all duration-500">
         {/* KHỐI 1: HEADER (Cách đọc & Ý nghĩa) */}
         <div className="text-center space-y-3 flex-shrink-0 flex flex-col items-center">
           {/* Chữ Kana siêu bự phát sáng nhẹ */}
@@ -63,7 +63,7 @@ export function FlashcardBack({
   }
 
   return (
-    <div className="w-full max-w-md h-[400px] flex flex-row items-center justify-between p-5 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-white/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] relative overflow-hidden group transition-all duration-300">
+    <div className="w-full max-w-md h-[400px] flex flex-row items-center justify-between p-5 bg-gradient-to-br from-[#FFEAF2]/80 via-white/60 to-[#E6FAF7]/80 backdrop-blur-md rounded-[2.5rem] border border-white/60 shadow-[0_8px_32px_0_rgba(255,112,150,0.08)] relative overflow-hidden group transition-all duration-300">
       {/* Trang trí góc lấp lánh như hình ảnh */}
       <span className="absolute top-8 left-4 text-2xl select-none opacity-80 animate-bounce">🌸</span>
       <span className="absolute top-4 right-1/2 text-lg select-none opacity-40 text-amber-400">⭐</span>
@@ -103,12 +103,12 @@ export function FlashcardBack({
         {/* Example inline */}
         {card.example_jp && (
           <div className="bg-white/50 border border-teal-100/50 rounded-xl p-2.5 w-full text-left">
-            <p className="text-[11px] font-bold text-teal-900 leading-normal">
+            <p className="text-md font-bold text-teal-900 leading-normal">
               {card.example_jp_formatted
                 ? parseFurigana(card.example_jp_formatted, showFurigana)
                 : card.example_jp}
             </p>
-            <p className="text-[9px] font-rounded font-bold text-[#FF7096] leading-tight mt-1">
+            <p className="text-sm font-rounded font-bold text-[#FF7096] leading-tight mt-1">
               {card.example_vi}
             </p>
           </div>

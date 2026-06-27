@@ -222,12 +222,24 @@ function ResultCard({
               </div>
             )}
             <div
-              className="w-full h-full rounded-[2rem] flex flex-col items-center justify-between p-2 relative overflow-hidden border-4 border-white shadow-md"
+              className="w-full h-full rounded-[2rem] flex flex-col items-center justify-between p-2 relative overflow-hidden border-4 border-white shadow-md animate-fade-in"
               style={{
                 background: PASTEL_RARITY_BG[item.rarity],
                 boxShadow: `0 0 15px ${rarityConfig.glowColor}`,
               }}
             >
+              {/* Type Badge Tag (Top Corner) */}
+              <div className="absolute top-2.5 left-2.5 z-20 bg-white/80 backdrop-blur-xs border border-white/60 px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                <img
+                  src={item.isFullItem ? "/images/ui/gacha/gacha_full_icon.png" : "/images/ui/gacha/gacha_shard_icon.png"}
+                  alt={item.isFullItem ? "Vật phẩm" : "Mảnh"}
+                  className="w-3 h-3 object-contain"
+                />
+                <span className="text-[7px] font-black text-slate-700 leading-none uppercase tracking-wide">
+                  {item.isFullItem ? "Vật phẩm" : "Mảnh"}
+                </span>
+              </div>
+
               {/* Inner Border */}
               <div
                 className="absolute inset-1.5 rounded-[1.5rem] border-2 border-solid pointer-events-none z-0"
@@ -318,6 +330,38 @@ function ResultCard({
                 >
                   {item.item.name}
                 </p>
+
+                {/* Mảnh ghép progress bar */}
+                {!item.isFullItem && (
+                  <div className="w-[85%] mx-auto mt-0.5 mb-1.5 flex flex-col items-center gap-1 font-sans">
+                    {item.unlocked ? (
+                      <div className="flex items-center gap-1 bg-emerald-100/90 border border-emerald-200 px-2 py-0.5 rounded-full shadow-xs">
+                        <img src="/images/ui/gacha/gacha_full_icon.png" alt="Success" className="w-3.5 h-3.5 object-contain" />
+                        <span className="text-[8px] font-black text-emerald-700 uppercase tracking-wide" style={{ fontSize: "7px" }}>Ghép thành công!</span>
+                      </div>
+                    ) : (
+                      <div className="w-full flex flex-col items-center gap-0.5">
+                        {/* Thin progress bar */}
+                        <div className="w-full bg-zinc-200/50 h-1.5 rounded-full overflow-hidden border border-zinc-300/20">
+                          <div
+                            className="h-full rounded-full transition-all duration-500"
+                            style={{
+                              width: `${Math.min(100, (item.shardsNow / item.item.shardTarget) * 100)}%`,
+                              backgroundColor: rarityConfig.color,
+                            }}
+                          />
+                        </div>
+                        {/* Shard count indicator */}
+                        <div className="flex items-center gap-0.5 mt-0.5">
+                          <img src="/images/ui/gacha/gacha_shard_icon.png" alt="Shard" className="w-2.5 h-2.5 object-contain" />
+                          <span className="text-[7.5px] font-bold text-zinc-500 font-sans">
+                            {item.shardsNow} / {item.item.shardTarget}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Vật phẩm trùng (duplicate) */}
                 {isDuplicate && (

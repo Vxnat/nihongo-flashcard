@@ -20,10 +20,26 @@ export const createGachaQuestSlice: StateCreator<
   activeStoryId: null,
   activeMinigameId: null,
   activeKanjiPracticeDeck: null,
+  activeBossRPGId: null,
+  shibaSessionHP: 100,
+  shibaSessionShield: 0,
+  shibaSessionBuffs: [],
+  miniMapProgress: [],
 
   setActiveStoryId: (id) => set({ activeStoryId: id }),
   setActiveMinigameId: (id) => set({ activeMinigameId: id }),
   setActiveKanjiPracticeDeck: (deck) => set({ activeKanjiPracticeDeck: deck }),
+  setActiveBossRPGId: (id) => set({ activeBossRPGId: id }),
+  setShibaSessionHP: (hp) => set({ shibaSessionHP: hp }),
+  setShibaSessionShield: (shield) => set({ shibaSessionShield: shield }),
+  setShibaSessionBuffs: (buffs) => set({ shibaSessionBuffs: buffs }),
+  setMiniMapProgress: (progress) => set({ miniMapProgress: progress }),
+  resetMiniMapSession: () => set({ 
+    shibaSessionHP: 100, 
+    shibaSessionShield: 0, 
+    shibaSessionBuffs: [], 
+    miniMapProgress: [] 
+  }),
 
   updateQuestProgress: async (questId, value, isAbsolute = false) => {
     const state = get();

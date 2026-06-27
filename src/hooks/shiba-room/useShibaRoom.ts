@@ -434,6 +434,7 @@ export function useShibaRoom() {
 
   // Kiểm tra vật phẩm đã được mở khóa/sở hữu chưa
   const isItemUnlocked = (item: GachaItem) => {
+    if (!item) return false;
     if (!user) {
       // Chế độ demo: coi như mở khóa các vật phẩm mặc định đang được trang bị
       if (item.type === "furniture") {
@@ -455,6 +456,7 @@ export function useShibaRoom() {
 
   // Kiểm tra vật phẩm có đang được trang bị không
   const isItemEquipped = (item: GachaItem) => {
+    if (!item) return false;
     if (item.type === "furniture") {
       const slot = item.furnitureSlot;
       return slot ? userStats.equippedFurniture?.[slot] === item.id : false;

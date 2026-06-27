@@ -17,6 +17,7 @@ import { KanjiPractice } from "@/components/games/kanji-dojo/KanjiPractice";
 import { TypingRushGame } from "@/components/games/typing-rush/TypingRushGame";
 import { FillBlanksGame } from "@/components/games/fill-blanks/FillBlanksGame";
 import { RhythmGame } from "@/components/games/rhythm/RhythmGame";
+import { BossRPGMiniMap } from "@/components/roadmap/BossRPGMiniMap";
 import { SakuraEffect, DivineShibaEffect } from "@/components/common/ThemeEffects";
 import { ProfileTab } from "@/components/layout/ProfileTab";
 import { useAppStore } from "@/store/useAppStore";
@@ -41,6 +42,8 @@ export default function Home() {
   const userStats = useAppStore((state) => state.userStats);
   const maxExp = Math.round(100 * Math.pow(userStats?.level || 1, 1.3));
   const expPercentage = Math.min(100, ((userStats?.exp || 0) / maxExp) * 100);
+  const activeBossRPGId = useAppStore((state) => state.activeBossRPGId);
+  const setActiveBossRPGId = useAppStore((state) => state.setActiveBossRPGId);
 
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
   const lastScrollY = useRef(0);
@@ -268,7 +271,7 @@ export default function Home() {
       </motion.header>
 
       {/* KHU VỰC NỘI DUNG CUỘN CHÍNH */}
-      <main className="w-full pt-22 relative z-10">
+      <main className="w-full pt-[80] pb-5 relative z-10">
         {/* NỘI DUNG TỪNG TAB */}
         <AnimatePresence mode="wait">
           {/* TAB 1: BẢN ĐỒ HÀNH TRÌNH */}
@@ -386,6 +389,21 @@ export default function Home() {
             className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex items-center justify-center p-2"
           >
             <KanjiPractice deck={activeKanjiPracticeDeck} onClose={() => setActiveKanjiPracticeDeck(null)} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* MÀN HÌNH RPG BOSS BATTLE MINI-MAP OVERLAY */}
+      <AnimatePresence>
+        {activeBossRPGId && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex items-center justify-center"
+          >
+            <BossRPGMiniMap deckId={activeBossRPGId} onClose={() => setActiveBossRPGId(null)} />
           </motion.div>
         )}
       </AnimatePresence>

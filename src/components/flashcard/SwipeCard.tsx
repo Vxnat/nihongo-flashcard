@@ -104,7 +104,20 @@ export function SwipeCard({ card, isFlipped, onFlip, onSwipe, exitDir, showFurig
 
       {/* Background Gradient behind the glass card */}
       {!isPodcastMode && (
-        <div className="absolute inset-4 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-teal-200/40 via-amber-100/30 to-pink-200/40 blur-xl opacity-80 pointer-events-none animate-pulse duration-[4000ms]" />
+        <div className="absolute inset-4 -z-10 rounded-[2.5rem] pointer-events-none">
+          {/* Front Gradient */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-tr from-teal-200/40 via-amber-100/30 to-pink-200/40 blur-xl transition-opacity duration-700 ease-in-out ${
+              isFlipped ? "opacity-0" : "opacity-80 animate-pulse duration-[4000ms]"
+            }`}
+          />
+          {/* Back Gradient */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-tr from-pink-200/50 via-purple-100/40 to-indigo-200/50 blur-xl transition-opacity duration-700 ease-in-out ${
+              isFlipped ? "opacity-80" : "opacity-0"
+            }`}
+          />
+        </div>
       )}
 
       <motion.div

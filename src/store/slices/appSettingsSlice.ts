@@ -63,14 +63,14 @@ export const createAppSettingsSlice: StateCreator<
       const weights = weightsSnap.exists()
         ? weightsSnap.data()
         : {
-            theme: 10,
-            outfit: 25,
-            furniture: 50,
-            voice: 60,
-            meme: 80,
-            accessory: 100,
-            costume: 20,
-          };
+          theme: 10,
+          outfit: 25,
+          furniture: 50,
+          voice: 60,
+          meme: 80,
+          accessory: 100,
+          costume: 20,
+        };
 
       const settings = settingsSnap.exists()
         ? settingsSnap.data()

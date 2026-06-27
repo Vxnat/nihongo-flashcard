@@ -345,8 +345,8 @@ export function useRhythmGame({
       lastTime = time;
 
       // Move active notes down
-      const speedMultiplier = 1 + Math.min(0.4, comboRef.current * 0.012);
-      const dy = 0.065 * deltaTime * speedMultiplier; // Speed calculation
+      const speedMultiplier = 1 + Math.min(0.2, comboRef.current * 0.008);
+      const dy = 0.048 * deltaTime * speedMultiplier; // Speed calculation
 
       setActiveNotes((prev) => {
         const nextNotes = prev.map((note) => {
@@ -373,7 +373,7 @@ export function useRhythmGame({
       });
 
       // Spawning Logic (Every 1400ms or faster depending on combo)
-      const currentSpawnInterval = Math.max(900, 1600 - comboRef.current * 20);
+      const currentSpawnInterval = Math.max(1300, 2200 - comboRef.current * 25);
       if (time - lastSpawnTimeRef.current > currentSpawnInterval) {
         spawnNoteRef.current();
         lastSpawnTimeRef.current = time;

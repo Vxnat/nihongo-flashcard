@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { ChevronDown, Lock, Sparkles } from "lucide-react";
+import { Lock, Sparkles } from "lucide-react";
 import { useSystemRoadmap } from "@/hooks/roadmap/useSystemRoadmap";
 import { useAppStore } from "@/store/useAppStore";
 import { RoadmapNode } from "./RoadmapNode";
@@ -12,6 +12,49 @@ import { generateSVGPath } from "@/utils/roadmapHelpers";
 import { MAP_DECORATIONS } from "@/constants/mapDecorations";
 import toast from "react-hot-toast";
 
+const LEVEL_IMAGES: Record<string, string> = {
+  N5: "/images/ui/roadmap/level_n5.png",
+  N4: "/images/ui/roadmap/level_n4.png",
+  N3: "/images/ui/roadmap/level_n3.png",
+  N2: "/images/ui/roadmap/level_n2.png",
+  N1: "/images/ui/roadmap/level_n1.png",
+};
+
+const containerVariants = {
+  open: {
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.02,
+    }
+  },
+  closed: {
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: -1
+    }
+  }
+};
+
+const bubbleVariants: any = {
+  open: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 15
+    }
+  },
+  closed: {
+    opacity: 0,
+    y: 20,
+    scale: 0.3,
+    transition: {
+      duration: 0.2
+    }
+  }
+};
 
 export function SystemRoadmap() {
   const router = useRouter();
@@ -20,6 +63,7 @@ export function SystemRoadmap() {
   const user = useAppStore((state: any) => state.user);
   const setActiveStoryId = useAppStore((state: any) => state.setActiveStoryId);
   const setActiveMinigameId = useAppStore((state: any) => state.setActiveMinigameId);
+  const setActiveBossRPGId = useAppStore((state: any) => state.setActiveBossRPGId);
   const addCoins = useAppStore((state) => state.addCoins);
   const saveProgress = useAppStore((state) => state.saveProgress);
 
@@ -154,60 +198,100 @@ export function SystemRoadmap() {
 
   return (
     <div className="w-full flex flex-col items-center">
-      {/* DROPDOWN CHỌN CẤP ĐỘ (Chỉ hiển thị khi đã đăng nhập) */}
+      {/* NÚT FAB CHỌN CẤP ĐỘ (Xổ lên trên, nằm ở góc dưới bên trái) */}
       {user && (
-        <div className="w-full flex justify-end mb-4 sm:mb-8 relative z-40">
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-2 bg-white/90 backdrop-blur-sm border-2 border-[#FFE2D1] shadow-sm px-4 py-2.5 rounded-full font-bold text-amber-900 transition-all hover:bg-orange-50 active:translate-y-1 mr-1"
-            >
-              <span style={{ fontFamily: "var(--font-cherry)" }}>
-                Trình độ {selectedLevel}
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
-                strokeWidth={3}
-              />
-            </button>
-
+        <div className="fixed bottom-30 right-6 lg:bottom-10 lg:left-10 z-[100]" ref={dropdownRef}>
+          <div className="relative flex flex-col items-center">
+            {/* Hộp danh sách bong bóng bay lên */}
             <AnimatePresence>
               {isDropdownOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute right-2 top-full mt-2 w-36 bg-white border-4 border-[#FFE2D1] rounded-[1.5rem] shadow-xl overflow-hidden flex flex-col z-50"
+                  variants={containerVariants}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  className="absolute bottom-16 left-0 mb-3 flex flex-col-reverse gap-2.5 items-center z-50"
                 >
-                  {LEVELS.map((lvl) => (
-                    <button
-                      key={lvl}
-                      onClick={() => {
-                        setSelectedLevel(lvl);
-                        setIsDropdownOpen(false);
-                      }}
-                      className={`px-4 py-3 font-bold text-base text-left transition-colors hover:bg-orange-50 ${selectedLevel === lvl ? "text-[#FF9F1C] bg-orange-50/50" : "text-zinc-500"}`}
-                      style={{ fontFamily: "var(--font-cherry)" }}
-                    >
-                      {lvl}
-                    </button>
-                  ))}
+                  {LEVELS.map((lvl) => {
+                    const isActive = selectedLevel === lvl;
+                    const imagePath = LEVEL_IMAGES[lvl] || "/images/ui/roadmap/level_n5.png";
+                    return (
+                      <motion.button
+                        key={lvl}
+                        variants={bubbleVariants}
+                        whileHover={{ scale: isActive ? 1.15 : 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          setSelectedLevel(lvl);
+                          setIsDropdownOpen(false);
+                        }}
+                        className={`w-12 h-12 rounded-full border flex flex-col items-center justify-center shadow-md cursor-pointer transition-all duration-200 relative group ${isActive
+                          ? "bg-gradient-to-tr from-[#FFA6C9] to-[#FFD2B4] border-white text-white scale-110 shadow-[0_4px_12px_rgba(255,166,201,0.45)]"
+                          : "bg-white/80 backdrop-blur-md border-white/60 text-amber-950 hover:bg-white"
+                          }`}
+                      >
+                        <img
+                          src={imagePath}
+                          alt={lvl}
+                          className="w-7 h-7 object-contain select-none pointer-events-none mb-0.5 animate-pulse"
+                        />
+                        <span
+                          style={{ fontFamily: "var(--font-cherry)", fontSize: "9px" }}
+                          className="font-black leading-none uppercase select-none"
+                        >
+                          {lvl}
+                        </span>
+
+                        {/* Tooltip hiển thị tên cấp độ khi hover (dành cho desktop) */}
+                        <div className="absolute left-14 bg-zinc-800/90 text-white text-[10px] font-bold px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-md">
+                          Trình độ {lvl}
+                        </div>
+                      </motion.button>
+                    );
+                  })}
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Nút FAB chính */}
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#FFA6C9] to-[#FFD2B4] text-white flex flex-col items-center justify-center shadow-[0_8px_24px_rgba(255,166,201,0.4)] cursor-pointer relative z-50 p-1"
+            >
+              <motion.img
+                animate={{ rotate: isDropdownOpen ? 360 : 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                src={LEVEL_IMAGES[selectedLevel]}
+                alt={selectedLevel}
+                className="w-8 h-8 object-contain select-none pointer-events-none mb-0.5"
+              />
+              <span
+                style={{ fontFamily: "var(--font-cherry)", fontSize: "10px" }}
+                className="font-black leading-none uppercase select-none tracking-wide"
+              >
+                {selectedLevel}
+              </span>
+            </motion.button>
           </div>
         </div>
       )}
 
       {deckStatuses.length === 0 ? (
-        <div className="w-full flex flex-col items-center justify-center py-16 px-4 bg-white/60 border-4 border-dashed border-[#FFD166] rounded-[3rem] text-center shadow-sm mt-4">
-          <span className="text-[5rem] mb-4 animate-bounce block select-none">
-            🚧
+        <div className="w-full flex flex-col items-center justify-center py-16 px-4 bg-white/60 border-4 border-dashed border-[#FFD166] rounded-[3rem] text-center shadow-sm mt-4"
+          style={{ fontFamily: "var(--font-cherry)" }}
+        >
+          <span className="mb-4 block select-none">
+            <img
+              src="/images/ui/roadmap/under_construction.png"
+              alt="Đang xây dựng"
+              className="w-28 h-28 object-contain drop-shadow-md"
+            />
           </span>
           <h3
             className="text-3xl text-[#FF9F1C] mb-2 drop-shadow-sm"
-            style={{ fontFamily: "var(--font-cherry)" }}
           >
             Đang xây dựng!
           </h3>
@@ -427,42 +511,63 @@ export function SystemRoadmap() {
                         viewBox={`-85 0 170 ${items.length * ROW_HEIGHT}`}
                         width="170"
                       >
-                        {/* 1. Lộ trình tương lai: Viền xám sẫm */}
+                        <defs>
+                          <linearGradient id={`future-grad-${chapterNum}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#F1F5F9" />   {/* Slate pastel 100 */}
+                            <stop offset="100%" stopColor="#E2E8F0" /> {/* Slate pastel 200 */}
+                          </linearGradient>
+                          <linearGradient id={`future-outline-grad-${chapterNum}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#E2E8F0" />
+                            <stop offset="100%" stopColor="#CBD5E1" />
+                          </linearGradient>
+
+                          <linearGradient id={`completed-grad-${chapterNum}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#E6FFFA" />   {/* Teal pastel 100 */}
+                            <stop offset="50%" stopColor="#B2F5EA" />  {/* Teal pastel 200 */}
+                            <stop offset="100%" stopColor="#81E6D9" /> {/* Teal pastel 300 */}
+                          </linearGradient>
+                          <linearGradient id={`completed-outline-grad-${chapterNum}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#B2F5EA" />
+                            <stop offset="100%" stopColor="#319795" /> {/* Soft teal border */}
+                          </linearGradient>
+                        </defs>
+
+                        {/* 1. Lộ trình tương lai: Viền xám sẫm pastel */}
                         <path
                           d={generateSVGPath(items.length, ROW_HEIGHT, 0)}
                           fill="none"
-                          stroke="#D4D4D8"
+                          stroke={`url(#future-outline-grad-${chapterNum})`}
                           strokeWidth="28"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
-                        {/* 2. Lộ trình tương lai: Mặt đường xám sáng */}
+                        {/* 2. Lộ trình tương lai: Mặt đường xám sáng pastel */}
                         <path
                           d={generateSVGPath(items.length, ROW_HEIGHT, 0)}
                           fill="none"
-                          stroke="#E4E4E7"
+                          stroke={`url(#future-grad-${chapterNum})`}
                           strokeWidth="20"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         />
 
-                        {/* 3. Lộ trình đã học: Viền xanh lá đậm */}
+                        {/* 3. Lộ trình đã học: Viền xanh ngọc pastel sẫm */}
                         {pathCompletedCount > 0 && (
                           <path
                             d={generateSVGPath(pathCompletedCount, ROW_HEIGHT, 0)}
                             fill="none"
-                            stroke="#05B889"
+                            stroke={`url(#completed-outline-grad-${chapterNum})`}
                             strokeWidth="28"
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           />
                         )}
-                        {/* 4. Lộ trình đã học: Mặt đường xanh lá sáng */}
+                        {/* 4. Lộ trình đã học: Mặt đường xanh ngọc pastel sáng */}
                         {pathCompletedCount > 0 && (
                           <path
                             d={generateSVGPath(pathCompletedCount, ROW_HEIGHT, 0)}
                             fill="none"
-                            stroke="#06D6A0"
+                            stroke={`url(#completed-grad-${chapterNum})`}
                             strokeWidth="20"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -543,6 +648,8 @@ export function SystemRoadmap() {
                                   }
                                 } else if (item.deck.type === "story") {
                                   setActiveStoryId(item.deck.id);
+                                } else if (item.deck.type === "boss_rpg") {
+                                  setActiveBossRPGId(item.deck.id);
                                 } else if (item.deck.type && item.deck.type.startsWith("minigame_")) {
                                   setActiveMinigameId(item.deck.id);
                                 } else {

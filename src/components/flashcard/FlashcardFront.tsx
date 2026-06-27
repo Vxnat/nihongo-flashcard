@@ -72,7 +72,7 @@ export const FlashcardFront: React.FC<FlashcardFrontProps> = ({ card, isZen = fa
       <div className="w-[44%] flex items-center justify-center h-full py-4">
         <div className="relative w-full aspect-square rounded-[2rem] overflow-hidden border-4 border-white/80 shadow-md bg-amber-50/10">
           <img
-            src="/images/mascot/shiba_katana.png"
+            src="/images/mascot/shiba_quiet.png"
             alt="Shiba Room"
             className="w-full h-full object-cover"
           />

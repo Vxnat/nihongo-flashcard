@@ -87,7 +87,7 @@
   {
     "id": "vn_chapter_01_mid",
     "type": "story",
-    "title": "Cốt truyện: Mua sắm ở Kombini",
+    "title": "Mua sắm ở Kombini",
     "level": "N5",
     "chapter": 1,
     "order": 3.2,
@@ -101,7 +101,7 @@
   {
     "id": "mg_match_n5_01",
     "type": "minigame_matching",
-    "title": "Minigame: Nối từ",
+    "title": "Nối từ",
     "level": "N5",
     "chapter": 1,
     "order": 3.5,
@@ -120,7 +120,7 @@
   {
     "id": "mg_rhythm_n5_01",
     "type": "minigame_rhythm",
-    "title": "Minigame: Cảm thụ âm nhạc 🎧",
+    "title": "Cảm thụ âm thanh",
     "description": "Lắng nghe nhịp điệu và săn tìm từ vựng cùng Shiba!",
     "level": "N5",
     "chapter": 1,
@@ -150,7 +150,7 @@
   },
   {
     "id": "sys_n5_fill_01",
-    "title": "Minigame: Điền trợ từ & từ vựng",
+    "title": "Điền trợ từ & từ vựng",
     "type": "minigame_fill",
     "level": "N5",
     "chapter": 1,
@@ -164,7 +164,7 @@
   },
   {
     "id": "sys_n5_minna_05",
-    "title": "[Boss] Bài 5: Đi lại & Ôn tập Chương 1",
+    "title": "Bài 5: Đi lại & Ôn tập Chương 1",
     "level": "N5",
     "chapter": 1,
     "order": 5,
@@ -176,7 +176,7 @@
   {
     "id": "vn_chapter_01",
     "type": "story",
-    "title": "Cốt truyện: Chuyến tàu đến Tokyo",
+    "title": "Chuyến tàu đến Tokyo",
     "level": "N5",
     "chapter": 1,
     "order": 5.5,
@@ -185,13 +185,23 @@
     "totalCards": 0
   },
   {
+    "id": "sys_n5_boss_rpg_01",
+    "type": "boss_rpg",
+    "title": "[Boss]: Thủ Lĩnh Kitsune",
+    "level": "N5",
+    "chapter": 1,
+    "order": 5.55,
+    "prerequisite": "vn_chapter_01",
+    "rewardCoins": 150
+  },
+  {
     "id": "chest_chap_1",
     "type": "chest",
     "title": "Rương thưởng Chương 1",
     "level": "N5",
     "chapter": 1,
     "order": 5.6,
-    "prerequisite": "vn_chapter_01",
+    "prerequisite": "sys_n5_boss_rpg_01",
     "rewardCoins": 100
   },
   {
@@ -241,7 +251,7 @@
   {
     "id": "vn_chapter_02",
     "type": "story",
-    "title": "Cốt truyện: Tiệm mì Ramen",
+    "title": "Tiệm mì Ramen",
     "level": "N5",
     "chapter": 2,
     "order": 8.2,
@@ -252,7 +262,7 @@
   {
     "id": "mg_match_n5_02",
     "type": "minigame_matching",
-    "title": "Minigame: Nối từ",
+    "title": "Nối từ",
     "level": "N5",
     "chapter": 2,
     "order": 8.5,
@@ -279,7 +289,7 @@
   {
     "id": "mg_rush_n5_01",
     "type": "minigame_rush",
-    "title": "Minigame: Băng chuyền Shiba",
+    "title": "Băng chuyền Shiba",
     "level": "N5",
     "chapter": 2,
     "order": 9.5,
@@ -295,7 +305,7 @@
   },
   {
     "id": "sys_n5_minna_10",
-    "title": "[Boss] Bài 10: Sự tồn tại & Ôn tập Chương 2",
+    "title": "Bài 10: Sự tồn tại & Ôn tập Chương 2",
     "level": "N5",
     "chapter": 2,
     "order": 10,
@@ -307,7 +317,7 @@
   {
     "id": "vn_chapter_03",
     "type": "story",
-    "title": "Cốt truyện: Khách sạn ở đâu?",
+    "title": "Khách sạn ở đâu?",
     "level": "N5",
     "chapter": 2,
     "order": 10.5,
@@ -372,7 +382,7 @@
   {
     "id": "vn_chapter_04",
     "type": "story",
-    "title": "Cốt truyện: Sự cố ở quán cafe",
+    "title": "Sự cố ở quán cafe",
     "level": "N5",
     "chapter": 3,
     "order": 13.2,
@@ -383,7 +393,7 @@
   {
     "id": "mg_match_n5_03",
     "type": "minigame_matching",
-    "title": "Minigame: Nối từ",
+    "title": "Nối từ",
     "level": "N5",
     "chapter": 3,
     "order": 13.5,
@@ -410,7 +420,7 @@
   {
     "id": "mg_rush_n5_02",
     "type": "minigame_rush",
-    "title": "Minigame: Băng chuyền Shiba",
+    "title": "Băng chuyền Shiba",
     "level": "N5",
     "chapter": 3,
     "order": 14.5,
@@ -426,7 +436,7 @@
   },
   {
     "id": "sys_n5_minna_15",
-    "title": "[Boss] Bài 15: Cho phép, Trạng thái & Ôn tập Chương 3",
+    "title": "Bài 15: Cho phép, Trạng thái & Ôn tập Chương 3",
     "level": "N5",
     "chapter": 3,
     "order": 15,
@@ -438,7 +448,7 @@
   {
     "id": "vn_chapter_05",
     "type": "story",
-    "title": "Cốt truyện: Ánh trăng đêm nay",
+    "title": "Ánh trăng đêm nay",
     "level": "N5",
     "chapter": 3,
     "order": 15.5,
@@ -503,7 +513,7 @@
   {
     "id": "vn_chapter_06",
     "type": "story",
-    "title": "Cốt truyện: Mua quà ở Harajuku",
+    "title": "Mua quà ở Harajuku",
     "level": "N5",
     "chapter": 4,
     "order": 18.2,
@@ -514,7 +524,7 @@
   {
     "id": "mg_match_n5_04",
     "type": "minigame_matching",
-    "title": "Minigame: Nối từ",
+    "title": "Nối từ",
     "level": "N5",
     "chapter": 4,
     "order": 18.5,
@@ -541,7 +551,7 @@
   {
     "id": "mg_rush_n5_03",
     "type": "minigame_rush",
-    "title": "Minigame: Băng chuyền Shiba",
+    "title": "Băng chuyền Shiba",
     "level": "N5",
     "chapter": 4,
     "order": 19.5,
@@ -557,7 +567,7 @@
   },
   {
     "id": "sys_n5_minna_20",
-    "title": "[Boss] Bài 20: Thể Thông thường & Ôn tập Chương 4",
+    "title": "Bài 20: Thể Thông thường & Ôn tập Chương 4",
     "level": "N5",
     "chapter": 4,
     "order": 20,
@@ -569,7 +579,7 @@
   {
     "id": "vn_chapter_07",
     "type": "story",
-    "title": "Cốt truyện: Lễ hội mùa hè",
+    "title": "Lễ hội mùa hè",
     "level": "N5",
     "chapter": 4,
     "order": 20.5,
@@ -634,7 +644,7 @@
   {
     "id": "vn_chapter_08",
     "type": "story",
-    "title": "Cốt truyện: Lập kế hoạch leo núi",
+    "title": "Lập kế hoạch leo núi",
     "level": "N5",
     "chapter": 5,
     "order": 23.2,
@@ -645,7 +655,7 @@
   {
     "id": "mg_match_n5_05",
     "type": "minigame_matching",
-    "title": "Minigame: Nối từ",
+    "title": "Nối từ",
     "level": "N5",
     "chapter": 5,
     "order": 23.5,
@@ -672,7 +682,7 @@
   {
     "id": "mg_rush_n5_04",
     "type": "minigame_rush",
-    "title": "Minigame: Băng chuyền Shiba",
+    "title": "Băng chuyền Shiba",
     "level": "N5",
     "chapter": 5,
     "order": 24.5,
@@ -688,7 +698,7 @@
   },
   {
     "id": "sys_n5_minna_25",
-    "title": "[Boss] Bài 25: Câu điều kiện (Tara/Temo) & Tổng kết N5",
+    "title": "Bài 25: Câu điều kiện (Tara/Temo) & Tổng kết N5",
     "level": "N5",
     "chapter": 5,
     "order": 25,
@@ -700,7 +710,7 @@
   {
     "id": "vn_chapter_09",
     "type": "story",
-    "title": "Cốt truyện: Đỉnh núi Phú Sĩ",
+    "title": "Đỉnh núi Phú Sĩ",
     "level": "N5",
     "chapter": 5,
     "order": 25.5,

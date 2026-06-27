@@ -84,12 +84,12 @@ export function AchievementsModal({
                   <div key={rowIdx} className="relative w-full flex flex-col gap-1 mt-4 first:mt-2">
                     {/* Grid shelf items */}
                     <div className="grid grid-cols-3 gap-5 px-1 relative z-10">
-                      {row.map((ach) => (
+                      {row.map((ach, achIdx) => (
                         <motion.div
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setSelectedBadge(ach)}
-                          key={ach.id}
+                          key={ach.id || `ach-${rowIdx}-${achIdx}`}
                           className="flex flex-col items-center justify-center cursor-pointer relative group"
                         >
                           <div
