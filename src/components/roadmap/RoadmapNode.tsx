@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Lock, CheckCircle2, Sparkles, BookOpen, Gamepad2, Award } from "lucide-react";
+import { Lock } from "lucide-react";
 import { SystemDeck } from "@/types/flashcard";
 
 interface RoadmapNodeProps {
@@ -24,7 +24,7 @@ export function RoadmapNode({
 }: RoadmapNodeProps) {
   const isChest = deck.type === "chest";
   const isStory = deck.type === "story";
-  const isBoss = deck.title.toLowerCase().includes("boss") || deck.title.toLowerCase().includes("ôn tập");
+  const isBoss = deck.type === "boss_rpg";
 
   // --- TRƯỜNG HỢP 1: NODE LÀ RƯƠNG THƯỞNG ĐỘC LẬP (CHEST NODE) ---
   if (isChest) {
@@ -64,7 +64,7 @@ export function RoadmapNode({
           />
 
           {/* Nhãn rương thưởng */}
-          <div className="absolute top-[85%] bg-white/95 border-2 border-amber-200 px-2.5 py-1 rounded-full shadow-sm text-center min-w-[120px] pointer-events-none">
+          <div className="absolute top-[85%] bg-white border border-amber-200 px-2.5 py-1 rounded-full shadow-sm text-center min-w-[120px] pointer-events-none">
             <p className="text-[10px] sm:text-[11px] font-black text-amber-800 uppercase tracking-wider" style={{ fontFamily: "var(--font-cherry)" }}>
               {completed ? "Đã nhận 👑" : unlocked ? "Mở khóa! ✨" : "Phần thưởng"}
             </p>
@@ -81,23 +81,19 @@ export function RoadmapNode({
 
   // --- TRƯỜNG HỢP 2: BÀI HỌC/MINIGAME/STORY THÔNG THƯỜNG ---
   // Chọn màu sắc chủ đạo cho thẻ
-  let themeColor = "border-zinc-200 text-zinc-400 bg-zinc-50/50";
-  let badgeColor = "bg-zinc-200 text-zinc-600";
-  let circleColor = "bg-zinc-100 border-zinc-300 text-zinc-400 shadow-[0_4px_0_0_#D4D4D8]";
+  let themeColor = "bg-gradient-to-br from-[#F4F4F5] to-[#E4E4E7] border border-zinc-200 text-zinc-400 shadow-sm";
+  let circleColor = "bg-zinc-200/50 border-zinc-300/30 text-zinc-400 shadow-sm";
 
   if (completed) {
-    themeColor = "border-[#06D6A0] text-[#05B889] bg-white hover:bg-emerald-50/25 shadow-sm";
-    badgeColor = "bg-emerald-100 text-emerald-600";
-    circleColor = "bg-[#06D6A0] border-[#05B889] text-white shadow-[0_4px_0_0_#04966F]";
+    themeColor = "bg-gradient-to-br from-[#E2F6F0] to-[#CBEFE3] border border-[#06D6A0]/40 text-emerald-800 shadow-[0_4px_16px_rgba(6,214,160,0.06)] hover:from-[#E2F6F0]/95";
+    circleColor = "bg-[#06D6A0] border-white/60 text-white shadow-md shadow-emerald-500/10";
   } else if (unlocked) {
     if (isActive) {
-      themeColor = "border-[#FFD166] text-[#D97706] bg-white hover:bg-amber-50/25 shadow-md scale-[1.02]";
-      badgeColor = "bg-amber-100 text-amber-600";
-      circleColor = "bg-[#FFD166] border-[#FF9F1C] text-amber-900 shadow-[0_4px_0_0_#D97706]";
+      themeColor = "bg-gradient-to-br from-[#E0F2FE] to-[#F3E8FF] border-2 border-sky-300/80 text-sky-950 shadow-[0_8px_24px_rgba(56,189,248,0.12)] hover:scale-[1.03]";
+      circleColor = "bg-[#38BDF8] border-white text-white shadow-md shadow-sky-500/15";
     } else {
-      themeColor = "border-orange-100 text-amber-800 bg-white hover:bg-orange-50/25 shadow-sm";
-      badgeColor = "bg-orange-100 text-orange-600";
-      circleColor = "bg-orange-100 border-orange-300 text-orange-800 shadow-[0_4px_0_0_#FFE2D1]";
+      themeColor = "bg-gradient-to-br from-[#FFF8E7] to-[#FFE0E6] border border-[#FFE2D1]/75 text-amber-800 shadow-[0_4px_12px_rgba(255,159,28,0.05)]";
+      circleColor = "bg-orange-100 border-white/60 text-orange-700 shadow-sm";
     }
   }
 
@@ -107,7 +103,7 @@ export function RoadmapNode({
 
   if (isStory) {
     iconSrc = "/images/ui/roadmap/node_story.png";
-    typeText = "Cốt truyện";
+    typeText = "Story";
   } else if (deck.type === "minigame_matching") {
     iconSrc = "/images/ui/roadmap/node_minigame.png";
     typeText = "Nối từ";
@@ -116,7 +112,7 @@ export function RoadmapNode({
     typeText = deck.type === "minigame_rush" ? "Băng chuyền" : "Nhịp điệu";
   } else if (deck.type === "minigame_kanji") {
     iconSrc = "/images/ui/roadmap/node_kanji.png";
-    typeText = "Viết chữ Hán";
+    typeText = "Kanji";
   } else if (deck.type === "minigame_fill") {
     iconSrc = "/images/ui/roadmap/node_fill.png";
     typeText = "Điền trợ từ";
@@ -139,15 +135,15 @@ export function RoadmapNode({
         {isActive && (
           <>
             {/* Vòng quay dashed nhấp nháy cho bài active */}
-            <div className="absolute w-14 h-14 rounded-full border-2 border-[#FF9F1C] border-dashed animate-[spin_6s_linear_infinite] opacity-60 pointer-events-none" />
-            <div className="absolute w-14 h-14 rounded-full border-2 border-[#FFD166] animate-ping opacity-30 pointer-events-none" />
+            <div className="absolute w-14 h-14 rounded-full border-2 border-[#38BDF8] border-dashed animate-[spin_6s_linear_infinite] opacity-60 pointer-events-none" />
+            <div className="absolute w-14 h-14 rounded-full border-2 border-[#7DD3FC] animate-ping opacity-30 pointer-events-none" />
           </>
         )}
         <motion.button
           onClick={unlocked ? onClick : undefined}
           whileHover={unlocked ? { scale: 1.1 } : {}}
           whileTap={unlocked ? { scale: 0.95 } : {}}
-          className={`w-10 h-10 rounded-full border-4 flex items-center justify-center font-black text-sm select-none transition-all
+          className={`w-10 h-10 rounded-full border-2 flex items-center justify-center font-black text-sm select-none transition-all
                 ${circleColor} ${unlocked ? "cursor-pointer" : "cursor-not-allowed"}
               `}
           draggable={false}
@@ -169,7 +165,7 @@ export function RoadmapNode({
           onClick={unlocked ? onClick : undefined}
           whileHover={unlocked ? { y: -2, scale: 1.02 } : {}}
           whileTap={unlocked ? { scale: 0.98 } : {}}
-          className={`w-full border-4 p-3 rounded-[1.2rem] flex items-center gap-2.5 cursor-pointer relative overflow-hidden transition-all duration-300
+          className={`w-full p-3 rounded-[1.2rem] flex items-center gap-2.5 cursor-pointer relative overflow-hidden transition-all duration-300
             ${themeColor} ${!unlocked ? "opacity-75 cursor-not-allowed" : ""}
           `}
         >
@@ -203,13 +199,10 @@ export function RoadmapNode({
             >
               {deck.title}
             </h4>
-            <div className="flex items-center gap-1.5 mt-0.5">
-              <span className="text-[10px] font-bold text-zinc-400">
-                {deck.totalCards ? `${deck.totalCards} thẻ` : "Minigame"}
-              </span>
+            <div className="flex items-center gap-1.5 mt-1">
               {deck.rewards?.coins || deck.rewardCoins ? (
                 <span className="text-[9px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-full flex items-center gap-0.5 border border-amber-100">
-                  +{deck.rewards?.coins || deck.rewardCoins} 🦴
+                  {deck.rewards?.coins || deck.rewardCoins} 🦴
                 </span>
               ) : null}
             </div>

@@ -310,7 +310,7 @@ export function RpgInventoryModal({
                 {/* Character Title Sticker */}
                 <div className="text-center">
                   <span className="text-[10px] bg-pink-400 text-white px-3 py-1 rounded-full font-black tracking-wider shadow-sm">
-                    ⭐ LV.1 THẦN KHUYỂN
+                    LV.{userStats.level || 1} THẦN KHUYỂN
                   </span>
                 </div>
 

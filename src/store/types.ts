@@ -185,6 +185,19 @@ export interface GachaQuestSlice {
   // Kanji Practice Slice
   activeKanjiPracticeDeck: CustomDeck | null;
   setActiveKanjiPracticeDeck: (deck: CustomDeck | null) => void;
+
+  // Boss RPG Slice
+  activeBossRPGId: string | null;
+  setActiveBossRPGId: (id: string | null) => void;
+  shibaSessionHP: number;
+  setShibaSessionHP: (hp: number) => void;
+  shibaSessionShield: number;
+  setShibaSessionShield: (shield: number) => void;
+  shibaSessionBuffs: string[];
+  setShibaSessionBuffs: (buffs: string[]) => void;
+  miniMapProgress: string[];
+  setMiniMapProgress: (progress: string[]) => void;
+  resetMiniMapSession: () => void;
 }
 
 export type AppState = AppSettingsSlice &

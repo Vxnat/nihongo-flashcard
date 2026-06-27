@@ -119,10 +119,10 @@ export function ShibaMasterDialog({
                 style={{ fontFamily: "var(--font-cherry)" }}
               >
                 <span className="font-bold text-amber-900 text-xs bg-orange-50 px-3 py-1.5 rounded-xl border-2 border-orange-100 flex items-center gap-1 shadow-inner">
-                  Xương: <span className="text-[#FF9F1C] text-sm">{coins}</span> <Bone className="w-3.5 h-3.5 text-[#FF9F1C]" />
+                  <Bone className="w-3.5 h-3.5 text-[#FF9F1C]" /> <span className="text-[#FF9F1C] text-sm">{coins}</span>
                 </span>
                 <span className="font-bold text-amber-900 text-xs bg-orange-50 px-3 py-1.5 rounded-xl border-2 border-orange-100 flex items-center gap-1 shadow-inner">
-                  Lông vàng: <span className="text-[#FF9F1C] text-sm">{goldenFur}</span> <CoinIcon size={14} />
+                  <CoinIcon size={14} /> <span className="text-[#FF9F1C] text-sm">{goldenFur}</span>
                 </span>
               </div>
 
@@ -130,7 +130,9 @@ export function ShibaMasterDialog({
                 {message}
               </p>
 
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-3"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >
                 {options.map((opt) => {
                   const canUseFree = opt.allowFreeHint && freeMinigameHints > 0;
                   const isGoldenFur = opt.currency === "goldenFur";

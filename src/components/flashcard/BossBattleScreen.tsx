@@ -41,7 +41,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
       className="fixed inset-0 z-[100] flex items-center justify-center px-4"
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-black/25 backdrop-blur-[2px]" />
 
       {/* Modal Card */}
       <motion.div
@@ -49,7 +49,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.8, y: 20 }}
         transition={{ type: "spring", bounce: 0.4, duration: 0.6 }}
-        className="relative bg-white rounded-[2rem] border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFD6C0,0_16px_40px_rgba(255,159,28,0.2)] w-full max-w-sm p-6 pt-8 z-10"
+        className="relative bg-gradient-to-br from-white/90 via-[#FFFDF0]/95 to-[#FFEAEA]/90 backdrop-blur-md rounded-[2rem] border border-white/60 shadow-[0_16px_40px_rgba(255,159,28,0.15)] w-full max-w-sm p-6 pt-8 z-10"
       >
         {/* Shiba Mascot thò ra ngoài viền modal */}
         <div className="absolute -top-10 -right-2 w-20 h-20 z-20">
@@ -62,7 +62,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
 
         {/* Title */}
         <h2
-          className="text-amber-900 font-black text-xl mb-4 pr-12"
+          className="text-amber-950 font-black text-xl mb-4 pr-12"
           style={{ fontFamily: "var(--font-cherry)" }}
         >
           Shiba Sensei hướng dẫn!
@@ -71,7 +71,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
         {/* Tutorial Steps */}
         <div className="flex flex-col gap-2.5">
           {/* Step 1 */}
-          <div className="flex items-center gap-3 bg-[#E0F7F0] border-2 border-[#A7E8D0] rounded-[1rem] px-3 py-2.5">
+          <div className="flex items-center gap-3 bg-[#E0F7F0] border border-[#A7E8D0]/60 rounded-[1rem] px-3 py-2.5">
             <span className="text-xl flex-shrink-0">🎯</span>
             <p className="text-sm font-rounded font-bold text-emerald-800">
               Gõ phiên âm <span className="text-[#FF9F1C]">Romaji</span> của từ hiển thị
@@ -79,7 +79,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
           </div>
 
           {/* Step 2 */}
-          <div className="flex items-center gap-3 bg-[#FFE4EC] border-2 border-[#FFB3C6] rounded-[1rem] px-3 py-2.5">
+          <div className="flex items-center gap-3 bg-[#FFE4EC] border border-[#FFB3C6]/60 rounded-[1rem] px-3 py-2.5">
             <span className="text-xl flex-shrink-0">⏱️</span>
             <p className="text-sm font-rounded font-bold text-pink-800">
               Hết giờ hoặc gõ sai = <span className="text-[#E63946]">mất 1 mạng tim!</span>
@@ -87,7 +87,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
           </div>
 
           {/* Step 3 */}
-          <div className="flex items-center gap-3 bg-[#FFF8DC] border-2 border-[#FFE082] rounded-[1rem] px-3 py-2.5">
+          <div className="flex items-center gap-3 bg-[#FFF8DC] border border-[#FFE082]/60 rounded-[1rem] px-3 py-2.5">
             <span className="text-xl flex-shrink-0">❤️</span>
             <p className="text-sm font-rounded font-bold text-amber-800">
               Bạn có <span className="text-[#FF7096]">3 ❤️</span> — hết tim là thua cuộc
@@ -95,7 +95,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
           </div>
 
           {/* Step 4 */}
-          <div className="flex items-center gap-3 bg-[#FFF3E0] border-2 border-[#FFCC80] rounded-[1rem] px-3 py-2.5">
+          <div className="flex items-center gap-3 bg-[#FFF3E0] border border-[#FFCC80]/60 rounded-[1rem] px-3 py-2.5">
             <span className="text-xl flex-shrink-0">🔥</span>
             <p className="text-sm font-rounded font-bold text-orange-800">
               Combo liên tiếp = <span className="text-[#FF9F1C]">sát thương gấp đôi!</span>
@@ -106,7 +106,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
         {/* CTA Button */}
         <button
           onClick={onClose}
-          className="w-full mt-5 h-14 bg-[#FF9F1C] hover:bg-[#e68a00] text-white font-black text-lg rounded-[1.25rem] border-b-4 border-[#cc7a00] active:border-b-0 active:translate-y-1 transition-all shadow-md cursor-pointer"
+          className="w-full mt-5 h-14 bg-gradient-to-r from-[#FF7096] to-[#FF9F1C] hover:from-[#FF5C8A] hover:to-[#E68E19] text-white font-black text-lg rounded-[1.25rem] border border-white/40 active:scale-95 transition-all shadow-md cursor-pointer"
           style={{ fontFamily: "var(--font-cherry)" }}
         >
           ĐÃ SẴN SÀNG!
@@ -225,7 +225,7 @@ export function BossBattleScreen({
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className={`w-full max-w-xl mx-auto min-h-[640px] bg-white rounded-[3rem] border-4 border-[#FFE2D1] shadow-[0_8px_0_0_#FFD6C0,0_16px_40px_rgba(255,159,28,0.15)] relative flex flex-col justify-between p-6 sm:p-8 overflow-hidden transition-all duration-300 ${screenShake ? "animate-[shake_0.3s_ease-in-out_infinite]" : ""
+        className={`w-full max-w-xl mx-auto min-h-[640px] bg-gradient-to-br from-[#FFF5E6]/85 via-white/60 to-[#FFF0EA]/80 backdrop-blur-md rounded-[3rem] border border-white/60 shadow-[0_20px_50px_rgba(255,159,28,0.15)] relative flex flex-col justify-between p-6 sm:p-8 overflow-hidden transition-all duration-300 ${screenShake ? "animate-[shake_0.3s_ease-in-out_infinite]" : ""
           }`}
       >
         {/* Background Decorative Blobs */}
@@ -238,13 +238,13 @@ export function BossBattleScreen({
           {/* Escape Button - Squishy Style */}
           <button
             onClick={onCancel}
-            className="font-rounded font-bold text-xs text-zinc-400 hover:text-zinc-600 px-4 py-2 bg-zinc-50 border-2 border-zinc-200 rounded-[1rem] shadow-[0_3px_0_0_#e4e4e7] active:translate-y-0.5 active:shadow-[0_0_0_0_#e4e4e7] transition-all"
+            className="font-rounded font-bold text-xs text-zinc-500 hover:text-zinc-700 px-4 py-2 bg-white/40 hover:bg-white/60 border border-white/50 rounded-[1rem] active:scale-95 transition-all shadow-sm backdrop-blur-sm cursor-pointer"
           >
             🏃 Trốn chạy
           </button>
 
           {/* Battle Badge */}
-          <div className="bg-[#FF9F1C] text-white border-2 border-[#e68a00] px-3 py-1.5 rounded-[1rem] font-rounded font-black text-xs uppercase tracking-widest flex items-center gap-1.5 shadow-[0_3px_0_0_#cc7a00]">
+          <div className="bg-gradient-to-r from-[#FF7096] to-[#FF9F1C] text-white border border-white/50 px-3 py-1.5 rounded-[1rem] font-rounded font-black text-xs uppercase tracking-widest flex items-center gap-1.5 shadow-md shadow-pink-500/10">
             <Swords size={14} className="animate-pulse" />
             <span style={{ fontFamily: "var(--font-cherry)", letterSpacing: "1.5px" }}>VÕ ĐÀI BOSS</span>
           </div>
@@ -253,7 +253,7 @@ export function BossBattleScreen({
         {/* TOP: Boss Health Bar and Avatar */}
         <div className="flex flex-col items-center w-full z-10 my-2 relative">
           {/* Boss HP Bar */}
-          <div className="w-full bg-[#FFF8F0] rounded-2xl p-3 border-2 border-[#FFE2D1] shadow-[0_2px_0_0_#FFD6C0]">
+          <div className="w-full bg-white/50 backdrop-blur-sm rounded-2xl p-3 border border-orange-200/40 shadow-sm">
             <div className="flex justify-between items-center text-xs font-bold text-amber-800 mb-1.5 font-rounded">
               <span className="flex items-center gap-1 text-[#E63946]">
                 <Flame size={14} fill="currentColor" /> BOSS DARUMA
@@ -265,7 +265,7 @@ export function BossBattleScreen({
                 initial={{ width: "100%" }}
                 animate={{ width: `${(bossHp / bossMaxHp) * 100}%` }}
                 transition={{ duration: 0.3 }}
-                className="h-full bg-gradient-to-r from-[#FF9F1C] to-[#E63946] rounded-full shadow-[0_0_8px_rgba(255,159,28,0.5)]"
+                className="h-full bg-gradient-to-r from-[#FF4D6D] via-[#FF7096] to-[#FF9F1C] rounded-full shadow-[0_0_12px_rgba(255,112,150,0.6)]"
               />
             </div>
           </div>
@@ -280,9 +280,9 @@ export function BossBattleScreen({
               y: { repeat: Infinity, duration: 2.5, ease: "easeInOut" },
               scale: { duration: 0.3 }
             }}
-            className={`relative w-24 h-24 my-3 flex items-center justify-center rounded-full border-4 transition-all duration-150 ${bossFlash
-              ? "border-[#FFD166] bg-[#FFF8DC] shadow-[0_0_30px_rgba(255,209,102,0.6)]"
-              : "border-[#E63946]/50 bg-gradient-to-br from-[#FFF0F0] to-[#FFE0E0] shadow-[0_4px_0_0_#FECACA]"
+            className={`relative w-24 h-24 my-3 flex items-center justify-center rounded-full border transition-all duration-150 ${bossFlash
+              ? "border-[#FFD166] bg-amber-500/20 shadow-[0_0_30px_rgba(255,209,102,0.6)]"
+              : "border-[#E63946]/30 bg-gradient-to-br from-pink-500/10 to-red-500/10 shadow-[0_8px_24px_rgba(230,57,70,0.15)]"
               }`}
           >
             {/* Daruma Face */}
@@ -343,7 +343,7 @@ export function BossBattleScreen({
                 key={comboCount}
                 initial={{ scale: 0.4, rotate: -20, opacity: 0 }}
                 animate={{ scale: 1, rotate: [-10, 5, -3], opacity: 1 }}
-                className="absolute left-2 top-0 z-10 flex items-center gap-1 bg-[#FF9F1C] text-white font-black text-sm px-3 py-1.5 rounded-[1rem] border-2 border-[#e68a00] shadow-[0_3px_0_0_#cc7a00]"
+                className="absolute left-2 top-0 z-10 flex items-center gap-1 bg-gradient-to-r from-[#FF9F1C] to-[#E63946] text-white font-black text-sm px-3 py-1.5 rounded-[1rem] border border-white/50 shadow-md"
                 style={{ fontFamily: "var(--font-cherry)" }}
               >
                 🔥 COMBO x{comboCount}
@@ -352,7 +352,7 @@ export function BossBattleScreen({
           </AnimatePresence>
 
           {/* Shiba Lives Hearts */}
-          <div className="absolute right-2 top-0 z-10 flex gap-1.5 bg-white/90 border-2 border-[#FFE2D1] px-3 py-1.5 rounded-[1rem] shadow-[0_3px_0_0_#FFD6C0]">
+          <div className="absolute right-2 top-0 z-10 flex gap-1.5 bg-white/55 backdrop-blur-sm border border-white/60 px-3 py-1.5 rounded-[1rem] shadow-sm">
             {[...Array(3)].map((_, i) => (
               <motion.div
                 key={i}
@@ -372,25 +372,19 @@ export function BossBattleScreen({
           {currentBossCard && (
             <div className="text-center w-full px-4 mb-4 mt-6">
               <h3
-                className="text-5xl sm:text-6xl text-amber-900 font-black select-none tracking-wide"
+                className="text-5xl sm:text-6xl text-amber-950 font-black select-none tracking-wide filter drop-shadow-[0_2px_0_#FFF]"
                 style={{
                   fontFamily: "var(--font-cherry)",
-                  filter: "drop-shadow(0 2px 4px rgba(255,159,28,0.2))",
+                  WebkitTextStroke: "1px rgba(255, 255, 255, 0.4)"
                 }}
               >
                 {currentBossCard.word}
               </h3>
-              {/* {currentBossCard.reading && currentBossCard.reading !== currentBossCard.word && (
-                <p className="text-amber-600/70 font-medium text-sm mt-1">({currentBossCard.reading})</p>
-              )}
-              <p className="text-amber-800 font-rounded font-black text-lg sm:text-xl mt-3 select-none">
-                {currentBossCard.meaning}
-              </p> */}
             </div>
           )}
 
           {/* Timer Bar */}
-          <div className="w-4/5 h-3 bg-[#FFE8D6] rounded-full overflow-hidden border-2 border-[#FFDAB9] relative shadow-inner my-2">
+          <div className="w-4/5 h-3 bg-[#FFE8D6]/60 rounded-full overflow-hidden border border-orange-200/50 relative shadow-inner my-2">
             <div
               style={{ width: `${timePercent}%` }}
               className={`h-full rounded-full shadow-sm transition-[width] duration-100 ease-linear ${bossTimeLeft <= 3
@@ -410,7 +404,7 @@ export function BossBattleScreen({
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="text-center font-black font-rounded text-amber-700 text-base bg-[#FFF8DC] border-2 border-[#FFD166] px-4 py-2 rounded-[1rem] w-fit mx-auto shadow-[0_2px_0_0_#FFC933]"
+                className="text-center font-black font-rounded text-amber-800 text-base bg-amber-100/50 border border-amber-300/40 px-4 py-2 rounded-[1rem] w-fit mx-auto shadow-sm backdrop-blur-sm"
               >
                 Chữ cái đầu: <span className="text-[#FF9F1C] font-black text-lg">{getFirstCharHint()}</span>
               </motion.div>
@@ -426,13 +420,13 @@ export function BossBattleScreen({
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder={countdownVal !== null ? "Chuẩn bị..." : "Gõ phiên âm Romaji..."}
-              className="w-full h-14 rounded-[1.25rem] border-4 border-[#FFE2D1] bg-[#FFF8F0] text-center font-rounded font-black text-xl text-amber-900 placeholder:text-amber-300 focus:outline-none focus:border-[#FF9F1C] shadow-[0_4px_0_0_#FFD6C0] focus:shadow-[0_4px_0_0_#FF9F1C] transition-all disabled:opacity-50"
+              className="w-full h-14 rounded-[1.25rem] border border-white/60 bg-white/60 text-center font-rounded font-black text-xl text-amber-955 placeholder:text-amber-300/80 focus:outline-none focus:bg-white/80 focus:border-[#FF9F1C] shadow-[0_2px_8px_rgba(0,0,0,0.02)] focus:shadow-[0_4px_16px_rgba(255,159,28,0.15)] transition-all disabled:opacity-50"
               style={{ fontFamily: "var(--font-cherry)" }}
             />
             <button
               type="submit"
               disabled={!inputValue.trim() || countdownVal !== null || !isTimerActive}
-              className="absolute right-2 top-1/2 -translate-y-[60%] px-4 py-2 bg-[#FF9F1C] hover:bg-[#e68a00] text-white font-rounded font-black rounded-xl text-sm border-b-4 border-[#cc7a00] active:border-b-0 active:translate-y-[-40%] transition-all disabled:opacity-40 disabled:active:translate-y-[-60%] shadow-md cursor-pointer"
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-[#FF7096] to-[#FF9F1C] hover:from-[#FF5C8A] hover:to-[#E68E19] text-white font-rounded font-black rounded-xl text-sm active:scale-95 transition-all disabled:opacity-40 shadow-sm cursor-pointer"
             >
               💥
             </button>
