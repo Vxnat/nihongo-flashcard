@@ -374,4 +374,24 @@
 
 .btn-shine-effect:hover::after {
   animation: shine-sweep 0.85s ease-in-out forwards;
+}
+
+/* ==========================================================
+   CASSETTE REEL SPINNING ANIMATION
+   ========================================================== */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.animate-spin-paused {
+  animation-play-state: paused !important;
 }

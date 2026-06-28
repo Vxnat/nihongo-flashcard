@@ -15,6 +15,10 @@ import {
   Maximize,
   Minimize,
   ArrowLeft,
+  Shuffle,
+  ListMusic,
+  ChevronsLeft,
+  ChevronsRight,
 } from "lucide-react";
 import { ControlPanel } from "./ControlPanel";
 import { TypingBossFight } from "@/components/flashcard/TypingBossFight";
@@ -23,6 +27,7 @@ import { SwipeCard } from "./SwipeCard";
 import { SwipeGuide } from "./SwipeGuide";
 import { useFlashcardDeck } from "@/hooks/flashcard/useFlashcardDeck";
 import { BossBattleScreen } from "./BossBattleScreen";
+import { CassetteCard } from "./CassetteCard";
 import {
   Dialog,
   DialogContent,
@@ -248,7 +253,7 @@ export function FlashcardDeck({
   const isZen = globalMode === "podcast";
 
   return (
-    <div className={`flex flex-col items-center w-full overflow-x-hidden px-4 pt-4 pb-20 min-h-[100dvh] transition-all duration-700 ${isZen ? "theme-zen bg-[#0A0414]/90 text-white" : "theme-kawaii bg-[#FFFDF5] text-zinc-900"}`}>
+    <div className={`flex flex-col items-center w-full overflow-x-hidden px-4 pt-4 pb-20 min-h-[100dvh] transition-all duration-700 ${isZen ? "theme-zen bg-gradient-to-br from-[#E2D9FC] via-[#FEE2E9] to-[#E6FAF7] text-[#4A306D]" : "theme-kawaii bg-[#FFFDF5] text-zinc-900"}`}>
       {/* ==========================================
           HEADER KẸO DẺO (SQUISHY NAVIGATION)
           ========================================== */}
@@ -257,7 +262,7 @@ export function FlashcardDeck({
         <Link href="/">
           <button
             className={`flex items-center justify-center h-12 px-4 rounded-[1.25rem] transition-all group cursor-pointer ${isZen
-              ? "bg-white/10 text-white/80 border border-white/20 hover:text-white hover:bg-white/20 active:translate-y-1"
+              ? "bg-white/40 text-[#4A306D] border border-white/60 hover:bg-white/60 active:translate-y-1"
               : "bg-white/40 backdrop-blur-md border border-white/50 shadow-md text-orange-400 hover:bg-white/60 hover:text-orange-500 active:translate-y-1"
               }`}
           >
@@ -277,7 +282,7 @@ export function FlashcardDeck({
         {/* Nhãn dán Tên Bộ Bài */}
         <div
           className={`px-4 py-2 rounded-[1.25rem] font-rounded font-black text-xs uppercase tracking-widest flex items-center gap-1.5 truncate max-w-[160px] ${isZen
-            ? "bg-white/10 border border-white/20 text-white/90"
+            ? "bg-white/40 border border-white/60 text-[#4A306D]"
             : "bg-gradient-to-r from-amber-100/50 to-orange-100/50 border border-amber-200/60 backdrop-blur-md shadow-md text-amber-900"
             }`}
         >
@@ -305,15 +310,8 @@ export function FlashcardDeck({
         className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 z-0 overflow-hidden ${globalMode === "podcast" ? "opacity-100" : "opacity-0"
           }`}
       >
-        {/* 1. Ảnh nền Lofi (Có thể tải file ảnh/GIF vào thư mục public và đổi src thành "/ten-anh.gif") */}
-        <img
-          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=1920"
-          alt="Lofi Background"
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-        />
-
-        {/* 2. Lớp phủ màu Đêm Trăng Kẹo Ngọt để giữ độ mộng mơ và làm mờ (blur) bớt ảnh gốc */}
-        <div className="absolute inset-0 bg-[#4A306D]/70 backdrop-blur-[3px]" />
+        {/* Nền gradient pastel ấm cúng */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#E2D9FC] via-[#FEE2E9] to-[#E6FAF7]" />
 
         {/* Hiệu ứng sao rơi chỉ bật khi vào mode Podcast */}
         <AnimatePresence>
@@ -388,11 +386,11 @@ export function FlashcardDeck({
               ? "w-[320px] h-[190px]"
               : "w-[320px] h-[135px]"
             } ${isZen
-              ? "bg-gradient-to-br from-[#1E112C]/80 to-[#0B0612]/90 border-pink-500/20 p-4"
-              : "bg-gradient-to-br from-[#FFFDF5]/90 via-white/80 to-[#FFE2D1]/90 border-[#FFE2D1] p-4"
+              ? "bg-gradient-to-br from-white/70 via-[#EAE4FF]/60 to-[#FFEBEF]/60 border-white/80 p-4 text-[#7C5B9E] backdrop-blur-md"
+              : "bg-gradient-to-br from-[#FFFDF5]/90 via-white/80 to-[#FFE2D1]/90 border-[#FFE2D1] p-4 text-zinc-800"
             }`
             : isZen
-              ? "w-[170px] h-[44px] bg-white/10 border-white/15 px-3 cursor-pointer flex items-center justify-between text-white/90"
+              ? "w-[170px] h-[44px] bg-white/40 border-white/60 px-3 cursor-pointer flex items-center justify-between text-[#7C5B9E] backdrop-blur-md"
               : "w-[170px] h-[44px] bg-gradient-to-r from-amber-50/50 via-white/50 to-pink-50/50 backdrop-blur-md border border-white/60 px-3 cursor-pointer flex items-center justify-between text-teal-800"
             }`}
           onClick={!isIslandExpanded ? () => setIsIslandExpanded(true) : undefined}
@@ -447,7 +445,7 @@ export function FlashcardDeck({
                 className="flex flex-col justify-between w-full h-full select-none"
               >
                 {/* Hàng 1: Avatar, Tiến độ, Nút Tiện ích (Furigana & Hán tự) thay cho nút X */}
-                <div className="flex items-center justify-between w-full border-b border-white/10 pb-1.5">
+                <div className={`flex items-center justify-between w-full border-b pb-1.5 ${isZen ? "border-white/40" : "border-white/10"}`}>
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-white/80 bg-amber-50/20">
                       <img
@@ -471,10 +469,10 @@ export function FlashcardDeck({
                       }}
                       className={`w-7 h-7 flex items-center justify-center rounded-full border text-xs font-bold font-rounded transition-all cursor-pointer active:scale-90 ${showFurigana
                         ? isZen
-                          ? "bg-pink-500/20 border-pink-500/40 text-pink-300 shadow-[0_0_8px_rgba(236,72,153,0.3)]"
+                          ? "bg-[#FFB3C6]/60 border-white/80 text-[#FF7096] shadow-[0_2px_8px_rgba(255,112,150,0.15)]"
                           : "bg-[#E0F7FA] border-[#80DEEA] text-[#00ACC1]"
                         : isZen
-                          ? "bg-white/5 border-white/10 text-white/40"
+                          ? "bg-white/30 border-white/40 text-[#7C5B9E]/65"
                           : "bg-white border-zinc-200 text-zinc-400 opacity-60"
                         }`}
                       title="Bật/tắt Furigana"
@@ -489,7 +487,7 @@ export function FlashcardDeck({
                           <button
                             onClick={(e) => e.stopPropagation()}
                             className={`w-7 h-7 flex items-center justify-center rounded-full border text-xs font-bold font-rounded transition-all cursor-pointer active:scale-90 ${isZen
-                              ? "bg-amber-500/20 border-yellow-500/30 text-yellow-400 hover:bg-amber-500/30"
+                              ? "bg-[#FFE2D1]/60 border-white/80 text-[#FF9F1C] hover:bg-[#FFE2D1]/80"
                               : "bg-indigo-50 border-indigo-200 text-indigo-500 hover:bg-indigo-100"
                               }`}
                             title="Xem chi tiết Hán tự"
@@ -507,12 +505,12 @@ export function FlashcardDeck({
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             transition={{ type: "spring", stiffness: 300, damping: 25 }}
                             className={`flex flex-col w-full h-full max-h-[85vh] rounded-xl overflow-hidden border-4 shadow-2xl ${isZen
-                              ? "border-pink-500/40 bg-[#1E112C] text-white"
+                              ? "border-white/80 bg-gradient-to-br from-[#FFFDF5] to-[#FFE2D1] text-zinc-800"
                               : "border-[#A0E8D5] bg-[#FDFBF7] text-zinc-800"
                               }`}
                           >
                             <DialogHeader
-                              className={`p-5 pb-6 border-b-4 shrink-0 text-center ${isZen ? "bg-gradient-to-r from-purple-900 to-indigo-950 border-pink-500/30" : "bg-[#06D6A0] border-[#A0E8D5]"
+                              className={`p-5 pb-6 border-b-4 shrink-0 text-center ${isZen ? "bg-gradient-to-r from-[#A594F4] to-[#BDB2FF] border-white/20" : "bg-[#06D6A0] border-[#A0E8D5]"
                                 }`}
                             >
                               <DialogTitle
@@ -528,7 +526,7 @@ export function FlashcardDeck({
                                   <div
                                     key={index}
                                     className={`flex items-center gap-3 p-3 rounded-2xl border-2 shadow-[0_4px_0_0_rgba(0,0,0,0.1)] ${isZen
-                                      ? "bg-[#0B0612]/60 border-purple-500/20 text-white"
+                                      ? "bg-white/60 border-white/80 text-zinc-800"
                                       : "bg-white border-[#A0E8D5] text-zinc-800"
                                       }`}
                                   >
@@ -540,7 +538,7 @@ export function FlashcardDeck({
                                     </span>
                                     <div className="flex flex-col font-rounded text-xs font-bold space-y-1 w-full overflow-hidden">
                                       <div className={`px-2 py-1 rounded-lg border flex justify-between gap-2 ${isZen
-                                        ? "bg-purple-950/40 border-purple-500/20 text-purple-200"
+                                        ? "bg-[#FFE2D1]/40 border-orange-100 text-orange-800"
                                         : "bg-orange-50 border-orange-100 text-orange-800"
                                         }`}>
                                         <span>ON:</span>
@@ -549,7 +547,7 @@ export function FlashcardDeck({
                                         </span>
                                       </div>
                                       <div className={`px-2 py-1 rounded-lg border flex justify-between gap-2 ${isZen
-                                        ? "bg-pink-950/40 border-pink-500/20 text-pink-200"
+                                        ? "bg-[#FFEBEF]/40 border-pink-100 text-[#FF7096]"
                                         : "bg-pink-50 border-pink-100 text-pink-800"
                                         }`}>
                                         <span>KUN:</span>
@@ -586,9 +584,9 @@ export function FlashcardDeck({
                       }
                     }}
                     className={`w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 active:scale-95 border cursor-pointer ${globalMode === "podcast"
-                      ? "bg-gradient-to-r from-[#FF7096] to-[#FF9F1C] text-white shadow-[0_0_10px_rgba(255,112,150,0.6)] border-[#FFB3C6]"
+                      ? "bg-gradient-to-r from-[#FF7096] to-[#A594F4] text-white border-2 border-white/60 shadow-[0_4px_12px_rgba(165,148,244,0.3)]"
                       : isZen
-                        ? "bg-white/5 text-white/50 border-white/10 hover:text-white"
+                        ? "bg-white/40 text-[#FF7096] border border-white/60 hover:bg-white/60 backdrop-blur-sm"
                         : "bg-white border-2 border-[#FFE2D1] text-[#FF7096] shadow-[0_2px_0_0_#FFE2D1] hover:bg-orange-50"
                       }`}
                     title="Chế độ Rảnh Tay (Podcast)"
@@ -598,8 +596,10 @@ export function FlashcardDeck({
 
                   {/* Thanh trượt chọn Lật/Gõ (Tic-Tac Toggle) */}
                   <div
-                    className={`relative flex w-[92px] h-[34px] bg-white/10 p-1 rounded-full border border-white/10 transition-opacity ${globalMode === "podcast" ? "opacity-30 pointer-events-none" : "opacity-100"
-                      }`}
+                    className={`relative flex w-[92px] h-[34px] p-1 rounded-full border transition-all ${isZen
+                      ? "bg-white/40 border-white/60 backdrop-blur-sm"
+                      : "bg-white/80 border-white/80"
+                      } ${globalMode === "podcast" ? "opacity-30 pointer-events-none" : "opacity-100"}`}
                   >
                     {/* Cục kẹo chạy */}
                     <motion.div
@@ -607,7 +607,7 @@ export function FlashcardDeck({
                       animate={{
                         left: globalMode === "swipe" ? "4px" : "calc(50% + 0px)",
                         backgroundColor: globalMode === "swipe" ? "#FF7096" : "#06D6A0",
-                        borderColor: globalMode === "swipe" ? "#FFB3C6" : "#A0E8D5",
+                        borderColor: globalMode === "swipe" ? (isZen ? "#FFF" : "#FFB3C6") : (isZen ? "#FFF" : "#A0E8D5"),
                         boxShadow: globalMode === "swipe"
                           ? "0 0 8px rgba(255,112,150,0.5)"
                           : "0 0 8px rgba(6,214,160,0.5)"
@@ -623,7 +623,7 @@ export function FlashcardDeck({
                         setTempTyping(false);
                         setIsFlipped(false);
                       }}
-                      className={`relative z-10 flex-1 flex items-center justify-center transition-colors duration-300 cursor-pointer ${globalMode === "swipe" ? "text-white" : isZen ? "text-white/40" : "text-zinc-500 hover:text-zinc-700"
+                      className={`relative z-10 flex-1 flex items-center justify-center transition-colors duration-300 cursor-pointer ${globalMode === "swipe" ? "text-white" : isZen ? "text-[#7C5B9E]/65 hover:text-[#4A306D]" : "text-zinc-500 hover:text-zinc-700"
                         }`}
                     >
                       <Layers strokeWidth={2.5} className="w-4 h-4" />
@@ -637,7 +637,7 @@ export function FlashcardDeck({
                         setTempTyping(false);
                         setIsFlipped(false);
                       }}
-                      className={`relative z-10 flex-1 flex items-center justify-center transition-colors duration-300 cursor-pointer ${globalMode === "typing" ? "text-white" : isZen ? "text-white/40" : "text-zinc-500 hover:text-zinc-700"
+                      className={`relative z-10 flex-1 flex items-center justify-center transition-colors duration-300 cursor-pointer ${globalMode === "typing" ? "text-white" : isZen ? "text-[#7C5B9E]/65 hover:text-[#4A306D]" : "text-zinc-500 hover:text-zinc-700"
                         }`}
                     >
                       <Keyboard strokeWidth={2.5} className="w-4 h-4" />
@@ -651,9 +651,9 @@ export function FlashcardDeck({
                       setShowMascot(!showMascot);
                     }}
                     className={`w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 active:scale-95 border cursor-pointer ${showMascot
-                      ? "bg-[#FFD166] text-amber-950 border-[#ffe11c] shadow-[0_2px_0_0_#FF9F1C]"
+                      ? "bg-[#FFD166] text-amber-950 border-2 border-white shadow-[0_2px_0_0_#FF9F1C]"
                       : isZen
-                        ? "bg-white/5 text-white/40 border-white/10 grayscale"
+                        ? "bg-white/40 text-zinc-400 border border-white/60 hover:bg-white/60 backdrop-blur-sm grayscale"
                         : "bg-white border-2 border-[#FFE2D1] text-zinc-400 grayscale hover:bg-orange-50"
                       }`}
                     title="Bật/Tắt Linh Vật"
@@ -689,78 +689,87 @@ export function FlashcardDeck({
         // --- CHẾ ĐỘ RẢNH TAY (PODCAST / ZEN MODE) ---
         <>
           <div
-            className="w-full max-w-md h-[400px] relative z-10 mt-5"
+            className="w-full max-w-md h-[460px] relative z-10"
             style={{ perspective: 1200 }}
           >
             <AnimatePresence custom={exitDir} mode="popLayout">
-              <SwipeCard
+              <CassetteCard
                 key={currentCard.id}
                 card={currentCard}
                 isFlipped={isFlipped}
                 onFlip={handleFlip}
-                onSwipe={handleSwipeAction}
                 exitDir={exitDir}
                 showFurigana={showFurigana}
-                isPodcastMode={true}
                 podcastIsPlaying={podcastIsPlaying}
               />
             </AnimatePresence>
           </div>
 
           {/* AUDIO PLAYER UI CHO PODCAST */}
-          <div className="w-full max-w-md mx-auto relative z-10 mt-10 px-4 animate-in slide-in-from-bottom-6 fade-in duration-500">
-            {/* Speed Selector */}
-            <div className="flex justify-center gap-1 sm:gap-3 mb-6 bg-white/5 p-1.5 rounded-full border border-white/10 w-fit mx-auto shadow-lg max-w-full overflow-x-auto hide-scrollbar backdrop-blur-md">
+          <div className="w-full max-w-md mx-auto relative z-10 mt-8 px-4 animate-in slide-in-from-bottom-6 fade-in duration-500">
+            {/* Speed Selector (Shiba Mascot Buttons) */}
+            <div className="flex justify-center gap-4 mb-6 bg-white/40 p-2 rounded-[2rem] border border-white/60 w-fit mx-auto shadow-sm backdrop-blur-md select-none">
+              {/* Nút Chậm */}
               <button
                 onClick={() => setPodcastSpeed("slow")}
-                className={`px-3 sm:px-4 py-1.5 rounded-full text-sm transition-all border-none flex items-center gap-1.5 shrink-0 active:translate-y-[2px] ${podcastSpeed === "slow"
-                  ? "bg-[#FF7096] text-white shadow-[0_0_12px_rgba(255,112,150,0.6)]"
-                  : "bg-transparent text-white/50 hover:text-white/80"
+                className={`w-15 h-16 flex flex-col items-center justify-center rounded-2xl transition-all border-none active:scale-95 cursor-pointer ${podcastSpeed === "slow"
+                  ? "bg-[#FFEBEF]/80 border-2 border-white text-[#FF7096] shadow-[0_4px_12px_rgba(255,112,150,0.15),inset_0_2px_4px_rgba(255,255,255,0.8)] scale-105"
+                  : "bg-transparent text-[#4A306D]/60 opacity-60 hover:opacity-100 hover:scale-102"
                   }`}
+                title="Tốc độ chậm"
               >
-                <span className="text-xs sm:text-sm">🐢</span>
+                <img
+                  src="/images/mascot/shiba-slow.png"
+                  alt="Slow"
+                  className="w-10 h-10 object-contain drop-shadow-sm"
+                />
                 <span
-                  style={{
-                    fontFamily: "var(--font-cherry)",
-                    letterSpacing: "1px",
-                    paddingTop: "2px",
-                  }}
+                  className="text-[9px] font-bold tracking-wider mt-0.5"
+                  style={{ fontFamily: "var(--font-cute)" }}
                 >
                   Chậm
                 </span>
               </button>
+
+              {/* Nút Vừa */}
               <button
                 onClick={() => setPodcastSpeed("normal")}
-                className={`px-3 sm:px-4 py-1.5 rounded-full text-sm transition-all border-none flex items-center gap-1.5 shrink-0 active:translate-y-[2px] ${podcastSpeed === "normal"
-                  ? "bg-[#06D6A0] text-white shadow-[0_0_12px_rgba(6,214,160,0.6)]"
-                  : "bg-transparent text-white/50 hover:text-white/80"
+                className={`w-15 h-16 flex flex-col items-center justify-center rounded-2xl transition-all border-none active:scale-95 cursor-pointer ${podcastSpeed === "normal"
+                  ? "bg-[#E6FAF7]/80 border-2 border-white text-[#05A077] shadow-[0_4px_12px_rgba(6,214,160,0.15),inset_0_2px_4px_rgba(255,255,255,0.8)] scale-105"
+                  : "bg-transparent text-[#4A306D]/60 opacity-60 hover:opacity-100 hover:scale-102"
                   }`}
+                title="Tốc độ bình thường"
               >
-                <span className="text-xs sm:text-sm">🚶</span>
+                <img
+                  src="/images/mascot/shiba-normal.png"
+                  alt="Normal"
+                  className="w-10 h-10 object-contain drop-shadow-sm"
+                />
                 <span
-                  style={{
-                    fontFamily: "var(--font-cherry)",
-                    letterSpacing: "1px",
-                    paddingTop: "2px",
-                  }}
+                  className="text-[9px] font-bold tracking-wider mt-0.5"
+                  style={{ fontFamily: "var(--font-cute)" }}
                 >
                   Vừa
                 </span>
               </button>
+
+              {/* Nút Nhanh */}
               <button
                 onClick={() => setPodcastSpeed("fast")}
-                className={`px-3 sm:px-4 py-1.5 rounded-full text-sm transition-all border-none flex items-center gap-1.5 shrink-0 active:translate-y-[2px] ${podcastSpeed === "fast"
-                  ? "bg-[#FF9F1C] text-white shadow-[0_0_12px_rgba(255,159,28,0.6)]"
-                  : "bg-transparent text-white/50 hover:text-white/80"
+                className={`w-15 h-16 flex flex-col items-center justify-center rounded-2xl transition-all border-none active:scale-95 cursor-pointer ${podcastSpeed === "fast"
+                  ? "bg-[#E0F2FE]/80 border-2 border-white text-[#0284C7] shadow-[0_4px_12px_rgba(56,189,248,0.15),inset_0_2px_4px_rgba(255,255,255,0.8)] scale-105"
+                  : "bg-transparent text-[#4A306D]/60 opacity-60 hover:opacity-100 hover:scale-102"
                   }`}
+                title="Tốc độ nhanh"
               >
-                <span className="text-xs sm:text-sm">🐇</span>
+                <img
+                  src="/images/mascot/shiba-fast.png"
+                  alt="Fast"
+                  className="w-10 h-10 object-contain drop-shadow-sm"
+                />
                 <span
-                  style={{
-                    fontFamily: "var(--font-cherry)",
-                    letterSpacing: "1px",
-                    paddingTop: "2px",
-                  }}
+                  className="text-[9px] font-bold tracking-wider mt-0.5"
+                  style={{ fontFamily: "var(--font-cute)" }}
                 >
                   Nhanh
                 </span>
@@ -768,66 +777,152 @@ export function FlashcardDeck({
             </div>
 
             {/* Main Audio Controls Block */}
-            <div className="flex flex-col items-center gap-4 bg-white/10 p-5 rounded-[2.5rem] border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-md">
-              {/* SÓNG ÂM THANH DÀNH CHO PODCAST (Pulsing sound waves) */}
-              <div className="flex items-end justify-center gap-1.5 h-8 my-1 w-full">
+            <div className="flex flex-col items-center gap-4 bg-white/40 p-5 rounded-[2.5rem] border border-white/60 shadow-[0_12px_24px_rgba(74,48,109,0.04)] backdrop-blur-md">
+              {/* SÓNG ÂM THANH DÀNH CHO PODCAST (Pulsing star/flower particles) */}
+              <div className="flex items-center justify-center gap-2.5 h-12 my-1 w-full overflow-hidden select-none">
                 {podcastIsPlaying ? (
                   [...Array(11)].map((_, i) => {
                     const delays = [0.1, 0.25, 0.4, 0.55, 0.7, 0.85, 0.7, 0.55, 0.4, 0.25, 0.1];
-                    const heights = ["40%", "70%", "100%", "70%", "40%", "80%", "40%", "70%", "100%", "70%", "40%"];
                     return (
-                      <motion.div
+                      <motion.span
                         key={i}
-                        className="w-1.5 bg-gradient-to-t from-[#FF7096] to-[#FFB3C6] rounded-full"
-                        animate={{ height: ["20%", heights[i], "20%"] }}
+                        className="text-lg text-pink-300 drop-shadow-[0_0_4px_rgba(255,112,150,0.4)]"
+                        animate={{
+                          y: [0, -10, 0],
+                          scale: [0.9, 1.15, 0.9],
+                        }}
                         transition={{
                           repeat: Infinity,
-                          duration: 0.8,
-                          delay: delays[i],
+                          duration: 1.2,
+                          delay: delays[i % delays.length],
                           ease: "easeInOut",
                         }}
-                      />
+                      >
+                        🌸
+                      </motion.span>
                     );
                   })
                 ) : (
                   [...Array(11)].map((_, i) => (
-                    <div
+                    <span
                       key={i}
-                      className="w-1.5 h-1.5 bg-white/20 rounded-full"
-                    />
+                      className="text-md opacity-30 text-[#7C5B9E]"
+                    >
+                      🌸
+                    </span>
                   ))
                 )}
               </div>
 
-              <div className="flex items-center justify-center gap-6 w-full">
+              {/* Progress track (Động: số từ đã học / tổng số từ) */}
+              <div className="w-full flex items-center justify-between gap-2 px-1">
+                <span className="text-[10px] font-bold text-[#7C5B9E]/85">
+                  {currentIndex + 1}
+                </span>
+                <div className="flex-1 bg-white/60 h-1.5 rounded-full overflow-visible relative border border-white/20">
+                  {/* Cục chạy tím pastel chạy động */}
+                  <div
+                    className="absolute left-0 top-0 bottom-0 bg-[#A594F4] rounded-full transition-all duration-300"
+                    style={{ width: `${((currentIndex + 1) / activeCards.length) * 100}%` }}
+                  >
+                    {/* Nút tròn ở đầu thanh chạy */}
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3.5 h-3.5 bg-[#A594F4] border-2 border-white rounded-full shadow-md" />
+                  </div>
+                </div>
+                <span className="text-[10px] font-bold text-[#7C5B9E]/85">
+                  {activeCards.length}
+                </span>
+              </div>
+
+              {/* Main Controls Row: Shuffle, SkipBack, Play, SkipForward, Queue */}
+              <div className="flex items-center justify-between w-full px-2 mt-1">
+                {/* Shuffle Button */}
+                <button
+                  onClick={handleShuffle}
+                  className="w-9 h-9 flex items-center justify-center text-[#7C5B9E]/80 hover:text-[#7C5B9E] hover:bg-white/20 rounded-full transition-all active:scale-90 cursor-pointer"
+                  title="Xáo trộn thẻ"
+                >
+                  <Shuffle size={18} strokeWidth={2.5} />
+                </button>
+
+                {/* Nút SkipBack */}
                 <button
                   onClick={() => handlePodcastNext(-1)}
-                  className="w-14 h-14 flex items-center justify-center bg-white/5 text-pink-200 border border-white/10 rounded-2xl shadow-none active:translate-y-[2px] transition-all hover:bg-white/10 hover:text-white"
+                  className="w-12 h-12 flex items-center justify-center bg-gradient-to-b from-white/70 via-[#FFEBEF]/50 to-[#FFD6E0]/40 backdrop-blur-md text-[#8fd5f9] border-2 border-white/80 rounded-full shadow-[0_6px_16px_rgba(255,112,150,0.12),inset_0_2px_4px_rgba(255,255,255,0.7)] hover:scale-105 active:translate-y-0.5 active:shadow-sm transition-all hover:bg-[#FFF0F3] cursor-pointer"
                 >
-                  <SkipBack size={24} strokeWidth={3} fill="currentColor" />
+                  <ChevronsLeft size={16} strokeWidth={4} fill="currentColor" />
                 </button>
 
-                <button
-                  onClick={() => setPodcastIsPlaying(!podcastIsPlaying)}
-                  className="w-20 h-20 flex items-center justify-center bg-[#FF7096] text-white rounded-full shadow-[0_0_20px_rgba(255,112,150,0.6)] hover:bg-[#FF5C8A] active:translate-y-1 transition-all"
-                >
-                  {podcastIsPlaying ? (
-                    <Pause size={32} strokeWidth={3} fill="currentColor" />
-                  ) : (
-                    <Play
-                      size={32}
-                      strokeWidth={3}
-                      fill="currentColor"
-                      className="ml-1"
-                    />
-                  )}
-                </button>
+                {/* Nút Play/Pause (To nhất) */}
+                <div className="relative">
+                  {/* Ngôi sao nhỏ màu trắng trang trí đè lên nút ở góc trên bên phải */}
+                  <svg
+                    className="absolute -top-1 -right-1.5 w-5 h-5 text-white fill-current drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)] z-10 animate-bounce"
+                    style={{ animationDuration: "3s" }}
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.857 1.4-8.168L.132 9.21l8.2-1.192z" />
+                  </svg>
+                  <button
+                    onClick={() => setPodcastIsPlaying(!podcastIsPlaying)}
+                    className="w-18 h-18 flex items-center justify-center bg-gradient-to-b from-white/60 via-[#EAE4FF]/50 to-[#D6C7FF]/40 backdrop-blur-md text-white rounded-full border-2 border-white/85 shadow-[0_8px_20px_rgba(165,148,244,0.2),inset_0_4px_6px_rgba(255,255,255,0.7)] hover:scale-105 active:translate-y-0.5 active:shadow-sm transition-all cursor-pointer relative"
+                  >
+                    {podcastIsPlaying ? (
+                      <Pause size={22} strokeWidth={4} fill="currentColor" />
+                    ) : (
+                      <Play
+                        size={22}
+                        strokeWidth={4}
+                        fill="currentColor"
+                        className="ml-1"
+                      />
+                    )}
+                  </button>
+                </div>
 
+                {/* Nút SkipForward */}
                 <button
                   onClick={() => handlePodcastNext(1)}
-                  className="w-14 h-14 flex items-center justify-center bg-white/5 text-pink-200 border border-white/10 rounded-2xl shadow-none active:translate-y-[2px] transition-all hover:bg-white/10 hover:text-white"
+                  className="w-12 h-12 flex items-center justify-center bg-gradient-to-b from-white/70 via-[#E0F2FE]/50 to-[#BAE6FD]/40 backdrop-blur-md text-[#FF9BB5] border-2 border-white/80 rounded-full shadow-[0_6px_16px_rgba(56,189,248,0.12),inset_0_2px_4px_rgba(255,255,255,0.7)] hover:scale-105 active:translate-y-0.5 active:shadow-sm transition-all hover:bg-[#F0F9FF] cursor-pointer"
                 >
-                  <SkipForward size={24} strokeWidth={3} fill="currentColor" />
+                  <ChevronsRight size={16} strokeWidth={4} fill="currentColor" />
+                </button>
+
+                {/* Queue Button */}
+                <button
+                  onClick={() => setIsIslandExpanded(!isIslandExpanded)}
+                  className="w-9 h-9 flex items-center justify-center text-[#7C5B9E]/80 hover:text-[#7C5B9E] hover:bg-white/20 rounded-full transition-all active:scale-90 cursor-pointer"
+                  title="Danh sách thẻ"
+                >
+                  <ListMusic size={18} strokeWidth={2.5} />
+                </button>
+              </div>
+
+              {/* Dòng nút phụ dưới cùng: Replay Word & Mark as Mastered */}
+              <div className="flex justify-between items-center w-full px-4 mt-2 border-t border-white/30 pt-3 text-[#7C5B9E] text-xs font-bold select-none">
+                <button
+                  onClick={handlePlayAudio}
+                  className="flex items-center gap-1.5 hover:text-[#FF7096] active:scale-95 cursor-pointer"
+                  style={{ fontFamily: "var(--font-cute)" }}
+                >
+                  <img
+                    src="/images/mascot/shiba-replay.png"
+                    alt="Replay"
+                    className="w-5.5 h-5.5 object-contain"
+                  />
+                  Phát lại từ
+                </button>
+                <button
+                  onClick={() => handleSwipeAction("right")}
+                  className="flex items-center gap-1.5 hover:text-[#05A077] active:scale-95 cursor-pointer"
+                  style={{ fontFamily: "var(--font-cute)" }}
+                >
+                  <img
+                    src="/images/mascot/shiba-mastered.png"
+                    alt="Mastered"
+                    className="w-5.5 h-5.5 object-contain"
+                  />
+                  Thuộc từ này
                 </button>
               </div>
             </div>
@@ -918,7 +1013,7 @@ export function FlashcardDeck({
         <button
           onClick={toggleFullscreen}
           className={`fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-[100] w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-300 active:duration-75 active:scale-90 ${globalMode === "podcast"
-            ? "bg-white/10 backdrop-blur-md text-white/70 border-2 border-white/20 hover:text-white hover:bg-white/20 shadow-lg"
+            ? "bg-gradient-to-b from-white/70 via-[#EAE4FF]/60 to-[#D6C7FF]/50 backdrop-blur-md text-[#7C5B9E] border-2 border-white/80 shadow-[0_8px_16px_rgba(165,148,244,0.25),inset_0_2px_4px_rgba(255,255,255,0.7)] hover:text-[#67448A] hover:scale-105 active:translate-y-0.5"
             : "bg-white text-zinc-400 border-2 border-zinc-200 shadow-[0_4px_0_0_#e4e4e7] hover:text-[#5390D9] hover:-translate-y-1 hover:shadow-[0_6px_0_0_#e4e4e7] active:translate-y-1 active:shadow-none"
             }`}
           title={isFullscreen ? "Thu nhỏ" : "Toàn màn hình"}

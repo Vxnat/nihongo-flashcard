@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Vòng tròn viền ngoài màu trắng mờ -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.6"/>
+  <!-- Vòng tròn nền chính của bánh răng (màu pastel nhạt hồng/tím hoặc trắng trong) -->
+  <circle cx="50" cy="50" r="42" fill="rgba(255, 255, 255, 0.2)" stroke="#E8DBFC" stroke-width="3"/>
+  <!-- Vòng trong nhỏ hơn -->
+  <circle cx="50" cy="50" r="24" fill="none" stroke="#E8DBFC" stroke-width="2"/>
+  <!-- Các răng cưa (6 chấu) đối xứng từ tâm ra -->
+  <g fill="#4A306D" opacity="0.8">
+    <!-- Chấu 1 & 4 (Thẳng đứng) -->
+    <rect x="47" y="20" width="6" height="15" rx="3"/>
+    <rect x="47" y="65" width="6" height="15" rx="3"/>
+    <!-- Chấu 2 & 5 (Xoay 60 độ) -->
+    <rect x="47" y="20" width="6" height="15" rx="3" transform="rotate(60 50 50)"/>
+    <rect x="47" y="65" width="6" height="15" rx="3" transform="rotate(60 50 50)"/>
+    <!-- Chấu 3 & 6 (Xoay 120 độ) -->
+    <rect x="47" y="20" width="6" height="15" rx="3" transform="rotate(120 50 50)"/>
+    <rect x="47" y="65" width="6" height="15" rx="3" transform="rotate(120 50 50)"/>
+  </g>
+  <!-- Lỗ trục tròn ở tâm -->
+  <circle cx="50" cy="50" r="12" fill="#FFFFFF"/>
+  <circle cx="50" cy="50" r="10" fill="rgba(74, 48, 109, 0.15)"/>
+</svg>

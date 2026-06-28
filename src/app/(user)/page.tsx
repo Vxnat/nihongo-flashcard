@@ -271,7 +271,7 @@ export default function Home() {
       </motion.header>
 
       {/* KHU VỰC NỘI DUNG CUỘN CHÍNH */}
-      <main className="w-full pt-[80] pb-5 relative z-10">
+      <main className="w-full pt-[110] pb-7 relative z-10">
         {/* NỘI DUNG TỪNG TAB */}
         <AnimatePresence mode="wait">
           {/* TAB 1: BẢN ĐỒ HÀNH TRÌNH */}
