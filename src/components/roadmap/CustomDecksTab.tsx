@@ -3,15 +3,16 @@
 import { Badge } from "@/components/ui/badge";
 import { ImportDeck } from "@/components/roadmap/ImportDeck";
 import { DeckWordList } from "@/components/roadmap/DeckWordList";
-import { LoadDefaultDecksBtn } from "@/components/roadmap/LoadDefaultDecksBtn";
 import {
   Trash2,
   FolderPlus,
   X,
   Loader2,
-  PenTool,
   Download,
   MoreVertical,
+  Layers,
+  BookOpen,
+  Search,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -78,18 +79,14 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
     deckToMove,
     setDeckToMove,
     handleMoveDeck,
-    loadCustomDecks,
     isLoadingDecks,
   } = homeState;
 
   const [activeSubTab, setActiveSubTab] = useState<"flashcard" | "kanji">("flashcard");
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
-  const [isFabOpen, setIsFabOpen] = useState(false);
 
   const customDecks = useAppStore((state) => state.customDecks);
-  const addCustomDeck = useAppStore((state) => state.addCustomDeck);
   const setActiveKanjiPracticeDeck = useAppStore((state) => state.setActiveKanjiPracticeDeck);
-  const user = useAppStore((state) => state.user);
 
   // Tải tiến trình từ store
   const progress = useAppStore((state) => state.progress);
@@ -119,29 +116,6 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
     });
   }, [visibleDecks, loadProgress]);
 
-  // Hàm tạo Bộ thủ mặc định
-  const handleAddDefaultRadicals = async () => {
-    const radicalsDeck: any = {
-      id: `radicals_basic_${Date.now()}`,
-      title: "214 Bộ Thủ (Phần 1)",
-      description: "Nền tảng cấu tạo nên mọi chữ Hán.",
-      type: "kanji",
-      level: "Cơ bản",
-      count: 5,
-      cards: [],
-      kanjiList: [
-        { char: "一", meaning: "Bộ Nhất (Số một)" },
-        { char: "丨", meaning: "Bộ Cổn (Nét sổ)" },
-        { char: "丶", meaning: "Bộ Chủ (Điểm, chấm)" },
-        { char: "丿", meaning: "Bộ Phiệt (Nét phẩy)" },
-        { char: "乙", meaning: "Bộ Ất (Can ất)" },
-      ],
-      folderId: "kanji",
-      createdAt: new Date().toISOString(),
-    };
-    await addCustomDeck(radicalsDeck);
-    toast.success("Đã tải Bộ thủ cơ bản thành công! 🖌️");
-  };
 
   // Hàm xuất file JSON
   const handleExportDeck = (deck: any) => {
@@ -177,29 +151,50 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
   return (
     <>
       {/* TOGGLE SUB-TABS (Flashcard vs Luyện Viết) */}
-      <div className="w-full flex justify-center gap-8 mb-4 mt-6 px-4 max-w-sm mx-auto relative z-10">
-        <button
-          onClick={() => setActiveSubTab("flashcard")}
-          className={`pb-2 text-xl transition-all relative ${activeSubTab === "flashcard" ? "text-[#FF7096] font-black" : "text-zinc-300 font-bold hover:text-zinc-400"
+      <div className="w-full flex justify-center mb-6 mt-6 px-4 relative z-10">
+        <div className="flex p-1.5 rounded-full bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg gap-2 max-w-sm w-full relative">
+          {/* Tab Flashcard */}
+          <button
+            onClick={() => setActiveSubTab("flashcard")}
+            className={`flex-1 py-2.5 text-sm font-black rounded-full transition-all duration-300 relative z-10 flex items-center justify-center gap-2 ${
+              activeSubTab === "flashcard" ? "text-[#FF7096]" : "text-zinc-400 hover:text-white"
             }`}
-          style={{ fontFamily: "var(--font-cherry)" }}
-        >
-          Flashcard
-          {activeSubTab === "flashcard" && (
-            <motion.div layoutId="activeTabIndicator" className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#FF7096] rounded-full" />
-          )}
-        </button>
-        <button
-          onClick={() => setActiveSubTab("kanji")}
-          className={`pb-2 text-xl transition-all relative ${activeSubTab === "kanji" ? "text-[#06D6A0] font-black" : "text-zinc-300 font-bold hover:text-zinc-400"
+            style={{ fontFamily: "var(--font-cherry)" }}
+          >
+            <span className="relative z-10 flex items-center gap-1.5">
+              <Layers className="w-4 h-4" />
+              Flashcard
+            </span>
+            {activeSubTab === "flashcard" && (
+              <motion.div
+                layoutId="activeTabPill"
+                className="absolute inset-0 bg-[#FF7096]/20 border border-[#FF7096]/30 shadow-[0_0_15px_rgba(255,112,150,0.25)] rounded-full"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+          </button>
+
+          {/* Tab Kanji */}
+          <button
+            onClick={() => setActiveSubTab("kanji")}
+            className={`flex-1 py-2.5 text-sm font-black rounded-full transition-all duration-300 relative z-10 flex items-center justify-center gap-2 ${
+              activeSubTab === "kanji" ? "text-[#06D6A0]" : "text-zinc-400 hover:text-white"
             }`}
-          style={{ fontFamily: "var(--font-cherry)" }}
-        >
-          Kanji
-          {activeSubTab === "kanji" && (
-            <motion.div layoutId="activeTabIndicator" className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#06D6A0] rounded-full" />
-          )}
-        </button>
+            style={{ fontFamily: "var(--font-cherry)" }}
+          >
+            <span className="relative z-10 flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4" />
+              Kanji
+            </span>
+            {activeSubTab === "kanji" && (
+              <motion.div
+                layoutId="activeTabPill"
+                className="absolute inset-0 bg-[#06D6A0]/20 border border-[#06D6A0]/30 shadow-[0_0_15px_rgba(6,214,160,0.25)] rounded-full"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* THANH TRƯỢT NGANG FOLDER CHIPS 3D */}
@@ -311,14 +306,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
               <p className="font-rounded text-zinc-500 font-bold text-sm md:text-base max-w-[280px] mx-auto mb-6">
                 Chưa có thẻ bài nào ở đây cả. Bạn có thể nhấn linh vật góc phải để triệu hồi thẻ nhé! ✨
               </p>
-              {activeSubTab === "kanji" && (
-                <button
-                  onClick={handleAddDefaultRadicals}
-                  className="h-12 px-6 rounded-full bg-[#06D6A0] hover:bg-[#05b889] text-white font-rounded font-black text-base border-b-4 border-[#048c68] active:border-b-0 active:translate-y-1 transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
-                >
-                  <PenTool className="w-5 h-5" /> <span style={{ fontFamily: "var(--font-cherry)" }}>Tải Bộ Thủ Cơ Bản</span>
-                </button>
-              )}
+
             </div>
           </motion.div>
         ) : (
@@ -345,7 +333,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
                   key={deck.id}
                   variants={cardItemVariants}
                   layout
-                  className={`relative group ${openMenuId === deck.id ? "z-30" : "z-0"}`}
+                  className={`relative group ${openMenuId === deck.id ? "z-[60]" : "z-0"}`}
                 >
                   <div
                     className="h-full bg-white rounded-[2.5rem] p-6 relative border-4 transition-all duration-200 flex flex-col shadow-[0_8px_0_0_var(--shadow-color)] hover:-translate-y-1 hover:shadow-[0_12px_0_0_var(--shadow-color)] active:translate-y-1 active:shadow-[0_4px_0_0_var(--shadow-color)]"
@@ -430,25 +418,51 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
                       </div>
 
                       <div className="flex items-center justify-between mt-1">
-                        <p
-                          className="font-rounded text-[10px] font-bold tracking-wide pointer-events-none"
+                        <div
+                          className="flex items-center gap-1 font-rounded text-[10px] font-bold tracking-wide pointer-events-none"
                           style={{ fontFamily: "var(--font-cherry)", color: folderColor }}
                         >
-                          ⭐ {totalCards} thẻ ma thuật
-                        </p>
+                          {deck.type === "kanji" ? (
+                            <>
+                              <BookOpen className="w-3.5 h-3.5" />
+                              <span>{totalCards} chữ Hán</span>
+                            </>
+                          ) : (
+                            <>
+                              <Layers className="w-3.5 h-3.5" />
+                              <span>{totalCards} thẻ bài</span>
+                            </>
+                          )}
+                        </div>
                         <DeckWordList
                           deckId={deck.id}
                           deckTitle={deck.title}
-                          cards={deck.cards || []}
+                          cards={
+                            deck.type === "kanji"
+                              ? (deck.kanjiList || []).map((item: any, index: number) => ({
+                                  id: `${deck.id}_kanji_${index}`,
+                                  word: typeof item === "string" ? item : item.char,
+                                  meaning: typeof item === "string" ? "" : item.meaning,
+                                  reading: "",
+                                  romaji: "",
+                                }))
+                              : (deck.cards || [])
+                          }
+                          isKanji={deck.type === "kanji"}
+                          onStartPractice={() => {
+                            if (deck.type === "kanji") {
+                              setActiveKanjiPracticeDeck(deck);
+                            }
+                          }}
                           trigger={
                             <button
-                              className="font-rounded text-xs bg-white p-2 rounded-full border-2 transition-all cursor-pointer shadow-[0_3px_0_0_var(--btn-shadow)] hover:bg-zinc-50 active:translate-y-[2px] active:shadow-none"
+                              className="font-rounded text-xs bg-white p-2 rounded-full border-2 transition-all cursor-pointer shadow-[0_3px_0_0_var(--btn-shadow)] hover:bg-zinc-50 active:translate-y-[2px] active:shadow-none flex items-center justify-center w-8 h-8"
                               style={{
                                 borderColor: matchedFolder.borderLight,
                                 '--btn-shadow': matchedFolder.borderLight,
                               } as React.CSSProperties}
                             >
-                              🔍
+                              <Search className="w-3.5 h-3.5 text-zinc-500" strokeWidth={2.5} />
                             </button>
                           }
                         />
@@ -511,7 +525,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
 
       {/* OVERLAY ĐÓNG MENU THẺ BÀI */}
       {openMenuId && (
-        <div className="fixed inset-0 z-20" onClick={() => setOpenMenuId(null)} />
+        <div className="fixed inset-0 z-[55]" onClick={() => setOpenMenuId(null)} />
       )}
 
       {/* CÁC POPUP MODALS CỦA TAB KHO THẺ */}
@@ -665,52 +679,8 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
         )}
       </AnimatePresence>
 
-      {/* MASCOT FAB VỚI HỘP THOẠI & MENU BONG BÓNG */}
+      {/* MASCOT FAB VỚI HỘP THOẠI TRỰC TIẾP */}
       <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end gap-3 select-none">
-        <AnimatePresence>
-          {isFabOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              className="flex flex-col gap-3 items-end mb-2"
-            >
-              {/* Bong bóng Tạo bộ bài mẫu */}
-              <div className="flex items-center gap-2">
-                <span className="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border-2 border-[#FFE2D1] text-xs font-bold text-amber-900 shadow-sm font-rounded">
-                  Lấy bộ bài mẫu 🎁
-                </span>
-                <div onClick={() => setIsFabOpen(false)}>
-                  <LoadDefaultDecksBtn
-                    onLoaded={() => loadCustomDecks(user?.uid)}
-                    trigger={
-                      <button className="w-12 h-12 rounded-full bg-[#B28DFF] hover:bg-[#9E6EE6] text-white flex items-center justify-center border-b-4 border-[#8A56D6] active:border-b-0 active:translate-y-1 transition-all shadow-md cursor-pointer text-lg">
-                        🎁
-                      </button>
-                    }
-                  />
-                </div>
-              </div>
-
-              {/* Bong bóng Import */}
-              <div className="flex items-center gap-2">
-                <span className="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border-2 border-[#FFE2D1] text-xs font-bold text-amber-900 shadow-sm font-rounded">
-                  Triệu hồi thẻ bài ⚡
-                </span>
-                <button
-                  onClick={() => {
-                    setIsFabOpen(false);
-                    window.dispatchEvent(new Event("open_import_deck"));
-                  }}
-                  className="w-12 h-12 rounded-full bg-[#FF7096] hover:bg-[#FF5C8A] text-white flex items-center justify-center border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all shadow-md cursor-pointer text-lg"
-                >
-                  ⚡
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {/* Linh vật Mascot */}
         <div className="relative group cursor-pointer">
           {/* Bong bóng thoại mini */}
@@ -719,7 +689,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
           </div>
 
           <motion.div
-            onClick={() => setIsFabOpen(!isFabOpen)}
+            onClick={() => window.dispatchEvent(new Event("open_import_deck"))}
             className="relative w-18 h-18 rounded-full bg-[#FFAE64] shadow-[0_6px_0_0_#D9863B] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
             animate={{
               y: [0, -6, 0],
@@ -741,21 +711,14 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
             </div>
 
             {/* Pink Plus Button at the bottom-right corner with solid 3D shadow */}
-            <motion.div
-              animate={{ rotate: isFabOpen ? 135 : 0 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            <div
               className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#FF7096] shadow-[0_3px_0_0_#C7486B] flex items-center justify-center text-white font-black text-lg select-none z-20"
             >
               +
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* OVERLAY ĐÓNG FAB MENU */}
-      {isFabOpen && (
-        <div className="fixed inset-0 z-40 bg-black/5" onClick={() => setIsFabOpen(false)} />
-      )}
 
       {/* Import dialog được đặt ở ngoài cùng để tránh bị unmount khi FAB menu đóng */}
       <ImportDeck hideDefaultTrigger />

@@ -19,6 +19,8 @@ interface DeckWordListProps {
   deckTitle: string;
   cards: FlashcardData[];
   trigger: React.ReactNode;
+  isKanji?: boolean;
+  onStartPractice?: () => void;
 }
 
 const EMPTY_LEARNED_IDS: string[] = [];
@@ -28,6 +30,8 @@ export function DeckWordList({
   deckTitle,
   cards,
   trigger,
+  isKanji = false,
+  onStartPractice,
 }: DeckWordListProps) {
   // 1. STATE MỚI: Quản lý Tìm kiếm & Tàng hình
   const [searchQuery, setSearchQuery] = useState("");
@@ -75,9 +79,9 @@ export function DeckWordList({
           <DialogHeader className="bg-[#06D6A0] p-6 pb-6 border-b-4 border-[#A0E8D5] shrink-0 text-center">
             <DialogTitle
               className="text-2xl text-white tracking-wider flex flex-col items-center gap-2"
-              style={{ fontFamily: "var(--font-cherry)" }}
+              style={{ fontFamily: "var(--font-jupa)" }}
             >
-              <span>Hộp Từ Vựng ✨</span>
+              <span>{isKanji ? "Hộp Chữ Hán" : "Hộp Từ Vựng"}</span>
             </DialogTitle>
             <p className="font-rounded text-white/90 font-bold text-sm mt-1">
               {deckTitle}
@@ -91,7 +95,7 @@ export function DeckWordList({
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
               <input
                 type="text"
-                placeholder="Tìm kẹo (từ vựng)..."
+                placeholder={isKanji ? "Tìm kiếm chữ Hán hoặc ý nghĩa..." : "Tìm kiếm từ vựng..."}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full h-11 pl-9 pr-4 bg-white border-2 border-zinc-200 rounded-full font-rounded font-bold text-sm text-zinc-700 focus:outline-none focus:border-[#A0E8D5] focus:bg-[#F0FAF5] transition-colors placeholder:font-medium placeholder:text-zinc-400 shadow-sm"
@@ -99,21 +103,22 @@ export function DeckWordList({
             </div>
 
             {/* Công tắc Giấu bài */}
-            <button
-              onClick={() => setHideReading(!hideReading)}
-              className={`w-11 h-11 flex items-center justify-center rounded-full border-2 transition-all shadow-sm ${
-                hideReading
+            {!isKanji && (
+              <button
+                onClick={() => setHideReading(!hideReading)}
+                className={`w-11 h-11 flex items-center justify-center rounded-full border-2 transition-all shadow-sm ${hideReading
                   ? "bg-[#FF9F1C] border-[#FF9F1C] text-white"
                   : "bg-white border-zinc-200 text-zinc-400 hover:text-zinc-600 hover:border-zinc-300"
-              }`}
-              title="Bật/Tắt chế độ kiểm tra trí nhớ"
-            >
-              {hideReading ? (
-                <EyeOff size={18} strokeWidth={2.5} />
-              ) : (
-                <Eye size={18} strokeWidth={2.5} />
-              )}
-            </button>
+                  }`}
+                title="Bật/Tắt chế độ kiểm tra trí nhớ"
+              >
+                {hideReading ? (
+                  <EyeOff size={18} strokeWidth={2.5} />
+                ) : (
+                  <Eye size={18} strokeWidth={2.5} />
+                )}
+              </button>
+            )}
           </div>
 
           {/* ================= DANH SÁCH TỪ VỰNG ================= */}
@@ -121,9 +126,8 @@ export function DeckWordList({
             {/* Trạng thái trống khi Search không ra kết quả */}
             {filteredCards.length === 0 && (
               <div className="flex flex-col items-center justify-center h-full text-zinc-400 space-y-2 py-10">
-                <span className="text-4xl animate-bounce">💦</span>
                 <p className="font-rounded font-bold text-sm">
-                  Trữ lượng kẹo đã cạn, tìm hổng thấy!
+                  {isKanji ? "Không tìm thấy kết quả phù hợp" : "Danh sách trống, không tìm thấy từ vựng!"}
                 </p>
               </div>
             )}
@@ -133,11 +137,10 @@ export function DeckWordList({
               return (
                 <div
                   key={card.id}
-                  className={`flex items-center p-4 rounded-2xl border-2 transition-all duration-300 group/card ${
-                    isLearned
-                      ? "bg-orange-50/50 border-orange-200 opacity-80"
-                      : "bg-white border-zinc-100 shadow-sm hover:border-[#FFE2D1]"
-                  }`}
+                  className={`flex items-center p-4 rounded-2xl border-2 transition-all duration-300 group/card ${isLearned
+                    ? "bg-orange-50/50 border-orange-200 opacity-80"
+                    : "bg-white border-zinc-100 shadow-sm hover:border-[#FFE2D1]"
+                    }`}
                 >
                   {/* Kanji mập mạp */}
                   <div
@@ -149,18 +152,19 @@ export function DeckWordList({
 
                   {/* Info ở giữa */}
                   <div className="flex-1 px-2">
-                    <div className="flex items-center gap-2 mb-0.5 w-fit">
-                      {/* HIỆU ỨNG THẺ CÀO (SCRATCH CARD) */}
-                      <span
-                        className={`font-rounded font-black text-[11px] px-2.5 py-0.5 rounded-lg border uppercase transition-all duration-300 cursor-help ${
-                          hideReading
+                    {(card.romaji || card.reading) ? (
+                      <div className="flex items-center gap-2 mb-0.5 w-fit">
+                        {/* HIỆU ỨNG THẺ CÀO (SCRATCH CARD) */}
+                        <span
+                          className={`font-rounded font-black text-[11px] px-2.5 py-0.5 rounded-lg border uppercase transition-all duration-300 cursor-help ${hideReading
                             ? "bg-zinc-200 text-transparent border-zinc-200 blur-[3px] hover:blur-none hover:bg-indigo-50 hover:text-indigo-400 hover:border-indigo-100" // Khi che: mờ đi, di chuột vào sẽ rõ lại
                             : "bg-indigo-50 text-indigo-400 border-indigo-100" // Khi bình thường
-                        }`}
-                      >
-                        {card.romaji || card.reading}
-                      </span>
-                    </div>
+                            }`}
+                        >
+                          {card.romaji || card.reading}
+                        </span>
+                      </div>
+                    ) : null}
                     <p
                       className={`font-rounded font-bold text-sm mt-1 ${isLearned ? "text-zinc-400" : "text-zinc-600"}`}
                     >
@@ -186,11 +190,24 @@ export function DeckWordList({
 
           {/* ================= FOOTER ================= */}
           <div className="p-4 bg-white border-t-2 border-[#A0E8D5] shrink-0 z-10 shadow-[0_-4px_15px_rgba(0,0,0,0.02)]">
-            <Link href={`/deck/${deckId}`} className="w-full block">
-              <button className="w-full h-12 bg-[#FF7096] hover:bg-[#FF5C8A] text-white rounded-2xl font-bold text-lg border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center gap-2">
-                Bắt đầu học ngay!
-              </button>
-            </Link>
+            {isKanji ? (
+              <DialogTrigger asChild>
+                <button
+                  onClick={() => {
+                    if (onStartPractice) onStartPractice();
+                  }}
+                  className="w-full h-12 bg-[#06D6A0] hover:bg-[#05B889] text-white rounded-2xl font-bold text-lg border-b-4 border-[#049E75] active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center gap-2"
+                >
+                  Bắt đầu luyện viết!
+                </button>
+              </DialogTrigger>
+            ) : (
+              <Link href={`/deck/${deckId}`} className="w-full block">
+                <button className="w-full h-12 bg-[#FF7096] hover:bg-[#FF5C8A] text-white rounded-2xl font-bold text-lg border-b-4 border-[#C7486B] active:border-b-0 active:translate-y-1 transition-all flex items-center justify-center gap-2">
+                  Bắt đầu học ngay!
+                </button>
+              </Link>
+            )}
           </div>
         </motion.div>
       </DialogContent>

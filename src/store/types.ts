@@ -72,6 +72,7 @@ export interface CustomDeck {
   kanjiList?: { char: string; meaning: string }[];
   folderId?: string | null;
   createdAt?: string;
+  isCustom?: boolean;
 }
 
 export interface DeckFolder {

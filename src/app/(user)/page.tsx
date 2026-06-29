@@ -271,7 +271,7 @@ export default function Home() {
       </motion.header>
 
       {/* KHU VỰC NỘI DUNG CUỘN CHÍNH */}
-      <main className="w-full pt-[110] pb-7 relative z-10">
+      <main className="w-full pt-[150] pb-7 relative z-10">
         {/* NỘI DUNG TỪNG TAB */}
         <AnimatePresence mode="wait">
           {/* TAB 1: BẢN ĐỒ HÀNH TRÌNH */}
@@ -386,7 +386,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex items-center justify-center p-2"
+            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex items-center justify-center"
           >
             <KanjiPractice deck={activeKanjiPracticeDeck} onClose={() => setActiveKanjiPracticeDeck(null)} />
           </motion.div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Quicksand, Cherry_Bomb_One, Hachi_Maru_Pop, Cute_Font, Playwrite_VN, Jua } from "next/font/google";
+import { Inter, Quicksand, Cherry_Bomb_One, Hachi_Maru_Pop, Cute_Font, Jua } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 

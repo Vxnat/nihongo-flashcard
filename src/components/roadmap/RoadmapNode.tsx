@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Lock } from "lucide-react";
+import { Lock, Bone } from "lucide-react";
 import { SystemDeck } from "@/types/flashcard";
 
 interface RoadmapNodeProps {
@@ -66,11 +66,11 @@ export function RoadmapNode({
           {/* Nhãn rương thưởng */}
           <div className="absolute top-[85%] bg-white border border-amber-200 px-2.5 py-1 rounded-full shadow-sm text-center min-w-[120px] pointer-events-none">
             <p className="text-[10px] sm:text-[11px] font-black text-amber-800 uppercase tracking-wider" style={{ fontFamily: "var(--font-jua)" }}>
-              {completed ? "Đã nhận 👑" : unlocked ? "Mở khóa! ✨" : "Phần thưởng"}
+              {completed ? "Đã nhận" : unlocked ? "Mở khóa!" : "Phần thưởng"}
             </p>
             {deck.rewardCoins && !completed && (
               <p className="text-[9px] font-bold text-amber-600 flex items-center justify-center gap-0.5">
-                +{deck.rewardCoins} 🦴
+                {deck.rewardCoins} <Bone className="w-2.5 h-2.5 rotate-45" />
               </p>
             )}
           </div>
@@ -187,25 +187,25 @@ export function RoadmapNode({
           </div>
 
           {/* Thông tin chữ */}
-          <div className="flex-1 min-w-0 text-left">
-            <span className="text-[9px] font-black uppercase tracking-wider opacity-85 block mb-0.5"
-              style={{ fontFamily: "var(--font-jua)" }}
-            >
-              {typeText}
-            </span>
+          <div className="flex flex-col gap-1 flex-1 min-w-0 text-left">
+            <div className="flex items-center justify-between gap-1 mb-0.5">
+              <span className="text-[9px] font-black uppercase tracking-wider opacity-85"
+                style={{ fontFamily: "var(--font-jua)" }}
+              >
+                {typeText}
+              </span>
+              {deck.rewards?.coins || deck.rewardCoins ? (
+                <span className="text-[10px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-full flex items-center gap-0.5 border border-amber-100 shrink-0">
+                  {deck.rewards?.coins || deck.rewardCoins} <Bone className="w-2.5 h-2.5 rotate-45" />
+                </span>
+              ) : null}
+            </div>
             <h4
               className="text-xs sm:text-[13px] font-black leading-tight truncate text-zinc-800"
               style={{ fontFamily: "var(--font-jua)" }}
             >
               {deck.title}
             </h4>
-            <div className="flex items-center gap-1.5 mt-1">
-              {deck.rewards?.coins || deck.rewardCoins ? (
-                <span className="text-[9px] font-black text-amber-500 bg-amber-50 px-1.5 py-0.5 rounded-full flex items-center gap-0.5 border border-amber-100">
-                  {deck.rewards?.coins || deck.rewardCoins} 🦴
-                </span>
-              ) : null}
-            </div>
           </div>
         </motion.div>
       </div>

@@ -39,13 +39,143 @@ export const createDeckFolderSlice: StateCreator<
             new Date(b.createdAt || 0).getTime() -
             new Date(a.createdAt || 0).getTime()
         );
+
+        // Tự động tải bộ bài mẫu khi đăng nhập lần đầu (không có bộ bài nào)
+        const localFlagKey = `has_loaded_default_deck_${uid}`;
+        if (decks.length === 0 && !localStorage.getItem(localFlagKey)) {
+          try {
+            const res = await fetch("/data/templates/default_decks.json");
+            if (res.ok) {
+              const cards = await res.json();
+              const targetId = `custom_default_n5_core_${uid}`;
+              const defaultDeck: CustomDeck = {
+                id: targetId,
+                title: "N5 Vocabulary Core",
+                description: "Bộ từ vựng N5 thiết yếu để bạn bắt đầu hành trình ✨",
+                level: "N5",
+                count: cards.length,
+                cards: cards,
+                isCustom: true,
+                createdAt: new Date().toISOString(),
+              };
+
+              // Lưu lên Firestore
+              await setDoc(doc(db, "decks", targetId), {
+                ...defaultDeck,
+                userId: uid,
+                creatorName: "Hệ thống",
+              });
+
+              decks.push(defaultDeck);
+              localStorage.setItem(localFlagKey, "true");
+            }
+          } catch (fetchErr) {
+            console.error("Lỗi tự động tải bộ bài mẫu:", fetchErr);
+          }
+        }
+
+        // Tự động tải bộ bài Kanji mẫu khi không có bộ bài Kanji nào
+        const localKanjiFlagKey = `has_loaded_default_kanji_${uid}`;
+        const hasKanjiDeck = decks.some((d) => d.type === "kanji");
+        if (!hasKanjiDeck && !localStorage.getItem(localKanjiFlagKey)) {
+          try {
+            const targetId = `custom_default_kanji_radicals_${uid}`;
+            const res = await fetch("/data/configs/kanji_radicals.json");
+            if (res.ok) {
+              const radicals = await res.json();
+              const defaultKanjiDeck: CustomDeck = {
+                id: targetId,
+                title: "214 Bộ Thủ",
+                description: "Nền tảng cấu tạo nên mọi chữ Hán.",
+                type: "kanji",
+                level: "Cơ bản",
+                count: radicals.length,
+                cards: [],
+                kanjiList: radicals,
+                folderId: "kanji",
+                isCustom: true,
+                createdAt: new Date().toISOString(),
+              };
+
+              // Lưu lên Firestore
+              await setDoc(doc(db, "decks", targetId), {
+                ...defaultKanjiDeck,
+                userId: uid,
+                creatorName: "Hệ thống",
+              });
+
+              decks.push(defaultKanjiDeck);
+              localStorage.setItem(localKanjiFlagKey, "true");
+            }
+          } catch (kanjiErr) {
+            console.error("Lỗi tự động tải bộ bài Hán tự mẫu:", kanjiErr);
+          }
+        }
+
         set({ customDecks: decks, isLoadingDecks: false });
       } catch (error) {
         console.error("Lỗi lấy danh sách custom decks:", error);
         set({ isLoadingDecks: false });
       }
     } else {
-      const stored = JSON.parse(localStorage.getItem("custom_decks") || "[]");
+      const stored = JSON.parse(localStorage.getItem("custom_decks") || "[]") as CustomDeck[];
+
+      // Tự động tải cho khách truy cập lần đầu
+      const localFlagKey = "has_loaded_default_deck_guest";
+      if (stored.length === 0 && !localStorage.getItem(localFlagKey)) {
+        try {
+          const res = await fetch("/data/templates/default_decks.json");
+          if (res.ok) {
+            const cards = await res.json();
+            const defaultDeck: CustomDeck = {
+              id: "custom_default_n5_core",
+              title: "N5 Vocabulary Core",
+              description: "Bộ từ vựng N5 thiết yếu để bạn bắt đầu hành trình ✨",
+              level: "N5",
+              count: cards.length,
+              cards: cards,
+              isCustom: true,
+              createdAt: new Date().toISOString(),
+            };
+            stored.push(defaultDeck);
+            localStorage.setItem("custom_decks", JSON.stringify(stored));
+            localStorage.setItem(localFlagKey, "true");
+          }
+        } catch (fetchErr) {
+          console.error("Lỗi tự động tải bộ bài mẫu cho khách:", fetchErr);
+        }
+      }
+
+      // Tự động tải bộ bài Kanji cho khách
+      const localKanjiFlagKey = "has_loaded_default_kanji_guest";
+      const hasKanjiDeck = stored.some((d) => d.type === "kanji");
+      if (!hasKanjiDeck && !localStorage.getItem(localKanjiFlagKey)) {
+        try {
+          const res = await fetch("/data/kanji_radicals.json");
+          if (res.ok) {
+            const radicals = await res.json();
+            const defaultKanjiDeck: CustomDeck = {
+              id: "custom_default_kanji_radicals",
+              title: "214 Bộ Thủ",
+              description: "Nền tảng cấu tạo nên mọi chữ Hán.",
+              type: "kanji",
+              level: "Cơ bản",
+              count: radicals.length,
+              cards: [],
+              kanjiList: radicals,
+              folderId: "kanji",
+              isCustom: true,
+              createdAt: new Date().toISOString(),
+            };
+            stored.push(defaultKanjiDeck);
+            localStorage.setItem("custom_decks", JSON.stringify(stored));
+            localStorage.setItem(localKanjiFlagKey, "true");
+          }
+        } catch (kanjiErr) {
+          console.error("Lỗi tự động tải bộ bài Hán tự mẫu cho khách:", kanjiErr);
+        }
+      }
+
       set({ customDecks: stored, isLoadingDecks: false });
     }
   },
