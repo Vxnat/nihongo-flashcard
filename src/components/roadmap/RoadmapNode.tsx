@@ -65,7 +65,7 @@ export function RoadmapNode({
 
           {/* Nhãn rương thưởng */}
           <div className="absolute top-[85%] bg-white border border-amber-200 px-2.5 py-1 rounded-full shadow-sm text-center min-w-[120px] pointer-events-none">
-            <p className="text-[10px] sm:text-[11px] font-black text-amber-800 uppercase tracking-wider" style={{ fontFamily: "var(--font-cherry)" }}>
+            <p className="text-[10px] sm:text-[11px] font-black text-amber-800 uppercase tracking-wider" style={{ fontFamily: "var(--font-jua)" }}>
               {completed ? "Đã nhận 👑" : unlocked ? "Mở khóa! ✨" : "Phần thưởng"}
             </p>
             {deck.rewardCoins && !completed && (
@@ -189,13 +189,13 @@ export function RoadmapNode({
           {/* Thông tin chữ */}
           <div className="flex-1 min-w-0 text-left">
             <span className="text-[9px] font-black uppercase tracking-wider opacity-85 block mb-0.5"
-              style={{ fontFamily: "var(--font-cherry)" }}
+              style={{ fontFamily: "var(--font-jua)" }}
             >
               {typeText}
             </span>
             <h4
               className="text-xs sm:text-[13px] font-black leading-tight truncate text-zinc-800"
-              style={{ fontFamily: "var(--font-cherry)" }}
+              style={{ fontFamily: "var(--font-jua)" }}
             >
               {deck.title}
             </h4>

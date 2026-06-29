@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { VNBackground } from "./VNBackground";
 import { VNCharacter } from "./VNCharacter";
-import { Sparkles, X } from "lucide-react";
+import { Sparkles, X, HelpCircle } from "lucide-react";
 import { VNDialogueBox } from "./VNDialogueBox";
 import { VNChoices } from "./VNChoices";
 import { VNWordTooltip } from "./VNWordTooltip";
 import { VNInteractableWord } from "@/utils/vnTextParser";
 import { VNEndScreen } from "./VNEndScreen";
+import { VNTutorialOverlay } from "./VNTutorialOverlay";
 import { useAppStore } from "@/store/useAppStore";
 import { useLearningTimer } from "@/hooks/common/useLearningTimer";
 
@@ -26,12 +28,34 @@ export function VisualNovelMode() {
   const lastNodeRef = useRef<any>(null);
   const isFirstClearRef = useRef<boolean>(false);
 
+  // Các state hỗ trợ Quick Menu (Lịch sử & Tự động chạy)
+  const [dialogueHistory, setDialogueHistory] = useState<any[]>([]);
+  const [autoMode, setAutoMode] = useState<boolean>(false);
+  const [showLog, setShowLog] = useState<boolean>(false);
+  const autoTimerRef = useRef<any>(null);
+
+  // State kiểm soát màn hình hướng dẫn (Tutorial)
+  const [showTutorial, setShowTutorial] = useState<boolean>(false);
+
+  // Kiểm tra trạng thái xem hướng dẫn sau khi mount để tránh lỗi Hydration của Next.js
+  useEffect(() => {
+    const tutorialSeen = localStorage.getItem("vn_tutorial_seen");
+    if (tutorialSeen !== "true") {
+      setShowTutorial(true);
+    }
+  }, []);
+
   // Load Data
   useEffect(() => {
     if (!activeStoryId) return;
 
     const completed = progress[activeStoryId]?.includes("completed");
     isFirstClearRef.current = !completed;
+
+    // Reset các chế độ khi đổi câu chuyện
+    setDialogueHistory([]);
+    setAutoMode(false);
+    setShowLog(false);
 
     fetch(`/data/stories/${activeStoryId}.json`)
       .then((res) => res.json())
@@ -56,6 +80,42 @@ export function VisualNovelMode() {
       setCurrentNodeId(nextNodeId);
     }
   };
+
+  // Ghi nhận lịch sử hội thoại
+  useEffect(() => {
+    if (!storyData || !currentNodeId) return;
+    const currentNode = storyData.nodes.find((n: any) => n.id === currentNodeId);
+    if (currentNode) {
+      setDialogueHistory((prev) => {
+        if (prev.length > 0 && prev[prev.length - 1].id === currentNode.id) {
+          return prev;
+        }
+        return [...prev, currentNode];
+      });
+    }
+  }, [currentNodeId, storyData]);
+
+  // Cơ chế Tự động chạy (Auto Mode)
+  useEffect(() => {
+    if (autoTimerRef.current) {
+      clearTimeout(autoTimerRef.current);
+    }
+
+    if (autoMode && !isTyping && storyData && currentNodeId) {
+      const currentNode = storyData.nodes.find((n: any) => n.id === currentNodeId);
+      if (currentNode && (!currentNode.choices || currentNode.choices.length === 0) && currentNode.nextNode) {
+        autoTimerRef.current = setTimeout(() => {
+          handleNextNode(currentNode.nextNode);
+        }, 2500);
+      }
+    }
+
+    return () => {
+      if (autoTimerRef.current) {
+        clearTimeout(autoTimerRef.current);
+      }
+    };
+  }, [autoMode, isTyping, currentNodeId, storyData]);
 
   if (!storyData) {
     return (
@@ -104,12 +164,43 @@ export function VisualNovelMode() {
           emotion={displayNode.emotion}
           position={currentCharacterMeta?.position}
           spriteUrl={currentCharacterMeta?.sprites?.[displayNode.emotion]}
+          isSpeaking={isTyping}
         />
       </div>
 
       {/* NÚT LỰA CHỌN (Chỉ hiện khi chữ đã chạy xong và có lựa chọn) */}
       {currentNode && !isTyping && currentNode.choices && (
         <VNChoices choices={currentNode.choices} onSelect={handleNextNode} />
+      )}
+
+      {/* THANH ĐIỀU KHIỂN NHANH (QUICK MENU) */}
+      {currentNode && (
+        <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pointer-events-auto select-none">
+          <button
+            onClick={() => setAutoMode(!autoMode)}
+            className={`text-[10px] font-black tracking-widest uppercase h-10 px-4 rounded-full border-2 transition-all active:scale-90 shadow-sm backdrop-blur-md flex items-center justify-center
+              ${autoMode
+                ? "bg-sky-500/80 border-sky-400 text-white shadow-sky-200/50"
+                : "bg-white/30 border-white/50 text-zinc-700 hover:bg-white/90"
+              }
+            `}
+          >
+            Auto
+          </button>
+          <button
+            onClick={() => setShowLog(true)}
+            className="text-[10px] font-black tracking-widest uppercase h-10 px-4 bg-white/30 backdrop-blur-md hover:bg-white/90 border-2 border-white/50 text-zinc-700 rounded-full transition-all active:scale-90 shadow-sm flex items-center justify-center"
+          >
+            Lịch sử
+          </button>
+          <button
+            onClick={() => setShowTutorial(true)}
+            className="w-10 h-10 bg-white/30 backdrop-blur-md hover:bg-white/90 border-2 border-white/50 text-zinc-700 rounded-full transition-all active:scale-90 shadow-sm flex items-center justify-center"
+            title="Hướng dẫn"
+          >
+            <HelpCircle size={18} strokeWidth={3} />
+          </button>
+        </div>
       )}
 
       {/* KHU VỰC CHATBOX THỰC TẾ */}
@@ -129,6 +220,54 @@ export function VisualNovelMode() {
         onClose={() => setSelectedWord(null)}
       />
 
+      {/* OVERLAY LỊCH SỬ THOẠI (LOG OVERLAY) */}
+      <AnimatePresence>
+        {showLog && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-zinc-950/70 backdrop-blur-md z-50 flex flex-col p-6 pointer-events-auto"
+          >
+            <div className="flex items-center justify-between border-b border-zinc-850 pb-3 mb-4">
+              <span className="text-sm font-black tracking-widest text-zinc-400 uppercase">Lịch sử thoại</span>
+              <button
+                onClick={() => setShowLog(false)}
+                className="text-zinc-400 hover:text-zinc-200 transition-colors"
+              >
+                <X size={20} strokeWidth={3} />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto space-y-4 pr-1 scrollbar-thin scrollbar-thumb-zinc-700">
+              {dialogueHistory.length === 0 ? (
+                <p className="text-zinc-500 text-center font-bold mt-10">Chưa có hội thoại nào được ghi lại.</p>
+              ) : (
+                dialogueHistory.map((item, idx) => {
+                  const charMeta = storyData.characters[item.characterId];
+                  return (
+                    <div key={idx} className="bg-white/5 border border-white/5 rounded-2xl p-4">
+                      <span
+                        className="text-xs font-black tracking-wider block"
+                        style={{ color: charMeta?.color || "#FF9F1C" }}
+                      >
+                        {charMeta?.name || "Unknown"}
+                      </span>
+                      <p className="text-zinc-200 font-bold text-sm leading-relaxed mt-1 select-all">
+                        {item.dialogue.jp}
+                      </p>
+                      <p className="text-zinc-400 font-medium text-xs leading-relaxed mt-1 pl-2 border-l border-zinc-800">
+                        {item.dialogue.vi}
+                      </p>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* MÀN HÌNH KẾT THÚC TRUYỆN */}
       {currentNodeId === "END_STORY" && (
         <VNEndScreen
@@ -138,6 +277,18 @@ export function VisualNovelMode() {
           onClose={() => setActiveStoryId(null)}
         />
       )}
+
+      {/* MÀN HÌNH HƯỚNG DẪN CHƠI */}
+      <AnimatePresence>
+        {showTutorial && (
+          <VNTutorialOverlay
+            onClose={() => {
+              setShowTutorial(false);
+              localStorage.setItem("vn_tutorial_seen", "true");
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

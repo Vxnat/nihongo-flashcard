@@ -85,7 +85,7 @@ export function BottomNav({ activeTab, handleTabChange }: BottomNavProps) {
             <span
               className={`text-[10px] sm:text-xs transition-colors duration-200 whitespace-nowrap font-black uppercase tracking-wider ${isActive ? "text-zinc-800 font-extrabold" : "text-zinc-400 font-medium"
                 }`}
-              style={{ fontFamily: "var(--font-cherry)" }}
+              style={{ fontFamily: "var(--font-jua)" }}
             >
               {tab.label}
             </span>

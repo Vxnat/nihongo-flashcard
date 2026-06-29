@@ -38,7 +38,7 @@ export const parseVNText = (
               e.stopPropagation(); // Chặn sự kiện click lan ra khung thoại bên ngoài
               onWordClick && onWordClick(matchedWord);
             }}
-            className="text-[#FF9F1C] border-b-2 border-dashed border-[#FF9F1C]/60 hover:bg-[#FFD166]/20 transition-colors cursor-pointer px-0.5 rounded-sm font-bold"
+            className="text-[#5390D9] border-b border-dashed border-[#5390D9]/50 hover:text-[#3B77C4] hover:bg-[#5390D9]/10 transition-all duration-200 cursor-pointer px-1 py-0.5 rounded-md font-black"
           >
             {part}
           </span>

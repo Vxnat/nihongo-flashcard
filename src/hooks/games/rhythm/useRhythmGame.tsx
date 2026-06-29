@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Ham, Shield, Bone, Bug } from "lucide-react";
 import { FlashcardData } from "@/types/flashcard";
 import { selectAdaptiveCards } from "@/utils/wordSelector";
 import { useAppStore } from "@/store/useAppStore";
@@ -8,7 +9,7 @@ import { playAudio, playAudioUrl } from "@/utils/tts";
 
 export interface RhythmNote {
   id: string;
-  char: string;
+  char: React.ReactNode;
   lane: number; // 0, 1, 2, 3
   y: number; // 0% -> 100%
   isTarget: boolean;
@@ -128,7 +129,7 @@ export function useRhythmGame({
   // Adaptive Word selection
   const gameWordsRef = useRef<FlashcardData[]>([]);
   const completedWordsCountRef = useRef(0);
-  const TOTAL_WORDS_TO_WIN = 15;
+  const TOTAL_WORDS_TO_WIN = cards.length || 15;
 
   const initGame = useCallback(() => {
     const selected = selectAdaptiveCards(cards, wordStats, TOTAL_WORDS_TO_WIN);
@@ -249,23 +250,23 @@ export function useRhythmGame({
     const canSpawnItem = comboRef.current >= 5 && Math.random() < 0.15;
     const itemLane = canSpawnItem ? (correctLane + 1) % 4 : -1;
     let itemType: RhythmNote["type"] = "normal";
-    let itemChar = "";
+    let itemChar: React.ReactNode = "";
 
     if (canSpawnItem) {
       const specRand = Math.random();
       if (specRand < 0.4) {
         itemType = "meat";
-        itemChar = "🍖";
+        itemChar = <Ham size={20} className="fill-[#FF7096] text-[#FF7096]" />;
       } else if (specRand < 0.7) {
         itemType = "shield";
-        itemChar = "🧼";
+        itemChar = <Shield size={20} className="fill-[#06D6A0] text-[#05B889]" />;
       } else {
         itemType = "coin";
-        itemChar = "🪙";
+        itemChar = <Bone size={20} className="text-[#FF9F1C] fill-[#FF9F1C]/20 rotate-45" />;
       }
     }
 
-    // Cơ hội xuất hiện nốt mặt quỷ Oni 👹 nhiễu (20% cơ hội)
+    // Cơ hội xuất hiện nốt mặt quỷ Oni nhiễu (20% cơ hội)
     const hasOni = Math.random() < 0.2;
     const oniLane = hasOni ? (correctLane + 2) % 4 : -1;
 
@@ -295,10 +296,10 @@ export function useRhythmGame({
           missed: false,
         });
       } else if (l === oniLane && hasOni) {
-        // Nốt Mặt Quỷ 👹 cản trở
+        // Nốt cản trở
         newNotes.push({
           id: `oni-${timestampId}-${l}`,
-          char: "👹",
+          char: <Bug size={20} className="text-amber-800" />,
           lane: l,
           y: 0,
           isTarget: false,
@@ -345,7 +346,7 @@ export function useRhythmGame({
       lastTime = time;
 
       // Move active notes down
-      const speedMultiplier = 1 + Math.min(0.2, comboRef.current * 0.008);
+      const speedMultiplier = 1 + Math.min(0.5, comboRef.current * 0.01);
       const dy = 0.048 * deltaTime * speedMultiplier; // Speed calculation
 
       setActiveNotes((prev) => {
@@ -477,7 +478,7 @@ export function useRhythmGame({
           playAudioUrl("/sounds/coin.mp3");
           setEarnedCoins((prev) => prev + 2);
         } else if (targetNote.type === "oni") {
-          // Bẫy Oni 👹
+          // Bẫy
           playAudioUrl("/sounds/bonk.mp3");
           setBlindActive(true);
           if (blindTimeoutRef.current) clearTimeout(blindTimeoutRef.current);

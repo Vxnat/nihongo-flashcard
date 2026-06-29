@@ -57,7 +57,6 @@ export function EndScreen({ onReview }: EndScreenProps) {
     <div className="flex flex-col items-center justify-center px-4 pt-10 relative w-full min-h-[500px]">
       <FallingSakura />
       <div className="relative z-10 w-full max-w-md mx-auto bg-white/95 backdrop-blur-sm p-8 rounded-[3rem] border-4 border-[#FFD166] shadow-[0_12px_0_0_#FFD166] text-center flex flex-col items-center animate-in zoom-in-90 duration-500">
-        <span className="text-6xl animate-bounce mb-4">🎉</span>
         <h2
           className="text-4xl text-[#FF9F1C] mb-2 leading-snug"
           style={{

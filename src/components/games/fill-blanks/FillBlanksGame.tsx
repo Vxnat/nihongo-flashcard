@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, X, Bone, LifeBuoy, Sparkles } from "lucide-react";
+import { Heart, Bone, LifeBuoy, Sparkles, ArrowLeft, AlertCircle, Lightbulb, GraduationCap } from "lucide-react";
 import { TimerBar } from "../shared/TimerBar";
 import { GameResultModal } from "../shared/GameResultModal";
 import { ShibaMasterDialog } from "../shared/ShibaMasterDialog";
@@ -136,22 +136,10 @@ export function FillBlanksGame({
         setActiveBlankIndex((prev) => prev + 1);
       } else {
         // Hoàn thành toàn bộ câu hỏi hiện tại!
-        // Đọc câu hoàn chỉnh qua TTS (Text-to-Speech)
-        if (typeof window !== "undefined" && "speechSynthesis" in window) {
-          const cleanSentence = quiz.sentence
-            .replace(/\[([^\]]+)\]\{[^\}]+\}/g, "$1")
-            .replace(/\{[0-9]+\}/g, (match) => {
-              const idx = parseInt(match.replace(/\{|\}/g, ""));
-              return filledAnswers[idx] || option;
-            });
-          const utterance = new SpeechSynthesisUtterance(cleanSentence);
-          utterance.lang = "ja-JP";
-          utterance.rate = 0.85;
-          window.speechSynthesis.speak(utterance);
-        }
-
-        // Chờ 1.5s và chuyển câu tiếp theo hoặc thắng cuộc
-        setTimeout(() => {
+        let transitioned = false;
+        const transition = () => {
+          if (transitioned) return;
+          transitioned = true;
           if (currentIndex < quizList.length - 1) {
             setCurrentIndex((prev) => prev + 1);
             setActiveBlankIndex(0);
@@ -163,7 +151,35 @@ export function FillBlanksGame({
             setIsGameOver(true);
             onWin();
           }
-        }, 1500);
+        };
+
+        // Đọc câu hoàn chỉnh qua TTS (Text-to-Speech)
+        if (typeof window !== "undefined" && "speechSynthesis" in window) {
+          const cleanSentence = quiz.sentence
+            .replace(/\[([^\]]+)\]\{[^\}]+\}/g, "$1")
+            .replace(/\{[0-9]+\}/g, (match) => {
+              const idx = parseInt(match.replace(/\{|\}/g, ""));
+              return { ...filledAnswers, [activeBlankIndex]: option }[idx] || option;
+            });
+          const utterance = new SpeechSynthesisUtterance(cleanSentence);
+          utterance.lang = "ja-JP";
+          utterance.rate = 0.85;
+
+          utterance.onend = () => {
+            setTimeout(transition, 600); // Trì hoãn 600ms dễ chịu
+          };
+
+          utterance.onerror = () => {
+            transition();
+          };
+
+          window.speechSynthesis.speak(utterance);
+
+          // Fallback an toàn 4.5 giây phòng khi TTS lỗi
+          setTimeout(transition, 4500);
+        } else {
+          setTimeout(transition, 1500);
+        }
       }
     } else {
       // Trả lời SAI
@@ -212,7 +228,7 @@ export function FillBlanksGame({
     optionsList.push({
       id: "fur_hint",
       icon: <CoinIcon size={18} />,
-      label: "Đổi 1 Lông Vàng lấy Gợi ý",
+      label: "Đổi 1 Coin lấy Gợi ý",
       cost: 1,
       currency: "goldenFur",
       colorClass: "bg-amber-50 hover:bg-amber-100 border-amber-200 text-amber-800 border-2",
@@ -288,7 +304,16 @@ export function FillBlanksGame({
                   : "bg-zinc-100 border-dashed border-zinc-300 text-zinc-300 cursor-not-allowed"
                 }`}
             >
-              {isFilled ? filledAnswers[blankIdx] : "___"}
+              {isFilled ? (
+                <motion.span
+                  layoutId={`flying-text-${filledAnswers[blankIdx]}`}
+                  className="font-bold text-base select-none"
+                >
+                  {filledAnswers[blankIdx]}
+                </motion.span>
+              ) : (
+                "___"
+              )}
             </button>
           );
         }
@@ -311,7 +336,7 @@ export function FillBlanksGame({
   if (quizList.length === 0 || !quiz) {
     return (
       <div className="flex flex-col items-center justify-center p-6 text-center">
-        <span className="text-4xl mb-4">🧩</span>
+        <AlertCircle className="w-12 h-12 text-zinc-400 mb-4 animate-bounce" />
         <p className="font-rounded font-bold text-zinc-500 text-lg">Không tìm thấy câu hỏi!</p>
         <button onClick={onClose} className="mt-4 px-6 py-2 bg-zinc-100 hover:bg-zinc-200 border-2 rounded-2xl">Đóng</button>
       </div>
@@ -339,15 +364,35 @@ export function FillBlanksGame({
             onClick={onClose}
             className="font-rounded font-bold text-xs text-zinc-400 hover:text-zinc-600 px-4 py-2 bg-zinc-50 border-2 border-zinc-200 rounded-[1rem] shadow-[0_3px_0_0_#e4e4e7] active:translate-y-0.5 active:shadow-[0_0_0_0_#e4e4e7] transition-all cursor-pointer"
           >
-            🏃 Thoát
+            <span className="flex items-center gap-1.5">
+              <ArrowLeft size={14} /> Thoát
+            </span>
           </button>
 
-          <div className="flex items-center gap-2"
+          <div className="flex flex-col items-center gap-1"
             style={{
               fontFamily: "var(--font-cherry)"
             }}>
-            <div className="bg-[#FFF3E0] border-2 border-[#FFE082] px-3 py-1 rounded-[1rem] font-bold text-xs text-amber-800 font-rounded shadow-sm">
+            <div className="bg-[#FFF3E0] border-2 border-[#FFE082] px-3 py-1 rounded-[1rem] font-bold text-[10px] text-amber-800 font-rounded shadow-sm leading-none">
               CÂU {currentIndex + 1} / {quizList.length}
+            </div>
+            {/* Hàng chấm tiến trình hạt tròn */}
+            <div className="flex items-center gap-1 mt-0.5">
+              {quizList.map((_, idx) => {
+                const isPassed = idx < currentIndex;
+                const isCurrent = idx === currentIndex;
+                return (
+                  <div
+                    key={idx}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${isPassed
+                        ? "bg-[#06D6A0] shadow-[0_0_4px_rgba(6,214,160,0.5)] scale-100"
+                        : isCurrent
+                          ? "bg-[#FF9F1C] scale-120 animate-pulse ring-1 ring-[#FFD6A0]"
+                          : "bg-zinc-200 scale-90"
+                      }`}
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -374,8 +419,18 @@ export function FillBlanksGame({
         </div>
 
         {/* Quiz Sentence Card Area */}
-        <div className="flex-1 flex flex-col justify-center items-center z-10 my-4 relative min-h-[140px] px-2">
-          <div className="bg-white border-4 border-[#FFE2D1] rounded-[2.5rem] p-6 shadow-inner w-full text-center relative">
+        <div className="flex-1 flex flex-col justify-center items-center z-10 my-4 relative min-h-[140px] px-2 w-full">
+          <motion.div
+            animate={{
+              scale: isQuestionFinished ? 1.025 : 1,
+              borderColor: isQuestionFinished ? "#06D6A0" : "#FFE2D1",
+              boxShadow: isQuestionFinished
+                ? "0 0 20px rgba(6,214,160,0.4), inset 0 2px 4px rgba(0,0,0,0.06)"
+                : "none"
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="bg-white border-4 rounded-[2.5rem] p-6 shadow-inner w-full text-center relative transition-colors duration-300"
+          >
             <div className="absolute -top-3.5 left-10 bg-[#FFD166] text-white font-black text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
               <Sparkles size={10} /> Điền từ vào chỗ trống
             </div>
@@ -405,11 +460,12 @@ export function FillBlanksGame({
                   exit={{ opacity: 0 }}
                   className="mt-3 px-3 py-1.5 bg-amber-50 border-2 border-dashed border-[#FFD166]/60 rounded-xl text-amber-900 font-bold text-xs inline-flex items-center gap-1 shadow-xs"
                 >
-                  💡 Gợi ý: {currentBlank.hint}
+                  <Lightbulb size={14} className="text-amber-500 fill-amber-500/20 animate-pulse" />
+                  <span>Gợi ý: {currentBlank.hint}</span>
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
 
           {/* Translation Prompt (Helps learners understand context) */}
           <div className="text-center mt-3 max-w-[90%]">
@@ -442,7 +498,9 @@ export function FillBlanksGame({
                     animate={isWrong ? { x: [-6, 6, -6, 6, 0] } : {}}
                     transition={{ duration: 0.3 }}
                   >
-                    {opt}
+                    <motion.span layoutId={`flying-text-${opt}`}>
+                      {opt}
+                    </motion.span>
                   </motion.button>
                 );
               })}
@@ -457,7 +515,7 @@ export function FillBlanksGame({
               className="flex items-center gap-2 bg-[#FFF8EE] hover:bg-[#FFE7C6] border-2 border-[#FBC579] px-4 py-2.5 rounded-full shadow-xs active:scale-95 transition-all text-[#C85A28] font-bold text-xs cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ fontFamily: "var(--font-cherry)" }}
             >
-              <span>🥋</span>
+              <GraduationCap size={16} className="text-[#C85A28]" />
               <span>Hỏi Sư Phụ Shiba</span>
             </button>
           </div>
@@ -490,6 +548,20 @@ export function FillBlanksGame({
               setIsGameOver(false);
               setGameStatus("playing");
               setUnlockedHints({});
+              setWrongAttempts({});
+
+              // Xáo trộn lại phương án cho câu hỏi đầu tiên
+              const firstQuiz = quizList[0];
+              const firstBlank = firstQuiz?.blanks?.[0];
+              if (firstBlank) {
+                const allOptions = [firstBlank.correctAnswer, ...firstBlank.wrongAnswers];
+                const shuffled = [...allOptions];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                  const j = Math.floor(Math.random() * (i + 1));
+                  [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                setOptions(shuffled);
+              }
             }}
           />
         )}

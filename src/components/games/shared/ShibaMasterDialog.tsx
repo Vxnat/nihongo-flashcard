@@ -176,7 +176,7 @@ export function ShibaMasterDialog({
                 onClick={onClose}
                 className="w-full mt-5 text-center text-zinc-400 font-bold text-sm hover:text-zinc-600 transition-colors"
               >
-                🏃 Thôi con tự làm
+                Thôi, con tự học tiếp
               </button>
             </div>
 

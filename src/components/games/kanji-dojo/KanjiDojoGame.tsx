@@ -236,11 +236,6 @@ export function KanjiDojoGame({
 
         {/* Text hiển thị chữ mục tiêu để dễ hình dung */}
         <div className="mt-10 bg-white px-8 py-5 rounded-[2rem] border-4 border-[#06D6A0] shadow-[0_8px_0_0_#06D6A0] text-center min-w-[220px] flex flex-col items-center">
-          <p className="text-[#05B889] text-xs font-black mb-2 uppercase tracking-widest"
-            style={{ fontFamily: "var(--font-hachi-maru-pop)" }}
-          >
-            Mục tiêu
-          </p>
           <h3
             className="text-5xl text-[#06D6A0] drop-shadow-sm mb-3"
             style={{ fontFamily: "var(--font-cherry)" }}
@@ -257,11 +252,9 @@ export function KanjiDojoGame({
         </div>
         <button
           onClick={() => setIsMasterOpen(true)}
-          className="mt-6 flex items-center justify-center gap-2 w-full max-w-[220px] h-14 bg-[#5390D9] hover:bg-[#4a81c3] text-white rounded-2xl border-b-4 border-[#305f94] active:border-b-0 active:translate-y-1 font-bold text-lg transition-all shadow-sm"
+          className="mt-6 flex items-center justify-center w-full max-w-[220px] h-14 rounded-2xl font-black text-base transition-all active:scale-[0.97] bg-[#5390D9]/15 backdrop-blur-md border border-[#5390D9]/30 text-[#3f73b3] hover:bg-[#5390D9]/25 hover:text-[#305f94] shadow-sm select-none"
         >
-          <Sparkles className="w-4 h-4" /> <span
-            style={{ fontFamily: "var(--font-cherry)" }}
-          >Hỏi Sư Phụ</span>
+          <span style={{ fontFamily: "var(--font-cherry)" }}>Hỏi Sư Phụ</span>
         </button>
       </div>
       <ShibaMasterDialog

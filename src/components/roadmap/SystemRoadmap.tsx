@@ -438,7 +438,7 @@ export function SystemRoadmap() {
                           Chương {chapterNum}
                         </h3>
                         <p className="font-rounded font-extrabold text-xs sm:text-sm text-white/90"
-                          style={{ fontFamily: "var(--font-cherry)" }}
+                          style={{ fontFamily: "var(--font-jua)" }}
                         >
                           {isFullyCompleted ? (
                             <span className="flex items-center gap-1.5 text-amber-100">

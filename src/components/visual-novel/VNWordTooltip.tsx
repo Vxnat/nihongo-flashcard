@@ -35,7 +35,7 @@ export function VNWordTooltip({ word, onClose }: VNWordTooltipProps) {
       if (isNewDeck) {
         deckToUpdate = {
           id: "custom_vn_collection",
-          title: "Sưu tầm từ Truyện 📖",
+          title: "Sưu tầm từ Truyện",
           description: "Các từ vựng lượm nhặt từ chế độ Visual Novel",
           level: "Sưu tầm",
           cards: [],
@@ -50,7 +50,7 @@ export function VNWordTooltip({ word, onClose }: VNWordTooltipProps) {
       // Kiểm tra xem từ đã tồn tại chưa
       const exists = deckToUpdate.cards.find((c: any) => c.word === word.word);
       if (exists) {
-        toast("Từ này đã có trong bộ bài rồi!", { icon: "👍" });
+        toast("Từ này đã có trong bộ bài rồi!");
         setIsSaved(true);
         setTimeout(() => {
           onClose();
@@ -107,41 +107,60 @@ export function VNWordTooltip({ word, onClose }: VNWordTooltipProps) {
           onClick={onClose}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            initial={{ opacity: 0, scale: 0.85, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            transition={{ type: "spring", bounce: 0.5 }}
-            className="relative w-[85%] max-w-[320px] bg-[#FFFDF5] rounded-[2.5rem] border-4 border-[#FFE2D1] p-6 shadow-2xl"
+            exit={{ opacity: 0, scale: 0.85, y: 15 }}
+            transition={{ type: "spring", bounce: 0.4, duration: 0.4 }}
+            className="relative w-[85%] max-w-[320px] bg-white/95 backdrop-blur-md rounded-[2rem] border border-white/60 p-7 shadow-[0_16px_48px_rgba(0,0,0,0.15)]"
             onClick={(e) => e.stopPropagation()} // Chặn click xuyên xuống nền làm đóng pop-up
           >
             {/* Nút Đóng */}
-            <button onClick={onClose} className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-600 bg-white border-2 border-[#FFE2D1] rounded-full p-1.5 transition-colors active:scale-90">
-              <X size={18} strokeWidth={3} />
+            <button onClick={onClose} className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-600 bg-white border border-zinc-200 rounded-full p-1.5 transition-colors active:scale-90 shadow-sm">
+              <X size={16} strokeWidth={3} />
             </button>
 
             {/* Nội dung Từ vựng */}
-            <div className="text-center mt-2 space-y-3">
-              <h3 className="text-5xl font-bold text-zinc-800 drop-shadow-sm mb-4" style={{ fontFamily: "var(--font-cherry)" }}>
-                {word.word}
-              </h3>
-              {word.reading && (
-                <div className="inline-flex">
-                  <span className="text-lg font-bold text-[#FF9F1C] tracking-wider bg-orange-50 px-4 py-1.5 rounded-2xl border-2 border-orange-100 shadow-inner">{word.reading}</span>
-                </div>
-              )}
+            <div className="text-center mt-2 space-y-4">
+              <div className="flex flex-col items-center justify-center min-h-[80px]">
+                {/* Sử dụng ruby để hiển thị Furigana trực quan trên đầu Kanji */}
+                <ruby className="text-5xl font-black text-zinc-800 tracking-wide select-all" style={{ fontFamily: "var(--font-cherry)" }}>
+                  {word.word}
+                  {word.reading && (
+                    <rt className="text-sm font-extrabold text-[#5390D9] tracking-wider select-none mb-1 block">
+                      {word.reading}
+                    </rt>
+                  )}
+                </ruby>
+              </div>
+
               {word.meaning && (
-                <div className="mt-4"><p className="text-zinc-600 font-bold text-lg bg-white p-4 rounded-2xl border-2 border-dashed border-[#FFE2D1]">{word.meaning}</p></div>
+                <div className="mt-2">
+                  <p className="text-zinc-700 font-bold text-base bg-zinc-50/80 p-4 rounded-2xl border border-dashed border-zinc-200/80 leading-relaxed">
+                    {word.meaning}
+                  </p>
+                </div>
               )}
             </div>
 
             {/* Nút Hành động */}
-            <button onClick={handleSave} disabled={isSaved || isSaving} className={`w-full mt-6 h-14 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 border-b-4 transition-all ${isSaved ? "bg-[#06D6A0] border-[#048c68] text-white" : isSaving ? "bg-zinc-300 border-zinc-400 text-zinc-500 cursor-not-allowed opacity-80" : "bg-[#FF7096] hover:bg-[#FF5C8A] border-[#C7486B] text-white active:border-b-0 active:translate-y-1"}`}>
+            <button
+              onClick={handleSave}
+              disabled={isSaved || isSaving}
+              className={`w-full mt-6 h-14 rounded-2xl font-extrabold text-base flex items-center justify-center gap-2 border transition-all active:scale-[0.98]
+                ${isSaved
+                  ? "bg-[#06D6A0]/15 backdrop-blur-sm border-[#06D6A0]/30 text-[#05B889]"
+                  : isSaving
+                    ? "bg-zinc-500/10 backdrop-blur-sm border-zinc-200 text-zinc-400 cursor-not-allowed"
+                    : "bg-[#FF7096]/15 backdrop-blur-sm border-[#FF7096]/30 text-[#E25C80] hover:bg-[#FF7096]/25 hover:text-[#C7486B] shadow-sm"
+                }
+              `}
+            >
               {isSaved ? (
-                <><Check size={24} strokeWidth={3} /> Đã lưu thẻ</>
+                <><Check size={20} strokeWidth={3} /></>
               ) : isSaving ? (
-                <><Loader2 size={24} strokeWidth={3} className="animate-spin" /> Đang lưu...</>
+                <><Loader2 size={20} strokeWidth={3} className="animate-spin" /></>
               ) : (
-                <><Plus size={24} strokeWidth={3} /> Thêm vào thẻ</>
+                <>Thêm vào thẻ </>
               )}
             </button>
           </motion.div>

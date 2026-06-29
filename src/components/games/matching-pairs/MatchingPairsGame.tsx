@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Search, LifeBuoy, X, Heart } from "lucide-react";
+import { Sparkles, Search, LifeBuoy, X, Heart, HelpCircle } from "lucide-react";
 
 import { FlashcardData } from "@/types/flashcard";
 import { parseFurigana } from "@/utils/textParser";
@@ -12,6 +12,7 @@ import { ShibaMasterDialog, ShibaMasterOption } from "@/components/games/shared/
 import { SystemDeck } from "@/types/flashcard";
 import { useMatchingPairsGame, TIME_BONUS_PER_5_SECONDS, PHAO_DURATION_SECONDS, KINH_LUP_DURATION_SECONDS } from "@/hooks/games/matching-pairs/useMatchingPairsGame";
 import { useLearningTimer } from "@/hooks/common/useLearningTimer";
+import { MPTutorialOverlay } from "./MPTutorialOverlay";
 
 interface MatchingPairsGameProps {
   cards: FlashcardData[];
@@ -53,6 +54,14 @@ export function MatchingPairsGame({
   useLearningTimer({ isActive: minigameStatus === "playing" });
 
   const [isMasterOpen, setIsMasterOpen] = React.useState(false);
+  const [showTutorial, setShowTutorial] = React.useState(false);
+
+  React.useEffect(() => {
+    const hasSeen = localStorage.getItem("matching_tutorial_seen");
+    if (hasSeen !== "true") {
+      setShowTutorial(true);
+    }
+  }, []);
 
   const masterOptions: ShibaMasterOption[] = [
     {
@@ -122,6 +131,13 @@ export function MatchingPairsGame({
               </motion.div>
             ))}
           </div>
+          <button
+            onClick={() => setShowTutorial(true)}
+            className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100 shadow-sm transition-colors border-2 border-zinc-200 shrink-0"
+            title="Hướng dẫn"
+          >
+            <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
           <button
             onClick={onClose}
             className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white text-zinc-400 hover:text-zinc-600 hover:bg-zinc-100 shadow-sm transition-colors border-2 border-zinc-200 shrink-0"
@@ -206,8 +222,8 @@ export function MatchingPairsGame({
                   )}
                   <span
                     className={`relative z-10 font-bold drop-shadow-sm line-clamp-3 sm:line-clamp-4 leading-tight ${item.type === "jp"
-                        ? "text-lg min-[400px]:text-xl sm:text-3xl text-[#FF9F1C]"
-                        : "text-[11px] min-[400px]:text-xs sm:text-sm text-[#5390D9]"
+                      ? "text-lg min-[400px]:text-xl sm:text-3xl text-[#FF9F1C]"
+                      : "text-[11px] min-[400px]:text-xs sm:text-sm text-[#5390D9]"
                       }`}
                     style={{
                       fontFamily:
@@ -279,7 +295,6 @@ export function MatchingPairsGame({
             onClick={() => setIsMasterOpen(true)}
             className="w-full max-w-[220px] h-full bg-[#5390D9] hover:bg-[#4a81c3] disabled:bg-zinc-300 disabled:border-zinc-400 disabled:shadow-none disabled:active:translate-y-0 text-white rounded-2xl border-b-4 border-[#305f94] active:border-b-0 active:translate-y-1 font-bold text-lg transition-all shadow-sm flex items-center justify-center gap-2"
           >
-            <Sparkles className="w-5 h-5" />
             <span style={{ fontFamily: "var(--font-cherry)" }}>Hỏi Sư Phụ</span>
           </button>
         )}
@@ -291,6 +306,18 @@ export function MatchingPairsGame({
         options={masterOptions}
         message="Bí từ quá à đồ đệ? Đưa Xương đây ta quăng phao cho!"
       />
+
+      {/* MÀN HÌNH HƯỚNG DẪN CHƠI */}
+      <AnimatePresence>
+        {showTutorial && (
+          <MPTutorialOverlay
+            onClose={() => {
+              setShowTutorial(false);
+              localStorage.setItem("matching_tutorial_seen", "true");
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
