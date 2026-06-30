@@ -70,8 +70,7 @@ export const applyRewards = (stats: UserStats, rewards: any): UserStats => {
       newStats.coins = (newStats.coins || 0) + currentLevel * 50;
 
       // Hiển thị thông báo thăng cấp đẹp mắt
-      toast.success(`Chúc mừng! Bạn đã thăng cấp lên Level ${currentLevel}! 🎉`, {
-        icon: "⭐",
+      toast.success(`Chúc mừng! Bạn đã thăng cấp lên Level ${currentLevel}!`, {
         duration: 4000,
       });
     }

@@ -5,15 +5,15 @@
     "translation": "Tôi đi đến Tokyo bằng tàu điện.",
     "blanks": [
       {
-        "correctAnswer": "電車",
-        "wrongAnswers": ["自転車", "飛行機", "船"],
+        "correctAnswer": "[電車]{でんしゃ}",
+        "wrongAnswers": ["[自転車]{じてんしゃ}", "[飛行機]{ひこうき}", "[船]{ふね}"],
         "hint": "Phương tiện đi lại bằng đường sắt",
         "reading": "でんしゃ",
         "meaning": "Tàu điện"
       },
       {
-        "correctAnswer": "行きます",
-        "wrongAnswers": ["来ます", "帰ります", "食べます"],
+        "correctAnswer": "[行]{い}きます",
+        "wrongAnswers": ["[来]{き}ます", "[帰]{かえ}ります", "[食]{た}べます"],
         "hint": "Động từ di chuyển hướng đi",
         "reading": "いきます",
         "meaning": "Đi"
@@ -33,8 +33,8 @@
         "meaning": "Trợ từ gá (chỉ chủ ngữ)"
       },
       {
-        "correctAnswer": "行きましょう",
-        "wrongAnswers": ["行きます", "行きました", "行きません"],
+        "correctAnswer": "[行]{い}きましょう",
+        "wrongAnswers": ["[行]{い}きます", "[行]{い}きました", "[行]{い}きません"],
         "hint": "Đuôi câu rủ rê, đề nghị lịch sự (hãy cùng đi)",
         "reading": "いきましょう",
         "meaning": "Hãy cùng đi"
@@ -55,7 +55,7 @@
       },
       {
         "correctAnswer": "など",
-        "wrongAnswers": ["から", "まで", "tại"],
+        "wrongAnswers": ["から", "まで", "に"],
         "hint": "Từ đi kèm trợ từ liệt kê thể hiện nghĩa 'vân vân'",
         "reading": "など",
         "meaning": "Vân vân"

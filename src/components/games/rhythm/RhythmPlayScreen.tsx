@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Ham, Shield, Volume2, VolumeX, X, Bone } from "lucide-react";
+import { Heart, Shield, Volume2, VolumeX, X } from "lucide-react";
 
 interface RhythmPlayScreenProps {
   onClose: () => void;
@@ -11,7 +11,7 @@ interface RhythmPlayScreenProps {
   targetWord: any;
   score: number;
   isFeverMode: boolean;
-  hasShield: boolean;
+  hasShield: number;
   hp: number;
   extraHearts: number;
   feverEnergy: number;
@@ -85,12 +85,12 @@ export function RhythmPlayScreen({
               <span className="text-[10px] uppercase font-bold text-amber-600 block leading-none mb-1">
                 Săn từ vựng
               </span>
-              <h3
+              {/* <h3
                 className="text-xl text-amber-900 font-black leading-tight"
                 style={{ fontFamily: "var(--font-cute)" }}
               >
                 {targetWord?.word}
-              </h3>
+              </h3> */}
             </>
           )}
         </div>
@@ -118,7 +118,7 @@ export function RhythmPlayScreen({
           />
           {/* Bubble Shield */}
           <AnimatePresence>
-            {hasShield && (
+            {hasShield > 0 && (
               <motion.div
                 initial={{ scale: 0.6, opacity: 0 }}
                 animate={{ scale: 1.2, opacity: 0.8 }}
@@ -142,8 +142,11 @@ export function RhythmPlayScreen({
             ))}
 
             {/* Shield mini badge */}
-            {hasShield && (
-              <Shield size={16} className="text-cyan-500 fill-cyan-400 ml-1" />
+            {hasShield > 0 && (
+              <div className="flex items-center gap-0.5 text-cyan-600 font-black text-[10px] ml-1 select-none">
+                <Shield size={15} className="text-cyan-500 fill-cyan-400" />
+                <span>x{hasShield}</span>
+              </div>
             )}
 
             {/* Extra Hearts Stockpile Badge */}
@@ -268,7 +271,9 @@ export function RhythmPlayScreen({
                           ? "#FF9F1C"
                           : hitFeedback[laneIdx].rating === "Great"
                             ? "#06D6A0"
-                            : "#E63946",
+                            : hitFeedback[laneIdx].rating === "Good"
+                              ? "#6B7280"
+                              : "#E63946",
                       textShadow: "1px 1px 0px #fff",
                     }}
                   >
@@ -310,14 +315,16 @@ export function RhythmPlayScreen({
           );
         })}
 
-        {/* Hit Line (Marshmallow style) */}
+        {/* Spiked Warning Line (Vạch Gai Cảnh Báo) */}
         <div
-          className="absolute bottom-[10%] left-0 right-0 h-6 border-y pointer-events-none z-10 flex items-center justify-center transition-colors duration-500 bg-[#FF9F1C]/15 border-[#FF9F1C]/35 backdrop-blur-sm shadow-[0_0_15px_rgba(255,159,28,0.2)]"
+          className="absolute bottom-[10%] left-0 right-0 h-6 border-y pointer-events-none z-10 flex items-center justify-center bg-red-500/10 border-red-500/30 backdrop-blur-xs shadow-[0_0_15px_rgba(239,68,68,0.25)]"
         >
           <span
-            className="text-[9px] font-black uppercase tracking-wider text-[#FF9F1C]"
+            className="text-[9px] font-black uppercase tracking-wider text-red-500 flex items-center gap-1 select-none font-rounded"
           >
-            Vạch Nhịp
+            <span>▲ ▲ ▲</span>
+            <span>VẠCH GAI CẢNH BÁO</span>
+            <span>▲ ▲ ▲</span>
           </span>
         </div>
       </div>

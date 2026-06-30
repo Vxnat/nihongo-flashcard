@@ -42,7 +42,7 @@ export function ShopItemModal({
 
     if (secureUrl) {
       setForm((prev: any) => ({ ...prev, imageUrl: secureUrl }));
-      toast.success("Tải ảnh lên Cloudinary thành công! 🎉");
+      toast.success("Tải ảnh lên Cloudinary thành công!");
     }
 
     setIsUploadingImg(false);
@@ -123,7 +123,7 @@ export function ShopItemModal({
                   }}
                   disabled={isUploadingImg}
                 />
-                <span>{isUploadingImg ? "Đang tải..." : "📁 Tải ảnh"}</span>
+                <span>{isUploadingImg ? "Đang tải..." : "Tải ảnh"}</span>
               </label>
             </div>
             <input

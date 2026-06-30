@@ -1,18 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Search, Plus, Edit3, Trash2, Save, RotateCcw } from "lucide-react";
-import Image from "next/image";
+import { Search, Plus, Edit3, Trash2, Save, RotateCcw, Palette, Shirt, Sofa, Mic, Smile, Tag, Sparkles, Scale, AlertTriangle } from "lucide-react";
 import { CoinIcon } from "../common/CoinIcon";
 
-const TYPE_WEIGHT_LABELS: Record<string, { label: string; emoji: string; color: string }> = {
-  theme: { label: "Theme", emoji: "🎨", color: "#8B5CF6" },
-  outfit: { label: "Outfit", emoji: "👔", color: "#EC4899" },
-  furniture: { label: "Furniture", emoji: "🪑", color: "#F59E0B" },
-  voice: { label: "Voice", emoji: "🎤", color: "#3B82F6" },
-  meme: { label: "Meme", emoji: "😂", color: "#10B981" },
-  accessory: { label: "Accessory", emoji: "🏷️", color: "#6366F1" },
-  costume: { label: "Costume", emoji: "🦊", color: "#F97316" },
+const TYPE_WEIGHT_LABELS: Record<string, { label: string; icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; color: string }> = {
+  theme: { label: "Theme", icon: Palette, color: "#8B5CF6" },
+  outfit: { label: "Outfit", icon: Shirt, color: "#EC4899" },
+  furniture: { label: "Furniture", icon: Sofa, color: "#F59E0B" },
+  voice: { label: "Voice", icon: Mic, color: "#3B82F6" },
+  meme: { label: "Meme", icon: Smile, color: "#10B981" },
+  accessory: { label: "Accessory", icon: Tag, color: "#6366F1" },
+  costume: { label: "Costume", icon: Sparkles, color: "#F97316" },
 };
 
 interface GachaShopTabProps {
@@ -92,7 +91,7 @@ export function GachaShopTab({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <div>
             <h3 className="font-black text-zinc-700 text-sm flex items-center gap-2">
-              ⚖️ Trọng Số Loại Vật Phẩm (Type Weights)
+              <Scale className="w-4 h-4 text-[#8C6D58]" /> Trọng Số Loại Vật Phẩm (Type Weights)
             </h3>
             <p className="text-xs text-zinc-400 font-bold mt-0.5">
               Trọng số càng thấp → loại đó càng hiếm khi được chọn trong cùng một rarity
@@ -134,7 +133,7 @@ export function GachaShopTab({
                 style={{ borderColor: `${info.color}30`, background: `${info.color}08` }}
               >
                 <div className="flex items-center gap-1.5 mb-2">
-                  <span className="text-base">{info.emoji}</span>
+                  <info.icon className="w-4 h-4" style={{ color: info.color }} />
                   <span className="text-[11px] font-black uppercase" style={{ color: info.color }}>
                     {info.label}
                   </span>
@@ -163,7 +162,7 @@ export function GachaShopTab({
 
         {hasChanges && (
           <div className="mt-3 px-3 py-2 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-2">
-            <span className="text-amber-500 text-xs">⚠️</span>
+            <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0" />
             <p className="text-[11px] font-bold text-amber-700">
               Bạn có thay đổi chưa lưu. Nhấn &quot;Lưu Weights&quot; để áp dụng vào hệ thống Gacha.
             </p>
@@ -256,14 +255,14 @@ export function GachaShopTab({
                 onClick={handleSeedGachaAndShop}
                 className="px-3.5 py-1.5 bg-[#14b8a6] hover:bg-[#0d9488] text-white font-black text-xs rounded-xl flex items-center gap-1.5 cursor-pointer shadow-xs transition-all hover:scale-105"
               >
-                🌱 Seed Mẫu Vật Phẩm
+                Seed Mẫu Vật Phẩm
               </button>
             )} */}
             <button
               onClick={handleClearAllItems}
               className="px-3.5 py-1.5 bg-rose-500 hover:bg-rose-600 text-white font-black text-xs rounded-xl flex items-center gap-1.5 cursor-pointer shadow-xs transition-all hover:scale-105"
             >
-              🧹 Xóa sạch vật phẩm
+              <Trash2 size={12} /> Xóa sạch vật phẩm
             </button>
             <button
               onClick={handleCreateGachaItem}

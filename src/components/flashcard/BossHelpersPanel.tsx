@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { LifeBuoy, Search, Check } from "lucide-react";
+import { LifeBuoy, Search, Check, Bone } from "lucide-react";
 import { CoinIcon } from "@/components/common/CoinIcon";
 import { useAppStore } from "@/store/useAppStore";
 
@@ -62,8 +62,8 @@ export function BossHelpersPanel({
         <div className="flex items-center gap-2 bg-white/55 border border-white/70 rounded-full px-2.5 py-1 shadow-xs">
           {/* Balance icons */}
           <div className="flex items-center gap-2.5 border-r border-orange-200/40 pr-2.5">
-            <div className="flex items-center gap-0.5 text-xs font-black text-amber-900 select-none">
-              <span>🦴</span>
+            <div className="flex items-center gap-1 text-xs font-black text-amber-900 select-none">
+              <Bone size={12} className="rotate-45 text-amber-900 fill-amber-900" />
               <span>{coins}</span>
             </div>
             <div className="flex items-center gap-0.5 text-xs font-black text-amber-900 select-none">
@@ -83,7 +83,7 @@ export function BossHelpersPanel({
                 }`}
               title="Thanh toán bằng Xương"
             >
-              🦴
+              <Bone size={12} className="rotate-45 text-amber-900 fill-amber-900" />
             </button>
             <button
               type="button"
@@ -117,7 +117,7 @@ export function BossHelpersPanel({
           <div className="absolute top-1 right-1 bg-white/75 backdrop-blur-xs border border-[#80DEEA]/40 rounded-full px-1.5 py-0.5 shadow-[0_1px_2px_rgba(0,0,0,0.05)] flex items-center justify-center z-10 select-none">
             <span className="text-sm text-[#00838F] font-black font-sans flex items-center gap-0.5 leading-none">
               {activeCurrency === "coins" ? (
-                <>5 🦴</>
+                <>5 <Bone size={10} className="inline rotate-45 text-[#00838F] fill-[#00838F] ml-0.5" /></>
               ) : (
                 <>1 <CoinIcon size={9} /></>
               )}
@@ -147,7 +147,7 @@ export function BossHelpersPanel({
               <div className="absolute top-1 right-1 bg-white/75 backdrop-blur-xs border border-[#FFCC80]/40 rounded-full px-1.5 py-1 shadow-[0_1px_2px_rgba(0,0,0,0.05)] flex items-center justify-center z-10 select-none">
                 <span className="text-sm text-[#E65100] font-black font-sans flex items-center gap-0.5 leading-none">
                   {activeCurrency === "coins" ? (
-                    <>3 🦴</>
+                    <>3 <Bone size={10} className="inline rotate-45 text-[#E65100] fill-[#E65100] ml-0.5" /></>
                   ) : (
                     <>1 <CoinIcon size={9} /></>
                   )}

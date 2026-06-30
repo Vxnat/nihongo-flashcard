@@ -19,6 +19,11 @@ import {
   ListMusic,
   ChevronsLeft,
   ChevronsRight,
+  Crown,
+  Zap,
+  Flame,
+  Star,
+  Sparkles,
 } from "lucide-react";
 import { ControlPanel } from "./ControlPanel";
 import { TypingBossFight } from "@/components/flashcard/TypingBossFight";
@@ -165,12 +170,12 @@ export function FlashcardDeck({
                 Thẻ Tự Tạo
               </span>
             ) : (
-              <>
-                <span>📚</span>{" "}
+              <span className="flex items-center gap-1.5 truncate">
+                <Layers className="w-3.5 h-3.5" />
                 <span className="truncate" style={{ fontFamily: "var(--font-cherry)" }}>
                   {deckId.replace(/_/g, " ")}
                 </span>
-              </>
+              </span>
             )}
           </div>
         </div>
@@ -215,7 +220,7 @@ export function FlashcardDeck({
   const getComboConfig = (count: number) => {
     if (count >= 15)
       return {
-        icon: "👑",
+        icon: <Crown className="w-12 h-12 text-[#FFD166] fill-[#FFD166]" />,
         text: "GODLIKE",
         color: "#FFD166",
         glow: "rgba(255,209,102,0.8)",
@@ -223,7 +228,7 @@ export function FlashcardDeck({
       };
     if (count >= 10)
       return {
-        icon: "🌟",
+        icon: <Star className="w-12 h-12 text-[#FF7096] fill-[#FF7096]" />,
         text: "UNSTOPPABLE",
         color: "#FF7096",
         glow: "rgba(255,112,150,0.8)",
@@ -231,14 +236,14 @@ export function FlashcardDeck({
       };
     if (count >= 5)
       return {
-        icon: "⚡",
+        icon: <Zap className="w-12 h-12 text-[#06D6A0] fill-[#06D6A0]" />,
         text: "AWESOME",
         color: "#06D6A0",
         glow: "rgba(6,214,160,0.8)",
         gradient: "from-[#A0E8D5] to-[#06D6A0]",
       };
     return {
-      icon: "🔥",
+      icon: <Flame className="w-12 h-12 text-[#FF9F1C] fill-[#FF9F1C]" />,
       text: "COMBO",
       color: "#FF9F1C",
       glow: "rgba(255,159,28,0.8)",
@@ -291,12 +296,12 @@ export function FlashcardDeck({
               Thẻ Tự Tạo
             </span>
           ) : (
-            <>
-              <span>📚</span>{" "}
+            <span className="flex items-center gap-1.5 truncate">
+              <Layers className="w-3.5 h-3.5" />
               <span className="truncate" style={{ fontFamily: "var(--font-cherry)" }}>
                 {deckId.replace(/_/g, " ")}
               </span>
-            </>
+            </span>
           )}
         </div>
       </div>
@@ -420,16 +425,22 @@ export function FlashcardDeck({
                 {/* Progress Count */}
                 <span className="font-rounded font-bold text-xs tracking-wide flex items-center gap-1">
                   {bossStatus === "boss_unlocked" || bossStatus === "completed" ? (
-                    <span className="animate-bounce inline-block text-sm" title="Boss sẵn sàng!">🦊</span>
+                    <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-bounce" />
                   ) : (
-                    <span>🐾</span>
+                    <Layers className="w-3 h-3 text-zinc-400" />
                   )}
                   {learnedCardsCount}/{totalOriginalCards}
                 </span>
 
                 {/* Mode Icon */}
-                <span className="text-xs">
-                  {globalMode === "podcast" ? "🎧" : globalMode === "typing" ? "⌨️" : "🎴"}
+                <span className="text-xs flex items-center justify-center">
+                  {globalMode === "podcast" ? (
+                    <Headphones className="w-3.5 h-3.5" />
+                  ) : globalMode === "typing" ? (
+                    <Keyboard className="w-3.5 h-3.5" />
+                  ) : (
+                    <Layers className="w-3.5 h-3.5" />
+                  )}
                 </span>
               </motion.div>
             ) : (
@@ -454,8 +465,8 @@ export function FlashcardDeck({
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <span className="font-rounded font-black text-xs">
-                      🐾 {learnedCardsCount}/{totalOriginalCards}
+                    <span className="font-rounded font-black text-xs flex items-center gap-1">
+                      <Layers className="w-3 h-3" /> {learnedCardsCount}/{totalOriginalCards}
                     </span>
                   </div>
 
@@ -786,7 +797,7 @@ export function FlashcardDeck({
                     return (
                       <motion.span
                         key={i}
-                        className="text-lg text-pink-300 drop-shadow-[0_0_4px_rgba(255,112,150,0.4)]"
+                        className="drop-shadow-[0_0_4px_rgba(255,112,150,0.4)]"
                         animate={{
                           y: [0, -10, 0],
                           scale: [0.9, 1.15, 0.9],
@@ -798,7 +809,7 @@ export function FlashcardDeck({
                           ease: "easeInOut",
                         }}
                       >
-                        🌸
+                        <span className="w-1.5 h-6 rounded-full bg-pink-300 inline-block" />
                       </motion.span>
                     );
                   })
@@ -806,9 +817,9 @@ export function FlashcardDeck({
                   [...Array(11)].map((_, i) => (
                     <span
                       key={i}
-                      className="text-md opacity-30 text-[#7C5B9E]"
+                      className="opacity-30 text-[#7C5B9E]"
                     >
-                      🌸
+                      <span className="w-1.5 h-4 rounded-full bg-[#7C5B9E] inline-block" />
                     </span>
                   ))
                 )}

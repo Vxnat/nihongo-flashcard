@@ -574,23 +574,38 @@ export function GachaShop() {
 
                   <div className="flex flex-col gap-2 font-bold text-sm relative z-10">
                     <div className="flex justify-between items-center bg-zinc-100 px-4 py-2.5 rounded-2xl text-zinc-600 border border-zinc-200">
-                      <span className="flex items-center gap-2"><span className="text-lg">⚪</span> Common</span>
+                      <span className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-zinc-400" />
+                        Common
+                      </span>
                       <span className="text-base">{RARITY_CONFIG.common.dropRate}%</span>
                     </div>
                     <div className="flex justify-between items-center bg-blue-50 px-4 py-2.5 rounded-2xl text-blue-600 border border-blue-100">
-                      <span className="flex items-center gap-2"><span className="text-lg">🔵</span> Rare</span>
+                      <span className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
+                        Rare
+                      </span>
                       <span className="text-base">{RARITY_CONFIG.rare.dropRate}%</span>
                     </div>
                     <div className="flex justify-between items-center bg-purple-50 px-4 py-2.5 rounded-2xl text-purple-600 border border-purple-100">
-                      <span className="flex items-center gap-2"><span className="text-lg">🟣</span> Epic</span>
+                      <span className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-purple-500" />
+                        Epic
+                      </span>
                       <span className="text-base">{RARITY_CONFIG.epic.dropRate}%</span>
                     </div>
                     <div className="flex justify-between items-center bg-yellow-50 px-4 py-2.5 rounded-2xl text-yellow-600 border border-yellow-200">
-                      <span className="flex items-center gap-2"><span className="text-lg">🟡</span> Legendary</span>
+                      <span className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
+                        Legendary
+                      </span>
                       <span className="text-base">{RARITY_CONFIG.legendary.dropRate}%</span>
                     </div>
                     <div className="flex justify-between items-center bg-red-50 px-4 py-2.5 rounded-2xl text-red-500 border border-red-100">
-                      <span className="flex items-center gap-2"><span className="text-lg">🔴</span> Mythic</span>
+                      <span className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                        Mythic
+                      </span>
                       <span className="text-base">{RARITY_CONFIG.mythic.dropRate}%</span>
                     </div>
                     <div className="relative flex justify-between items-center px-4 py-2.5 rounded-2xl text-slate-700 border border-slate-200 shadow-inner overflow-hidden">
@@ -600,7 +615,10 @@ export function GachaShop() {
                         animate={{ backgroundPosition: ["0% 0%", "100% 0%"] }}
                         transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                       />
-                      <span className="flex items-center gap-2 relative z-10">🌈 Divine</span>
+                      <span className="flex items-center gap-2 relative z-10">
+                        <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500" />
+                        Divine
+                      </span>
                       <span className="text-base relative z-10">{RARITY_CONFIG.divine.dropRate}%</span>
                     </div>
                   </div>
@@ -800,7 +818,7 @@ export function GachaShop() {
                     {rewardData.duplicateFur > 0 ? (
                       <>Đã sở hữu! Phân rã thành <span className="text-[#FF9F1C]">{rewardData.duplicateFur} Shiba Coin</span></>
                     ) : rewardData.unlocked ? (
-                      <>Đã ghép thành công vật phẩm! 🎉</>
+                      <>Đã ghép thành công vật phẩm!</>
                     ) : (
                       <>Cố lên! Bạn cần thêm mảnh để ghép.</>
                     )}
@@ -830,7 +848,7 @@ export function GachaShop() {
           {/* Card gỗ Đăng nhập siêu đẹp */}
           <ShibaLoginCard
             title="Cửa Hàng Gacha"
-            description="Cửa hàng Gacha đang khóa! Đăng nhập cùng Shiba để dùng Xương Vàng quay Gacha nhận trang phục hiếm và trang trí căn phòng của bạn nhé! 🐾🎁"
+            description="Cửa hàng Gacha đang khóa! Đăng nhập cùng Shiba để dùng Xương Vàng quay Gacha nhận trang phục hiếm và trang trí căn phòng của bạn nhé!"
             variant="wood"
             onHoverChange={setIsCardHovered}
           />
@@ -851,7 +869,7 @@ function PityBar({ pityCounter }: { pityCounter: number }) {
           className="text-xs font-black text-pink-500 uppercase tracking-wider"
           style={{ fontFamily: "var(--font-cherry)" }}
         >
-          Bảo hiểm Epic
+          Bảo hiểm
         </span>
         <span
           className="text-sm font-black text-[#FF9F1C]"
@@ -872,7 +890,7 @@ function PityBar({ pityCounter }: { pityCounter: number }) {
           {/* Chú chó Shiba mini chạy bộ ở đầu thanh tiến trình */}
           {pityPercent > 0 && (
             <motion.div
-              className="absolute -right-3 -top-2 z-20 w-8 h-8 flex items-center justify-center text-lg drop-shadow-sm pointer-events-none select-none"
+              className="absolute -right-3 -top-2 z-20 w-8 h-8 flex items-center justify-center drop-shadow-sm pointer-events-none select-none"
               animate={{
                 y: [-1.5, 1.5, -1.5],
                 rotate: [-8, 8, -8],
@@ -883,7 +901,7 @@ function PityBar({ pityCounter }: { pityCounter: number }) {
                 ease: "easeInOut",
               }}
             >
-              🐕
+              <Star size={16} className="text-[#FF85A1] fill-[#FF85A1]" />
             </motion.div>
           )}
 
@@ -899,11 +917,11 @@ function PityBar({ pityCounter }: { pityCounter: number }) {
 
         {/* Khúc xương vàng ở đích đến cuối thanh */}
         <motion.div
-          className="absolute -right-1 -top-2.5 z-20 text-xl"
+          className="absolute -right-1 -top-0.5 z-20"
           animate={pityPercent >= 100 ? { scale: [1, 1.25, 1], rotate: [-15, 15, -15, 15, 0] } : { rotate: [0, 5, -5, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
-          🍖
+          <Bone size={18} className="text-amber-500 rotate-45 fill-amber-500" />
         </motion.div>
       </div>
 

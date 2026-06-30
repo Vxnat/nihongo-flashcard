@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Ham, Shield, HelpCircle, X, Check, Volume2, Keyboard, Sparkles, Bone, Bug } from "lucide-react";
+import { Heart, Ham, Shield, HelpCircle, Check, Volume2, Keyboard, Sparkles, Bone, Bug } from "lucide-react";
 
 interface RhythmTutorialOverlayProps {
   onClose: () => void;
@@ -71,16 +71,18 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
         </div>
         <h3 className="text-amber-900 font-black text-lg font-rounded">Gõ Nhịp Đúng Lúc</h3>
         <p className="text-xs font-rounded font-bold text-amber-800/80 leading-relaxed max-w-[260px] mx-auto">
-          Nhìn nốt nhạc rơi xuống. Nhấp chuột vào làn chơi hoặc gõ phím tương ứng khi nốt chạm vạch nhịp.
+          Nhìn nốt nhạc rơi xuống. Nhấp chuột hoặc gõ phím tương ứng để tiêu hủy nốt. Bấm càng sớm khi nốt ở trên cao (xa vạch gai ở đáy) thì điểm càng cao!
         </p>
       </div>
 
       {/* Vùng mô phỏng chơi game */}
       <div className="w-full max-w-[180px] h-[180px] bg-white/80 border-2 border-[#FFE2D1] rounded-2xl relative overflow-hidden flex flex-col justify-end items-center my-4 shadow-inner">
-        {/* Vạch nhịp */}
-        <div className="absolute bottom-[15%] left-0 right-0 h-4 border-y bg-[#FF9F1C]/10 border-[#FF9F1C]/30 flex items-center justify-center pointer-events-none">
-          <span className="text-[7px] font-black text-[#FF9F1C] uppercase tracking-widest font-rounded">
-            Vạch Nhịp
+        {/* Vạch gai giả lập */}
+        <div className="absolute bottom-[15%] left-0 right-0 h-4 border-y bg-red-500/10 border-red-500/30 flex items-center justify-center pointer-events-none">
+          <span className="text-[6px] font-black text-red-500 uppercase tracking-widest font-rounded flex items-center gap-0.5 select-none">
+            <span>▲</span>
+            <span>VẠCH GAI</span>
+            <span>▲</span>
           </span>
         </div>
 
@@ -135,7 +137,7 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
         {step1Success ? (
           <div className="text-center space-y-3 w-full">
             <p className="text-[11px] font-rounded font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl py-1.5 px-3">
-              Tuyệt vời! Bạn đã gõ trúng vạch nhịp.
+              Tuyệt vời! Bạn đã gõ tiêu hủy nốt thành công trước khi chạm gai.
             </p>
             <button
               onClick={() => setCurrentStep(1)}
@@ -170,11 +172,11 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
 
       {/* Sandbox Lọc âm tiết */}
       <div className="w-full max-w-[220px] bg-white/80 border-2 border-[#FFE2D1] rounded-[2rem] p-4 my-3 flex flex-col items-center shadow-inner relative">
-        
+
         {/* Từ vựng mục tiêu giả lập */}
         <div className="bg-[#FFFDF5] border border-[#FFE2D1] rounded-2xl py-1.5 px-4 text-center mb-4">
           <div className="text-amber-700/50 text-[9px] font-bold font-rounded uppercase tracking-wider">Từ mục tiêu</div>
-          <div className="text-amber-900 font-black text-lg font-rounded">ねこ</div>
+          <div className="text-amber-900 font-black text-lg font-rounded">ね</div>
         </div>
 
         {/* Bảng máu giả lập */}
@@ -183,9 +185,8 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
             <Heart
               key={heartIdx}
               size={14}
-              className={`transition-colors duration-300 ${
-                heartIdx <= step2Hp ? "text-red-500 fill-red-500" : "text-zinc-300 fill-zinc-200"
-              }`}
+              className={`transition-colors duration-300 ${heartIdx <= step2Hp ? "text-red-500 fill-red-500" : "text-zinc-300 fill-zinc-200"
+                }`}
             />
           ))}
         </div>
@@ -212,13 +213,11 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
           {/* Làn phải: Nốt Sai (い) */}
           <div
             onClick={handleStep2TapIncorrect}
-            className={`flex-1 border border-dashed border-[#FFE2D1] rounded-xl flex items-center justify-center relative cursor-pointer active:scale-95 transition-all ${
-              step2Wrong ? "bg-red-50 border-red-300" : ""
-            }`}
+            className={`flex-1 border border-dashed border-[#FFE2D1] rounded-xl flex items-center justify-center relative cursor-pointer active:scale-95 transition-all ${step2Wrong ? "bg-red-50 border-red-300" : ""
+              }`}
           >
-            <div className={`w-10 h-10 rounded-full border border-[#FF9F1C] bg-white/95 text-amber-800 flex items-center justify-center font-black font-rounded text-sm ${
-              step2Wrong ? "animate-bounce border-red-400 bg-red-50 text-red-500" : ""
-            }`}>
+            <div className={`w-10 h-10 rounded-full border border-[#FF9F1C] bg-white/95 text-amber-800 flex items-center justify-center font-black font-rounded text-sm ${step2Wrong ? "animate-bounce border-red-400 bg-red-50 text-red-500" : ""
+              }`}>
               い
             </div>
           </div>
@@ -229,7 +228,7 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
         {step2Success ? (
           <div className="text-center space-y-3 w-full">
             <p className="text-[11px] font-rounded font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-xl py-1.5 px-3">
-              Chính xác! Âm ね thuộc từ ねこ.
+              Chính xác! Âm ね.
             </p>
             <button
               onClick={() => setCurrentStep(2)}
@@ -315,9 +314,8 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
               <button
                 key={it.id}
                 onClick={() => setSelectedItem(it.id)}
-                className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all cursor-pointer relative ${
-                  it.style
-                } ${selectedItem === it.id ? "scale-120 ring-2 ring-amber-400 border-white" : "opacity-75 hover:opacity-100"}`}
+                className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all cursor-pointer relative ${it.style
+                  } ${selectedItem === it.id ? "scale-120 ring-2 ring-amber-400 border-white" : "opacity-75 hover:opacity-100"}`}
               >
                 {it.icon ? it.icon : <span className="font-rounded font-black text-xs">{it.label}</span>}
               </button>
@@ -360,7 +358,7 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
 
       {/* Visual minh họa Fever Mode */}
       <div className="w-full max-w-[200px] bg-gradient-to-b from-[#FFF0F3] via-[#FFF5F5] to-[#FFF9E6] border-2 border-[#FFE2D1] rounded-[2rem] p-4 my-3 flex flex-col items-center shadow-inner relative overflow-hidden">
-        
+
         {/* Spotlights giả lập */}
         <div className="absolute top-0 left-0 w-8 h-24 bg-pink-300/10 blur-[4px] rotate-12 origin-top-left" />
         <div className="absolute top-0 right-0 w-8 h-24 bg-amber-300/10 blur-[4px] -rotate-12 origin-top-right" />
@@ -449,9 +447,8 @@ export function RhythmTutorialOverlay({ onClose }: RhythmTutorialOverlayProps) {
                   setCurrentStep(stepIdx);
                 }
               }}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                currentStep === stepIdx ? "w-6 bg-[#FF9F1C]" : "bg-amber-200 hover:bg-amber-300"
-              }`}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${currentStep === stepIdx ? "w-6 bg-[#FF9F1C]" : "bg-amber-200 hover:bg-amber-300"
+                }`}
             />
           ))}
         </div>

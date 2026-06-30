@@ -233,15 +233,15 @@ export function useHome() {
     try {
       if (user) {
         await deleteDoc(doc(db, "decks", idToDelete));
-        toast.success("Đã xóa bộ bài trên mây! ☁️🗑️");
+        toast.success("Đã xóa bộ bài trên mây!");
       } else {
-        toast.success("Đã xóa bộ bài trong máy! 📱🗑️");
+        toast.success("Đã xóa bộ bài trong máy!");
       }
       deleteCustomDeck(idToDelete);
       setDeckToDelete(null);
     } catch (error) {
       console.error("Lỗi xóa bộ bài:", error);
-      toast.error("Chưa xóa được bộ bài, thử lại nhé! 🥺");
+      toast.error("Chưa xóa được bộ bài, hãy thử lại nhé!");
     } finally {
       setIsDeleting(false);
     }
@@ -260,7 +260,7 @@ export function useHome() {
         color: randomColor,
         createdAt: new Date().toISOString(),
       });
-      toast.success("Tạo thư mục thành công! 📁");
+      toast.success("Tạo thư mục thành công!");
       setIsCreatingFolder(false);
     }
   }, [addFolder]);
@@ -273,7 +273,7 @@ export function useHome() {
     await moveDeckToFolder(deckToMove, folderId);
     setDeckToMove(null);
     toast.success(
-      folderId ? "Đã chuyển thẻ vào thư mục! 📁" : "Đã chuyển ra ngoài! 📦",
+      folderId ? "Đã chuyển thẻ vào thư mục!" : "Đã chuyển ra ngoài!",
     );
   }, [deckToMove, moveDeckToFolder]);
 
@@ -284,7 +284,7 @@ export function useHome() {
     if (newName && newName.trim()) {
       if (updateFolder) {
         updateFolder(folderId, { name: newName.trim() });
-        toast.success("Đổi tên thành công! ✏️");
+        toast.success("Đổi tên thành công!");
       } else {
         toast.error("Hành động đổi tên chưa được hỗ trợ!");
       }
@@ -308,7 +308,7 @@ export function useHome() {
     }
     setSelectedFolderId(null);
     setFolderToDelete(null);
-    toast.success("Đã xóa thư mục! 🗑️");
+    toast.success("Đã xóa thư mục!");
   }, [customDecks, moveDeckToFolder, deleteFolder]);
 
   /**

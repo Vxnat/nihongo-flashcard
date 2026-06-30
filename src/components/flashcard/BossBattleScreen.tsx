@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlashcardData } from "@/types/flashcard";
-import { Heart, Flame, Swords, Zap } from "lucide-react";
+import { Heart, Flame, Swords, Zap, Target, Clock, ArrowLeft, Skull, Sparkles } from "lucide-react";
 import { playSFX } from "@/utils/sfx";
 import { BossHelpersPanel } from "./BossHelpersPanel";
 interface BossBattleScreenProps {
@@ -72,7 +72,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
         <div className="flex flex-col gap-2.5">
           {/* Step 1 */}
           <div className="flex items-center gap-3 bg-[#E0F7F0] border border-[#A7E8D0]/60 rounded-[1rem] px-3 py-2.5">
-            <span className="text-xl flex-shrink-0">🎯</span>
+            <Target className="w-5 h-5 text-emerald-600 flex-shrink-0" />
             <p className="text-sm font-rounded font-bold text-emerald-800">
               Gõ phiên âm <span className="text-[#FF9F1C]">Romaji</span> của từ hiển thị
             </p>
@@ -80,7 +80,7 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
 
           {/* Step 2 */}
           <div className="flex items-center gap-3 bg-[#FFE4EC] border border-[#FFB3C6]/60 rounded-[1rem] px-3 py-2.5">
-            <span className="text-xl flex-shrink-0">⏱️</span>
+            <Clock className="w-5 h-5 text-pink-600 flex-shrink-0" />
             <p className="text-sm font-rounded font-bold text-pink-800">
               Hết giờ hoặc gõ sai = <span className="text-[#E63946]">mất 1 mạng tim!</span>
             </p>
@@ -88,15 +88,15 @@ function BossTutorialModal({ onClose }: { onClose: () => void }) {
 
           {/* Step 3 */}
           <div className="flex items-center gap-3 bg-[#FFF8DC] border border-[#FFE082]/60 rounded-[1rem] px-3 py-2.5">
-            <span className="text-xl flex-shrink-0">❤️</span>
+            <Heart className="w-5 h-5 text-pink-500 fill-pink-500 flex-shrink-0" />
             <p className="text-sm font-rounded font-bold text-amber-800">
-              Bạn có <span className="text-[#FF7096]">3 ❤️</span> — hết tim là thua cuộc
+              Bạn có <span className="text-[#FF7096]">3 tim</span> — hết tim là thua cuộc
             </p>
           </div>
 
           {/* Step 4 */}
           <div className="flex items-center gap-3 bg-[#FFF3E0] border border-[#FFCC80]/60 rounded-[1rem] px-3 py-2.5">
-            <span className="text-xl flex-shrink-0">🔥</span>
+            <Flame className="w-5 h-5 text-orange-600 fill-orange-600 flex-shrink-0" />
             <p className="text-sm font-rounded font-bold text-orange-800">
               Combo liên tiếp = <span className="text-[#FF9F1C]">sát thương gấp đôi!</span>
             </p>
@@ -240,7 +240,9 @@ export function BossBattleScreen({
             onClick={onCancel}
             className="font-rounded font-bold text-xs text-zinc-500 hover:text-zinc-700 px-4 py-2 bg-white/40 hover:bg-white/60 border border-white/50 rounded-[1rem] active:scale-95 transition-all shadow-sm backdrop-blur-sm cursor-pointer"
           >
-            🏃 Trốn chạy
+            <span className="flex items-center gap-1">
+              <ArrowLeft className="w-3 h-3" /> Trốn chạy
+            </span>
           </button>
 
           {/* Battle Badge */}
@@ -286,9 +288,7 @@ export function BossBattleScreen({
               }`}
           >
             {/* Daruma Face */}
-            <span className={`text-5xl select-none transition-transform ${bossFlash ? "scale-110" : ""}`}>
-              👹
-            </span>
+            <Skull className={`w-16 h-16 text-[#E63946] fill-[#E63946]/10 transition-transform ${bossFlash ? "scale-110 text-[#FFD166] fill-[#FFD166]/10" : ""}`} />
 
             {/* Hit / Damage Indicator Popup */}
             <AnimatePresence>
@@ -305,7 +305,7 @@ export function BossBattleScreen({
                     textShadow: "0 2px 4px rgba(0,0,0,0.15), 1px 1px 0px #fff",
                   }}
                 >
-                  {activeDamageText.isCritical ? "💥 CRITICAL! " : "💢 "}-{activeDamageText.damage} HP
+                  {activeDamageText.isCritical ? "CRITICAL! " : ""}-{activeDamageText.damage} HP
                 </motion.div>
               )}
             </AnimatePresence>
@@ -329,9 +329,13 @@ export function BossBattleScreen({
                     : ""
                   }`}
               >
-                <span className="text-2xl select-none">
-                  {activeSkillEffect === "shiba_special" ? "🌟" : activeSkillEffect === "double" ? "⚡" : "🐾"}
-                </span>
+                {activeSkillEffect === "shiba_special" ? (
+                  <Sparkles className="w-8 h-8 text-amber-400 fill-amber-400 animate-spin" />
+                ) : activeSkillEffect === "double" ? (
+                  <Zap className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                ) : (
+                  <Flame className="w-5 h-5 text-red-500 fill-red-500 animate-pulse" />
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -346,7 +350,7 @@ export function BossBattleScreen({
                 className="absolute left-2 top-0 z-10 flex items-center gap-1 bg-gradient-to-r from-[#FF9F1C] to-[#E63946] text-white font-black text-sm px-3 py-1.5 rounded-[1rem] border border-white/50 shadow-md"
                 style={{ fontFamily: "var(--font-cherry)" }}
               >
-                🔥 COMBO x{comboCount}
+                <Flame className="w-4 h-4 text-orange-500 fill-orange-500 animate-pulse" /> COMBO x{comboCount}
               </motion.div>
             )}
           </AnimatePresence>
@@ -428,7 +432,7 @@ export function BossBattleScreen({
               disabled={!inputValue.trim() || countdownVal !== null || !isTimerActive}
               className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-[#FF7096] to-[#FF9F1C] hover:from-[#FF5C8A] hover:to-[#E68E19] text-white font-rounded font-black rounded-xl text-sm active:scale-95 transition-all disabled:opacity-40 shadow-sm cursor-pointer"
             >
-              💥
+              <Swords className="w-4 h-4" />
             </button>
           </form>
 

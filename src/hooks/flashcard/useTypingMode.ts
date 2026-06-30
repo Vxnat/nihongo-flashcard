@@ -52,7 +52,7 @@ export function useTypingMode({ currentCard, onCorrect, onWrong }: UseTypingMode
     } else {
       setStatus("wrong");
       setIsShaking(true); // Kích hoạt cờ rung lắc UI
-      playSFX("fail"); // Kêu tiếng "Bóp 💦"
+      playSFX("fail"); // Kêu tiếng "Bóp"
       if (onWrong) onWrong(); // Kích hoạt hàm báo sai
       
       // Tự động tắt cờ rung sau 0.5s để chuẩn bị cho lần gõ sai tiếp theo (nếu có)

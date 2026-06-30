@@ -16,7 +16,7 @@ export function ShibaLoginModal({
   isOpen,
   onClose,
   title = "Căn Phòng Shiba",
-  description = "Căn phòng Shiba đang đợi cậu trang trí! Đăng nhập ngay để nhận nuôi chú Shiba cưng, quay Gacha nội thất và thu hoạch xương vàng nhé! 🐾🏠",
+  description = "Căn phòng Shiba đang đợi cậu trang trí! Đăng nhập ngay để nhận nuôi chú Shiba cưng, quay Gacha nội thất và thu hoạch xương vàng nhé!",
   onSuccess,
 }: ShibaLoginModalProps) {
   const handleLoginSuccess = () => {

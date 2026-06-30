@@ -1,13 +1,8 @@
 "use client";
 
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import { motion, AnimatePresence, animate } from "framer-motion";
-import { Heart, LogOut, Shield, Zap, Sparkles, Bone, ShoppingCart, DoorOpen, Lock } from "lucide-react";
-import { useAppStore } from "@/store/useAppStore";
+import { motion, AnimatePresence } from "framer-motion";
+import { Heart, LogOut, Shield, Zap, Sparkles, Bone, ShoppingCart, DoorOpen, Lock, Coins } from "lucide-react";
 import toast from "react-hot-toast";
-
-// Import configurations
-import bossRpgMaps from "../../../public/data/configs/boss_rpg_maps.json";
 
 // Import real minigame components
 import { MatchingPairsGame } from "@/components/games/matching-pairs/MatchingPairsGame";
@@ -16,617 +11,112 @@ import { FillBlanksGame } from "@/components/games/fill-blanks/FillBlanksGame";
 // Import real Boss Battle component
 import { BossBattleScreen } from "@/components/flashcard/BossBattleScreen";
 
+import { useBossRPGMiniMap } from "@/hooks/useBossRPGMiniMap";
+
 interface BossRPGMiniMapProps {
   deckId: string;
   onClose: () => void;
 }
 
 export function BossRPGMiniMap({ deckId, onClose }: BossRPGMiniMapProps) {
-  const coins = useAppStore((state) => state.userStats.coins);
-  const deductCoins = useAppStore((state) => state.deductCoins);
-  const saveProgress = useAppStore((state) => state.saveProgress);
-  const wordStats = useAppStore((state) => state.userStats.wordStats || {});
-
-  // RPG session state from store
-  const shibaSessionHP = useAppStore((state) => state.shibaSessionHP);
-  const setShibaSessionHP = useAppStore((state) => state.setShibaSessionHP);
-  const shibaSessionShield = useAppStore((state) => state.shibaSessionShield);
-  const setShibaSessionShield = useAppStore((state) => state.setShibaSessionShield);
-  const shibaSessionBuffs = useAppStore((state) => state.shibaSessionBuffs);
-  const setShibaSessionBuffs = useAppStore((state) => state.setShibaSessionBuffs);
-  const miniMapProgress = useAppStore((state) => state.miniMapProgress);
-  const setMiniMapProgress = useAppStore((state) => state.setMiniMapProgress);
-  const resetMiniMapSession = useAppStore((state) => state.resetMiniMapSession);
-
-  // Local state for modals, shop, and active minigame challenge
-  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
-  const [isWalking, setIsWalking] = useState(false);
-  const [shopOpen, setShopOpen] = useState(false);
-
-  const [shibaPos, setShibaPos] = useState({ x: 50, y: 85 });
-  const [previousNodeId, setPreviousNodeId] = useState<string | null>(null);
-  const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
-
-  // Bezier curve coordinate resolver for character travel
-  const getBezierPoint = (x1: number, y1: number, x2: number, y2: number, t: number) => {
-    const midY = (y1 + y2) / 2;
-    const mt = 1 - t;
-    const mt2 = mt * mt;
-    const mt3 = mt2 * mt;
-    const t2 = t * t;
-    const t3 = t2 * t;
-    return {
-      x: mt3 * x1 + 3 * mt2 * t * x1 + 3 * mt * t2 * x2 + t3 * x2,
-      y: mt3 * y1 + 3 * mt2 * t * midY + 3 * mt * t2 * midY + t3 * y2,
-    };
-  };
-
-  // Challenge execution states
-  const [activeChallengeType, setActiveChallengeType] = useState<"matching" | "fill" | null>(null);
-  const [isLoadingChallenge, setIsLoadingChallenge] = useState(false);
-  const [challengeCards, setChallengeCards] = useState<any[]>([]);
-  const [challengeQuizList, setChallengeQuizList] = useState<any[]>([]);
-
-  // ============================================================
-  // REAL BOSS BATTLE BINDING STATES (Phase 5)
-  // ============================================================
-  const [bossBattleActive, setBossBattleActive] = useState(false);
-  const [bossHp, setBossHp] = useState(0);
-  const [bossMaxHp, setBossMaxHp] = useState(0);
-  const [shibaHp, setShibaHp] = useState(3);
-  const [bossWordsList, setBossWordsList] = useState<any[]>([]);
-  const [currentBossCard, setCurrentBossCard] = useState<any | null>(null);
-  const [playedBossCardIds, setPlayedBossCardIds] = useState<string[]>([]);
-  const [bossTimeLeft, setBossTimeLeft] = useState(0);
-  const [bossCardMaxTime, setBossCardMaxTime] = useState(10);
-  const [isHintRevealed, setIsHintRevealed] = useState(false);
-  const [isTimerActive, setIsTimerActive] = useState(false);
-  const [comboCount, setComboCount] = useState(0);
-
-  // Battle VFX States
-  const [activeSkillEffect, setActiveSkillEffect] = useState<"normal" | "double" | "shiba_special" | null>(null);
-  const [activeDamageText, setActiveDamageText] = useState<{ damage: number; isCritical: boolean } | null>(null);
-  const [screenShake, setScreenShake] = useState(false);
-  const [bossFlash, setBossFlash] = useState(false);
-  const [projectileFlying, setProjectileFlying] = useState(false);
-
-  // Store active card references for the timer closure
-  const currentCardRef = useRef<any>(null);
-  currentCardRef.current = currentBossCard;
-  const playedCardIdsRef = useRef<string[]>([]);
-  playedCardIdsRef.current = playedBossCardIds;
-
-  // Get map config based on deckId (fallback to chapter 1 boss)
-  const mapConfig = (bossRpgMaps as any)[deckId] || (bossRpgMaps as any)["sys_n5_boss_rpg_01"];
-  const rows = mapConfig.rows || [];
-  const nodes = React.useMemo(() => rows.flat(), [rows]);
-
-  const [nodePositions, setNodePositions] = useState<Record<string, { x: number; y: number }>>({});
-  const mapContainerRef = useRef<HTMLDivElement>(null);
-
-  const updatePositions = useCallback(() => {
-    if (!mapContainerRef.current) return;
-    const containerRect = mapContainerRef.current.getBoundingClientRect();
-    const positions: Record<string, { x: number; y: number }> = {};
-
-    nodes.forEach((node: any) => {
-      const el = document.getElementById(`node-${node.id}`);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const x = ((rect.left + rect.width / 2 - containerRect.left) / containerRect.width) * 100;
-        const y = ((rect.top + rect.height / 2 - containerRect.top) / containerRect.height) * 100;
-        positions[node.id] = { x, y };
-      }
-    });
-
-    setNodePositions(positions);
-  }, [nodes]);
-
-  // Node graph helper methods
-  const isNodeUnlocked = (nodeId: string): boolean => {
-    if (nodeId === mapConfig.startNodeId) return true;
-
-    // Branch locking:
-    if (nodeId === "shop" && miniMapProgress.includes("skip_shop")) return false;
-    if (nodeId === "skip_shop" && miniMapProgress.includes("shop")) return false;
-
-    // Find nodes that link to this nodeId
-    const parents = nodes.filter((n: any) => n.next.includes(nodeId));
-
-    // If any parent is completed, this node is unlocked
-    return parents.some((parent: any) => {
-      if (parent.id === "fork_decision") {
-        return miniMapProgress.includes("guardian_1");
-      }
-      return miniMapProgress.includes(parent.id);
-    });
-  };
-
-  const isNodeCompleted = (nodeId: string): boolean => {
-    return miniMapProgress.includes(nodeId);
-  };
-
-  const getShibaCurrentNodeId = (): string => {
-    if (miniMapProgress.includes("final_boss")) return "final_boss";
-    if (miniMapProgress.includes("guardian_2")) return "final_boss";
-    if (miniMapProgress.includes("shop") || miniMapProgress.includes("skip_shop")) return "guardian_2";
-    if (shopOpen) return "shop";
-    if (miniMapProgress.includes("guardian_1")) return "fork_decision";
-    return "guardian_1";
-  };
-
-  const shibaCurrentNodeId = getShibaCurrentNodeId();
-
-  // Setup coordinate observer for responsive layouts
-  useEffect(() => {
-    updatePositions();
-    window.addEventListener("load", updatePositions);
-    window.addEventListener("resize", updatePositions);
-
-    const timeout = setTimeout(updatePositions, 100);
-    const timeout2 = setTimeout(updatePositions, 500);
-
-    return () => {
-      window.removeEventListener("load", updatePositions);
-      window.removeEventListener("resize", updatePositions);
-      clearTimeout(timeout);
-      clearTimeout(timeout2);
-    };
-  }, [updatePositions, miniMapProgress, shibaCurrentNodeId]);
-
-  // Smoothly animate the player marker when shibaCurrentNodeId changes
-  useEffect(() => {
-    if (!previousNodeId) {
-      const pos = nodePositions[shibaCurrentNodeId];
-      if (pos) {
-        setShibaPos({ x: pos.x, y: pos.y });
-        setPreviousNodeId(shibaCurrentNodeId);
-      }
-      return;
-    }
-
-    const startPos = nodePositions[previousNodeId];
-    const endPos = nodePositions[shibaCurrentNodeId];
-
-    if (startPos && endPos && previousNodeId !== shibaCurrentNodeId) {
-      setIsWalking(true);
-      const controls = animate(0, 1, {
-        duration: 1.2,
-        ease: "easeInOut",
-        onUpdate: (t) => {
-          const pt = getBezierPoint(
-            startPos.x,
-            startPos.y,
-            endPos.x,
-            endPos.y,
-            t
-          );
-          setShibaPos(pt);
-        },
-        onComplete: () => {
-          setIsWalking(false);
-          setPreviousNodeId(shibaCurrentNodeId);
-        },
-      });
-      return () => controls.stop();
-    } else if (previousNodeId === shibaCurrentNodeId) {
-      const pos = nodePositions[shibaCurrentNodeId];
-      if (pos) {
-        setShibaPos({ x: pos.x, y: pos.y });
-      }
-    }
-  }, [shibaCurrentNodeId, previousNodeId, nodePositions]);
-
-  const handleNodeClick = (nodeId: string) => {
-    if (!isNodeUnlocked(nodeId)) {
-      toast.error("Đường này hiện đang bị khóa!");
-      return;
-    }
-
-    setIsWalking(true);
-    setTimeout(() => {
-      setIsWalking(false);
-
-      if (nodeId === "shop") {
-        if (!miniMapProgress.includes("fork_decision")) {
-          setMiniMapProgress([...miniMapProgress, "fork_decision"]);
-        }
-        setShopOpen(true);
-      } else if (nodeId === "skip_shop") {
-        if (!miniMapProgress.includes("fork_decision")) {
-          setMiniMapProgress([...miniMapProgress, "fork_decision", "skip_shop"]);
-        } else {
-          setMiniMapProgress([...miniMapProgress, "skip_shop"]);
-        }
-        toast.success("Bạn đã chọn hướng Đi Thẳng mạo hiểm! Nhận x2 Bones khi thắng Boss.");
-      } else {
-        setSelectedNodeId(nodeId);
-      }
-    }, 450);
-  };
-
-  // Launch the real minigame challenge based on node type
-  const handleStartChallenge = async (node: any) => {
-    setIsLoadingChallenge(true);
-    try {
-      if (node.challenge.type === "minigame_matching") {
-        let combinedCards: any[] = [];
-        const fetchPromises = node.challenge.sourceDeckIds.map((targetId: string) =>
-          fetch(`/data/decks/minna/${targetId}.json`).then((r) => (r.ok ? r.json() : []))
-        );
-        const results = await Promise.all(fetchPromises);
-        results.forEach((cards) => {
-          combinedCards = [...combinedCards, ...cards];
-        });
-
-        const { selectAdaptiveCards } = await import("@/utils/wordSelector");
-        const adaptiveCards = selectAdaptiveCards(combinedCards, wordStats, 8);
-        setChallengeCards(adaptiveCards);
-        setActiveChallengeType("matching");
-      } else if (node.challenge.type === "minigame_fill") {
-        let combinedQuizzes: any[] = [];
-        const fetchPromises = node.challenge.sourceDeckIds.map((targetId: string) =>
-          fetch(`/data/decks/grammar/${targetId}.json`).then((r) => (r.ok ? r.json() : []))
-        );
-        const results = await Promise.all(fetchPromises);
-        results.forEach((quizzes) => {
-          combinedQuizzes = [...combinedQuizzes, ...quizzes];
-        });
-
-        setChallengeQuizList(combinedQuizzes);
-        setActiveChallengeType("fill");
-      }
-    } catch (error) {
-      console.error("Lỗi khi khiêu chiến ải:", error);
-      toast.error("Không thể tải dữ liệu thử thách!");
-    } finally {
-      setIsLoadingChallenge(false);
-    }
-  };
-
-  const handleChallengeWin = () => {
-    if (selectedNodeId) {
-      if (!miniMapProgress.includes(selectedNodeId)) {
-        setMiniMapProgress([...miniMapProgress, selectedNodeId]);
-      }
-      toast.success(`Chiến thắng! Bạn đã vượt qua chướng ngại vật.`);
-    }
-    setActiveChallengeType(null);
-    setSelectedNodeId(null);
-  };
-
-  const handleChallengeClose = () => {
-    const damage = 25;
-    const newHP = Math.max(0, shibaSessionHP - damage);
-    setShibaSessionHP(newHP);
-    toast.error(`Thất bại thử thách! Shiba bị mất ${damage} HP.`);
-
-    if (newHP <= 0) {
-      toast.error("Shiba đã kiệt sức! Hãy ghé Trạm Dừng Chân để mua máu hồi phục.");
-    }
-    setActiveChallengeType(null);
-    setSelectedNodeId(null);
-  };
-
-  const handleBuyItem = (item: any) => {
-    if (coins < item.cost) {
-      toast.error("Không đủ Bones!");
-      return;
-    }
-
-    if (item.effect.type === "heal") {
-      if (shibaSessionHP >= 100) {
-        toast.error("Máu Shiba đã đầy!");
-        return;
-      }
-      deductCoins(item.cost);
-      setShibaSessionHP(Math.min(100, shibaSessionHP + item.effect.value));
-      toast.success(`Hồi phục thành công +${item.effect.value} HP!`);
-    } else if (item.effect.type === "shield") {
-      deductCoins(item.cost);
-      setShibaSessionShield(shibaSessionShield + item.effect.value);
-      toast.success(`Nhận Giáp Bảo Vệ: +${item.effect.value} Giáp!`);
-    } else if (item.effect.type === "buff_atk") {
-      if (shibaSessionBuffs.includes(item.id)) {
-        toast.error("Bạn đã sở hữu Buff này rồi!");
-        return;
-      }
-      deductCoins(item.cost);
-      setShibaSessionBuffs([...shibaSessionBuffs, item.id]);
-      toast.success(`Kích hoạt Bùa Tăng Lực: Tăng 20% sát thương!`);
-    }
-  };
-
-  const handleFinishShop = () => {
-    if (!miniMapProgress.includes("shop")) {
-      setMiniMapProgress([...miniMapProgress, "shop"]);
-    }
-    setShopOpen(false);
-    toast.success("Rời trạm dừng chân. Hành trang đã sẵn sàng!");
-  };
-
-  // ============================================================
-  // TURN-BASED BOSS BATTLE IMPLEMENTATION (Phase 5)
-  // ============================================================
-  const calculateBaseDamage = (card: any) => {
-    const romaji = card.romaji || card.reading || "";
-    const word = card.word || "";
-    const reading = card.reading || "";
-    const hasKanji = word !== reading;
-    return 10 + romaji.length + (hasKanji ? 5 : 0);
-  };
-
-  const getDamageMultiplier = (combo: number) => {
-    if (combo >= 5) return 2.0;
-    if (combo >= 3) return 1.5;
-    return 1.0;
-  };
-
-  const getCardTimeLimit = (card: any) => {
-    const romaji = card.romaji || card.reading || "";
-    const baseTime = 2.5 + 0.35 * romaji.length;
-    return Math.max(4, Math.min(10, baseTime));
-  };
-
-  const handleStartBossBattle = async (node: any) => {
-    setIsLoadingChallenge(true);
-    try {
-      const res = await fetch(`/data/decks/minna/${node.challenge.sourceDeckIds[0]}.json`);
-      if (!res.ok) throw new Error("Could not load boss deck");
-      const list = await res.json();
-
-      if (list.length === 0) return;
-
-      setBossWordsList(list);
-      setPlayedBossCardIds([]);
-      setShibaHp(3);
-      setComboCount(0);
-      setIsTimerActive(false);
-
-      const calculatedMaxHp = list.reduce((sum: number, card: any) => sum + calculateBaseDamage(card), 0);
-      setBossMaxHp(calculatedMaxHp);
-      setBossHp(calculatedMaxHp);
-
-      const firstCard = list[0];
-      setCurrentBossCard(firstCard);
-      const limit = getCardTimeLimit(firstCard);
-      setBossCardMaxTime(limit);
-      setBossTimeLeft(limit);
-
-      setSelectedNodeId(null);
-      setBossBattleActive(true);
-    } catch (error) {
-      console.error("Lỗi khi tải trận chiến Boss:", error);
-      toast.error("Không thể khởi động trận chiến Boss!");
-    } finally {
-      setIsLoadingChallenge(false);
-    }
-  };
-
-  const handleBossWordSubmit = useCallback(async (input: string) => {
-    const activeCard = currentCardRef.current;
-    if (!activeCard) return;
-
-    const targetReading = (activeCard.romaji || activeCard.reading || "").toLowerCase().trim();
-    const userInput = input.toLowerCase().trim();
-    const isCorrect = userInput === targetReading;
-
-    setIsHintRevealed(false);
-
-    if (isCorrect) {
-      // --- CORRECT ANSWER ---
-      const newCombo = comboCount + 1;
-      setComboCount(newCombo);
-
-      const baseDamage = calculateBaseDamage(activeCard);
-      let multiplier = getDamageMultiplier(newCombo);
-
-      // Apply ATK Shop Buff multiplier (e.g. +20% damage)
-      if (shibaSessionBuffs.includes("item_atk_buff")) {
-        multiplier *= 1.2;
-      }
-
-      const actualDamage = Math.round(baseDamage * multiplier);
-
-      setProjectileFlying(true);
-      setActiveSkillEffect(newCombo >= 5 ? "shiba_special" : newCombo >= 3 ? "double" : "normal");
-
-      setTimeout(() => {
-        setProjectileFlying(false);
-        const nextHp = Math.max(0, bossHp - actualDamage);
-        setBossHp(nextHp);
-
-        // Shake screen & flash boss
-        setBossFlash(true);
-        setScreenShake(true);
-        setActiveDamageText({ damage: actualDamage, isCritical: newCombo >= 5 });
-
-        setTimeout(() => {
-          setBossFlash(false);
-          setScreenShake(false);
-        }, 300);
-
-        setTimeout(() => {
-          setActiveDamageText(null);
-        }, 1000);
-
-        if (nextHp <= 0) {
-          // BOSS DEFEATED
-          setTimeout(() => {
-            handleBossBattleWin();
-          }, 800);
-          return;
-        }
-
-        // Load next card
-        const nextPlayed = [...playedCardIdsRef.current, activeCard.id];
-        setPlayedBossCardIds(nextPlayed);
-
-        const remaining = bossWordsList.filter((c) => !nextPlayed.includes(c.id));
-        if (remaining.length === 0) {
-          // No more cards but boss not dead
-          handleBossBattleLose();
-        } else {
-          const nextCard = remaining[0];
-          setCurrentBossCard(nextCard);
-          const limit = getCardTimeLimit(nextCard);
-          setBossCardMaxTime(limit);
-          setBossTimeLeft(limit);
-        }
-      }, 500);
-    } else {
-      // --- INCORRECT ANSWER (or timeout) ---
-      setComboCount(0);
-
-      // Check wooden shield absorption
-      if (shibaSessionShield >= 25) {
-        setShibaSessionShield(shibaSessionShield - 25);
-        toast.success("Khiên Gỗ đã đỡ đòn hộ Shiba! (-25 Giáp)", { icon: "🛡️" });
-
-        // Load next card anyway
-        const nextPlayed = [...playedCardIdsRef.current, activeCard.id];
-        setPlayedBossCardIds(nextPlayed);
-        const remaining = bossWordsList.filter((c) => !nextPlayed.includes(c.id));
-        if (remaining.length === 0) {
-          handleBossBattleLose();
-        } else {
-          const nextCard = remaining[0];
-          setCurrentBossCard(nextCard);
-          const limit = getCardTimeLimit(nextCard);
-          setBossCardMaxTime(limit);
-          setBossTimeLeft(limit);
-        }
-      } else {
-        const nextShibaHp = shibaHp - 1;
-        setShibaHp(nextShibaHp);
-
-        if (nextShibaHp <= 0) {
-          handleBossBattleLose();
-        } else {
-          const nextPlayed = [...playedCardIdsRef.current, activeCard.id];
-          setPlayedBossCardIds(nextPlayed);
-          const remaining = bossWordsList.filter((c) => !nextPlayed.includes(c.id));
-          if (remaining.length === 0) {
-            handleBossBattleLose();
-          } else {
-            const nextCard = remaining[0];
-            setCurrentBossCard(nextCard);
-            const limit = getCardTimeLimit(nextCard);
-            setBossCardMaxTime(limit);
-            setBossTimeLeft(limit);
-          }
-        }
-      }
-    }
-  }, [comboCount, bossHp, bossWordsList, shibaHp, shibaSessionShield, shibaSessionBuffs]);
-
-  const handleBossBattleWin = () => {
-    saveProgress(deckId, ["completed"]);
-    resetMiniMapSession();
-
-    // Check if player skipped shop to award double coins
-    const hasSkippedShop = miniMapProgress.includes("skip_shop");
-    const bonus = hasSkippedShop ? 300 : 150;
-
-    // Add bonus coins to Zustand store
-    const addCoinsStore = useAppStore.getState().addCoins;
-    addCoinsStore(bonus);
-
-    toast.success(`Chúc mừng! Bạn đã chinh phục Pháo Đài Kitsune và nhận ${bonus} Bones! ${hasSkippedShop ? "(x2 Thưởng Mạo Hiểm)" : ""}`, {
-      duration: 6000
-    });
-    setBossBattleActive(false);
-    onClose();
-  };
-
-  const handleBossBattleLose = () => {
-    setBossBattleActive(false);
-    setShibaSessionHP(10); // Reduce Shiba HP to 10 on map
-    toast.error("Trận chiến thất bại! Shiba kiệt sức và chỉ còn 10 HP. Hãy mua hồi phục ở Trạm dừng chân.", { duration: 5000 });
-  };
-
-  const handleUsePhaoBoi = async (currency: "coins" | "goldenFur") => {
-    const cost = currency === "goldenFur" ? 1 : 5;
-    const hasEnough = currency === "goldenFur" ? useAppStore.getState().userStats.goldenFur >= cost : coins >= cost;
-    if (!hasEnough) {
-      toast.error("Không đủ xu hoặc lông vàng!");
-      return false;
-    }
-    if (currency === "goldenFur") {
-      useAppStore.getState().deductGoldenFur(cost);
-    } else {
-      deductCoins(cost);
-    }
-    setBossTimeLeft((prev) => prev + 5);
-    setBossCardMaxTime((prev) => prev + 5);
-    toast.success("Đã quăng Phao Bơi! +5 giây suy nghĩ.");
-    return true;
-  };
-
-  const handleUseKinhLup = async (currency: "coins" | "goldenFur") => {
-    if (isHintRevealed) return true;
-    const cost = currency === "goldenFur" ? 1 : 3;
-    const hasEnough = currency === "goldenFur" ? useAppStore.getState().userStats.goldenFur >= cost : coins >= cost;
-    if (!hasEnough) {
-      toast.error("Không đủ xu hoặc lông vàng!");
-      return false;
-    }
-    if (currency === "goldenFur") {
-      useAppStore.getState().deductGoldenFur(cost);
-    } else {
-      deductCoins(cost);
-    }
-    setIsHintRevealed(true);
-    toast.success("Đã dùng Kính Lúp! Gợi ý chữ cái đầu.");
-    return true;
-  };
-
-  // Run the combat countdown timer
-  React.useEffect(() => {
-    if (!bossBattleActive || !isTimerActive || bossHp <= 0 || shibaHp <= 0 || !currentBossCard) return;
-
-    const timer = setInterval(() => {
-      setBossTimeLeft((prev) => {
-        if (prev <= 0.1) {
-          handleBossWordSubmit("");
-          return 0;
-        }
-        return prev - 0.1;
-      });
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, [bossBattleActive, isTimerActive, bossHp, shibaHp, currentBossCard, handleBossWordSubmit]);
-
-  const selectedNode = nodes.find((n: any) => n.id === selectedNodeId);
-  const shopNode = nodes.find((n: any) => n.type === "shop");
-
-  const getBezierPath = (x1: number, y1: number, x2: number, y2: number) => {
-    const midY = (y1 + y2) / 2;
-    return `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
-  };
-
-  const mockMinigameDeck = selectedNode ? {
-    id: selectedNode.id,
-    title: selectedNode.title,
-    type: selectedNode.challenge?.type,
-    level: "N5",
-    rewardCoins: 15
-  } : null;
+  const {
+    coins,
+    goldenFur,
+    shibaSessionHP,
+    shibaSessionShield,
+    shibaSessionBuffs,
+    stages,
+    mapConfig,
+    shopOpen,
+    setShopOpen,
+    flippedStageId,
+    setFlippedStageId,
+    activeChallengeType,
+    isLoadingChallenge,
+    challengeCards,
+    challengeQuizList,
+    handleStartChallenge,
+    handleChallengeWin,
+    handleChallengeClose,
+    handleBuyItem,
+    isShopUnlocked,
+    shibaCurrentNodeId,
+    isNodeCompleted,
+    isNodeUnlocked,
+    bossBattleActive,
+    bossHp,
+    bossMaxHp,
+    shibaHp,
+    bossTimeLeft,
+    bossCardMaxTime,
+    comboCount,
+    activeSkillEffect,
+    activeDamageText,
+    screenShake,
+    bossFlash,
+    projectileFlying,
+    isHintRevealed,
+    handleBossWordSubmit,
+    handleUsePhaoBoi,
+    handleUseKinhLup,
+    handleBossBattleLose,
+    isTimerActive,
+    setIsTimerActive,
+    currentBossCard,
+    handleStartBossBattle,
+    mockMinigameDeck,
+    selectedNodeId,
+    setSelectedNodeId,
+    shopPurchasedCounts
+  } = useBossRPGMiniMap({ deckId, onClose });
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-b from-[#FFFDF9] via-[#FFF3E8] to-[#FFE4D5] z-[300] flex flex-col font-rounded select-none overflow-hidden text-zinc-800 relative rounded-2xl animate-fade-in"
-      style={{ fontFamily: "var(--font-cherry)" }}
+    <div className="fixed inset-0 bg-gradient-to-b from-[#FFFDF9] via-[#FFF3E8] to-[#FFE4D5] z-[300] flex flex-col font-rounded select-none overflow-hidden text-zinc-800 relative rounded-2xl animate-fade-in h-full"
+      style={{ fontFamily: "var(--font-jupa)" }}
     >
 
-      {/* Embedded CSS animations for stardust path flowing */}
+      {/* Embedded CSS animations for JRPG Card Flipping & Shimmer */}
       <style>{`
-        @keyframes stardustFlowAnimate {
-          from { stroke-dashoffset: 60; }
-          to { stroke-dashoffset: 0; }
+        .perspective-1000 {
+          perspective: 1000px;
         }
-        .animate-stardust-flow {
-          animation: stardustFlowAnimate 1.8s linear infinite;
+        .transform-style-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        
+        @keyframes holographicShimmer {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .holographic-card {
+          background: linear-gradient(135deg, rgba(251,191,36,0.15), rgba(244,63,94,0.15), rgba(59,130,246,0.15), rgba(251,191,36,0.15));
+          background-size: 400% 400%;
+          animation: holographicShimmer 6s ease infinite;
+        }
+        
+        @keyframes floatingAnimation {
+          0% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-6px) rotate(-1deg); }
+          100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float-shiba {
+          animation: floatingAnimation 2.2s ease-in-out infinite;
+        }
+
+        /* Ukiyo-e wave pattern overlay */
+        .seigaiha-pattern {
+          background-color: rgba(16, 185, 129, 0.02);
+          background-image: radial-gradient(circle at 100% 150%, transparent 24%, rgba(16, 185, 129, 0.08) 24%, rgba(16, 185, 129, 0.08) 28%, transparent 28%, transparent),
+                            radial-gradient(circle at 0% 150%, transparent 24%, rgba(16, 185, 129, 0.08) 24%, rgba(16, 185, 129, 0.08) 28%, transparent 28%, transparent),
+                            radial-gradient(circle at 50% 100%, transparent 9%, rgba(16, 185, 129, 0.08) 9%, rgba(16, 185, 129, 0.08) 13%, transparent 13%, transparent);
+          background-size: 20px 20px;
         }
       `}</style>
 
@@ -664,10 +154,10 @@ export function BossRPGMiniMap({ deckId, onClose }: BossRPGMiniMapProps) {
       {/* ═══════════════════════════════════════════ */}
       <div className="flex-1 w-full relative overflow-y-auto px-4 py-8 flex justify-center items-start min-h-0 bg-transparent z-10">
 
-        {/* Winding/Branching Map Container */}
+        {/* Winding/Branching Map Container with paper scroll styling */}
         <div
-          ref={mapContainerRef}
-          className="relative w-full max-w-lg h-[680px] bg-white/40 border border-white/50 backdrop-blur-lg rounded-[2.5rem] shadow-[0_20px_40px_rgba(139,92,26,0.12)] p-6 overflow-hidden flex flex-col"
+          className="relative w-full max-w-lg h-[620px] bg-gradient-to-br from-[#FCFAF2] to-[#F7F2E8] border-4 border-[#8C5E43]/40 backdrop-blur-lg rounded-[2.5rem] shadow-[0_24px_48px_rgba(139,92,26,0.18)] p-4 overflow-hidden flex flex-col"
+          style={{ backgroundImage: "radial-gradient(rgba(140, 94, 67, 0.04) 1.2px, transparent 1.2px)", backgroundSize: "16px 16px" }}
         >
 
           {/* Decorative Corner Stars (Concept 4 style) */}
@@ -681,8 +171,8 @@ export function BossRPGMiniMap({ deckId, onClose }: BossRPGMiniMapProps) {
           <div className="absolute bottom-10 left-1/3 w-60 h-60 rounded-full bg-orange-200/10 blur-[80px] pointer-events-none" />
           <div className="absolute bottom-20 right-10 w-48 h-48 rounded-full bg-rose-200/10 blur-[70px] pointer-events-none" />
 
-          {/* Floating Shiba JRPG Stats Capsule */}
-          <div className="absolute top-6 left-6 right-6 z-20 bg-white/70 backdrop-blur-md border border-white/60 p-3 rounded-3xl shadow-sm text-[#5C3E21] flex flex-col gap-2">
+          {/* Shiba JRPG Stats Capsule (Static block layout to avoid overlapping and whitespace issues) */}
+          <div className="w-full z-20 bg-white/70 backdrop-blur-md border border-white/60 p-3 rounded-3xl shadow-sm text-[#5C3E21] flex flex-col gap-2 mb-3 shrink-0">
             <div className="flex items-center gap-3">
               {/* Avatar frame */}
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#FFD2B4] to-[#FFA6C9] border border-white/60 flex items-center justify-center relative shadow-sm shrink-0">
@@ -747,335 +237,190 @@ export function BossRPGMiniMap({ deckId, onClose }: BossRPGMiniMapProps) {
             </div>
           </div>
 
-          {/* Scrollable map content */}
-          <div className="flex-1 w-full relative mt-16 overflow-y-auto hide-scrollbar">
+          {/* Scrollable map content - 3D Card Flipping Grid */}
+          <div className="flex-1 w-full relative overflow-y-auto hide-scrollbar flex items-center justify-center py-4">
+            <div className="grid grid-cols-3 gap-3 w-full px-1.5 max-w-md mx-auto">
+              {stages.map((stage: any, index: number) => {
+                const completed = isNodeCompleted(stage.id);
+                const unlocked = isNodeUnlocked(stage.id);
+                const isActive = stage.id === shibaCurrentNodeId;
+                const isFlipped = flippedStageId === stage.id;
 
-            {/* SVG PATHS (Drawing Connections) */}
-            <svg
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              className="absolute inset-0 w-full h-full pointer-events-none z-0"
-            >
-              <defs>
-                <linearGradient id="stardustGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FBBF24" />
-                  <stop offset="100%" stopColor="#F59E0B" />
-                </linearGradient>
-              </defs>
-
-              {nodePositions && nodes.map((node: any) => {
-                return node.next.map((nextNodeId: string) => {
-                  const nextNode = nodes.find((n: any) => n.id === nextNodeId);
-                  if (!nextNode) return null;
-
-                  const pos1 = nodePositions[node.id];
-                  const pos2 = nodePositions[nextNodeId];
-                  if (!pos1 || !pos2) return null;
-
-                  const unlocked = isNodeUnlocked(nextNodeId);
-                  const completed = isNodeCompleted(node.id);
-                  const isLockedOutPath =
-                    (nextNodeId === "shop" && miniMapProgress.includes("skip_shop")) ||
-                    (nextNodeId === "skip_shop" && miniMapProgress.includes("shop"));
-
-                  // Highlight paths based on state (Warm Cozy Pastel Colors)
-                  let strokeColor = "#E2E8F0"; // Default locked path (Slate Gray)
-                  if (isLockedOutPath) {
-                    strokeColor = "#F1F5F9";
-                  } else if (completed) {
-                    strokeColor = "#34D399"; // completed path (Emerald Green)
-                  } else if (unlocked && isNodeUnlocked(node.id)) {
-                    strokeColor = "#F59E0B"; // active path (Amber Yellow)
+                const handleCardClick = () => {
+                  if (!unlocked) {
+                    toast.error("Ải này hiện đang bị khóa!");
+                    return;
                   }
+                  setFlippedStageId(isFlipped ? null : stage.id);
+                };
 
-                  return (
-                    <g key={`${node.id}-${nextNodeId}`} opacity={isLockedOutPath ? 0.2 : 1}>
-                      {/* Glowing blur trail */}
-                      <path
-                        d={getBezierPath(pos1.x, pos1.y, pos2.x, pos2.y)}
-                        fill="none"
-                        stroke={completed ? "#34D399" : unlocked && isNodeUnlocked(node.id) ? "#F59E0B" : strokeColor}
-                        strokeWidth="12"
-                        opacity={isLockedOutPath ? 0.02 : completed ? 0.12 : unlocked && isNodeUnlocked(node.id) ? 0.25 : 0.05}
-                        className="blur-[2px] transition-all duration-300"
-                      />
-                      {/* Core path line */}
-                      <path
-                        d={getBezierPath(pos1.x, pos1.y, pos2.x, pos2.y)}
-                        fill="none"
-                        stroke={completed ? "#34D399" : unlocked && isNodeUnlocked(node.id) ? "#F59E0B" : strokeColor}
-                        strokeWidth={completed ? "4" : unlocked && isNodeUnlocked(node.id) ? "3.5" : "3"}
-                        strokeDasharray={completed ? "none" : unlocked && isNodeUnlocked(node.id) ? "8 6" : "6 6"}
-                        className="transition-all duration-300"
-                        opacity={completed ? 1 : unlocked && isNodeUnlocked(node.id) ? 1 : 0.6}
-                      />
-                      {/* Running stardust beads on active paths */}
-                      {unlocked && isNodeUnlocked(node.id) && !completed && !isLockedOutPath && (
-                        <path
-                          d={getBezierPath(pos1.x, pos1.y, pos2.x, pos2.y)}
-                          fill="none"
-                          stroke="url(#stardustGradient)"
-                          strokeWidth="3.5"
-                          strokeDasharray="8 20"
-                          className="animate-stardust-flow"
-                          style={{
-                            filter: "drop-shadow(0 0 3px rgba(245, 158, 11, 0.8))",
-                          }}
+                return (
+                  <div
+                    key={stage.id}
+                    onClick={handleCardClick}
+                    className="perspective-1000 w-full h-[260px] cursor-pointer select-none relative"
+                  >
+                    {/* Shiba marker indicator hovering above the active card */}
+                    {isActive && (
+                      <div className="absolute -top-11 left-1/2 -translate-x-1/2 z-30 pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.15)] flex flex-col items-center animate-float-shiba">
+                        <img
+                          src="/images/ui/roadmap/shiba_marker.png"
+                          alt="Shiba"
+                          className="w-10 h-10 object-contain animate-wiggle"
                         />
-                      )}
-                    </g>
-                  );
-                });
-              })}
-            </svg>
+                        <div className="bg-[#FFD2B4] text-[#8C5E43] border border-[#FFA6C9] font-black text-[7px] px-1.5 py-0.5 rounded-full uppercase tracking-wider scale-90 shadow-sm leading-none mt-0.5 whitespace-nowrap">
+                          Shiba
+                        </div>
+                      </div>
+                    )}
 
-            {/* RENDER NODE BUTTONS IN ROWS */}
-            <div className="flex flex-col-reverse justify-between h-full py-12 relative z-10 w-full px-6 min-h-[500px]">
-              {rows.map((row: any[], rowIndex: number) => (
-                <div key={rowIndex} className="flex justify-center gap-16 relative w-full items-center">
-                  {row.map((node) => {
-                    const unlocked = isNodeUnlocked(node.id);
-                    const completed = isNodeCompleted(node.id);
-                    const isLockedOutNode =
-                      (node.id === "shop" && miniMapProgress.includes("skip_shop")) ||
-                      (node.id === "skip_shop" && miniMapProgress.includes("shop"));
-
-                    return (
+                    <div
+                      className={`relative w-full h-full transform-style-3d transition-transform duration-500 ${isFlipped ? "rotate-y-180" : ""
+                        }`}
+                    >
+                      {/* CARD FRONT */}
                       <div
-                        key={node.id}
-                        id={`node-${node.id}`}
-                        className={`relative z-10 transition-opacity duration-300 flex flex-col items-center ${isLockedOutNode ? "opacity-25 pointer-events-none grayscale" : "opacity-100"
-                          }`}
+                        className={`absolute inset-0 backface-hidden rounded-3xl border-2 flex flex-col items-center justify-between p-3.5 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg
+                          ${completed
+                            ? "seigaiha-pattern bg-gradient-to-b from-[#E6F4EA] to-[#CEEAD6] border-[#81C784]/60 text-[#137333] shadow-[0_4px_12px_rgba(76,175,80,0.12)]"
+                            : isActive
+                              ? "holographic-card border-[#F59E0B]/70 shadow-[0_0_20px_rgba(245,158,11,0.3)] text-amber-950 font-black"
+                              : "bg-gradient-to-b from-[#1F1F1F]/20 to-[#121212]/30 border-zinc-700/40 opacity-70 text-zinc-500"
+                          }
+                        `}
                       >
-                        {/* Floating Glassmorphic Tooltip */}
-                        <AnimatePresence>
-                          {hoveredNodeId === node.id && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 12, scale: 0.95, x: "-50%" }}
-                              animate={{ opacity: 1, y: -8, scale: 1, x: "-50%" }}
-                              exit={{ opacity: 0, y: 12, scale: 0.95, x: "-50%" }}
-                              className="absolute bottom-full mb-2 left-1/2 z-40 bg-white/95 border border-amber-200/50 p-3 rounded-2xl shadow-xl w-44 text-left pointer-events-none font-rounded text-[#8C5E43]"
-                            >
-                              <h5 className="font-rounded font-black text-xs text-[#8C5E43] leading-tight">
-                                {node.title}
-                              </h5>
-                              <p className="text-[10px] text-zinc-500 font-bold mt-1 leading-snug">
-                                {node.description || "Thử thách quyết đấu cùng Shiba."}
-                              </p>
-                              <div className="h-px bg-amber-200/30 my-2" />
-                              <div className="flex justify-between items-center text-[9px] font-black">
-                                <span className="text-zinc-400 uppercase tracking-wider">Thử thách:</span>
-                                <span className="text-sky-600 capitalize">
-                                  {node.type === "boss" ? "Đại Trùm" : node.type === "shop" ? "Cửa Hàng" : node.type === "fork" ? "Ngã Rẽ" : "Vệ Binh"}
-                                </span>
-                              </div>
-                              <div className="flex justify-between items-center text-[9px] font-black mt-1">
-                                <span className="text-zinc-400 uppercase tracking-wider">Phần thưởng:</span>
-                                <span className="text-amber-600 flex items-center gap-0.5">
-                                  {node.type === "boss" ? "100 / 50 EXP" : node.type === "shop" ? "Dược Phẩm" : node.type === "fork" ? "Mở Lối Đi" : "15 / 20 EXP"}
-                                  {node.type !== "shop" && node.type !== "fork" && <Bone className="w-2.5 h-2.5 rotate-45" />}
-                                </span>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-
-                        {/* Active Pulse Ring */}
-                        {unlocked && node.id === shibaCurrentNodeId && (
-                          <div className="absolute -inset-2 bg-amber-400/20 rounded-full animate-ping pointer-events-none" />
+                        {/* Authentic Japanese Completion Stamp */}
+                        {completed && (
+                          <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full border-2 border-red-500/40 flex items-center justify-center -rotate-12 select-none pointer-events-none">
+                            <span className="text-[9px] font-black text-red-500/50 tracking-widest leading-none">済</span>
+                          </div>
                         )}
 
-                        {/* Node Button Orb (Frosted Candy style) */}
-                        <motion.button
-                          onClick={() => handleNodeClick(node.id)}
-                          disabled={!unlocked || isLockedOutNode}
-                          whileHover={unlocked && !isLockedOutNode ? { scale: 1.12 } : {}}
-                          whileTap={unlocked && !isLockedOutNode ? { scale: 0.92 } : {}}
-                          className={`w-16 h-16 rounded-full flex items-center justify-center border-2 shadow-md transition-all duration-300 relative cursor-pointer
-                            ${completed
-                              ? "bg-gradient-to-br from-[#A7F3D0]/50 to-[#6EE7B7]/50 border-white/80 shadow-[0_6px_16px_rgba(110,231,183,0.25)]"
-                              : unlocked && !isLockedOutNode
-                                ? node.type === "boss"
-                                  ? "w-20 h-20 bg-gradient-to-br from-[#FECDD3]/50 to-[#FDA4AF]/50 border-white/90 shadow-[0_8px_20px_rgba(253,164,175,0.4)]"
-                                  : node.type === "shop"
-                                    ? "bg-gradient-to-br from-[#FEF08A]/50 to-[#FDE047]/50 border-white/80 shadow-[0_6px_16px_rgba(253,224,71,0.25)]"
-                                    : "bg-gradient-to-br from-[#BAE6FD]/50 to-[#7DD3FC]/50 border-white/80 shadow-[0_6px_16px_rgba(125,211,252,0.25)]"
-                                : "bg-zinc-200/30 border-zinc-300/30 opacity-40 shadow-none pointer-events-none"
-                            }
-                          `}
-                        >
-                          {/* Node Image */}
-                          <img
-                            src={unlocked && !isLockedOutNode ? node.img : "/images/ui/roadmap/node_vocab.png"}
-                            alt={node.title}
-                            className={`w-11 h-11 object-contain ${!unlocked || isLockedOutNode ? "grayscale opacity-25" : ""}`}
-                          />
+                        {/* Top: badge */}
+                        <span className="text-[8px] font-black tracking-wider uppercase bg-white/10 px-2 py-0.5 rounded-full">
+                          Ải {index + 1}
+                        </span>
 
-                          {/* Locked icon indicator */}
-                          {(!unlocked || isLockedOutNode) && (
-                            <div className="absolute inset-0 bg-zinc-200/40 rounded-full flex items-center justify-center">
-                              <Lock className="w-4 h-4 text-zinc-400" />
+                        {/* Middle: Icon / Image */}
+                        <div className="flex flex-col items-center justify-center flex-1 py-3">
+                          {completed ? (
+                            <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-emerald-500 shadow-sm">
+                              <Sparkles className="w-6 h-6 animate-pulse" />
+                            </div>
+                          ) : unlocked ? (
+                            <div className="relative group">
+                              <div className="absolute inset-0 bg-amber-400/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                              <img
+                                src={stage.img}
+                                alt={stage.title}
+                                className="w-14 h-14 object-contain filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.15)] relative z-10"
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-12 h-12 rounded-full bg-zinc-900/30 border border-zinc-700/50 flex items-center justify-center text-zinc-600 shadow-inner">
+                              <Lock className="w-5 h-5" />
                             </div>
                           )}
-                        </motion.button>
+                        </div>
 
-                        {/* Title Label (Cozy Wood/Cream Style) */}
-                        <span
-                          className={`mt-2.5 text-[9px] font-black tracking-wider uppercase px-2.5 py-1 rounded-xl shadow-sm whitespace-nowrap border font-rounded
-                            ${completed
-                              ? "bg-emerald-50/90 border-emerald-200/50 text-[#065F46]"
-                              : unlocked && !isLockedOutNode
-                                ? node.type === "boss"
-                                  ? "bg-rose-50/90 border-rose-200/50 text-[#9F1239]"
-                                  : node.type === "shop"
-                                    ? "bg-[#FAF0D7]/90 border-amber-200/50 text-[#8C5E43]"
-                                    : "bg-sky-50/90 border-sky-200/50 text-[#075985]"
-                                : "bg-zinc-100/80 border-zinc-200/40 text-zinc-400"
-                            }
-                          `}
-                        >
-                          {node.title}
-                        </span>
+                        {/* Bottom: Title & Label */}
+                        <div className="text-center w-full">
+                          <h4 className="text-[10px] font-black tracking-wide truncate max-w-full uppercase mb-1" style={{ fontFamily: "var(--font-cherry)" }}>
+                            {stage.title}
+                          </h4>
+                          <span className={`text-[7px] font-black tracking-wider uppercase px-1.5 py-0.5 rounded-sm ${completed ? "bg-emerald-500/20 text-[#137333]" : isActive ? "bg-[#F59E0B]/20 text-[#B45309]" : "bg-zinc-800 text-zinc-500"
+                            }`}>
+                            {completed ? "Đã Qua" : isActive ? "Lật bài" : "Bị Khóa"}
+                          </span>
+                        </div>
                       </div>
-                    );
-                  })}
-                </div>
-              ))}
 
-              {/* RENDER DYNAMIC PLAYER MARKER */}
-              {nodePositions[shibaCurrentNodeId] && (
-                <motion.div
-                  style={{
-                    position: "absolute",
-                    left: `${shibaPos.x}%`,
-                    top: `${shibaPos.y}%`,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                  animate={isWalking ? { scale: [1, 1.1, 1], rotate: [-6, 6, -6] } : {}}
-                  transition={isWalking ? { repeat: Infinity, duration: 0.45, ease: "linear" } : {}}
-                  className="z-20 pointer-events-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.15)] flex flex-col items-center animate-bounce-slow"
-                >
-                  <img
-                    src="/images/ui/roadmap/shiba_marker.png"
-                    alt="Shiba Marker"
-                    className="w-12 h-12 object-contain select-none pointer-events-none"
-                  />
-                  <div className="bg-[#FFD2B4] text-[#8C5E43] border border-[#FFA6C9] font-black text-[7px] px-1.5 py-0.5 rounded-full uppercase tracking-wider scale-90 shadow-sm leading-none mt-0.5 select-none">
-                    Shiba
+                      {/* CARD BACK */}
+                      <div
+                        className="absolute inset-0 backface-hidden rotate-y-180 rounded-3xl border-2 flex flex-col justify-between p-3.5 shadow-md bg-gradient-to-br from-[#FCFAF2] to-[#F7F2E8] border-amber-600/30 text-[#8C5E43]"
+                        style={{ backgroundImage: "radial-gradient(rgba(140, 94, 67, 0.03) 1px, transparent 1px)", backgroundSize: "12px 12px" }}
+                      >
+                        {/* Back Top: Title & Badge */}
+                        <div className="flex items-center justify-between border-b border-dashed border-amber-200/40 pb-1.5">
+                          <span className="text-[9px] font-black uppercase truncate pr-1" style={{ fontFamily: "var(--font-cherry)" }}>
+                            {stage.title}
+                          </span>
+                          <span className="text-[7px] font-bold px-1.5 py-0.2 bg-[#FEF08A] text-[#854D0E] rounded-sm tracking-wide uppercase leading-none shrink-0">
+                            {stage.type === "boss" ? "Boss" : "Vệ Binh"}
+                          </span>
+                        </div>
+
+                        {/* Back Middle: Description */}
+                        <p className="text-[8.5px] leading-relaxed font-rounded font-bold text-zinc-500 text-left my-2 flex-1 overflow-y-auto pr-0.5 select-text">
+                          {stage.description}
+                        </p>
+
+                        {/* Back Bottom: Challenge Button */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (shibaSessionHP <= 0) {
+                              toast.error("Shiba đã kiệt sức! Hãy ghé mua máu trước.");
+                              return;
+                            }
+                            setSelectedNodeId(stage.id);
+                            if (stage.type === "boss") {
+                              handleStartBossBattle(stage);
+                            } else {
+                              handleStartChallenge(stage);
+                            }
+                          }}
+                          disabled={isLoadingChallenge}
+                          className="w-full py-2 bg-gradient-to-r from-[#FF7096] to-rose-400 hover:brightness-110 text-white font-black rounded-xl text-[9px] tracking-wide cursor-pointer transition-all active:translate-y-[2px] shadow-sm uppercase flex items-center justify-center gap-1 disabled:opacity-50 border-b-2 border-rose-600"
+                        >
+                          Bắt Đầu
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </motion.div>
-              )}
+                );
+              })}
             </div>
           </div>
+
+          {/* Floating Corner Shop Button (Phase 5) */}
+          {isShopUnlocked && (
+            <>
+              {/* Shiba speech bubble */}
+              <div className="absolute bottom-[88px] right-4 bg-[#FCFAF2] text-[#8C5E43] border-2 border-[#8C5E43]/30 px-2.5 py-1 rounded-2xl rounded-br-none shadow-md text-[8.5px] font-black tracking-wide z-30 select-none animate-pulse leading-normal">
+                Thảo dược đây nà!
+              </div>
+
+              {/* Cute Shiba shopkeeper button */}
+              <button
+                onClick={() => setShopOpen(true)}
+                className="absolute bottom-6 right-6 w-15 h-15 bg-gradient-to-br from-amber-400 via-orange-400 to-amber-500 hover:brightness-110 text-white rounded-full flex items-center justify-center shadow-2xl transition-all active:scale-95 cursor-pointer z-30 border-4 border-white animate-float-shiba group"
+                title="Cửa hàng vật phẩm"
+              >
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <img
+                    src="/images/ui/roadmap/shiba_marker.png"
+                    alt="Shopkeeper"
+                    className="w-10 h-10 object-contain group-hover:scale-110 transition-all duration-300"
+                  />
+                  {/* Shop banner tag */}
+                  <div className="absolute -top-1.5 bg-red-500 text-white font-black text-[6px] px-1 py-0.2 rounded-sm border border-white leading-none scale-90 uppercase tracking-wide">
+                    SHOP
+                  </div>
+                </div>
+              </button>
+            </>
+          )}
         </div>
       </div>
 
-      {/* ═══════════════════════════════════════════ */}
-      {/* 3. NODE DETAIL BOTTOM SHEET MODAL           */}
-      {/* ═══════════════════════════════════════════ */}
-      <AnimatePresence>
-        {selectedNodeId !== null && selectedNode && (
-          <div className="fixed inset-0 z-[350] bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-4">
-            <motion.div
-              initial={{ y: 120, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 120, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 28 }}
-              className="w-full max-w-md bg-gradient-to-br from-[#FAF5EF] to-[#FDFBF9] rounded-t-[2.5rem] sm:rounded-[2.5rem] border-4 border-[#FFA6C9]/40 shadow-[0_-8px_40px_rgba(139,92,26,0.15)] overflow-hidden text-zinc-700"
-            >
-              {/* Header */}
-              <div className="px-6 py-5 bg-gradient-to-r from-[#FFF0F2] to-[#FFF5F6] text-zinc-700 flex items-center justify-between border-b-2 border-dashed border-[#FFA6C9]/20">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center border-2 border-[#FFA6C9]/30 shadow-sm">
-                    <img src={selectedNode.img} alt={selectedNode.title} className="w-9 h-9 object-contain" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-black text-[#FF7096]" style={{ fontFamily: "var(--font-cherry)" }}>
-                      {selectedNode.title}
-                    </h3>
-                    <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest font-rounded">
-                      {selectedNode.type === "guardian" ? "Vệ binh giữ cửa ải" : "Đại trùm cuối hầm ngục"}
-                    </span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setSelectedNodeId(null)}
-                  className="px-4 py-1.5 bg-white text-zinc-500 hover:text-zinc-700 rounded-full border border-zinc-200 text-xs font-bold transition-all cursor-pointer shadow-sm active:scale-95"
-                >
-                  Đóng
-                </button>
-              </div>
 
-              {/* Body */}
-              <div className="p-6 text-left flex flex-col gap-4 font-rounded">
-                <p className="text-sm font-bold text-zinc-600 leading-relaxed">
-                  {selectedNode.description}
-                </p>
-
-                {selectedNode.type === "guardian" && (
-                  <div className="bg-sky-500/10 border border-sky-500/20 p-3.5 rounded-2xl text-sky-700 text-xs font-bold leading-normal flex gap-2 items-center">
-                    <Zap className="w-4 h-4 text-sky-500 shrink-0" />
-                    <span>Thử thách gồm các câu hỏi lấy ngẫu nhiên từ bài: <strong>{selectedNode.challenge.sourceDeckIds.join(", ")}</strong>. Thất bại bị mất 25 HP!</span>
-                  </div>
-                )}
-
-                <div className="mt-2">
-                  {/* Guardian Challenge (Real Minigame) */}
-                  {selectedNode.type === "guardian" && (
-                    <div className="flex flex-col gap-3">
-                      <button
-                        onClick={() => handleStartChallenge(selectedNode)}
-                        disabled={shibaSessionHP <= 0 || isLoadingChallenge}
-                        className="w-full py-3.5 bg-gradient-to-r from-sky-400 to-[#5390D9] text-white font-black rounded-full shadow-lg hover:shadow-sky-400/20 transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:pointer-events-none text-sm"
-                      >
-                        {isLoadingChallenge ? (
-                          <span className="flex items-center gap-2">
-                            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                            Đang tải bài học...
-                          </span>
-                        ) : (
-                          <span className="flex items-center gap-1.5">
-                            <Sparkles className="w-4 h-4 animate-spin-slow" />
-                            Bắt Đầu Khiêu Chiến
-                          </span>
-                        )}
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Final Boss Fight */}
-                  {selectedNode.type === "boss" && (
-                    <div className="flex flex-col gap-3">
-                      {shibaSessionHP <= 0 ? (
-                        <div className="bg-red-500/10 border border-red-500/20 p-3.5 rounded-2xl text-red-500 text-xs font-bold leading-normal flex gap-2 items-center justify-center">
-                          Shiba đã kiệt sức! Cần quay lại trạm dừng chân mua máu.
-                        </div>
-                      ) : (
-                        <>
-                          <button
-                            onClick={() => handleStartBossBattle(selectedNode)}
-                            disabled={isLoadingChallenge}
-                            className="w-full py-3.5 bg-gradient-to-r from-[#FF7096] via-rose-400 to-orange-400 text-white font-black rounded-full shadow-lg hover:shadow-[#FF7096]/30 transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 text-sm"
-                          >
-                            <Sparkles className="w-5 h-5" />
-                            {isLoadingChallenge ? "Đang tải trận..." : "Quyết Chiến Boss Kitsune"}
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       {/* ═══════════════════════════════════════════ */}
       {/* 4. MULTI-ITEM SHOP MODAL (Trạm dừng)        */}
       {/* ═══════════════════════════════════════════ */}
       <AnimatePresence>
-        {shopOpen && shopNode && (
+        {shopOpen && mapConfig.shopConfig && (
           <div className="fixed inset-0 z-[350] bg-black/75 backdrop-blur-md flex items-center justify-center p-4">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -1084,79 +429,119 @@ export function BossRPGMiniMap({ deckId, onClose }: BossRPGMiniMapProps) {
               className="w-full max-w-lg bg-gradient-to-br from-[#FAF5EF] to-[#FDFBF9] rounded-[2.5rem] border-4 border-[#FFA6C9]/40 shadow-2xl p-6 sm:p-8 text-zinc-700"
             >
               {/* Shop Header */}
-              <div className="text-center pb-6 border-b-2 border-dashed border-[#FFA6C9]/20">
-                <div className="w-20 h-20 bg-amber-500/10 border border-[#FFA6C9]/30 rounded-full flex items-center justify-center mx-auto mb-3 shadow-inner">
-                  <img src={shopNode.img} alt="Shop Keeper" className="w-16 h-16 object-contain animate-bounce-slow" />
+              <div className="text-center pb-5 border-b-2 border-dashed border-[#FFA6C9]/20">
+                <div className="w-16 h-16 bg-amber-500/10 border border-[#FFA6C9]/30 rounded-2xl flex items-center justify-center mx-auto mb-2.5 shadow-inner">
+                  <ShoppingCart className="w-9 h-9 text-amber-600 animate-bounce-slow" />
                 </div>
                 <h3 className="text-xl font-black text-amber-600" style={{ fontFamily: "var(--font-cherry)" }}>
-                  {shopNode.title}
+                  Cửa Hàng Thảo Dược
                 </h3>
                 <p className="text-xs text-zinc-500 max-w-sm mx-auto mt-1 font-rounded font-bold leading-snug">
-                  Chào mừng nhà lữ hành! Đổi Xương để lấy vật phẩm hỗ trợ chiến đấu đắc lực.
+                  Chào mừng nhà lữ hành! Mua sắm vật phẩm hỗ trợ đắc lực trước trận chiến Boss.
                 </p>
               </div>
 
               {/* Shop Items List */}
-              <div className="py-6 flex flex-col gap-3">
-                {shopNode.shopConfig.items.map((item: any) => {
+              <div className="py-5 flex flex-col gap-3 max-h-[300px] overflow-y-auto pr-1">
+                {(mapConfig.shopConfig.items || []).map((item: any) => {
+                  const purchasedCount = shopPurchasedCounts[item.id] || 0;
+                  const limitRemaining = item.limit - purchasedCount;
+                  const isLimitReached = purchasedCount >= item.limit;
                   const alreadyHasBuff = item.effect.type === "buff_atk" && shibaSessionBuffs.includes(item.id);
                   const isHPMax = item.effect.type === "heal" && shibaSessionHP >= 100;
-                  const canBuy = coins >= item.cost && !alreadyHasBuff && !isHPMax;
+
+                  const canBuyWithBones = coins >= item.costBones && !isLimitReached && !alreadyHasBuff && !isHPMax;
+                  const canBuyWithGold = goldenFur >= item.costGoldenFur && !isLimitReached && !alreadyHasBuff && !isHPMax;
 
                   return (
                     <div
                       key={item.id}
-                      className="flex items-center justify-between p-4 bg-white/60 rounded-2xl border border-zinc-100 hover:border-amber-300 transition-all shadow-sm"
+                      className="flex items-center justify-between p-3.5 bg-white/60 rounded-2xl border border-zinc-100 hover:border-amber-300 transition-all shadow-sm animate-fade-in"
                     >
-                      <div className="flex items-center gap-3.5 text-left">
-                        <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center border border-zinc-100 overflow-hidden shrink-0 shadow-sm">
-                          <img src={item.img} alt={item.name} className="w-9 h-9 object-contain" />
+                      {/* Left: Info */}
+                      <div className="flex items-center gap-3 text-left min-w-0 flex-1 pr-2">
+                        <div className="w-11 h-11 bg-white rounded-xl flex items-center justify-center border border-zinc-100 overflow-hidden shrink-0 shadow-sm">
+                          <img src={item.img} alt={item.name} className="w-8 h-8 object-contain" />
                         </div>
-                        <div>
-                          <h4 className="text-sm font-black text-zinc-800" style={{ fontFamily: "var(--font-cherry)" }}>
-                            {item.name}
-                          </h4>
-                          <p className="text-[11px] text-zinc-500 font-rounded font-bold mt-0.5 leading-snug">{item.description}</p>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <h4 className="text-xs font-black text-zinc-800 uppercase tracking-wide truncate" style={{ fontFamily: "var(--font-cherry)" }}>
+                              {item.name}
+                            </h4>
+                            <span className="text-[8px] font-black text-zinc-400 bg-zinc-100 px-1.5 py-0.5 rounded-sm whitespace-nowrap">
+                              Còn: {limitRemaining}
+                            </span>
+                          </div>
+                          <p className="text-[10px] text-zinc-400 font-rounded font-bold leading-normal truncate mt-0.5">{item.description}</p>
                         </div>
                       </div>
 
-                      <button
-                        onClick={() => handleBuyItem(item)}
-                        disabled={!canBuy}
-                        className={`px-4 py-2.5 rounded-xl font-black text-xs transition-all active:scale-95 flex items-center gap-1 cursor-pointer
-                          ${canBuy
-                            ? "bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 shadow-md shadow-amber-500/10 hover:brightness-110"
-                            : "bg-zinc-100 text-zinc-400 border border-transparent cursor-not-allowed"
-                          }
-                        `}
-                      >
-                        {alreadyHasBuff ? (
-                          <span>Đã sở hữu</span>
-                        ) : isHPMax ? (
-                          <span>Đầy Máu</span>
-                        ) : (
-                          <>
-                            <span>{item.cost}</span>
-                            <Bone className="w-3.5 h-3.5 rotate-45" />
-                          </>
-                        )}
-                      </button>
+                      {/* Right: Buy Buttons (Dual Price) */}
+                      <div className="flex items-center gap-2 shrink-0">
+                        {/* Bones Buy Button */}
+                        <button
+                          onClick={() => handleBuyItem(item, "bones")}
+                          disabled={!canBuyWithBones}
+                          className="px-2.5 py-2 bg-amber-50 hover:bg-amber-100 text-[#8C5E43] border border-amber-200/50 rounded-xl font-black text-[10px] flex items-center gap-1 cursor-pointer transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none"
+                          title="Mua bằng Xương"
+                        >
+                          {alreadyHasBuff ? (
+                            "Đã Có"
+                          ) : isHPMax ? (
+                            "Đầy Máu"
+                          ) : isLimitReached ? (
+                            "Hết Hàng"
+                          ) : (
+                            <>
+                              <span>{item.costBones}</span>
+                              <Bone className="w-3 h-3 rotate-45 text-amber-600 animate-pulse-slow" />
+                            </>
+                          )}
+                        </button>
+
+                        {/* Gold Coins Buy Button */}
+                        <button
+                          onClick={() => handleBuyItem(item, "gold")}
+                          disabled={!canBuyWithGold}
+                          className="px-2.5 py-2 bg-yellow-50 hover:bg-yellow-100 text-[#B45309] border border-yellow-200/50 rounded-xl font-black text-[10px] flex items-center gap-1 cursor-pointer transition-all active:scale-95 disabled:opacity-40 disabled:pointer-events-none"
+                          title="Mua bằng Xu Vàng"
+                        >
+                          {alreadyHasBuff ? (
+                            "Đã Có"
+                          ) : isHPMax ? (
+                            "Đầy Máu"
+                          ) : isLimitReached ? (
+                            "Hết Hàng"
+                          ) : (
+                            <>
+                              <span>{item.costGoldenFur}</span>
+                              <Coins className="w-3.5 h-3.5 text-amber-500 animate-pulse-slow" />
+                            </>
+                          )}
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
               </div>
 
               {/* Shop Footer */}
-              <div className="flex gap-4">
-                <div className="flex-1 flex items-center justify-center bg-white/40 border border-zinc-100 rounded-2xl px-4 py-3 font-rounded text-xs font-bold text-zinc-500">
-                  Bạn có: <span className="text-amber-600 font-black text-sm ml-2 flex items-center gap-1">{coins} <Bone className="w-4 h-4 rotate-45" /></span>
+              <div className="flex flex-col sm:flex-row gap-3 pt-3 border-t border-dashed border-[#FFA6C9]/20">
+                <div className="flex-1 flex items-center justify-around bg-zinc-50 border border-zinc-100 rounded-2xl px-4 py-2.5 text-[10px] font-black text-zinc-500 gap-2">
+                  <span className="flex items-center gap-1">
+                    Xương: <span className="text-[#8C5E43] font-black text-xs flex items-center gap-0.5">{coins} <Bone className="w-3 h-3 rotate-45" /></span>
+                  </span>
+                  <span className="h-4 w-px bg-zinc-200" />
+                  <span className="flex items-center gap-1">
+                    Xu Vàng: <span className="text-yellow-600 font-black text-xs flex items-center gap-0.5">{goldenFur || 0} <Coins className="w-3.5 h-3.5" /></span>
+                  </span>
                 </div>
                 <button
-                  onClick={handleFinishShop}
-                  className="flex-1 py-3.5 bg-gradient-to-r from-zinc-800 to-zinc-900 border border-zinc-700 hover:bg-zinc-800 text-white font-black rounded-2xl shadow-md transition-all active:scale-95 cursor-pointer text-sm flex items-center justify-center gap-1.5"
+                  onClick={() => setShopOpen(false)}
+                  className="w-full sm:w-32 py-2.5 bg-zinc-800 hover:bg-zinc-900 text-white font-black rounded-2xl shadow-md transition-all active:scale-95 cursor-pointer text-xs flex items-center justify-center gap-1"
                 >
                   <DoorOpen className="w-4 h-4" />
-                  Xong & Đi Tiếp
+                  Đóng Shop
                 </button>
               </div>
             </motion.div>

@@ -150,13 +150,13 @@ export function SystemRoadmap() {
             {[0, 1, 2].map((i) => (
               <span
                 key={i}
-                className="text-lg animate-bounce select-none"
+                className="animate-bounce select-none"
                 style={{
                   animationDelay: `${i * 0.25}s`,
                   animationDuration: "0.8s",
                 }}
               >
-                🐾
+                <Sparkles size={14} className="text-[#FF9F1C] fill-[#FF9F1C]" />
               </span>
             ))}
           </div>
@@ -190,7 +190,7 @@ export function SystemRoadmap() {
           <code className="bg-zinc-100 px-2 py-1 rounded-md text-[#FF7096]">
             public/data/system_decks.json
           </code>{" "}
-          để bắt đầu hành trình nhé! ✨
+          để bắt đầu hành trình nhé!
         </p>
       </div>
     );
@@ -296,7 +296,7 @@ export function SystemRoadmap() {
             Đang xây dựng!
           </h3>
           <p className="font-rounded text-zinc-500 font-bold text-sm">
-            Lộ trình {selectedLevel} sẽ sớm ra mắt. Cùng chờ đón nhé! ✨
+            Lộ trình {selectedLevel} sẽ sớm ra mắt. Cùng chờ đón nhé!
           </p>
         </div>
       ) : (
@@ -304,7 +304,7 @@ export function SystemRoadmap() {
           {/* LỚP PHỦ SƯƠNG MÙ VÀ CARD ĐĂNG NHẬP KHI CHƯA ĐĂNG NHẬP */}
           {!user && (
             <div className="absolute inset-0 z-30 flex flex-col items-center justify-start pt-12 px-4 pointer-events-auto overflow-hidden rounded-[3rem] w-full h-full">
-              {/* ☁️ Hiệu ứng các đám mây trôi lửng lơ */}
+              {/* Hiệu ứng các đám mây trôi lửng lơ */}
               <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
                 {/* Đám mây 1 */}
                 <motion.div
@@ -358,7 +358,7 @@ export function SystemRoadmap() {
               {/* CARD ĐĂNG NHẬP THÁM HIỂM SHIBA */}
               <ShibaLoginCard
                 title="Vùng Đất Mây Mù"
-                description="Hành trình phía trước đang bị sương mù che phủ. Cùng Shiba để thám hiểm con đường chinh phục tiếng Nhật nhé! 🐾"
+                description="Hành trình phía trước đang bị sương mù che phủ. Cùng Shiba để thám hiểm con đường chinh phục tiếng Nhật nhé!"
                 variant="roadmap"
                 onHoverChange={setIsCardHovered}
               />
@@ -399,7 +399,7 @@ export function SystemRoadmap() {
 
               return (
                 <div key={chapterNum} className="w-full flex flex-col items-center relative">
-                  {/* 🚧 VÁCH NGĂN VẬT LÝ GIỮA CÁC CHƯƠNG (CỬA ẢI GỖ PASTEL) NẰM ĐÈ LÊN ĐƯỜNG BIÊN GIỚI */}
+                  {/* VÁCH NGĂN VẬT LÝ GIỮA CÁC CHƯƠNG (CỬA ẢI GỖ PASTEL) NẰM ĐÈ LÊN ĐƯỜNG BIÊN GIỚI */}
                   {idx > 0 && (
                     <div className="absolute top-0 left-0 right-0 -translate-y-1/2 flex items-center justify-center z-30 pointer-events-none">
                       {/* Hàng rào/Cầu rào ngăn cách */}
@@ -442,7 +442,7 @@ export function SystemRoadmap() {
                         >
                           {isFullyCompleted ? (
                             <span className="flex items-center gap-1.5 text-amber-100">
-                              Chinh phục thành công! 🎉
+                              Chinh phục thành công!
                             </span>
                           ) : (
                             <span>Tiến độ: {completedCount}/{totalCount} bài học</span>
@@ -598,7 +598,7 @@ export function SystemRoadmap() {
                             className="w-full flex items-center justify-center relative"
                           >
                             {/* ======================================= */}
-                            {/* ✨ HỌA TIẾT TRANG TRÍ HAI BÊN ĐƯỜNG ✨ */}
+                            {/* HỌA TIẾT TRANG TRÍ HAI BÊN ĐƯỜNG */}
                             {/* ======================================= */}
                             {(() => {
                               const decoration = MAP_DECORATIONS[parseInt(chapterNum)]?.[idx];
@@ -639,12 +639,12 @@ export function SystemRoadmap() {
                                         origin: { y: 0.6 },
                                       });
                                     });
-                                    toast.success(`Bạn nhận được ${item.deck.rewardCoins || 100} Xương!`, { icon: "🎉" });
+                                    toast.success(`Bạn nhận được ${item.deck.rewardCoins || 100} Xương!`);
                                     addCoins(item.deck.rewardCoins || 100);
                                     saveProgress(item.deck.id, ["claimed"]);
                                   } else if (item.completed) {
                                     // RƯƠNG ĐÃ NHẬN RỒI
-                                    toast.success("Rương này bạn đã mở rồi nhé!", { icon: "👑" });
+                                    toast.success("Rương này bạn đã mở rồi nhé!");
                                   }
                                 } else if (item.deck.type === "story") {
                                   setActiveStoryId(item.deck.id);

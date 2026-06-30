@@ -6,7 +6,7 @@ import { EnemyWord } from "./EnemyWord";
 import { BonkEffect } from "./BonkEffect";
 import { FlashcardData } from "@/types/flashcard";
 import confetti from "canvas-confetti";
-import { X } from "lucide-react";
+import { X, Clock } from "lucide-react";
 import { GameResultModal } from "@/components/games/shared/GameResultModal";
 import { useAppStore } from "@/store/useAppStore";
 import { SystemDeck } from "@/types/flashcard";
@@ -184,8 +184,8 @@ export const TypingRushGame = ({ cards, minigameDeck, onWin, onLose }: TypingRus
           ))}
         </div>
         <div className="flex items-center gap-2 sm:gap-4">
-          <div className="text-lg sm:text-xl font-black bg-white/40 text-teal-800 px-3 py-1 sm:px-4 rounded-full backdrop-blur-sm shadow-sm border-2 border-white/60 flex items-center gap-2">
-            ⏳ {timeLeft}s
+          <div className="text-lg sm:text-xl font-black bg-white/40 text-teal-800 px-3 py-1 sm:px-4 rounded-full backdrop-blur-sm shadow-sm border-2 border-white/60 flex items-center gap-1.5">
+            <Clock className="w-4 h-4 shrink-0 text-teal-800" /> {timeLeft}s
           </div>
           <div className="text-lg sm:text-xl font-bold bg-white/40 text-teal-800 px-3 py-1 sm:px-4 rounded-full backdrop-blur-sm shadow-sm border-2 border-white/60">
             Score: {score}

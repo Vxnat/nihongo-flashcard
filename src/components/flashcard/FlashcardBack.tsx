@@ -1,5 +1,6 @@
 import { FlashcardData } from "@/types/flashcard";
 import { parseFurigana } from "@/utils/textParser";
+import { Sparkles, Star } from "lucide-react";
 
 interface FlashcardBackProps {
   card: FlashcardData;
@@ -65,11 +66,11 @@ export function FlashcardBack({
   return (
     <div className="w-full max-w-md h-[400px] flex flex-row items-center justify-between p-5 bg-gradient-to-br from-[#FFEAF2]/80 via-white/60 to-[#E6FAF7]/80 backdrop-blur-md rounded-[2.5rem] border border-white/60 shadow-[0_8px_32px_0_rgba(255,112,150,0.08)] relative overflow-hidden group transition-all duration-300">
       {/* Trang trí góc lấp lánh như hình ảnh */}
-      <span className="absolute top-8 left-4 text-2xl select-none opacity-80 animate-bounce">🌸</span>
-      <span className="absolute top-4 right-1/2 text-lg select-none opacity-40 text-amber-400">⭐</span>
-      <span className="absolute bottom-8 left-6 text-xl select-none opacity-60">🍃</span>
-      <span className="absolute bottom-4 right-1/2 text-2xl select-none opacity-70">✨</span>
-      <span className="absolute top-10 right-4 text-xl select-none opacity-80">🌸</span>
+      <span className="absolute top-8 left-4 select-none opacity-80 animate-bounce text-pink-200"><Sparkles className="w-6 h-6" /></span>
+      <span className="absolute top-4 right-1/2 select-none opacity-40 text-amber-400"><Star className="w-5 h-5" /></span>
+      <span className="absolute bottom-8 left-6 select-none opacity-60 text-emerald-300"><Sparkles className="w-4 h-4" /></span>
+      <span className="absolute bottom-4 right-1/2 select-none opacity-70 text-orange-200"><Sparkles className="w-6 h-6" /></span>
+      <span className="absolute top-10 right-4 select-none opacity-80 text-pink-300"><Sparkles className="w-5 h-5" /></span>
 
       {/* Left Column: Kanji, Reading, Romaji, Meaning, and mini Example */}
       <div className="w-[53%] flex flex-col justify-center items-start pl-2 h-full overflow-y-auto hide-scrollbar py-2">

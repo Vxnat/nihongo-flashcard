@@ -61,7 +61,7 @@ export function useAdminSettings({ setIsLoading }: UseAdminSettingsProps) {
       });
       if (!res.ok) throw new Error("Sao lưu thất bại");
       const result = await res.json();
-      toast.success(result.message || "Đã sao lưu cấu hình thành công! 💾");
+      toast.success(result.message || "Đã sao lưu cấu hình thành công!");
     } catch (err: any) {
       toast.error(err.message || "Lỗi sao lưu");
     } finally {

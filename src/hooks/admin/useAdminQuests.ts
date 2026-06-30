@@ -76,7 +76,7 @@ export function useAdminQuests({ setIsLoading }: UseAdminQuestsProps) {
         return exists ? prev.map(q => q.id === updatedQuest.id ? updatedQuest : q) : [...prev, updatedQuest];
       });
       setIsQuestModalOpen(false);
-      toast.success("Đã lưu nhiệm vụ lên Firestore! 📅");
+      toast.success("Đã lưu nhiệm vụ lên Firestore!");
     } catch (err: any) {
       toast.error("Lỗi khi lưu nhiệm vụ: " + err.message);
     } finally {

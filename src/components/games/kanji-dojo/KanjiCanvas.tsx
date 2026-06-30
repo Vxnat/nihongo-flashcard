@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, forwardRef, useImperativeHandle, useState, useCallback } from "react";
 import HanziWriter from "hanzi-writer";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Palette } from "lucide-react";
 
 export const PALETTE_CONFIGS = {
   sakura: {
@@ -334,7 +334,7 @@ export const KanjiCanvas = forwardRef<KanjiCanvasRef, KanjiCanvasProps>(({
         className="absolute top-2 left-2 z-40 p-1.5 bg-white/80 rounded-lg text-zinc-400 hover:text-amber-500 border border-zinc-200 shadow-sm transition-all active:scale-90 flex items-center justify-center"
         title="Đổi tông màu gợi ý"
       >
-        <span className="text-sm">🎨</span>
+        <Palette className="w-4 h-4" />
       </button>
 
       {/* Khung kẻ ô ly luyện chữ (Trục chữ thập + Đường chéo) */}

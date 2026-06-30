@@ -115,7 +115,10 @@ export function useMatchingPairsGame({
     setIsKinhLupActive(false);
     setRevealedCardId(null);
     resetTimer();
-    startTimer();
+    const hasSeen = typeof window !== "undefined" ? localStorage.getItem("matching_tutorial_seen") === "true" : true;
+    if (hasSeen) {
+      startTimer();
+    }
   }, [cards, startTimer, resetTimer]);
 
   useEffect(() => {
@@ -318,5 +321,6 @@ export function useMatchingPairsGame({
     activateKinhLupMode,
     handleRestartGame,
     handleGameWin,
+    startTimer,
   };
 }

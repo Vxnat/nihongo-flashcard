@@ -5,7 +5,11 @@ import { useAppStore } from "@/store/useAppStore";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Flame,
-  Trophy
+  Trophy,
+  Bone,
+  BookOpen,
+  Zap,
+  Package
 } from "lucide-react";
 import { ShibaLoginCard } from "@/components/common/ShibaLoginCard";
 import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
@@ -45,13 +49,13 @@ export function ProfileTab() {
 
   const handleShibaClick = () => {
     const messages = [
-      "Woof! Hôm nay cậu đã làm rất tốt! 🐶",
-      "Ganbatte! Cố gắng học tập đều đặn nhé! ✨",
-      "Đừng quên làm nhiệm vụ hàng ngày để nhận xương nha! 🦴",
-      "Hãy tích lũy đủ gacha để trang trí phòng nhé! 🏠",
-      "Gâu! Học tiếng Nhật vui quá đi thôi! 🇯🇵",
-      "Cậu đã học được bao nhiêu phút rồi nhỉ? Giỏi quá! 🌟",
-      "Hôm nay tớ thấy cậu rất chăm chỉ đấy! 🔥"
+      "Woof! Hôm nay cậu đã làm rất tốt!",
+      "Ganbatte! Cố gắng học tập đều đặn nhé!",
+      "Đừng quên làm nhiệm vụ hàng ngày để nhận xương nha!",
+      "Hãy tích lũy đủ gacha để trang trí phòng nhé!",
+      "Gâu! Học tiếng Nhật vui quá đi thôi!",
+      "Cậu đã học được bao nhiêu phút rồi nhỉ? Giỏi quá!",
+      "Hôm nay tớ thấy cậu rất chăm chỉ đấy!"
     ];
     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
     setSpeechBubbleText(randomMsg);
@@ -230,8 +234,8 @@ export function ProfileTab() {
 
             {/* Shiba Currencies (Coins & Golden Fur) */}
             <div className="flex items-center gap-3 bg-[#FFF9F2] border-2 border-[#FFE2D1] px-3 py-1 rounded-2xl shadow-inner">
-              <div className="flex items-center gap-1" title="Xương Vàng (Dùng quay Gacha)">
-                <span className="text-base">🦴</span>
+              <div className="flex items-center gap-1.5" title="Xương (Dùng quay Gacha)">
+                <Bone size={12} className="rotate-45 text-[#8C5E43] fill-[#8C5E43]" />
                 <span className="font-rounded font-black text-[11px] text-[#8C5E43]">
                   {userStats.coins || 0}
                 </span>
@@ -398,10 +402,7 @@ export function ProfileTab() {
 
                 {/* Red/Orange Notification Dot if quest is complete and ready to claim */}
                 {hasUnclaimedQuest && (
-                  <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#FF7096] rounded-full animate-ping z-30" />
-                )}
-                {hasUnclaimedQuest && (
-                  <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-[#FF7096] border border-white rounded-full z-30 flex items-center justify-center text-[8px] text-white font-black">🎁</span>
+                  <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-[#FF7096] rounded-full z-30 border border-white shadow-sm animate-pulse" />
                 )}
               </div>
               <span className="font-rounded font-black text-[9px] text-[#5C3A21] bg-[#FFF2E6] border border-orange-200 px-2 py-0.5 rounded-full shadow-sm group-hover:bg-orange-100 transition-colors">Bản tin</span>
@@ -478,31 +479,31 @@ export function ProfileTab() {
         {/* KHỐI 3: BẢNG THỐNG KÊ HỌC TẬP (Stats Summary Grid) */}
         <div className="grid grid-cols-3 gap-3 w-full">
           {/* Card 1: Tổng số thẻ đã học */}
-          <div className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-0.5 transition-transform hover:scale-[1.03] duration-200">
-            <span className="text-xl sm:text-2xl">📚</span>
+          <div className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-1.5 transition-transform hover:scale-[1.03] duration-200">
+            <BookOpen className="w-6 h-6 text-[#5390D9]" />
             <span className="font-rounded font-black text-[8px] sm:text-[9px] text-zinc-400 uppercase tracking-wider leading-none">ĐÃ HỌC</span>
-            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-1">
+            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-0.5">
               {userStats.totalLearned || 0} từ
             </span>
           </div>
 
           {/* Card 2: Số thẻ hôm nay */}
-          <div className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-0.5 transition-transform hover:scale-[1.03] duration-200">
-            <span className="text-xl sm:text-2xl">⚡</span>
+          <div className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-1.5 transition-transform hover:scale-[1.03] duration-200">
+            <Zap className="w-6 h-6 text-[#FF9F1C] fill-[#FF9F1C]" />
             <span className="font-rounded font-black text-[8px] sm:text-[9px] text-zinc-400 uppercase tracking-wider leading-none">HÔM NAY</span>
-            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-1">
+            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-0.5">
               {userStats.cardsFlippedToday || 0} thẻ
             </span>
           </div>
 
           {/* Card 3: Hành trang */}
           <div
-            className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-0.5 cursor-pointer transition-transform hover:scale-[1.03] active:scale-[0.98] duration-200"
+            className="bg-[#FFFDF9] rounded-[1.8rem] p-3 border-4 border-[#FFE2D1] shadow-[0_6px_0_0_#FFE2D1] flex flex-col items-center justify-center text-center gap-1.5 cursor-pointer transition-transform hover:scale-[1.03] active:scale-[0.98] duration-200"
             onClick={() => setActiveModal("inventory")}
           >
-            <span className="text-xl sm:text-2xl">🎒</span>
+            <Package className="w-6 h-6 text-[#FF7096]" />
             <span className="font-rounded font-black text-[8px] sm:text-[9px] text-zinc-400 uppercase tracking-wider leading-none">HÀNH TRANG</span>
-            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-1">
+            <span className="font-rounded font-black text-xs sm:text-sm text-zinc-700 mt-0.5">
               {userStats.inventory?.length || 0} món
             </span>
           </div>
@@ -514,7 +515,7 @@ export function ProfileTab() {
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-start pt-16 px-4">
           <ShibaLoginCard
             title="Thẻ Học Giả"
-            description="Đăng nhập cùng Shiba để theo dõi thời gian học, tích lũy huy hiệu vinh danh và lưu streak học tập mỗi ngày nhé! 🐾🏆"
+            description="Đăng nhập cùng Shiba để theo dõi thời gian học, tích lũy huy hiệu vinh danh và lưu streak học tập mỗi ngày nhé!"
             variant="roadmap"
             onHoverChange={setIsCardHovered}
           />

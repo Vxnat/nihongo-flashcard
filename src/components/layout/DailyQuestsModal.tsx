@@ -71,7 +71,7 @@ export function DailyQuestsModal({ isOpen, onClose }: DailyQuestsModalProps) {
                 Nhiệm Vụ Ngày
               </h3>
               <p className="font-rounded text-zinc-500 font-bold text-sm mt-2 px-4">
-                Làm nhiệm vụ để lấy Xương quay đồ chơi nhé! ✨
+                Làm nhiệm vụ để lấy Xương quay đồ chơi nhé!
               </p>
             </div>
 
@@ -87,7 +87,7 @@ export function DailyQuestsModal({ isOpen, onClose }: DailyQuestsModalProps) {
                   </h4>
                   <p className="text-zinc-500 text-sm font-bold font-rounded">
                     Đăng nhập ngay để mở khóa hệ thống nhiệm vụ và kiếm Xương quay
-                    Gacha siêu cute nhé! ✨
+                    Gacha siêu cute nhé!
                   </p>
                 </div>
               ) : (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Flame } from "lucide-react";
+import { Flame, Bone } from "lucide-react";
 import { SystemRoadmap } from "@/components/roadmap/SystemRoadmap";
 import { GachaShop } from "@/components/shiba-room/GachaShop";
 import { ShibaRoom } from "@/components/shiba-room/ShibaRoom";
@@ -189,7 +189,7 @@ export default function Home() {
           <div
             onClick={() => handleTabChange("profile")}
             className="w-18 h-18 bg-white border-4 border-[#FFE2D1] rounded-2xl flex items-center justify-center p-1 shadow-sm cursor-pointer hover:scale-105 active:scale-95 transition-transform"
-            title="Xem Hồ sơ & Thành tích học tập! ✨"
+            title="Xem Hồ sơ & Thành tích học tập!"
           >
             <img
               src="/images/mascot/shiba_avatar_mini.png"
@@ -219,10 +219,10 @@ export default function Home() {
               {/* Coins Pill */}
               <div
                 onClick={() => handleTabChange("shop")}
-                className="flex items-center gap-1 bg-[#FFFDF5] border-2 border-[#FFE2D1] px-2 py-0.5 rounded-full shadow-sm hover:scale-105 active:scale-95 transition-transform cursor-pointer"
-                title="Đến Cửa hàng Gacha! 🪙"
+                className="flex items-center gap-1.5 bg-[#FFFDF5] border-2 border-[#FFE2D1] px-2 py-0.5 rounded-full shadow-sm hover:scale-105 active:scale-95 transition-transform cursor-pointer"
+                title="Đến Cửa hàng Gacha!"
               >
-                <span className="text-[12px]">🦴</span>
+                <Bone className="w-3.5 h-3.5 text-amber-700/80 fill-amber-700/80 rotate-45 shrink-0" />
                 <span className="text-[11px] font-black text-amber-700/90 font-rounded">
                   {userStats?.coins || 0}
                 </span>
@@ -232,7 +232,7 @@ export default function Home() {
               <div
                 onClick={() => handleTabChange("profile")}
                 className="flex items-center gap-1 bg-[#FFFDF5] border-2 border-[#FFE2D1] px-2 py-0.5 rounded-full shadow-sm hover:scale-105 active:scale-95 transition-transform cursor-pointer"
-                title="Xem chuỗi ngày học tập! 🔥"
+                title="Xem chuỗi ngày học tập!"
               >
                 <Flame
                   className={`w-3.5 h-3.5 ${userStats?.streak > 0 ? "text-[#FF9F1C] fill-[#FF9F1C]" : "text-zinc-300"}`}
@@ -276,72 +276,52 @@ export default function Home() {
         <AnimatePresence mode="wait">
           {/* TAB 1: BẢN ĐỒ HÀNH TRÌNH */}
           {activeTab === "journey" && (
-            <motion.div
+            <div
               key="journey-tab"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.2 }}
               className="w-full flex flex-col items-center justify-center"
             >
               <SystemRoadmap />
-            </motion.div>
+            </div>
           )}
 
           {/* TAB 2: KHO THẺ CÁ NHÂN */}
           {activeTab === "custom" && (
-            <motion.div
+            <div
               key="custom-tab"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2 }}
               className="w-full flex flex-col items-center justify-center px-1"
             >
               <CustomDecksTab homeState={homeState} />
-            </motion.div>
+            </div>
           )}
 
           {/* TAB 3: CỬA HÀNG GACHA */}
           {activeTab === "shop" && (
-            <motion.div
+            <div
               key="shop-tab"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2 }}
               className="w-full flex flex-col items-center justify-center px-1"
             >
               <GachaShop />
-            </motion.div>
+            </div>
           )}
 
           {/* TAB 4: CĂN PHÒNG SHIBA */}
           {activeTab === "room" && (
-            <motion.div
+            <div
               key="room-tab"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2 }}
               className="w-full flex flex-col items-center justify-center px-1"
             >
               <ShibaRoom />
-            </motion.div>
+            </div>
           )}
 
           {/* TAB 5: HỒ SƠ & THÀNH TÍCH */}
           {activeTab === "profile" && (
-            <motion.div
+            <div
               key="profile-tab"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2 }}
               className="w-full flex flex-col items-center justify-center px-1"
             >
               <ProfileTab />
-            </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </main>
@@ -401,7 +381,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm"
           >
             <BossRPGMiniMap deckId={activeBossRPGId} onClose={() => setActiveBossRPGId(null)} />
           </motion.div>

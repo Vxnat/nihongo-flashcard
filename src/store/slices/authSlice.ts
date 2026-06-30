@@ -22,11 +22,11 @@ export const createAuthSlice: StateCreator<
     try {
       const result = await signInWithPopup(auth, googleProvider);
       set({ user: result.user });
-      toast.success("Đăng nhập thành công! 🎉", { icon: "🚀" });
+      toast.success("Đăng nhập thành công!");
       return result.user;
     } catch (error) {
       console.error("Lỗi đăng nhập:", error);
-      toast.error("Đăng nhập thất bại. Bạn thử lại nhé! 💦", { icon: "🥺" });
+      toast.error("Đăng nhập thất bại. Bạn hãy thử lại nhé!");
       throw error;
     }
   },
@@ -35,7 +35,7 @@ export const createAuthSlice: StateCreator<
     try {
       await signOut(auth);
       set({ user: null });
-      toast.success("Đã đăng xuất! Hẹn gặp lại nhé 👋", { icon: "👋" });
+      toast.success("Đã đăng xuất! Hẹn gặp lại bạn nhé.");
     } catch (error) {
       console.error("Lỗi đăng xuất:", error);
       toast.error("Đăng xuất thất bại!");

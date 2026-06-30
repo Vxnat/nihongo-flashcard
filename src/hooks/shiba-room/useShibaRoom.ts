@@ -102,11 +102,11 @@ export function useShibaRoom() {
       return;
     }
     if (isSleeping) {
-      toast.error("Shiba đang ngủ say sưa rồi, đừng đánh thức bé nhé! 💤");
+      toast.error("Shiba đang ngủ say sưa rồi, đừng đánh thức bé nhé!");
       return;
     }
     if (userStats.coins < 2) {
-      toast.error("Cậu không đủ Xương rồi 🥺", {
+      toast.error("Cậu không đủ Xương rồi", {
         style: {
           background: "#FF8EAA",
           color: "#fff",
@@ -121,7 +121,7 @@ export function useShibaRoom() {
     if (success) {
       const boneId = Date.now();
       setBonesEffect((prev) => [...prev, { id: boneId, x: 0, y: 0 }]);
-      setSpeechBubble("Măm măm... 😋");
+      setSpeechBubble("Măm măm...");
       playAudioUrl("/sounds/brush.mp3");
 
       setTimeout(() => {
@@ -153,7 +153,7 @@ export function useShibaRoom() {
             setHeartsEffect((prev) => prev.filter((h) => h.id < heartId || h.id > heartId + 3));
           }, 1200);
 
-          setSpeechBubble("Gâu! Thức ăn ngon quá cậu ơi! ❤️");
+          setSpeechBubble("Gâu! Thức ăn ngon quá cậu ơi!");
           playAudioUrl("/sounds/success.mp3");
         }, 1500);
 
@@ -163,7 +163,7 @@ export function useShibaRoom() {
 
   const handlePet = useCallback(() => {
     if (isSleeping) {
-      toast.error("Shiba đang ngủ, vuốt ve nhẹ nhàng thôi kẻo bé thức giấc! 💤");
+      toast.error("Shiba đang ngủ, vuốt ve nhẹ nhàng thôi kẻo bé thức giấc!");
       return;
     }
     if (petCooldown) return;
@@ -172,7 +172,7 @@ export function useShibaRoom() {
     setTimeout(() => setPetCooldown(false), 3000);
 
     setShibaActionState("happy");
-    setSpeechBubble("Hì hì, thích quá... Cậu gãi đúng chỗ ngứa rồi! 🥰");
+    setSpeechBubble("Hì hì, thích quá... Cậu gãi đúng chỗ ngứa rồi!");
     playAudioUrl("/sounds/bonk.mp3");
 
     setPetMood((m) => {
@@ -201,9 +201,9 @@ export function useShibaRoom() {
       const nextSleep = !prev;
       localStorage.setItem("shiba_pet_sleep", String(nextSleep));
       if (nextSleep) {
-        setSpeechBubble("Khò khò... Chúc cậu ngủ ngon nhé... 💤");
+        setSpeechBubble("Khò khò... Chúc cậu ngủ ngon nhé...");
       } else {
-        setSpeechBubble("Gâu! Tớ tỉnh dậy rồi đây! Sẵn sàng học tiếng Nhật cùng cậu! ☀️");
+        setSpeechBubble("Gâu! Tớ tỉnh dậy rồi đây! Sẵn sàng học tiếng Nhật cùng cậu!");
         playAudioUrl("/sounds/success.mp3");
       }
       return nextSleep;
@@ -214,18 +214,18 @@ export function useShibaRoom() {
     if (isSleeping) {
       setIsSleeping(false);
       localStorage.setItem("shiba_pet_sleep", "false");
-      setSpeechBubble("Chào buổi sáng! Tớ đã nạp đầy năng lượng rồi! ⚡");
+      setSpeechBubble("Chào buổi sáng! Tớ đã nạp đầy năng lượng rồi!");
       playAudioUrl("/sounds/success.mp3");
       return;
     }
 
     const quotes = [
-      "Cậu đã học từ vựng mới hôm nay chưa thế? 📚",
-      "Tớ rất thích ở cạnh cậu đấy! 🥰",
-      "Xoa đầu tớ đi, tớ sẽ tìm thêm xương cho cậu! 🐕",
-      "Căn phòng này ấm áp ghê cậu nhỉ? 🏠",
-      "Hôm nay là một ngày tuyệt vời để luyện Kanji đó! 🌸",
-      "Gâu gâu! Có đồ ăn ngon gì cho tớ không? 🍖"
+      "Cậu đã học từ vựng mới hôm nay chưa thế?",
+      "Tớ rất thích ở cạnh cậu đấy!",
+      "Xoa đầu tớ đi, tớ sẽ tìm thêm xương cho cậu!",
+      "Căn phòng này ấm áp ghê cậu nhỉ?",
+      "Hôm nay là một ngày tuyệt vời để luyện Kanji đó!",
+      "Gâu gâu! Có đồ ăn ngon gì cho tớ không?"
     ];
     const randQuote = quotes[Math.floor(Math.random() * quotes.length)];
     setSpeechBubble(randQuote);
@@ -327,13 +327,13 @@ export function useShibaRoom() {
     }
 
     if (pendingBones <= 0) {
-      toast.error("Chưa có xương nào tích lũy, hãy đợi thêm nhé! 🦴");
+      toast.error("Chưa có xương nào tích lũy, hãy đợi thêm nhé!");
       return;
     }
 
     const harvested = await harvestBones();
     if (harvested > 0) {
-      toast.success(`Đã thu hoạch thành công +${harvested} Xương! 🦴🎉`);
+      toast.success(`Đã thu hoạch thành công +${harvested} Xương!`);
       import("canvas-confetti").then((confetti) => {
         confetti.default({
           particleCount: 80,

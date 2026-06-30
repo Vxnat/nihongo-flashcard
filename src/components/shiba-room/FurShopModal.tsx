@@ -108,7 +108,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
 
     // Check if owned (for exclusive)
     if (selectedType === "exclusive" && isItemOwned(selectedItem.id)) {
-      toast.error("Bạn đã sở hữu vật phẩm này rồi! 🚫");
+      toast.error("Bạn đã sở hữu vật phẩm này rồi!");
       return;
     }
 
@@ -130,7 +130,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
     const success = await buyShopItem(selectedItem.id, selectedType, targetId);
     if (success) {
       playCoinSound();
-      toast.success(`Trao đổi thành công: ${selectedItem.name}! 🎉`);
+      toast.success(`Trao đổi thành công: ${selectedItem.name}!`);
 
       // Dynamic Confetti
       import("canvas-confetti").then((confetti) => {
@@ -142,7 +142,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
         });
       });
 
-      setShibaBubble(`Cảm ơn chủ nhân đã ủng hộ! Shiba đã cất Shiba Coin đi rồi nyan! 💖`);
+      setShibaBubble(`Cảm ơn chủ nhân đã ủng hộ! Shiba đã cất Shiba Coin đi rồi nyan!`);
       setSelectedItem(null);
       setSelectedType(null);
     } else {
@@ -163,7 +163,7 @@ export function FurShopModal({ isOpen, onClose }: FurShopModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-5 bg-gradient-to-r from-[#FFF0F2] to-[#FFF9E6] border-b-4 border-[#FFD2CC] rounded-t-[3rem]">
           <div className="flex items-center gap-2.5">
-            <span className="text-3xl animate-bounce" style={{ animationDuration: "3s" }}>🏮</span>
+            <Sparkles size={20} className="text-[#FFD166] fill-[#FFD166] animate-bounce" />
             <div>
               <h2 className="text-sm md:text-base font-black text-[#E05375] tracking-wide" style={{ textShadow: "0 2px 0 #fff" }}>
                 TIỆM KỲ TRÂN SHIBA

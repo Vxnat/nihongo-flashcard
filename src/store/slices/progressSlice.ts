@@ -182,7 +182,7 @@ export const createProgressSlice: StateCreator<
         let msg = `Hoàn thành "${deck.title}"!`;
         if (rewards.exp) msg += ` +${rewards.exp} EXP`;
         if (rewards.coins) msg += ` +${rewards.coins} xu`;
-        toast.success(msg, { icon: "🎉" });
+        toast.success(msg);
       }
     }
 
@@ -327,10 +327,9 @@ export const createProgressSlice: StateCreator<
       }
 
       toast.success(
-        `Chúc mừng! Bạn đã tiêu diệt Boss thành công và hoàn thành bài học! Thưởng ${rewards.exp} EXP + ${rewards.coins} xu! 🎉🦊`,
+        `Chúc mừng! Bạn đã tiêu diệt Boss thành công và hoàn thành bài học! Thưởng ${rewards.exp} EXP + ${rewards.coins} xu!`,
         {
           duration: 5000,
-          icon: "👑",
         }
       );
     } else {
@@ -341,15 +340,14 @@ export const createProgressSlice: StateCreator<
         nextKnownIds = []; // reset progress
 
         toast.error(
-          "Bạn đã thua 3 lần liên tiếp! Thách đấu Boss bị khóa. Bạn phải học lại từ đầu để mở khóa Boss! 💔",
+          "Bạn đã thua 3 lần liên tiếp! Thách đấu Boss bị khóa. Bạn phải học lại từ đầu để mở khóa Boss!",
           {
             duration: 6000,
-            icon: "💔",
           }
         );
       } else {
         toast.error(
-          `Chiến bại! Bạn còn ${3 - newAttempts} cơ hội trước khi tiến độ học bài này bị reset! 💔`,
+          `Chiến bại! Bạn còn ${3 - newAttempts} cơ hội trước khi tiến độ học bài này bị reset!`,
           {
             duration: 4000,
           }

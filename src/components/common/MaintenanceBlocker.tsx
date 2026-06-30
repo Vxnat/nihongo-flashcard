@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAppStore } from "@/store/useAppStore";
+import { Wrench } from "lucide-react";
 
 const ADMIN_EMAILS = ["nguyenatu2003@gmail.com"];
 
@@ -40,12 +41,14 @@ export function MaintenanceBlocker() {
         style={{ fontFamily: "var(--font-rounded)" }}
       >
         <div className="bg-white border-4 border-[#8C6D58] rounded-[2rem] p-8 shadow-xl max-w-md w-full flex flex-col items-center gap-6">
-          <div className="text-6xl animate-bounce">🚧</div>
+          <div className="animate-bounce">
+            <Wrench className="w-16 h-16 text-[#8C6D58]" />
+          </div>
           <h1 className="text-2xl font-black text-[#8C6D58]" style={{ fontFamily: "var(--font-cherry)" }}>
             BÉ SHIBA ĐANG BẢO TRÌ!
           </h1>
           <p className="text-sm text-zinc-550 font-bold">
-            Thị trấn Shiba Town đang được nâng cấp để mang lại trải nghiệm học tập tốt hơn. Bé Shiba đang dọn dẹp phòng, vui lòng quay lại sau nhé! 🐶💤
+            Thị trấn Shiba Town đang được nâng cấp để mang lại trải nghiệm học tập tốt hơn. Bé Shiba đang dọn dẹp phòng, vui lòng quay lại sau nhé!
           </p>
           <div className="bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 rounded-2xl text-xs font-bold w-full">
             Dự kiến hoàn thành sớm. Cảm ơn bạn đã kiên nhẫn!
@@ -68,7 +71,7 @@ export function MaintenanceBlocker() {
   //         }
   //       `}} />
   //       <div className="marquee-text whitespace-nowrap w-full pl-[100%]">
-  //         🔔 THÔNG BÁO HỆ THỐNG: {announcementBanner}
+  //         THÔNG BÁO HỆ THỐNG: {announcementBanner}
   //       </div>
   //     </div>
   //   );

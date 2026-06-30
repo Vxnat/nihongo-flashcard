@@ -177,11 +177,11 @@ export function ImportDeck({ trigger, hideDefaultTrigger }: ImportDeckProps) {
                     </div>
                     <p className="text-amber-900 text-sm font-black text-center font-rounded" style={{ fontFamily: "var(--font-cherry)" }}>
                       {isDragActive
-                        ? "Thả file vào đây! 🫳"
+                        ? "Thả file vào đây!"
                         : "Kéo thả file JSON ma thuật vào đây"}
                     </p>
                     <p className="text-[10px] text-amber-700/60 font-bold mt-1 text-center font-rounded">
-                      Hoặc chạm để duyệt file trong máy 📱
+                      Hoặc chạm để duyệt file trong máy
                     </p>
                   </div>
                 ) : (
@@ -230,7 +230,7 @@ export function ImportDeck({ trigger, hideDefaultTrigger }: ImportDeckProps) {
                             ? '"Dựa vào cấu trúc này, làm cho tôi 10 chữ Kanji N5"'
                             : '"Dựa vào cấu trúc này, làm cho tôi 20 từ vựng N4"'}
                         </span>{" "}
-                        là có bài học liền nha! 🤖✨
+                        là có bài học liền nha!
                       </p>
                     </div>
                   )}
@@ -247,7 +247,7 @@ export function ImportDeck({ trigger, hideDefaultTrigger }: ImportDeckProps) {
                 <div className="bg-white p-4 rounded-[1.5rem] border-2 border-[#FFE2D1] shadow-sm">
                   <div className="flex items-center justify-between mb-3">
                     <p className="text-xs font-bold text-amber-700">
-                      🔍 Dữ liệu của bạn:
+                      Dữ liệu của bạn:
                     </p>
                     <Badge className="bg-[#06D6A0]/20 text-[#06D6A0] border-none font-bold">
                       {deckData.length} thẻ

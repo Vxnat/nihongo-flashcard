@@ -7,6 +7,7 @@ import { useShibaRoom } from "@/hooks/shiba-room/useShibaRoom";
 import { ShibaLoginModal } from "./ShibaLoginModal";
 import { RpgInventoryModal } from "./RpgInventoryModal";
 import { ShibaAvatar } from "./ShibaAvatar";
+import { Bone, Heart, Zap, Utensils } from "lucide-react";
 
 const getFurnitureImg = (id: string, allItems: any[]) => {
   const item = allItems.find((i) => i.id === id);
@@ -113,14 +114,17 @@ export function ShibaRoom() {
           className="absolute top-3 right-3 z-40 bg-[#FFF0F2] border-2 border-[#FFCCD5] shadow-[0_3px_0_0_#FFA8B6] px-3.5 py-1 rounded-full flex items-center gap-1.5 text-[#E05375] font-black text-[10px] tracking-wide select-none hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
           style={{ fontFamily: "var(--font-cherry)" }}
         >
-          <span>{totalBonesPerHour} 🦴 / h</span>
+          <span className="flex items-center gap-1">
+            {totalBonesPerHour} <Bone size={11} className="rotate-45" /> / h
+          </span>
         </div>
 
         {/* TAMAGOTCHI PET STATUS BARS */}
         <div className="absolute top-3 left-3 z-40 flex flex-col gap-0.5 bg-white/70 backdrop-blur-xs p-1.5 rounded-2xl border border-white/40 shadow-xs pointer-events-none select-none">
           {/* Hunger Bar */}
+          {/* Hunger Bar */}
           <div className="flex items-center gap-1 w-[4.5rem]">
-            <span className="text-[9px]" title="No nê">🍖</span>
+            <Utensils size={10} className="text-pink-500" />
             <div className="flex-1 h-1.5 bg-zinc-200/80 rounded-full overflow-hidden">
               <div
                 className="h-full bg-pink-400 transition-all duration-500"
@@ -130,7 +134,7 @@ export function ShibaRoom() {
           </div>
           {/* Happy Bar */}
           <div className="flex items-center gap-1 w-[4.5rem]">
-            <span className="text-[9px]" title="Vui vẻ">💖</span>
+            <Heart size={10} className="text-amber-500 fill-amber-500" />
             <div className="flex-1 h-1.5 bg-zinc-200/80 rounded-full overflow-hidden">
               <div
                 className="h-full bg-amber-400 transition-all duration-500"
@@ -140,7 +144,7 @@ export function ShibaRoom() {
           </div>
           {/* Energy Bar */}
           <div className="flex items-center gap-1 w-[4.5rem]">
-            <span className="text-[9px]" title="Năng lượng">⚡</span>
+            <Zap size={10} className="text-sky-500 fill-sky-500" />
             <div className="flex-1 h-1.5 bg-zinc-200/80 rounded-full overflow-hidden">
               <div
                 className="h-full bg-sky-400 transition-all duration-500"
@@ -330,13 +334,13 @@ export function ShibaRoom() {
                       scale: 1.3,
                     }}
                     transition={{ duration: 1.1, ease: "easeOut" }}
-                    className="absolute z-30 pointer-events-none text-red-400 text-sm select-none"
+                    className="absolute z-30 pointer-events-none text-red-400 select-none"
                     style={{
                       bottom: `calc(${shibaMascot.style?.bottom || "32%"} + 12%)`,
                       left: `calc(${shibaMascot.style?.left || "47%"} + 10%)`,
                     }}
                   >
-                    ❤️
+                    <Heart size={14} className="fill-current" />
                   </motion.div>
                 ))}
 
@@ -382,10 +386,10 @@ export function ShibaRoom() {
                     initial={{ y: 0 }}
                     animate={{ y: [-5, 5, -5] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-[65%] right-[22%] z-20 bg-gradient-to-br from-[#FFF8EE] to-[#FFE7C6] border-4 border-[#FBC579] px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg active:scale-95 transition-all text-[#C85A28] font-bold text-sm cursor-pointer"
+                    className="absolute bottom-[65%] right-[22%] z-20 bg-gradient-to-br from-[#FFF8EE] to-[#FFE7C6] border-4 border-[#FBC579] px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg active:scale-95 transition-all text-[#C85A28] font-bold text-sm cursor-pointer"
                     style={{ fontFamily: "var(--font-cherry)" }}
                   >
-                    <span>🦴</span>
+                    <Bone size={14} className="rotate-45" />
                     <span>+{pendingBones}</span>
                   </motion.button>
                 )}
@@ -498,7 +502,7 @@ export function ShibaRoom() {
                       scale: 1.3,
                     }}
                     transition={{ duration: 1.1, ease: "easeOut" }}
-                    className="absolute z-30 pointer-events-none text-red-400 text-sm select-none"
+                    className="absolute z-30 pointer-events-none text-red-400 select-none"
                     style={{
                       bottom: `calc(${shibaMascot.style?.bottom || "15%"} + 12%)`,
                       ...(shibaMascot.style?.left
@@ -506,7 +510,7 @@ export function ShibaRoom() {
                         : { right: `calc(${shibaMascot.style.right} + 10%)` }),
                     }}
                   >
-                    ❤️
+                    <Heart size={14} className="fill-current" />
                   </motion.div>
                 ))}
 
@@ -557,7 +561,7 @@ export function ShibaRoom() {
                     className="absolute bottom-[48%] left-[42%] z-20 bg-gradient-to-br from-[#FFF8EE] to-[#FFE7C6] border-4 border-[#FBC579] px-2.5 py-1.5 rounded-full flex items-center gap-1 shadow-lg active:scale-95 transition-all text-[#C85A28] font-bold text-xs cursor-pointer animate-pulse"
                     style={{ fontFamily: "var(--font-cherry)" }}
                   >
-                    <span>🦴</span>
+                    <Bone size={12} className="rotate-45" />
                     <span>+{pendingBones}</span>
                   </motion.button>
                 )}
@@ -584,10 +588,10 @@ export function ShibaRoom() {
               rotate: 360,
             }}
             transition={{ duration: 0.75, ease: "easeInOut" }}
-            className="absolute z-50 pointer-events-none text-lg select-none"
-          >
-            🦴
-          </motion.div>
+            className="absolute z-50 pointer-events-none select-none flex items-center justify-center"
+        >
+          <Bone size={16} className="rotate-45 text-[#FF9F1C]" />
+        </motion.div>
         ))}
 
         {/* BOTTOM SHELF ACTION DOCK (COZY TOY RACK SHELF) */}
@@ -686,7 +690,7 @@ export function ShibaRoom() {
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
         title="Căn Phòng Shiba"
-        description="Căn phòng Shiba đang đợi cậu trang trí! Đăng nhập ngay để nhận nuôi chú Shiba cưng, quay Gacha nội thất và thu hoạch xương vàng nhé! 🐾🏠"
+        description="Căn phòng Shiba đang đợi cậu trang trí! Đăng nhập ngay để nhận nuôi chú Shiba cưng, quay Gacha nội thất và thu hoạch xương vàng nhé!"
       />
     </div>
   );

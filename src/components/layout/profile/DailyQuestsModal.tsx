@@ -75,7 +75,7 @@ export function DailyQuestsModal({
                 Bản Tin Shiba
               </h3>
               <p className="font-rounded text-[#8C5E43] font-bold text-xs mt-2 px-4 leading-relaxed">
-                🐾 Nhận tin nhắn và hoàn thành yêu cầu từ Shiba để rinh về xương thưởng nhé!
+                Nhận tin nhắn và hoàn thành yêu cầu từ Shiba để rinh về xương thưởng nhé!
               </p>
             </div>
 
@@ -95,7 +95,7 @@ export function DailyQuestsModal({
                 </div>
               ) : quests.length === 0 ? (
                 <div className="text-center py-8 text-[#8C5E43] font-rounded font-bold text-sm bg-[#FAF0D7] p-4 rounded-2xl border border-[#E3D7B5]">
-                  Hôm nay không có nhiệm vụ nào! Thư thả dạo chơi Shiba Town nhé. 🐾
+                  Hôm nay không có nhiệm vụ nào! Thư thả dạo chơi Shiba Town nhé.
                 </div>
               ) : (
                 quests.map((quest) => {
@@ -110,11 +110,11 @@ export function DailyQuestsModal({
                       className="bg-[#FAF0D7] border border-[#E3D7B5] p-4 rounded-2xl flex flex-col gap-3 shadow-sm"
                     >
                       <div className="flex justify-between items-start gap-2">
-                        <h4 className="font-rounded font-black text-sm text-[#734A2E] leading-tight">
-                          🐾 {quest.title}
+                        <h4 className="font-rounded font-black text-sm text-[#734A2E] leading-tight flex items-center gap-1">
+                          <Bone size={12} className="rotate-45" /> {quest.title}
                         </h4>
-                        <span className="flex items-center gap-0.5 font-rounded font-black text-[#B07E2A] bg-[#F0E4C9] border border-[#DCD0B4] px-2 py-0.5 rounded-lg text-[10px] shrink-0">
-                          🦴 +{quest.reward || quest.rewards?.coins || 0}
+                        <span className="flex items-center gap-1 font-rounded font-black text-[#B07E2A] bg-[#F0E4C9] border border-[#DCD0B4] px-2 py-0.5 rounded-lg text-[10px] shrink-0">
+                          <Bone size={10} className="rotate-45" /> +{quest.reward || quest.rewards?.coins || 0}
                         </span>
                       </div>
 
@@ -142,7 +142,7 @@ export function DailyQuestsModal({
                             onClick={() => handleClaim(quest.id)}
                             className="bg-[#06D6A0] hover:bg-[#05B586] text-white font-black font-rounded text-[11px] px-3.5 py-1.5 rounded-xl border-b-2 border-[#048C68] active:border-b-0 active:translate-y-0.5 transition-all cursor-pointer shadow-sm animate-pulse"
                           >
-                            Nhận Xương! 🦴
+                            Nhận Xương!
                           </button>
                         ) : (
                           <div className="text-[#A39679] bg-[#EBE0C4] px-3 py-1 rounded-xl text-[10px] font-bold font-rounded">

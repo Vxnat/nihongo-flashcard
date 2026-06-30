@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Bone, LifeBuoy, Sparkles, ArrowLeft, AlertCircle, Lightbulb, GraduationCap } from "lucide-react";
+import { Heart, Bone, LifeBuoy, Sparkles, ArrowLeft, AlertCircle, Lightbulb, GraduationCap, HelpCircle } from "lucide-react";
 import { TimerBar } from "../shared/TimerBar";
 import { GameResultModal } from "../shared/GameResultModal";
 import { ShibaMasterDialog } from "../shared/ShibaMasterDialog";
 import { CoinIcon } from "@/components/common/CoinIcon";
 import { VNWordTooltip } from "@/components/visual-novel/VNWordTooltip";
-import { playSFX } from "@/utils/sfx";
+import { parseFurigana } from "@/utils/textParser";
+import { useFillBlanksGame } from "@/hooks/games/fill-blanks/useFillBlanksGame";
+import { FBTutorialOverlay } from "./FBTutorialOverlay";
 
 interface BlankDetail {
   correctAnswer: string;
@@ -39,165 +41,49 @@ export function FillBlanksGame({
   onWin,
   onClose,
 }: FillBlanksGameProps) {
-  // --- Game States ---
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeBlankIndex, setActiveBlankIndex] = useState(0);
-  const [filledAnswers, setFilledAnswers] = useState<Record<number, string>>({});
-  const [shibaHp, setShibaHp] = useState(3);
-  const [isGameOver, setIsGameOver] = useState(false);
-  const [gameStatus, setGameStatus] = useState<"playing" | "win" | "lose">("playing");
-  const [showFurigana, setShowFurigana] = useState(true);
+  const {
+    currentIndex,
+    activeBlankIndex,
+    filledAnswers,
+    shibaHp,
+    isGameOver,
+    gameStatus,
+    showFurigana,
+    showShibaMaster,
+    unlockedHints,
+    options,
+    wrongAttempts,
+    activeHoverWord,
+    timeLeft,
+    progressPercent,
+    totalTimeLimit,
+    isFuriganaSupported,
+    quiz,
+    currentBlank,
+    setShowFurigana,
+    setShowShibaMaster,
+    setUnlockedHints,
+    setActiveHoverWord,
+    startTimer,
+    handleOptionClick,
+    handleRestartGame,
+  } = useFillBlanksGame({ quizList, minigameDeck, onWin });
 
-  // Hint states
-  const [showShibaMaster, setShowShibaMaster] = useState(false);
-  const [unlockedHints, setUnlockedHints] = useState<Record<number, boolean>>({});
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [isFirstTutorial, setIsFirstTutorial] = useState(false);
 
-  // Options state
-  const [options, setOptions] = useState<string[]>([]);
-  const [wrongAttempts, setWrongAttempts] = useState<Record<string, boolean>>({});
-
-  // Tooltip dictionary state
-  const [activeHoverWord, setActiveHoverWord] = useState<any | null>(null);
-
-  const quiz = quizList[currentIndex];
-
-  // --- Dynamic Time Limit calculation ---
-  const totalTimeLimit = useMemo(() => {
-    if (!quizList || quizList.length === 0) return 90;
-    const calculatedTime = quizList.reduce((acc, q) => {
-      // Loại bỏ thẻ Ruby để tính chiều dài thật của chuỗi tiếng Nhật
-      const cleanText = q.sentence.replace(/\[([^\]]+)\]\{[^\}]+\}/g, "$1");
-      const sentenceLength = cleanText.length;
-      const blanksCount = q.blanks?.length || 1;
-      const sentenceTime = 6 + sentenceLength * 0.4 + blanksCount * 7; // 6s cơ bản + 0.4s/ký tự + 7s/ô trống
-      return acc + sentenceTime;
-    }, 0);
-    return Math.ceil(calculatedTime) + 15; // Cộng thêm 15 giây bù sai số
-  }, [quizList]);
-
-  const [timeLeft, setTimeLeft] = useState(totalTimeLimit);
-
-  // Sync timeLeft when totalTimeLimit changes
   useEffect(() => {
-    setTimeLeft(totalTimeLimit);
-  }, [totalTimeLimit]);
-
-  // Countdown timer effect
-  useEffect(() => {
-    if (isGameOver || gameStatus !== "playing") return;
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          setGameStatus("lose");
-          setIsGameOver(true);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [isGameOver, gameStatus]);
-
-  // Shuffle answers options for current blank
-  const currentBlank = quiz?.blanks?.[activeBlankIndex];
-  useEffect(() => {
-    if (!currentBlank) return;
-    const allOptions = [
-      currentBlank.correctAnswer,
-      ...currentBlank.wrongAnswers,
-    ];
-
-    // Fisher-Yates shuffle
-    const shuffled = [...allOptions];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-
-    setOptions(shuffled);
-    setWrongAttempts({});
-  }, [currentIndex, activeBlankIndex, quiz, currentBlank]);
-
-  // --- Option Click Handler ---
-  const handleOptionClick = (option: string) => {
-    if (!currentBlank || isGameOver || gameStatus !== "playing") return;
-    if (wrongAttempts[option]) return; // Bỏ qua nếu đã click sai trước đó
-
-    if (option === currentBlank.correctAnswer) {
-      // Trả lời ĐÚNG
-      setFilledAnswers((prev) => ({ ...prev, [activeBlankIndex]: option }));
-      playSFX("success");
-
-      // Nếu còn ô trống tiếp theo trong cùng câu hỏi
-      if (activeBlankIndex < quiz.blanks.length - 1) {
-        setActiveBlankIndex((prev) => prev + 1);
-      } else {
-        // Hoàn thành toàn bộ câu hỏi hiện tại!
-        let transitioned = false;
-        const transition = () => {
-          if (transitioned) return;
-          transitioned = true;
-          if (currentIndex < quizList.length - 1) {
-            setCurrentIndex((prev) => prev + 1);
-            setActiveBlankIndex(0);
-            setFilledAnswers({});
-            setUnlockedHints({});
-          } else {
-            // Thắng cuộc!
-            setGameStatus("win");
-            setIsGameOver(true);
-            onWin();
-          }
-        };
-
-        // Đọc câu hoàn chỉnh qua TTS (Text-to-Speech)
-        if (typeof window !== "undefined" && "speechSynthesis" in window) {
-          const cleanSentence = quiz.sentence
-            .replace(/\[([^\]]+)\]\{[^\}]+\}/g, "$1")
-            .replace(/\{[0-9]+\}/g, (match) => {
-              const idx = parseInt(match.replace(/\{|\}/g, ""));
-              return { ...filledAnswers, [activeBlankIndex]: option }[idx] || option;
-            });
-          const utterance = new SpeechSynthesisUtterance(cleanSentence);
-          utterance.lang = "ja-JP";
-          utterance.rate = 0.85;
-
-          utterance.onend = () => {
-            setTimeout(transition, 600); // Trì hoãn 600ms dễ chịu
-          };
-
-          utterance.onerror = () => {
-            transition();
-          };
-
-          window.speechSynthesis.speak(utterance);
-
-          // Fallback an toàn 4.5 giây phòng khi TTS lỗi
-          setTimeout(transition, 4500);
-        } else {
-          setTimeout(transition, 1500);
-        }
+    if (typeof window !== "undefined") {
+      const hasSeen = localStorage.getItem("fillblanks_tutorial_seen") === "true";
+      if (!hasSeen) {
+        setShowTutorial(true);
+        setIsFirstTutorial(true);
       }
-    } else {
-      // Trả lời SAI
-      playSFX("fail");
-      setWrongAttempts((prev) => ({ ...prev, [option]: true }));
-      setShibaHp((prev) => {
-        const nextHp = prev - 1;
-        if (nextHp <= 0) {
-          setGameStatus("lose");
-          setIsGameOver(true);
-        }
-        return nextHp;
-      });
     }
-  };
+  }, []);
 
   // Shiba Master hints options
-  const hintOptions = useMemo(() => {
+  const hintOptions = React.useMemo(() => {
     const optionsList: any[] = [];
     if (!currentBlank) return [];
 
@@ -238,7 +124,7 @@ export function FillBlanksGame({
     });
 
     return optionsList;
-  }, [currentBlank, activeBlankIndex]);
+  }, [currentBlank, activeBlankIndex, setUnlockedHints]);
 
   // --- Rendering helper for formatted sentence ---
   const renderSentenceElements = () => {
@@ -309,7 +195,7 @@ export function FillBlanksGame({
                   layoutId={`flying-text-${filledAnswers[blankIdx]}`}
                   className="font-bold text-base select-none"
                 >
-                  {filledAnswers[blankIdx]}
+                  {parseFurigana(filledAnswers[blankIdx], showFurigana)}
                 </motion.span>
               ) : (
                 "___"
@@ -343,7 +229,6 @@ export function FillBlanksGame({
     );
   }
 
-  const progressPercent = (timeLeft / totalTimeLimit) * 100;
   const isQuestionFinished = Object.keys(filledAnswers).length === quiz.blanks.length;
 
   return (
@@ -360,14 +245,23 @@ export function FillBlanksGame({
 
         {/* Header Section */}
         <div className="flex justify-between items-center z-10 w-full mb-3">
-          <button
-            onClick={onClose}
-            className="font-rounded font-bold text-xs text-zinc-400 hover:text-zinc-600 px-4 py-2 bg-zinc-50 border-2 border-zinc-200 rounded-[1rem] shadow-[0_3px_0_0_#e4e4e7] active:translate-y-0.5 active:shadow-[0_0_0_0_#e4e4e7] transition-all cursor-pointer"
-          >
-            <span className="flex items-center gap-1.5">
-              <ArrowLeft size={14} /> Thoát
-            </span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onClose}
+              className="font-rounded font-bold text-xs text-zinc-400 hover:text-zinc-600 px-4 py-2 bg-zinc-50 border-2 border-zinc-200 rounded-[1rem] shadow-[0_3px_0_0_#e4e4e7] active:translate-y-0.5 active:shadow-[0_0_0_0_#e4e4e7] transition-all cursor-pointer"
+            >
+              <span className="flex items-center gap-1.5">
+                <ArrowLeft size={14} /> Thoát
+              </span>
+            </button>
+            <button
+              onClick={() => setShowTutorial(true)}
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-zinc-50 text-zinc-400 hover:text-zinc-600 border-2 border-zinc-200 shadow-sm transition-all active:scale-95 cursor-pointer shrink-0"
+              title="Hướng dẫn"
+            >
+              <HelpCircle size={16} />
+            </button>
+          </div>
 
           <div className="flex flex-col items-center gap-1"
             style={{
@@ -385,10 +279,10 @@ export function FillBlanksGame({
                   <div
                     key={idx}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${isPassed
-                        ? "bg-[#06D6A0] shadow-[0_0_4px_rgba(6,214,160,0.5)] scale-100"
-                        : isCurrent
-                          ? "bg-[#FF9F1C] scale-120 animate-pulse ring-1 ring-[#FFD6A0]"
-                          : "bg-zinc-200 scale-90"
+                      ? "bg-[#06D6A0] shadow-[0_0_4px_rgba(6,214,160,0.5)] scale-100"
+                      : isCurrent
+                        ? "bg-[#FF9F1C] scale-120 animate-pulse ring-1 ring-[#FFD6A0]"
+                        : "bg-zinc-200 scale-90"
                       }`}
                   />
                 );
@@ -435,17 +329,19 @@ export function FillBlanksGame({
               <Sparkles size={10} /> Điền từ vào chỗ trống
             </div>
 
-            <button
-              onClick={() => setShowFurigana(!showFurigana)}
-              className={`absolute -top-3.5 right-10 w-7 h-7 rounded-full border-2 transition-all flex items-center justify-center font-bold text-xs cursor-pointer shadow-sm z-20 ${showFurigana
-                ? "bg-[#E0F7FA] border-[#80DEEA] text-[#00ACC1]"
-                : "bg-white border-zinc-200 text-zinc-400 opacity-60"
-                }`}
-              title="Bật/tắt Furigana"
-              style={{ fontFamily: "var(--font-cherry)" }}
-            >
-              あ
-            </button>
+            {isFuriganaSupported && (
+              <button
+                onClick={() => setShowFurigana(!showFurigana)}
+                className={`absolute -top-3.5 right-10 w-7 h-7 rounded-full border-2 transition-all flex items-center justify-center font-bold text-xs cursor-pointer shadow-sm z-20 ${showFurigana
+                  ? "bg-[#E0F7FA] border-[#80DEEA] text-[#00ACC1]"
+                  : "bg-white border-zinc-200 text-zinc-400 opacity-60"
+                  }`}
+                title="Bật/tắt Furigana"
+                style={{ fontFamily: "var(--font-cherry)" }}
+              >
+                あ
+              </button>
+            )}
 
             <div className="text-2xl sm:text-3xl text-zinc-800 font-black leading-relaxed mt-2 select-none">
               {renderSentenceElements()}
@@ -488,7 +384,7 @@ export function FillBlanksGame({
                     key={opt}
                     disabled={isQuestionFinished || isWrong}
                     onClick={() => handleOptionClick(opt)}
-                    className={`h-14 font-rounded font-black text-base sm:text-lg border-2 rounded-2xl border-b-4 select-none cursor-pointer flex items-center justify-center px-4 relative transition-all ${isWrong
+                    className={`h-18 py-2 font-rounded font-black text-base sm:text-lg border-2 rounded-2xl border-b-4 select-none cursor-pointer flex items-center justify-center px-4 relative transition-all ${isWrong
                       ? "bg-red-100 border-red-300 text-red-500 border-b-0 translate-y-1 opacity-50 cursor-not-allowed"
                       : "bg-white border-orange-100 text-orange-900 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_0_#FFE2D1] hover:scale-[1.03]"
                       }`}
@@ -498,8 +394,8 @@ export function FillBlanksGame({
                     animate={isWrong ? { x: [-6, 6, -6, 6, 0] } : {}}
                     transition={{ duration: 0.3 }}
                   >
-                    <motion.span layoutId={`flying-text-${opt}`}>
-                      {opt}
+                    <motion.span layoutId={`flying-text-${opt}`} className="flex items-center justify-center gap-0.5">
+                      {parseFurigana(opt, showFurigana)}
                     </motion.span>
                   </motion.button>
                 );
@@ -539,30 +435,7 @@ export function FillBlanksGame({
             rewardCoins={minigameDeck?.rewards?.coins || minigameDeck?.rewardCoins || 15}
             timeBonus={gameStatus === "win" ? Math.floor(timeLeft / 10) : 0}
             onClose={onClose}
-            onRestart={() => {
-              setCurrentIndex(0);
-              setActiveBlankIndex(0);
-              setFilledAnswers({});
-              setShibaHp(3);
-              setTimeLeft(totalTimeLimit);
-              setIsGameOver(false);
-              setGameStatus("playing");
-              setUnlockedHints({});
-              setWrongAttempts({});
-
-              // Xáo trộn lại phương án cho câu hỏi đầu tiên
-              const firstQuiz = quizList[0];
-              const firstBlank = firstQuiz?.blanks?.[0];
-              if (firstBlank) {
-                const allOptions = [firstBlank.correctAnswer, ...firstBlank.wrongAnswers];
-                const shuffled = [...allOptions];
-                for (let i = shuffled.length - 1; i > 0; i--) {
-                  const j = Math.floor(Math.random() * (i + 1));
-                  [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-                }
-                setOptions(shuffled);
-              }
-            }}
+            onRestart={handleRestartGame}
           />
         )}
       </AnimatePresence>
@@ -573,6 +446,22 @@ export function FillBlanksGame({
           <VNWordTooltip
             word={activeHoverWord}
             onClose={() => setActiveHoverWord(null)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* MÀN HÌNH HƯỚNG DẪN CHƠI */}
+      <AnimatePresence>
+        {showTutorial && (
+          <FBTutorialOverlay
+            onClose={() => {
+              setShowTutorial(false);
+              localStorage.setItem("fillblanks_tutorial_seen", "true");
+              if (isFirstTutorial) {
+                startTimer();
+                setIsFirstTutorial(false);
+              }
+            }}
           />
         )}
       </AnimatePresence>

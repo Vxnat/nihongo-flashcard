@@ -43,7 +43,7 @@ export function GachaItemModal({
 
     if (secureUrl) {
       setForm((prev: any) => ({ ...prev, [type]: secureUrl }));
-      toast.success("Tải ảnh lên Cloudinary thành công! 🎉");
+      toast.success("Tải ảnh lên Cloudinary thành công!");
     }
 
     if (type === "imageUrl") setIsUploadingImg(false);
@@ -133,7 +133,7 @@ export function GachaItemModal({
                   }}
                   disabled={isUploadingImg}
                 />
-                <span>{isUploadingImg ? "Đang tải..." : "📁 Tải ảnh"}</span>
+                <span>{isUploadingImg ? "Đang tải..." : "Tải ảnh"}</span>
               </label>
             </div>
             <input
@@ -412,7 +412,7 @@ export function GachaItemModal({
                         }}
                         disabled={isUploadingAvatar}
                       />
-                      <span>{isUploadingAvatar ? "Đang tải..." : "📁 Tải ảnh"}</span>
+                      <span>{isUploadingAvatar ? "Đang tải..." : "Tải ảnh"}</span>
                     </label>
                   </div>
                   <input

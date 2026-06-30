@@ -113,7 +113,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
       });
 
       setDecks(updatedDecks);
-      toast.success("Xóa bộ bài thành công! 🗑️");
+      toast.success("Xóa bộ bài thành công!");
     } catch (err: any) {
       toast.error(err.message || "Lỗi xóa bộ bài");
     } finally {
@@ -216,7 +216,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
 
       setDecks(updatedDecks);
       setIsDeckModalOpen(false);
-      toast.success(editingDeck ? "Cập nhật bộ bài thành công!" : "Tạo bộ bài mới thành công! 🎉");
+      toast.success(editingDeck ? "Cập nhật bộ bài thành công!" : "Tạo bộ bài mới thành công!");
     } catch (err: any) {
       toast.error(err.message || "Lỗi lưu cấu hình bộ bài");
     } finally {
@@ -278,7 +278,7 @@ export function useAdminDecks({ setIsLoading }: UseAdminDecksProps) {
       if (!saveDecksRes.ok) throw new Error("Cập nhật file cấu hình tổng thất bại");
 
       setDecks(updatedDecks);
-      toast.success("Đã lưu bộ bài thành công trên đĩa! 💾🎉");
+      toast.success("Đã lưu bộ bài thành công trên đĩa!");
     } catch (err: any) {
       toast.error(err.message || "Lỗi lưu bộ bài");
     } finally {

@@ -7,8 +7,11 @@ let currentAudio: HTMLAudioElement | null = null;
 const ttsCache = new Map<string, string>();
 
 // Hàm phát giọng đọc offline có sẵn của hệ điều hành, tinh chỉnh Pitch cao hơn để tạo giọng "cute/squeaky"
-const fallbackSpeechSynthesis = (text: string, lang: string) => {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+const fallbackSpeechSynthesis = (text: string, lang: string, onEnd?: () => void) => {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+    if (onEnd) onEnd();
+    return;
+  }
   window.speechSynthesis.cancel();
 
   const utterance = new SpeechSynthesisUtterance(text);
@@ -31,6 +34,11 @@ const fallbackSpeechSynthesis = (text: string, lang: string) => {
   // Tinh chỉnh để tạo giọng dễ thương/mascot:
   // utterance.rate = 0.95;  // Tốc độ đọc tự nhiên, hơi nhanh nhẹn chút
   utterance.pitch = 1.15; // Tăng tông độ (pitch) cao lên 1.35 để giọng trong và cực kỳ cute/đáng yêu!
+
+  if (onEnd) {
+    utterance.onend = () => onEnd();
+    utterance.onerror = () => onEnd();
+  }
 
   window.speechSynthesis.speak(utterance);
 };
@@ -58,8 +66,11 @@ export const preloadAudio = async (text: string, lang: string = "ja-JP") => {
   }
 };
 
-export const playAudio = async (text: string, lang: string = "ja-JP") => {
-  if (typeof window === "undefined") return;
+export const playAudio = async (text: string, lang: string = "ja-JP", onEnd?: () => void) => {
+  if (typeof window === "undefined") {
+    if (onEnd) onEnd();
+    return;
+  }
 
   // Dừng âm thanh cũ đang phát để tránh đè âm thanh
   if (currentAudio) {
@@ -70,7 +81,7 @@ export const playAudio = async (text: string, lang: string = "ja-JP") => {
     window.speechSynthesis.cancel();
   }
 
-  fallbackSpeechSynthesis(text, lang);
+  fallbackSpeechSynthesis(text, lang, onEnd);
 
   // Nếu là tiếng Nhật, sử dụng VOICEVOX speaker=8
   // if (lang.startsWith("ja")) {

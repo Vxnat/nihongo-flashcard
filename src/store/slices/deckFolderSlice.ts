@@ -51,7 +51,7 @@ export const createDeckFolderSlice: StateCreator<
               const defaultDeck: CustomDeck = {
                 id: targetId,
                 title: "N5 Vocabulary Core",
-                description: "Bộ từ vựng N5 thiết yếu để bạn bắt đầu hành trình ✨",
+                description: "Bộ từ vựng N5 thiết yếu để bạn bắt đầu hành trình",
                 level: "N5",
                 count: cards.length,
                 cards: cards,
@@ -130,7 +130,7 @@ export const createDeckFolderSlice: StateCreator<
             const defaultDeck: CustomDeck = {
               id: "custom_default_n5_core",
               title: "N5 Vocabulary Core",
-              description: "Bộ từ vựng N5 thiết yếu để bạn bắt đầu hành trình ✨",
+              description: "Bộ từ vựng N5 thiết yếu để bạn bắt đầu hành trình",
               level: "N5",
               count: cards.length,
               cards: cards,
@@ -151,7 +151,7 @@ export const createDeckFolderSlice: StateCreator<
       const hasKanjiDeck = stored.some((d) => d.type === "kanji");
       if (!hasKanjiDeck && !localStorage.getItem(localKanjiFlagKey)) {
         try {
-          const res = await fetch("/data/kanji_radicals.json");
+          const res = await fetch("/data/configs/kanji_radicals.json");
           if (res.ok) {
             const radicals = await res.json();
             const defaultKanjiDeck: CustomDeck = {

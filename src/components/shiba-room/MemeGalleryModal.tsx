@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Lock, Volume2, ZoomIn, Star } from "lucide-react";
+import { X, Lock, Volume2, ZoomIn, Star, Lightbulb } from "lucide-react";
 import { MemeItem } from "@/constants/gachaPool";
 import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
 import { useAppStore } from "@/store/useAppStore";
@@ -82,7 +82,7 @@ export function MemeGalleryModal({ isOpen, onClose }: MemeGalleryModalProps) {
                 <Star className="w-4 h-4 text-[#E8743B] fill-[#E8743B] absolute -bottom-2 -right-6 animate-bounce" />
               </div>
               <p className="text-xs text-zinc-500 font-sans font-bold mt-1">
-                Thu thập các meme học tiếng Nhật siêu mặn từ máy Gacha! 🦴
+                Thu thập các meme học tiếng Nhật siêu mặn từ máy Gacha!
               </p>
             </div>
 
@@ -170,8 +170,8 @@ export function MemeGalleryModal({ isOpen, onClose }: MemeGalleryModalProps) {
 
               {/* Japanese Point Study Card */}
               <div className="w-full bg-[#FFF8EE] border-2 border-[#FDD49A] rounded-2xl p-4 text-center font-sans">
-                <h4 className="text-[#C85A28] font-bold text-xs uppercase tracking-wider mb-2" style={{ fontFamily: "var(--font-cherry)" }}>
-                  💡 Điểm Tiếng Nhật
+                <h4 className="text-[#C85A28] font-bold text-xs uppercase tracking-wider mb-2 flex items-center justify-center gap-1" style={{ fontFamily: "var(--font-cherry)" }}>
+                  <Lightbulb size={14} className="text-[#C85A28]" /> Điểm Tiếng Nhật
                 </h4>
                 
                 {/* Từ vựng có phát âm */}

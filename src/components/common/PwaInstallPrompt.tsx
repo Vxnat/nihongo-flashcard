@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Share, PlusSquare } from "lucide-react";
+import { Share, PlusSquare, Apple } from "lucide-react";
 import { usePwaInstall } from "@/hooks/common/usePwaInstall";
 
 interface PwaInstallPromptProps {
@@ -36,7 +36,9 @@ export function PwaInstallPrompt({ pwaState }: PwaInstallPromptProps) {
               className="bg-[#FDFBF7] border-4 border-[#5390D9] rounded-[2.5rem] p-6 max-w-[320px] w-full shadow-[0_12px_0_0_#5390D9] relative"
             >
               <div className="text-center mb-6">
-                <span className="text-5xl mb-2 block animate-bounce">🍎</span>
+                <div className="mb-2 animate-bounce">
+                  <Apple className="w-16 h-16 text-[#5390D9] mx-auto" />
+                </div>
                 <h3
                   className="text-2xl text-[#5390D9]"
                   style={{ fontFamily: "var(--font-cherry)" }}

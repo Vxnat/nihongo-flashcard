@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlashcardData } from "@/types/flashcard";
 import { useTypingMode } from "@/hooks/flashcard/useTypingMode";
-import { Brain, LifeBuoy, Send, Sparkles } from "lucide-react";
+import { Brain, LifeBuoy, Send, Sparkles, Star, ArrowLeft } from "lucide-react";
 
 interface TypingBossFightProps {
   card: FlashcardData;
@@ -47,17 +47,17 @@ export function TypingBossFight({
   return (
     <div className="w-full max-w-md h-[400px] sm:h-[450px] bg-gradient-to-br from-[#FFEAF2]/75 via-white/55 to-[#E6FAF7]/75 backdrop-blur-md rounded-[2.5rem] border border-white/60 shadow-[0_16px_40px_rgba(83,144,217,0.12)] relative flex flex-col items-center justify-between p-4 sm:p-6 overflow-hidden">
       {/* Họa tiết trang trí lấp lánh */}
-      <span className="absolute top-8 left-4 text-xl select-none opacity-50 animate-bounce">🌸</span>
-      <span className="absolute top-4 right-1/3 text-md select-none opacity-30 text-amber-400">⭐</span>
-      <span className="absolute bottom-8 left-6 text-lg select-none opacity-40">🍃</span>
-      <span className="absolute bottom-16 right-4 text-xl select-none opacity-40 animate-pulse">✨</span>
+      <span className="absolute top-8 left-4 select-none opacity-50 animate-bounce text-pink-200"><Sparkles className="w-5 h-5" /></span>
+      <span className="absolute top-4 right-1/3 select-none opacity-30 text-amber-400"><Star className="w-4 h-4" /></span>
+      <span className="absolute bottom-8 left-6 select-none opacity-40 text-emerald-300"><Sparkles className="w-4 h-4" /></span>
+      <span className="absolute bottom-16 right-4 select-none opacity-40 animate-pulse text-orange-200"><Sparkles className="w-5 h-5" /></span>
 
       {/* Nút Hủy (Thoát ải) */}
       <button
         onClick={onCancel}
-        className="absolute top-3 left-3 sm:top-4 sm:left-4 font-rounded font-bold text-xs text-zinc-500 hover:text-zinc-700 px-3 py-1 bg-white/40 hover:bg-white/60 rounded-full border border-white/50 active:scale-95 transition-all shadow-sm backdrop-blur-sm z-10 cursor-pointer"
+        className="absolute top-3 left-3 sm:top-4 sm:left-4 font-rounded font-bold text-xs text-zinc-500 hover:text-zinc-700 px-3 py-1 bg-white/40 hover:bg-white/60 rounded-full border border-white/50 active:scale-95 transition-all shadow-sm backdrop-blur-sm z-10 cursor-pointer flex items-center gap-1"
       >
-        🏃{" "}
+        <ArrowLeft className="w-3 h-3" />
         <span
           style={{
             fontFamily: "var(--font-cherry)",

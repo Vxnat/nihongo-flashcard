@@ -330,20 +330,15 @@ export function useBossBattle(
       setBossTimeLeft((prev) => prev + 5);
       setBossCardMaxTime((prev) => prev + 5);
       import("react-hot-toast").then(({ toast }) => {
-        toast.success(
-          isGold
-            ? "Đã sử dụng Phao Bơi! +5 giây đóng băng! 🧊"
-            : "Đã sử dụng Phao Bơi! +5 giây đóng băng! 🧊",
-          { icon: "❄️" }
-        );
+        toast.success("Đã sử dụng Phao Bơi! +5 giây đóng băng!");
       });
       return true;
     } else {
       import("react-hot-toast").then(({ toast }) => {
         toast.error(
           isGold
-            ? "Không đủ Lông Vàng! Phao Bơi cần 1 Lông Vàng. 🪙"
-            : "Không đủ xu! Phao Bơi cần 5 xu. 🪙"
+            ? "Không đủ Coins! Phao Bơi cần 1 Coins."
+            : "Không đủ Xương! Phao Bơi cần 5 Xương."
         );
       });
       return false;
@@ -364,20 +359,15 @@ export function useBossBattle(
     if (success) {
       setIsHintRevealed(true);
       import("react-hot-toast").then(({ toast }) => {
-        toast.success(
-          isGold
-            ? "Đã sử dụng Kính Lúp! Gợi ý chữ cái đầu. 🔍"
-            : "Đã sử dụng Kính Lúp! Gợi ý chữ cái đầu. 🔍",
-          { icon: "🔍" }
-        );
+        toast.success("Đã sử dụng Kính Lúp! Gợi ý chữ cái đầu.");
       });
       return true;
     } else {
       import("react-hot-toast").then(({ toast }) => {
         toast.error(
           isGold
-            ? "Không đủ Lông Vàng! Kính Lúp cần 1 Lông Vàng. 🪙"
-            : "Không đủ xu! Kính Lúp cần 3 xu. 🪙"
+            ? "Không đủ Coins! Kính Lúp cần 1 Coins."
+            : "Không đủ Xương! Kính Lúp cần 3 Xương."
         );
       });
       return false;
@@ -415,9 +405,8 @@ export function useBossBattle(
         submitBossResult(active, false);
         localStorage.removeItem("activeBossBattle");
         import("react-hot-toast").then(({ toast }) => {
-          toast.error("Bạn đã thoát trận đấu Boss trước đó nửa chừng, tính là 1 thất bại! 💔", {
+          toast.error("Bạn đã thoát trận đấu Boss trước đó nửa chừng, tính là 1 thất bại!", {
             duration: 5000,
-            icon: "💔",
           });
         });
       }
@@ -453,9 +442,7 @@ export function useBossBattle(
       if (typeof window !== "undefined") {
         localStorage.removeItem("activeBossBattle");
       }
-      // import("react-hot-toast").then(({ toast }) => {
-      //   toast.error("Đã thoát giữa chừng! Tính là 1 thất bại. 💔");
-      // });
+
     };
 
     window.addEventListener("popstate", handlePopState);

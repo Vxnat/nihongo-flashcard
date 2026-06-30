@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, Check, X, Volume2, Info, Swords, Sofa, Smile, Palette, Star } from "lucide-react";
+import { Lock, Check, X, Volume2, Info, Swords, Sofa, Smile, Palette, Star, Bone, Shield } from "lucide-react";
 import { MemeItem, RARITY_CONFIG, GachaRarity } from "@/constants/gachaPool";
 import { useSystemItems } from "@/hooks/shiba-room/useSystemItems";
 import toast from "react-hot-toast";
@@ -193,7 +193,7 @@ export function RpgInventoryModal({
             {/* Header Title with Close X */}
             <div className="flex items-center justify-between mb-3 border-b border-[#FFD2CC]/60 pb-2 relative z-10">
               <h3 className="text-sm md:text-base text-pink-500 tracking-wider font-black flex items-center gap-1.5">
-                🎒 THÔNG TIN & HÒM ĐỒ SHIBA
+                <Swords size={16} strokeWidth={2.5} /> THÔNG TIN & HÒM ĐỒ SHIBA
               </h3>
               <button
                 onClick={() => {
@@ -246,8 +246,8 @@ export function RpgInventoryModal({
                       className="absolute inset-0 bg-[#FFFDF6] border-4 border-dashed border-[#FFD2CC] rounded-2xl z-30 flex flex-col p-4 select-none"
                     >
                       <div className="flex items-center justify-between border-b border-[#FFD2CC]/60 pb-2 mb-3">
-                        <span className="text-xs font-black text-pink-500 tracking-wider">
-                          📋 CHỈ SỐ CHI TIẾT
+                        <span className="text-xs font-black text-pink-500 tracking-wider flex items-center gap-1">
+                          <Info size={12} /> CHỈ SỐ CHI TIẾT
                         </span>
                         <button
                           onClick={() => setShowStatsBreakdown(false)}
@@ -300,7 +300,9 @@ export function RpgInventoryModal({
                         </div>
                         <div className="flex justify-between items-center bg-emerald-50/50 p-2.5 rounded-xl border border-emerald-100">
                           <span>Sản sinh Xương</span>
-                          <span className="text-emerald-600 font-black">+{totalBonesPerHour} 🦴/h</span>
+                          <span className="text-emerald-600 font-black flex items-center gap-0.5">
+                            +{totalBonesPerHour} <Bone size={11} className="rotate-45" />/h
+                          </span>
                         </div>
                       </div>
                     </motion.div>
@@ -365,9 +367,9 @@ export function RpgInventoryModal({
                   {/* Stats values row sticker style */}
                   <div className="flex items-center justify-between text-[11px] font-black text-pink-500 bg-white border-2 border-[#FFD2CC] px-3 py-1.5 rounded-2xl shadow-xs">
                     <div className="flex gap-4">
-                      <span className="flex items-center gap-1">⚔️ <span className="text-zinc-600">{totalAtk}</span></span>
-                      <span className="flex items-center gap-1">🛡️ <span className="text-zinc-600">{totalDef}</span></span>
-                      <span className="flex items-center gap-1">✨ <span className="text-zinc-600">{totalCrit}%</span></span>
+                      <span className="flex items-center gap-1"><Swords size={13} className="text-pink-500" /> <span className="text-zinc-600">{totalAtk}</span></span>
+                      <span className="flex items-center gap-1"><Shield size={13} className="text-pink-500" fill="currentColor" fillOpacity={0.2} /> <span className="text-zinc-600">{totalDef}</span></span>
+                      <span className="flex items-center gap-1"><Star size={13} className="text-pink-500" fill="currentColor" /> <span className="text-zinc-600">{totalCrit}%</span></span>
                     </div>
                     <button
                       onClick={() => setShowStatsBreakdown(true)}
@@ -593,8 +595,8 @@ export function RpgInventoryModal({
                               {selectedItem.rarity}
                             </span>
                             {selectedItem.type === "furniture" && (
-                              <span className="text-[8px] text-pink-500 font-black">
-                                +{selectedItem.bonesPerHour} 🦴/h
+                              <span className="text-[8px] text-pink-500 font-black flex items-center gap-0.5">
+                                +{selectedItem.bonesPerHour} <Bone size={10} className="rotate-45" />/h
                               </span>
                             )}
                             {(selectedItem.hpBonus ||
@@ -683,8 +685,8 @@ export function RpgInventoryModal({
                                   }
                                   toast.success(
                                     isCurrentlyEquipped
-                                      ? "Đã tháo trang bị! 📦"
-                                      : "Đã lắp đặt trang bị thành công! ⚔️"
+                                      ? "Đã tháo trang bị!"
+                                      : "Đã lắp đặt trang bị thành công!"
                                   );
                                 }}
                                 className={`flex-[1.5] py-1.5 text-white font-black rounded-2xl border-b-4 text-[10px] transition-all cursor-pointer flex items-center justify-center gap-1 ${isItemEquipped(selectedItem)

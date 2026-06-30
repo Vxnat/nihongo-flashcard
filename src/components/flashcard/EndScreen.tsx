@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Map, RotateCcw } from "lucide-react";
+import { Map, RotateCcw, Flower } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface EndScreenProps {
@@ -44,7 +44,7 @@ function FallingSakura() {
             ease: "linear",
           }}
         >
-          🌸
+          <Flower size={petal.size} className="fill-pink-200 stroke-pink-300/40" />
         </motion.div>
       ))}
     </div>

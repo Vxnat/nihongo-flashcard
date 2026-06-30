@@ -1,133 +1,94 @@
 {
   "sys_n5_boss_rpg_01": {
     "mapTitle": "Pháo Đài Kitsune",
-    "startNodeId": "guardian_1",
-    "rows": [
-      [
-        {
-          "id": "guardian_1",
-          "title": "Vệ Binh Daruma",
-          "type": "guardian",
-          "img": "/images/ui/roadmap/node_minigame.png",
-          "description": "Thử thách Nối Từ vựng để kiểm tra tốc độ phản xạ ôn tập Chương 1.",
-          "challenge": {
-            "type": "minigame_matching",
-            "sourceDeckIds": [
-              "sys_n5_minna_01",
-              "sys_n5_minna_02"
-            ]
-          },
-          "next": [
-            "fork_decision"
+    "stages": [
+      {
+        "id": "guardian_1",
+        "title": "Vệ Binh Daruma",
+        "type": "guardian",
+        "img": "/images/ui/roadmap/node_minigame.png",
+        "description": "Thử thách Nối Từ vựng để ôn tập kiến thức chương cũ.",
+        "unlocksShop": true,
+        "penaltyDamage": 25,
+        "challenge": {
+          "type": "minigame_matching",
+          "sourceDeckIds": [
+            "sys_n5_minna_01",
+            "sys_n5_minna_02"
           ]
         }
-      ],
-      [
-        {
-          "id": "fork_decision",
-          "title": "Ngã Rẽ Hầm Ngục",
-          "type": "fork",
-          "img": "/images/ui/roadmap/treasure_map_icon.png",
-          "description": "Chọn hướng đi tiếp theo của bạn: Đi mua trang bị hay Đi thẳng đấu Boss nhận x2 phần thưởng?",
-          "next": [
-            "shop",
-            "skip_shop"
+      },
+      {
+        "id": "guardian_2",
+        "title": "Hộ Vệ Kitsune",
+        "type": "guardian",
+        "img": "/images/ui/roadmap/node_fill.png",
+        "description": "Thử thách điền từ vào ô trống nâng cao ngữ pháp tiếng Nhật.",
+        "penaltyDamage": 35,
+        "challenge": {
+          "type": "minigame_fill",
+          "sourceDeckIds": [
+            "sys_n5_fill_01"
           ]
         }
-      ],
-      [
-        {
-          "id": "shop",
-          "title": "Trạm Dừng Chân",
-          "type": "shop",
-          "img": "/images/mascot/shiba_shop.gif",
-          "description": "Cửa hàng thảo dược Shiba. Hãy chuẩn bị hành trang đầy đủ trước khi giáp mặt Boss!",
-          "shopConfig": {
-            "items": [
-              {
-                "id": "item_hp_potion_small",
-                "name": "Nước Thánh Shiba",
-                "img": "/images/mascot/shiba_heart.png",
-                "description": "Hồi phục 50 HP cho Shiba.",
-                "cost": 20,
-                "effect": {
-                  "type": "heal",
-                  "value": 50
-                }
-              },
-              {
-                "id": "item_shield_wood",
-                "name": "Khiên Gỗ Cổ",
-                "img": "/images/placeholders/armor_placeholder.png",
-                "description": "Tạo 25 Giáp ảo chặn sát thương tiếp theo.",
-                "cost": 30,
-                "effect": {
-                  "type": "shield",
-                  "value": 25
-                }
-              },
-              {
-                "id": "item_atk_buff",
-                "name": "Bùa Tăng Lực",
-                "img": "/images/mascot/shiba_katana.png",
-                "description": "Tăng 20% sát thương trong trận đấu Boss.",
-                "cost": 40,
-                "effect": {
-                  "type": "buff_atk",
-                  "value": 1.2
-                }
-              }
-            ]
-          },
-          "next": [
-            "guardian_2"
+      },
+      {
+        "id": "final_boss",
+        "title": "Thủ Lĩnh Kitsune",
+        "type": "boss",
+        "img": "/images/ui/roadmap/node_boss.png",
+        "description": "Trận chiến Boss Kitsune khốc liệt. Hãy chuẩn bị đầy đủ bình máu!",
+        "penaltyDamage": 100,
+        "challenge": {
+          "type": "boss_battle",
+          "sourceDeckIds": [
+            "sys_n5_boss_rpg_01"
           ]
+        }
+      }
+    ],
+    "shopConfig": {
+      "items": [
+        {
+          "id": "item_hp_potion_small",
+          "name": "Nước Thánh Shiba",
+          "img": "/images/mascot/shiba_heart.png",
+          "description": "Hồi phục 50 HP cho Shiba.",
+          "costBones": 20,
+          "costGoldenFur": 2,
+          "limit": 3,
+          "effect": {
+            "type": "heal",
+            "value": 50
+          }
         },
         {
-          "id": "skip_shop",
-          "title": "Đi Thẳng",
-          "type": "skip_shop",
-          "img": "/images/ui/roadmap/node_story.png",
-          "description": "Bỏ qua trạm dừng chân để dồn sức đấu Boss. Nhận x2 Bones khi chiến thắng!",
-          "next": [
-            "guardian_2"
-          ]
-        }
-      ],
-      [
+          "id": "item_shield_wood",
+          "name": "Khiên Gỗ Cổ",
+          "img": "/images/placeholders/armor_placeholder.png",
+          "description": "Nhận 25 Giáp ảo chặn sát thương tiếp theo.",
+          "costBones": 30,
+          "costGoldenFur": 3,
+          "limit": 2,
+          "effect": {
+            "type": "shield",
+            "value": 25
+          }
+        },
         {
-          "id": "guardian_2",
-          "title": "Hộ Vệ Kitsune",
-          "type": "guardian",
-          "img": "/images/ui/roadmap/node_fill.png",
-          "description": "Thử thách Điền Trợ Từ để kiểm tra ngữ pháp trước cổng Pháo Đài.",
-          "challenge": {
-            "type": "minigame_fill",
-            "sourceDeckIds": [
-              "sys_n5_fill_01"
-            ]
-          },
-          "next": [
-            "final_boss"
-          ]
-        }
-      ],
-      [
-        {
-          "id": "final_boss",
-          "title": "Pháo Đài Kitsune",
-          "type": "boss",
-          "img": "/images/ui/roadmap/node_boss.png",
-          "description": "Thủ lĩnh cáo chín đuôi Kitsune đang chờ đợi. Trận đấu Boss quyết định!",
-          "challenge": {
-            "type": "boss_battle",
-            "sourceDeckIds": [
-              "sys_n5_boss_rpg_01"
-            ]
-          },
-          "next": []
+          "id": "item_atk_buff",
+          "name": "Bùa Tăng Lực",
+          "img": "/images/mascot/shiba_katana.png",
+          "description": "Tăng 20% sát thương khi đấu Boss.",
+          "costBones": 40,
+          "costGoldenFur": 4,
+          "limit": 1,
+          "effect": {
+            "type": "buff_atk",
+            "value": 1.2
+          }
         }
       ]
-    ]
+    }
   }
 }

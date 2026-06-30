@@ -1,6 +1,5 @@
-import React from "react";
 import { motion } from "framer-motion";
-import { RotateCcw, X } from "lucide-react";
+import { RotateCcw, X, Trophy, Frown, Bone } from "lucide-react";
 
 interface GameResultModalProps {
   status: "win" | "lose";
@@ -34,7 +33,7 @@ export function GameResultModal({
       buttonBg: "#06D6A0",
       buttonHoverBg: "#05b889",
       buttonBorder: "#048c68",
-      icon: "🎉",
+      icon: <Trophy className="w-16 h-16 text-[#FF9F1C]" />,
       title: "Chiến thắng!",
       message: "Bạn đã hoàn thành xuất sắc thử thách!",
       primaryButtonText: "Tuyệt vời!",
@@ -46,7 +45,7 @@ export function GameResultModal({
       buttonBg: "#FF7096",
       buttonHoverBg: "#FF5C8A",
       buttonBorder: "#C7486B",
-      icon: "😭",
+      icon: <Frown className="w-16 h-16 text-[#FF7096]" />,
       title: reason || "Thất bại!",
       message: "Đừng nản lòng, cố gắng ở lần sau nhé!",
       primaryButtonText: "Chơi lại",
@@ -71,7 +70,9 @@ export function GameResultModal({
           boxShadow: `0 12px 0 0 ${currentConfig.shadowColor}`,
         }}
       >
-        <span className="text-6xl mb-4 block animate-bounce">{currentConfig.icon}</span>
+        <div className="flex justify-center mb-4 animate-bounce">
+          {currentConfig.icon}
+        </div>
         <h3 className="text-3xl mb-2" style={{ fontFamily: "var(--font-cherry)", color: currentConfig.titleColor }}>
           {currentConfig.title}
         </h3>
@@ -89,7 +90,7 @@ export function GameResultModal({
             <span className="text-xs font-black text-orange-400 uppercase tracking-wider block">Phần thưởng</span>
             <div className="flex items-center justify-center gap-2">
               <span className="text-5xl font-bold text-[#FF9F1C] drop-shadow-md" style={{ fontFamily: "var(--font-cherry)" }}>+{totalReward}</span>
-              <span className="text-3xl filter drop-shadow-sm pb-1">🦴</span>
+              <Bone className="w-8 h-8 text-[#FF9F1C] rotate-[45deg]" />
             </div>
             {(timeBonus > 0 || scoreBonus > 0) && <p className="text-xs font-bold text-orange-400 font-rounded">({rewardCoins} cơ bản + {timeBonus > 0 ? `${timeBonus} thời gian` : `${scoreBonus} điểm thưởng`})</p>}
           </div>

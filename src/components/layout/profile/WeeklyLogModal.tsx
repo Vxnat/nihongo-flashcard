@@ -54,7 +54,7 @@ export function WeeklyLogModal({
                 Nhật Ký Tuần
               </h3>
               <p className="font-rounded text-zinc-500 font-bold text-xs mt-2 px-4 leading-relaxed">
-                Nhật ký thời gian học tập trong tuần của bạn. Học đều đặn mỗi ngày để xây dựng thói quen tốt nhé! 🐾
+                Nhật ký thời gian học tập trong tuần của bạn. Học đều đặn mỗi ngày để xây dựng thói quen tốt nhé!
               </p>
             </div>
 

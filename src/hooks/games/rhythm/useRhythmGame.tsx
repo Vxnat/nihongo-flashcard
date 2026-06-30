@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Ham, Shield, Bone, Bug } from "lucide-react";
+import { Ham, Shield, Bone, Bug, Sparkles } from "lucide-react";
 import { FlashcardData } from "@/types/flashcard";
 import { selectAdaptiveCards } from "@/utils/wordSelector";
 import { useAppStore } from "@/store/useAppStore";
@@ -45,7 +45,7 @@ export function useRhythmGame({
   const [maxCombo, setMaxCombo] = useState(0);
   const [hp, setHp] = useState(3);
   const [extraHearts, setExtraHearts] = useState(0);
-  const [hasShield, setHasShield] = useState(false);
+  const [hasShield, setHasShield] = useState<number>(0);
   const [isFeverMode, setIsFeverMode] = useState(false);
   const [feverEnergy, setFeverEnergy] = useState(0);
   const [gameStatus, setGameStatus] = useState<"idle" | "playing" | "gameover" | "win">("idle");
@@ -56,7 +56,7 @@ export function useRhythmGame({
   const [blindActive, setBlindActive] = useState(false);
   const [hitFeedback, setHitFeedback] = useState<{
     lane: number;
-    rating: "Perfect" | "Great" | "Miss" | "";
+    rating: "Perfect" | "Great" | "Good" | "Miss" | "";
   }[]>([
     { lane: 0, rating: "" },
     { lane: 1, rating: "" },
@@ -140,7 +140,7 @@ export function useRhythmGame({
     setMaxCombo(0);
     setHp(3);
     setExtraHearts(0);
-    setHasShield(false);
+    setHasShield(0);
     setIsFeverMode(false);
     setFeverEnergy(0);
     setEarnedCoins(0);
@@ -151,7 +151,9 @@ export function useRhythmGame({
 
     if (selected[0]) {
       setTimeout(() => {
-        playAudio(selected[0].word, "ja-JP");
+        playAudio(selected[0].word, "ja-JP", () => {
+          spawnNoteRef.current();
+        });
       }, 500);
     }
   }, [cards, wordStats]);
@@ -168,10 +170,12 @@ export function useRhythmGame({
 
     const nextWord = gameWordsRef.current[completedWordsCountRef.current];
     setTargetWord(nextWord);
-    playAudio(nextWord.word, "ja-JP");
+    playAudio(nextWord.word, "ja-JP", () => {
+      spawnNoteRef.current();
+    });
   }, [addCoins, addExp, rewards]);
 
-  const triggerFeedback = (lane: number, rating: "Perfect" | "Great" | "Miss") => {
+  const triggerFeedback = (lane: number, rating: "Perfect" | "Great" | "Good" | "Miss") => {
     setHitFeedback((prev) =>
       prev.map((fb, idx) => (idx === lane ? { lane, rating } : fb))
     );
@@ -188,8 +192,8 @@ export function useRhythmGame({
     setCombo(0);
     setFeverEnergy((prev) => Math.max(0, prev - 8));
 
-    if (hasShieldRef.current) {
-      setHasShield(false);
+    if (hasShieldRef.current > 0) {
+      setHasShield((prev) => Math.max(0, prev - 1));
     } else {
       if (extraHeartsRef.current > 0) {
         setExtraHearts((prev) => prev - 1);
@@ -225,7 +229,7 @@ export function useRhythmGame({
       chosenLanes.forEach((l) => {
         newNotes.push({
           id: `fever-${timestampId}-${l}`,
-          char: "🌟",
+          char: <Sparkles size={20} className="text-[#FF9F1C] fill-[#FF9F1C]" />,
           lane: l,
           y: 0,
           isTarget: true,
@@ -354,8 +358,8 @@ export function useRhythmGame({
           if (note.hit) return note;
           const nextY = note.y + dy;
 
-          // Handle Miss (Target note escapes hit line without being tapped)
-          if (nextY > 95 && !note.hit && !note.missed) {
+          // Handle Miss (Nốt nhạc chạm vạch gai đỏ ở Y = 90% mà chưa được gõ)
+          if (nextY > 90 && !note.hit && !note.missed) {
             note.missed = true;
             if (note.isTarget && !isFeverModeRef.current) {
               // Missed target note
@@ -373,11 +377,13 @@ export function useRhythmGame({
         return nextNotes.filter((n) => n.y < 105);
       });
 
-      // Spawning Logic (Every 1400ms or faster depending on combo)
-      const currentSpawnInterval = Math.max(1300, 2200 - comboRef.current * 25);
-      if (time - lastSpawnTimeRef.current > currentSpawnInterval) {
-        spawnNoteRef.current();
-        lastSpawnTimeRef.current = time;
+      // Spawning Logic (Chỉ tự động spawn nốt trong Fever Mode)
+      if (isFeverModeRef.current) {
+        const currentSpawnInterval = Math.max(1300, 2200 - comboRef.current * 25);
+        if (time - lastSpawnTimeRef.current > currentSpawnInterval) {
+          spawnNoteRef.current();
+          lastSpawnTimeRef.current = time;
+        }
       }
 
       animationFrameId = requestAnimationFrame(loop);
@@ -403,9 +409,23 @@ export function useRhythmGame({
         (n) => n.lane === lane && !n.hit && n.y > 0
       );
 
+      // Helper to handle wrong tap: punish and advance target
+      const handleWrongTap = () => {
+        handleMissActionRef.current(lane);
+        if (!isFeverModeRef.current) {
+          // Mark all current notes as missed so they don't trigger Miss again on spiked line
+          setActiveNotes((prev) =>
+            prev.map((n) => (!n.hit ? { ...n, missed: true } : n))
+          );
+          setTimeout(() => {
+            selectNextTargetRef.current();
+          }, 50);
+        }
+      };
+
       // RULE 1: Empty Tap - Bấm làn trống -> Phạt Miss
       if (notesInLane.length === 0) {
-        handleMissActionRef.current(lane);
+        handleWrongTap();
         return;
       }
 
@@ -413,18 +433,23 @@ export function useRhythmGame({
       notesInLane.sort((a, b) => b.y - a.y);
       const targetNote = notesInLane[0];
 
-      // Tap hit window (30% to 95%) - Chơi phản xạ sớm để thưởng Perfect
-      const isWithinHitWindow = targetNote.y >= 30 && targetNote.y <= 95;
+      // Tap hit window (30% to 90%) - Tiêu hủy trước khi chạm vạch gai đỏ ở 90%
+      const isWithinHitWindow = targetNote.y >= 30 && targetNote.y <= 90;
 
-      // RULE 2: Gõ khi nốt nằm ngoài Hit Window (quá sớm hoặc quá muộn) -> Phạt Miss
+      // RULE 2: Gõ khi nốt nằm ngoài Hit Window (quá sớm hoặc chạm gai) -> Phạt Miss
       if (!isWithinHitWindow) {
-        handleMissActionRef.current(lane);
+        handleWrongTap();
         return;
       }
 
       // Hit is successful!
       const yDist = targetNote.y;
-      const rating = yDist >= 30 && yDist < 75 ? "Perfect" : "Great";
+      const rating: "Perfect" | "Great" | "Good" =
+        yDist >= 30 && yDist < 60
+          ? "Perfect"
+          : yDist >= 60 && yDist < 78
+            ? "Great"
+            : "Good";
 
       // Mark note as hit
       setActiveNotes((prev) =>
@@ -437,7 +462,12 @@ export function useRhythmGame({
       // Process hit logic based on note details
       if (targetNote.isTarget || isFeverModeRef.current) {
         // Gõ trúng nốt mục tiêu (hoặc nốt vàng trong Fever Mode)
-        const basePoints = rating === "Perfect" ? 100 : 60;
+        const basePoints =
+          rating === "Perfect"
+            ? 100
+            : rating === "Great"
+              ? 60
+              : 30;
         const pointsEarned = basePoints * (isFeverModeRef.current ? 2 : 1);
         setScore((s) => s + pointsEarned);
 
@@ -456,7 +486,12 @@ export function useRhythmGame({
           return nextCombo;
         });
 
-        setFeverEnergy((prev) => Math.min(100, prev + (rating === "Perfect" ? 8 : 5)));
+        setFeverEnergy((prev) =>
+          Math.min(
+            100,
+            prev + (rating === "Perfect" ? 8 : rating === "Great" ? 5 : 2)
+          )
+        );
 
         // Target hit -> Đổi từ mục tiêu tiếp theo
         if (!isFeverModeRef.current) {
@@ -473,7 +508,7 @@ export function useRhythmGame({
           }
         } else if (targetNote.type === "shield") {
           playAudioUrl("/sounds/splash.mp3");
-          setHasShield(true);
+          setHasShield((prev) => Math.min(5, prev + 1)); // Mỗi lần gõ trúng nốt khiên chỉ được cộng thêm 1 khiên, tối đa 5
         } else if (targetNote.type === "coin") {
           playAudioUrl("/sounds/coin.mp3");
           setEarnedCoins((prev) => prev + 2);
@@ -484,8 +519,8 @@ export function useRhythmGame({
           if (blindTimeoutRef.current) clearTimeout(blindTimeoutRef.current);
           blindTimeoutRef.current = setTimeout(() => setBlindActive(false), 2000);
 
-          if (hasShieldRef.current) {
-            setHasShield(false);
+          if (hasShieldRef.current > 0) {
+            setHasShield((prev) => Math.max(0, prev - 1));
           } else {
             if (extraHeartsRef.current > 0) {
               setExtraHearts((prev) => prev - 1);
@@ -501,10 +536,20 @@ export function useRhythmGame({
             }
           }
           setCombo(0);
+
+          if (!isFeverModeRef.current) {
+            // Đánh dấu tất cả các nốt hiện tại là missed để tránh phạt lần hai
+            setActiveNotes((prev) =>
+              prev.map((n) => (!n.hit ? { ...n, missed: true } : n))
+            );
+            setTimeout(() => {
+              selectNextTargetRef.current();
+            }, 50);
+          }
         }
       } else {
         // Gõ nhầm làn chữ nhiễu (Dummy) -> Phạt Miss
-        handleMissActionRef.current(lane);
+        handleWrongTap();
       }
     },
     [activeNotes, isMuted]

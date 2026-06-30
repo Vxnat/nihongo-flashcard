@@ -338,7 +338,7 @@ export const createUserStatsSlice: StateCreator<
     if (newLearningTime >= requiredTime && !dailyTimeGoalClaimed) {
       dailyTimeGoalClaimed = true;
       newStats = applyRewards(newStats, { exp: 50 });
-      toast.success("Đạt mục tiêu học tối thiểu hôm nay! +50 EXP 🎉", { icon: "🔥" });
+      toast.success("Đạt mục tiêu học tối thiểu hôm nay! +50 EXP");
     }
 
     const updatedStats = {

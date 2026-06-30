@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { Lock, Bone } from "lucide-react";
 import { SystemDeck } from "@/types/flashcard";
@@ -151,13 +150,6 @@ export function RoadmapNode({
           {completed ? "✓" : index + 1}
         </motion.button>
       </div>
-
-      {/* 2. ĐƯỜNG NỐI NGANG (NỐI TỪ NÚT SỐ SANG THẺ) */}
-      <div
-        className={`absolute left-[calc(50%-50px)] top-[70px] w-24 h-1 border-t-2 border-dashed pointer-events-none z-10
-              ${completed ? "border-emerald-300" : isActive ? "border-amber-300" : "border-zinc-200"}
-            `}
-      />
 
       {/* 3. THẺ THÔNG TIN (X = 65px hoặc -65px) */}
       <div className={`absolute -translate-x-1/2 top-[105px] -translate-y-1/2 z-20 w-[210px] sm:w-[230px] ${isLeft ? "left-[calc(50%+65px)]" : "left-[calc(50%-65px)]"}`}>

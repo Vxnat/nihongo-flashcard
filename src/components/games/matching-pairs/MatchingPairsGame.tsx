@@ -49,17 +49,20 @@ export function MatchingPairsGame({
     activateKinhLupMode,
     handleRestartGame,
     handleGameWin,
+    startTimer,
   } = useMatchingPairsGame({ cards, minigameDeck, onWin });
 
   useLearningTimer({ isActive: minigameStatus === "playing" });
 
   const [isMasterOpen, setIsMasterOpen] = React.useState(false);
   const [showTutorial, setShowTutorial] = React.useState(false);
+  const [isFirstTutorial, setIsFirstTutorial] = React.useState(false);
 
   React.useEffect(() => {
     const hasSeen = localStorage.getItem("matching_tutorial_seen");
     if (hasSeen !== "true") {
       setShowTutorial(true);
+      setIsFirstTutorial(true);
     }
   }, []);
 
@@ -308,12 +311,16 @@ export function MatchingPairsGame({
       />
 
       {/* MÀN HÌNH HƯỚNG DẪN CHƠI */}
-      <AnimatePresence>
+       <AnimatePresence>
         {showTutorial && (
           <MPTutorialOverlay
             onClose={() => {
               setShowTutorial(false);
               localStorage.setItem("matching_tutorial_seen", "true");
+              if (isFirstTutorial) {
+                startTimer();
+                setIsFirstTutorial(false);
+              }
             }}
           />
         )}

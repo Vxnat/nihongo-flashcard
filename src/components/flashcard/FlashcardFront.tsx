@@ -1,5 +1,6 @@
 import React from "react";
 import { FlashcardData } from "@/types/flashcard";
+import { Sparkles, Star } from "lucide-react";
 
 interface FlashcardFrontProps {
   card: FlashcardData;
@@ -11,11 +12,11 @@ export const FlashcardFront: React.FC<FlashcardFrontProps> = ({ card, isZen = fa
     return (
       <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-white/10 backdrop-blur-md rounded-2xl border-2 border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] relative overflow-hidden group transition-all duration-500">
         {/* Trang trí góc lấp lánh (phát sáng neon) */}
-        <div className="absolute top-8 right-8 text-pink-300 text-3xl opacity-80 animate-pulse" style={{ filter: "drop-shadow(0 0 6px rgba(244,143,177,0.8))" }}>
-          ✨
+        <div className="absolute top-8 right-8 text-pink-300 opacity-80 animate-pulse" style={{ filter: "drop-shadow(0 0 6px rgba(244,143,177,0.8))" }}>
+          <Sparkles className="w-6 h-6" />
         </div>
-        <div className="absolute bottom-8 left-8 text-indigo-300 text-2xl opacity-60 animate-pulse" style={{ filter: "drop-shadow(0 0 6px rgba(159,168,218,0.8))" }}>
-          ⭐
+        <div className="absolute bottom-8 left-8 text-indigo-300 opacity-60 animate-pulse" style={{ filter: "drop-shadow(0 0 6px rgba(159,168,218,0.8))" }}>
+          <Star className="w-5 h-5" />
         </div>
 
         {/* Kanji/Từ vựng khổng lồ phát sáng neon */}
@@ -42,11 +43,11 @@ export const FlashcardFront: React.FC<FlashcardFrontProps> = ({ card, isZen = fa
     <div className="w-full h-full flex flex-row items-center justify-between p-6 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-white/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)] cursor-pointer relative overflow-hidden group transition-all duration-300">
 
       {/* Trang trí góc lấp lánh như hình ảnh */}
-      <span className="absolute top-8 left-4 text-2xl select-none opacity-80 animate-bounce">🌸</span>
-      <span className="absolute top-4 right-1/2 text-lg select-none opacity-40 text-amber-400">⭐</span>
-      <span className="absolute bottom-8 left-6 text-xl select-none opacity-60">🍃</span>
-      <span className="absolute bottom-4 right-1/2 text-2xl select-none opacity-70">✨</span>
-      <span className="absolute top-10 right-4 text-xl select-none opacity-80">🌸</span>
+      <span className="absolute top-8 left-4 select-none opacity-80 animate-bounce text-pink-200"><Sparkles className="w-6 h-6" /></span>
+      <span className="absolute top-4 right-1/2 select-none opacity-40 text-amber-400"><Star className="w-5 h-5" /></span>
+      <span className="absolute bottom-8 left-6 select-none opacity-60 text-emerald-300"><Sparkles className="w-4 h-4" /></span>
+      <span className="absolute bottom-4 right-1/2 select-none opacity-70 text-orange-200"><Sparkles className="w-6 h-6" /></span>
+      <span className="absolute top-10 right-4 select-none opacity-80 text-pink-300"><Sparkles className="w-5 h-5" /></span>
 
       {/* Left Column: Kanji / Reading hint */}
       <div className="w-[53%] flex flex-col justify-center items-start pl-2 select-none h-full">

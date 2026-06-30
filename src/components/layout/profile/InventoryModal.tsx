@@ -57,7 +57,7 @@ export function InventoryModal({
                 Hành Trang
               </h3>
               <p className="font-rounded text-zinc-500 font-bold text-xs mt-2 px-4 leading-relaxed">
-                Túi đồ chứa các sticker nhân vật và quà lưu niệm bạn thu thập được từ máy Gacha! 🐾🎁
+                Túi đồ chứa các sticker nhân vật và quà lưu niệm bạn thu thập được từ máy Gacha!
               </p>
             </div>
 
@@ -71,9 +71,9 @@ export function InventoryModal({
                 </div>
               ) : userInventoryItems.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-10 text-center gap-2 h-full">
-                  <span className="text-3xl">🎒</span>
+                  <Package size={32} className="text-zinc-400" />
                   <p className="font-rounded font-bold text-xs text-zinc-400">
-                    Hành trang trống rỗng!<br />Hãy quay Gacha để tìm kiếm Sticker nhé! ✨
+                    Hành trang trống rỗng!<br />Hãy quay Gacha để tìm kiếm Sticker nhé!
                   </p>
                 </div>
               ) : (
@@ -83,7 +83,7 @@ export function InventoryModal({
                       whileHover={{ scale: 1.05 }}
                       key={item.id + "-" + idx}
                       className="bg-white border-2 border-[#FFE2D1]/40 rounded-2xl p-2.5 flex flex-col items-center justify-center text-center shadow-sm relative group cursor-pointer"
-                      onClick={() => toast(`${item.title}: ${item.desc || ""}`, { icon: "🎒" })}
+                      onClick={() => toast(`${item.title}: ${item.desc || ""}`)}
                     >
                       {/* Item Image */}
                       <div className="w-12 h-12 flex items-center justify-center select-none pointer-events-none mb-1.5">

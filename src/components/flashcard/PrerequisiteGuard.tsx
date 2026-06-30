@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppStore } from "@/store/useAppStore";
+import { Sparkles, Lock } from "lucide-react";
 
 interface PrerequisiteDeckInfo {
   id: string;
@@ -84,13 +85,13 @@ export function PrerequisiteGuard({
           {[0, 1, 2].map((i) => (
             <span
               key={i}
-              className="text-lg animate-bounce select-none"
+              className="animate-bounce select-none"
               style={{
                 animationDelay: `${i * 0.25}s`,
                 animationDuration: "0.8s",
               }}
             >
-              🐾
+              <Sparkles size={14} className="text-[#FF9F1C] fill-[#FF9F1C]" />
             </span>
           ))}
         </div>
@@ -106,8 +107,8 @@ export function PrerequisiteGuard({
     return (
       <div className="w-full max-w-md mx-auto h-[400px] flex flex-col items-center justify-center bg-white/85 border-4 border-[#FFD166] rounded-[3rem] shadow-[0_8px_0_0_#FFE2B3] py-16 px-6 text-center">
         {/* Lock icon bounce */}
-        <div className="text-6xl mb-6 animate-bounce select-none">
-          🔒
+        <div className="mb-6 animate-bounce select-none">
+          <Lock className="w-16 h-16 text-[#FFD166] fill-[#FFD166] mx-auto" />
         </div>
 
         <h3 className="text-2xl text-[#FF7096] mb-3 font-black" style={{ fontFamily: "var(--font-cherry)" }}>

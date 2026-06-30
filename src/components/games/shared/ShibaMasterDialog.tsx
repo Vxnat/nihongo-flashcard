@@ -57,13 +57,6 @@ export function ShibaMasterDialog({
       const used = await useFreeMinigameHint();
       if (used) {
         playSound("/sounds/coin.mp3", 0.1); // Tiếng mua đồ thành công
-        // toast.success("Dùng trợ giúp miễn phí! 🛟");
-        // confetti({
-        //   particleCount: 50,
-        //   spread: 60,
-        //   origin: { y: 0.8 },
-        //   zIndex: 2000,
-        // });
         await option.onConfirm();
         onClose();
         setIsProcessing(false);
@@ -78,13 +71,6 @@ export function ShibaMasterDialog({
 
     if (success) {
       playSound("/sounds/coin.mp3", 0.1); // Tiếng xèng rơi keng keng
-      // toast.success(isGoldenFur ? `Đã trả ${option.cost} Lông vàng! 🐾` : `Đã trả ${option.cost} Xương! 🦴`);
-      // confetti({
-      //   particleCount: 50,
-      //   spread: 60,
-      //   origin: { y: 0.8 },
-      //   zIndex: 2000,
-      // });
       await option.onConfirm();
       onClose();
     }

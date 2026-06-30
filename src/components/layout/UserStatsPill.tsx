@@ -20,7 +20,7 @@ export function UserStatsPill({ onTabChange }: UserStatsPillProps) {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       onClick={() => onTabChange("profile")}
       className="fixed top-4 left-4 z-[50] flex items-center gap-3 bg-white/90 backdrop-blur-sm px-4 py-2 border-2 border-[#FFE2D1] rounded-full shadow-sm cursor-pointer hover:bg-white hover:scale-105 active:scale-95 transition-all select-none"
-      title="Xem Hồ sơ & Thành tích học tập! ✨"
+      title="Xem Hồ sơ & Thành tích học tập!"
       style={{ fontFamily: "var(--font-cherry)" }}
     >
       {/* 1. Streak */}

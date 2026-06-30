@@ -10,24 +10,25 @@ export function SplashScreen() {
   const [interactionNeeded, setInteractionNeeded] = useState(false);
 
   useEffect(() => {
-    const audio = new Audio("/sounds/splash.mp3");
-    audio.volume = 0.3;
+    setTimeout(() => setShow(false), 1500);
+    // const audio = new Audio("/sounds/splash.mp3");
+    // audio.volume = 0.3;
 
-    audio
-      .play()
-      .then(() => {
-        // Nếu trình duyệt cho phép tự phát (VD: Đã cài PWA) -> Tự đóng sau 1.5s
-        setTimeout(() => setShow(false), 1500);
-      })
-      .catch(() => {
-        // Nếu trình duyệt chặn (Chính sách Autoplay) -> Đợi người dùng chạm
-        setInteractionNeeded(true);
-      });
+    // audio
+    //   .play()
+    //   .then(() => {
+    //     // Nếu trình duyệt cho phép tự phát (VD: Đã cài PWA) -> Tự đóng sau 1.5s
+
+    //   })
+    //   .catch(() => {
+    //     // Nếu trình duyệt chặn (Chính sách Autoplay) -> Đợi người dùng chạm
+    //     setInteractionNeeded(true);
+    //   });
   }, []);
 
   const handleTapToStart = () => {
     if (!interactionNeeded) return;
-    playSFX("splash");
+    // playSFX("splash");
     setShow(false);
   };
 
@@ -77,7 +78,7 @@ export function SplashScreen() {
                 }}
                 className="mt-8 font-rounded font-bold text-zinc-400 text-sm tracking-wide"
               >
-                Chạm vào màn hình để bắt đầu ✨
+                Chạm vào màn hình để bắt đầu
               </motion.p>
             )}
           </motion.div>

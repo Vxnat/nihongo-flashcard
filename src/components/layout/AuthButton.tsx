@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useAppStore } from "@/store/useAppStore";
-import { LogIn, LogOut, UserCircle, Download } from "lucide-react";
+import { LogIn, LogOut, UserCircle, Download, Settings, BookOpen, Smile } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { usePwaInstall } from "@/hooks/common/usePwaInstall";
 import { PwaInstallPrompt } from "@/components/common/PwaInstallPrompt";
@@ -127,7 +127,7 @@ export function AuthButton({ isInline = false }: AuthButtonProps) {
                       href="/admin"
                       className="w-full flex items-center justify-center gap-2 bg-amber-50 hover:bg-amber-100 text-amber-900 font-extrabold py-2 px-4 rounded-xl border border-amber-300 shadow-sm text-xs cursor-pointer transition-colors"
                     >
-                      🛠️ Trang quản trị Admin
+                      <Settings className="w-4 h-4" /> Trang quản trị Admin
                     </a>
                   )}
                 </div>
@@ -146,15 +146,15 @@ export function AuthButton({ isInline = false }: AuthButtonProps) {
 
                   <button
                     onClick={() => setAppMode("focus")}
-                    className={`flex-1 relative z-10 text-xs font-bold py-2 text-center transition-colors ${appMode === "focus" ? "text-amber-900" : "text-zinc-400 hover:text-zinc-600"}`}
+                    className={`flex-1 relative z-10 text-xs font-bold py-2 text-center transition-colors flex items-center justify-center gap-1.5 ${appMode === "focus" ? "text-amber-900" : "text-zinc-400 hover:text-zinc-600"}`}
                   >
-                    👔 Tập trung
+                    <BookOpen className="w-3.5 h-3.5" /> Tập trung
                   </button>
                   <button
                     onClick={() => setAppMode("fun")}
-                    className={`flex-1 relative z-10 text-xs font-bold py-2 text-center transition-colors ${appMode === "fun" ? "text-white" : "text-zinc-400 hover:text-zinc-600"}`}
+                    className={`flex-1 relative z-10 text-xs font-bold py-2 text-center transition-colors flex items-center justify-center gap-1.5 ${appMode === "fun" ? "text-white" : "text-zinc-400 hover:text-zinc-600"}`}
                   >
-                    🎈 Vui nhộn
+                    <Smile className="w-3.5 h-3.5" /> Vui nhộn
                   </button>
                 </div>
               </div>
@@ -250,7 +250,7 @@ export function AuthButton({ isInline = false }: AuthButtonProps) {
                         href="/admin"
                         className="w-full flex items-center justify-center gap-2 bg-amber-50 hover:bg-amber-100 text-amber-900 font-extrabold py-2 px-4 rounded-xl border border-amber-300 shadow-sm text-xs cursor-pointer transition-colors"
                       >
-                        🛠️ Trang quản trị Admin
+                        <Settings className="w-4 h-4" /> Trang quản trị Admin
                       </a>
                     )}
                   </div>
@@ -269,15 +269,15 @@ export function AuthButton({ isInline = false }: AuthButtonProps) {
 
                     <button
                       onClick={() => setAppMode("focus")}
-                      className={`flex-1 relative z-10 text-xs font-bold py-2 text-center transition-colors ${appMode === "focus" ? "text-amber-900" : "text-zinc-400 hover:text-zinc-600"}`}
+                      className={`flex-1 relative z-10 text-xs font-bold py-2 text-center transition-colors flex items-center justify-center gap-1.5 ${appMode === "focus" ? "text-amber-900" : "text-zinc-400 hover:text-zinc-600"}`}
                     >
-                      👔 Tập trung
+                      <BookOpen className="w-3.5 h-3.5" /> Tập trung
                     </button>
                     <button
                       onClick={() => setAppMode("fun")}
-                      className={`flex-1 relative z-10 text-xs font-bold py-2 text-center transition-colors ${appMode === "fun" ? "text-white" : "text-zinc-400 hover:text-zinc-600"}`}
+                      className={`flex-1 relative z-10 text-xs font-bold py-2 text-center transition-colors flex items-center justify-center gap-1.5 ${appMode === "fun" ? "text-white" : "text-zinc-400 hover:text-zinc-600"}`}
                     >
-                      🎈 Vui nhộn
+                      <Smile className="w-3.5 h-3.5" /> Vui nhộn
                     </button>
                   </div>
                 </div>

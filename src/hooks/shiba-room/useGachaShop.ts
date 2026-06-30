@@ -274,7 +274,7 @@ export function useGachaShop() {
     // Kiểm tra & Trừ tiền
     const success = await deductCoins(10);
     if (!success) {
-      toast.error("Không đủ Xương! Hãy làm Nhiệm vụ nhé 🥺", { icon: "🦴" });
+      toast.error("Không đủ Xương! Hãy làm Nhiệm vụ nhé");
       return;
     }
 
@@ -372,7 +372,7 @@ export function useGachaShop() {
     // Deduct coins
     const success = await deductCoins(cost);
     if (!success) {
-      toast.error("Không đủ Xương! Hãy làm Nhiệm vụ nhé 🥺", { icon: "🦴" });
+      toast.error("Không đủ Xương! Hãy làm Nhiệm vụ nhé");
       return;
     }
 

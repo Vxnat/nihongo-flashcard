@@ -84,7 +84,7 @@ export function useAdminItems({ setIsLoading }: UseAdminItemsProps) {
     try {
       await setDoc(doc(db, "system_config", "gacha_type_weights"), updatedWeights);
       setTypeWeights(updatedWeights);
-      toast.success("Đã lưu Type Weights lên Firestore thành công! ⚖️");
+      toast.success("Đã lưu Type Weights lên Firestore thành công!");
     } catch (err: any) {
       toast.error("Lỗi lưu Type Weights: " + err.message);
     } finally {
@@ -170,7 +170,7 @@ export function useAdminItems({ setIsLoading }: UseAdminItemsProps) {
       });
 
       setIsGachaModalOpen(false);
-      toast.success("Đã lưu vật phẩm lên Firestore! 🎟️");
+      toast.success("Đã lưu vật phẩm lên Firestore!");
     } catch (err: any) {
       toast.error("Lỗi khi lưu vật phẩm: " + err.message);
     } finally {
@@ -265,7 +265,7 @@ export function useAdminItems({ setIsLoading }: UseAdminItemsProps) {
       });
 
       setIsShopModalOpen(false);
-      toast.success("Đã lưu vật phẩm cửa hàng lên Firestore! 🛒");
+      toast.success("Đã lưu vật phẩm cửa hàng lên Firestore!");
     } catch (err: any) {
       toast.error("Lỗi khi lưu vật phẩm: " + err.message);
     } finally {
@@ -290,7 +290,7 @@ export function useAdminItems({ setIsLoading }: UseAdminItemsProps) {
   }, [setIsLoading]);
 
   const handleClearAllItems = useCallback(async () => {
-    if (!confirm("⚠️ CẢNH BÁO CỰC KỲ QUAN TRỌNG:\nBạn có chắc chắn muốn XÓA SẠCH TOÀN BỘ vật phẩm (bao gồm cả Gacha Pool và Cửa hàng) khỏi Firestore không?\nHành động này sẽ xóa sạch dữ liệu vĩnh viễn và không thể khôi phục!")) return;
+    if (!confirm("[CẢNH BÁO CỰC KỲ QUAN TRỌNG]:\nBạn có chắc chắn muốn XÓA SẠCH TOÀN BỘ vật phẩm (bao gồm cả Gacha Pool và Cửa hàng) khỏi Firestore không?\nHành động này sẽ xóa sạch dữ liệu vĩnh viễn và không thể khôi phục!")) return;
     setIsLoading(true);
     try {
       const querySnapshot = await getDocs(collection(db, "system_items"));
@@ -302,7 +302,7 @@ export function useAdminItems({ setIsLoading }: UseAdminItemsProps) {
       setGachaPool([]);
       setShopExclusives([]);
       setShopConsumables([]);
-      toast.success("Đã dọn dẹp sạch sẽ toàn bộ vật phẩm trên Firestore! 🧹");
+      toast.success("Đã dọn dẹp sạch sẽ toàn bộ vật phẩm trên Firestore!");
     } catch (err: any) {
       toast.error("Lỗi khi dọn dẹp vật phẩm: " + err.message);
     } finally {
@@ -501,7 +501,7 @@ export function useAdminItems({ setIsLoading }: UseAdminItemsProps) {
       setGachaPool(seededGachaPool);
       setShopExclusives(seededShopExpos);
       setShopConsumables(seededShopConsumables);
-      toast.success("Seeding 10 vật phẩm dễ thương thành công! 🌱");
+      toast.success("Seeding 10 vật phẩm dễ thương thành công!");
     } catch (err: any) {
       console.error(err);
       toast.error("Lỗi Seeding: " + err.message);

@@ -76,7 +76,7 @@ export function RhythmResultScreen({
         <button
           onClick={initGame}
           className="flex-1 h-14 bg-[#FF9F1C] hover:bg-[#e68a00] text-white font-black text-lg rounded-[1.25rem] border-b-4 border-[#cc7a00] active:border-b-0 active:translate-y-1 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-          style={{ fontFamily: "var(--font-cherry)" }}
+          style={{ fontFamily: "var(--font-jupa)" }}
         >
           <RefreshCw size={20} /> CHƠI LẠI
         </button>

@@ -123,7 +123,7 @@ export function useImportDeck() {
     
     const newDeck: any = {
       id: `custom_${Date.now()}`,
-      title: deckTitle.trim() || "Bộ bài mới ✨",
+      title: deckTitle.trim() || "Bộ bài mới",
       description: deckDescription.trim() || "",
       count: deckData.length,
       level: finalLevel || "N5",
@@ -155,9 +155,9 @@ export function useImportDeck() {
           creatorName: user.displayName || "Ẩn danh",
           createdAt: new Date().toISOString(),
         });
-        toast.success("Đã đẩy bộ bài lên mây! ☁️✨");
+        toast.success("Đã đẩy bộ bài lên mây!");
       } else {
-        toast.success("Đã lưu tạm vào máy! (Nên đăng nhập để đồng bộ nhé) 📱");
+        toast.success("Đã lưu tạm vào máy! (Nên đăng nhập để đồng bộ nhé)");
       }
 
       addCustomDeck(newDeck);
@@ -165,7 +165,7 @@ export function useImportDeck() {
       setTimeout(resetState, 300);
     } catch (error) {
       console.error("Lỗi khi lưu bộ bài:", error);
-      toast.error("Có lỗi xảy ra, chưa lưu được bộ bài! 🥺");
+      toast.error("Có lỗi xảy ra, chưa lưu được bộ bài!");
     } finally {
       setIsSaving(false);
     }

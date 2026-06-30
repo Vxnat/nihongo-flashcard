@@ -145,7 +145,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    toast.success("Tải xuống thành công! 🎉", { icon: "⬇️" });
+    toast.success("Tải xuống thành công!");
   };
 
   return (
@@ -304,7 +304,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
                 Thư mục trống trơn!
               </h3>
               <p className="font-rounded text-zinc-500 font-bold text-sm md:text-base max-w-[280px] mx-auto mb-6">
-                Chưa có thẻ bài nào ở đây cả. Bạn có thể nhấn linh vật góc phải để triệu hồi thẻ nhé! ✨
+                Chưa có thẻ bài nào ở đây cả. Bạn có thể nhấn linh vật góc phải để triệu hồi thẻ nhé!
               </p>
 
             </div>
@@ -685,7 +685,7 @@ export function CustomDecksTab({ homeState }: CustomDecksTabProps) {
         <div className="relative group cursor-pointer">
           {/* Bong bóng thoại mini */}
           <div className="absolute bottom-22 right-0 bg-white/95 border-2 border-[#FFE2D1] rounded-2xl py-1.5 px-3 shadow-md w-max pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <p className="text-[10px] font-black text-amber-900 font-rounded">Tạo bài mới nhé? ✨</p>
+            <p className="text-[10px] font-black text-amber-900 font-rounded">Tạo bài mới nhé?</p>
           </div>
 
           <motion.div

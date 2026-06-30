@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 export function FallingSparkles() {
   const [sparkles, setSparkles] = useState<any[]>([]);
@@ -24,7 +25,7 @@ export function FallingSparkles() {
     >
       {sparkles.map((star) => (
         <motion.div key={star.id} className="absolute text-yellow-100/80 drop-shadow-[0_0_8px_rgba(253,224,71,0.8)]" style={{ left: star.left, top: "-5%" }} animate={{ y: ["0vh", "110vh"], opacity: [0, 1, 0.8, 0], rotate: [0, 180] }} transition={{ duration: star.duration, delay: star.delay, repeat: Infinity, ease: "linear" }}>
-          <span style={{ fontSize: star.size }}>✨</span>
+          <Sparkles size={star.size} className="text-yellow-100/80 fill-yellow-100/20" />
         </motion.div>
       ))}
     </motion.div>
